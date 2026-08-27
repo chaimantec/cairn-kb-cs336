@@ -12,8 +12,8 @@ KB covers one of them. See `kb.json` for coverage.
       (executable lecture, not a slide deck)
 
 ## Crawl
-- [ ] Fetch course site index: https://cs336.stanford.edu
-- [ ] Write sources.md
+- [x] Fetch course site index: https://cs336.stanford.edu (25 pages, 41 external docs)
+- [x] Write sources.md
 
 ## Wiki
 - [ ] wiki/01-overview-tokenization.md

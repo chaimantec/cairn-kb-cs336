@@ -491,6 +491,11 @@ How do you set the parameters of the model?
 [GitHub](https://github.com/stanford-cs336/assignment1-basics) ·
 [PDF](https://github.com/stanford-cs336/assignment1-basics/blob/main/cs336_spring2026_assignment1_basics.pdf)
 
+*(That PDF URL is the one written in the lecture source and is reproduced here
+verbatim, but it returns 404 as of 2026-08-27 — the repo currently serves the
+handout as
+[`cs336_assignment1_basics.pdf`](https://github.com/stanford-cs336/assignment1-basics/blob/main/cs336_assignment1_basics.pdf).)*
+
 - Implement BPE tokenizer
 - Implement Transformer, cross-entropy loss, AdamW optimizer, training loop
 - Do resource accounting
