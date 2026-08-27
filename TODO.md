@@ -8,7 +8,7 @@ KB covers one of them. See `kb.json` for coverage.
 - [ ] 01 Overview, Tokenization — copy-edited transcript
 
 ## Course material
-- [ ] raw/slides/01-overview-tokenization.md — transcribe lecture_01.py
+- [x] raw/slides/01-overview-tokenization.md — transcribe lecture_01.py
       (executable lecture, not a slide deck)
 
 ## Crawl
