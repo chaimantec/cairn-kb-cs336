@@ -5,7 +5,7 @@ KB covers one of them. See `kb.json` for coverage.
 
 ## Transcripts
 - [x] 01 Overview, Tokenization — video JuoVZkPBiKk (verbatim captions fetched)
-- [ ] 01 Overview, Tokenization — copy-edited transcript
+- [x] 01 Overview, Tokenization — copy-edited transcript (3 checks pass: timestamps, numbers, para ratios)
 
 ## Course material
 - [x] raw/slides/01-overview-tokenization.md — transcribe lecture_01.py
