@@ -16,12 +16,21 @@ KB covers one of them. See `kb.json` for coverage.
 - [x] Write sources.md
 
 ## Wiki
-- [ ] wiki/01-overview-tokenization.md
-- [ ] Topic pages (tokenization, BPE, resource accounting / the course pipeline)
-- [ ] INDEX.md table of contents
+- [x] wiki/01-overview-tokenization.md
+- [x] Topic pages — tokenization, byte-pair-encoding, efficiency, scaling-laws,
+      course-map, executable-lectures (6)
+- [x] INDEX.md table of contents
 
 ## Publish
-- [ ] kb.json — coverage 1/18, materials.method = source-text
-- [ ] SEE_ALSO.md — CS221 sibling KB
+- [x] kb.json — coverage 1/18, materials.method = source-text
+- [x] SEE_ALSO.md — CS224N and CS221 sibling KBs
 - [ ] Commit and push to chaimantec/cairn-kb-cs336
 - [ ] PATCH kbUrl onto catalog entry 94d9c003-2193-43e7-96e3-c1cb4ed0aba8
+
+## Not done (next run)
+- [ ] Lectures 2–18 — transcripts and wiki pages
+- [ ] Transcribe the 8 PDF decks (lectures 3, 4, 5, 8, 9, 11, 15, 16) — these need
+      page-images, not source-text, and a figure audit
+- [ ] Transcribe the 8 remaining executable lectures (2, 6, 7, 10, 12, 13, 14, 17)
+- [ ] Describe Lecture 1's figures — the image() targets are recorded by path in
+      raw/slides but their contents were never looked at
