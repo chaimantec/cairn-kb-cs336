@@ -24,8 +24,8 @@ KB covers one of them. See `kb.json` for coverage.
 ## Publish
 - [x] kb.json — coverage 1/18, materials.method = source-text
 - [x] SEE_ALSO.md — CS224N and CS221 sibling KBs
-- [ ] Commit and push to chaimantec/cairn-kb-cs336
-- [ ] PATCH kbUrl onto catalog entry 94d9c003-2193-43e7-96e3-c1cb4ed0aba8
+- [x] Commit and push to chaimantec/cairn-kb-cs336
+- [x] PATCH kbUrl onto catalog entry 94d9c003-2193-43e7-96e3-c1cb4ed0aba8 (verified)
 
 ## Not done (next run)
 - [ ] Lectures 2–18 — transcripts and wiki pages
