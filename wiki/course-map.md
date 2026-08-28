@@ -2,9 +2,10 @@
 
 > **Coverage note.** This page is the syllabus as Percy Liang presents it in
 > [Lecture 1](01-overview-tokenization.md) ([27:04]–[1:03:57]). It is a map of the
-> whole course, but **this knowledge base currently covers Lecture 1 only**. Every
-> unit below except tokenization is a preview here, not a treatment. See
-> [`kb.json`](../kb.json) for exact coverage.
+> whole course, but **this knowledge base currently covers Lectures 1 and 2
+> only**. Every unit below is a preview here rather than a treatment, except
+> tokenization (Lecture 1) and the resource-accounting part of Systems
+> (Lecture 2). See [`kb.json`](../kb.json) for exact coverage.
 
 CS336 is five units, each paired with an assignment. The unifying question, stated
 at [1:02:23], is [efficiency](efficiency.md): how do you build the best model given
@@ -12,8 +13,8 @@ a fixed set of resources — data, compute, memory, communication bandwidth?
 
 | Unit | Assignment | Lectures | In this KB |
 | --- | --- | --- | --- |
-| [Basics](#unit-1--basics) | 1 | 1–4 | Lecture 1 only |
-| [Systems](#unit-2--systems) | 2 | 5–8, 10 | No |
+| [Basics](#unit-1--basics) | 1 | 1–4 | Lectures 1–2 |
+| [Systems](#unit-2--systems) | 2 | 5–8, 10 | [Resource accounting only](resource-accounting.md) — from Lecture 2 |
 | [Scaling laws](#unit-3--scaling-laws) | 3 | 9, 11 | [Preview only](scaling-laws.md) |
 | [Data](#unit-4--data) | 4 | 12–14 | No |
 | [Alignment](#unit-5--alignment) | 5 | 15–17 | No |
@@ -53,14 +54,27 @@ B200.
 
 **Goal:** squeeze the most out of the hardware ([35:32]).
 
+> **A note on lecture numbering.** Systems is taught in Lectures 5–8 and 10, but
+> its first topic — resource accounting — is delivered much earlier, in
+> [Lecture 2](02-pytorch-resource-accounting.md), because Assignment 1 needs it.
+> Percy opens that lecture by saying the day's subject is resource accounting and
+> that it is "more on the systems side of things." So the Lecture 2 material below
+> is **covered in this KB**, while the rest of the unit is still a preview. See
+> [resource accounting](resource-accounting.md),
+> [arithmetic intensity](arithmetic-intensity.md) and
+> [training FLOPs](training-flops.md) for the treatment.
+
 **Resource accounting** — where the FLOPs and the memory go. The formula previewed
-at [36:18] is $C = 6ND$ for training a model of $N$ parameters on $D$ tokens.
+at [36:18] is $C = 6ND$ for training a model of $N$ parameters on $D$ tokens, and
+it is [derived in Lecture 2](training-flops.md).
 Concrete hardware numbers from the lecture: a B200 does 2.25 PFLOP/s in bf16 with
 8 TB/s of memory bandwidth. The central fact about hardware ([37:04]) is that
 **your memory is not where your compute is** — parameters and activations must
 move from HBM to the SMs and back, and that movement is usually the bottleneck.
 Roofline analysis tells you which side you are bound by; Percy's aside is that in
-general it is memory.
+general it is memory. Lecture 2 makes that concrete — see
+[arithmetic intensity](arithmetic-intensity.md), where four of the five operations
+worked through are memory-bound and only large matrix multiplication is not.
 
 **Kernels** — a kernel is a function that runs on the GPU, and every PyTorch
 primitive launches one whether you know it or not ([38:37]). Writing custom
@@ -80,7 +94,11 @@ and expert parallelism.
 compute, synthetic data and evaluation, not just chat ([41:39]). Two phases:
 **prefill**, where all prompt tokens are processed at once and you are
 compute-bound, and **decode**, one token at a time, which is **memory-bound** —
-and that is why inference is hard. Speedups: cheaper models (pruning,
+and that is why inference is hard. Lecture 2 supplies the reason in one line:
+decoding is a matrix–vector product, whose
+[arithmetic intensity is about 1](arithmetic-intensity.md#dot-product-and-matrixvector--12-and-1)
+against an H100's requirement of ~295, because every weight is read from memory
+and used exactly once. Speedups: cheaper models (pruning,
 quantization, distillation); speculative decoding (a draft model proposes several
 tokens, the full model scores them in parallel, and the decoding stays exact); and
 systems work like fused kernels and continuous batching.

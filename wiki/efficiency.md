@@ -93,6 +93,37 @@ The interesting cases are where these conflict. His example at [35:32]: you can
 make something faster by projecting into a lower-dimensional space — but does it
 still work as well? Making that trade well is, in his words, the name of the game.
 
+## From principle to practice: you have to be able to count
+
+[Lecture 2](02-pytorch-resource-accounting.md) supplies the step this page's
+framing leaves implicit. If efficiency is output per unit of resource, then
+maximizing it presupposes that you can *measure* the resource — and Percy states
+the dependency directly at the start of that lecture: the goal is to maximize
+computational efficiency, so the prerequisite is to understand the compute and
+memory characteristics of a given computation.
+
+That is what makes [resource accounting](resource-accounting.md) the second
+lecture rather than a systems-unit afterthought. The whole course is an argument
+about a ratio, and the denominator has to be countable before the argument can be
+made. The concrete tools are:
+
+- [FLOPs and MFU](flops-and-mfu.md) — counting compute, and measuring what
+  fraction of the hardware you are actually using
+- [Training FLOPs, $C = 6ND$](training-flops.md) — the whole cost of a training run
+  in one formula
+- [Memory accounting](memory-accounting-for-training.md) — what fits, in bytes per
+  parameter
+- [Arithmetic intensity](arithmetic-intensity.md) — which of the two resources is
+  the binding one for a given operation
+
+The last of these sharpens the framing in a way worth carrying back to this page.
+"Efficiency" reads as though there were one resource to be efficient with, but a
+GPU has two speed limits — arithmetic and memory bandwidth — and being efficient
+means knowing which one you are against. Most operations are memory-bound, so most
+efficiency work is about **moving fewer bytes**, not doing less arithmetic. An
+MFU of 0.5 counts as good precisely because the other half of the machine was
+never reachable for that workload.
+
 ## The honest caveat
 
 Efficiency is a *mindset*, and mindset is one of the two kinds of knowledge Percy
@@ -108,5 +139,9 @@ those do not reliably survive the jump across scales.
 
 - [Lecture 1](01-overview-tokenization.md) — the bitter lesson at [9:19], the
   framing at [10:50], the per-unit recap at [1:02:23]
+- [Lecture 2](02-pytorch-resource-accounting.md) — efficiency restated as the
+  motivation for resource accounting
 - [`lecture_01.py` transcription](../raw/slides/01-overview-tokenization.md)
-- [Edited transcript](../raw/transcripts/01-overview-tokenization.md)
+- [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
+- Edited transcripts: [Lecture 1](../raw/transcripts/01-overview-tokenization.md),
+  [Lecture 2](../raw/transcripts/02-pytorch-resource-accounting.md)
