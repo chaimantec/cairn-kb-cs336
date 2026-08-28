@@ -9,31 +9,32 @@
     "courseUrl": "https://cs336.stanford.edu"
   },
   "coverage": {
-    "lecturesCovered": 1,
+    "lecturesCovered": 2,
     "lecturesTotal": 18,
-    "transcripts": 1,
-    "wikiLecturePages": 1,
-    "wikiTopicPages": 6
+    "transcripts": 2,
+    "wikiLecturePages": 2,
+    "wikiTopicPages": 14
   },
   "materials": {
     "primary": "executable-lectures",
-    "executableLectures": { "available": 9, "transcribed": 1 },
+    "executableLectures": { "available": 9, "transcribed": 2 },
     "slideDecks": { "available": 8, "transcribed": 0 },
     "method": "source-text",
     "figuresAudited": false,
     "sourceRepo": "https://github.com/stanford-cs336/lectures"
   },
   "provenance": {
-    "builtBy": ["claude-opus-5"],
+    "builtBy": ["claude-opus-5", "claude-sonnet-5"],
     "caveats": [
-      "PARTIAL: covers lecture 1 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 2-18 - architectures, GPUs, kernels, parallelism, scaling laws, inference, evaluation, data, mid/post-training, RLVR, multimodality - have no transcripts and no wiki pages here.",
-      "Lecture 1 is an executable Python program (lecture_01.py), not a slide deck, so the written material was transcribed from source text exactly. That is not a lower grade than page-images for this lecture; there are no slides to have looked at.",
-      "Figures are the one gap. The lecture displays images via image() calls; raw/slides records each one at the point it appears, by path or URL, WITHOUT describing its contents, because the build read source text rather than rendered images. No claim in the wiki rests on a figure's contents.",
-      "Worked numeric values (compression ratios, token ids, BPE merge sequences, vocabulary sizes) do not appear in the lecture source - they are produced at runtime by @inspect annotations. The values in this KB were obtained by executing the lecture's own code verbatim, and raw/slides says so at the head of the tokenization section. They are reproducible, not recalled.",
+      "PARTIAL: covers lectures 1 and 2 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 3-18 - architectures, GPUs, kernels, parallelism, scaling laws, inference, evaluation, data, mid/post-training, RLVR, multimodality - have no transcripts and no wiki pages here.",
+      "Lectures 1 and 2 are executable Python programs (lecture_01.py, lecture_02.py), not slide decks, so the written material was transcribed from source text exactly. That is not a lower grade than page-images for these lectures; there are no slides to have looked at.",
+      "Figures are the one gap in the written material. Both lectures display images via image() calls; raw/slides records each one at the point it appears, by path or URL, WITHOUT describing its contents, because the build read source text rather than rendered images. No claim in the wiki rests on a figure's contents.",
+      "Worked numeric values do not appear in the lecture sources - they are produced at runtime by @inspect annotations. For lecture 2 these split in two. Deterministic arithmetic (FLOP counts, byte counts, arithmetic intensities, memory totals) was recomputed by evaluating the lecture's own expressions verbatim and is marked '(computed)'. Measurements (wall-clock timings, measured FLOP/s, MFU, peak-memory readings) depend on the GPU the program runs on, are marked 'machine-dependent, not reproduced', and are given NO value. Percy states at 17:03 that he ran lecture 2 on a laptop with no GPU, so the values shown in class were not produced on the hardware they describe either.",
       "The half of CS336 taught by Tatsunori Hashimoto (lectures 3, 4, 5, 8, 9, 11, 15, 16) IS conventional PDF decks. Those are not transcribed here, and transcribing them would require page-images rather than source-text.",
-      "The transcript was copy-edited from auto-captions. The verbatim captions are kept alongside at raw/transcripts/original/. Two places where the captions are genuinely ambiguous are marked inline with [Ed:] notes rather than guessed."
+      "Transcripts were copy-edited from auto-captions, with the verbatim captions kept alongside at raw/transcripts/original/. Lecture 2's edit was drafted by claude-sonnet-5 and adjudicated against three mechanical checks (timestamp sequence, number inventory, per-paragraph word ratios); two dropped passages were restored and one over-confident number restoration was reverted. Places where the captions are genuinely ambiguous are marked inline with [Ed:] notes rather than guessed.",
+      "Lecture 2's transcript carries four [Ed:] notes where what Percy said and what his own program computes disagree - GPT-3's FLOP count, an 8-H100 FLOP total, a matmul arithmetic intensity he self-corrects, and the recomputation cost of sqrt(L) checkpointing. The wiki follows the lecture source in each case and says so."
     ]
   },
   "entryPoint": "INDEX.md",
-  "updated": "2026-08-27"
+  "updated": "2026-08-28"
 }

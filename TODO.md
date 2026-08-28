@@ -27,23 +27,32 @@ source-text, no deck.
       machine-dependent and not reproduced)
 
 ### Transcript
-- [x] 02 — verbatim captions fetched (78 paragraphs, ~12.2k words)
-- [ ] 02 — copy-edited transcript
-- [ ] 02 — verify: timestamp diff, number inventory, per-paragraph word ratios
+- [x] 02 — verbatim captions fetched (101 paragraphs, ~12.2k words)
+- [x] 02 — copy-edited transcript (drafted by Sonnet, adjudicated here)
+- [x] 02 — verify: all three checks pass. Timestamps: 101 markers, identical
+      sequence. Numbers: every difference accounted for (exponent joins, spoken
+      dimension names -> seq1/hidden2, one caption stutter, one 1989->1979 fix
+      confirmed by source). Word ratios: 4 outliers at 0.66-0.72 read and
+      confirmed as filler removal, 1 at 1.22 is an inserted [Ed:] note.
+      Adjudication restored 2 dropped passages, reverted 1 unsafe number
+      restoration, and added 8 [Ed:] notes. All 24 restored proper nouns appear
+      verbatim in the lecture source.
 
 ### Wiki
-- [ ] wiki/02-pytorch-resource-accounting.md
-- [ ] Topic pages — resource accounting, arithmetic intensity / roofline,
-      precision and data types, einops, memory accounting for training,
-      activation checkpointing + gradient accumulation
-- [ ] Update existing topic pages that now have a second lecture to link
-      (efficiency, course-map, executable-lectures)
-- [ ] INDEX.md — add lecture 2 and its topic pages
+- [x] wiki/02-pytorch-resource-accounting.md (408 lines)
+- [x] Topic pages (8 new) — resource-accounting, flops-and-mfu,
+      arithmetic-intensity, training-flops, memory-accounting-for-training,
+      precision-and-data-types, einops, activation-checkpointing
+- [x] Update existing pages that now link a second lecture — efficiency,
+      course-map, executable-lectures, AGENTS.md
+- [x] INDEX.md — rewritten for two-lecture coverage
+- [x] Link sweep — 222 relative links and 71 anchors all resolve
 
 ### Publish
-- [ ] Update sources.md (lecture_02.py now transcribed)
-- [ ] kb.json — coverage 2/18
-- [ ] Commit and push
+- [x] Update sources.md (lecture_02.py now transcribed)
+- [x] kb.json — coverage 2/18, 14 topic pages
+- [x] Commit and push
+- n/a  kbUrl already set on the catalog entry from run 1; no re-link needed
 
 ## Not done (future runs)
 - [ ] Lectures 3–18 — transcripts and wiki pages
