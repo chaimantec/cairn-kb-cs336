@@ -44,8 +44,12 @@ Three practical consequences.
 
 **There are no slide numbers.** You cannot cite "slide 34" for a Percy lecture. The
 stable references are the function name and the source line range; this knowledge
-base's [transcription](../raw/slides/01-overview-tokenization.md) provides a
-section-to-line table for exactly this reason.
+base's transcriptions of
+[`lecture_01.py`](../raw/slides/01-overview-tokenization.md) and
+[`lecture_02.py`](../raw/slides/02-pytorch-resource-accounting.md) each provide a
+section-to-line table for exactly this reason. Cite a Percy lecture as, for
+example, "`arithmetic_intensity_matmul()`, lines 449–468" — that reference stays
+valid as long as the file does.
 
 **The worked numbers are not in the source.** Because values appear at runtime via
 `@inspect`, reading `lecture_01.py` does not show you the compression ratios, the
@@ -53,6 +57,18 @@ merge sequence, or the token ids — the code that produces them is there, the
 outputs are not. This KB's transcription reports those values, obtained by
 executing the lecture's own code, and says so explicitly at the head of the
 relevant section.
+
+Lecture 2 sharpens this point, because its runtime values come in two kinds. Most
+are ordinary arithmetic on constants — `6 * 70e9 * 15e12`, or a byte count divided
+by a bandwidth — and can be recomputed exactly by anyone, which is what this KB
+did. But a handful are *measurements*: `benchmark()` wall-clock timings, the
+measured FLOP/s they imply, the resulting MFU, and `get_max_memory_usage()`
+readings. Those depend on which GPU the program is running on, so there is no
+"the" value for them at all — the number Percy showed in class is a fact about the
+machine in front of him. This KB marks them *machine-dependent, not reproduced*
+and gives no number. If you need one, run the lecture on your own hardware; the
+figure you get is the answer for your hardware, which is the point of the
+exercise.
 
 **The material is exact.** Unlike a slide deck read by a vision model, the source
 text is unambiguous — no OCR, no misread axis labels, no figures that must be
@@ -78,5 +94,9 @@ extending this knowledge base.
 
 ## Sources
 
-- [Lecture 1](01-overview-tokenization.md) at [19:26]
+- [Lecture 1](01-overview-tokenization.md) at [19:26], where the format is
+  introduced and demonstrates itself
 - [`lecture_01.py` transcription](../raw/slides/01-overview-tokenization.md)
+- [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
+  — the second worked example of the format, and the one with machine-dependent
+  values in it

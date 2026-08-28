@@ -8,9 +8,9 @@ at its canonical URL, because this knowledge base is read by an agent that
 navigates markdown — a PDF blob in the repo would be unreadable to it — and the
 current lecture decks alone total roughly 50 MB.
 
-**This KB currently covers Lecture 1 only.** The inventory below spans the whole
+**This KB currently covers Lectures 1 and 2.** The inventory below spans the whole
 course (and its two earlier offerings) so that provenance is recorded once, but
-only Lecture 1 has been transcribed into `wiki/` and `raw/`. See `kb.json`.
+only Lectures 1 and 2 have been transcribed into `wiki/` and `raw/`. See `kb.json`.
 
 ## How CS336 publishes its lectures
 
@@ -47,7 +47,19 @@ Supporting modules used by those programs: [`references.py`](https://github.com/
 (every paper citation, as structured data), [`lecture_util.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_util.py),
 [`facts.py`](https://github.com/stanford-cs336/lectures/blob/main/facts.py).
 
-**Transcribed in this KB:** `lecture_01.py` → [`raw/slides/01-overview-tokenization.md`](raw/slides/01-overview-tokenization.md).
+**Transcribed in this KB:**
+
+- `lecture_01.py` → [`raw/slides/01-overview-tokenization.md`](raw/slides/01-overview-tokenization.md)
+- `lecture_02.py` → [`raw/slides/02-pytorch-resource-accounting.md`](raw/slides/02-pytorch-resource-accounting.md)
+
+Both were transcribed from source text. Neither transcription describes the
+images the programs display: `image()` targets are recorded at the point they
+appear, by path or URL, and nothing in the wiki rests on a figure's contents.
+Lecture 2 additionally computes many of its numbers at runtime — the deterministic
+ones were recomputed from the lecture's own expressions and are marked
+"(computed)"; the ones that depend on which GPU the program runs on (wall-clock
+timings, measured FLOP/s, MFU, peak-memory readings) are marked
+"machine-dependent, not reproduced" and no value is given for them.
 
 ## Slide decks (Tatsu) — `.pdf`, Spring 2026
 
