@@ -5,9 +5,14 @@ Stanford, Spring 2026 — Percy Liang and Tatsunori Hashimoto**. It is read by
 Cairn's in-extension AI chat, which fetches files over `raw.githubusercontent.com`
 and follows relative markdown links.
 
-**Coverage: Lecture 1 of 18.** See [`kb.json`](kb.json) and the banner at the top
-of [`INDEX.md`](INDEX.md). Any page describing later material is repeating Lecture
-1's syllabus preview and says so in a blockquote at the top.
+**Coverage: Lectures 1 and 2 of 18.** See [`kb.json`](kb.json) and the banner at
+the top of [`INDEX.md`](INDEX.md). Any page describing later material is repeating
+Lecture 1's syllabus preview and says so in a blockquote at the top.
+
+One numbering quirk to know: Lecture 2 teaches **resource accounting**, which
+belongs to the Systems unit (Lectures 5–8, 10) even though the lecture itself sits
+in the Basics block. So [`wiki/course-map.md`](wiki/course-map.md) marks Unit 2 as
+partially covered while the rest of that unit is still a preview.
 
 ## Layout
 
@@ -66,6 +71,13 @@ would be `method: page-images` in `kb.json`, unlike the current `source-text`.
 - **Mark preview material.** Lecture 1 previews four units it does not teach. Pages
   covering them open with a coverage blockquote, so a reader never mistakes the
   framing for the treatment.
+- **Distinguish computed from measured values.** Executable lectures produce their
+  numbers at runtime. Where the expression is deterministic arithmetic, this build
+  recomputes it and marks the result "(computed)". Where the value is a
+  *measurement* — a wall-clock timing, a measured FLOP/s, an MFU, a peak-memory
+  reading — it is a fact about the machine the lecture ran on, so `raw/slides/`
+  marks it "machine-dependent, not reproduced" and gives no number. Do not quote a
+  number for those, and do not substitute a plausible one.
 - **Prose over fragments.** The chat quotes these pages to learners; bullet
   fragments quote badly.
 - **Math in LaTeX**: `$...$` inline, `$$...$$` displayed. Renders both in Cairn's
