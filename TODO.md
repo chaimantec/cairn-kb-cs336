@@ -1,6 +1,6 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after this run: **Lectures 1 and 2.** The course has 18 recorded
+Coverage after this run: **Lectures 1, 2 and 3.** The course has 18 recorded
 lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
@@ -54,9 +54,42 @@ source-text, no deck.
 - [x] Commit and push
 - n/a  kbUrl already set on the catalog entry from run 1; no re-link needed
 
+## Run 3 — Lecture 3: Architectures
+
+Video lVynu4bo1rY (89 min). Tatsunori Hashimoto. **First PDF-deck lecture in this
+KB** — `lecture_03.pdf`, 67 pages, so `page-images` rather than `source-text`.
+
+Numbering: the deck prints **no page numbers on any page**. `slide_number_map.py`
+reported "printed numbers run 1-1" from a stray `1` on page 61 that is the
+numerator of the MQA arithmetic-intensity fraction, not a folio. Mapping is a
+plain 1..67, page N = slide N, and `--verify` must use the Python fallback.
+
+### Course material
+- [ ] raw/slides/03-architectures.md — read all 67 pages (Opus), append per chunk
+- [ ] Figure audit — 6 figure/table-heavy pages checked against the PDF (Sonnet)
+- [ ] Heading-sequence check (1..67, fallback for --verify)
+
+### Transcript
+- [x] 03 — verbatim captions fetched (117 paragraphs, ~17.1k words)
+- [ ] 03 — copy-edited transcript (Sonnet drafts, adjudicated here)
+- [ ] 03 — verify: timestamps, number inventory, per-paragraph word ratios
+
+### Wiki
+- [ ] wiki/03-architectures.md
+- [ ] Topic pages (new)
+- [ ] Update existing pages that now link a third lecture
+- [ ] INDEX.md — three-lecture coverage
+- [ ] Link sweep
+
+### Publish
+- [ ] Update sources.md (lecture_03.pdf now transcribed)
+- [ ] kb.json — coverage 3/18, materials.method now mixed
+- [ ] AGENTS.md — deck conventions now live, not hypothetical
+- [ ] Commit and push
+
 ## Not done (future runs)
-- [ ] Lectures 3–18 — transcripts and wiki pages
-- [ ] Transcribe the 8 PDF decks (lectures 3, 4, 5, 8, 9, 11, 15, 16) — these need
+- [ ] Lectures 4–18 — transcripts and wiki pages
+- [ ] Transcribe the 7 remaining PDF decks (lectures 4, 5, 8, 9, 11, 15, 16) — these need
       page-images, not source-text, and a figure audit
 - [ ] Transcribe the 7 remaining executable lectures (6, 7, 10, 12, 13, 14, 17)
 - [ ] Describe the figures in lectures 1 and 2 — the image() targets are recorded
