@@ -1649,12 +1649,15 @@ dashed residual path; a cyan **LN** box feeding a green **QKV** box (the label i
 partly hidden), a line labelled **V** running across the top to the right, a green
 **Proj** box at the right, and a $\oplus$ node where the residual rejoins. Below
 that, a second dashed sub-block with another cyan **LN** feeding a green **FC**
-box (also partly hidden). A slide annotation "Norms" is printed near the diagram
-(per the text layer) but is itself covered by the pasted image.
+box (also partly hidden).
 
 **Figure 2 — a pasted hand-drawn meme**, sitting on top of figure 1 and hiding its
 middle. It is a crude ink drawing of a stick figure in a jester's hat with a
-speech-shaped blob reading "**STACK MORE LAYER Norms**"; behind the figure a
+speech-shaped blob reading "**STACK MORE LAYER Norms**" — the words "STACK MORE
+LAYER" are part of the drawing, in blocky all-caps, while "**Norms**" is slide-native
+text in the deck's own proportional sans-serif, layered on top of the pasted image
+inside the speech bubble so that it completes the pun (turning "stack more layers"
+into "stack more LayerNorms"); behind the figure a
 banner reads "NEURAL NETWORKS" and a chart with an axis labelled "LAYERS"
 (vertically) and "LAYERS" (horizontally) shows a jagged green line rising to the
 right.
@@ -1999,8 +2002,10 @@ every column visible. Its columns, left to right, are: **Name**, **Has pa…** (
 "Ac…" for GPT4), **Link** (a URL column showing `arxiv.org/abs/…`,
 `cdn.openai.com/res…er.pdf`, `huggingface.co/…`, `github…`, `cohere.com/…`),
 **Year**, **Vocab count**, **Norm**, **Parallel Layer**, **Pre-norm**, **Position
-embedding**, **Activations**, **MoE** (a checkbox column, unchecked on every
-visible row), **Parametrization** (empty on every visible row), **Other tricks**,
+embedding**, **Activations**, **MoE** (a checkbox column, checked on exactly two
+rows — **GPT4** and **Mixtral of Experts** — and unchecked on every other row),
+**Parametrization** (empty on every row except **Phi3 (small) – same for phi4**,
+which carries a filled tag reading **MuP**), **Other tricks**,
 **MLP factor**, **num_layers**, **model_dim**, **Aspect ratio (d/layer)**,
 **num_heads**, and **drop_rate**. The categorical columns repeat the values
 transcribed under slides 7, 9, 29 and 51; the numeric columns, including

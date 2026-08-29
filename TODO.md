@@ -66,7 +66,18 @@ plain 1..67, page N = slide N, and `--verify` must use the Python fallback.
 
 ### Course material
 - [x] raw/slides/03-architectures.md — all 67 pages read (Opus), 2058 lines
-- [ ] Figure audit — 6 figure/table-heavy pages checked against the PDF (Sonnet)
+- [x] Figure audit — 8 pages (11, 12, 46, 50, 52, 55, 63, 67) checked against the
+      PDF at 600-1200 dpi. 6 clean; 3 errors found and fixed: slide 67's MoE
+      column is checked on GPT4 and Mixtral (not "unchecked on every row") and
+      its Parametrization column carries "MuP" on the Phi3 row (not "empty on
+      every row"); slide 55's "Norms" annotation is slide-native text layered ON
+      TOP of the meme, visible, not covered by it. The 43x6 numeric table on 67
+      was exact cell for cell, as was Table 3 on 63.
+- [x] Cross-view table check — slides 7, 29, 51 and 67 are four views of the same
+      model database, read in four separate chunks. 296 overlapping (model,
+      column) cells compared: 0 disagreements. No second audit run; the sample
+      was 6/8 clean and the one error class (a sparse column asserted uniformly
+      empty) does not recur on the sibling views, which name their exceptions.
 - [x] Heading-sequence check — PASS, exactly 67 headings 1..67 in order
 
 ### Transcript
