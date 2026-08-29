@@ -65,9 +65,9 @@ numerator of the MQA arithmetic-intensity fraction, not a folio. Mapping is a
 plain 1..67, page N = slide N, and `--verify` must use the Python fallback.
 
 ### Course material
-- [ ] raw/slides/03-architectures.md — read all 67 pages (Opus), append per chunk
+- [x] raw/slides/03-architectures.md — all 67 pages read (Opus), 2058 lines
 - [ ] Figure audit — 6 figure/table-heavy pages checked against the PDF (Sonnet)
-- [ ] Heading-sequence check (1..67, fallback for --verify)
+- [x] Heading-sequence check — PASS, exactly 67 headings 1..67 in order
 
 ### Transcript
 - [x] 03 — verbatim captions fetched (117 paragraphs, ~17.1k words)
