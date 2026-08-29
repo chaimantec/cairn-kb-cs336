@@ -82,8 +82,17 @@ plain 1..67, page N = slide N, and `--verify` must use the Python fallback.
 
 ### Transcript
 - [x] 03 — verbatim captions fetched (117 paragraphs, ~17.1k words)
-- [ ] 03 — copy-edited transcript (Sonnet drafts, adjudicated here)
-- [ ] 03 — verify: timestamps, number inventory, per-paragraph word ratios
+- [x] 03 — copy-edited transcript (drafted by Sonnet, adjudicated here)
+- [x] 03 — verify: all three checks pass. Timestamps: 117 markers, identical
+      sequence. Numbers: 5 differences, all adjudicated — a dropped duplicate "1"
+      from the "T5 1.v v1.1" caption stutter, "Gemma's two, three, and four"
+      written as digits, and "2"/"11" from an [Ed:] note citing Falcon 2 11B.
+      Word ratios: one outlier at 1.11, which falls to 0.93 once the 26-word
+      [Ed:] note inserted in that paragraph is excluded. Adjudication reverted
+      one unsafe restoration ("Nemotron-4 340B" back to "Nemotron 340B" — slide
+      26 prints "Nemotron 340B" and he was reading it) and corrected one wrong
+      evidence citation in the header (P-RoPE). All 21 restored proper nouns
+      appear verbatim in the deck; 9 [Ed:] notes mark genuine ambiguity.
 
 ### Wiki
 - [ ] wiki/03-architectures.md
