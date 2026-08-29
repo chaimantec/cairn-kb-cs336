@@ -188,6 +188,8 @@ each half:
 ## Sources
 
 - [Lecture 2 — PyTorch, Resource Accounting](02-pytorch-resource-accounting.md)
+- [Attention variants](attention-variants.md) — the *inference*-time memory story,
+  where the KV cache rather than the optimizer state is what dominates.
 - [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
   — `optimizer()` and `AdaGrad`, lines 602–680; `motivating_questions()`,
   lines 71–86

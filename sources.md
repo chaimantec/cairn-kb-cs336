@@ -8,9 +8,10 @@ at its canonical URL, because this knowledge base is read by an agent that
 navigates markdown — a PDF blob in the repo would be unreadable to it — and the
 current lecture decks alone total roughly 50 MB.
 
-**This KB currently covers Lectures 1 and 2.** The inventory below spans the whole
-course (and its two earlier offerings) so that provenance is recorded once, but
-only Lectures 1 and 2 have been transcribed into `wiki/` and `raw/`. See `kb.json`.
+**This KB currently covers Lectures 1, 2 and 3.** The inventory below spans the
+whole course (and its two earlier offerings) so that provenance is recorded once,
+but only Lectures 1–3 have been transcribed into `wiki/` and `raw/`. See
+`kb.json`.
 
 ## How CS336 publishes its lectures
 
@@ -65,7 +66,7 @@ timings, measured FLOP/s, MFU, peak-memory readings) are marked
 
 | # | Lecture | Deck |
 | --- | --- | --- |
-| 3 | Architectures, hyperparameters | [`lecture_03.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf) |
+| 3 | Architectures, hyperparameters | [`lecture_03.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf) — **transcribed**, all 67 pages, at [`raw/slides/03-architectures.md`](raw/slides/03-architectures.md) |
 | 4 | Attention alternatives and mixture of experts | [`lecture_04.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf) |
 | 5 | GPUs, TPUs | [`lecture_05.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf) |
 | 8 | Parallelism | [`lecture_08.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf) |
@@ -74,7 +75,13 @@ timings, measured FLOP/s, MFU, peak-memory readings) are marked
 | 15 | Mid/post-training (SFT/RLHF) | [`lecture_15.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_15.pdf) |
 | 16 | Post-training — RLVR | [`lecture_16.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_16.pdf) |
 
-None of these has been transcribed yet.
+**Only `lecture_03.pdf` has been transcribed.** It was read as page images — every
+figure described in prose, every table transcribed cell by cell — because a text
+extractor recovers nothing from these decks' tables, which are pasted images, and
+flattens their equations into a single line. The deck **prints no page numbers on
+any of its 67 pages**, so its transcription labels slides by PDF page number and
+says so in its front matter. The remaining seven decks are recorded here by URL
+only.
 
 ## Assignments — Spring 2026
 

@@ -95,17 +95,25 @@ plain 1..67, page N = slide N, and `--verify` must use the Python fallback.
       appear verbatim in the deck; 9 [Ed:] notes mark genuine ambiguity.
 
 ### Wiki
-- [ ] wiki/03-architectures.md
-- [ ] Topic pages (new)
-- [ ] Update existing pages that now link a third lecture
-- [ ] INDEX.md — three-lecture coverage
-- [ ] Link sweep
+- [x] wiki/03-architectures.md (249 lines)
+- [x] Topic pages (8 new) — model-architecture-survey, pre-norm-and-post-norm,
+      rmsnorm, gated-activations, rope, transformer-hyperparameters,
+      training-stability, attention-variants
+- [x] Update existing pages that now link a third lecture — arithmetic-intensity,
+      flops-and-mfu, efficiency, memory-accounting-for-training, tokenization,
+      scaling-laws, executable-lectures, course-map
+- [x] INDEX.md — three-lecture coverage, new Lecture 3 section, raw-material and
+      citation sections rewritten for the two material formats
+- [x] Link sweep — 323 relative links and 19 anchors all resolve; every one of the
+      25 wiki pages appears in INDEX.md; no LaTeX inside code fences
 
 ### Publish
-- [ ] Update sources.md (lecture_03.pdf now transcribed)
-- [ ] kb.json — coverage 3/18, materials.method now mixed
-- [ ] AGENTS.md — deck conventions now live, not hypothetical
-- [ ] Commit and push
+- [x] Update sources.md (lecture_03.pdf now transcribed)
+- [x] kb.json — coverage 3/18, 22 topic pages, materials.method now "mixed" with a
+      per-lecture breakdown, figuresAudited true
+- [x] AGENTS.md — deck conventions now live, not hypothetical; figures rule split
+      by lecture format; timestamp check widened to [H:MM:SS]
+- [x] Commit and push
 
 ## Not done (future runs)
 - [ ] Lectures 4–18 — transcripts and wiki pages
@@ -113,4 +121,7 @@ plain 1..67, page N = slide N, and `--verify` must use the Python fallback.
       page-images, not source-text, and a figure audit
 - [ ] Transcribe the 7 remaining executable lectures (6, 7, 10, 12, 13, 14, 17)
 - [ ] Describe the figures in lectures 1 and 2 — the image() targets are recorded
-      by path in raw/slides but their contents were never looked at
+      by path in raw/slides but their contents were never looked at. Lecture 3 now
+      sets the precedent for how (page-images plus a targeted figure audit), but
+      lectures 1-2 display images by URL rather than as PDF pages, so the mechanics
+      differ.

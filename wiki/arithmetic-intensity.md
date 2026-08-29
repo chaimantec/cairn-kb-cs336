@@ -218,6 +218,12 @@ that is, for pushing a workload rightward across the kink.
 ## Sources
 
 - [Lecture 2 — PyTorch, Resource Accounting](02-pytorch-resource-accounting.md)
+- [Lecture 3 — Architectures](03-architectures.md) applies this idea twice, and
+  they are the two places in the KB where it does real architectural work:
+  [RMSNorm](rmsnorm.md) exists because normalization has low arithmetic intensity
+  (0.17% of FLOPs, 25.5% of runtime), and [GQA/MQA](attention-variants.md) exist
+  because incremental decoding with a KV cache has an intensity of
+  $O((n/d + 1/b)^{-1})$ that wants exactly the wrong workload shape.
 - [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
   — `arithmetic_intensity()` and its five worked operations, lines 338–481
 - [Edited transcript](../raw/transcripts/02-pytorch-resource-accounting.md)

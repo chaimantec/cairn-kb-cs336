@@ -2,10 +2,11 @@
 
 > **Coverage note.** This page is the syllabus as Percy Liang presents it in
 > [Lecture 1](01-overview-tokenization.md) ([27:04]–[1:03:57]). It is a map of the
-> whole course, but **this knowledge base currently covers Lectures 1 and 2
+> whole course, but **this knowledge base currently covers Lectures 1, 2 and 3
 > only**. Every unit below is a preview here rather than a treatment, except
-> tokenization (Lecture 1) and the resource-accounting part of Systems
-> (Lecture 2). See [`kb.json`](../kb.json) for exact coverage.
+> tokenization (Lecture 1), model architecture (Lecture 3) and the
+> resource-accounting part of Systems (Lecture 2). See [`kb.json`](../kb.json) for
+> exact coverage.
 
 CS336 is five units, each paired with an assignment. The unifying question, stated
 at [1:02:23], is [efficiency](efficiency.md): how do you build the best model given
@@ -13,7 +14,7 @@ a fixed set of resources — data, compute, memory, communication bandwidth?
 
 | Unit | Assignment | Lectures | In this KB |
 | --- | --- | --- | --- |
-| [Basics](#unit-1--basics) | 1 | 1–4 | Lectures 1–2 |
+| [Basics](#unit-1--basics) | 1 | 1–4 | Lectures 1–3; Lecture 4 not covered |
 | [Systems](#unit-2--systems) | 2 | 5–8, 10 | [Resource accounting only](resource-accounting.md) — from Lecture 2 |
 | [Scaling laws](#unit-3--scaling-laws) | 3 | 9, 11 | [Preview only](scaling-laws.md) |
 | [Data](#unit-4--data) | 4 | 12–14 | No |
@@ -28,12 +29,23 @@ Three components:
 
 - **[Tokenization](tokenization.md)** — what atoms does the model operate on?
   Covered in full by Lecture 1; see [byte-pair encoding](byte-pair-encoding.md).
-- **Model architecture** — starting from the original Transformer, then the
-  refinements: activation functions (ReLU, SwiGLU); positional encodings
-  (sinusoidal, RoPE); normalization (LayerNorm, RMSNorm, QK-norm, pre- versus
-  post-norm); attention variants (full, sparse/local, GQA, MLA); recurrence and
-  linear attention (Mamba, Gated DeltaNet); dense MLP versus mixture of experts;
-  and the shape parameters — hidden dimension, depth, heads, experts.
+- **[Model architecture](03-architectures.md)** — starting from the original
+  Transformer, then the refinements: activation functions (ReLU, SwiGLU);
+  positional encodings (sinusoidal, RoPE); normalization (LayerNorm, RMSNorm,
+  QK-norm, pre- versus post-norm); attention variants (full, sparse/local, GQA,
+  MLA); recurrence and linear attention (Mamba, Gated DeltaNet); dense MLP versus
+  mixture of experts; and the shape parameters — hidden dimension, depth, heads,
+  experts.
+
+  **Covered by Lecture 3**, for the dense-attention half of that list — see
+  [the model architecture survey](model-architecture-survey.md) as the entry point,
+  and [pre-norm and post-norm](pre-norm-and-post-norm.md),
+  [RMSNorm](rmsnorm.md), [gated activations](gated-activations.md),
+  [RoPE](rope.md), [transformer hyperparameters](transformer-hyperparameters.md),
+  [training stability](training-stability.md) and
+  [attention variants](attention-variants.md) for the parts. Mixture of experts,
+  state-space models and linear attention are explicitly deferred to Lecture 4,
+  which this KB does not cover.
 - **Training** — loss function (including multi-token prediction), optimizer
   (AdamW, SOAP, Muon), initialization (Xavier, muP), learning-rate schedule
   (cosine, WSD), regularization, batch size, and MoE load balancing.

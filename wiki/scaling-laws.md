@@ -146,5 +146,8 @@ must spend carefully — "of course, this is low-stakes."
 ## Sources
 
 - [Lecture 1](01-overview-tokenization.md), scaling-laws preview [44:44]–[53:11]
+- [Transformer hyperparameters](transformer-hyperparameters.md) — Lecture 3 uses
+  two sweeps from Kaplan et al. 2020 for a different purpose than scaling: to show
+  that the feedforward ratio and the aspect ratio each have a broad flat basin.
 - [`lecture_01.py` transcription](../raw/slides/01-overview-tokenization.md#unit-3--scaling-laws-assignment-3)
 - [Edited transcript](../raw/transcripts/01-overview-tokenization.md)

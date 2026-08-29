@@ -9,32 +9,48 @@
     "courseUrl": "https://cs336.stanford.edu"
   },
   "coverage": {
-    "lecturesCovered": 2,
+    "lecturesCovered": 3,
     "lecturesTotal": 18,
-    "transcripts": 2,
-    "wikiLecturePages": 2,
-    "wikiTopicPages": 14
+    "transcripts": 3,
+    "wikiLecturePages": 3,
+    "wikiTopicPages": 22
   },
   "materials": {
-    "primary": "executable-lectures",
-    "executableLectures": { "available": 9, "transcribed": 2 },
-    "slideDecks": { "available": 8, "transcribed": 0 },
-    "method": "source-text",
-    "figuresAudited": false,
+    "primary": "mixed",
+    "executableLectures": {
+      "available": 9,
+      "transcribed": 2
+    },
+    "slideDecks": {
+      "available": 8,
+      "transcribed": 1
+    },
+    "method": "mixed",
+    "byLecture": {
+      "1": "source-text",
+      "2": "source-text",
+      "3": "page-images"
+    },
+    "figuresAudited": true,
     "sourceRepo": "https://github.com/stanford-cs336/lectures"
   },
   "provenance": {
-    "builtBy": ["claude-opus-5", "claude-sonnet-5"],
+    "builtBy": [
+      "claude-opus-5",
+      "claude-sonnet-5"
+    ],
     "caveats": [
-      "PARTIAL: covers lectures 1 and 2 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 3-18 - architectures, GPUs, kernels, parallelism, scaling laws, inference, evaluation, data, mid/post-training, RLVR, multimodality - have no transcripts and no wiki pages here.",
-      "Lectures 1 and 2 are executable Python programs (lecture_01.py, lecture_02.py), not slide decks, so the written material was transcribed from source text exactly. That is not a lower grade than page-images for these lectures; there are no slides to have looked at.",
-      "Figures are the one gap in the written material. Both lectures display images via image() calls; raw/slides records each one at the point it appears, by path or URL, WITHOUT describing its contents, because the build read source text rather than rendered images. No claim in the wiki rests on a figure's contents.",
-      "Worked numeric values do not appear in the lecture sources - they are produced at runtime by @inspect annotations. For lecture 2 these split in two. Deterministic arithmetic (FLOP counts, byte counts, arithmetic intensities, memory totals) was recomputed by evaluating the lecture's own expressions verbatim and is marked '(computed)'. Measurements (wall-clock timings, measured FLOP/s, MFU, peak-memory readings) depend on the GPU the program runs on, are marked 'machine-dependent, not reproduced', and are given NO value. Percy states at 17:03 that he ran lecture 2 on a laptop with no GPU, so the values shown in class were not produced on the hardware they describe either.",
-      "The half of CS336 taught by Tatsunori Hashimoto (lectures 3, 4, 5, 8, 9, 11, 15, 16) IS conventional PDF decks. Those are not transcribed here, and transcribing them would require page-images rather than source-text.",
-      "Transcripts were copy-edited from auto-captions, with the verbatim captions kept alongside at raw/transcripts/original/. Lecture 2's edit was drafted by claude-sonnet-5 and adjudicated against three mechanical checks (timestamp sequence, number inventory, per-paragraph word ratios); two dropped passages were restored and one over-confident number restoration was reverted. Places where the captions are genuinely ambiguous are marked inline with [Ed:] notes rather than guessed.",
-      "Lecture 2's transcript carries four [Ed:] notes where what Percy said and what his own program computes disagree - GPT-3's FLOP count, an 8-H100 FLOP total, a matmul arithmetic intensity he self-corrects, and the recomputation cost of sqrt(L) checkpointing. The wiki follows the lecture source in each case and says so."
+      "PARTIAL: covers lectures 1, 2 and 3 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 4-18 - attention alternatives and mixture of experts, GPUs, kernels, parallelism, scaling laws, inference, evaluation, data, mid/post-training, RLVR, multimodality - have no transcripts and no wiki pages here.",
+      "materials.method is 'mixed' and the split matters. Lectures 1 and 2 are executable Python programs (lecture_01.py, lecture_02.py), transcribed exactly from source text; that is not a lower grade than page-images, because there are no slides to have looked at. Lecture 3 is a 67-page PDF deck read as page images, so its figures, charts and tables ARE captured. See materials.byLecture.",
+      "Figures: described for lecture 3, NOT described for lectures 1 and 2. Lectures 1 and 2 display images via image() calls, and raw/slides records each one at the point it appears, by path or URL, WITHOUT describing its contents, because those lectures were read as source text. No wiki claim rests on a lecture 1 or 2 figure. Lecture 3's figures are described in prose from the rendered pages and may be cited.",
+      "Lecture 3's deck prints NO page number on any of its 67 pages, so its slide labels in raw/slides/03-architectures.md are PDF page numbers, not printed slide numbers, and the file says so in its front matter. A page-number scan reported one printed number; that glyph is the numerator of the MQA arithmetic-intensity fraction on page 61, not a folio.",
+      "Lecture 3's figure descriptions were audited against the PDF at 600-1200 dpi on 8 figure- and table-heavy pages (11, 12, 46, 50, 52, 55, 63, 67). Six were clean and both large numeric tables were exact cell for cell. Three errors were found and fixed: two sparse columns on slide 67 asserted to be uniformly empty (MoE is checked on GPT4 and Mixtral; Parametrization carries MuP on the Phi3 row), and one self-contradiction on slide 55 about whether an annotation was covered. Separately, the four views of the model database on slides 7, 29, 51 and 67 were cross-checked against each other: 296 overlapping cells, zero disagreements.",
+      "Worked numeric values in lectures 1 and 2 do not appear in the lecture sources - they are produced at runtime by @inspect annotations. Deterministic arithmetic (FLOP counts, byte counts, arithmetic intensities, memory totals) was recomputed by evaluating the lecture's own expressions verbatim and is marked '(computed)'. Measurements (wall-clock timings, measured FLOP/s, MFU, peak-memory readings) depend on the GPU the program runs on, are marked 'machine-dependent, not reproduced', and are given NO value. Percy states at 17:03 that he ran lecture 2 on a laptop with no GPU, so the values shown in class were not produced on the hardware they describe either.",
+      "Transcripts were copy-edited from auto-captions, with the verbatim captions kept alongside at raw/transcripts/original/. The lecture 2 and lecture 3 edits were drafted by claude-sonnet-5 and adjudicated against three mechanical checks (timestamp sequence, number inventory, per-paragraph word ratios). Places where the captions are genuinely ambiguous are marked inline with [Ed:] notes rather than guessed.",
+      "Lecture 2's transcript carries four [Ed:] notes where what Percy said and what his own program computes disagree - GPT-3's FLOP count, an 8-H100 FLOP total, a matmul arithmetic intensity he self-corrects, and the recomputation cost of sqrt(L) checkpointing. The wiki follows the lecture source in each case and says so.",
+      "Lecture 3's transcript carries nine [Ed:] notes, and two are load-bearing for the wiki. At 26:08 the captions garble the sentence naming GPT-3 as an ungated counterexample; the wiki follows the deck, which states it unambiguously. At 30:43 the captions have Falcon described as an exception that 'use[s] a gated linear unit', which contradicts both the word 'exception' and the deck's own table (Falcon 2 11B is GeLU), suggesting a dropped negation. Adjudication also reverted one over-confident restoration: the draft had written 'Nemotron-4 340B' where the captions have 'NeMo Tron 340B', but slide 26 prints 'Nemotron 340B' and the speaker was reading that slide, so the digit was removed."
     ]
   },
   "entryPoint": "INDEX.md",
-  "updated": "2026-08-28"
+  "updated": "2026-08-30"
 }

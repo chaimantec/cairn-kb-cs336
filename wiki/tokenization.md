@@ -219,6 +219,9 @@ Lecture 1's toy version omits — see
 ## Sources
 
 - [Lecture 1](01-overview-tokenization.md), tokenization unit from [1:04:46]
+- [Transformer hyperparameters](transformer-hyperparameters.md#vocabulary-size) —
+  what vocabulary sizes models actually ship with, from Lecture 3's survey:
+  30–50k for monolingual models, 100–250k for multilingual and production ones.
 - [`lecture_01.py` transcription](../raw/slides/01-overview-tokenization.md) —
   code, worked values and the citation list
 - [Edited transcript](../raw/transcripts/01-overview-tokenization.md)

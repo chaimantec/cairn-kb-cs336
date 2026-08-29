@@ -141,6 +141,9 @@ those do not reliably survive the jump across scales.
   framing at [10:50], the per-unit recap at [1:02:23]
 - [Lecture 2](02-pytorch-resource-accounting.md) — efficiency restated as the
   motivation for resource accounting
+- [Lecture 3](03-architectures.md) — efficiency as the thing that actually decides
+  architecture. RMSNorm, dropped bias terms, the ~100 aspect ratio and GQA are all
+  chosen on systems grounds rather than expressiveness ones.
 - [`lecture_01.py` transcription](../raw/slides/01-overview-tokenization.md)
 - [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
 - Edited transcripts: [Lecture 1](../raw/transcripts/01-overview-tokenization.md),

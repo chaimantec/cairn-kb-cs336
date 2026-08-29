@@ -147,6 +147,9 @@ why the answer is usually memory.
 ## Sources
 
 - [Lecture 2 — PyTorch, Resource Accounting](02-pytorch-resource-accounting.md)
+- [RMSNorm](rmsnorm.md) — Lecture 3's sharpest illustration that FLOPs are not
+  runtime: an operator class that is 0.17% of a transformer's FLOPs and 25.5% of
+  its wall-clock time.
 - [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
   — `tensor_operations_flops()`, lines 279–335; `get_promised_flop_per_sec()`,
   lines 795–827
