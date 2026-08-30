@@ -1,6 +1,9 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after this run: **Lectures 1, 2, 3, 4 and 5.** The course has 18 recorded
+Coverage after this run: **Lectures 1, 2, 3 and 4.** Lecture 5's raw material
+(deck and transcript) is committed and verified, but it has NO wiki page yet, so
+kb.json still reports 4 of 18 — deliberately, not by oversight. Run 5 was halted
+after the transcript step. The course has 18 recorded
 lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
@@ -246,8 +249,15 @@ text (~33 words/page). As in lecture 4, the figures ARE the content.
       bit-field table and numeric spot-check matched the source exactly.
       Confirmed as printed, not transcription error: slide 17's "M80" and slide
       29's "E4M3" against slide 27's "E8M0".
-- [ ] Figure audit, pass 2 — 4 of 7 pages dirty means the sample was too small;
-      running pages 9, 14, 20, 21, 33, 48, 55
+- [ ] Figure audit, pass 2 — NOT DONE. 4 of 7 pages came back dirty in pass 1,
+      which by this skill's rule means the sample was too small, so a second pass
+      over pages 9, 14, 20, 21, 33, 48 and 55 was launched and then stopped
+      partway when the run was halted. No pass-2 findings were received, and
+      nothing from it was applied. Those seven pages are transcribed but
+      UNAUDITED. Re-run it before writing wiki prose that cites them — pass 1's
+      errors were entirely in diagram structure and overlay annotations (counts,
+      positions, uniformity claims, one wholly unmentioned figure), never in data
+      series or numbers, so steer pass 2 at exactly those.
 - [x] Heading-sequence check — PASS, exactly 55 headings 1..55 in order
 
 ### Transcript
@@ -273,17 +283,44 @@ text (~33 words/page). As in lecture 4, the figures ARE the content.
       knowledge rather than implying deck support. "systolic array" was never a
       restoration — it is verbatim in the captions.
 
-### Wiki
-- [ ] wiki/05-gpus-tpus.md
-- [ ] Topic pages (new)
-- [ ] Update existing pages that now link a fifth lecture
+### Wiki — NOT STARTED
+Planned shape, worked out from the finished transcript and deck so a resume does
+not re-derive it:
+- [ ] wiki/05-gpus-tpus.md — the lecture page. Three parts: GPU hardware and
+      execution model, six tricks for making workloads fast, then FlashAttention
+      as the victory lap that combines tiling and recomputation.
+- [ ] Topic pages (10 new) — gpu-architecture (SMs, the memory hierarchy, the
+      A100 latency table on slide 10, why a chip is not all SRAM),
+      gpu-execution-model (threads/blocks/warps, SIMT, control divergence),
+      tpus (convergent evolution, MXU, the tensor-core naming collision, systolic
+      arrays), tensor-cores (matmul as the privileged operation since V100),
+      microscaling-formats (MXFP8/MXFP4, E8M0 block scale factors, the transpose
+      problem and the two quantized copies), operator-fusion, memory-coalescing
+      (DRAM bursts, row-major traversal), tiling (the N/T math on slide 42, tile
+      sizing, max-autotune, alignment and padding), wave-quantization (98 vs 120
+      tiles against 108 SMs), flash-attention (online softmax, tiling plus
+      recomputation)
+- [ ] Extend rather than duplicate: arithmetic-intensity.md already has a
+      roofline section — add lecture 5's four-ceiling version (slide 21) there
+      instead of a new page; precision-and-data-types.md already covers fp8/fp4 —
+      link it to the new microscaling page; activation-checkpointing.md already
+      covers recomputation — add slide 35/36's 8-vs-5 memory-access example
+- [ ] Update existing pages that now link a fifth lecture — efficiency,
+      attention-variants (FlashAttention now has a mechanism page), course-map
+      (Unit 2 Systems becomes properly covered, not a preview),
+      executable-lectures (three decks now), memory-accounting-for-training
 - [ ] INDEX.md — five-lecture coverage
-- [ ] Link sweep
+- [ ] Link sweep — remember GitHub's anchor slugging replaces each space
+      individually; do not collapse whitespace runs with \s+
 
 ### Publish
 - [ ] Update sources.md (lecture_05.pdf transcribed)
 - [ ] kb.json — coverage 5/18
-- [ ] AGENTS.md — deck precedent
+- [ ] AGENTS.md — deck precedent. Two things worth recording from this run: the
+      three-reader split gave three independent confirmations that the deck
+      prints no folio, and the figure audit's error class shifted — on lectures 3
+      and 4 the errors were chart values, here every value was right and every
+      error was diagram structure or a hand-drawn overlay.
 - [ ] Commit and push
 
 ## Not done (future runs)
