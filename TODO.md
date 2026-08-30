@@ -232,16 +232,46 @@ Density: 83 embedded images across 55 pages against only ~1,811 words of native
 text (~33 words/page). As in lecture 4, the figures ARE the content.
 
 ### Course material
-- [ ] raw/slides/05-gpus-tpus.md — three parallel Sonnet readers over pages
+- [x] raw/slides/05-gpus-tpus.md — three parallel Sonnet readers over pages
       1–19 / 20–37 / 38–55, appending incrementally; parent concatenates and
       writes front matter and the section table
-- [ ] Figure audit — chart- and diagram-heavy pages at 600–2200 dpi
-- [ ] Heading-sequence check — exactly 55 headings 1..55 in order
+- [x] Figure audit, pass 1 — pages 6, 10, 17, 27, 29, 46, 47 at 600–2400 dpi.
+      Clean: 17, 29, 47. Nine corrections applied across 6, 10, 27 and 46, all in
+      diagram structure and hand-drawn overlays (a five-region colour wash called
+      four, an annotation with no arrow described as having one, die-edge bars
+      said to run on all four edges when they run on two, a uniformity claim true
+      of one block in four, a 4x8 grid in eight colour groups called four, a
+      legend in the wrong corner, two overlay arrows where there are three) plus
+      one whole figure on slide 27 that had gone unmentioned. Every data series,
+      bit-field table and numeric spot-check matched the source exactly.
+      Confirmed as printed, not transcription error: slide 17's "M80" and slide
+      29's "E4M3" against slide 27's "E8M0".
+- [ ] Figure audit, pass 2 — 4 of 7 pages dirty means the sample was too small;
+      running pages 9, 14, 20, 21, 33, 48, 55
+- [x] Heading-sequence check — PASS, exactly 55 headings 1..55 in order
 
 ### Transcript
 - [x] 05 — verbatim captions fetched (103 paragraphs, ~16.2k words)
-- [ ] 05 — copy-edited transcript (draft on Sonnet, adjudicate here)
-- [ ] 05 — verify: timestamps, number inventory, per-paragraph word ratios
+- [x] 05 — copy-edited transcript (drafted by Sonnet, adjudicated here)
+- [x] 05 — verify: all three checks pass. Timestamps: 103 markers, identical
+      sequence. Numbers: 9 differences, all adjudicated — +9 "8"s from restoring
+      FP8 (x7) and MXFP8 (x2) from the captions' "FPA"/"MXFPA"; "5257"->"50257"
+      and "5304"->"50304", confirmed verbatim against slide 45's pasted Karpathy
+      tweet; "m0"->"M00" at 59:08, matching the M00/N00 tile naming in the same
+      sentence; one "32" dropped at 38:30 as a caption stutter ("a scaling factor
+      in 32, FP32" -> "in FP32"); one "108" that now sits inside an [Ed:] note
+      and so is not counted in the body. Word ratios: retention 82.3%, ZERO
+      paragraphs outside the 0.72-1.10 band.
+- [x] 05 — adjudication: the draft reported expanding three low-ratio paragraphs.
+      Two were legitimate restorations of material the first draft had cut. The
+      third had invented two words to complete the speaker's aborted false starts
+      ("divisible by two" for "not even divi-", "diminishing returns" for
+      "diminishing or sorry, no penalties"); both reverted, and the header now
+      states that false starts are preserved rather than completed. Restored
+      proper nouns: matmul/FP8/MXFP8/SMEM all appear verbatim in the deck; Groq
+      and Chris Ré do not, and the header now labels both as context plus outside
+      knowledge rather than implying deck support. "systolic array" was never a
+      restoration — it is verbatim in the captions.
 
 ### Wiki
 - [ ] wiki/05-gpus-tpus.md
