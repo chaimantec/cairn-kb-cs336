@@ -188,16 +188,31 @@ tables. Read at Opus rather than the Sonnet default for that reason (user's call
       insertion; a quoted question is transcribed speech and must still count.
 
 ### Wiki
-- [ ] wiki/04-attention-alternatives.md
-- [ ] Topic pages (linear attention, Mamba/SSMs, sparse attention, mixture of
-      experts, MoE routing, load balancing, upcycling, MLA/MTP — final list TBD)
-- [ ] Update existing pages that now link a fourth lecture
-- [ ] INDEX.md — four-lecture coverage
-- [ ] Link sweep
+- [x] wiki/04-attention-alternatives.md (330 lines)
+- [x] Topic pages (10 new) — linear-attention, state-space-models, sparse-attention,
+      mixture-of-experts, moe-routing, load-balancing-losses, expert-parallelism,
+      upcycling, multi-head-latent-attention, multi-token-prediction
+- [x] Update existing pages that now link a fourth lecture — attention-variants
+      (new "Where lecture 4 takes this" section), training-stability (MoE router
+      softmax, fp32 router, router z-loss), efficiency, executable-lectures (two
+      decks now, both unnumbered), model-architecture-survey (points at slide 35's
+      MoE table as the sparse-model companion), course-map (Unit 1 architecture and
+      Training bullets now resolve to lecture 4 pages)
+- [x] INDEX.md — four-lecture coverage, new Lecture 4 section with 10 annotated
+      entries, raw-material and citation sections updated for two decks
+- [x] Link sweep — 513 relative links and 73 anchors all resolve; all 36 wiki pages
+      appear in INDEX.md; no LaTeX inside code fences.
+      Note: the first anchor checker reported 35 false failures because it collapsed
+      whitespace runs when slugging a heading. GitHub does not — it strips the em
+      dash in "Unit 2 — Systems" and turns each remaining space into its own hyphen,
+      giving `unit-2--systems`. Replace each space individually; do not use `\s+`.
 
 ### Publish
-- [ ] Update sources.md (lecture_04.pdf now transcribed)
-- [ ] kb.json — coverage 4/18
+- [x] Update sources.md (lecture_04.pdf now transcribed)
+- [x] kb.json — coverage 4/18, 32 topic pages, byLecture."4" = page-images,
+      slideDecks transcribed 2 of 8, 13 caveats
+- [x] AGENTS.md — four deck precedents including parallel readers and the
+      audit-the-confident-pages lesson; transcript checker gotchas recorded
 - [ ] Commit and push
 - n/a  kbUrl already set on the catalog entry from run 1; no re-link needed
 

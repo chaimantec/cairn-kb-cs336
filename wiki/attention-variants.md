@@ -195,8 +195,32 @@ place where the most architecture work and changes are still being done." The pa
 he identifies over the past year is hybrid models that "aren't just global attention,
 aren't just cheap attention — they're some sort of mix in between."
 
+## Where lecture 4 takes this
+
+Lecture 3 stops at *static* sparsity — masks fixed in advance, and alternation
+between cheap and full layers on a fixed schedule.
+[Lecture 4](04-attention-alternatives.md) picks up exactly here and goes two steps
+further.
+
+**[Linear attention](linear-attention.md) and [state space models](state-space-models.md)**
+replace the softmax rather than the mask, making cost linear in sequence length and
+giving a fixed-size recurrent state at inference. Gated DeltaNet — named above as
+Qwen 3.5's cheap layer, with no explanation in lecture 3 — is derived there in full,
+as is the reason every deployed model of this kind is still a hybrid with periodic
+full attention.
+
+**[Sparse attention](sparse-attention.md)** keeps the softmax and makes the sparsity
+pattern *learned* rather than structural: DeepSeek Sparse Attention scores every
+preceding token with a cheap indexer and runs full attention on the top-$k$. It is
+not linear time, and lecture 4 is emphatic about that — the win is entirely in
+constant factors.
+
 ## Related
 
+- [Linear attention](linear-attention.md), [state space models](state-space-models.md)
+  and [sparse attention](sparse-attention.md) — Lecture 4's continuation of this page.
+- [Multi-head latent attention](multi-head-latent-attention.md) — the other KV-cache
+  reduction, from Lecture 4, alongside MQA and GQA here.
 - [Arithmetic intensity](arithmetic-intensity.md) — Lecture 2's treatment, which
   this section applies directly.
 - [Memory accounting for training](memory-accounting-for-training.md) — the other

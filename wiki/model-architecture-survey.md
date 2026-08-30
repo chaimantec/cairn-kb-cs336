@@ -133,6 +133,10 @@ different things, and the lecture is careful to distinguish them.
 
 - [Lecture 3 — architectures](03-architectures.md) — the lecture that reads this
   table.
+- [MoE routing](moe-routing.md) — the companion table from
+  [Lecture 4](04-attention-alternatives.md)'s slide 35, which does the same job for
+  the *sparse* models: routed and active expert counts, shared experts and
+  fine-grained ratios for twelve MoEs.
 - [Course map](course-map.md) — where Lecture 3 sits in CS336.
 - [The full slide file](../raw/slides/03-architectures.md) — all five views,
   transcribed.

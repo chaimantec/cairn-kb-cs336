@@ -8,13 +8,13 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1, 2 and 3 of 18
+> ## ⚠️ This knowledge base covers Lectures 1, 2, 3 and 4 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
-> Accounting) and Lecture 3 (Architectures) are covered in depth.** Nothing else
-> is. There are no transcripts and no wiki pages for attention alternatives and
-> mixture of experts, GPU hardware, kernels, parallelism, scaling laws, inference,
-> evaluation, data, mid/post-training, RLVR or multimodality.
+> Accounting), Lecture 3 (Architectures) and Lecture 4 (Attention Alternatives and
+> Mixtures of Experts) are covered in depth.** Nothing else is. There are no
+> transcripts and no wiki pages for GPU hardware, kernels, parallelism, scaling
+> laws, inference, evaluation, data, mid/post-training, RLVR or multimodality.
 >
 > Where a page describes later material, it is repeating Lecture 1's *syllabus
 > preview* and says so at the top. Do not cite this knowledge base as covering
@@ -38,10 +38,75 @@ compute and data?
   stability tricks, and GQA/sliding-window attention. Taught from a survey of
   forty-odd models rather than from theory.
 
+- **[Lecture 4 — Attention Alternatives and Mixtures of Experts](wiki/04-attention-alternatives.md)** —
+  where modern models depart from the standard transformer *structurally*, in two
+  places. Replacing quadratic attention with something linear (Mamba-2, Gated
+  DeltaNet) or sparse (DeepSeek Sparse Attention), and replacing the dense
+  feedforward block with a sparsely routed mixture of experts. Both are cost
+  arguments, not expressiveness arguments.
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 4 — attention alternatives and mixture of experts
+
+- **[Mixture of experts](wiki/mixture-of-experts.md)** — the hub for the second half
+  of Lecture 4. What an MoE is (replace one FFN with $N$ and route each token to a
+  few), the distinction between total and *active* parameters that every MoE claim
+  turns on, the evidence that they win, why the field took until 2024 to adopt them,
+  and why "expert" is a misnomer — the routers are a single matrix multiply and there
+  is no semantic specialization. Read this first for "what is an MoE and why?"
+- **[MoE routing](wiki/moe-routing.md)** — how tokens get assigned to experts. Token
+  choice versus expert choice, the four routing algorithms (top-$k$, hashing, RL,
+  linear assignment) and why top-$k$ won on cost rather than elegance, the
+  DeepSeekMoE router as equations, and fine-grained and shared experts — on which
+  DeepSeek's and OLMoE's careful ablations *disagree*. Carries the table of what
+  twelve real MoEs use. Read this for "how does top-$k$ routing work?"
+- **[Load balancing losses](wiki/load-balancing-losses.md)** — the heuristic that
+  makes MoEs trainable at all. Expert collapse as a rich-get-richer dynamic, the
+  Switch Transformer auxiliary loss and the trick of reading its *gradient* rather
+  than its objective, DeepSeek's per-device variant and why it needs its own loss,
+  V3's aux-loss-free biases (which are not quite aux-loss-free), and the ablation
+  showing two experts taking nearly all tokens without it. Read this for "what is a
+  load balancing loss?"
+- **[Expert parallelism](wiki/expert-parallelism.md)** — the systems half. Why data
+  and model parallelism each saturate and experts give a third axis, the
+  structured-sparsity hardware fit, communication as the price and Nemotron 3's
+  down-projection trick for lowering it, and the historical bug where an overloaded
+  expert would silently drop your token because of *another user's* queue. Read this
+  for "how are MoEs sharded?"
+- **[Linear attention](wiki/linear-attention.md)** — the associativity trick that
+  makes sub-quadratic attention possible: reorder $(QK^\top)V$ to $Q(K^\top V)$ and
+  the $n^2$ term disappears. The recurrent form, the *duality* between parallel
+  training and fixed-state inference that makes the family practical, and a clear
+  statement of which step is lossy — dropping the softmax, not the recurrence. Read
+  this for "what is linear attention?"
+- **[State space models](wiki/state-space-models.md)** — Mamba-2 and Gated DeltaNet
+  as elaborations of linear attention's state update, with the rule that governs
+  them: gates may depend on the input, never on the state, or duality breaks. The
+  erase term that makes DeltaNet overwrite rather than accumulate, why every
+  deployed model is a hybrid with periodic full attention, and the state-size
+  bottleneck that remains. Read this for "how does Mamba work?"
+- **[Sparse attention](wiki/sparse-attention.md)** — DeepSeek Sparse Attention: a
+  cheap indexer scores every token, top-$k$ survive, full attention runs on those.
+  Includes the correction the lecture makes explicitly — **this is not linear time**,
+  it is quadratic with much better constants — and why it can be bolted on after
+  pretraining. Read this for "what is DSA?"
+- **[Multi-head latent attention](wiki/multi-head-latent-attention.md)** — DeepSeek's
+  KV-cache reduction: cache one low-dimensional latent per token and reconstruct keys
+  and values from it, with the up-projection merged into the query projection so the
+  keys are never materialized. Also why RoPE breaks that merge and the split-dimension
+  fix. Read this for "what is MLA?"
+- **[Multi-token prediction](wiki/multi-token-prediction.md)** — predicting several
+  tokens ahead with lightweight chained modules, and the systems argument that is the
+  real payoff: the model becomes its own speculative decoder. Read this for "what is
+  MTP?"
+- **[Upcycling](wiki/upcycling.md)** — building an MoE by cloning a trained dense
+  model's MLP into experts, why the randomly initialized router is what breaks the
+  symmetry between identical copies, and why the technique fell out of use when MoE
+  became the default rather than because it stopped working.
 
 ### Lecture 3 — architectures
 
@@ -185,7 +250,8 @@ usually the faster route than the lecture pages.
   covered lecture:
   [Lecture 1](raw/transcripts/01-overview-tokenization.md),
   [Lecture 2](raw/transcripts/02-pytorch-resource-accounting.md),
-  [Lecture 3](raw/transcripts/03-architectures.md).
+  [Lecture 3](raw/transcripts/03-architectures.md),
+  [Lecture 4](raw/transcripts/04-attention-alternatives.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
@@ -202,10 +268,15 @@ usually the faster route than the lecture pages.
     Liang's *executable lectures* — Python programs, transcribed from source text,
     each with a section-to-source-line table and the code verbatim. There are no
     slide numbers to cite.
-  - [`lecture_03.pdf`](raw/slides/03-architectures.md) is Tatsunori Hashimoto's
-    slide deck, all 67 pages transcribed from the rendered page images, with every
-    figure described in prose and every table transcribed cell by cell. Slide
-    numbers here are **PDF page numbers**, because the deck prints none of its own.
+  - [`lecture_03.pdf`](raw/slides/03-architectures.md) (67 pages) and
+    [`lecture_04.pdf`](raw/slides/04-attention-alternatives.md) (60 pages) are
+    Tatsunori Hashimoto's slide decks, transcribed from the rendered page images,
+    with every figure described in prose and every table transcribed cell by cell.
+    Slide numbers in both are **PDF page numbers**, because neither deck prints any
+    of its own. Lecture 4's deck is the more figure-dependent of the two: 102 pasted
+    images across 60 pages, most of which carry under 40 words of their own text, so
+    the figure descriptions there are not a supplement to the content — they *are*
+    the content.
 - **[`sources.md`](sources.md)** — every lecture, deck, assignment and linked
   document with its canonical URL, including the material for the 16 lectures this
   KB does not yet cover. Explains how CS336 splits between executable lectures and
@@ -232,14 +303,15 @@ Two kinds of citation, and they are not interchangeable:
 - **A timestamp** — `(≈1:13:13)` — cites what the lecturer *said*, and resolves
   against the transcript.
 - **A section of `lecture_01.py` or `lecture_02.py`**, or **a slide number of
-  `lecture_03.pdf`**, cites what the lecture *wrote*, and resolves against
+  `lecture_03.pdf` or `lecture_04.pdf`**, cites what the lecture *wrote*, and
+  resolves against
   `raw/slides/`. Prefer this for code, equations, numbers, tables and paper
   citations.
 
-For Lecture 3, "slide N" means PDF page N of `lecture_03.pdf`. The deck prints no
-page numbers, so there is no printed numbering to disagree with the page count —
-but say "page" rather than "printed slide" if the distinction could matter to a
-reader opening the file.
+For Lectures 3 and 4, "slide N" means PDF page N of `lecture_03.pdf` or
+`lecture_04.pdf`. Neither deck prints page numbers, so there is no printed numbering
+to disagree with the page count — but say "page" rather than "printed slide" if the
+distinction could matter to a reader opening the file.
 
 There are **no slide numbers** in this course's Percy-taught lectures. If a source
 appears to cite one, it is wrong — see

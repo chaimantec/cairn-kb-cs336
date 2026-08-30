@@ -2,9 +2,9 @@
 
 > **Coverage note.** This page is the syllabus as Percy Liang presents it in
 > [Lecture 1](01-overview-tokenization.md) ([27:04]–[1:03:57]). It is a map of the
-> whole course, but **this knowledge base currently covers Lectures 1, 2 and 3
+> whole course, but **this knowledge base currently covers Lectures 1, 2, 3 and 4
 > only**. Every unit below is a preview here rather than a treatment, except
-> tokenization (Lecture 1), model architecture (Lecture 3) and the
+> tokenization (Lecture 1), model architecture (Lectures 3 and 4) and the
 > resource-accounting part of Systems (Lecture 2). See [`kb.json`](../kb.json) for
 > exact coverage.
 
@@ -43,12 +43,26 @@ Three components:
   [RMSNorm](rmsnorm.md), [gated activations](gated-activations.md),
   [RoPE](rope.md), [transformer hyperparameters](transformer-hyperparameters.md),
   [training stability](training-stability.md) and
-  [attention variants](attention-variants.md) for the parts. Mixture of experts,
-  state-space models and linear attention are explicitly deferred to Lecture 4,
-  which this KB does not cover.
+  [attention variants](attention-variants.md) for the parts.
+
+  **And by [Lecture 4](04-attention-alternatives.md)** for the rest of it — the
+  items lecture 3 explicitly defers. Recurrence and linear attention are
+  [linear attention](linear-attention.md) and
+  [state space models](state-space-models.md); the learned-sparsity alternative is
+  [sparse attention](sparse-attention.md); dense MLP versus mixture of experts is
+  [mixture of experts](mixture-of-experts.md), with
+  [MoE routing](moe-routing.md), [load balancing losses](load-balancing-losses.md),
+  [expert parallelism](expert-parallelism.md) and [upcycling](upcycling.md) for the
+  parts. MLA, named in Percy's list above, is
+  [multi-head latent attention](multi-head-latent-attention.md).
 - **Training** — loss function (including multi-token prediction), optimizer
   (AdamW, SOAP, Muon), initialization (Xavier, muP), learning-rate schedule
   (cosine, WSD), regularization, batch size, and MoE load balancing.
+
+  Two items here are **covered by [Lecture 4](04-attention-alternatives.md)**:
+  [multi-token prediction](multi-token-prediction.md) and
+  [MoE load balancing](load-balancing-losses.md). The optimizer, initialization and
+  schedule material is not in this knowledge base.
 
 Percy's remark at [33:15] is worth carrying forward: this list *looks* like a pile
 of hyperparameters you could sweep, but setting them in a principled way is the

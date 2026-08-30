@@ -141,6 +141,11 @@ those do not reliably survive the jump across scales.
   framing at [10:50], the per-unit recap at [1:02:23]
 - [Lecture 2](02-pytorch-resource-accounting.md) — efficiency restated as the
   motivation for resource accounting
+- [Lecture 4](04-attention-alternatives.md) — two structural bets on efficiency:
+  sub-quadratic attention, and [mixture of experts](mixture-of-experts.md), which buys
+  parameters without buying FLOPs. Its treatment of
+  [sparse attention](sparse-attention.md) is also the course's sharpest statement that
+  constant factors, not asymptotics, are often what matters.
 - [Lecture 3](03-architectures.md) — efficiency as the thing that actually decides
   architecture. RMSNorm, dropped bias terms, the ~100 aspect ratio and GQA are all
   chosen on systems grounds rather than expressiveness ones.

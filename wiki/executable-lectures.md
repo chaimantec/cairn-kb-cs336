@@ -88,13 +88,17 @@ CS336 splits by instructor, and the split is exactly the format split:
 Both live in [`stanford-cs336/lectures`](https://github.com/stanford-cs336/lectures).
 Full inventory in [`sources.md`](../sources.md).
 
-**This KB now covers one of each.** Lectures 1 and 2 are executable lectures,
-transcribed from source text; [Lecture 3](03-architectures.md) is a 67-page deck,
-transcribed from the rendered page images. The citation rules differ accordingly —
-cite a *function name and line range* for the first kind, a *slide number* for the
-second. One wrinkle specific to `lecture_03.pdf`: it prints no page numbers on any
-page, so its "slide N" labels are PDF page numbers, and the slide file says so in
-its front matter.
+**This KB covers two of each.** Lectures 1 and 2 are executable lectures,
+transcribed from source text; [Lecture 3](03-architectures.md) (67 pages) and
+[Lecture 4](04-attention-alternatives.md) (60 pages) are decks, transcribed from the
+rendered page images. The citation rules differ accordingly — cite a *function name
+and line range* for the first kind, a *slide number* for the second.
+
+One wrinkle applies to both decks: **neither prints a page number on any page**, so
+their "slide N" labels are PDF page numbers, and both slide files say so in their
+front matter. For `lecture_03.pdf` an automated scan reported a printed number that
+turned out to be the numerator of a fraction on page 61; for `lecture_04.pdf` the
+scan reported none, and all 60 pages were checked by eye as they were read.
 
 A crawl of the course website finds the PDFs and misses the programs entirely,
 since the programs are not linked as documents — worth knowing if you are

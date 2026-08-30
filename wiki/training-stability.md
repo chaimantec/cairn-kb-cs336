@@ -164,8 +164,34 @@ expensive one is used by one lab. That ordering — try the intervention that co
 nothing, and only reach for the constraining one if you must — is the practical
 takeaway.
 
+## The MoE router adds another softmax
+
+[Lecture 4](04-attention-alternatives.md) extends this page's central rule —
+exponentials and divisions are the danger zone — to
+[mixture of experts](mixture-of-experts.md), which introduces a *new* softmax in the
+router on top of the two discussed above ([1:16:16]).
+
+Hashimoto notes that Barrett Zoph and others "wrote an entire paper on MoE stability"
+in the early Google MoE work, and that the router softmax was one of the things they
+flagged ([1:17:02]). Two fixes carry over, both narrower than their dense
+counterparts because they target the router alone:
+
+- **float32 for the router specifically** — keep the rest of the model in low
+  precision and compute only the routing softmax in higher precision. See
+  [precision and data types](precision-and-data-types.md).
+- **A z-loss on the router**, the same construction as Fix 1 above. OLMoE's ablation
+  (slide 49) removes it and gets visibly spikier training-loss curves; Hashimoto's
+  reading is that "z-loss on the router can be quite helpful," and that it "was
+  actually quite popular for MoE router stability, even in the early days" ([1:17:48]).
+
+Note this is a different failure mode from
+[expert collapse](load-balancing-losses.md), which is about routing *dynamics* rather
+than numerical range. Both afflict the same softmax; they need different fixes.
+
 ## Related
 
+- [Load balancing losses](load-balancing-losses.md) — the other thing that goes wrong
+  with an MoE router, and the auxiliary loss that fixes it.
 - [Pre-norm and post-norm](pre-norm-and-post-norm.md) — where "sprinkle in layer
   norms" starts.
 - [RMSNorm](rmsnorm.md) — the norm QK norm actually uses.
