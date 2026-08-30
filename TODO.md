@@ -1,6 +1,6 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after this run: **Lectures 1, 2, 3 and 4.** The course has 18 recorded
+Coverage after this run: **Lectures 1, 2, 3, 4 and 5.** The course has 18 recorded
 lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
@@ -216,6 +216,45 @@ tables. Read at Opus rather than the Sonnet default for that reason (user's call
 - [x] Commit and push
 - n/a  kbUrl already set on the catalog entry from run 1; no re-link needed
 - n/a  kbUrl already set on the catalog entry from run 1; no re-link needed
+
+## Run 5 — Lecture 5: GPUs, TPUs
+
+Video izZba4UA7iY (79 min). Tatsunori Hashimoto. PDF deck — `lecture_05.pdf`,
+55 pages, `page-images`.
+
+Numbering: derived in the parent BEFORE any page was read. `slide_number_map.py`
+reports no printed number on any of the 55 pages. A corner-position text-layer
+scan returns four bare digit tokens — `32` (p11), `8` (p35), `5` (p40), `2` (p44)
+— all mid-page content, none in a folio position. Mapping is a plain 1..55,
+page N = slide N; `--verify` must use the Python heading-sequence fallback.
+
+Density: 83 embedded images across 55 pages against only ~1,811 words of native
+text (~33 words/page). As in lecture 4, the figures ARE the content.
+
+### Course material
+- [ ] raw/slides/05-gpus-tpus.md — three parallel Sonnet readers over pages
+      1–19 / 20–37 / 38–55, appending incrementally; parent concatenates and
+      writes front matter and the section table
+- [ ] Figure audit — chart- and diagram-heavy pages at 600–2200 dpi
+- [ ] Heading-sequence check — exactly 55 headings 1..55 in order
+
+### Transcript
+- [x] 05 — verbatim captions fetched (103 paragraphs, ~16.2k words)
+- [ ] 05 — copy-edited transcript (draft on Sonnet, adjudicate here)
+- [ ] 05 — verify: timestamps, number inventory, per-paragraph word ratios
+
+### Wiki
+- [ ] wiki/05-gpus-tpus.md
+- [ ] Topic pages (new)
+- [ ] Update existing pages that now link a fifth lecture
+- [ ] INDEX.md — five-lecture coverage
+- [ ] Link sweep
+
+### Publish
+- [ ] Update sources.md (lecture_05.pdf transcribed)
+- [ ] kb.json — coverage 5/18
+- [ ] AGENTS.md — deck precedent
+- [ ] Commit and push
 
 ## Not done (future runs)
 - [ ] Lectures 5–18 — transcripts and wiki pages
