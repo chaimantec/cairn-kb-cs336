@@ -130,9 +130,40 @@ Density: 102 embedded raster images across 60 pages, and most pages carry only
 tables. Read at Opus rather than the Sonnet default for that reason (user's call).
 
 ### Course material
-- [ ] raw/slides/04-attention-alternatives.md — transcribe all 60 pages
-- [ ] Figure audit — chart- and table-heavy pages checked against the PDF at high dpi
-- [ ] Heading-sequence check — exactly 60 headings 1..60 in order
+- [x] raw/slides/04-attention-alternatives.md — all 60 pages read (Opus, three
+      agents over pages 1-20/21-40/41-60), 2370 lines
+- [x] Numbering confirmed by eye, not just by script — all three readers checked
+      every page and a text-layer scan for isolated 1-3 digit strings returned
+      zero hits. No folio anywhere; the only corner numerals in the deck are
+      citation brackets and equation tags belonging to pasted paper figures.
+- [x] Figure audit — 8 pages (6, 11, 16, 20, 33, 35, 43, 52) checked against the
+      PDF at 600-2200 dpi. 5 clean; 9 corrections applied on pages 6, 11 and 43.
+      All 9 were chart values read slightly off (the worst a systematic ~0.13
+      offset across one OLMoE validation-loss panel, from reading a linear x-axis
+      as if it were spaced otherwise). NO structural errors: nothing fabricated,
+      no series transposed, and all four audited tables — page 20's Llama 4
+      screenshot, page 35's 12-row native routing table, page 52's MiniCPM
+      Table 6, page 6's ablation table — were exact cell for cell. Every claim
+      the transcribers had themselves flagged as uncertain proved correct.
+- [x] Slide 3 — FlashAttention-2 at 1k sequence length is 153 TFLOPs/s. The
+      legend box overprints the label so no render could resolve it; supplied by
+      the user and recorded as externally confirmed rather than read off the page.
+- [x] Heading-sequence check — PASS, exactly 60 headings 1..60 in order
+
+### Known deck self-contradictions (transcribed as printed, flagged inline)
+- Slide 47: the printed Expert-Indices vector is `1 2 0 2 1 2`, but stages 3-4
+  label "brown" as Expert-2's token and "quick"/"fox" as Expert-0's — experts 0
+  and 2 are swapped relative to the vector.
+- Slide 56: the heading says "Shared (1)" for v3 while the pasted DeepSeekMoE
+  diagram still shows two shared experts, and the bold line reads "V2 (671B - 37
+  active)" under a v3 title.
+- Slide 39: the code screenshot has `router_logits += mtf.random_uniform(...,
+  minval=1-eps, maxval=1+eps)` — jitter drawn around 1 but applied additively.
+- Slides 16 and 17 both plot Switch-Base runs but use different colour
+  assignments and different series counts; they must not be cross-quoted by
+  colour.
+- Slide 20's Llama 4 table screenshot is cropped mid-row below GPQA Diamond in
+  the source image (confirmed by the audit).
 
 ### Transcript
 - [x] 04 — verbatim captions fetched (113 paragraphs, ~16.9k words)
