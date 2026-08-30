@@ -1,6 +1,6 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after this run: **Lectures 1, 2 and 3.** The course has 18 recorded
+Coverage after this run: **Lectures 1, 2, 3 and 4.** The course has 18 recorded
 lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
@@ -115,9 +115,47 @@ plain 1..67, page N = slide N, and `--verify` must use the Python fallback.
       by lecture format; timestamp check widened to [H:MM:SS]
 - [x] Commit and push
 
+## Run 4 — Lecture 4: Attention Alternatives and Mixture of Experts
+
+Video cKSwj_qZ8Jg (86 min). Tatsunori Hashimoto. Second PDF-deck lecture —
+`lecture_04.pdf`, 60 pages, `page-images`.
+
+Numbering: as with lecture 3, the deck prints **no page numbers on any page**.
+`slide_number_map.py` found no printed folio in either bottom corner on any of
+the 60 pages and fell back to a bare 1..60. Page N = slide N; `--verify` must use
+the Python heading-sequence fallback.
+
+Density: 102 embedded raster images across 60 pages, and most pages carry only
+10-40 words of native text — nearly the whole deck is pasted paper figures and
+tables. Read at Opus rather than the Sonnet default for that reason (user's call).
+
+### Course material
+- [ ] raw/slides/04-attention-alternatives.md — transcribe all 60 pages
+- [ ] Figure audit — chart- and table-heavy pages checked against the PDF at high dpi
+- [ ] Heading-sequence check — exactly 60 headings 1..60 in order
+
+### Transcript
+- [x] 04 — verbatim captions fetched (113 paragraphs, ~16.9k words)
+- [ ] 04 — copy-edited transcript
+- [ ] 04 — verify: timestamp sequence, number inventory, per-paragraph word ratios
+
+### Wiki
+- [ ] wiki/04-attention-alternatives.md
+- [ ] Topic pages (linear attention, Mamba/SSMs, sparse attention, mixture of
+      experts, MoE routing, load balancing, upcycling, MLA/MTP — final list TBD)
+- [ ] Update existing pages that now link a fourth lecture
+- [ ] INDEX.md — four-lecture coverage
+- [ ] Link sweep
+
+### Publish
+- [ ] Update sources.md (lecture_04.pdf now transcribed)
+- [ ] kb.json — coverage 4/18
+- [ ] Commit and push
+- n/a  kbUrl already set on the catalog entry from run 1; no re-link needed
+
 ## Not done (future runs)
-- [ ] Lectures 4–18 — transcripts and wiki pages
-- [ ] Transcribe the 7 remaining PDF decks (lectures 4, 5, 8, 9, 11, 15, 16) — these need
+- [ ] Lectures 5–18 — transcripts and wiki pages
+- [ ] Transcribe the 6 remaining PDF decks (lectures 5, 8, 9, 11, 15, 16) — these need
       page-images, not source-text, and a figure audit
 - [ ] Transcribe the 7 remaining executable lectures (6, 7, 10, 12, 13, 14, 17)
 - [ ] Describe the figures in lectures 1 and 2 — the image() targets are recorded
