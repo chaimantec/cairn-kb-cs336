@@ -213,7 +213,8 @@ tables. Read at Opus rather than the Sonnet default for that reason (user's call
       slideDecks transcribed 2 of 8, 13 caveats
 - [x] AGENTS.md — four deck precedents including parallel readers and the
       audit-the-confident-pages lesson; transcript checker gotchas recorded
-- [ ] Commit and push
+- [x] Commit and push
+- n/a  kbUrl already set on the catalog entry from run 1; no re-link needed
 - n/a  kbUrl already set on the catalog entry from run 1; no re-link needed
 
 ## Not done (future runs)
