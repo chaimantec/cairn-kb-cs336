@@ -297,11 +297,15 @@ Overlaid annotations (arrows and call-out boxes, not additional data series):
 listing "Adaptive Silicon, Elixent, Triscend, Morphics, Chameleon Systems,
 Quicksilver Technology, Mathstar" (~1995–2005), "H. Sutter 'Free Lunch is
 Over'" (arrow down, ~2004), a shaded region labelled "End of Dennard Scaling"
-(early-to-mid 2000s onward), "Amdahl's Law" (arrow down, ~2010), and
+(early-to-mid 2000s onward), "Amdahl's Law" (plain floating text with **no**
+arrow, sitting inside the orange band at the yellow/orange boundary, ~2010–2011
+— the only one of these annotations that is not drawn with an arrow), and
 "Hennessy/Patterson 'A New Golden Age'" (arrow down, ~2017–2018) at top right.
-A background colour wash runs left-to-right under the whole plot: yellow
-(1970s–1980s), green (RISC era, ~1985–2003), orange (~2003–2010), then a
-red-to-dark-red gradient (2010–2020). A bracketed timeline bar beneath the
+A background colour wash runs left-to-right under the whole plot in **five**
+regions: yellow (1970s–1980s), green (RISC era, ~1985–2003), **yellow again**
+(~2003–2010, the same gold fill as the first band rather than a distinct
+colour), a solid orange band (~2010–2014, the one under the "Amdahl's Law"
+label), then a red-to-dark-red gradient (~2014–2020). A bracketed timeline bar beneath the
 x-axis labels three eras: "CISC" (up to ~1985), "RISC" (~1985–2003), and
 "Multi-core" (~2003–2020).
 
@@ -453,10 +457,14 @@ lower right of the GPU).
 TSMC."** A high-resolution photograph of the physical GA100 die with
 coloured overlay boxes and text labels (annotated by "Locuza, June 2021", per
 a credit printed in the image itself). Reading the layout: brown/gold bars
-along all four edges read "HBM2(e) PHY, 1024-Bit @ 2.430 - 3.186 Gpbs" (four
-of them, one per side); magenta bars next to them read "3x 512-Bit Memory
-Control" (four of them). Cyan vertical strips along the left edge read "4x
-NVLINK PHY (4x 50GB/s Bidirectional)", with orange accent stripes beside them.
+read "HBM2(e) PHY, 1024-Bit @ 2.430 - 3.186 Gpbs" and run along the **top and
+bottom edges only**, three per edge (six in all), alternating with magenta bars
+reading "3x 512-Bit Memory Control" (two per edge, four in all). The two side
+edges carry something else entirely: cyan vertical strips along the **left**
+edge read "4x NVLINK PHY (4x 50GB/s Bidirectional)", with orange accent stripes
+beside them, while the **right** edge reads "PCIe Control, NV Video Decoder,
+Miscellaneous" and "16x PCIe4.0 (64 GB/s Bidirectional)". No HBM sits on either
+side edge.
 The main die area is split into four large green quadrants, each labelled
 (top-left quadrant, as the fully legible example) "4x SM" with sub-text "SM =
 64 FP32 ALUs, 32 FP64 ALUs, 64 INT32 ALUs, 4 Tensor Units, 192KiB L1$/SMEM",
@@ -465,8 +473,10 @@ below it; the other three quadrants are each simply labelled "16x SM" (large
 green tiled blocks, two per die-half). Down the centre of each die-half runs a
 blue cross-shaped region labelled "24MiB L2$ Partition" (two of these, one per
 half), and set into the arms of each blue cross are purple tiled blocks
-labelled "24x 0.5MiB = 12MiB L2$" (four of these overall), each itself a small
-grid of cells individually labelled "0.5MB L2$". A black text panel at the
+labelled "24x 0.5MiB = 12MiB L2$" (four of these overall). Only **one** of the
+four — the top arm of the left-hand cross, beside the "4x SM" callout — has its
+individual cells labelled "0.5MB L2$"; the other three carry the aggregate
+label over unlabelled cells. A black text panel at the
 top right of the figure (outside this crop, seen in the unzoomed page) reads:
 "Nvidia GA100, 7nm TSMC" / "x8 GPC, x64 TPC, 128x SM" / "8192 FP32 'Units'" /
 "4096 FP64 'Units'" / "48MB L2 Cache" / "6144-Bit HBM2(e)" / "Die size w/
@@ -967,13 +977,24 @@ diagram comparing plain FP8 to MXFP8.** On the left, a small block labelled
 "FP8" shows a uniform grid of orange cells labelled "data" above a single
 small orange square labelled "Scaling factor" — i.e., one scale factor for the
 whole block. On the right, a block labelled "MXFP8" shows the same-size grid
-of "data" cells, but now subdivided into **four** colored quadrant groups (a
-2x2 arrangement of 4-cell strips, colored orange, green, blue, and a fourth
-pastel color — grey/pink/yellow appear across the grid in the rendered image),
-each quadrant paired with its own small "Scaling factor" swatch (colored to
-match) labelled "E8M0" — i.e., MXFP8 assigns one E8M0 (8-bit exponent, 0-bit
+of "data" cells — 4 rows x 8 columns, 32 cells — now subdivided into **eight**
+coloured groups of 4 cells each, arranged 4 x 2: row 1 orange | green, row 2
+grey | blue-slate, row 3 light-blue | pink, row 4 yellow | purple. The
+"Scaling factor" panel beside it correspondingly holds **eight** swatches,
+arranged 4 x 2 to match and each coloured to its group and labelled "E8M0" — i.e., MXFP8 assigns one E8M0 (8-bit exponent, 0-bit
 mantissa) scale factor per small group of elements rather than one scale
 factor for the entire block.
+
+**Figure 3 (lower right) — a "Forward pass / Backward pass" flow diagram.** A
+tan box headed "Forward pass" contains "High precision" -> "Cast" -> *rowwise*
+-> "Matrix multiply (fwd)". A *columnwise* arrow runs down from it into a
+light-blue box headed "Backward pass", which contains "Matrix multiply (dgrad)"
+(fed *rowwise*) and "Matrix multiply (wgrad)" (fed *columnwise*), together with
+a second "Cast" fed by "High precision" entering from the right. The arrow
+joining the two boxes is labelled "Weights". This is the figure that motivates
+the "Transposes are now nontrivial!" bullet below: the forward pass wants the
+data laid out rowwise and the backward pass wants it columnwise, and a
+per-32-element scale factor does not survive a transpose unchanged.
 
 Below the left panel, text: "MXFP8 has many *interesting* things about it" —
 - Uses E4M3 (more mantissa) due to more scale factors
@@ -1388,10 +1409,11 @@ Credit at the foot: "This section is from https://www.thonking.ai/p/what-shapes-
 
 Text: "We understand some of this (compute intensity, tiling). Let's take a closer look.."
 
-**Figure 1 — a scatter chart titled "FLOPs achieved for square matmuls", with hand-drawn annotations overlaid.** The y-axis is "TF/s", ticked 0, 50, 100, 150, 200, 250; the x-axis is ticked 0, 512, 1024, 1536, 2048, 2560, 3072, 3584, 4096, with no printed axis-title text on this version of the chart (an axis title appears only on the next slide's copy of this same chart). A legend box in the upper left holds a single entry, "128", drawn as a plain grey horizontal line with no marker — this matches the faint vertical grey gridlines spaced every 128 units across the plot and is a spacing reference, not a plotted data series.
+**Figure 1 — a scatter chart titled "FLOPs achieved for square matmuls", with hand-drawn annotations overlaid.** The y-axis is "TF/s", ticked 0, 50, 100, 150, 200, 250; the x-axis is ticked 0, 512, 1024, 1536, 2048, 2560, 3072, 3584, 4096, with no printed axis-title text on this version of the chart (an axis title appears only on the next slide's copy of this same chart). A legend box in the **bottom right** of the plot area (near x ~ 4000, low
+TF/s) holds a single entry, "128", drawn as a plain grey horizontal line with no marker — this matches the faint vertical grey gridlines spaced every 128 units across the plot and is a spacing reference, not a plotted data series.
 
 - There is **one** data series: a single-coloured (blue) cloud of scatter points giving measured TF/s for square matmuls at each size $N$ from near 0 up to 4096. Because so many closely-spaced $N$ values are plotted, the cloud resolves into several visually distinct diagonal "sawtooth" bands rather than one curve: a widest, sparsest top band climbing to roughly 250–265 TF/s by the right edge; a denser middle band that reads almost as a solid line, rising to roughly 120–155 TF/s; and the densest, lowest band, rising to roughly 75–100 TF/s. All three bands repeat the same sawtooth shape — a sharp rise followed by a partial drop — as $N$ increases.
-- Hand-drawn additions (not part of the original chart): a pink arrow labelled "Compute Intensity" points from the origin up along the initial common rise of all bands at small $N$. Orange annotations reading "Tiling!" lead to a pair of vertical double-headed arrows marking the vertical gap between the top band and the two lower bands at around $N\approx2048$–2200. A large green ellipse circles the top band's points between roughly $N=2560$ and $N=3584$; a smaller green ellipse circles part of the middle band around $N\approx2700$–2900; and a green vertical line runs from about $N=3072$ down to the green caption "Wave Quantization" at the bottom of the chart, naming the effect behind the top band's structure.
+- Hand-drawn additions (not part of the original chart): a pink arrow labelled "Compute Intensity" points from the origin up along the initial common rise of all bands at small $N$. Orange annotations reading "Tiling!" lead to **three** stacked vertical double-headed arrows marking the vertical gaps between the bands at around $N\approx2048$–2200, spanning roughly TF/s 180–195, 90–160 and 55–90. Two of the three leader lines visibly start from the word "Tiling!"; the third, feeding the topmost arrow, is a separate near-horizontal squiggle beginning in blank space to the left of the lettering at the same height. A large green ellipse circles the top band's points between roughly $N=2560$ and $N=3584$; a smaller green ellipse circles part of the middle band around $N\approx2700$–2900; and a green vertical line runs from about $N=3072$ down to the green caption "Wave Quantization" at the bottom of the chart, naming the effect behind the top band's structure.
 
 ## Slide 47 — Part 1: tiling
 
