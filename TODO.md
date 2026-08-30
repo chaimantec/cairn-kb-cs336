@@ -167,8 +167,25 @@ tables. Read at Opus rather than the Sonnet default for that reason (user's call
 
 ### Transcript
 - [x] 04 — verbatim captions fetched (113 paragraphs, ~16.9k words)
-- [ ] 04 — copy-edited transcript
-- [ ] 04 — verify: timestamp sequence, number inventory, per-paragraph word ratios
+- [x] 04 — copy-edited transcript (drafted by Sonnet, adjudicated here)
+- [x] 04 — verify: all three checks pass. Timestamps: 113 markers, identical
+      sequence, both [MM:SS] and [H:MM:SS] forms. Numbers: 6 differences, all
+      adjudicated — "Open as 03"->"OpenAI o3", "AIQ"->"AI2", "llama four"->
+      "Llama 4" (x2), "one to N"->"1 to N", "V1 and twos"->"V1's and V2's", plus
+      an [Ed:] note citing slide 52's printed 13.6B against the 13.4B he says.
+      Word ratios: 3 outliers at 0.68-0.72, all read against the original and
+      confirmed filler-only; this speaker's "you know"/"sort of"/"kind of" tics
+      put whole-transcript retention at ~84% vs lecture 3's ~90%.
+      All 13 restored proper nouns appear verbatim in the deck EXCEPT "AI2",
+      which the draft itself flagged as contextual rather than a deck string —
+      the deck prints "Allen Institute for AI" on slide 14, so the abbreviation
+      is well-founded. 5 [Ed:] notes mark genuine ambiguity. One non-verbal
+      caption artifact ("[clears throat and snorts]" at 43:12) was dropped as
+      caption machinery and the header says so.
+      Note: the verification script's first draft stripped whole
+      "[Question from the floor: ...]" markers before counting words, which hid
+      5 paragraphs' real ratios behind false outliers. Only the LABEL is an
+      insertion; a quoted question is transcribed speech and must still count.
 
 ### Wiki
 - [ ] wiki/04-attention-alternatives.md
