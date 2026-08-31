@@ -1,6 +1,6 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after run 5: **Lectures 1–5.** Run 6 (Lecture 6) is in progress; the
+Coverage after run 6: **Lectures 1–6.** Run 7 (Lecture 7) is in progress; the
 course has 18 recorded lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
@@ -414,6 +414,54 @@ both). The XLA material is not in this offering's lecture 6; the KB calls it
       transcript ratio checker.
 - [x] Commit and push — pushed to chaimantec/cairn-kb-cs336 at 8df9244
 - n/a  kbUrl already set on the catalog entry from run 1; re-fetched and confirmed
+
+## Run 7 — Lecture 7: Parallelism
+
+Video SzpOcwdIL0Y (81 min). Percy Liang. **Executable lecture** — `lecture_07.py`,
+619 lines, so `source-text`, no deck and no page numbers. Cite function names and
+source line ranges, not slide numbers.
+
+Note: lectures 7 AND 8 are both titled "Parallelism". Lecture 7 is Percy's
+executable one (building blocks + DP/TP/PP); lecture 8 is Hashimoto's
+`lecture_08.pdf` deck and is NOT part of this run.
+
+**New this run: the course publishes the lecture's own recorded stdout** at
+`var/traces/lecture_07_stdout.txt` in the lectures repo. That is a real 4-GPU
+run (Modal, CUDA 13.2) and it supplies the printed collective outputs, the
+measured bandwidths, and the per-rank losses that the source alone cannot give.
+Saved to `raw/pdfs/lecture_07_stdout.txt`. Treat its timings as measurements of
+THAT machine, not as facts about GPUs in general.
+
+### Course material
+- [x] raw/slides/07-parallelism.md — transcribe lecture_07.py (619 source lines
+      -> 1077 lines; all 104 text() literals accounted for, 32 section anchors
+      resolve). Computed values: local_batch_size 32 and rank slices 0-32/96-128,
+      local_num_dim 256, local_num_layers 2, micro_batch_size 32, num_elements
+      104,857,600 = 400 MiB fp32, and both sent_bytes figures. The recorded-run
+      bandwidths were re-derived from the printed durations and reproduce the
+      printed 366/390/426/425 and 450/475/490/490 GB/s to within one unit in the
+      last place (rounding in the displayed milliseconds).
+      Transcription note: one source typo ("another GPUs memory") is transcribed
+      as printed, since the block is labelled as the source's own summary.
+
+### Transcript
+- [x] 07 — verbatim captions fetched (105 paragraphs, ~11.3k words, runs to 1:20:57)
+- [ ] 07 — copy-edited transcript
+- [ ] 07 — verify: three checks
+
+### Wiki
+- [ ] wiki/07-parallelism.md
+- [ ] Topic pages
+- [ ] Update existing pages that now link a seventh lecture
+- [ ] INDEX.md — seven-lecture coverage
+- [ ] Link sweep
+- [ ] Citation checks
+
+### Publish
+- [ ] Update sources.md
+- [ ] kb.json — coverage 7/18
+- [ ] AGENTS.md — run 7 precedents
+- [ ] Commit and push
 
 ## Not done (future runs)
 - [ ] Lectures 7–18 — transcripts and wiki pages
