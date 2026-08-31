@@ -5,7 +5,7 @@ Stanford, Spring 2026 — Percy Liang and Tatsunori Hashimoto**. It is read by
 Cairn's in-extension AI chat, which fetches files over `raw.githubusercontent.com`
 and follows relative markdown links.
 
-**Coverage: Lectures 1, 2, 3 and 4 of 18.** See [`kb.json`](kb.json) and the banner
+**Coverage: Lectures 1, 2, 3, 4 and 5 of 18.** See [`kb.json`](kb.json) and the banner
 at the top of [`INDEX.md`](INDEX.md). Any page describing later material is
 repeating Lecture 1's syllabus preview and says so in a blockquote at the top.
 
@@ -20,7 +20,7 @@ partially covered while the rest of that unit is still a preview.
 | --- | --- |
 | `INDEX.md` | Entry point. Course summary + annotated table of contents. |
 | `wiki/` | Durable pages: one per lecture, plus cross-lecture topics. |
-| `raw/slides/` | The written course material, transcribed. See the note below — CS336 has no slide numbers for half its lectures, and the one deck transcribed so far prints none either. |
+| `raw/slides/` | The written course material, transcribed. See the note below — CS336 has no slide numbers for half its lectures, and none of the three decks transcribed so far prints one either. |
 | `raw/transcripts/` | Copy-edited lecture transcripts with `[MM:SS]` paragraph marks. **These are the ones to read.** |
 | `raw/transcripts/original/` | Verbatim auto-captions, kept as the record of what was said, plus the raw caption segment JSON they were generated from. |
 | `raw/pdfs/` | Gitignored and empty. No binaries are committed; `sources.md` carries canonical URLs. |
@@ -52,7 +52,8 @@ Three consequences for anyone extending this KB:
 
 For decks (lectures 3, 4, 5, 8, 9, 11, 15, 16), the normal rules apply: read the
 pages visually, transcribe per slide, and audit the figure descriptions. **Lectures
-3 and 4 are the ones done so far**, and they set four precedents worth following:
+3, 4 and 5 are the ones done so far**, and they set four precedents worth
+following:
 
 - **Derive the slide numbering before anyone reads a page, and hand over the
   conclusion.** `lecture_03.pdf` prints no page number on any of its 67 pages;
@@ -87,8 +88,39 @@ pages visually, transcribe per slide, and audit the figure descriptions. **Lectu
   flagged.** On lecture 4 every self-flagged uncertainty proved correct, while the
   one substantive error sat on a page reported as clean.
 
+**What lecture 5 added to those precedents.**
+
+- **Derive the numbering in the parent and hand it over as a conclusion.** Lecture
+  5's mapping was settled before any page was read — the script, plus a
+  corner-position text-layer scan that returned only mid-page body text — and the
+  readers were told to label pages accordingly and merely confirm by eye. Three
+  readers then confirmed the absence of folios independently over their own ranges,
+  which is stronger evidence than one reader's word and costs nothing extra.
+- **The audit's error class moves between decks, so do not tune the audit to the
+  last one.** On lectures 3 and 4 the errors were chart *values* — numbers read
+  slightly off a plot. On lecture 5 every value, table cell and data series was
+  exact, and all nine errors were **structural**: miscounted overlay arrows, a
+  colour band described as a different colour, edge labels on the wrong edges, a
+  "all four of these are labelled" claim true of one in four, and one whole figure
+  never mentioned. Be suspicious of any claim of uniformity, and check that every
+  figure on the page is described *and* that every figure described is on the page.
+- **A dirty audit sample means the sample was too small.** Four of seven pages came
+  back with findings on the first pass, so a second pass over seven further pages
+  was run rather than trusting the first.
+- **Adjudicate the transcript agent's own self-report.** Lecture 5's draft
+  volunteered that it had "expanded three paragraphs to fit" the word-ratio band.
+  Two were legitimate restorations; the third had invented two words to complete the
+  speaker's aborted false starts. Ask the drafting agent directly which paragraphs it
+  changed and whether every word traces to the captions — it answered accurately and
+  the fix took one edit. Related: **false starts are preserved, not completed.**
+- **Re-check the verification script itself.** The parent's first ratio checker
+  reproduced exactly the bug run 4 had already recorded — stripping whole question
+  markers before counting words, which hid the real ratios behind twelve false
+  outliers. Only the four-word label is an insertion; a quoted student question is
+  transcribed speech and must still count.
+
 `kb.json` reports `method: mixed`, because Lectures 1–2 are `source-text` while
-Lectures 3–4 are `page-images`; the per-lecture breakdown is in
+Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 `materials.byLecture`.
 
 ## Conventions
@@ -103,10 +135,10 @@ Lectures 3–4 are `page-images`; the per-lecture breakdown is in
 - **Never invent course content.** If the transcript is unclear, say so on the
   page. Do not fill the gap from outside knowledge — the chat presents these pages
   as authoritative material from this course.
-- **Figures are described for Lectures 3 and 4, and not for Lectures 1–2.** Those
-  two decks were read as page images, so `raw/slides/03-architectures.md` and
-  `raw/slides/04-attention-alternatives.md` describe every figure in prose and wiki
-  pages may cite them. Lectures 1 and 2 were transcribed from source text, so their
+- **Figures are described for Lectures 3, 4 and 5, and not for Lectures 1–2.**
+  Those three decks were read as page images, so `raw/slides/03-architectures.md`,
+  `raw/slides/04-attention-alternatives.md` and `raw/slides/05-gpus-tpus.md`
+  describe every figure in prose and wiki pages may cite them. Lectures 1 and 2 were transcribed from source text, so their
   `image()` targets are recorded **by path only, with no description**, and no wiki
   claim may rest on one. Check which kind of lecture you are citing before quoting a
   figure.
