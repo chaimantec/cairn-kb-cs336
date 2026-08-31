@@ -146,6 +146,13 @@ those do not reliably survive the jump across scales.
   parameters without buying FLOPs. Its treatment of
   [sparse attention](sparse-attention.md) is also the course's sharpest statement that
   constant factors, not asymptotics, are often what matters.
+- [Lecture 5](05-gpus-tpus.md) — efficiency as a hardware fact rather than a design
+  principle. It is the lecture that says *why* the resources are hard to use well:
+  compute throughput is outgrowing memory bandwidth, so most optimization is
+  memory optimization, and a workload that ignores the hierarchy leaves an order of
+  magnitude on the table. Its closing advice is the anti-cargo-cult version of this
+  page's argument — understand the hardware reason for a rule instead of following
+  the rule.
 - [Lecture 3](03-architectures.md) — efficiency as the thing that actually decides
   architecture. RMSNorm, dropped bias terms, the ~100 aspect ratio and GQA are all
   chosen on systems grounds rather than expressiveness ones.

@@ -152,8 +152,40 @@ state, not activations, becomes the thing to shard. See [course map, Unit
 [memory accounting](memory-accounting-for-training.md) for the other three
 consumers these techniques do *not* address.
 
+## The same trade, counted in memory accesses
+
+[Lecture 5](05-gpus-tpus.md) presents recomputation as trick 3 of six, and its
+accounting is worth seeing because it counts *memory accesses* rather than bytes
+held — the currency that matters when the bottleneck is bandwidth rather than
+capacity.
+
+Slides 35 and 36 take three stacked sigmoids. Storing the activations
+([50:46]–[51:31]):
+
+- forward: 1 read of $x$, 3 writes ($s_2$, $s_1$, out)
+- backward: 3 reads, 1 write
+- **8 memory accesses**, and, as the slide says, "very low arithmetic intensity"
+
+Throwing them away and recomputing on the backward pass ([51:31]–[52:17]):
+
+- forward: 1 read, 1 write
+- backward: 2 reads ($d_{\text{out}}$ and $x$), 1 write
+- **5 memory accesses** — "5/8 of the total memory accesses"
+
+Same computation, slightly more compute, less traffic. Hashimoto's framing of when
+this is worth it is the general rule: "imagine you're in a world where computation
+is super cheap — you have abundant computation, you're not using all of your units,
+but your memory is very expensive." That world is the one
+[the compute–memory gap](gpu-architecture.md) is producing.
+
+The technique reappears at tile granularity inside
+[FlashAttention](flash-attention.md), which discards the $N \times N$ attention
+matrix and recomputes it tile by tile in the backward pass rather than storing it.
+
 ## Sources
 
+- [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md) — recomputation as trick 3, and its
+  use inside FlashAttention.
 - [Lecture 2 — PyTorch, Resource Accounting](02-pytorch-resource-accounting.md)
 - [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
   — `gradient_accumulation()`, lines 718–730; `activation_checkpointing()` and

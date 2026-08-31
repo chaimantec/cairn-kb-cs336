@@ -89,6 +89,16 @@ B200.
 > [resource accounting](resource-accounting.md),
 > [arithmetic intensity](arithmetic-intensity.md) and
 > [training FLOPs](training-flops.md) for the treatment.
+>
+> **[Lecture 5](05-gpus-tpus.md) is now also covered**, so the GPU-hardware and
+> kernel-level parts of this unit are no longer a preview either. The sections on
+> hardware and on kernels below have real treatments behind them —
+> [GPU architecture](gpu-architecture.md),
+> [the GPU execution model](gpu-execution-model.md), [TPUs](tpus.md),
+> [tiling](tiling.md), [operator fusion](operator-fusion.md),
+> [memory coalescing](memory-coalescing.md), [FlashAttention](flash-attention.md)
+> and [wave quantization](wave-quantization.md). Parallelism (Lectures 7–8) and
+> inference (Lecture 10) remain previews.
 
 **Resource accounting** — where the FLOPs and the memory go. The formula previewed
 at [36:18] is $C = 6ND$ for training a model of $N$ parameters on $D$ tokens, and
@@ -109,6 +119,12 @@ example is fusion: instead of read-HBM → compute A → write-HBM → read-HBM 
 compute B → write-HBM, you read once, compute both, write once. Tiling
 (FlashAttention) is the more sophisticated version. Written in
 CUDA/**Triton**/CUTLASS/ThunderKittens.
+
+> Lecture 5 delivers this preview in full: [operator fusion](operator-fusion.md) is
+> the read-once-compute-both-write-once trick, [tiling](tiling.md) is the
+> sophisticated version, and [FlashAttention](flash-attention.md) is the worked
+> example assembling both. Lecture 5 also supplies the hardware model those tricks
+> reason about — see [GPU architecture](gpu-architecture.md).
 
 **Parallelism** — the same minimize-data-movement principle at 1024 GPUs, where
 movement between devices is even more expensive. Collective operations (gather,

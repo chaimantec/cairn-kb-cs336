@@ -8,13 +8,14 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1, 2, 3 and 4 of 18
+> ## ⚠️ This knowledge base covers Lectures 1, 2, 3, 4 and 5 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
-> Accounting), Lecture 3 (Architectures) and Lecture 4 (Attention Alternatives and
-> Mixtures of Experts) are covered in depth.** Nothing else is. There are no
-> transcripts and no wiki pages for GPU hardware, kernels, parallelism, scaling
-> laws, inference, evaluation, data, mid/post-training, RLVR or multimodality.
+> Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
+> Mixtures of Experts) and Lecture 5 (GPUs and TPUs) are covered in depth.**
+> Nothing else is. There are no transcripts and no wiki pages for kernels and
+> Triton, parallelism, scaling laws, inference, evaluation, data, mid/post-training,
+> RLVR or multimodality.
 >
 > Where a page describes later material, it is repeating Lecture 1's *syllabus
 > preview* and says so at the top. Do not cite this knowledge base as covering
@@ -45,10 +46,69 @@ compute and data?
   feedforward block with a sparsely routed mixture of experts. Both are cost
   arguments, not expressiveness arguments.
 
+- **[Lecture 5 — GPUs and TPUs](wiki/05-gpus-tpus.md)** — the first lecture of the
+  systems unit, and the one that explains what the hardware is actually doing. What
+  a GPU is made of and how its memory hierarchy works, the six tricks for making a
+  workload fast on one (control divergence, low precision, fusion, recomputation,
+  coalescing, tiling), and FlashAttention assembled out of those parts. Built around
+  one benchmark plot whose strange shape it fully explains by the end.
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 5 — GPUs, TPUs and making them fast
+
+- **[GPU architecture](wiki/gpu-architecture.md)** — what a GPU physically is.
+  Latency-versus-throughput design, the streaming multiprocessor, the memory
+  hierarchy with the A100 latency table (shared memory ~20 cycles, global memory
+  290), why the whole chip is not fast memory (cost, physics, energy), and the
+  widening gap between compute throughput and memory bandwidth that motivates the
+  rest of the lecture. Start here for "what is an SM?" or "why is global memory
+  slow?"
+- **[The GPU execution model](wiki/gpu-execution-model.md)** — threads, blocks and
+  32-thread warps; SIMT and what it costs. Includes control divergence: why an `if`
+  makes every thread execute both branches, and why GPU code multiplies by masks
+  instead of branching. Also the per-scope memory table (registers, local, shared,
+  global, constant, host).
+- **[TPUs](wiki/tpus.md)** — the alternative evolution, and what the comparison
+  teaches. Near-identical memory hierarchy and the same systolic-array matmul
+  circuit; the difference is granularity (2 processors and 8 matmul units against an
+  H100's ~132 and 528) and, above the chip, networking. Includes the tensor-core
+  naming collision that catches everyone.
+- **[Tensor cores](wiki/tensor-cores.md)** — since the V100 there is dedicated
+  matmul hardware, and it runs **more than 10× faster** than any other floating-point
+  operation. This is why every architecture that scales has a matrix multiply at its
+  centre. Read this for why hardware constrains architecture design.
+- **[Microscaling formats](wiki/microscaling-formats.md)** — MXFP8 and MXFP4. One
+  E8M0 scale factor per 32 elements instead of one per tensor, why that makes a
+  transpose expensive enough to keep two quantized copies of every matrix, and the
+  realistic payoff (20–30% on matmuls, not 2×). Note: the deck contradicts itself on
+  MXFP4's scale format and the page says so.
+- **[Operator fusion](wiki/operator-fusion.md)** — the factory-and-conveyor-belt
+  argument. Why five chained pointwise ops cost five round trips to global memory
+  and one fused kernel costs one, what `torch.compile` and JAX do for you
+  automatically, and where fusion stops being automatic.
+- **[Memory coalescing](wiki/memory-coalescing.md)** — DRAM returns a whole
+  ~128-byte burst section per read. A warp whose 32 addresses land inside one gets
+  its data free; one whose addresses scatter pays 32 bursts and wastes most of each.
+  Explains why row-major layout makes one loop order fast and the other slow.
+- **[Tiling](wiki/tiling.md)** — the most important single technique. Cut matrices
+  into tiles, load each into shared memory once, reuse it: global-memory reads drop
+  from $N$ per input to $N/T$. Also tile-size selection, `max-autotune`, burst
+  alignment, and why padding nanoGPT's vocabulary from 50257 to 50304 gave a 25%
+  speedup.
+- **[Wave quantization](wiki/wave-quantization.md)** — why a matmul gets
+  dramatically slower going from $N=1792$ to $N=1793$. The tile count crosses from
+  98 to 120 against an A100's 108 SMs, so a second wave runs with most of the GPU
+  idle. The clearest evidence in the course that hardware details show up in
+  benchmarks.
+- **[FlashAttention](wiki/flash-attention.md)** — the lecture's finale. Standard
+  attention, computed exactly, made fast purely by moving less data. The online
+  softmax that makes a global operation tileable, the two-tile worked trace, and
+  recomputation in the backward pass so the $N \times N$ score matrix is never
+  materialized.
 
 ### Lecture 4 — attention alternatives and mixture of experts
 
@@ -251,7 +311,8 @@ usually the faster route than the lecture pages.
   [Lecture 1](raw/transcripts/01-overview-tokenization.md),
   [Lecture 2](raw/transcripts/02-pytorch-resource-accounting.md),
   [Lecture 3](raw/transcripts/03-architectures.md),
-  [Lecture 4](raw/transcripts/04-attention-alternatives.md).
+  [Lecture 4](raw/transcripts/04-attention-alternatives.md),
+  [Lecture 5](raw/transcripts/05-gpus-tpus.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
@@ -268,17 +329,20 @@ usually the faster route than the lecture pages.
     Liang's *executable lectures* — Python programs, transcribed from source text,
     each with a section-to-source-line table and the code verbatim. There are no
     slide numbers to cite.
-  - [`lecture_03.pdf`](raw/slides/03-architectures.md) (67 pages) and
-    [`lecture_04.pdf`](raw/slides/04-attention-alternatives.md) (60 pages) are
-    Tatsunori Hashimoto's slide decks, transcribed from the rendered page images,
-    with every figure described in prose and every table transcribed cell by cell.
-    Slide numbers in both are **PDF page numbers**, because neither deck prints any
-    of its own. Lecture 4's deck is the more figure-dependent of the two: 102 pasted
-    images across 60 pages, most of which carry under 40 words of their own text, so
-    the figure descriptions there are not a supplement to the content — they *are*
-    the content.
+  - [`lecture_03.pdf`](raw/slides/03-architectures.md) (67 pages),
+    [`lecture_04.pdf`](raw/slides/04-attention-alternatives.md) (60 pages) and
+    [`lecture_05.pdf`](raw/slides/05-gpus-tpus.md) (55 pages) are Tatsunori
+    Hashimoto's slide decks, transcribed from the rendered page images, with every
+    figure described in prose and every table transcribed cell by cell. Slide
+    numbers in all three are **PDF page numbers**, because none of the decks prints
+    any of its own. Lectures 4 and 5 are the figure-dependent ones — 102 images
+    across 60 pages and 83 across 55, most pages carrying only 30–40 words of their
+    own text — so the figure descriptions there are not a supplement to the content,
+    they *are* the content. Each deck's front matter records which pages were
+    audited against the PDF and what the audit found, including the places where a
+    deck contradicts itself.
 - **[`sources.md`](sources.md)** — every lecture, deck, assignment and linked
-  document with its canonical URL, including the material for the 16 lectures this
+  document with its canonical URL, including the material for the 13 lectures this
   KB does not yet cover. Explains how CS336 splits between executable lectures and
   PDF decks.
 

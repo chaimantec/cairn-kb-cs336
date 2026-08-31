@@ -215,9 +215,44 @@ That reframing is what makes the rest of Unit 2 legible: kernel fusion, tiling a
 FlashAttention are all techniques for **moving fewer bytes for the same FLOPs** —
 that is, for pushing a workload rightward across the kink.
 
+## Where lecture 5 takes this
+
+[Lecture 5](05-gpus-tpus.md) makes the roofline the organizing frame for an entire
+lecture: it is "the key to this section: how do we avoid being memory bound?"
+(slide 21). Hashimoto restates the shape — a diagonal memory-bound region and a
+flat compute-bound plateau — and draws the practical conclusion that "what you need
+to do is be on" the compute-bound side, "which means we want to increase the
+operational intensity" ([31:32]–[32:19]).
+
+Slide 21's version of the chart is more informative than a single roofline, because
+it draws **a separate ceiling for each level of the memory hierarchy** — GPU
+registers, GPU shared memory, GPU main memory, and CPU main memory — each turning
+over into an ALU-throughput plateau at a different operational intensity. That is
+the roofline picture of why [tiling](tiling.md) works: moving a workload's reads
+from global memory to shared memory moves it onto a higher ceiling, so it becomes
+compute-bound at a lower arithmetic intensity than it otherwise would.
+
+The lecture's six tricks are, with one exception, all ways of pushing rightward and
+upward on that plot:
+
+| Trick | How it moves you |
+| --- | --- |
+| [Low precision](microscaling-formats.md) | Halves bytes per element, so bytes/FLOP halves — slide 25 works an elementwise ReLU from 8 bytes/FLOP in fp32 to 4 in fp16 |
+| [Operator fusion](operator-fusion.md) | One round trip for a chain of ops instead of one each |
+| [Recomputation](activation-checkpointing.md) | Spends FLOPs to avoid memory traffic — 8 accesses down to 5 |
+| [Coalescing](memory-coalescing.md) | Uses all of each DRAM burst instead of most of it being waste |
+| [Tiling](tiling.md) | Cuts global-memory reads by a factor of the tile size |
+
+The exception is control divergence, which wastes compute rather than bandwidth —
+slide 23's own heading calls it out as "not a memory issue." See
+[the GPU execution model](gpu-execution-model.md).
+
 ## Sources
 
 - [Lecture 2 — PyTorch, Resource Accounting](02-pytorch-resource-accounting.md)
+- [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md) — the roofline as the frame for the
+  systems unit, and the hardware reason intensity matters more every year: compute
+  throughput is growing faster than memory bandwidth or interconnect.
 - [Lecture 3 — Architectures](03-architectures.md) applies this idea twice, and
   they are the two places in the KB where it does real architectural work:
   [RMSNorm](rmsnorm.md) exists because normalization has low arithmetic intensity

@@ -88,17 +88,21 @@ CS336 splits by instructor, and the split is exactly the format split:
 Both live in [`stanford-cs336/lectures`](https://github.com/stanford-cs336/lectures).
 Full inventory in [`sources.md`](../sources.md).
 
-**This KB covers two of each.** Lectures 1 and 2 are executable lectures,
-transcribed from source text; [Lecture 3](03-architectures.md) (67 pages) and
-[Lecture 4](04-attention-alternatives.md) (60 pages) are decks, transcribed from the
-rendered page images. The citation rules differ accordingly — cite a *function name
-and line range* for the first kind, a *slide number* for the second.
+**This KB covers two executable lectures and three decks.** Lectures 1 and 2 are
+executable lectures, transcribed from source text; [Lecture 3](03-architectures.md)
+(67 pages), [Lecture 4](04-attention-alternatives.md) (60 pages) and
+[Lecture 5](05-gpus-tpus.md) (55 pages) are decks, transcribed from the rendered
+page images. The citation rules differ accordingly — cite a *function name and line
+range* for the first kind, a *slide number* for the second.
 
-One wrinkle applies to both decks: **neither prints a page number on any page**, so
-their "slide N" labels are PDF page numbers, and both slide files say so in their
+One wrinkle applies to all three decks: **none prints a page number on any page**,
+so their "slide N" labels are PDF page numbers, and each slide file says so in its
 front matter. For `lecture_03.pdf` an automated scan reported a printed number that
 turned out to be the numerator of a fraction on page 61; for `lecture_04.pdf` the
-scan reported none, and all 60 pages were checked by eye as they were read.
+scan reported none, and all 60 pages were checked by eye as they were read; for
+`lecture_05.pdf` the scan again reported none, a corner-position scan returned only
+mid-page body text, and each of the three readers who split the deck confirmed the
+absence independently over its own range.
 
 A crawl of the course website finds the PDFs and misses the programs entirely,
 since the programs are not linked as documents — worth knowing if you are

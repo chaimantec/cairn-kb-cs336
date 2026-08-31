@@ -195,6 +195,19 @@ place where the most architecture work and changes are still being done." The pa
 he identifies over the past year is hybrid models that "aren't just global attention,
 aren't just cheap attention — they're some sort of mix in between."
 
+## The systems answer, from lecture 5
+
+Everything on this page is an *architectural* response to attention's cost: change
+what is computed. [Lecture 5](05-gpus-tpus.md) gives the other kind of answer —
+change how the same computation is executed.
+[FlashAttention](flash-attention.md) computes exactly standard attention, with no
+approximation, and gets its gains purely from moving less data between global
+memory and the SMs. Hashimoto's line in lecture 4 that "constant factors really,
+really matter" is cashed out there in detail.
+
+Worth holding the two apart when deciding what to reach for: an architectural
+change alters the model you end up with, a systems change does not.
+
 ## Where lecture 4 takes this
 
 Lecture 3 stops at *static* sparsity — masks fixed in advance, and alternation

@@ -185,8 +185,21 @@ each half:
 - Memory: [erees.dev/transformer-memory](https://erees.dev/transformer-memory/)
 - FLOPs: [adamcasson.com/posts/transformer-flops](https://www.adamcasson.com/posts/transformer-flops)
 
+## Capacity is not the only memory question
+
+This page accounts for memory as *capacity* — what has to fit. [Lecture
+5](05-gpus-tpus.md) accounts for it as *traffic* — what has to move, and how far.
+The two are different bottlenecks with different remedies, and the systems unit is
+mostly about the second: a value that fits comfortably in global memory can still
+dominate runtime because it is read from there repeatedly rather than held in
+shared memory. See [GPU architecture](gpu-architecture.md) for the hierarchy,
+[arithmetic intensity](arithmetic-intensity.md) for the accounting, and
+[tiling](tiling.md) for the main remedy.
+
 ## Sources
 
+- [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md) — memory as traffic rather than
+  capacity.
 - [Lecture 2 — PyTorch, Resource Accounting](02-pytorch-resource-accounting.md)
 - [Attention variants](attention-variants.md) — the *inference*-time memory story,
   where the KV cache rather than the optimizer state is what dominates.

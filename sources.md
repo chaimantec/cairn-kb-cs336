@@ -68,29 +68,34 @@ timings, measured FLOP/s, MFU, peak-memory readings) are marked
 | --- | --- | --- |
 | 3 | Architectures, hyperparameters | [`lecture_03.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf) — **transcribed**, all 67 pages, at [`raw/slides/03-architectures.md`](raw/slides/03-architectures.md) |
 | 4 | Attention alternatives and mixture of experts | [`lecture_04.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf) — **transcribed**, all 60 pages, at [`raw/slides/04-attention-alternatives.md`](raw/slides/04-attention-alternatives.md) |
-| 5 | GPUs, TPUs | [`lecture_05.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf) |
+| 5 | GPUs, TPUs | [`lecture_05.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf) — **transcribed**, all 55 pages, at [`raw/slides/05-gpus-tpus.md`](raw/slides/05-gpus-tpus.md) |
 | 8 | Parallelism | [`lecture_08.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf) |
 | 9 | Scaling laws | [`lecture_09.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf) |
 | 11 | Scaling laws | [`lecture_11.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_11.pdf) |
 | 15 | Mid/post-training (SFT/RLHF) | [`lecture_15.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_15.pdf) |
 | 16 | Post-training — RLVR | [`lecture_16.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_16.pdf) |
 
-**`lecture_03.pdf` and `lecture_04.pdf` have been transcribed.** Both were read as
+**`lecture_03.pdf`, `lecture_04.pdf` and `lecture_05.pdf` have been transcribed.** All were read as
 page images — every figure described in prose, every table transcribed cell by cell
 — because a text extractor recovers nothing from these decks' tables, which are
 pasted images, and flattens their equations into a single line.
 
-**Neither deck prints a page number on any page**, so both transcriptions label
-slides by PDF page number and say so in their front matter. For `lecture_03.pdf` an
-automated scan reported one printed number, which turned out to be the numerator of
-a fraction on page 61; for `lecture_04.pdf` the scan reported none, and the absence
-was separately confirmed by eye across all 60 pages.
+**None of the three decks prints a page number on any page**, so all three
+transcriptions label slides by PDF page number and say so in their front matter. For
+`lecture_03.pdf` an automated scan reported one printed number, which turned out to
+be the numerator of a fraction on page 61; for `lecture_04.pdf` the scan reported
+none, and the absence was separately confirmed by eye across all 60 pages; for
+`lecture_05.pdf` the scan again reported none, a corner-position scan returned only
+mid-page body text (a "32" belonging to "a warp of 32 threads", a "5" belonging to
+"Trick 5"), and each of the three readers who split the deck confirmed the absence
+independently over its own range.
 
-Lecture 4's deck is the more figure-dependent of the two — 102 pasted images across
-60 pages, with most pages carrying under 40 words of native text — so its figure
-descriptions carry the content rather than illustrating it. Eight chart- and
-table-heavy pages were audited against the PDF at 600–2200 dpi; see `kb.json` for
-what that found. The remaining six decks are recorded here by URL only.
+Lectures 4 and 5 are the figure-dependent decks — 102 pasted images across 60 pages
+and 83 across 55, with most pages carrying only 30–40 words of native text — so
+their figure descriptions carry the content rather than illustrating it. On each,
+chart- and table-heavy pages were audited against the PDF at high magnification —
+eight pages on lecture 4, and on lecture 5 two passes over fourteen; see `kb.json`
+for what those found. The remaining five decks are recorded here by URL only.
 
 ## Assignments — Spring 2026
 

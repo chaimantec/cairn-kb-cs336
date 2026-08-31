@@ -186,8 +186,28 @@ resources the course accounts for:
   on the precision (bf16 versus fp32)". See
   [arithmetic intensity](arithmetic-intensity.md).
 
+## Block-scaled formats, and the hardware view
+
+[Lecture 5](05-gpus-tpus.md) picks this up from the hardware side and takes it a
+step further than fp8. Two things it adds:
+
+- **A "pretty non-trivial part"** of the historical growth in GPU FLOPs is not
+  better silicon at all but narrower numbers — "you start at FP32, go to BF16, and
+  then to INT8" ([34:37]). Some of that famous curve is counting smaller.
+- **Microscaling formats** replace one scale factor per tensor with one per small
+  block of elements — MXFP8 uses an E8M0 factor per 32 values, MXFP4 goes to four
+  bits per element. This buys range back at the cost of making a transpose expensive
+  enough that training keeps two quantized copies of every matrix. See
+  [microscaling formats](microscaling-formats.md).
+
+Hashimoto also gives the realistic figure for what fp8 training buys once
+quantization overhead is paid: **20–30% on the matrix multiplies**, not a 2×
+speedup ([42:18]).
+
 ## Sources
 
+- [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md) — low precision as trick 2 of six,
+  and the MXFP8/MXFP4 frontier.
 - [Lecture 2 — PyTorch, Resource Accounting](02-pytorch-resource-accounting.md)
 - [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
   — `tensors_memory()`, lines 113–181
