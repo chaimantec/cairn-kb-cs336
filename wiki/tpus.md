@@ -107,5 +107,13 @@ matrices very fast" ([22:18]).
 - [GPU architecture](gpu-architecture.md) — the side of the comparison covered in
   depth.
 - [Tensor cores](tensor-cores.md) — the GPU matmul unit, and the naming collision.
+- [Lecture 7 — Parallelism](07-parallelism.md) — the other half of the TPU story,
+  which is software. In "Jax-and-TPU land… you can simply define the model and the
+  sharding strategy, and the compiler actually handles a lot of the decision" of
+  which collectives to insert ([1:18:07]). CS336 uses PyTorch and calls the
+  primitives by hand on purpose — the compiler route "would take a lot of the joy
+  out of actually building things from scratch" ([1:18:54]). Asked to compare TPUs
+  to the GPU networking picture, Percy declines: TPUs "are generally much simpler
+  objects," but "maybe we can talk about it offline" ([35:37]).
 - [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md).
 - [Transcript](../raw/transcripts/05-gpus-tpus.md), [slide deck](../raw/slides/05-gpus-tpus.md).

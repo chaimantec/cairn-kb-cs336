@@ -3,7 +3,12 @@
 The systems half of [mixture of experts](mixture-of-experts.md): experts are natural
 chunks to place on separate devices, which gives large-model training a third axis of
 parallelism. Lecture 4 introduces it and defers the detail to the systems lectures
-([40:08], [1:11:37]) — those are not yet in this knowledge base.
+([40:08], [1:11:37]).
+
+**[Lecture 7](07-parallelism.md) now supplies part of that detail** — specifically the
+communication primitive expert parallelism runs on. See
+[the all-to-all section below](#the-primitive-all-to-all). The full treatment of MoE
+systems is still not in this knowledge base.
 
 ## Why a third axis is worth having
 
@@ -59,6 +64,40 @@ And there is a ceiling: "in general there's an upper limit to parallelization, b
 you shard over more and more devices, the communication cost explodes" ([43:59]). He notes
 the course's own assignment asks students to work out sharding against a networking
 topology, or the reverse.
+
+## The primitive: all-to-all
+
+[Lecture 7](07-parallelism.md) names the
+[collective operation](collective-operations.md#the-general-one) that expert parallelism is
+built on, and it is the most general one in the catalogue: **all-to-all**, where every rank
+sends a distinct piece to every other rank.
+
+The reason it has to be all-to-all is [routing](moe-routing.md). Percy's framing: "each rank
+has both a split of the data and also a subset of experts. And the key idea of the MoE is
+that it's dynamic routing. You have to look at your data to figure out which experts you
+need to route those activations to. So, it ends up being an all-to-all communication"
+([17:54]–[18:39]). Both the data *and* the experts are distributed, and which token needs
+which expert is not known until the router has run — so in general every rank has something
+to send every other rank.
+
+**When the splits are balanced, all-to-all is a transpose**: "if you think about this as a
+matrix, all you're doing is transposing that matrix" ([18:39]). Unbalanced splits are
+supported — you can configure any number of bytes to any rank — "but, in general, you want
+the splits to be as balanced as possible."
+
+That is a second, purely systems-level argument for
+[load balancing losses](load-balancing-losses.md), independent of the quality argument in
+Lecture 4. Percy makes the connection explicitly: "remember Tatsu's lecture, where we had
+load balancing to make sure that things were as balanced as possible. So, morally, the ideal
+goal is to have the all-to-all look like this" ([19:25]). An imbalanced router does not just
+waste capacity — it turns a clean transpose into a skewed communication pattern in which
+every rank waits for the busiest one.
+
+Lecture 7 does not implement expert parallelism. It lists it among the axes it leaves out,
+alongside sequence parallelism, noting only that it "allows you to parallelize the experts
+for MoEs, and this is where the all-to-all that I mentioned comes in" ([1:15:51]). In its
+closing taxonomy, expert parallelism is grouped with
+[tensor parallelism](tensor-parallelism.md) as a cut along the **width** ([1:18:54]).
 
 ## Nemotron 3's down-projection trick
 
@@ -130,4 +169,8 @@ balancing term on top of the per-expert one.
 - [Resource accounting](resource-accounting.md) and
   [memory accounting for training](memory-accounting-for-training.md) — the accounting this
   parallelism is trying to improve, from lecture 2.
-- [Lecture 4](04-attention-alternatives.md).
+- [Collective operations](collective-operations.md) — all-to-all and the rest of the
+  catalogue, from lecture 7.
+- [Tensor parallelism](tensor-parallelism.md) — the other width cut; lecture 7 groups the
+  two together.
+- [Lecture 4](04-attention-alternatives.md), [Lecture 7](07-parallelism.md).

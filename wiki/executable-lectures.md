@@ -88,7 +88,7 @@ CS336 splits by instructor, and the split is exactly the format split:
 Both live in [`stanford-cs336/lectures`](https://github.com/stanford-cs336/lectures).
 Full inventory in [`sources.md`](../sources.md).
 
-**This KB covers three executable lectures and three decks.** Lectures 1, 2 and 6 are
+**This KB covers four executable lectures and three decks.** Lectures 1, 2, 6 and 7 are
 executable lectures, transcribed from source text; [Lecture 3](03-architectures.md)
 (67 pages), [Lecture 4](04-attention-alternatives.md) (60 pages) and
 [Lecture 5](05-gpus-tpus.md) (55 pages) are decks, transcribed from the rendered
@@ -112,6 +112,22 @@ runtime/source split at its sharpest: the deterministic ones (an occupancy of 0.
 an eight-block grid) are recomputed from the program's own expressions, while its
 benchmark timings and profiler tables are measurements of one GPU on one afternoon
 and are not reproduced at all.
+
+[Lecture 7](07-parallelism.md) is the exception to that last rule, and the reason is
+worth recording: **the course publishes this one lecture's runtime output.** The
+program's own standard output from a real four-GPU run is committed to the lectures
+repo as `var/traces/lecture_07_stdout.txt`, so its measured collective bandwidths,
+its per-rank losses and its printed tensors are quoted in
+[`raw/slides/07-parallelism.md`](../raw/slides/07-parallelism.md) rather than
+withheld. They are marked "(recorded run)" and are measurements of that machine
+(Modal, CUDA 13.2, four GPUs) — not values a reader's own run will reproduce.
+
+Lecture 7 also breaks the format in a second way: it genuinely launches multiple
+processes, so it **cannot be traced**. Its `spawn()` helper detects a tracer and
+falls back to running in one process with every `torch.distributed` call replaced by
+a no-op, with rank hard-coded to 0. The stepped-through view therefore shows the code
+with no communication happening — which is exactly why the separate stdout file
+exists. See [torch.distributed](torch-distributed.md#a-wrinkle-in-reading-the-lecture).
 
 A crawl of the course website finds the PDFs and misses the programs entirely,
 since the programs are not linked as documents — worth knowing if you are

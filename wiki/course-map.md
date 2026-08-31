@@ -2,11 +2,12 @@
 
 > **Coverage note.** This page is the syllabus as Percy Liang presents it in
 > [Lecture 1](01-overview-tokenization.md) ([27:04]–[1:03:57]). It is a map of the
-> whole course, but **this knowledge base currently covers Lectures 1, 2, 3 and 4
-> only**. Every unit below is a preview here rather than a treatment, except
-> tokenization (Lecture 1), model architecture (Lectures 3 and 4) and the
-> resource-accounting part of Systems (Lecture 2). See [`kb.json`](../kb.json) for
-> exact coverage.
+> whole course, but **this knowledge base currently covers Lectures 1–7 of 18**.
+> Every unit below is a preview here rather than a treatment, except
+> tokenization (Lecture 1), model architecture (Lectures 3 and 4) and most of
+> Systems (Lectures 2, 5, 6 and 7 — everything but Lecture 8's sharded data
+> parallelism and Lecture 10's inference). See [`kb.json`](../kb.json) for exact
+> coverage.
 
 CS336 is five units, each paired with an assignment. The unifying question, stated
 at [1:02:23], is [efficiency](efficiency.md): how do you build the best model given
@@ -14,8 +15,8 @@ a fixed set of resources — data, compute, memory, communication bandwidth?
 
 | Unit | Assignment | Lectures | In this KB |
 | --- | --- | --- | --- |
-| [Basics](#unit-1--basics) | 1 | 1–4 | Lectures 1–3; Lecture 4 not covered |
-| [Systems](#unit-2--systems) | 2 | 5–8, 10 | [Resource accounting only](resource-accounting.md) — from Lecture 2 |
+| [Basics](#unit-1--basics) | 1 | 1–4 | Lectures 1–4 |
+| [Systems](#unit-2--systems) | 2 | 5–8, 10 | Lectures 2, 5, 6 and 7; Lecture 8 (FSDP/ZeRO) and Lecture 10 (inference) not covered |
 | [Scaling laws](#unit-3--scaling-laws) | 3 | 9, 11 | [Preview only](scaling-laws.md) |
 | [Data](#unit-4--data) | 4 | 12–14 | No |
 | [Alignment](#unit-5--alignment) | 5 | 15–17 | No |
@@ -101,8 +102,18 @@ B200.
 > [Triton](triton.md), [PTX](ptx.md), [benchmarking](benchmarking.md),
 > [profiling](profiling.md), [torch.compile](torch-compile.md),
 > [warp occupancy](warp-occupancy.md), [bank conflicts](bank-conflicts.md) and
-> [fused softmax](fused-softmax.md) from Lecture 6. Parallelism (Lectures 7–8) and
-> inference (Lecture 10) remain previews.
+> [fused softmax](fused-softmax.md) from Lecture 6.
+>
+> **[Lecture 7](07-parallelism.md) is now covered too**, so multi-GPU parallelism
+> has a treatment as well — [collective operations](collective-operations.md),
+> [GPU interconnect](gpu-interconnect.md),
+> [torch.distributed and NCCL](torch-distributed.md),
+> [data](data-parallelism.md), [tensor](tensor-parallelism.md) and
+> [pipeline](pipeline-parallelism.md) parallelism, and
+> [sharding vs. replication](sharding-vs-replication.md). What remains a preview in
+> this unit is **Lecture 8** (Hashimoto's second parallelism lecture, covering FSDP
+> and ZeRO — note that Lectures 7 and 8 share the title "Parallelism") and
+> **Lecture 10** (inference).
 
 **Resource accounting** — where the FLOPs and the memory go. The formula previewed
 at [36:18] is $C = 6ND$ for training a model of $N$ parameters on $D$ tokens, and
@@ -143,6 +154,15 @@ movement between devices is even more expensive. Collective operations (gather,
 reduce, all-reduce); sharding parameters, activations, gradients and optimizer
 states; and the five ways to split computation: data, tensor, pipeline, sequence
 and expert parallelism.
+
+> **Covered, in part.** [Lecture 7](07-parallelism.md) delivers the
+> [collective operations](collective-operations.md) and implements
+> [data](data-parallelism.md), [tensor](tensor-parallelism.md) and
+> [pipeline](pipeline-parallelism.md) parallelism on MLPs. Of the five ways to split
+> computation, sequence parallelism and
+> [expert parallelism](expert-parallelism.md) are named but not implemented
+> ([1:15:05]). Sharding the optimizer state — FSDP and ZeRO — is explicitly deferred
+> to Lecture 8 ([1:02:44]), which this KB does not cover.
 
 **Inference** — increasingly important, and needed for RL rollouts, test-time
 compute, synthetic data and evaluation, not just chat ([41:39]). Two phases:

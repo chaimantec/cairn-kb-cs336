@@ -47,7 +47,7 @@ here are my inputs, now run them on all of my inputs.'"
 ## Control divergence — the cost of an `if`
 
 The first of the lecture's six performance tricks falls straight out of SIMT, and
-it is the one trick that is not about memory ([32:19]).
+it is the one trick that is not about memory ([32:18]).
 
 Ask what a GPU does with a branch. On a CPU it is obvious: evaluate the condition,
 take one path. On a GPU, every thread must execute the same instruction, so

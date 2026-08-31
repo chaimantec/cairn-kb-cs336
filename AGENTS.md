@@ -5,7 +5,7 @@ Stanford, Spring 2026 — Percy Liang and Tatsunori Hashimoto**. It is read by
 Cairn's in-extension AI chat, which fetches files over `raw.githubusercontent.com`
 and follows relative markdown links.
 
-**Coverage: Lectures 1–6 of 18.** See [`kb.json`](kb.json) and the banner
+**Coverage: Lectures 1–7 of 18.** See [`kb.json`](kb.json) and the banner
 at the top of [`INDEX.md`](INDEX.md). Any page describing later material is
 repeating Lecture 1's syllabus preview and says so in a blockquote at the top.
 
@@ -32,7 +32,7 @@ partially covered while the rest of that unit is still a preview.
 ## What is special about CS336
 
 **Half the lectures are Python programs, not slide decks.** Percy Liang's lectures
-(1, 2, 6, 7, 10, 12, 13, 14, 17) — three of which, 1, 2 and 6, are transcribed here —
+(1, 2, 6, 7, 10, 12, 13, 14, 17) — four of which, 1, 2, 6 and 7, are transcribed here —
 are *executable lectures* — programs whose
 execution delivers the content, rendered by a trace viewer. Tatsunori Hashimoto's
 (3, 4, 5, 8, 9, 11, 15, 16) are conventional PDFs.
@@ -139,7 +139,44 @@ forward.
   qualitatively. Resist the urge to supply a plausible number for a comparison the
   lecture makes in words.
 
-`kb.json` reports `method: mixed`, because Lectures 1, 2 and 6 are `source-text`
+**What lecture 7 added.** It is the fourth executable lecture, and it breaks the
+format's two standing assumptions — worth knowing before you transcribe another one.
+
+- **Check whether the course published the lecture's runtime output.** Every prior
+  executable lecture had its `@inspect` measurements withheld as machine-dependent.
+  Lecture 7's are not: the course committed the program's own stdout from a real
+  four-GPU run to `var/traces/lecture_07_stdout.txt` in the lectures repo, and the
+  program itself links it. That single file supplied the measured bandwidths, the
+  per-rank losses and the printed tensors. **Look for it before writing "not
+  reproduced".** It is quoted under a distinct marker, `(recorded run)`, kept
+  separate from `(computed)`, and every derived figure was re-checked against the
+  lecture's own formula — all eight bandwidths reproduced the printed values to
+  within one unit in the last place.
+- **An executable lecture may not be traceable.** Lecture 7 really launches
+  processes, so its `spawn()` helper detects a tracer and runs single-process with
+  every `torch.distributed` call replaced by a no-op and rank pinned to 0. The trace
+  view therefore shows no communication and rank-0-only `@inspect` values. Read the
+  source, not the trace, and say so in the slide file.
+- **Check a catalog title against the material — again, and in the other
+  direction.** Lecture 6's lesson was that a catalog title can name material the
+  lecture does not contain. Lecture 7's is that two *different* lectures can share a
+  title: lectures 7 and 8 are both "Parallelism", and they are by different
+  instructors in different formats. `INDEX.md`, `kb.json`, `sources.md` and the
+  lecture page all say which one is covered, because a reader asking about FSDP will
+  otherwise assume this KB failed rather than that it stops at lecture 7.
+- **Quote-check the wiki against the transcript, and expect a real yield.** Run 6
+  found nine quoting slips this way; run 7 found **thirty-four** across 146 quotes,
+  because this lecture's prose quotes heavily. Nearly all were the same fault:
+  silently smoothing the speaker's false starts *inside* quotation marks ("about
+  four — about four x — slower" quoted as "about four x slower"). Two were worse —
+  a quote run straight across a passage the transcript marks `[Ed:]` as garbled, and
+  a paraphrase presented inside quotation marks. Two mechanical notes: pair quote
+  characters **sequentially** rather than regexing for a minimum length, or short
+  quotes desynchronize the pairing and every later "failure" is an artifact; and
+  strip `[MM:SS]` markers from the haystack, or any quote spanning a paragraph
+  boundary reports as missing.
+
+`kb.json` reports `method: mixed`, because Lectures 1, 2, 6 and 7 are `source-text`
 while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 `materials.byLecture`.
 
@@ -155,10 +192,10 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 - **Never invent course content.** If the transcript is unclear, say so on the
   page. Do not fill the gap from outside knowledge — the chat presents these pages
   as authoritative material from this course.
-- **Figures are described for Lectures 3, 4 and 5, and not for Lectures 1, 2 or 6.**
+- **Figures are described for Lectures 3, 4 and 5, and not for Lectures 1, 2, 6 or 7.**
   Those three decks were read as page images, so `raw/slides/03-architectures.md`,
   `raw/slides/04-attention-alternatives.md` and `raw/slides/05-gpus-tpus.md`
-  describe every figure in prose and wiki pages may cite them. Lectures 1, 2 and 6 were transcribed from source text, so their
+  describe every figure in prose and wiki pages may cite them. Lectures 1, 2, 6 and 7 were transcribed from source text, so their
   `image()` targets are recorded **by path only, with no description**, and no wiki
   claim may rest on one. Check which kind of lecture you are citing before quoting a
   figure.

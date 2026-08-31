@@ -222,7 +222,7 @@ lecture: it is "the key to this section: how do we avoid being memory bound?"
 (slide 21). Hashimoto restates the shape — a diagonal memory-bound region and a
 flat compute-bound plateau — and draws the practical conclusion that "what you need
 to do is be on" the compute-bound side, "which means we want to increase the
-operational intensity" ([31:32]–[32:19]).
+operational intensity" ([31:32]–[32:18]).
 
 Slide 21's version of the chart is more informative than a single roofline, because
 it draws **a separate ceiling for each level of the memory hierarchy** — GPU
@@ -283,6 +283,9 @@ small matmul never reaches the compute roof at all ([25:24]). See
   (0.17% of FLOPs, 25.5% of runtime), and [GQA/MQA](attention-variants.md) exist
   because incremental decoding with a KV cache has an intensity of
   $O((n/d + 1/b)^{-1})$ that wants exactly the wrong workload shape.
+- [Benchmarking a collective](benchmarking.md#measuring-a-collective) — the same
+  bytes-versus-time accounting applied across GPUs. Lecture 7's effective bandwidth
+  is introduced as the communication analogue of [MFU](flops-and-mfu.md) ([48:47]).
 - [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
   — `arithmetic_intensity()` and its five worked operations, lines 338–481
 - [Edited transcript](../raw/transcripts/02-pytorch-resource-accounting.md)

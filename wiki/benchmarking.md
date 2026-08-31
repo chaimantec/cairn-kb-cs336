@@ -83,6 +83,58 @@ for a second reason small or awkwardly-sized problems waste the machine.
 > Lecture 6's own comparison of naive, built-in and compiled GeLU is stated the way
 > the lecture states it — qualitatively.
 
+## Measuring a collective
+
+Lecture 7 reuses this harness across GPUs, with one addition and one new number.
+The addition is that **two kinds of asynchrony now have to be closed out, not
+one**: "there's two forms of asynchrony here, the CUDA kernels and the different
+processes" ([47:14]). So the timed region is bracketed by a
+`torch.cuda.synchronize()` *and* a [`dist.barrier()`](torch-distributed.md), in
+that order — barriering first lets each rank run past before its own kernels have
+finished, so "the barrier doesn't really do anything" ([54:10]).
+
+A second consequence of running $W$ processes: every rank reports its own time.
+"If I look at the output here, for rank 0, 2, 1, 3, I have a different time,
+potentially, because they're all different processes. Each of them is going to
+report a certain measurement, and if you want to report one number, you can take
+the average" ([48:00]).
+
+### Effective bandwidth
+
+The new number is the communication analogue of [MFU](flops-and-mfu.md) — Percy
+introduces it as "analogous to when we were computing MFU" ([48:47]). A raw
+duration is uninterpretable on its own; you want to know how close to the wire
+speed you got. So count the bytes that *must* cross the link, and divide by the
+total rank-time spent.
+
+For an all-reduce of a payload of $S$ bytes over world size $W$ ([49:33]):
+
+$$\text{bandwidth} = \frac{S \cdot 2 \cdot (W-1)}{W \cdot t}$$
+
+The $(W-1)$ is the number of combining steps — "you need to iterate this
+world-size-minus-one steps, because there's world-size-minus-one addition
+operations." The $2$ is "because you need to both send and reduce." The $W \cdot t$
+is "the total amount that all the ranks have waited."
+
+Two properties make this the right number to quote ([51:05]):
+
+- **Independent of world size.** As $W$ grows, $(W-1)/W \to 1$ and the expression
+  tends to $2S/t$ — "so, if you grow the number of GPUs you have, the bandwidth
+  doesn't change."
+- **Independent of topology** — ring or tree, "which is something that
+  [NCCL](torch-distributed.md#nccl) figures out."
+
+Reduce-scatter uses the same formula **without the factor of 2** ([51:50]), and
+the two should land in the same place: "all-reduce naturally is moving twice the
+amount of data… But it takes twice the amount of time. But the two cancel out, so
+you get the same bandwidth" ([52:36]).
+
+The lecture's own figure is "about 400 GB per second" for both ([50:20], [51:50]),
+with the caveat "sometimes, there's some stochasticity." The course's
+[published four-GPU run](../raw/slides/07-parallelism.md#benchmarking-all-reduce)
+bears that out — 366–426 GB/s for all-reduce and 450–490 GB/s for reduce-scatter
+on 400 MiB payloads. Those are measurements of one machine, not a general fact.
+
 ## Where it sits in the workflow
 
 The recipe is "benchmark and profile your code, you make changes, and you benchmark
@@ -98,6 +150,8 @@ choice ([30:02]).
 ## Related
 
 - [Profiling](profiling.md) — the "where did it go" half.
+- [Lecture 7 — Parallelism](07-parallelism.md) and
+  [torch.distributed](torch-distributed.md) — benchmarking across GPUs.
 - [Lecture 6 — Kernels and Triton](06-kernels-triton.md).
 - [Resource accounting](resource-accounting.md), [FLOPs and
   MFU](flops-and-mfu.md) — predicting cost instead of measuring it.

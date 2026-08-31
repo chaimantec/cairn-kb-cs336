@@ -164,6 +164,13 @@ those do not reliably survive the jump across scales.
 - [Lecture 3](03-architectures.md) — efficiency as the thing that actually decides
   architecture. RMSNorm, dropped bias terms, the ~100 aspect ratio and GQA are all
   chosen on systems grounds rather than expressiveness ones.
+- [Lecture 7](07-parallelism.md) — efficiency as a communication problem. The same
+  minimize-data-movement principle, one level out: "the game is to orchestrate the
+  computation to try to avoid data transfer bottlenecks" ([1:38]). Its closing
+  generalization — [recompute, store, or communicate](sharding-vs-replication.md) —
+  is the most compact statement of the course's whole systems argument, and its
+  claim that the hierarchy is permanent ("hardware is getting faster, but we'll
+  always want bigger models") is this page's thesis restated in hardware terms.
 - [`lecture_01.py` transcription](../raw/slides/01-overview-tokenization.md)
 - [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
 - Edited transcripts: [Lecture 1](../raw/transcripts/01-overview-tokenization.md),

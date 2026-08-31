@@ -164,6 +164,9 @@ B200 sitting between registers and shared memory, "invisible to the programmer"
 
 ## Related
 
+- [GPU interconnect](gpu-interconnect.md) — the same hierarchy continued outward,
+  past the chip: NVLink at 1.8 TB/s against HBM's 8 TB/s, then InfiniBand, then
+  Ethernet. Lecture 7's joke is that HBM, the slow tier here, is the fast tier there.
 - [GPU execution model](gpu-execution-model.md) — threads, blocks, warps, SIMT.
 - [TPUs](tpus.md) — the same problems solved slightly differently.
 - [Tensor cores](tensor-cores.md) — the matmul hardware inside the SM.

@@ -9,17 +9,17 @@
     "courseUrl": "https://cs336.stanford.edu"
   },
   "coverage": {
-    "lecturesCovered": 6,
+    "lecturesCovered": 7,
     "lecturesTotal": 18,
-    "transcripts": 6,
-    "wikiLecturePages": 6,
-    "wikiTopicPages": 50
+    "transcripts": 7,
+    "wikiLecturePages": 7,
+    "wikiTopicPages": 57
   },
   "materials": {
     "primary": "mixed",
     "executableLectures": {
       "available": 9,
-      "transcribed": 3
+      "transcribed": 4
     },
     "slideDecks": {
       "available": 8,
@@ -32,7 +32,8 @@
       "3": "page-images",
       "4": "page-images",
       "5": "page-images",
-      "6": "source-text"
+      "6": "source-text",
+      "7": "source-text"
     },
     "figuresAudited": true,
     "sourceRepo": "https://github.com/stanford-cs336/lectures"
@@ -43,9 +44,9 @@
       "claude-sonnet-5"
     ],
     "caveats": [
-      "PARTIAL: covers lectures 1, 2, 3, 4 and 5 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 6-18 - kernels and Triton, parallelism, scaling laws, inference, evaluation, data, mid/post-training, RLVR, multimodality - have no transcripts and no wiki pages here.",
-      "materials.method is 'mixed' and the split matters. Lectures 1 and 2 are executable Python programs (lecture_01.py, lecture_02.py), transcribed exactly from source text; that is not a lower grade than page-images, because there are no slides to have looked at. Lectures 3, 4 and 5 are PDF decks (67, 60 and 55 pages) read as page images, so their figures, charts and tables ARE captured. See materials.byLecture.",
-      "Figures: described for lectures 3, 4 and 5, NOT described for lectures 1 and 2. Lectures 1 and 2 display images via image() calls, and raw/slides records each one at the point it appears, by path or URL, WITHOUT describing its contents, because those lectures were read as source text. No wiki claim rests on a lecture 1 or 2 figure. This matters most for lectures 4 and 5, whose decks are 102 images across 60 pages and 83 across 55 with most pages carrying under 40 words of native text - the figure descriptions there carry the content rather than illustrating it.",
+      "PARTIAL: covers lectures 1-7 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 8-18 - the second parallelism lecture, scaling laws, inference, evaluation, data, mid/post-training, RLVR, multimodality - have no transcripts and no wiki pages here. NOTE that lectures 7 AND 8 are both titled 'Parallelism': lecture 7 (Percy Liang's executable lecture on collective operations and data/tensor/pipeline parallelism) IS covered; lecture 8 (Tatsunori Hashimoto's deck, which is where FSDP and ZeRO are taught) is NOT. Lecture 7 defers to it repeatedly, so this KB names FSDP and ZeRO but does not explain them.",
+      "materials.method is 'mixed' and the split matters. Lectures 1, 2, 6 and 7 are executable Python programs (lecture_01.py, lecture_02.py, lecture_06.py, lecture_07.py), transcribed exactly from source text; that is not a lower grade than page-images, because there are no slides to have looked at. Lectures 3, 4 and 5 are PDF decks (67, 60 and 55 pages) read as page images, so their figures, charts and tables ARE captured. See materials.byLecture.",
+      "Figures: described for lectures 3, 4 and 5, NOT described for lectures 1, 2, 6 and 7. The four executable lectures display images via image() calls, and raw/slides records each one at the point it appears, by path or URL, WITHOUT describing its contents, because those lectures were read as source text. No wiki claim rests on one of those figures. This matters most for lectures 4 and 5, whose decks are 102 images across 60 pages and 83 across 55 with most pages carrying under 40 words of native text - the figure descriptions there carry the content rather than illustrating it.",
       "None of the three transcribed decks prints a page number on any page, so slide labels in raw/slides/03-architectures.md, 04-attention-alternatives.md and 05-gpus-tpus.md are PDF page numbers, and all three files say so in their front matter. For lecture 3 a page-number scan reported one printed number; that glyph is the numerator of the MQA arithmetic-intensity fraction on page 61, not a folio. For lecture 4 the scan reported none and all 60 pages were checked by eye. For lecture 5 the scan reported none, a corner-position text-layer scan returned only mid-page body text, and the three readers who split the deck each confirmed the absence independently over their own range. On lecture 5 the numbering was derived in the parent BEFORE any page was read and handed to the readers as a conclusion, so no reader made a numbering judgement of its own.",
       "Lecture 3's figure descriptions were audited against the PDF at 600-1200 dpi on 8 figure- and table-heavy pages (11, 12, 46, 50, 52, 55, 63, 67). Six were clean and both large numeric tables were exact cell for cell. Three errors were found and fixed: two sparse columns on slide 67 asserted to be uniformly empty (MoE is checked on GPT4 and Mixtral; Parametrization carries MuP on the Phi3 row), and one self-contradiction on slide 55 about whether an annotation was covered. Separately, the four views of the model database on slides 7, 29, 51 and 67 were cross-checked against each other: 296 overlapping cells, zero disagreements.",
       "Lecture 4's figure descriptions were audited against the PDF at 600-2200 dpi on 8 chart- and table-heavy pages (6, 11, 16, 20, 33, 35, 43, 52). Five were clean and 9 corrections were applied across pages 6, 11 and 43. Every one of the 9 was a chart value read slightly off, not a structural error: nothing was fabricated, no series was transposed, and all four audited tables (page 20's Llama 4 screenshot, page 35's 12-row native routing table, page 52's MiniCPM Table 6, page 6's ablation table) were exact cell for cell. The largest error was a systematic ~0.13 offset across one OLMoE validation-loss panel on page 43, from reading a linear x-axis as though it were spaced otherwise. Every claim the transcribers had themselves flagged as uncertain proved correct on audit.",
@@ -65,9 +66,13 @@
       "Lecture 6's benchmark timings and all four of its profiler tables are measurements of the lecturer's own GPU. They are marked machine-dependent and NOT reproduced anywhere in this KB — including the naive/built-in/compiled GeLU comparison, which is stated qualitatively as the lecture states it. Do not quote a number for them.",
       "Lecture 6's own source contradicts itself once: the warp-occupancy example says in prose 'thread block has 64 threads' while the code beneath it sets num_threads_per_block = 128. The KB reports the code's values (occupancy 0.1875) and flags the discrepancy in both raw/slides and wiki/warp-occupancy.md.",
       "The Cairn catalog titles lecture 6 'Kernels, Triton, XLA', but XLA and JAX appear nowhere in either the lecture source or the captions. This KB uses the course site's name, 'Kernels, Triton'.",
-      "One name in lecture 6's transcript, CuTe (at 1:24:54), is an editorial identification resting on outside knowledge rather than on course material — the lecture's own source never prints it. The transcript header labels it as such."
+      "One name in lecture 6's transcript, CuTe (at 1:24:54), is an editorial identification resting on outside knowledge rather than on course material — the lecture's own source never prints it. The transcript header labels it as such.",
+      "Lecture 7 is an executable lecture (lecture_07.py), so it is source-text: its figures are recorded by path only and no wiki claim rests on one, exactly as for lectures 1, 2 and 6.",
+      "Lecture 7 is the ONE lecture in this KB whose runtime output is quoted rather than withheld, and the reason is that the course publishes it: the program's own stdout from a real four-GPU run is committed to the lectures repo at var/traces/lecture_07_stdout.txt. Its measured collective bandwidths (all-reduce 366-426 GB/s, reduce-scatter 450-490 GB/s on 400 MiB payloads), its per-rank losses and its printed tensors are marked '(recorded run)' and are measurements of THAT machine (Modal, CUDA 13.2, four GPUs, NCCL) - not values a reader's own run will reproduce. The per-rank losses additionally depend on an unseeded random batch. Every bandwidth quoted was independently re-derived from the lecture's own formula and the printed durations, and matches to within one unit in the last place (rounding in the displayed milliseconds).",
+      "Lecture 7 cannot be traced the way the other executable lectures can, because it genuinely launches multiple processes. Its spawn() helper detects a tracer and runs the function in a single process with every torch.distributed call replaced by a no-op and rank hard-coded to 0. So the browser trace view shows the code with no communication happening, and any @inspect value that depends on rank shows the rank-0 value only. This is why the separate stdout file exists.",
+      "Lecture 7's transcript carries ten [Ed:] notes, several on passages the captions leave genuinely garbled - a 'the first three' that then names four operations, an unparseable 'collective commission' at a paragraph boundary, and a crosstalk fragment at 1:08:54. Where the wiki would otherwise have quoted across one of those gaps it says so instead. One reading, isend/irecv at 1:13:32, rests on outside knowledge of the PyTorch API and is confined to an [Ed:] note; the lecture source never mentions those calls. Adjudication also corrected the drafting agent's own report, which had claimed 'Grace' and 'critical batch size' rested on outside knowledge alone - both words are in fact present in the captions."
     ]
   },
   "entryPoint": "INDEX.md",
-  "updated": "2026-08-31"
+  "updated": "2026-09-01"
 }

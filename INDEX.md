@@ -8,14 +8,20 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1–6 of 18
+> ## ⚠️ This knowledge base covers Lectures 1–7 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
-> Mixtures of Experts), Lecture 5 (GPUs and TPUs) and Lecture 6 (Kernels and
-> Triton) are covered in depth.** Nothing else is. There are no transcripts and no
-> wiki pages for parallelism, scaling laws, inference, evaluation, data,
-> mid/post-training, RLVR or multimodality.
+> Mixtures of Experts), Lecture 5 (GPUs and TPUs), Lecture 6 (Kernels and
+> Triton) and Lecture 7 (Parallelism) are covered in depth.** Nothing else is.
+> There are no transcripts and no wiki pages for scaling laws, inference,
+> evaluation, data, mid/post-training, RLVR or multimodality.
+>
+> **A warning specific to parallelism:** CS336 has *two* lectures called
+> "Parallelism". Lecture 7, covered here, is Percy Liang's — collective operations
+> and the data/tensor/pipeline strategies. **Lecture 8 is Tatsunori Hashimoto's and
+> is not covered**, so this KB has no treatment of FSDP or ZeRO, which Lecture 7
+> repeatedly defers to it.
 >
 > Where a page describes later material, it is repeating Lecture 1's *syllabus
 > preview* and says so at the top. Do not cite this knowledge base as covering
@@ -60,10 +66,47 @@ compute and data?
   elementwise GeLU, softmax, a row sum too long for one block, and tiled matmul —
   plus the five hardware details the programming model hides.
 
+- **[Lecture 7 — Parallelism](wiki/07-parallelism.md)** — crossing the chip
+  boundary. The collective operations that distributed training is built from, the
+  interconnect hierarchy that carries them (NVLink, InfiniBand, Ethernet), and then
+  three ways to cut a network across GPUs: data parallelism along the batch, tensor
+  parallelism along the width, pipeline parallelism along the depth — each
+  implemented from primitives rather than called from a library.
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 7 — parallelism across GPUs
+
+- **[Collective operations](wiki/collective-operations.md)** — the eight primitives
+  (broadcast, scatter, gather, reduce, all-gather, reduce-scatter, all-reduce,
+  all-to-all), each with the lecture's own worked four-rank example, plus the naming
+  rule that makes them memorable and the all-reduce = reduce-scatter + all-gather
+  identity that FSDP depends on.
+- **[GPU interconnect](wiki/gpu-interconnect.md)** — NVLink, NVSwitch, InfiniBand,
+  Ethernet and PCIe, with the bandwidth of each and why the tiers exist at all.
+  RDMA and what it bypasses, NVL72, RoCE. Start here to work out which parallelism
+  strategy your hardware can support.
+- **[torch.distributed and NCCL](wiki/torch-distributed.md)** — the software stack:
+  what NCCL does for you, the nccl/gloo backends, process groups, and the two
+  independent kinds of asynchrony (CUDA kernels and processes) that make barrier
+  ordering matter.
+- **[Data parallelism](wiki/data-parallelism.md)** — DDP: slice the batch,
+  all-reduce the gradients, and change one line of an ordinary training loop. Why
+  losses differ across ranks but parameters never do, and the three things that cap
+  it — memory, divisibility, and the critical batch size.
+- **[Tensor parallelism](wiki/tensor-parallelism.md)** — column-parallel: shard each
+  weight matrix down its columns and all-gather the activations after every layer.
+  Why the nonlinearity can be applied before the gather, and why this one needs
+  NVLink.
+- **[Pipeline parallelism](wiki/pipeline-parallelism.md)** — shard the depth and
+  pass activations rank to rank with point-to-point send/recv. Pipeline bubbles,
+  micro-batching, and why this is the strategy that tolerates a bad network.
+- **[Sharding, replication and recomputation](wiki/sharding-vs-replication.md)** —
+  the lecture's closing generalization, and the most portable idea in the systems
+  unit: recompute it, store it, or store it on another GPU and communicate it.
 
 ### Lecture 6 — kernels and Triton
 
@@ -357,7 +400,8 @@ usually the faster route than the lecture pages.
   [Lecture 3](raw/transcripts/03-architectures.md),
   [Lecture 4](raw/transcripts/04-attention-alternatives.md),
   [Lecture 5](raw/transcripts/05-gpus-tpus.md),
-  [Lecture 6](raw/transcripts/06-kernels-triton.md).
+  [Lecture 6](raw/transcripts/06-kernels-triton.md),
+  [Lecture 7](raw/transcripts/07-parallelism.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
@@ -371,13 +415,18 @@ usually the faster route than the lecture pages.
   for what was said. CS336 supplies it in two very different forms:
   - [`lecture_01.py`](raw/slides/01-overview-tokenization.md),
     [`lecture_02.py`](raw/slides/02-pytorch-resource-accounting.md) and
-    [`lecture_06.py`](raw/slides/06-kernels-triton.md) are Percy
+    [`lecture_06.py`](raw/slides/06-kernels-triton.md) and
+    [`lecture_07.py`](raw/slides/07-parallelism.md) are Percy
     Liang's *executable lectures* — Python programs, transcribed from source text,
     each with a section-to-source-line table and the code verbatim. There are no
     slide numbers to cite. Where such a lecture computes a number at runtime, a
     deterministic one is recomputed and marked "(computed)", while a measurement of
     the lecturer's own GPU — a timing, a profiler table — is marked
     machine-dependent and no value is given. Lecture 6 is mostly the second kind.
+    **Lecture 7 is the exception**: the course publishes that one program's own
+    standard output from a real four-GPU run, so its measured bandwidths and
+    per-rank losses are quoted and marked "(recorded run)" — measurements of that
+    machine, not of yours.
   - [`lecture_03.pdf`](raw/slides/03-architectures.md) (67 pages),
     [`lecture_04.pdf`](raw/slides/04-attention-alternatives.md) (60 pages) and
     [`lecture_05.pdf`](raw/slides/05-gpus-tpus.md) (55 pages) are Tatsunori

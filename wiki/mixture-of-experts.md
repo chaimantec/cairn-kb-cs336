@@ -147,7 +147,11 @@ turns out that very simple things work well, even at scale" ([1:25:27]).
 
 - [MoE routing](moe-routing.md) — routers, top-$k$, shared and fine-grained experts.
 - [Load balancing losses](load-balancing-losses.md) — how these are actually trained.
-- [Expert parallelism](expert-parallelism.md) — the systems side.
+- [Expert parallelism](expert-parallelism.md) — the systems side, including the
+  [all-to-all](collective-operations.md#the-general-one) primitive that dynamic
+  routing forces on you.
+- [Collective operations](collective-operations.md) — from Lecture 7. All-to-all is
+  introduced there specifically as the MoE operation ([7:50], [17:54]).
 - [Upcycling](upcycling.md) — building an MoE from a trained dense model.
 - [Model architecture survey](model-architecture-survey.md) — what the large models do.
 - [Lecture 4](04-attention-alternatives.md).

@@ -1,6 +1,6 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after run 6: **Lectures 1–6.** Run 7 (Lecture 7) is in progress; the
+Coverage after run 7: **Lectures 1–7.** The
 course has 18 recorded lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
@@ -472,27 +472,84 @@ THAT machine, not as facts about GPUs in general.
       7:04 is real) and held. Also removed a duplicated "NCCL" in the header.
 
 ### Wiki
-- [ ] wiki/07-parallelism.md
-- [ ] Topic pages
-- [ ] Update existing pages that now link a seventh lecture
-- [ ] INDEX.md — seven-lecture coverage
-- [ ] Link sweep
-- [ ] Citation checks
+- [x] wiki/07-parallelism.md (256 lines) — the hierarchy extended past the chip,
+      part 1 (collectives, hardware, torch.distributed, benchmarking), part 2 (the
+      three cuts as a table), what the lecture deliberately omits, and the
+      recompute/store/communicate pattern
+- [x] Topic pages (7 new) — collective-operations (all eight primitives with the
+      lecture's own four-rank worked examples), gpu-interconnect (the bandwidth
+      tiers, RDMA, NVL72, RoCE), torch-distributed (incl. NCCL, and the two kinds of
+      asynchrony that make barrier ORDER matter), data-parallelism,
+      tensor-parallelism, pipeline-parallelism, sharding-vs-replication
+- [x] Extend rather than duplicate: benchmarking.md gains a "Measuring a collective"
+      section (the effective-bandwidth formula, independence of world size and
+      topology) instead of a new page; expert-parallelism.md gains the all-to-all
+      primitive it had been promising since run 4
+- [x] Update existing pages that now link a seventh lecture — expert-parallelism,
+      mixture-of-experts, benchmarking, efficiency, course-map (coverage banner was
+      STALE at "lectures 1-4" and is now correct), executable-lectures,
+      gpu-architecture, memory-accounting-for-training, activation-checkpointing,
+      arithmetic-intensity, tpus
+- [x] INDEX.md — seven-lecture coverage: banner (now warns that lectures 7 AND 8 are
+      both "Parallelism" and only 7 is covered), Start here entry, a Lecture 7
+      section with 7 annotated entries, raw-material section noting the published
+      stdout
+- [x] Link sweep — 993 relative links and 153 anchors all resolve; all 64 wiki pages
+      appear in INDEX.md; no LaTeX inside code fences.
+      SWEEPER BUG, caught and fixed here: the slug function stripped `_` as a
+      markdown emphasis marker, but GitHub keeps it (it is a word character), so
+      `#async_op-and-overlapping` was reported unresolved. Strip backticks and
+      asterisks only.
+- [x] Citation checks — all 197 [MM:SS] citations across the 8 lecture-7 pages match
+      a real marker. Sweeping the whole wiki also turned up a PRE-EXISTING defect
+      from run 5: three pages cited [32:19], which is not a marker; the real one is
+      [32:18]. Fixed in 05-gpus-tpus, arithmetic-intensity and gpu-execution-model.
+      The wiki now has zero citations to non-existent markers.
+- [x] Quote checks — 146 quoted fragments checked against the transcript, the slide
+      file and the raw source. **34 real slips found and fixed**, far above run 6's
+      9, because this lecture's pages quote heavily. Nearly all were the same fault:
+      silently smoothing a false start INSIDE quotation marks ("about four - about
+      four x - slower" quoted as "about four x slower"; "your nodes - your GPUs - are
+      actually across, halfway across the world" quoted as "your GPUs are actually
+      halfway across the world"). Two were worse and are the ones to watch for: a
+      quote run straight across a passage the transcript marks [Ed:] as garbled
+      (the "collective commission" gap at 7:04), and a paraphrase presented inside
+      quotation marks (the garbled cables/switches clause at 32:33). Both rewritten
+      to quote only what is verbatim and to say the captions are garbled there.
+      3 residual flags are nested-quote-style conversions (source "..." rendered as
+      '...' inside an outer quote), verified verbatim by direct substring test.
+      TWO CHECKER BUGS, both found here: a `"([^"]{12,})"` regex DESYNCHRONIZES the
+      quote pairing whenever a short quote is skipped, so every later "failure" is an
+      artifact (80 false positives before the fix) — pair quote characters
+      sequentially instead. And the haystack must have [MM:SS] markers stripped, or
+      every quote spanning a paragraph boundary reports as missing.
 
 ### Publish
-- [ ] Update sources.md
-- [ ] kb.json — coverage 7/18
-- [ ] AGENTS.md — run 7 precedents
-- [ ] Commit and push
+- [x] Update sources.md (lecture_07.py transcribed; the two-lectures-named-
+      Parallelism note; the published-stdout note)
+- [x] kb.json — coverage 7/18, 57 topic pages, executableLectures 4 of 9,
+      byLecture."7" = source-text, 27 caveats. Also corrected three caveats that had
+      gone stale: the PARTIAL one still said "lectures 1, 2, 3, 4 and 5" after run 6,
+      and the method/figures caveats still framed source-text as "lectures 1 and 2".
+- [x] AGENTS.md — run 7 precedents: look for published runtime output before writing
+      "not reproduced"; an executable lecture may not be traceable; two lectures can
+      share a title; and quote-check the wiki, with the two checker bugs recorded
+- [x] Commit and push
+- n/a  kbUrl already set on the catalog entry from run 1; re-fetched and confirmed
 
 ## Not done (future runs)
-- [ ] Lectures 7–18 — transcripts and wiki pages
+- [ ] Lectures 8–18 — transcripts and wiki pages. **Lecture 8 is the priority**: it
+      is the other half of parallelism (FSDP/ZeRO), which lecture 7 defers to
+      repeatedly, so the KB currently names those techniques without explaining them.
 - [ ] Transcribe the 5 remaining PDF decks (lectures 8, 9, 11, 15, 16) — these need
       page-images, not source-text, and a figure audit
-- [ ] Transcribe the 6 remaining executable lectures (7, 10, 12, 13, 14, 17)
-- [ ] Describe the figures in lectures 1, 2 and 6 — the image() targets are recorded
+- [ ] Transcribe the 5 remaining executable lectures (10, 12, 13, 14, 17). Check each
+      for a published `var/traces/lecture_NN_stdout.txt` in the lectures repo before
+      writing off its runtime values as machine-dependent — lecture 7 had one.
+- [ ] Describe the figures in lectures 1, 2, 6 and 7 — the image() targets are recorded
       by path in raw/slides but their contents were never looked at. Lecture 3 now
       sets the precedent for how (page-images plus a targeted figure audit), but
       these lectures display images by URL or repo path rather than as PDF pages, so
       the mechanics differ. Lecture 6 has four such figures, two of them the
-      lecture's own diagrams of the softmax and row-sum kernels.
+      lecture's own diagrams of the softmax and row-sum kernels; lecture 7 has five
+  (the node overview, ranks, and one schematic per parallelism strategy).

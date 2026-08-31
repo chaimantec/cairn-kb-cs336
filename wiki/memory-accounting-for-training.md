@@ -200,6 +200,12 @@ shared memory. See [GPU architecture](gpu-architecture.md) for the hierarchy,
 
 - [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md) — memory as traffic rather than
   capacity.
+- [Lecture 7 — Parallelism](07-parallelism.md) — what to do when the accounting says
+  it does not fit. Not fitting on one GPU is the first of the two reasons Lecture 7
+  gives for going multi-GPU ([3:14]), and
+  [sharding vs. replication](sharding-vs-replication.md) is the choice that follows.
+  Note that plain [DDP](data-parallelism.md) does *not* help here — it replicates
+  every parameter and optimizer state on every rank ([1:02:44]).
 - [Lecture 2 — PyTorch, Resource Accounting](02-pytorch-resource-accounting.md)
 - [Attention variants](attention-variants.md) — the *inference*-time memory story,
   where the KV cache rather than the optimizer state is what dominates.

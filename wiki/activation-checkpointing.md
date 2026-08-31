@@ -186,6 +186,10 @@ matrix and recomputes it tile by tile in the backward pass rather than storing i
 
 - [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md) — recomputation as trick 3, and its
   use inside FlashAttention.
+- [Sharding, replication and recomputation](sharding-vs-replication.md) — Lecture 7
+  generalizes this page's trade into three options rather than two: recompute, store
+  in memory, or *store on another GPU and communicate* ([1:19:40]). Activation
+  checkpointing is the first; multi-GPU training adds the third.
 - [Lecture 2 — PyTorch, Resource Accounting](02-pytorch-resource-accounting.md)
 - [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
   — `gradient_accumulation()`, lines 718–730; `activation_checkpointing()` and

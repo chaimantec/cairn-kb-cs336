@@ -88,7 +88,7 @@ The organizing frame is the **roofline model**, which Percy introduced earlier i
 course: below a threshold of arithmetic per byte moved you are memory-bound and extra
 compute buys nothing; above it you are compute-bound. "What you need to do is be on"
 the right side, "which means we want to increase the operational intensity"
-([31:32]–[32:19]). See [arithmetic intensity](arithmetic-intensity.md).
+([31:32]–[32:18]). See [arithmetic intensity](arithmetic-intensity.md).
 
 A few things worth pulling out of the individual pages:
 
