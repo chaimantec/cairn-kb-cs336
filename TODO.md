@@ -249,15 +249,13 @@ text (~33 words/page). As in lecture 4, the figures ARE the content.
       bit-field table and numeric spot-check matched the source exactly.
       Confirmed as printed, not transcription error: slide 17's "M80" and slide
       29's "E4M3" against slide 27's "E8M0".
-- [ ] Figure audit, pass 2 — NOT DONE. 4 of 7 pages came back dirty in pass 1,
-      which by this skill's rule means the sample was too small, so a second pass
-      over pages 9, 14, 20, 21, 33, 48 and 55 was launched and then stopped
-      partway when the run was halted. No pass-2 findings were received, and
-      nothing from it was applied. Those seven pages are transcribed but
-      UNAUDITED. Re-run it before writing wiki prose that cites them — pass 1's
-      errors were entirely in diagram structure and overlay annotations (counts,
-      positions, uniformity claims, one wholly unmentioned figure), never in data
-      series or numbers, so steer pass 2 at exactly those.
+- [~] Figure audit, pass 2 — IN PROGRESS over pages 9, 14, 20, 21, 33, 48, 55.
+      First attempt was killed by an API error after page 9 and its findings were
+      lost with it; the agent was resumed and now appends each page's verdict to
+      scratchpad/slides05/audit2_findings.md as it finishes, so a further
+      interruption costs one page rather than the pass. Steered at pass 1's error
+      class: structure, counts, positions, uniformity claims, and figures present
+      on the page but missing from the file.
 - [x] Heading-sequence check — PASS, exactly 55 headings 1..55 in order
 
 ### Transcript
@@ -283,13 +281,11 @@ text (~33 words/page). As in lecture 4, the figures ARE the content.
       knowledge rather than implying deck support. "systolic array" was never a
       restoration — it is verbatim in the captions.
 
-### Wiki — NOT STARTED
-Planned shape, worked out from the finished transcript and deck so a resume does
-not re-derive it:
-- [ ] wiki/05-gpus-tpus.md — the lecture page. Three parts: GPU hardware and
+### Wiki
+- [x] wiki/05-gpus-tpus.md — the lecture page (174 lines). Three parts: GPU hardware and
       execution model, six tricks for making workloads fast, then FlashAttention
       as the victory lap that combines tiling and recomputation.
-- [ ] Topic pages (10 new) — gpu-architecture (SMs, the memory hierarchy, the
+- [x] Topic pages (10 new) — gpu-architecture (SMs, the memory hierarchy, the
       A100 latency table on slide 10, why a chip is not all SRAM),
       gpu-execution-model (threads/blocks/warps, SIMT, control divergence),
       tpus (convergent evolution, MXU, the tensor-core naming collision, systolic
@@ -300,23 +296,28 @@ not re-derive it:
       sizing, max-autotune, alignment and padding), wave-quantization (98 vs 120
       tiles against 108 SMs), flash-attention (online softmax, tiling plus
       recomputation)
-- [ ] Extend rather than duplicate: arithmetic-intensity.md already has a
+- [x] Extend rather than duplicate: arithmetic-intensity.md already has a
       roofline section — add lecture 5's four-ceiling version (slide 21) there
       instead of a new page; precision-and-data-types.md already covers fp8/fp4 —
       link it to the new microscaling page; activation-checkpointing.md already
       covers recomputation — add slide 35/36's 8-vs-5 memory-access example
-- [ ] Update existing pages that now link a fifth lecture — efficiency,
+- [x] Update existing pages that now link a fifth lecture — efficiency,
       attention-variants (FlashAttention now has a mechanism page), course-map
       (Unit 2 Systems becomes properly covered, not a preview),
       executable-lectures (three decks now), memory-accounting-for-training
-- [ ] INDEX.md — five-lecture coverage
-- [ ] Link sweep — remember GitHub's anchor slugging replaces each space
-      individually; do not collapse whitespace runs with \s+
+- [x] INDEX.md — five-lecture coverage: banner, Start here entry, a new Lecture 5
+      section with 10 annotated entries, raw-material section now describing three
+      decks
+- [x] Link sweep — 688 relative links and 73 anchors all resolve; all 47 wiki
+      pages appear in INDEX.md; no LaTeX inside code fences. (GitHub's anchor
+      slugging replaces each space individually; do not collapse runs with \s+.)
 
 ### Publish
-- [ ] Update sources.md (lecture_05.pdf transcribed)
-- [ ] kb.json — coverage 5/18
-- [ ] AGENTS.md — deck precedent. Two things worth recording from this run: the
+- [x] Update sources.md (lecture_05.pdf transcribed; deck-numbering and
+      figure-density paragraphs now cover three decks)
+- [x] kb.json — coverage 5/18, 42 topic pages, slideDecks 3 of 8, byLecture."5" =
+      page-images, 17 caveats
+- [x] AGENTS.md — deck precedent. Two things worth recording from this run: the
       three-reader split gave three independent confirmations that the deck
       prints no folio, and the figure audit's error class shifted — on lectures 3
       and 4 the errors were chart values, here every value was right and every
@@ -324,8 +325,8 @@ not re-derive it:
 - [ ] Commit and push
 
 ## Not done (future runs)
-- [ ] Lectures 5–18 — transcripts and wiki pages
-- [ ] Transcribe the 6 remaining PDF decks (lectures 5, 8, 9, 11, 15, 16) — these need
+- [ ] Lectures 6–18 — transcripts and wiki pages
+- [ ] Transcribe the 5 remaining PDF decks (lectures 8, 9, 11, 15, 16) — these need
       page-images, not source-text, and a figure audit
 - [ ] Transcribe the 7 remaining executable lectures (6, 7, 10, 12, 13, 14, 17)
 - [ ] Describe the figures in lectures 1 and 2 — the image() targets are recorded
