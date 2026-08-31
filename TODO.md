@@ -328,7 +328,8 @@ text (~33 words/page). As in lecture 4, the figures ARE the content.
       prints no folio, and the figure audit's error class shifted — on lectures 3
       and 4 the errors were chart values, here every value was right and every
       error was diagram structure or a hand-drawn overlay.
-- [ ] Commit and push
+- [x] Commit and push — pushed to chaimantec/cairn-kb-cs336 at dec2a4a
+- n/a  kbUrl already set on the catalog entry from run 1; re-fetched and confirmed
 
 ## Not done (future runs)
 - [ ] Lectures 6–18 — transcripts and wiki pages
