@@ -8,9 +8,9 @@ at its canonical URL, because this knowledge base is read by an agent that
 navigates markdown — a PDF blob in the repo would be unreadable to it — and the
 current lecture decks alone total roughly 50 MB.
 
-**This KB currently covers Lectures 1, 2, 3 and 4.** The inventory below spans the
+**This KB currently covers Lectures 1–6.** The inventory below spans the
 whole course (and its two earlier offerings) so that provenance is recorded once,
-but only Lectures 1–4 have been transcribed into `wiki/` and `raw/`. See
+but only Lectures 1–6 have been transcribed into `wiki/` and `raw/`. See
 `kb.json`.
 
 ## How CS336 publishes its lectures
@@ -36,7 +36,7 @@ programs are not linked as documents. Both are listed below.
 | --- | --- | --- | --- |
 | 1 | Overview, tokenization | [`lecture_01.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_01.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_01) |
 | 2 | PyTorch (einops), resource accounting | [`lecture_02.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_02.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_02) |
-| 6 | Kernels, Triton | [`lecture_06.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_06.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_06) |
+| 6 | Kernels, Triton | [`lecture_06.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_06.py) — **transcribed**, at [`raw/slides/06-kernels-triton.md`](raw/slides/06-kernels-triton.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_06) |
 | 7 | Parallelism | [`lecture_07.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_07.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_07) |
 | 10 | Inference | [`lecture_10.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_10.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_10) |
 | 12 | Evaluation | [`lecture_12.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_12.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_12) |
@@ -52,11 +52,17 @@ Supporting modules used by those programs: [`references.py`](https://github.com/
 
 - `lecture_01.py` → [`raw/slides/01-overview-tokenization.md`](raw/slides/01-overview-tokenization.md)
 - `lecture_02.py` → [`raw/slides/02-pytorch-resource-accounting.md`](raw/slides/02-pytorch-resource-accounting.md)
+- `lecture_06.py` → [`raw/slides/06-kernels-triton.md`](raw/slides/06-kernels-triton.md)
 
-Both were transcribed from source text. Neither transcription describes the
+**A note on lecture 6's title.** The Cairn catalog entry for that video is called
+"Lecture 6: Kernels, Triton, XLA", but neither `lecture_06.py` nor the lecture's
+captions mention XLA or JAX anywhere. This KB uses the course site's own name for
+it, "Kernels, Triton", and no XLA material is present in this offering.
+
+All three were transcribed from source text. None of those transcriptions describes the
 images the programs display: `image()` targets are recorded at the point they
 appear, by path or URL, and nothing in the wiki rests on a figure's contents.
-Lecture 2 additionally computes many of its numbers at runtime — the deterministic
+Lectures 2 and 6 additionally compute many of their numbers at runtime — the deterministic
 ones were recomputed from the lecture's own expressions and are marked
 "(computed)"; the ones that depend on which GPU the program runs on (wall-clock
 timings, measured FLOP/s, MFU, peak-memory readings) are marked

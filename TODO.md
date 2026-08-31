@@ -352,8 +352,28 @@ both). The XLA material is not in this offering's lecture 6; the KB calls it
 
 ### Transcript
 - [x] 06 — verbatim captions fetched (113 paragraphs, ~13.3k words, runs to 1:26:25)
-- [ ] 06 — copy-edited transcript (draft by Sonnet, adjudicate here)
-- [ ] 06 — verify: timestamps, number inventory, per-paragraph word ratios
+- [x] 06 — copy-edited transcript (drafted by Sonnet, adjudicated here)
+- [x] 06 — verify: all three checks pass. Timestamps: 113 markers, identical
+      sequence, [MM:SS] and [H:MM:SS] alike. Numbers: nothing lost; the single
+      addition is "run operation" -> run_operation2 at 26:57, where the captions
+      omit the digit entirely — supplied from the source program, where the
+      sentence's own "creates two random matrices" distinguishes
+      run_operation2 from run_operation1, and 23:07 speaks the name in full.
+      Word ratios: retention 82.9% (10,928/13,181); two paragraphs a hair under
+      the band at 0.72 (25:24) and 0.71 (50:55), both read and confirmed as pure
+      filler — ten "you know"s in the first alone.
+      Restorations: all API names, hardware names and code identifiers appear
+      verbatim in the source program (A100, Blackwell, nsight, tl.load/store/
+      arange, %ctaid.x, triton_gelu_kernel, run_operation2, cutlass3x_sm100).
+      Two rest on context alone (Triton at 22:22, matmul at 1:04:52) and one —
+      "cute" -> CuTe at 1:24:54 — rests on outside knowledge and is labelled an
+      editorial judgement in the header: CuTe appears nowhere in the source
+      program (the case-insensitive grep hits were all "execute").
+      9 [Ed:] notes mark genuine ambiguity; 19 student questions marked.
+      CHECKER BUG, caught and fixed here: the first splitter treated a paragraph
+      as the block its marker starts, but this transcript lifts each student
+      question onto its own line — that manufactured 15 false outliers including
+      a 0.00. A paragraph is everything from one marker to the NEXT marker.
 
 ### Wiki
 - [ ] wiki/06-kernels-triton.md
