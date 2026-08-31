@@ -10,7 +10,7 @@ current lecture decks alone total roughly 50 MB.
 
 **This KB currently covers Lectures 1–6.** The inventory below spans the
 whole course (and its two earlier offerings) so that provenance is recorded once,
-but only Lectures 1–6 have been transcribed into `wiki/` and `raw/`. See
+but only Lectures 1–7 have been transcribed into `wiki/` and `raw/`. See
 `kb.json`.
 
 ## How CS336 publishes its lectures
@@ -37,7 +37,7 @@ programs are not linked as documents. Both are listed below.
 | 1 | Overview, tokenization | [`lecture_01.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_01.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_01) |
 | 2 | PyTorch (einops), resource accounting | [`lecture_02.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_02.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_02) |
 | 6 | Kernels, Triton | [`lecture_06.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_06.py) — **transcribed**, at [`raw/slides/06-kernels-triton.md`](raw/slides/06-kernels-triton.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_06) |
-| 7 | Parallelism | [`lecture_07.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_07.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_07) |
+| 7 | Parallelism | [`lecture_07.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_07.py) — **transcribed**, at [`raw/slides/07-parallelism.md`](raw/slides/07-parallelism.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_07) |
 | 10 | Inference | [`lecture_10.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_10.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_10) |
 | 12 | Evaluation | [`lecture_12.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_12.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_12) |
 | 13 | Data (sources, datasets) | [`lecture_13.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_13.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_13) |
@@ -53,16 +53,31 @@ Supporting modules used by those programs: [`references.py`](https://github.com/
 - `lecture_01.py` → [`raw/slides/01-overview-tokenization.md`](raw/slides/01-overview-tokenization.md)
 - `lecture_02.py` → [`raw/slides/02-pytorch-resource-accounting.md`](raw/slides/02-pytorch-resource-accounting.md)
 - `lecture_06.py` → [`raw/slides/06-kernels-triton.md`](raw/slides/06-kernels-triton.md)
+- `lecture_07.py` → [`raw/slides/07-parallelism.md`](raw/slides/07-parallelism.md)
 
 **A note on lecture 6's title.** The Cairn catalog entry for that video is called
 "Lecture 6: Kernels, Triton, XLA", but neither `lecture_06.py` nor the lecture's
 captions mention XLA or JAX anywhere. This KB uses the course site's own name for
 it, "Kernels, Triton", and no XLA material is present in this offering.
 
-All three were transcribed from source text. None of those transcriptions describes the
+**A note on lectures 7 and 8.** Both are titled "Parallelism". Lecture 7 is Percy
+Liang's executable lecture and is transcribed here; Lecture 8 is Tatsunori
+Hashimoto's `lecture_08.pdf` deck and is not yet in this KB. A reader looking for
+parallelism material should not assume the two are interchangeable.
+
+**Lecture 7 has published runtime output**, which the other executable lectures do
+not. The course committed the program's own standard output from a real four-GPU
+run to [`var/traces/lecture_07_stdout.txt`](https://github.com/stanford-cs336/lectures/blob/main/var/traces/lecture_07_stdout.txt),
+and a copy is kept at `raw/pdfs/lecture_07_stdout.txt`. That is why lecture 7's
+transcription quotes measured collective bandwidths and per-rank losses where
+lectures 2 and 6 withhold their timings. Those numbers are marked "(recorded run)"
+and are measurements of one machine (Modal, CUDA 13.2, four GPUs, NCCL) — not
+values a reader's own run will reproduce.
+
+All four were transcribed from source text. None of those transcriptions describes the
 images the programs display: `image()` targets are recorded at the point they
 appear, by path or URL, and nothing in the wiki rests on a figure's contents.
-Lectures 2 and 6 additionally compute many of their numbers at runtime — the deterministic
+Lectures 2, 6 and 7 additionally compute many of their numbers at runtime — the deterministic
 ones were recomputed from the lecture's own expressions and are marked
 "(computed)"; the ones that depend on which GPU the program runs on (wall-clock
 timings, measured FLOP/s, MFU, peak-memory readings) are marked

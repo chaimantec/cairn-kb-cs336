@@ -446,8 +446,30 @@ THAT machine, not as facts about GPUs in general.
 
 ### Transcript
 - [x] 07 — verbatim captions fetched (105 paragraphs, ~11.3k words, runs to 1:20:57)
-- [ ] 07 — copy-edited transcript
-- [ ] 07 — verify: three checks
+- [x] 07 — copy-edited transcript (drafted by Sonnet, adjudicated here)
+- [x] 07 — verify: all three checks pass. Timestamps: 105 markers, identical
+      sequence, [MM:SS] and [H:MM:SS] alike. Numbers: 4 differences, all
+      adjudicated — "1 trillion" -> "one-trillion", "NVLink five" -> "NVLink 5"
+      (slide prints "NVLink 5.0"), and a caption stutter at 7:50 where he
+      restarts the list he is reading ("has some tensor 0 1 0 1 2 3" ->
+      "0, 1, 2, 3"), which matches the source's own broadcast example
+      tensor([0., 1, 2, 3]). Word ratios: retention 85.3%; two paragraphs a hair
+      under the band at 0.70 (45:37) and 0.71 (46:23), both read and confirmed
+      pure filler — the same signature lecture 6 showed for this speaker.
+      Restorations: 20-odd terms, and all but four appear verbatim in the source
+      program (HBM, NVSwitch, NCCL, gloo, FSDP, ZeRO, MoE, PCIe, RDMA, RoCE,
+      NVL72, reduce_scatter_tensor, all_gather_into_tensor, sharding strategy,
+      interconnects, elementwise, sum). 10 [Ed:] notes, 17 student questions.
+- [x] 07 — adjudication: the drafting agent reported TWO restorations as resting
+      on "outside knowledge only" — "Grace" and "critical batch size". Both
+      claims were wrong in the reader's favour: the captions say "G stands for a
+      grace" and "the critical batch fact uh size", so the words are present and
+      only the capitalization and a stutter collapse were editorial. Both header
+      rows rewritten to state the real evidence. Its isend/irecv reading is
+      correctly confined to an [Ed:] note and left there. Every other stated
+      evidence claim was spot-checked (HBM x3, NCCL x2, Tatsu x4 spelled
+      correctly elsewhere in the captions; the "gather, gather" duplication at
+      7:04 is real) and held. Also removed a duplicated "NCCL" in the header.
 
 ### Wiki
 - [ ] wiki/07-parallelism.md
