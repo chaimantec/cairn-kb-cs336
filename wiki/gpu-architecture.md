@@ -140,6 +140,28 @@ all at once; compute scales faster than memory, so memory is what matters; and
 because memory matters, "everything we do has to respect the memory hierarchy — as
 much as possible goes into shared memory and not global memory."
 
+## Lecture 6's summary of the same hierarchy
+
+Lecture 6 opens by restating this hierarchy from its own table of A100, H100 and
+B200 ([0:50]–[3:10]), which is a useful second reading of the numbers on this page.
+Its qualitative summary is compact:
+
+> "This is the main hierarchy you should have in your head: large memory is slow and
+> far, but big, and fast memory like registers and L1 resides on the SM — it's local
+> and it's fast, but small." ([3:10])
+
+Three details it adds. SM counts have been roughly flat across generations — "about
+100, between 100 and 200" — while **HBM size is "the number that's actually going up
+quite a bit"** ([0:50]–[2:23]). Bandwidth is inversely correlated with distance, with
+HBM slowest — though he adds that 8 TB/s "is still not that slow in the grand scheme
+of things" ([2:23]). And L1 and shared memory are physically the same memory, differing in
+who controls them: "shared memory you can control; L1 you can't" ([1:35]).
+
+It also mentions two newer structures it then sets aside: thread block clusters on
+H100 and B200, which "enable some amount of distributed memory", and tensor memory on
+B200 sitting between registers and shared memory, "invisible to the programmer"
+([3:56]).
+
 ## Related
 
 - [GPU execution model](gpu-execution-model.md) — threads, blocks, warps, SIMT.

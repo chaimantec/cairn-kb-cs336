@@ -88,7 +88,7 @@ CS336 splits by instructor, and the split is exactly the format split:
 Both live in [`stanford-cs336/lectures`](https://github.com/stanford-cs336/lectures).
 Full inventory in [`sources.md`](../sources.md).
 
-**This KB covers two executable lectures and three decks.** Lectures 1 and 2 are
+**This KB covers three executable lectures and three decks.** Lectures 1, 2 and 6 are
 executable lectures, transcribed from source text; [Lecture 3](03-architectures.md)
 (67 pages), [Lecture 4](04-attention-alternatives.md) (60 pages) and
 [Lecture 5](05-gpus-tpus.md) (55 pages) are decks, transcribed from the rendered
@@ -103,6 +103,15 @@ scan reported none, and all 60 pages were checked by eye as they were read; for
 `lecture_05.pdf` the scan again reported none, a corner-position scan returned only
 mid-page body text, and each of the three readers who split the deck confirmed the
 absence independently over its own range.
+
+[Lecture 6](06-kernels-triton.md) is the first executable lecture in this KB whose
+subject is code the students will themselves write — its four Triton kernels are
+quoted from the program rather than described — and it is a good illustration of why
+the format is cited by function and line range. Two of its numbers also show the
+runtime/source split at its sharpest: the deterministic ones (an occupancy of 0.1875,
+an eight-block grid) are recomputed from the program's own expressions, while its
+benchmark timings and profiler tables are measurements of one GPU on one afternoon
+and are not reproduced at all.
 
 A crawl of the course website finds the PDFs and misses the programs entirely,
 since the programs are not linked as documents — worth knowing if you are

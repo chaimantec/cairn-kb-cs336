@@ -247,6 +247,30 @@ The exception is control divergence, which wastes compute rather than bandwidth 
 slide 23's own heading calls it out as "not a memory issue." See
 [the GPU execution model](gpu-execution-model.md).
 
+## Where lecture 6 takes this
+
+Lecture 6 uses arithmetic intensity as the scoring function for three ways of
+writing a matmul kernel, which is this page's framework doing concrete work
+([1:13:25]–[1:17:59]):
+
+| Approach | Reads | Intensity |
+| --- | --- | --- |
+| Naive — one output element at a time | $O(MKN)$ | $O(1)$ |
+| Idealized — all of $A$ and $B$ in shared memory | $O(MK + KN)$ | $O(N)$ |
+| [Tiled](tiling.md) — one output tile per thread block | between the two | $O(\text{tile size})$ |
+
+Percy names this page's lecture as the source of the target: the idealized $O(N)$ is
+"which, in the second lecture, I said was an ideal thing you could hope for"
+([1:14:56]). The reason rung 2 is unreachable — $A$ and $B$ do not fit in shared
+memory — is what makes tiling the answer, and the reason rung 1 is bad is pure
+redundancy: computing two neighbouring output elements re-reads the same row of $A$
+twice.
+
+The same framework explains a benchmark curve earlier in that lecture. Matmul time
+is roughly *constant* below about 2000 dimensions and cubic above it, because a
+small matmul never reaches the compute roof at all ([25:24]). See
+[benchmarking](benchmarking.md).
+
 ## Sources
 
 - [Lecture 2 — PyTorch, Resource Accounting](02-pytorch-resource-accounting.md)

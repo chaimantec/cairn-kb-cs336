@@ -89,6 +89,30 @@ about the mathematics of a matmul predicts a discontinuity at 1793. You can only
 see it if you know what an SM is and how many the chip has. "Percy calls this GPU
 trivia, and I think he hates it, but I love it" ([1:07:32]).
 
+## Lecture 6's version
+
+Lecture 6 gives the same phenomenon under the name **block occupancy**, with a B200's
+148 SMs instead of an A100's 108 ([18:31]):
+
+> "If you launch 160 thread blocks, then you can only schedule 148 of them, and then
+> you have to wait until they're done, and then you schedule the 12. But what happens
+> if you schedule the 12 is that a bunch of the SMs are just not doing anything.
+> That's called low occupancy — when the last wave of thread blocks has fewer than
+> the total maximum number of thread blocks."
+
+Its stated remedy is to make the number of thread blocks divide the number of SMs.
+
+A student asks the obvious follow-up — could two blocks share an SM to fill the gap?
+— and the answer is that sharing does not recover the loss when the resident block is
+already using the SM's resources: "if you have a block that's, for example, using most
+of the tensor cores on the SM, then putting another block there isn't really going to
+speed things up. I think fundamentally there is this jagged problem here of
+unevenness — because the blocks have to stay together." The fix is to change the block
+size so the tail disappears ([20:03]–[20:50]).
+
+Note that this is *block* occupancy, a different quantity from the [warp
+occupancy](warp-occupancy.md) set by each thread's register use.
+
 ## Related
 
 - [Tiling](tiling.md) — where tile counts come from, and the other half of the

@@ -153,6 +153,14 @@ those do not reliably survive the jump across scales.
   magnitude on the table. Its closing advice is the anti-cargo-cult version of this
   page's argument — understand the hardware reason for a rule instead of following
   the rule.
+- [Lecture 6](06-kernels-triton.md) — efficiency as something you *measure before
+  you optimize*. Its recipe — benchmark, change, benchmark again — is the discipline
+  that keeps the rest of this page honest, and its GeLU race is the course's
+  cleanest demonstration that three implementations of identical mathematics can
+  differ by an order of magnitude for reasons visible only in a
+  [profiler](profiling.md). It also puts a floor under the abstraction: the
+  programming model is silent about speed, so performance work means knowing the
+  hardware underneath it.
 - [Lecture 3](03-architectures.md) — efficiency as the thing that actually decides
   architecture. RMSNorm, dropped bias terms, the ~100 aspect ratio and GQA are all
   chosen on systems grounds rather than expressiveness ones.

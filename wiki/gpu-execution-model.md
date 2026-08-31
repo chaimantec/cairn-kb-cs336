@@ -91,6 +91,39 @@ His summary of the whole model is the sentence the rest of the lecture elaborate
 grouping blocks to decrease the amount of global memory reads is going to be the
 name of the game throughout this lecture" ([16:53]).
 
+## Lecture 6's second pass
+
+Lecture 6 re-covers this ground from the programmer's side before writing any
+kernels, and adds the parts Lecture 5 left out ([8:33]–[19:18]). The framing is
+that the abstraction is honest about correctness and silent about speed: "if you
+just care about correctness, that's all you need to know. But in practice, the
+performance is very sensitive to the hardware" ([7:47]).
+
+Its warp material matches this page — 32 threads, lockstep, branches serialized —
+and it adds three things with pages of their own: [warp
+occupancy](warp-occupancy.md) and the register budget that sets it, [bank
+conflicts](bank-conflicts.md) in shared memory, and [block
+occupancy](wave-quantization.md).
+
+It also explains *why* thread blocks exist at all, which this page's block entry
+asserts. For elementwise work threads alone would do; blocks exist because "for
+operations that involve communicating between threads, such as softmax or matrix
+multiplication, this view isn't really enough", and the alternative — communicating
+through HBM — is too slow ([4:43]–[5:28]). What a block does, in one sentence: "read
+a bunch of data from HBM and then process it, where the processing might involve
+communication between the threads via the shared memory, and then write it back out"
+([6:15]).
+
+On latency hiding, Lecture 6 supplies the number this page's "cheapness" claim
+implies: an HBM read "can take like 100 cycles or something. You don't want to just
+sit around waiting for that warp to do nothing" ([10:53]).
+
+And its closing caution is worth keeping next to the tidy model above: the profiler
+"tells you a bunch of information, but you have to know exactly how many SMs there
+are, and exactly the sizing of everything, and sometimes the scheduler does something
+you don't really have control over. So it's a lot messier than the programming model"
+([19:18]).
+
 ## Related
 
 - [GPU architecture](gpu-architecture.md) — the SMs and memory these units map onto.

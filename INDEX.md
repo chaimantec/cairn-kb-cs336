@@ -8,14 +8,14 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1, 2, 3, 4 and 5 of 18
+> ## ⚠️ This knowledge base covers Lectures 1–6 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
-> Mixtures of Experts) and Lecture 5 (GPUs and TPUs) are covered in depth.**
-> Nothing else is. There are no transcripts and no wiki pages for kernels and
-> Triton, parallelism, scaling laws, inference, evaluation, data, mid/post-training,
-> RLVR or multimodality.
+> Mixtures of Experts), Lecture 5 (GPUs and TPUs) and Lecture 6 (Kernels and
+> Triton) are covered in depth.** Nothing else is. There are no transcripts and no
+> wiki pages for parallelism, scaling laws, inference, evaluation, data,
+> mid/post-training, RLVR or multimodality.
 >
 > Where a page describes later material, it is repeating Lecture 1's *syllabus
 > preview* and says so at the top. Do not cite this knowledge base as covering
@@ -53,10 +53,54 @@ compute and data?
   coalescing, tiling), and FlashAttention assembled out of those parts. Built around
   one benchmark plot whose strange shape it fully explains by the end.
 
+- **[Lecture 6 — Kernels and Triton](wiki/06-kernels-triton.md)** — the hands-on
+  half of the systems pair. How to find out where your time actually goes
+  (benchmarking and profiling, with both harnesses written from scratch), and how to
+  write the kernel that fixes it. Four Triton kernels of increasing difficulty —
+  elementwise GeLU, softmax, a row sum too long for one block, and tiled matmul —
+  plus the five hardware details the programming model hides.
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 6 — kernels and Triton
+
+- **[Triton](wiki/triton.md)** — the language CS336 writes kernels in. Why you
+  program the *thread block* rather than the thread, the skeleton every kernel
+  shares (wake up, find your index, load, compute, store), and the four things a
+  PyTorch programmer has to unlearn: you get pointers not tensors, there is no
+  return value, `tl.program_id` is your identity, and masking is not optional. Also
+  what Triton decides for you — where a value lives, whether you get the tensor
+  cores — and what the alternatives are.
+- **[PTX](wiki/ptx.md)** — the assembly Triton compiles to, and what reading it
+  tells you. The thread block is gone, `%ctaid.x` and `%tid.x` are how one compiled
+  body serves every thread, and the compiler quietly gave each thread eight elements
+  instead of one. Start here for "what does my kernel actually become?"
+- **[Benchmarking](wiki/benchmarking.md)** — the three gotchas that make a naive
+  timing loop wrong on a GPU: warm up, synchronize, and time with CUDA events over
+  several trials. Plus what a scaling sweep shows — matmul time is *constant* below
+  about 2000 dimensions before it turns cubic.
+- **[Profiling](wiki/profiling.md)** — where the time went, and what PyTorch is
+  really doing. How to read a CUDA kernel name (`cutlass`, `sm100`, `f32`,
+  `64x64x16`), why the same `a @ b` dispatches to different kernels at different
+  sizes, and how the profiler diagnoses the GeLU race.
+- **[torch.compile](wiki/torch-compile.md)** — what compilation does to a
+  computation graph, why the result is a *Triton* kernel, and the honest scoreboard:
+  on the day, compiled beat the naive version and lost to the hand-written built-in.
+- **[Warp occupancy](wiki/warp-occupancy.md)** — the register budget that decides
+  how many warps fit on an SM, worked through to 18%, and why low occupancy is not
+  automatically bad. Thread coarsening, and what occupancy is really for (slack for
+  the scheduler to hide stalls with).
+- **[Bank conflicts](wiki/bank-conflicts.md)** — 32 banks of 4 bytes, one access
+  each per cycle, and why 32 threads reading a matrix column serialize completely.
+  Why matmul cannot avoid it, what swizzling does, and how this differs from memory
+  coalescing.
+- **[Fused softmax](wiki/fused-softmax.md)** — the reduction kernel, and the
+  clearest fusion arithmetic in the course: $5MN + M$ reads naively against the $MN$
+  a fused kernel needs. One row per block, why the mask pads with $-\infty$, and
+  what to do when a row does not fit.
 
 ### Lecture 5 — GPUs, TPUs and making them fast
 
@@ -312,7 +356,8 @@ usually the faster route than the lecture pages.
   [Lecture 2](raw/transcripts/02-pytorch-resource-accounting.md),
   [Lecture 3](raw/transcripts/03-architectures.md),
   [Lecture 4](raw/transcripts/04-attention-alternatives.md),
-  [Lecture 5](raw/transcripts/05-gpus-tpus.md).
+  [Lecture 5](raw/transcripts/05-gpus-tpus.md),
+  [Lecture 6](raw/transcripts/06-kernels-triton.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
@@ -324,11 +369,15 @@ usually the faster route than the lecture pages.
 - **[`raw/slides/`](raw/slides/)** — the written course material. **This is the
   authority for anything the lecturer wrote down**; the transcript is the authority
   for what was said. CS336 supplies it in two very different forms:
-  - [`lecture_01.py`](raw/slides/01-overview-tokenization.md) and
-    [`lecture_02.py`](raw/slides/02-pytorch-resource-accounting.md) are Percy
+  - [`lecture_01.py`](raw/slides/01-overview-tokenization.md),
+    [`lecture_02.py`](raw/slides/02-pytorch-resource-accounting.md) and
+    [`lecture_06.py`](raw/slides/06-kernels-triton.md) are Percy
     Liang's *executable lectures* — Python programs, transcribed from source text,
     each with a section-to-source-line table and the code verbatim. There are no
-    slide numbers to cite.
+    slide numbers to cite. Where such a lecture computes a number at runtime, a
+    deterministic one is recomputed and marked "(computed)", while a measurement of
+    the lecturer's own GPU — a timing, a profiler table — is marked
+    machine-dependent and no value is given. Lecture 6 is mostly the second kind.
   - [`lecture_03.pdf`](raw/slides/03-architectures.md) (67 pages),
     [`lecture_04.pdf`](raw/slides/04-attention-alternatives.md) (60 pages) and
     [`lecture_05.pdf`](raw/slides/05-gpus-tpus.md) (55 pages) are Tatsunori

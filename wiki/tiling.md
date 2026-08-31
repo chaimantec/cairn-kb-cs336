@@ -124,6 +124,96 @@ Note that this is a *divisor* property, not a monotone one. Asked at [1:10:35]
 whether going beyond 32 helps further, he says no: "as long as it divides your
 burst size, you're good to go."
 
+## Lecture 6 — the kernel, written out
+
+Lecture 5 argued for tiling from the memory hierarchy. Lecture 6 writes the kernel,
+and gets there through a three-rung ladder measured in
+[arithmetic intensity](arithmetic-intensity.md) ([1:12:37]–[1:17:59]).
+
+**Rung 1 — naive.** Fix one output element $C[m,n]$; loop over $k$; read $A[m,k]$
+and $B[k,n]$ from HBM; multiply, accumulate, write once. Correct, and "if you look
+at how many reads and writes it's doing, this is not good" ([1:13:25]): the reads
+are $O(MKN)$, the same order as the FLOPs, so intensity is $O(1)$ — a constant,
+"which is not good" ([1:14:10]).
+
+The waste is visible by eye. "Imagine computing C4 — you needed to read A4, A5, and
+A6, and if you compute C5, you're going to have to read those over again as well.
+So if you can just read those once, then you really save on reads" ([1:14:10]).
+
+**Rung 2 — idealized.** Load all of $A$ and all of $B$ into shared memory, then
+compute. Reads fall to $O(MK + KN)$ and intensity rises to $O(N)$ — "which, in the
+second lecture, I said was an ideal thing you could hope for" ([1:14:56]). The
+problem is stated in the same breath: $A$ and $B$ are usually far too large to fit
+in shared memory.
+
+**Rung 3 — tiling.** Percy's one-line summary is the best description of the
+technique in either lecture:
+
+> "It's going to globally look like the naive approach, but locally look like the
+> idealized approach." ([1:16:29])
+
+Cut $C$ into tiles and make **each tile a thread block**. That block sweeps the row
+tiles of $A$ against the column tiles of $B$, loading each pair into shared memory,
+multiplying, and accumulating a partial sum; only when the sweep finishes does it
+write its output tile to HBM ([1:17:14]–[1:17:59]). Intensity becomes
+$O(\text{tile size})$ — "you can generally not reach order N, because that would
+require you to fit everything into shared memory, but if your tiles are big, then
+that's still not too bad."
+
+### The implementation
+
+Two mechanical details carry the kernel.
+
+**Strides.** A tensor is multi-dimensional but memory is flat, and "the strides of a
+tensor tell you how to map from a multi-dimensional index — such as a row, comma,
+column — into an actual index", by $\text{row} \times \text{stride}_{\text{row}}
++ \text{col} \times \text{stride}_{\text{col}}$ ([1:18:46]). For the lecture's
+2×4 example the strides are $(4, 1)$: "every time you advance to the next row, you
+go four positions in memory, and every time you advance a column, you go one. If it
+were a transpose, it would be flipped" ([1:19:31]). Every pointer expression in the
+kernel is built from these, which is why the launcher passes six of them.
+
+**Pointer matrices.** The kernel holds `a_ptrs` of shape `[BLOCK_M, BLOCK_K]` and
+`b_ptrs` of shape `[BLOCK_K, BLOCK_N]`, and advances them by `BLOCK_K * stride` each
+time round the loop rather than recomputing them. The 2-D grid means the block reads
+*two* program ids, one per tile axis.
+
+Inside the loop the code becomes ordinary again: "whenever things are in shared
+memory, things look like PyTorch, and I can just say, 'matmul it,' and it'll do the
+thing" ([1:21:06]) — that is `acc += tl.dot(a, b)`, and `tl.dot` is what maps onto
+the [tensor cores](tensor-cores.md).
+
+### The free activation function
+
+The lecture computes matmul *followed by ReLU*, and says why only at the end. Since
+the accumulator is already in fast memory and about to be written out once, an
+elementwise non-linearity costs one instruction instead of a second full pass over
+$C$:
+
+> "The bonus is that, if I wanted to apply an elementwise non-linearity, I might as
+> well do that here, before I write it out to HBM — I can do any sort of operation
+> on it." ([1:21:06])
+
+That is [operator fusion](operator-fusion.md) arriving for free inside a kernel you
+were writing anyway — and it is not a contrived example, since "if you have one
+linear layer, it's a matmul, and then you apply a ReLU activation" ([1:11:51]).
+
+### Tiles are not blocks
+
+A vocabulary warning the lecture makes twice, because the pictures look alike. In
+the elementwise GeLU kernel a row is split into pieces and each piece is an
+independent **block**. In the row-sum and matmul kernels the block owns the whole
+row or output tile and walks a sequence of **tiles** inside it:
+
+> "These are not blocks, these are tiles. The block corresponds to this whole row,
+> and has to process all the tiles. So this is where it starts to not look like
+> PyTorch, because you're not able to process all your data in one nice — not
+> everything fits into shared memory." ([1:11:04])
+
+The intermediate case — the row-sum kernel, where each thread accumulates across
+tiles and the accumulators are reduced at the end — is what Percy calls "baby
+tiling" ([1:23:24]).
+
 ## Where tiling shows up next
 
 - [Wave quantization](wave-quantization.md) — what happens when the *number* of
@@ -143,5 +233,11 @@ burst size, you're good to go."
 - [GPU architecture](gpu-architecture.md) — the memory hierarchy tiling exploits.
 - [Arithmetic intensity](arithmetic-intensity.md) — the roofline framing that says
   why reducing memory traffic raises throughput.
-- [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md).
-- [Transcript](../raw/transcripts/05-gpus-tpus.md), [slide deck](../raw/slides/05-gpus-tpus.md).
+- [Triton](triton.md) — the language the lecture-6 kernel is written in.
+- [Fused softmax](fused-softmax.md) — the reduction kernel that comes before it.
+- [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md),
+  [Lecture 6 — Kernels and Triton](06-kernels-triton.md).
+- [Lecture 5 transcript](../raw/transcripts/05-gpus-tpus.md) and
+  [slide deck](../raw/slides/05-gpus-tpus.md);
+  [Lecture 6 transcript](../raw/transcripts/06-kernels-triton.md) and
+  [lecture source](../raw/slides/06-kernels-triton.md).

@@ -122,6 +122,22 @@ paper a figure comes from — "I think this is from flash attention two, or mayb
 three — I think it's two" — and slide 54 credits Dao 2023. The transcript preserves
 the hedge rather than resolving it.
 
+## Lecture 6: the ingredients for building it
+
+Lecture 6 never implements FlashAttention, but it is explicitly the destination.
+Introducing the four kernels, Percy says that by the end of them "you'll have all the
+ingredients you need to do the assignment and implement flash attention" ([57:54]).
+
+Read in that light, the ladder is a construction plan: [fused
+softmax](fused-softmax.md) gives you the reduction and the numerically-stable
+max-subtraction; the row-sum kernel gives you the pattern for a reduction over data
+too big to hold at once; and [tiling](tiling.md) gives you the block structure with an
+accumulator in shared memory. What Lecture 5 supplies on top is the online-softmax
+reformulation that makes the reduction work in one pass — the piece no compiler
+derived on its own.
+
+The kernels are written in [Triton](triton.md), which is what Assignment 2 asks for.
+
 ## Related
 
 - [Tiling](tiling.md) — the mechanism, and the tile-size and alignment concerns.

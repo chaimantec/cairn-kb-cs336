@@ -90,14 +90,18 @@ B200.
 > [arithmetic intensity](arithmetic-intensity.md) and
 > [training FLOPs](training-flops.md) for the treatment.
 >
-> **[Lecture 5](05-gpus-tpus.md) is now also covered**, so the GPU-hardware and
-> kernel-level parts of this unit are no longer a preview either. The sections on
-> hardware and on kernels below have real treatments behind them —
-> [GPU architecture](gpu-architecture.md),
+> **[Lecture 5](05-gpus-tpus.md) and [Lecture 6](06-kernels-triton.md) are now also
+> covered**, so the GPU-hardware and kernel-level parts of this unit are no longer a
+> preview either. The sections on hardware and on kernels below have real treatments
+> behind them — [GPU architecture](gpu-architecture.md),
 > [the GPU execution model](gpu-execution-model.md), [TPUs](tpus.md),
 > [tiling](tiling.md), [operator fusion](operator-fusion.md),
 > [memory coalescing](memory-coalescing.md), [FlashAttention](flash-attention.md)
-> and [wave quantization](wave-quantization.md). Parallelism (Lectures 7–8) and
+> and [wave quantization](wave-quantization.md) from Lecture 5;
+> [Triton](triton.md), [PTX](ptx.md), [benchmarking](benchmarking.md),
+> [profiling](profiling.md), [torch.compile](torch-compile.md),
+> [warp occupancy](warp-occupancy.md), [bank conflicts](bank-conflicts.md) and
+> [fused softmax](fused-softmax.md) from Lecture 6. Parallelism (Lectures 7–8) and
 > inference (Lecture 10) remain previews.
 
 **Resource accounting** — where the FLOPs and the memory go. The formula previewed
@@ -125,6 +129,14 @@ CUDA/**Triton**/CUTLASS/ThunderKittens.
 > sophisticated version, and [FlashAttention](flash-attention.md) is the worked
 > example assembling both. Lecture 5 also supplies the hardware model those tricks
 > reason about — see [GPU architecture](gpu-architecture.md).
+>
+> [Lecture 6](06-kernels-triton.md) then writes the kernels. Of the four languages
+> this preview names, it teaches [Triton](triton.md) and reads some
+> [PTX](ptx.md); CUTLASS turns up as the library whose kernel name a
+> [profiler](profiling.md) prints, and ThunderKittens only as one of the
+> alternatives Percy names at the end. Its own worked kernels are elementwise GeLU,
+> [fused softmax](fused-softmax.md), a row sum, and a
+> [tiled](tiling.md) matmul with a fused ReLU.
 
 **Parallelism** — the same minimize-data-movement principle at 1024 GPUs, where
 movement between devices is even more expensive. Collective operations (gather,

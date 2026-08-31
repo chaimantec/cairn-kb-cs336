@@ -70,6 +70,29 @@ required the online-softmax reformulation first. That is the general shape of it
 compilers fuse chains that are already fusible, but restructuring a computation so
 that it *becomes* fusible is a human's job.
 
+## Lecture 6: the same argument, measured
+
+Lecture 6 runs the experiment that Lecture 5 describes. Three implementations of
+GeLU — naive PyTorch, the built-in, and `torch.compile`d — compute identical values
+at very different speeds, and the [profiler](profiling.md) shows why: the naive
+version's computation graph becomes several kernels, "and the reason this is slow is
+that when you launch a kernel, the kernel has to read from HBM, pull it all the way
+over to your SM, do the computation, and write it back. And then the next kernel
+picks it up from HBM" ([33:08]).
+
+Two of the three are fused into a single kernel — "you read from HBM once, you write
+to HBM once, per element" ([34:39]) — and the difference between them is instructive:
+the built-in is a CUDA kernel a human wrote and shipped in the standard library,
+while the compiled one was generated. See [torch.compile](torch-compile.md), which is
+also where the lecture reveals that what the compiler emitted is a
+[Triton](triton.md) kernel.
+
+Lecture 6 also shows fusion arriving *inside* a kernel you were already writing: its
+[tiled matmul](tiling.md) applies ReLU to the accumulator before the single write to
+HBM, making the activation function nearly free ([1:21:06]). And [fused
+softmax](fused-softmax.md) is the case where the accounting is done exactly — five
+PyTorch operations costing $5MN + M$ reads against the $MN$ a fused kernel needs.
+
 ## Related
 
 - [FlashAttention](flash-attention.md) — fusion as one of its three ingredients.

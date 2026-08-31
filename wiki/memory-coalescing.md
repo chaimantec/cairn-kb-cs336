@@ -78,6 +78,21 @@ Coalescing rarely appears as a thing you tune directly. It appears as the
   not because powers of two are magic. It is a divisor property: going higher does
   not help further ([1:10:35]).
 
+## Lecture 6: not the same thing as a bank conflict
+
+Lecture 6 restates coalescing in the same terms — a warp's 32 accesses "get combined
+into a transaction of ... 128 bytes, which are called cache lines", best case being
+all 32 threads on one line. (The captions garble the size as "20 to 128 bytes" and
+the transcript marks it unclear; the lecture source prints only 128.) — and then draws the distinction this page's readers most
+often need ([17:01]–[17:46]):
+
+> "This can feel similar to bank conflicts, but it's a very different constraint:
+> that one is about shared memory, and this one is about HBM."
+
+[Bank conflicts](bank-conflicts.md) are 32 banks of 4 bytes inside an SM; coalescing
+is 128-byte lines coming off global memory. Reading down a column hurts in both
+cases, for two unrelated reasons.
+
 ## Related
 
 - [GPU execution model](gpu-execution-model.md) — warps, the unit whose threads must

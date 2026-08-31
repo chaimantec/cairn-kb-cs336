@@ -9,17 +9,17 @@
     "courseUrl": "https://cs336.stanford.edu"
   },
   "coverage": {
-    "lecturesCovered": 5,
+    "lecturesCovered": 6,
     "lecturesTotal": 18,
-    "transcripts": 5,
-    "wikiLecturePages": 5,
-    "wikiTopicPages": 42
+    "transcripts": 6,
+    "wikiLecturePages": 6,
+    "wikiTopicPages": 50
   },
   "materials": {
     "primary": "mixed",
     "executableLectures": {
       "available": 9,
-      "transcribed": 2
+      "transcribed": 3
     },
     "slideDecks": {
       "available": 8,
@@ -31,7 +31,8 @@
       "2": "source-text",
       "3": "page-images",
       "4": "page-images",
-      "5": "page-images"
+      "5": "page-images",
+      "6": "source-text"
     },
     "figuresAudited": true,
     "sourceRepo": "https://github.com/stanford-cs336/lectures"
@@ -59,7 +60,12 @@
       "Lecture 5's deck contradicts itself in one place that a reader may hit: slide 27 gives MXFP8's scale factors as FP8 E8M0, one per 32 elements, while slide 29 gives MXFP4 as one per 16 with E4M3 scale factors. The audit confirmed both texts verbatim and confirmed that slide 29 names no other format anywhere on the page, so this is the deck's own inconsistency, not a transcription error; wiki/microscaling-formats.md records both and tells the reader to check a vendor specification for an authoritative encoding. Two further oddities are transcribed as printed rather than corrected: slide 17's x-axis reads 'M80' where the Maxwell part is normally called M40 (confirmed at 2400 dpi), and slide 34's caption calls the stored activations 'yellow' while the diagram renders them orange.",
       "Lecture 5's transcript carries five [Ed:] notes and one adjudication worth knowing about. The Sonnet draft had completed two of the speaker's aborted false starts with words he never said - 'divisible by two' where the captions have 'not even divi-', and 'diminishing returns' where he self-corrects to 'penalties'. Both were reverted and the header now states that false starts are preserved rather than completed. Two restored proper nouns, 'Groq' and 'Chris Re', appear nowhere in the deck and rest partly on knowledge outside the course material; the transcript header labels both as such rather than implying document support.",
       "Lecture 5 quotes two different SM counts for an A100 and both are correct in context: 128 at [10:02], read off slide 10's GA100 die annotation, and 108 on slide 48, which is the shipped product's count and the one the wave-quantization arithmetic depends on. wiki/wave-quantization.md and wiki/gpu-architecture.md both explain the difference rather than silently picking one.",
-      "Two numbers in lecture 5's deck are printed oddly and are recorded as printed rather than reconciled: slide 14's H100 column gives 32MB for both the SMEM row and the Registers row, and slide 55's bullets carry the deck's own typos ('Curent', 'doesnt'). Neither is a transcription error; both were confirmed against the rendered page."
+      "Two numbers in lecture 5's deck are printed oddly and are recorded as printed rather than reconciled: slide 14's H100 column gives 32MB for both the SMEM row and the Registers row, and slide 55's bullets carry the deck's own typos ('Curent', 'doesnt'). Neither is a transcription error; both were confirmed against the rendered page.",
+      "Lecture 6 is an executable lecture (lecture_06.py), so it is source-text: its figures are recorded by path only and no wiki claim rests on one, exactly as for lectures 1 and 2.",
+      "Lecture 6's benchmark timings and all four of its profiler tables are measurements of the lecturer's own GPU. They are marked machine-dependent and NOT reproduced anywhere in this KB — including the naive/built-in/compiled GeLU comparison, which is stated qualitatively as the lecture states it. Do not quote a number for them.",
+      "Lecture 6's own source contradicts itself once: the warp-occupancy example says in prose 'thread block has 64 threads' while the code beneath it sets num_threads_per_block = 128. The KB reports the code's values (occupancy 0.1875) and flags the discrepancy in both raw/slides and wiki/warp-occupancy.md.",
+      "The Cairn catalog titles lecture 6 'Kernels, Triton, XLA', but XLA and JAX appear nowhere in either the lecture source or the captions. This KB uses the course site's name, 'Kernels, Triton'.",
+      "One name in lecture 6's transcript, CuTe (at 1:24:54), is an editorial identification resting on outside knowledge rather than on course material — the lecture's own source never prints it. The transcript header labels it as such."
     ]
   },
   "entryPoint": "INDEX.md",

@@ -376,17 +376,44 @@ both). The XLA material is not in this offering's lecture 6; the KB calls it
       a 0.00. A paragraph is everything from one marker to the NEXT marker.
 
 ### Wiki
-- [ ] wiki/06-kernels-triton.md
-- [ ] Topic pages (new)
-- [ ] Update existing pages that now link a sixth lecture
-- [ ] INDEX.md — six-lecture coverage
-- [ ] Link sweep
+- [x] wiki/06-kernels-triton.md (200 lines) — five hardware details, measure-first,
+      the GeLU race, then the four kernels as a difficulty ladder
+- [x] Topic pages (8 new) — triton (the block-level model and the kernel skeleton),
+      ptx (what it compiles to; thread coarsening visible), benchmarking (warm up,
+      synchronize, CUDA events, the constant-time floor), profiling (reading a CUDA
+      kernel name), torch-compile (the three-horse race; it emits Triton),
+      warp-occupancy (the 128x160 -> 18% example), bank-conflicts (32 banks, the
+      32-way column conflict, swizzling), fused-softmax (5MN+M vs MN, -inf padding)
+- [x] Extend rather than duplicate: tiling.md gains the lecture-6 matmul kernel
+      (the naive/idealized/tiled ladder, strides, pointer matrices, the fused ReLU,
+      and the tiles-are-not-blocks warning) instead of a new page;
+      arithmetic-intensity.md gains the O(1)/O(N)/O(tile) table
+- [x] Update existing pages that now link a sixth lecture — operator-fusion,
+      gpu-execution-model, memory-coalescing, wave-quantization, gpu-architecture,
+      flash-attention (lecture 6 is the ingredients list for the assignment),
+      efficiency, course-map, executable-lectures
+- [x] INDEX.md — six-lecture coverage: banner, Start here entry, a Lecture 6 section
+      with 8 annotated entries, raw-material section now three executable lectures
+- [x] Link sweep — 819 relative links and 97 anchors all resolve; all 56 wiki pages
+      appear in INDEX.md; no LaTeX inside code fences
+- [x] Citation checks — every one of the ~110 [MM:SS] citations in the new and
+      extended pages matches a real marker in the lecture 6 transcript; all 142
+      quoted fragments checked against the transcript AND the lecture source, which
+      found 9 real quoting slips (a quote begun one word early, a transcript/source
+      hybrid, a dropped "now", quotation marks around my own paraphrase, a word-order
+      slip, a silently "corrected" TID.x, two unmarked elisions, and a quote that
+      removed the speaker's own self-correction). All 9 fixed.
 
 ### Publish
-- [ ] Update sources.md (lecture_06.py now transcribed)
-- [ ] kb.json — coverage 6/18
-- [ ] AGENTS.md — precedent from this run
-- [ ] Commit and push
+- [x] Update sources.md (lecture_06.py now transcribed; the XLA title note recorded)
+- [x] kb.json — coverage 6/18, 50 topic pages, executableLectures 3 of 9,
+      byLecture."6" = source-text, 23 caveats
+- [x] AGENTS.md — run 6 precedents: an executable lecture can contradict itself and
+      the code wins; check a catalog title against the material; machine-dependent
+      values can be most of a lecture. Plus the third distinct bug found in the
+      transcript ratio checker.
+- [x] Commit and push
+- n/a  kbUrl already set on the catalog entry from run 1; no re-link needed
 
 ## Not done (future runs)
 - [ ] Lectures 6–18 — transcripts and wiki pages

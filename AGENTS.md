@@ -5,7 +5,7 @@ Stanford, Spring 2026 — Percy Liang and Tatsunori Hashimoto**. It is read by
 Cairn's in-extension AI chat, which fetches files over `raw.githubusercontent.com`
 and follows relative markdown links.
 
-**Coverage: Lectures 1, 2, 3, 4 and 5 of 18.** See [`kb.json`](kb.json) and the banner
+**Coverage: Lectures 1–6 of 18.** See [`kb.json`](kb.json) and the banner
 at the top of [`INDEX.md`](INDEX.md). Any page describing later material is
 repeating Lecture 1's syllabus preview and says so in a blockquote at the top.
 
@@ -32,7 +32,8 @@ partially covered while the rest of that unit is still a preview.
 ## What is special about CS336
 
 **Half the lectures are Python programs, not slide decks.** Percy Liang's lectures
-(1, 2, 6, 7, 10, 12, 13, 14, 17) are *executable lectures* — programs whose
+(1, 2, 6, 7, 10, 12, 13, 14, 17) — three of which, 1, 2 and 6, are transcribed here —
+are *executable lectures* — programs whose
 execution delivers the content, rendered by a trace viewer. Tatsunori Hashimoto's
 (3, 4, 5, 8, 9, 11, 15, 16) are conventional PDFs.
 
@@ -119,8 +120,27 @@ following:
   outliers. Only the four-word label is an insertion; a quoted student question is
   transcribed speech and must still count.
 
-`kb.json` reports `method: mixed`, because Lectures 1–2 are `source-text` while
-Lectures 3–5 are `page-images`; the per-lecture breakdown is in
+**What lecture 6 added.** It is the third executable lecture and the first whose
+subject is code the students themselves write, so three things are worth carrying
+forward.
+
+- **An executable lecture can contradict itself too, and the code wins.** Lecture
+  6's warp-occupancy example says in prose "thread block has 64 threads" and then
+  sets `num_threads_per_block = 128` in the code below it. Both are transcribed, the
+  computed values follow the code, and the discrepancy is flagged in `raw/slides/`
+  and on the topic page. This is the source-text analogue of lecture 4's
+  self-contradicting slides.
+- **Check a catalog title against the material.** The catalog calls this lecture
+  "Kernels, Triton, XLA"; XLA and JAX appear zero times in both the program and the
+  captions, so the KB uses the course site's name. One `grep` settled it.
+- **Machine-dependent values can be most of a lecture.** Benchmarking and profiling
+  *are* lecture 6's subject, so its timings and all four profiler tables are
+  measurements of one GPU. None is reproduced, and the GeLU comparison is stated
+  qualitatively. Resist the urge to supply a plausible number for a comparison the
+  lecture makes in words.
+
+`kb.json` reports `method: mixed`, because Lectures 1, 2 and 6 are `source-text`
+while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 `materials.byLecture`.
 
 ## Conventions
@@ -135,10 +155,10 @@ Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 - **Never invent course content.** If the transcript is unclear, say so on the
   page. Do not fill the gap from outside knowledge — the chat presents these pages
   as authoritative material from this course.
-- **Figures are described for Lectures 3, 4 and 5, and not for Lectures 1–2.**
+- **Figures are described for Lectures 3, 4 and 5, and not for Lectures 1, 2 or 6.**
   Those three decks were read as page images, so `raw/slides/03-architectures.md`,
   `raw/slides/04-attention-alternatives.md` and `raw/slides/05-gpus-tpus.md`
-  describe every figure in prose and wiki pages may cite them. Lectures 1 and 2 were transcribed from source text, so their
+  describe every figure in prose and wiki pages may cite them. Lectures 1, 2 and 6 were transcribed from source text, so their
   `image()` targets are recorded **by path only, with no description**, and no wiki
   claim may rest on one. Check which kind of lecture you are citing before quoting a
   figure.
@@ -197,6 +217,13 @@ you re-edit it, re-run all three:
    Lecture 4's three real outliers sat at 0.68–0.72 and were all pure filler, because
    that speaker uses "you know" / "sort of" / "kind of" far more than Lecture 3's.
    The band flags where to look; it does not classify.
+
+   **A paragraph is everything from one marker to the NEXT marker**, not the single
+   block the marker starts. Lecture 6's transcript lifts each student question onto
+   its own line, and a splitter that stopped at the first blank line reported fifteen
+   false outliers including a 0.00 — every one of them an artifact. This is the third
+   distinct bug found in this same checker across three runs; write it fresh at your
+   peril, and sanity-check any outlier by reading the paragraph before believing it.
 
 ## Rebuilding
 
