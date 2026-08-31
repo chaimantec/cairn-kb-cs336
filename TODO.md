@@ -249,14 +249,20 @@ text (~33 words/page). As in lecture 4, the figures ARE the content.
       bit-field table and numeric spot-check matched the source exactly.
       Confirmed as printed, not transcription error: slide 17's "M80" and slide
       29's "E4M3" against slide 27's "E8M0".
-- [~] Figure audit, pass 2 — IN PROGRESS over pages 9, 14, 20, 21, 33, 48, 55.
-      First attempt was killed by an API error after page 9 and its findings were
-      lost with it; the agent was resumed and now appends each page's verdict to
-      scratchpad/slides05/audit2_findings.md as it finishes, so a further
-      interruption costs one page rather than the pass. Steered at pass 1's error
-      class: structure, counts, positions, uniformity claims, and figures present
-      on the page but missing from the file.
-- [x] Heading-sequence check — PASS, exactly 55 headings 1..55 in order
+- [x] Figure audit, pass 2 — pages 9, 14, 20, 21, 33, 48, 55. Five clean; five
+      corrections applied to slides 9 and 20. Slide 9 had four errors: the die is
+      eight GPCs in a 2x4 grid, not four quadrants; the HBM2/Memory Controller bars
+      run down the left and right edges (3 HBM2 and 6 controllers per side), not
+      top and bottom; the red highlight is in figure 2 only, not figure 1; and the
+      NVLink row is twelve boxes, not the hedged "8-10". Slide 20's "Tiling!"
+      annotation feeds three stacked arrows, not two — the same error pass 1 found
+      on slide 46, which shows the same chart. Also recorded slide 14's H100 column
+      printing 32MB for both SMEM and Registers as a deck oddity.
+      Cross-check worth keeping: slide 9's corrected eight GPCs now agrees with
+      slide 10's own die panel, which prints "x8 GPC" — two independently read
+      views of one die agreeing after correction.
+      Both passes found ONLY structural errors. Every data series, table cell,
+      bit-field and numeric spot-check across all 14 audited pages was exact.
 
 ### Transcript
 - [x] 05 — verbatim captions fetched (103 paragraphs, ~16.2k words)

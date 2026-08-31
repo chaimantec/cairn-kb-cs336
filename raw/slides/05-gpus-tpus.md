@@ -405,24 +405,27 @@ small green cells labelled "INT32 INT32 FP32 FP32 FP64" repeated down
 ~6 rows, beside a large green "TENSOR CORE" block spanning the same rows; and
 a bottom row of small "LD/ST" cells plus a red "SFU" cell. Beneath all four
 partitions, a wide blue bar reads "192KB L1 Data Cache / Shared Memory", and
-beneath that, four dark-blue boxes labelled "Tex" (texture units). A red
-line/box highlights one partition's tensor-core area and connects across the
-page to Figure 2 (an actual red connecting line is drawn between the two
-figures on the slide).
+beneath that, four dark-blue boxes labelled "Tex" (texture units). A red line runs from the right
+edge of this figure across the page to Figure 2, meeting it at the boundary
+between the top-right and bottom-right partitions. Figure 1 itself carries **no**
+red box or highlight anywhere inside it; the highlighted tile is in Figure 2.
 
 **Figure 2 (right) — full-die schematic, captioned "GA100 Full GPU with 128
 SMs."** A wide rectangle representing the whole GPU die. A top bar reads "PCI
 Express 4.0 Host Interface"; below it a bar reads "GigaThread Engine with MIG
-Control". The main body is divided into **four** large quadrant blocks, each
-labelled "GPC" (graphics processing cluster) at its corner, and each GPC is
-tiled with small green/grey cells (each cell an "SM/TPC" unit, too small to
-read individual labels at this scale). Down the left and right edges run
-vertical bars labelled "HBM2" and "Memory Controller" (repeated top and
-bottom, 4 instances each side). A horizontal band runs across the vertical
+Control". The main body is divided into **eight** blocks, each
+labelled "GPC" (graphics processing cluster) at its corner and arranged as a
+2-row x 4-column grid — four GPCs across the top and four across the bottom,
+separated by the horizontal L2 Cache band. Each GPC is tiled with small
+green/grey cells (each cell an "SM/TPC" unit, too small to read individual
+labels at this scale). Down the **left and right** edges — not the top and
+bottom — run vertical bars labelled "HBM2" and "Memory Controller": **three
+HBM2 boxes and six Memory Controller boxes per side**, each HBM2 stack pairing
+with two Memory Controller segments, identically on both edges. A horizontal band runs across the vertical
 middle of the die, split into two halves each labelled "L2 Cache" (left half
 / right half), separated by a thin vertical divider. A grey "High-Speed Hub"
 bar runs along the bottom, above a row of small green boxes each labelled
-"NVLink" (roughly 8–10 of them). A thin red line is drawn from one small
+"NVLink" (**twelve** of them, counted on the rendered row). A thin red line is drawn from one small
 highlighted (red-outlined) tile inside the die over to Figure 1, indicating
 that Figure 1 is a zoomed-in view of one single SM inside this full die.
 
@@ -609,6 +612,10 @@ TPU | H100 # | TPU v5p #"**
 | Warp Scheduler | VPU slots | 528 | 8 |
 | SMEM (L1 cache) | VMEM | 32MB | 128MB |
 | Registers | Vector Registers (VRegs) | 32MB | 256kB |
+
+Note on this table as printed: the H100 column gives **32MB** for both the SMEM
+row and the Registers row. That repetition is what the slide prints; it is
+recorded here rather than reconciled.
 | Tensor Core | MXU | 528 | 8 |
 
 Note: the deck's own tables list the same row label "Tensor Core" on the GPU
@@ -773,9 +780,11 @@ too faint to identify, but the label reads "128").
 Overlaid in the instructor's handwriting, in three colors:
 - Pink/magenta: "Compute Intensity", with an arrow running diagonally up and to
   the right along the bottom band of points.
-- Orange: "Tiling!", with two arrows pointing from the label down to two
-  double-headed vertical arrows that measure the vertical gaps between the
-  lower and middle bands (at roughly x=1536-2048).
+- Orange: "Tiling!", with two diagonal leader lines running from the label down
+  to a group of **three** stacked double-headed vertical arrows at roughly
+  x=1536-2048. The three arrows measure three separate gaps between four band
+  levels, at roughly TF/s 185, 140, 95 and 55. (Slide 46 shows the same chart
+  and the same three arrows.)
 - Green: "Wave Quantization", with an oval circled around the topmost cluster
   of dots (around x=2560-3072, the highest TF/s values), and a vertical
   loop/line drawn down from that oval toward the middle band around x=3072.
