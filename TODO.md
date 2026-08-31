@@ -412,16 +412,17 @@ both). The XLA material is not in this offering's lecture 6; the KB calls it
       the code wins; check a catalog title against the material; machine-dependent
       values can be most of a lecture. Plus the third distinct bug found in the
       transcript ratio checker.
-- [x] Commit and push
-- n/a  kbUrl already set on the catalog entry from run 1; no re-link needed
+- [x] Commit and push — pushed to chaimantec/cairn-kb-cs336 at 8df9244
+- n/a  kbUrl already set on the catalog entry from run 1; re-fetched and confirmed
 
 ## Not done (future runs)
-- [ ] Lectures 6–18 — transcripts and wiki pages
+- [ ] Lectures 7–18 — transcripts and wiki pages
 - [ ] Transcribe the 5 remaining PDF decks (lectures 8, 9, 11, 15, 16) — these need
       page-images, not source-text, and a figure audit
-- [ ] Transcribe the 7 remaining executable lectures (6, 7, 10, 12, 13, 14, 17)
-- [ ] Describe the figures in lectures 1 and 2 — the image() targets are recorded
+- [ ] Transcribe the 6 remaining executable lectures (7, 10, 12, 13, 14, 17)
+- [ ] Describe the figures in lectures 1, 2 and 6 — the image() targets are recorded
       by path in raw/slides but their contents were never looked at. Lecture 3 now
       sets the precedent for how (page-images plus a targeted figure audit), but
-      lectures 1-2 display images by URL rather than as PDF pages, so the mechanics
-      differ.
+      these lectures display images by URL or repo path rather than as PDF pages, so
+      the mechanics differ. Lecture 6 has four such figures, two of them the
+      lecture's own diagrams of the softmax and row-sum kernels.
