@@ -1,10 +1,7 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after this run: **Lectures 1, 2, 3 and 4.** Lecture 5's raw material
-(deck and transcript) is committed and verified, but it has NO wiki page yet, so
-kb.json still reports 4 of 18 — deliberately, not by oversight. Run 5 was halted
-after the transcript step. The course has 18 recorded
-lectures. See `kb.json` for machine-readable coverage.
+Coverage after run 5: **Lectures 1–5.** Run 6 (Lecture 6) is in progress; the
+course has 18 recorded lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
 
@@ -330,6 +327,46 @@ text (~33 words/page). As in lecture 4, the figures ARE the content.
       error was diagram structure or a hand-drawn overlay.
 - [x] Commit and push — pushed to chaimantec/cairn-kb-cs336 at dec2a4a
 - n/a  kbUrl already set on the catalog entry from run 1; re-fetched and confirmed
+
+## Run 6 — Lecture 6: Kernels, Triton
+
+Video xnDHaNUvHBg (87 min). Percy Liang. **Executable lecture** — `lecture_06.py`,
+744 lines, so `source-text`, no deck and no page numbers. Cite function names and
+source line ranges, not slide numbers.
+
+Title note: the catalog entry calls this "Lecture 6: Kernels, Triton, XLA", but
+**neither the source nor the captions mention XLA or JAX anywhere** (0 hits in
+both). The XLA material is not in this offering's lecture 6; the KB calls it
+"Kernels, Triton" after the course site's own lecture table.
+
+### Course material
+- [x] raw/slides/06-kernels-triton.md — transcribe lecture_06.py (744 source
+      lines -> 1118 lines; all 189 text() literals accounted for, 22 section
+      anchors resolve). Computed values: occupancy block (20480 / 3 / 12 /
+      0.1875), GeLU(1.0), the 8-block GeLU grid, softmax and row-sum outputs,
+      the stride example, the 16x16 matmul grid. Benchmark timings and all four
+      profiler tables are machine-dependent and NOT reproduced — this lecture is
+      unusually heavy in that class, since benchmarking is its subject.
+      Source discrepancy recorded: the occupancy bullet says "thread block has 64
+      threads" while the code below it sets num_threads_per_block = 128.
+
+### Transcript
+- [x] 06 — verbatim captions fetched (113 paragraphs, ~13.3k words, runs to 1:26:25)
+- [ ] 06 — copy-edited transcript (draft by Sonnet, adjudicate here)
+- [ ] 06 — verify: timestamps, number inventory, per-paragraph word ratios
+
+### Wiki
+- [ ] wiki/06-kernels-triton.md
+- [ ] Topic pages (new)
+- [ ] Update existing pages that now link a sixth lecture
+- [ ] INDEX.md — six-lecture coverage
+- [ ] Link sweep
+
+### Publish
+- [ ] Update sources.md (lecture_06.py now transcribed)
+- [ ] kb.json — coverage 6/18
+- [ ] AGENTS.md — precedent from this run
+- [ ] Commit and push
 
 ## Not done (future runs)
 - [ ] Lectures 6–18 — transcripts and wiki pages
