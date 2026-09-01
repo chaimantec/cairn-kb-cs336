@@ -253,11 +253,45 @@ Hashimoto's own gloss at [53:45] is the sentence to keep: "there are a lot of
 hyperparameters that seem quite important, but are also fairly forgiving, and
 people have converged roughly on the minimum."
 
+## The scaling-law view (lecture 9)
+
+Lecture 3 answers these questions by surveying what people do.
+[Lecture 9](09-scaling-laws.md) answers them from first principles, and the
+reframing is worth having: the question is not "what is the best value" but
+**"is this quantity scale-invariant?"** ([36:07]).
+
+- **Number of layers is not scale-invariant.** One layer is catastrophic — "with one
+  layer, you're not going anywhere, that's a terrible scaling trend" — and beyond
+  that, more layers is better at every compute level, so the optimum keeps moving as
+  you grow ([36:07]).
+- **Aspect ratio $d_{model}/n_{layer}$ roughly is.** Across model sizes the minima
+  land in the same place, "around 100 d-model per layer, or maybe a little less",
+  drifting only slightly toward smaller ratios for deeper models ([36:54]).
+  Slide 34's middle panel shows the three model-size curves dipping to a shared
+  near-zero minimum, with a bracket annotating the flat region: "a wide range of
+  architectures achieve similar performance."
+
+That distinction is what licenses the Lecture 3 advice. "If your strategy is 'I'm
+going to fix my aspect ratio and scale up,' you can make plots like this and
+convince yourself you're probably good, because your optimum isn't shifting too much
+as you go to larger and larger models" ([36:54]). The basins Lecture 3 reads off
+Kaplan are not just broad — they are broad *in a way that survives scaling*, which
+is the property you actually need.
+
+Slide 34's caption from Kaplan puts a number on it: aspect ratio "can vary by a
+factor of 40 while only slightly impacting performance", and a $(6, 4288)$ model
+comes within 3% of the $(48, 1600)$ model used in GPT-2.
+
+The two hyperparameters that are **not** inheritable this way are batch size and
+learning rate — see [critical batch size](critical-batch-size.md) and
+[learning rate scaling and muP](learning-rate-scaling-and-mup.md).
+
 ## Related
 
 - [Gated activations](gated-activations.md) — where the 2/3 factor comes from.
-- [Scaling laws](scaling-laws.md) — Kaplan et al. supplies the evidence for two of
-  the basins here; the scaling-law treatment proper is Lectures 9 and 11.
+- [Scaling laws](scaling-laws.md) — the hub. Kaplan et al. supplies the evidence for
+  two of the basins here, and [Lecture 9](09-scaling-laws.md) supplies the
+  scale-invariance argument above. Lecture 11 is not yet covered.
 - [Efficiency](efficiency.md) — the course's organizing frame, which is why so many
   of these answers turn out to be systems answers.
 - [Lecture 3 — architectures](03-architectures.md).

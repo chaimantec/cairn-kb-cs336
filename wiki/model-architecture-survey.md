@@ -138,5 +138,16 @@ different things, and the lecture is careful to distinguish them.
   the *sparse* models: routed and active expert counts, shared experts and
   fine-grained ratios for twelve MoEs.
 - [Course map](course-map.md) — where Lecture 3 sits in CS336.
+- [Lecture 9](09-scaling-laws.md) — the *other* way to settle an architecture
+  question. Where this table records what people chose, Lecture 9's
+  [scaling-law methodology](scaling-law-methodology.md) asks whether the choice
+  shows up as a better line. Its reference study is **Tay et al. 2022** on eleven T5
+  variants (slide 31), which Hashimoto values precisely because its small-scale
+  verdicts predicted what frontier models later adopted — gated linear units in,
+  Performer-style efficient attention out ([33:48]). The paradigm in one sentence:
+  "if it doesn't show up in the scaling law, it's not a good intervention"
+  ([34:35]). Note the caution, though: the same authors' 2023 study is Lecture 9's
+  headline example of upstream rankings *not* surviving the move downstream — see
+  [upstream vs downstream](upstream-vs-downstream.md).
 - [The full slide file](../raw/slides/03-architectures.md) — all five views,
   transcribed.

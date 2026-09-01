@@ -1,8 +1,23 @@
 # Critical batch size
 
-The reason [data parallelism](data-parallelism.md) cannot scale forever, and the
-reason batch size is treated throughout lecture 8 as a **consumable resource**
-rather than a free parameter.
+Two lectures approach this from opposite sides. **[Lecture 8](08-parallelism-2.md)**
+treats it as a systems constraint — the reason
+[data parallelism](data-parallelism.md) cannot scale forever, and the reason batch
+size is a **consumable resource** rather than a free parameter.
+**[Lecture 9](09-scaling-laws.md)** treats it as an optimisation quantity with a
+definition, an estimation procedure and a scaling law of its own.
+
+Read the systems half first if you want to know why you care; read
+[the optimisation half](#the-optimisation-view-lecture-9) if you need to actually
+pick a number.
+
+> **Timestamps on this page belong to two different lectures.** Everything down to
+> the end of "The utilisation curve" cites
+> [lecture 8's transcript](../raw/transcripts/08-parallelism-2.md); everything from
+> "The optimisation view" onward cites
+> [lecture 9's](../raw/transcripts/09-scaling-laws.md). Both lectures happen to
+> discuss this topic around the 29-to-47-minute mark, so a bare `[29:07]` is
+> ambiguous without knowing which section you are in.
 
 ## Batch size is a budget
 
@@ -70,10 +85,100 @@ Adding model parallelism pushes the curve out, keeping you compute-bound into
 smaller per-chip batch regimes — which is the argument for
 [3D parallelism](3d-parallelism.md) in one picture.
 
+## The optimisation view (lecture 9)
+
+Lecture 8 says the critical batch size exists and constrains you. Lecture 9 says
+what it *is* ([42:12]–[47:37]).
+
+### Two regimes
+
+Below the critical batch size you are **noise-limited** ([42:12]):
+
+> In the noise-limited regime, every additional element you throw in your batch
+> reduces the gradient noise in your SGD step, and since you're variance-limited,
+> that reduction in variance is very helpful — it gives you big returns.
+
+This is the regime of near-perfect returns: an extra example is worth about as much
+as it could possibly be.
+
+Above it you are **bias-limited**, and the argument for why is geometric rather
+than statistical ([42:59]). Gradient descent only sees the local structure of the
+objective; it has no global view of where the minimum is. So there is a standing
+disagreement between the local descent direction and the direction of the true
+optimum, and **no amount of variance reduction removes it**. Once gradient noise
+falls below that bias, extra batch elements stop buying progress.
+
+The critical batch size is the crossover — "a convenient trade-off point… the point
+at which we're starting to cross over from our perfect-scaling regime to our
+ineffective-scaling regime" ([43:46]). It is a rule of thumb, not a threshold with
+a sharp physical meaning: the underlying derivation comes from a local quadratic
+approximation to the objective.
+
+### How it is actually estimated
+
+The mechanical recipe ([44:32]):
+
+1. **Pick a target loss** — the number you want to hit, as fast as possible.
+2. **Sweep batch sizes.** For each, record the number of steps $S$ and the number of
+   examples $E$ needed to reach the target. They are related by
+   $E = S \times B$.
+3. **Fit the trade-off.** The OpenAI argument is that steps and examples are
+   inversely related, normalised by their own minima $S_{min}$ (the fewest steps
+   achievable, at enormous batch size) and $E_{min}$ (the fewest examples
+   achievable, at tiny batch size). Minimising one costs you the other ([45:17]).
+4. **Balance the two terms.** Solving for the point where neither dominates gives
+
+$$B_{crit} = \frac{E_{min}}{S_{min}}$$
+
+with both quantities estimated from the fitted data ([46:05]). This costs you
+slightly more steps than the step-optimal extreme and slightly more examples than
+the example-optimal extreme, and buys a balanced position — "improving the
+convergence rate without blowing up the number of steps you need."
+
+There is a second estimator the lecture mentions without developing: the ratio of
+the **gradient covariance to the squared norm of the gradient** ([46:51]). "You
+should really read the critical batch size paper if you're interested."
+
+### Why it belongs in a scaling-laws lecture
+
+Because $B_{crit}$ itself scales ([46:51]–[47:37]). Treat the target loss as a proxy
+for compute — a better model means a lower target — and ask how the critical batch
+size moves:
+
+> As your loss improves, the critical batch size increases, and it increases in this
+> very predictable way, once again a power law. ([47:37])
+
+Slide 39 states it as "the smaller the loss target, the bigger the batch". The
+practical consequence is reassuring for exactly the systems problem Lecture 8
+raised: **large runs can afford large batches.** "If you have a really large-scale
+training run, where you go all the way to the right of this plot, your batch sizes
+can be quite large."
+
+And the intuition for why ([47:37]): as you approach the minimum you are resolving
+finer and finer differences, so gradient noise matters proportionally more, so
+variance reduction is worth more.
+
+### Where it sits among hyperparameters
+
+Lecture 9 puts batch size and learning rate in a category of their own — the two
+things you cannot copy from someone else's recipe ([41:27]). Everything else
+(architecture, optimizer, aspect ratio) you inherit from the literature; these two
+you re-derive, and they interact: "you change one, you have to change the other."
+The learning-rate half is
+[learning rate scaling and muP](learning-rate-scaling-and-mup.md).
+
+Note also that a fixed batch size across model sizes is one of the three defects
+that put Kaplan's scaling law a factor of several away from Chinchilla's — it was
+suboptimal for the smaller models ([1:09:54], see
+[compute-optimal scaling](compute-optimal-scaling.md)).
+
 ## See also
 
+- [Lecture 9](09-scaling-laws.md) — the optimisation treatment · [Lecture 8](08-parallelism-2.md) — the systems treatment.
+- [Learning rate scaling and muP](learning-rate-scaling-and-mup.md) — the other hyperparameter you must re-tune.
 - [Data parallelism](data-parallelism.md) · [ZeRO and FSDP](zero-and-fsdp.md) — what spends the budget.
 - [Pipeline parallelism](pipeline-parallelism.md) — the other big consumer.
 - [Activation memory](activation-memory.md) — how memory converts into batch size.
-- [Scaling laws](scaling-laws.md) — the optimisation side of the same question.
-- [Lecture 8](08-parallelism-2.md) · [slide 29](../raw/slides/08-parallelism-2.md#slide-29--issues-remain-with-data-parallel--compute-scaling) · [transcript](../raw/transcripts/08-parallelism-2.md)
+- [Scaling laws](scaling-laws.md) — the hub for the lecture 9 thread.
+- Lecture 8 material: [slide 29](../raw/slides/08-parallelism-2.md#slide-29--issues-remain-with-data-parallel--compute-scaling) · [transcript](../raw/transcripts/08-parallelism-2.md)
+- Lecture 9 material: slides [37–39](../raw/slides/09-scaling-laws.md) · [transcript](../raw/transcripts/09-scaling-laws.md)

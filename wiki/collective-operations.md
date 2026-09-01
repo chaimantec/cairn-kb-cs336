@@ -176,7 +176,8 @@ the full tensor; splitting it in two gives you a point to intervene, which is wh
 sharded optimizers need: "later, we're going to see how to get to fancier things
 like ZeRO or FSDP — we need to break the all-reduce into reduce-scatter and
 all-gather, because then you can intervene and manage things a bit more"
-([16:20]). The treatment is Lecture 8, which this KB does not cover.
+([16:20]). The treatment is [Lecture 8](08-parallelism-2.md) — see
+[ZeRO and FSDP](zero-and-fsdp.md).
 
 There is a matching duality in autograd. For [tensor
 parallelism](tensor-parallelism.md), "in forward, if you're all-gathering, in the

@@ -1,10 +1,30 @@
 # Scaling laws
 
-> **Coverage note.** This page records what [Lecture 1](01-overview-tokenization.md)
-> says about scaling laws, which is a **preview**, delivered at [44:44]–[53:11] as
-> part of the syllabus tour. CS336 teaches the material properly in Lectures 9 and
-> 11 (Tatsunori Hashimoto) and Assignment 3, none of which this knowledge base
-> covers yet. Treat what follows as the framing, not the treatment.
+**Start here** for scaling laws, then follow the links. This page is the hub: it
+keeps Percy's framing from [Lecture 1](01-overview-tokenization.md) ([44:44]–[53:11]),
+which is a preview delivered as part of the syllabus tour, and points at the proper
+treatment.
+
+> **Coverage.** [Lecture 9](09-scaling-laws.md) — the basics — is now covered in
+> full. Lecture 11, the advanced treatment (muP in depth, modern open-model tech
+> reports, optimizers), and Assignment 3 are **not yet covered**.
+
+## The treatment, in order
+
+| Page | What it covers |
+|---|---|
+| [Lecture 9 — Scaling laws (basics)](09-scaling-laws.md) | The whole lecture: prehistory, data scaling, model engineering, Chinchilla. |
+| [Data scaling laws](data-scaling-laws.md) | The univariate law, the mean-estimation derivation, and why the exponent is ≈0.1 rather than 1. |
+| [Compute-optimal scaling](compute-optimal-scaling.md) | Kaplan vs Chinchilla, the three methods, why they disagreed, and why you should overtrain anyway. |
+| [The IsoFLOP method](isoflop-method.md) | The sweep-at-fixed-compute tool, and where it keeps working. |
+| [Scaling law methodology](scaling-law-methodology.md) | Why the regularity is engineered, and how to avoid fooling yourself. |
+| [Upstream vs downstream](upstream-vs-downstream.md) | Where predictability stops. |
+| [Critical batch size](critical-batch-size.md) | Batch size as both a systems budget and an optimisation quantity. |
+| [Learning rate scaling and muP](learning-rate-scaling-and-mup.md) | The two philosophies for the other un-inheritable hyperparameter. |
+| [Data repetition](data-repetition.md) · [Data mixture selection](data-mixture-selection.md) | The data-composition questions. |
+
+What follows on this page is Lecture 1's framing — still the clearest short
+statement of *why* the technique exists.
 
 ## The problem
 
@@ -117,9 +137,10 @@ much larger run, publish the prediction, then train the model and see whether yo
 hit it.
 
 He mentions a run in progress at the time of the lecture, expected to finish
-within days, with a report promised for the Wednesday class. This knowledge base
-does not cover Lecture 2, so **the outcome is not recorded here** — see the
-[Marin project](https://marin.readthedocs.io/) for the retrospectives.
+within days, with a report promised for the Wednesday class. **The outcome is not
+recorded in this knowledge base** — the promised report was a live class
+announcement rather than lecture content, and no covered lecture returns to it. See
+the [Marin project](https://marin.readthedocs.io/) for the retrospectives.
 
 The scientific point stands independent of the result: predicting the loss of a
 model you have never trained, and being held to it, is a much stronger claim than
@@ -136,12 +157,35 @@ loss. A leaderboard scores how well you landed.
 Percy's framing: it is meant to replicate the stress of having, say, $100M you
 must spend carefully — "of course, this is low-stakes."
 
+## How Lecture 9 answers Lecture 1's preview
+
+Percy's preview sets up four claims that [Lecture 9](09-scaling-laws.md) then
+delivers on, and it is worth reading them against each other:
+
+- **"You have to will them into existence."** Lecture 9 makes this concrete by
+  showing three ways Kaplan's recipe was defective — parameter counting,
+  learning-rate warm-up, batch size — each of which moved the fitted exponent
+  ([scaling law methodology](scaling-law-methodology.md)).
+- **Hyperparameter transfer, and muP.** Lecture 9 gives the picture: staggered
+  minima under standard practice, a shared minimum under muP, and the two competing
+  philosophies ([learning rate scaling and muP](learning-rate-scaling-and-mup.md)).
+- **IsoFLOP curves and $D \approx 20N$.** Lecture 9 derives the number three
+  different ways, explains why the third disagreed, and shows the Epoch AI refit
+  that resolved it ([compute-optimal scaling](compute-optimal-scaling.md)).
+- **The inference caveat.** Lecture 1 notes it; Lecture 9 quantifies the trajectory
+  from GPT-3's 3 tokens per parameter through Chinchilla's 20 to today's deliberate
+  overtraining ([1:14:32]).
+
+The one thing Lecture 1 does not prepare you for is
+[upstream vs downstream](upstream-vs-downstream.md) — the finding that the
+beautiful perplexity trend does not survive the move to benchmarks.
+
 ## Related
 
 - [Efficiency](efficiency.md) — scaling laws as the efficiency principle applied
   to the experiment budget
 - [Course map](course-map.md) — where this sits in the syllabus
-- [Lecture 1](01-overview-tokenization.md)
+- [Lecture 1](01-overview-tokenization.md) · [Lecture 9](09-scaling-laws.md)
 
 ## Sources
 

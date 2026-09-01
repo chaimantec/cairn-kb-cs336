@@ -279,6 +279,8 @@ systems," in his words — followed by architectures. The formula previewed at
 tokens, is derived there.
 
 Note that Lecture 1 only *previews* the systems, scaling-law, data and alignment
-material; the substance arrives in later lectures, which this knowledge base does
-not yet cover. [Scaling laws](scaling-laws.md) records what Lecture 1 says about
-them and marks clearly where the preview stops.
+material; the substance arrives in later lectures. The systems half is now covered
+(Lectures 2–8) and so is the scaling-law half's first instalment
+([Lecture 9](09-scaling-laws.md)); the data and alignment lectures are not.
+[Scaling laws](scaling-laws.md) is the hub for that thread and marks where the
+preview stops and the treatment begins.

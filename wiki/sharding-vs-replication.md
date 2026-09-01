@@ -41,8 +41,8 @@ FSDP and ZeRO take the opposite side: shard the parameters and optimizer state, 
 pay [all-gather plus reduce-scatter](collective-operations.md#the-identity-that-matters)
 to reconstitute what you need, when you need it ([1:02:44], [1:18:54]). This is
 why the lecture insists that the factorization of all-reduce matters — it is the
-seam along which you trade memory for bandwidth. (Lecture 8's subject; not covered
-in this KB.)
+seam along which you trade memory for bandwidth. (Lecture 8's subject — see
+[ZeRO and FSDP](zero-and-fsdp.md).)
 
 ## Sharding along four axes
 

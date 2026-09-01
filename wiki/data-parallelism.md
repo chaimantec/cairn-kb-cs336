@@ -7,8 +7,8 @@ the backward pass to keep the copies in agreement. It is the first of
 simplest.
 
 The version here is **DDP** (distributed data parallel). Its sharded successors,
-FSDP and ZeRO, are Lecture 8's subject and are not covered in this knowledge base
-([1:02:44]).
+FSDP and ZeRO, are [Lecture 8](08-parallelism-2.md)'s subject ([1:02:44]) and are
+covered at [ZeRO and FSDP](zero-and-fsdp.md).
 
 ## The mechanism
 

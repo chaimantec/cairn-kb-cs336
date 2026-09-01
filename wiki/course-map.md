@@ -2,13 +2,12 @@
 
 > **Coverage note.** This page is the syllabus as Percy Liang presents it in
 > [Lecture 1](01-overview-tokenization.md) ([27:04]–[1:03:57]). It is a map of the
-> whole course, but **this knowledge base currently covers Lectures 1–8 of 18**.
-> Every unit below is a preview here rather than a treatment, except
-> tokenization (Lecture 1), model architecture (Lectures 3 and 4) and the whole of
-> the Systems unit except inference (Lectures 2, 5, 6, 7 and 8 — Lecture 8 closes
-> the sharded-data-parallelism gap this note used to flag, leaving Lecture 10's
-> inference as the only Systems topic still uncovered). See
-> [`kb.json`](../kb.json) for exact coverage.
+> whole course, but **this knowledge base currently covers Lectures 1–9 of 18**.
+> Covered in full: tokenization (Lecture 1), model architecture (Lectures 3 and 4),
+> the whole Systems unit except inference (Lectures 2, 5, 6, 7 and 8), and the first
+> of the two scaling-laws lectures (Lecture 9). Still previews rather than
+> treatments: Lecture 10 (inference), Lecture 11 (advanced scaling laws), and the
+> Data and Alignment units. See [`kb.json`](../kb.json) for exact coverage.
 
 CS336 is five units, each paired with an assignment. The unifying question, stated
 at [1:02:23], is [efficiency](efficiency.md): how do you build the best model given
@@ -17,8 +16,8 @@ a fixed set of resources — data, compute, memory, communication bandwidth?
 | Unit | Assignment | Lectures | In this KB |
 | --- | --- | --- | --- |
 | [Basics](#unit-1--basics) | 1 | 1–4 | Lectures 1–4 |
-| [Systems](#unit-2--systems) | 2 | 5–8, 10 | Lectures 2, 5, 6 and 7; Lecture 8 (FSDP/ZeRO) and Lecture 10 (inference) not covered |
-| [Scaling laws](#unit-3--scaling-laws) | 3 | 9, 11 | [Preview only](scaling-laws.md) |
+| [Systems](#unit-2--systems) | 2 | 5–8, 10 | Lectures 2, 5, 6, 7 and 8; Lecture 10 (inference) not covered |
+| [Scaling laws](#unit-3--scaling-laws) | 3 | 9, 11 | [Lecture 9](09-scaling-laws.md) covered; Lecture 11 (advanced) not |
 | [Data](#unit-4--data) | 4 | 12–14 | No |
 | [Alignment](#unit-5--alignment) | 5 | 15–17 | No |
 
@@ -111,10 +110,15 @@ B200.
 > [torch.distributed and NCCL](torch-distributed.md),
 > [data](data-parallelism.md), [tensor](tensor-parallelism.md) and
 > [pipeline](pipeline-parallelism.md) parallelism, and
-> [sharding vs. replication](sharding-vs-replication.md). What remains a preview in
-> this unit is **Lecture 8** (Hashimoto's second parallelism lecture, covering FSDP
-> and ZeRO — note that Lectures 7 and 8 share the title "Parallelism") and
-> **Lecture 10** (inference).
+> [sharding vs. replication](sharding-vs-replication.md).
+>
+> **[Lecture 8](08-parallelism-2.md) is covered as well** — Hashimoto's second
+> parallelism lecture, which supplies [ZeRO and FSDP](zero-and-fsdp.md),
+> [activation memory](activation-memory.md),
+> [3D parallelism](3d-parallelism.md) and the
+> [case studies](parallelism-case-studies.md). (Note that Lectures 7 and 8 share the
+> title "Parallelism".) The only Systems topic still uncovered is **Lecture 10**
+> (inference).
 
 **Resource accounting** — where the FLOPs and the memory go. The formula previewed
 at [36:18] is $C = 6ND$ for training a model of $N$ parameters on $D$ tokens, and
@@ -163,7 +167,7 @@ and expert parallelism.
 > computation, sequence parallelism and
 > [expert parallelism](expert-parallelism.md) are named but not implemented
 > ([1:15:05]). Sharding the optimizer state — FSDP and ZeRO — is explicitly deferred
-> to Lecture 8 ([1:02:44]), which this KB does not cover.
+> to Lecture 8 ([1:02:44]); see [ZeRO and FSDP](zero-and-fsdp.md).
 
 **Inference** — increasingly important, and needed for RL rollouts, test-time
 compute, synthetic data and evaluation, not just chat ([41:39]). Two phases:
@@ -185,10 +189,32 @@ Google, so TPU-focused, but the concepts carry.
 
 ## Unit 3 — Scaling laws
 
-Covered in [scaling laws](scaling-laws.md). In one line: think in terms of a
-scaling *recipe* mapping FLOP budgets to hyperparameters, fit it at small scale,
-and extrapolate — and remember that predictability is at least as valuable as
-optimality.
+> **Half covered.** [Lecture 9](09-scaling-laws.md) — the basics — has a full
+> treatment. **Lecture 11**, the advanced lecture (muP in depth, modern open-model
+> tech reports, optimizers), does not.
+
+Percy's one-line framing, from Lecture 1: think in terms of a scaling *recipe*
+mapping FLOP budgets to hyperparameters, fit it at small scale, and extrapolate —
+and remember that predictability is at least as valuable as optimality. See
+[scaling laws](scaling-laws.md) for that framing and
+[Lecture 9](09-scaling-laws.md) for the treatment.
+
+Hashimoto's Lecture 9 delivers it in four movements: the prehistory (Bell Labs
+1993 through Hestness 2017), [data scaling laws](data-scaling-laws.md) and why
+their exponents are so much smaller than classical statistics predicts, scaling
+laws as a tool for *model engineering* (architecture, optimizer, depth/width,
+[critical batch size](critical-batch-size.md),
+[learning rate](learning-rate-scaling-and-mup.md)), and
+[compute-optimal scaling](compute-optimal-scaling.md) — Kaplan, Chinchilla, why
+they disagreed, and why you should overtrain past the answer anyway.
+
+The lecture's own caution, and the reason it is not simply a recipe:
+[the regularity is engineered](scaling-law-methodology.md), and it
+[stops at the benchmark boundary](upstream-vs-downstream.md).
+
+Note the course's ordering: scaling laws are split across Lectures 9 and 11 with
+**Lecture 10 (inference) in between**, for scheduling reasons ([0:51] of
+Lecture 9).
 
 **Assignment 3:** a simulated training API (config in, loss out) backed by cached
 offline runs; gather points under a budget, fit scaling laws, extrapolate, submit

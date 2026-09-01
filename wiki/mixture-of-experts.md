@@ -181,3 +181,40 @@ a genuine conflict resolved only by decoupling the two ([59:39]–[1:00:25]).
 The [case studies](parallelism-case-studies.md) show the split cleanly: every MoE
 row in slide 72's table has TP of 1 or 2 and EP of 8 to 64, while the dense rows
 (Llama 3 405B, Gemma 2) have TP 8 and EP 0.
+
+
+## Scaling laws for MoE (lecture 9)
+
+Once total and active parameters decouple, the basic accounting question changes:
+what is a parameter *worth*? [Lecture 9](09-scaling-laws.md) treats this as newly
+urgent — "now that mixture of experts is, you'd say, the dominant way of training
+large models, it's quite important to think about what the value of a parameter is
+in this new world" ([39:12]).
+
+The study is Abnar et al. 2025 (Apple and MIT), and it is
+[IsoFLOP](isoflop-method.md)-style by design: sparsity is an unusually clean sweep
+variable because "I can vary my sparsity without really changing the amount of
+compute I'm spending" ([39:57]).
+
+Two results:
+
+- **Optimal models get sparser as they get bigger.** Sweep total parameters against
+  loss at fixed compute and the optimum moves toward higher sparsity as scale grows
+  ([39:12]).
+- **Inactive parameters still help.** Holding active parameters fixed and adding
+  more total parameters lowers loss — "the parameters in an MoE that aren't active
+  are still helping you reduce your loss, which is kind of cool" ([40:42]).
+
+Slide 55 carries both as 3D IsoFLOP surfaces, one over sparsity and total
+parameters and one over sparsity and active parameters, with a shared sparsity
+colour scale running orange at 0% to dark purple at 98%.
+
+The point Hashimoto draws is methodological rather than architectural: "all of these
+kinds of quantities we care about in optimizing an MoE have predictable scaling and
+regularities" ([40:42]). MoE design is not exempt from the scaling-law programme —
+it just adds an axis.
+
+This also connects to why the field moved past Chinchilla's 20:1 ratio. The shift to
+MoE and the shift to deliberate overtraining are the same shift, both driven by
+serving cost rather than training cost — see
+[compute-optimal scaling](compute-optimal-scaling.md) ([1:15:17]).
