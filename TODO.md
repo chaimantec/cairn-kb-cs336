@@ -1,6 +1,6 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after run 8: **Lectures 1–8.** The
+Coverage after run 8: **Lectures 1–8**; run 9 (lecture 9) in progress. The
 course has 18 recorded lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
@@ -764,6 +764,64 @@ Sonnet. Page 72's overview table is read at Sonnet and audited at Opus.
       mis-hearing vs speaker-slip test for transcripts, no LaTeX in transcripts,
       and three more checker bugs
 - [x] Commit and push — pushed to chaimantec/cairn-kb-cs336 at 3e8a495
+- n/a  kbUrl already set on the catalog entry from run 1
+
+## Run 9 — Lecture 9: Scaling Laws (Basics)
+
+Video Q15rhEWZPQ4 (78 min, 15,924 caption words). Tatsunori Hashimoto.
+PDF deck `lecture_09.pdf`, 57 pages — the most figure-dense deck in the build:
+93 raster images against 2,063 words of native text, 36 words/page.
+
+### Course material
+- [x] Download lecture_09.pdf into raw/pdfs/ (gitignored)
+- [x] Numbering settled BEFORE any page was read. slide_number_map.py found no
+      printed number on any page, and a whole-page edge scan of the text layer
+      returned only two numeric tokens across all 57 pages — both on page 33, at
+      (435,368) and (455,366) on a 720x405 page, i.e. inside the plot area, not a
+      corner folio. Same case as lecture 8: `## Slide N` == PDF page N, 1..57.
+- [x] raw/slides/09-scaling-laws.md (1,131 lines, 57 sections) — four Sonnet
+      readers, pages 1-15 / 16-29 / 30-43 / 44-57, appending incrementally. Model
+      choice was put to the user because the deck is unusually chart-dense; the
+      user chose the Sonnet default. All four finished; none was interrupted.
+      Two readers resolved colour identity by pixel-classification against the
+      legend swatch RGB rather than by eye, and that method caught two errors eye-
+      reading had already made: a CIFAR-10 point misassigned to CIFAR-100 on slide
+      20, and four spurious "data points" on slide 4 that were the legend swatches
+      themselves sitting inside the plot's own coordinate space. That second one is
+      a new instance of the known "a label is not a series" failure — worth adding
+      to AGENTS.md as: the legend can contaminate a colour trace, so mask its
+      bounding box before classifying pixels.
+- [x] Heading-sequence check — OK, 57 headings, sequence matches the deck exactly
+      (--verify degenerates to this: the map is a 1..57 fallback, not read off the
+      pages)
+- [x] Heading-vs-text-layer cross-check — 56/57 headings matched verbatim at the
+      top of their own page. The one exception is the title page, whose text layer
+      letter-spaces "S C A LIN G LAW S - BA SIC S", exactly as lecture 8's did.
+- [x] Page 33's stray "10"/"7" edge tokens identified by the reader as that
+      chart's 10^7 x-axis tick, closing the numbering question independently
+- [x] Slides 45 and 50 confirmed byte-identical images (MD5 of the extracted
+      stream), so the repeat is the deck's own, not a transcription error
+- [ ] Figure audit pass 1 — six chart/table-dense pages, delegated, pages never
+      opened in the parent
+
+### Transcript
+- [x] 09 Scaling Laws — verbatim captions at raw/transcripts/original/09-scaling-laws.md
+- [ ] 09 Scaling Laws — copy-edited transcript (slides first, then delegate to
+      Sonnet, then adjudicate: timestamp diff, number-inventory diff of BODIES,
+      per-paragraph word-ratio, grep restored proper nouns against the deck)
+
+### Wiki
+- [ ] wiki/09-scaling-laws.md
+- [ ] Topic pages (new + extend existing — critical-batch-size and scaling-laws
+      already exist and were written pointing forward to this lecture)
+- [ ] INDEX.md table of contents
+- [ ] Link sweep, citation checks, quote checks
+
+### Publish
+- [ ] sources.md — lecture_09.pdf transcribed
+- [ ] kb.json — coverage 9/18, slideDecks 5, byLecture."9"
+- [ ] AGENTS.md — run 9 precedents
+- [ ] Commit and push
 - n/a  kbUrl already set on the catalog entry from run 1
 
 ## Not done (future runs)
