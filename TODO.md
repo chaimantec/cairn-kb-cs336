@@ -763,7 +763,7 @@ Sonnet. Page 72's overview table is read at Sonnet and audited at Opus.
       cheap strong check), the front matter being the least-audited layer, the
       mis-hearing vs speaker-slip test for transcripts, no LaTeX in transcripts,
       and three more checker bugs
-- [ ] Commit and push
+- [x] Commit and push — pushed to chaimantec/cairn-kb-cs336 at 3e8a495
 - n/a  kbUrl already set on the catalog entry from run 1
 
 ## Not done (future runs)
