@@ -821,14 +821,30 @@ PDF deck `lecture_09.pdf`, 57 pages — the most figure-dense deck in the build:
       flag not a fact; this deck is the strongest evidence yet.
       Also surfaced a real deck inconsistency, not a transcription error: slide 52
       prints slope 0.79 inside its equation and 0.78 in the same panel's title.
-- [ ] Figure audit pass 2 — REQUIRED and not yet run. 5-of-9 dirty is far worse
+- [x] Figure audit pass 2 — DONE (pages 13, 18, 24, 26 / 34, 40, 41, 48, 56).
+      16 more errors on six of nine pages; all applied. Page 48 — the twin of
+      page 49 and the highest-risk page in the deck — came back EXACT under
+      programmatic extraction of all nine IsoFLOP minima. Page 41 was the most
+      consequential find in either pass: misread SuperGlue values had produced a
+      conclusion that inverted the slide's own argument about downstream
+      reshuffling. Running total: 18 of 57 pages audited, 11 dirty, 36 errors.
+      A third fabricated source-image defect appeared (slide 41's "NL12-"), by a
+      third reader — but this one is a real truncation with a wrong cause
+      attached, so the lesson is narrower: readers reach for "the source image is
+      cropped" to explain anything they cannot read. Check the explanation, not
+      just the observation.
+- [x] Superseded note — the earlier pass-2 requirement said: 5-of-9 dirty is far worse
       than this build's usual ~2 small corrections per deck, and by the skill's own
       rule a dirty sample means the sample was too small. 48 pages remain
       unaudited. Priority targets: 48 (nine IsoFLOP parabolas — same figure family
       as 49, the dirtiest page found), then the multi-series log-log pages
-      13, 18, 24, 26, 34, 40, 41, and 56. The front matter's audit field records
-      the un-audited remainder as provisional so the file is honest in the
-      meantime.
+      13, 18, 24, 26, 34, 40, 41, and 56. All were done.
+- [ ] Figure audit pass 3 — targeted, in flight: 37, 38, 39 (critical batch size)
+      and 43, 44, 46, 47 (joint scaling and Chinchilla methods 1-2). These are the
+      two clusters whose CHART VALUES the wiki will quote directly, so they are
+      audited before the prose is written rather than after. The other 32
+      unaudited pages are left provisional-for-charts, reliable-for-text, which
+      the front matter now states explicitly.
 
 ### Transcript
 - [x] 09 Scaling Laws — verbatim captions at raw/transcripts/original/09-scaling-laws.md

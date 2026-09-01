@@ -50,51 +50,61 @@ figures: >
   magnification the entry says so rather than guessing; those cases are collected
   under "Known limits" below.
 audit: >
-  PASS 1 DONE, AND IT CAME BACK DIRTY. Nine pages were fully audited against the
-  rendered PDF by two delegated readers — 3, 4, 20, 31 (one reader) and 45, 49,
-  50, 52, 55 (the other) — plus existence-only checks on 17, 19, 27 and 28, the
-  four pages that carry raster objects but are described here as having no figure.
-  All four existence checks came back correct: those rasters are pasted equations
-  and paper-header images, not undescribed figures.
-  Four pages were exact: page 3 (all 20 rows x 15 columns of the architecture
-  table, verified cell by cell at 900 dpi, including the genuinely blank
-  model_dim column), page 20 (all 17 points re-classified by pixel-sampling the
-  legend swatch RGB, confirming the CIFAR-100 -> CIFAR-10 reassignment), and
-  pages 45 and 50, whose two independent write-ups of the same byte-identical
-  image agree with each other and with the page.
-  FIVE pages carried errors — 4, 31, 49, 52 and 55 — 20 discrete errors in all,
-  every one of them now corrected in the entries below. They fall into four
-  groups, and the last two are the ones a reader should worry about:
-  (1) Overstated series endpoints, the known "curve extended past where the data
-  stops" failure: two on slide 4, and three understated x-values on slide 55's
-  autoregressive series, one of which was off by nearly an order of magnitude.
-  (2) Structural errors: slide 49's colorbar placed at the wrong side of the
-  figure, its right-hand axis called linear when the gridline spacing is
-  demonstrably uneven, a missing 40B reference line, an efficient frontier
-  stopped two orders of magnitude short of its actual terminus, two hollow
-  markers where only one exists, and a minimum asserted for a curve that never
-  turns upward in range; slide 55's panel count given as "four panels plus a
-  third chart" for what is plainly five; slide 55's sparsity colour scale
-  reversed end for end.
-  (3) FABRICATED CROPPING, twice, by two different readers: slide 31's panel (i)
-  and slide 55's top-left y-axis were each described as clipped in the source
-  image. Neither is. Both readers described an artifact of their own crop as a
-  property of the slide.
-  (4) FALSE ILLEGIBILITY, three times, all on slide 52: two fitted-equation
-  intercepts and a ~19-entry legend were declared unresolvable "at any
-  magnification". All three read cleanly at sufficient zoom, and the values are
-  now recorded. That makes this claim false in every instance in which it has
-  ever been tested in this build. Treat the phrase as a flag, never as a fact.
-  Reading the intercepts also surfaced something real: slide 52's bottom pathway
-  prints slope 0.79 inside its equation and 0.78 in its own panel title.
-  WHAT THIS MEANS FOR THE REST OF THE FILE. Five dirty pages out of nine is a far
-  worse hit rate than the roughly two-small-corrections-per-deck this build has
-  seen elsewhere, and by the skill's own rule a dirty sample means the sample was
-  too small. The 48 pages not listed above have NOT been audited. Chart values on
-  them are single-pass transcription and should be treated as provisional —
-  particularly on the multi-series log-log plots and on slide 48, whose nine
-  IsoFLOP parabolas are the same figure family as slide 49, the single dirtiest
-  page found.
+  TWO PASSES DONE. 18 of the 57 pages have been fully audited against the
+  rendered PDF by four delegated readers, plus existence-only checks on 17, 19,
+  27 and 28 (all four correct — those rasters are pasted equations and paper
+  headers, not undescribed figures).
+  Pass 1 audited 3, 4, 20, 31, 45, 49, 50, 52, 55 and found 20 errors on five
+  pages. Pass 2 audited 13, 18, 24, 26, 34, 40, 41, 48, 56 and found 16 more on
+  six. Combined: ELEVEN of eighteen audited pages carried errors, 36 in all,
+  every one now corrected below. This is by a wide margin the dirtiest deck in
+  this build, and the reason is visible in the page profile — 93 images against
+  2,063 words means almost every claim here is read off a chart.
+  CLEAN, and checked hard rather than glanced at: page 3 (all 20x15 table cells
+  at 900 dpi), 20 (all 17 points re-classified by legend-swatch RGB), 45 and 50
+  (two independent write-ups of one byte-identical image, mutually consistent),
+  18, 56, and — most reassuringly — page 48, the nine-parabola IsoFLOP page that
+  was flagged as highest-risk because it is page 49's twin. It was checked by
+  programmatic extraction of all nine curve minima with legend-swatch exclusion,
+  both axes calibrated in all three panels, marker counts confirmed, and the
+  63B/1.4T crosshairs verified against their axis positions. It is exact.
+  THE ERROR CLASSES, in descending order of how much they matter:
+  (1) A CLAIM THAT INVERTED THE SLIDE'S OWN ARGUMENT — page 41. The SuperGlue
+  values were read systematically low across the upper-middle cluster, and the
+  file concluded from them that NL12-, the best upstream model, "only reaches the
+  middle of the SuperGlue ranking". Re-measured against the gridlines it scores
+  ≈77.9, about 2nd-3rd of 13 — near the top on BOTH metrics. The reshuffling the
+  slide teaches is real but is driven by NL32-XL rising from mid-table, not by
+  the upstream leader falling. A learner who read the old text would have taken
+  away the opposite of the lecture's point.
+  (2) AXIS SCALE MISREAD AS LINEAR, twice: page 49's Loss axis, and page 13's
+  Test Loss axis, which is shared by all three Kaplan Figure-1 panels. Both were
+  settled by measuring inter-tick pixel spacing rather than by eye. Page 24's
+  unstated axes were resolved the same way and are log-log.
+  (3) OVERSTATED OR MISPLACED VALUES: series run past where their data stops
+  (two on slide 4, three on slide 55, one off by nearly an order of magnitude),
+  a point read a full gridline high (13), a reference line placed at 3.85 when it
+  sits on 4.0 (40), a marker said to sit above a line it sits below (26), a
+  series called lowest throughout that is highest at its first point (34), a
+  point count of eight for seven points (24), and on page 49 a colorbar on the
+  wrong side of the figure, a missing 40B reference line, a frontier stopped two
+  orders of magnitude short, a phantom hollow marker and a minimum asserted for a
+  curve that never turns upward.
+  (4) FABRICATED SOURCE-IMAGE DEFECTS, three times by three different readers —
+  slide 31's panel (i), slide 55's top-left axis label, and slide 41's "NL12-"
+  label. The first two were described as clipped and are not; the third IS
+  truncated, but not because of any crop — both instances sit in open white space,
+  so the name is incomplete in the underlying chart. Readers reach for "the source
+  image is cropped" to explain anything they cannot read.
+  (5) FALSE ILLEGIBILITY, three times, all on slide 52. All three read cleanly at
+  zoom. Across this entire build that claim has now been false in every instance
+  ever tested. Treat the phrase as a flag, never as a fact.
+  WHAT REMAINS. 39 pages are unaudited. Their SLIDE TEXT is reliable — 56 of 57
+  headings matched the PDF text layer verbatim, and no audited page has yet shown
+  an error in transcribed prose or in a native-text caption. Every error found in
+  both passes lies in a description of a chart. So text and equations from an
+  unaudited page can be cited with normal confidence; a CHART VALUE from one
+  should be treated as provisional and checked before it is quoted as a number.
 math: >
   Equations were transcribed from the rendered page, never from the text layer,
   because extraction flattens fractions onto a single line and silently produces
@@ -749,7 +759,7 @@ Heading: "3. Depth/Width: and other Transformer hypers". Body text: "Do hyperpar
 
 **Panel 2, "Aspect Ratio ($d_{model}/n_{layer}$)":** x-axis log scale, ticked 10^1, 10^2, 10^3. Three series: blue circles "50M Params" (8 points, x≈4 to x≈700), orange x-markers "274M Params" (sparser, 4 points, x≈2 to x≈1700–2000), green stars "1.5B Params" (5 points, x≈4 to x≈700). All three dip to a shared near-zero minimum around x=30–90, then rise again at both ends. Approximate values — 50M Params: x=4→2.7%, x=12→1.4%, x=32→0.4%, x=50→≈0.05%, x=90→≈0.1%, x=250→0.6%, x=350→2.1%, x=700→4.6%. 274M Params: x=2→1.1%, x=25→≈0%, x=200→0.55%, x=1700→7.9% (its last point, the highest value in the panel). 1.5B Params: x=4→2.1%, x=13→0.5%, x=27→≈0.05%, x=250→0.6%, x=700→2.8% (its last point; unlike the other two series it does not extend past x≈700). Two vertical black bracket lines mark a wide low-loss range on the x-axis (roughly x=10 to x=300), with the annotation "A wide range of architectures achieve similar performance" above them.
 
-**Panel 3, "Attention Head Dimension ($d_{model}/n_{head}$), 25M Parameters":** x-axis log scale, ticked 10^1, 10^2. Three series, five points each, all spanning x≈16 to x≈300: blue circles "$d_{model} = 256$" (rises from ≈0.1% to ≈1.9% at the last two points), orange x-markers "$d_{model} = 512$" (rises from ≈0.2% to ≈1.7%), green triangles "$d_{model} = 1024$" (stays lowest throughout, rising only to ≈0.8% at x=300). A small vertical bracket icon is annotated "22% additional compute compensates for 1% loss increase".
+**Panel 3, "Attention Head Dimension ($d_{model}/n_{head}$), 25M Parameters":** x-axis log scale, ticked 10^1, 10^2. Three series, five points each, all spanning x≈16 to x≈300: blue circles "$d_{model} = 256$" (rises from ≈0.1% to ≈1.9% at the last two points), orange x-markers "$d_{model} = 512$" (rises from ≈0.2% to ≈1.7%), green triangles "$d_{model} = 1024$" (rises only to ≈0.8% at x=300, and is the lowest series from roughly the second point rightward — but NOT at the left end: at the first point, x≈16, green is the *highest* of the three at ≈0.4-0.5% while blue is the lowest at ≈0%). A small vertical bracket icon is annotated "22% additional compute compensates for 1% loss increase".
 
 Below the three panels, a native-text figure caption, reproduced in full: "**Figure 5** Performance depends very mildly on model shape when the total number of non-embedding parameters $N$ is held fixed. The loss varies only a few percent over a wide range of shapes. Small differences in parameter counts are compensated for by using the fit to $L(N)$ as a baseline. Aspect ratio in particular can vary by a factor of 40 while only slightly impacting performance; an $(n_{layer}, d_{model}) = (6, 4288)$ reaches a loss within 3% of the $(48, 1600)$ model used in [RWC+19]."
 
@@ -838,7 +848,7 @@ and, to its right, the parenthetical note "(minimum compute, at $B \ll B_{crit}$
 
 Heading: "5. Learning rates: muP and scale-aware LR choices".
 
-**Figure (left) — two side-by-side line charts, "Standard Practice" vs "Our Work" [Yang et al 2022].** Both share a "Training Loss" y-axis, linear, ticked 3.5 to 7.0 in steps of 0.5. Both plot log2(LearningRate) on the x-axis, with a shaded uncertainty band around each line. Seven series per panel, one per model width, per the legend "Width: 128, 256, 512, 1024, 2048, 4096, 8192" (colour scale running from light pink/cream at 128 to dark navy/purple at 8192). A horizontal black dotted reference line runs across both panels near training loss ≈ 3.85.
+**Figure (left) — two side-by-side line charts, "Standard Practice" vs "Our Work" [Yang et al 2022].** Both share a "Training Loss" y-axis, linear, ticked 3.5 to 7.0 in steps of 0.5. Both plot log2(LearningRate) on the x-axis, with a shaded uncertainty band around each line. Seven series per panel, one per model width, per the legend "Width: 128, 256, 512, 1024, 2048, 4096, 8192" (colour scale running from light pink/cream at 128 to dark navy/purple at 8192). A horizontal black dotted reference line runs across both panels at training loss ≈ 4.0 — essentially on the 4.0 gridline, confirmed both by tick-label row calibration and by direct gridline pixel detection.
 
 - **"Standard Practice"** panel, x-axis ticked -16, -14, -12, -10 (extending further left, toward about -20, per the wider view): each width's curve descends to its own minimum and then rises again sharply (near-vertically), i.e. training diverges/blows up past some learning rate specific to that width. The minima are staggered: the darkest (largest-width) curve's minimum sits furthest left, around log2(LR) ≈ -15, and each lighter (smaller-width) curve's minimum sits progressively further right, out to about -10 for the lightest curve. An annotation "optimum shifts", with an upward arrow, points at the leftmost minimum.
 - **"Our Work"** (muP) panel, x-axis ticked -20, -18, -16, -14, -12, -10: all seven curves descend together along nearly the same path from the upper left, separating only slightly near their shared broad minimum, which sits around log2(LR) ≈ -10 to -11 for every width. An annotation "optimum stable →" points at this shared minimum region.
@@ -864,14 +874,14 @@ Below both figures, body text: "**If we naively scale up** – optimal learning 
 
 Heading: "Caution – scaling behaviors can differ downstream". Two lines of body text: "**Thus far**: scaling is predictable and depends mainly on parameters" and "**Catch**: downstream scaling can often be much less predictable"
 
-**Figure — two side-by-side scatter plots, upstream perplexity vs. downstream accuracy, for the same set of named model variants [Tay et al 2023].** Both panels share an x-axis "Params", log scale, ticked 2.7e8, 5.4e8, 1.1e9, 2.1e9, 4.3e9, 8.6e9, 1.7e10. Each of the two panels plots the same 13 named model variants, each with its own fixed marker shape and colour (consistent between the two panels): purple diamond "NL12-" (label cut off at the right edge of the pasted source image in both panels — the rest of the name is not printed/legible), green cross "NL6-XXXL", blue upward-triangle "NL12-XXL", blue open square "XL", red open square "NL8-XXL", pink left-pointing triangle "NL32-XL", grey open circle "NL6-XXL", yellow right-pointing triangle "NL32-LG", red/crimson open circle "Large", brown downward-triangle "NL8-XL", orange diamond "NL36", violet cross "NL32", and olive-green upward-triangle "NL24".
+**Figure — two side-by-side scatter plots, upstream perplexity vs. downstream accuracy, for the same set of named model variants [Tay et al 2023].** Both panels share an x-axis "Params", log scale, ticked 2.7e8, 5.4e8, 1.1e9, 2.1e9, 4.3e9, 8.6e9, 1.7e10. Each of the two panels plots the same 13 named model variants, each with its own fixed marker shape and colour (consistent between the two panels): purple diamond "NL12-" (the label genuinely ends at the dash, with no further glyph at 2400 dpi. Note this is NOT a cropping artifact: both instances sit in open white space with room to spare, and the truncation appears identically in both panels regardless of position, so the name is incomplete in the underlying chart itself rather than clipped by how the image was pasted), green cross "NL6-XXXL", blue upward-triangle "NL12-XXL", blue open square "XL", red open square "NL8-XXL", pink left-pointing triangle "NL32-XL", grey open circle "NL6-XXL", yellow right-pointing triangle "NL32-LG", red/crimson open circle "Large", brown downward-triangle "NL8-XL", orange diamond "NL36", violet cross "NL32", and olive-green upward-triangle "NL24".
 
 - **Left panel, y-axis "Negative Log-Perplexity"**, linear, ticked -1.70 to -1.35. Ranking from best (top, least negative) to worst (bottom, most negative): NL12- (≈-1.36, largest params, best perplexity) > NL6-XXXL (≈-1.44) > NL12-XXL (≈-1.47) > {XL, NL8-XXL, NL32-XL clustered together, ≈-1.49 to -1.50} > NL6-XXL (≈-1.52) > NL32-LG (≈-1.58) > {Large, NL8-XL clustered, ≈-1.59 to -1.60} > NL36 (≈-1.63) > NL32 (≈-1.64) > NL24 (≈-1.665, smallest params, worst perplexity).
-- **Right panel, y-axis "SuperGlue Accuracy"**, linear, ticked 72 to 80. Ranking is visibly different: NL32-XL (≈79.7, the *best* score here despite being only mid-pack on perplexity) > {XL, NL12- clustered, ≈77} > NL12-XXL (≈75.6) > {Large, NL32-LG clustered, ≈75.3} > NL8-XXL (≈75.0) > NL6-XXXL (≈74.6) > {NL8-XL, NL24 clustered, ≈74.3-74.5} > NL6-XXL (≈73.6) > NL32 (≈72.9, the worst score, though not the smallest model).
+- **Right panel, y-axis "SuperGlue Accuracy"**, linear, ticked 72 to 80. Ranking is visibly different: NL32-XL (≈79.7, the *best* score here despite being only mid-pack on perplexity) > {XL, NL12- clustered, ≈77.9-78.0, both essentially on the 78 gridline} > NL12-XXL (≈76.4) > {Large, NL32-LG clustered, ≈75.9-76.0} > NL8-XXL (≈75.45-75.5) > NL6-XXXL (≈75.15-75.2) > NL8-XL (≈74.85) > NL24 (≈74.55) > NL6-XXL (≈73.6) > NL32 (≈72.9, the worst score, though not the smallest model). (These values were re-measured against the gridlines at audit; the panel's top border is 80 with consistent spacing, cross-checked against the printed 78/77/76 tick labels.)
 
 Citation "Tay et al 2023" printed beneath the two panels.
 
-The point of the pairing is exactly the slide's stated "Catch": NL32-XL, roughly mid-table on upstream perplexity, is the single best model on downstream SuperGlue accuracy, while NL12- — the best upstream model — only reaches the middle of the SuperGlue ranking; the ordering of the same 13 checkpoints is visibly reshuffled between the two panels.
+The point of the pairing is the slide's stated "Catch": the ordering of the same 13 checkpoints is visibly reshuffled between the two panels. The clearest single instance is **NL32-XL**, which sits roughly mid-table on upstream perplexity (≈-1.49 to -1.50, tied with XL and NL8-XXL) yet is the single best model on downstream SuperGlue accuracy at ≈79.7. Note what the reshuffling does *not* say: NL12-, the best upstream model, is not knocked down the downstream ranking — at ≈77.9 it places about 2nd-3rd of 13 on SuperGlue, near the top on both metrics. The reshuffle is real but partial, and it is driven by models moving *up* from mid-table rather than by the upstream leader falling.
 
 ## Slide 42 — Some surprising takeaways
 
