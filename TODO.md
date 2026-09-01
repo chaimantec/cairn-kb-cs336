@@ -801,8 +801,34 @@ PDF deck `lecture_09.pdf`, 57 pages — the most figure-dense deck in the build:
       chart's 10^7 x-axis tick, closing the numbering question independently
 - [x] Slides 45 and 50 confirmed byte-identical images (MD5 of the extracted
       stream), so the repeat is the deck's own, not a transcription error
-- [ ] Figure audit pass 1 — six chart/table-dense pages, delegated, pages never
-      opened in the parent
+- [x] Figure audit pass 1 — NINE pages fully audited (3, 4, 20, 31 / 45, 49, 50,
+      52, 55) plus existence checks on 17, 19, 27, 28. Two delegated Sonnet
+      auditors; no page was opened in the parent. RESULT: DIRTY — 5 of 9 pages
+      carried errors, 20 discrete errors, all now corrected in the file.
+      Clean: 3 (300 table cells exact), 20 (all 17 points, pixel-reclassified),
+      45 and 50 (the two independent write-ups of one byte-identical image agree).
+      Two findings worth carrying into AGENTS.md as build-wide precedent:
+      (a) FABRICATED CROPPING, twice, by two different readers — slide 31's panel
+      (i) and slide 55's top-left y-axis each described as clipped in the source
+      when neither is. The reader described its own crop's edge as a property of
+      the slide. This is a new failure mode for this build, distinct from the
+      known "invented a series from a label", and it is invisible downstream: a
+      reader of the KB has no way to tell a real clipped label from an invented
+      one. Audit prompts should ask explicitly whether a claimed crop is real.
+      (b) FALSE ILLEGIBILITY is now 100% false across every instance ever tested
+      here — three more on slide 52 (two equation intercepts and a 19-entry
+      legend), all readable at zoom. The skill already says treat the phrase as a
+      flag not a fact; this deck is the strongest evidence yet.
+      Also surfaced a real deck inconsistency, not a transcription error: slide 52
+      prints slope 0.79 inside its equation and 0.78 in the same panel's title.
+- [ ] Figure audit pass 2 — REQUIRED and not yet run. 5-of-9 dirty is far worse
+      than this build's usual ~2 small corrections per deck, and by the skill's own
+      rule a dirty sample means the sample was too small. 48 pages remain
+      unaudited. Priority targets: 48 (nine IsoFLOP parabolas — same figure family
+      as 49, the dirtiest page found), then the multi-series log-log pages
+      13, 18, 24, 26, 34, 40, 41, and 56. The front matter's audit field records
+      the un-audited remainder as provisional so the file is honest in the
+      meantime.
 
 ### Transcript
 - [x] 09 Scaling Laws — verbatim captions at raw/transcripts/original/09-scaling-laws.md
