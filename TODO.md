@@ -567,10 +567,24 @@ Sonnet. Page 72's overview table is read at Sonnet and audited at Opus.
 ### Course material
 - [x] Download lecture_08.pdf (73 pages, 6.5 MB) to raw/pdfs/
 - [x] Numbering derived in the parent and handed to the readers as a conclusion
-- [ ] raw/slides/08-parallelism-2.md — five parallel readers over pages
+- [x] raw/slides/08-parallelism-2.md — five parallel readers over pages
       1-15 / 16-30 / 31-45 / 46-62 / 63-73, appending incrementally; parent
-      concatenates and writes front matter and the section table
-- [ ] Heading-sequence check — expect exactly 73 headings 1..73 in order
+      concatenates and writes front matter and the section table. 1,544 lines,
+      ~23.3k words. All five readers independently confirmed no folio in their
+      range, at magnifications up to 4800 dpi.
+- [x] Heading-sequence check — PASS, exactly 73 headings 1..73 in order, no gaps,
+      no merges, no duplicates. Independently, 72 of 73 heading titles were
+      matched VERBATIM against the PDF text layer at the top of their own page;
+      the single exception is the title page, whose text layer letter-spaces
+      "PA R A LLE LIS M BA SIC S". That cross-check is new this run and is worth
+      keeping: it confirms page-to-heading attribution without opening a page
+      image in the parent, which is the expensive thing the skill forbids.
+- [x] Internal consistency of the two formula families, checked in the parent
+      without opening a page: the activation-memory rows on slides 46-49 compose
+      exactly as the deck says (34 = 10 + 24; TP gives 10 + 24/t, TP+SP gives
+      34/t, and selective recomputation drops the 5as/(ht) term from each), and
+      the reader for 16-30 reported the ZeRO formulas on 18/19/22/24 reproducing
+      their own printed GB values. No LaTeX inside code fences.
 - [ ] Figure audit, pass 1
 - [ ] Figure audit, pass 2 (mandatory if pass 1 comes back dirty)
 
