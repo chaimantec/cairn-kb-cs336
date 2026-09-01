@@ -155,3 +155,29 @@ turns out that very simple things work well, even at scale" ([1:25:27]).
 - [Upcycling](upcycling.md) — building an MoE from a trained dense model.
 - [Model architecture survey](model-architecture-survey.md) — what the large models do.
 - [Lecture 4](04-attention-alternatives.md).
+
+## The systems consequence
+
+Lecture 8 treats MoE not as an architecture choice but as a fact that reshapes the
+whole parallelism plan.
+
+It changes which **hardware** suits you. MoE routing is unpredictable — tokens go
+wherever the router sends them — so it wants all-to-all connectivity rather than
+neighbour-local links. That is the lecture's explanation for GPUs suiting MoE and
+TPUs suiting dense models ([6:59]), and for Google's TPU8i moving toward a tree
+topology: "modern-day language models are MoEs, and if you're going to serve a MoE,
+you're going to have all sorts of bandwidth flying around" ([7:45]). See
+[network topology](network-topology.md).
+
+It changes which **parallelism** you use: [expert parallelism](expert-parallelism.md)
+replaces tensor parallelism for the MLPs, and is preferred whenever both apply
+([54:19]).
+
+And it creates a problem dense models do not have. Because MoE touches only the
+MLPs, parallelism applies **unevenly** across the model — you want high tensor
+parallelism for the attention and low tensor parallelism for the experts, which is
+a genuine conflict resolved only by decoupling the two ([59:39]–[1:00:25]).
+
+The [case studies](parallelism-case-studies.md) show the split cleanly: every MoE
+row in slide 72's table has TP of 1 or 2 and EP of 8 to 64, while the dense rows
+(Llama 3 405B, Gemma 2) have TP 8 and EP 0.

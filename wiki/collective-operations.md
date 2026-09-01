@@ -204,3 +204,30 @@ backward you're reduce-scattering" ([1:08:08]).
 - [Pipeline parallelism](pipeline-parallelism.md) — the exception, built on
   point-to-point `send`/`recv` instead.
 - [Expert parallelism](expert-parallelism.md) — all-to-all.
+
+## The identity that makes ZeRO free
+
+Lecture 8 singles out one relation as "very important for one part of the talk"
+([3:08]) and returns to it repeatedly:
+
+$$\text{all-reduce} \;=\; \text{reduce-scatter} \;+\; \text{all-gather}$$
+
+Slide 8 shows it as two steps, and the consequence is stated plainly: "the fact
+that these two have the same cost, in some sense, means that we can do the
+algorithm on the right for free" ([3:08]).
+
+That is the whole argument for [ZeRO stages 1 and 2](zero-and-fsdp.md). Naive DDP
+does one all-reduce, costing $2\times$ parameters. ZeRO stage 1 does a
+reduce-scatter of the gradients and then an all-gather of the updated parameters —
+which is the same two halves, and therefore the same cost, while sharding the
+optimizer state across ranks ([18:26]).
+
+The **forward/backward duality** is the other recurring shape: where the forward
+pass does an all-gather, the backward pass does a reduce-scatter, and vice versa.
+It governs tensor parallelism's $f$ and $g$ ([40:34]) and sequence parallelism's
+$g$ and $\bar{g}$ ([50:28]).
+
+**All-to-all** gets its own emphasis in lecture 8 as the primitive
+[expert parallelism](expert-parallelism.md) is built on, and the reason MoE
+training is hard: dispatch is latency-sensitive "because your computation is
+waiting for your tokens to arrive" ([56:37]).

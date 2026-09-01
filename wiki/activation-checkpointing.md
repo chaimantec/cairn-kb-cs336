@@ -195,3 +195,31 @@ matrix and recomputes it tile by tile in the backward pass rather than storing i
   — `gradient_accumulation()`, lines 718–730; `activation_checkpointing()` and
   `DeepNetworkCheckpointed`, lines 733–788
 - [Edited transcript](../raw/transcripts/02-pytorch-resource-accounting.md)
+
+## Where lecture 8 takes this
+
+Two additions: recomputation's exact place in the
+[activation-memory](activation-memory.md) algebra, and the argument that it pays
+for itself.
+
+**Selective recomputation drops one specific term.** Of the per-layer cost
+$sbh(34 + 5as/h)$, the $5as/h$ comes from the quadratic attention terms and is
+"just the storage I need for the softmax", so recomputation removes it ([51:16]).
+Combined with tensor and [sequence parallelism](sequence-parallelism.md) that gives
+$sbh \cdot 34/t$ — the practical lower bound on activation memory ([51:16]).
+
+**Why not recompute everything?** Asked exactly that, the answer is that you can,
+but the MLP is the wrong trade ([52:48]):
+
+> Your recomputation for the MLP involves running the MLP again in the backward
+> pass, which you probably don't want to do. Recomputation for attention is
+> generally cheaper, because you do it tile-wise as well, and also you don't want
+> to pay the quadratic cost again.
+
+Attention is cheap to recompute and quadratic to store; the MLP is the reverse.
+That asymmetry is what makes the standard recipe *selective*.
+
+**It pays for itself.** Slide 62's argument, called out as counterintuitive
+([1:11:57]): recomputation frees memory, memory buys a larger batch, and a larger
+batch buys utilisation — via a smaller [pipeline bubble](pipeline-parallelism.md)
+and better-fed ranks. So doing *more* computation can make the run faster overall.

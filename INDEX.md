@@ -8,20 +8,21 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1–7 of 18
+> ## ⚠️ This knowledge base covers Lectures 1–8 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
 > Mixtures of Experts), Lecture 5 (GPUs and TPUs), Lecture 6 (Kernels and
-> Triton) and Lecture 7 (Parallelism) are covered in depth.** Nothing else is.
-> There are no transcripts and no wiki pages for scaling laws, inference,
-> evaluation, data, mid/post-training, RLVR or multimodality.
+> Triton), Lecture 7 (Parallelism) and Lecture 8 (Parallelism, Part 2) are covered
+> in depth.** Nothing else is. There are no transcripts and no wiki pages for
+> scaling laws, inference, evaluation, data, mid/post-training, RLVR or
+> multimodality.
 >
-> **A warning specific to parallelism:** CS336 has *two* lectures called
-> "Parallelism". Lecture 7, covered here, is Percy Liang's — collective operations
-> and the data/tensor/pipeline strategies. **Lecture 8 is Tatsunori Hashimoto's and
-> is not covered**, so this KB has no treatment of FSDP or ZeRO, which Lecture 7
-> repeatedly defers to it.
+> **A note specific to parallelism:** CS336 has *two* lectures called
+> "Parallelism", and **both are now covered**. Lecture 7 is Percy Liang's
+> executable lecture — collective operations and the data/tensor/pipeline cuts.
+> Lecture 8 is Tatsunori Hashimoto's slide deck, and it is where FSDP and ZeRO,
+> which lecture 7 repeatedly defers to, are actually explained. Read them in order.
 >
 > Where a page describes later material, it is repeating Lecture 1's *syllabus
 > preview* and says so at the top. Do not cite this knowledge base as covering
@@ -66,6 +67,12 @@ compute and data?
   elementwise GeLU, softmax, a row sum too long for one block, and tiled matmul —
   plus the five hardware details the programming model hides.
 
+- **[Lecture 8 — Parallelism (Part 2)](wiki/08-parallelism-2.md)** —
+  what you actually do with those primitives on a cluster. ZeRO stages 1-3 and
+  FSDP, and why two of the three are free; the pipeline bubble and how to fill it;
+  what activation memory really costs and which parts tensor parallelism cannot
+  touch; expert and context parallelism; and the rules for combining four or more
+  strategies at once, checked against ten published training runs.
 - **[Lecture 7 — Parallelism](wiki/07-parallelism.md)** — crossing the chip
   boundary. The collective operations that distributed training is built from, the
   interconnect hierarchy that carries them (NVLink, InfiniBand, Ethernet), and then
@@ -77,6 +84,44 @@ If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 8 — parallelism at cluster scale
+
+- **[ZeRO and FSDP](wiki/zero-and-fsdp.md)** — the three sharding stages, what each
+  one shards, and the collective identity that makes stages 1 and 2 cost *nothing*
+  extra over plain DDP. How stage 3 hides its extra all-gather by overlapping
+  communication with computation, why it is not pipelining, and where it stops.
+  **Start here if you came looking for FSDP.**
+- **[Activation memory](wiki/activation-memory.md)** — the $sbh(34 + 5as/h)$
+  per-layer accounting, why memory peaks *after* the forward pass, which 24 of the
+  34 terms tensor parallelism divides and which stubborn 10 it does not, and the
+  five-row table ending in the practical lower bound $sbh \cdot 34/t$.
+- **[Sequence parallelism](wiki/sequence-parallelism.md)** — splitting LayerNorm,
+  dropout and residual activations along the *sequence* axis to remove the term
+  tensor parallelism leaves behind. Why the name is misleading, and the
+  forward/backward collective swap it shares with FSDP.
+- **[Context parallelism](wiki/context-parallelism.md)** — ring attention: split the
+  sequence itself across devices. Used for long-context extension and serving, and
+  the technique that actually deserves the name "sequence parallel".
+- **[Zero-bubble pipelining](wiki/zero-bubble-pipelining.md)** — separate the
+  backward pass into propagating partials (on the critical path) and computing
+  weight gradients (a leaf that can wait), then fill the bubble with the deferred
+  half.
+- **[Critical batch size](wiki/critical-batch-size.md)** — why batch size is a
+  budget rather than a free parameter, what data parallelism and pipelines each
+  spend it on, and how recomputation buys it back.
+- **[Network topology: mesh vs tree](wiki/network-topology.md)** — TPU toroidal mesh
+  against GPU fat tree, why constant node degree matters, the Huawei Ascend
+  brute-force corner and its 4× power bill, and the convergent evolution visible in
+  TPU8i/8t.
+- **[3D (and 4D) parallelism](wiki/3d-parallelism.md)** — the composition rules: cut
+  until it fits, tensor or expert parallel on the fast interconnect, pipeline or
+  FSDP the rest of the way, then data-parallel everything left. With NVIDIA's own
+  guidelines and the Narayanan 2021 evidence.
+- **[Parallelism case studies](wiki/parallelism-case-studies.md)** — what ten real
+  runs chose, including slide 72's full configuration table. OLMo on FSDP alone,
+  Llama 3 405B's per-stage breakdown, Gemma 2 with no pipeline at all, DeepSeek V3's
+  64-way expert parallelism.
 
 ### Lecture 7 — parallelism across GPUs
 
@@ -401,7 +446,8 @@ usually the faster route than the lecture pages.
   [Lecture 4](raw/transcripts/04-attention-alternatives.md),
   [Lecture 5](raw/transcripts/05-gpus-tpus.md),
   [Lecture 6](raw/transcripts/06-kernels-triton.md),
-  [Lecture 7](raw/transcripts/07-parallelism.md).
+  [Lecture 7](raw/transcripts/07-parallelism.md),
+  [Lecture 8](raw/transcripts/08-parallelism-2.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
@@ -428,19 +474,22 @@ usually the faster route than the lecture pages.
     per-rank losses are quoted and marked "(recorded run)" — measurements of that
     machine, not of yours.
   - [`lecture_03.pdf`](raw/slides/03-architectures.md) (67 pages),
-    [`lecture_04.pdf`](raw/slides/04-attention-alternatives.md) (60 pages) and
-    [`lecture_05.pdf`](raw/slides/05-gpus-tpus.md) (55 pages) are Tatsunori
+    [`lecture_04.pdf`](raw/slides/04-attention-alternatives.md) (60 pages),
+    [`lecture_05.pdf`](raw/slides/05-gpus-tpus.md) (55 pages) and
+    [`lecture_08.pdf`](raw/slides/08-parallelism-2.md) (73 pages) are Tatsunori
     Hashimoto's slide decks, transcribed from the rendered page images, with every
     figure described in prose and every table transcribed cell by cell. Slide
-    numbers in all three are **PDF page numbers**, because none of the decks prints
-    any of its own. Lectures 4 and 5 are the figure-dependent ones — 102 images
-    across 60 pages and 83 across 55, most pages carrying only 30–40 words of their
-    own text — so the figure descriptions there are not a supplement to the content,
-    they *are* the content. Each deck's front matter records which pages were
-    audited against the PDF and what the audit found, including the places where a
-    deck contradicts itself.
+    numbers in all four are **PDF page numbers**, because none of the decks prints
+    any of its own. Lectures 4, 5 and 8 are the figure-dependent ones — 102 images
+    across 60 pages, 83 across 55, and 86 across 73, most pages carrying only 30–40
+    words of their own text — so the figure descriptions there are not a supplement
+    to the content, they *are* the content. Each deck's front matter records which
+    pages were audited against the PDF and what the audit found, including the
+    places where a deck contradicts itself. Lecture 8's deck is the most heavily
+    audited: twelve pages checked across two passes, plus a sweep of every
+    cross-slide claim in the file.
 - **[`sources.md`](sources.md)** — every lecture, deck, assignment and linked
-  document with its canonical URL, including the material for the 13 lectures this
+  document with its canonical URL, including the material for the 10 lectures this
   KB does not yet cover. Explains how CS336 splits between executable lectures and
   PDF decks.
 

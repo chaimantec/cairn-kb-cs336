@@ -9,11 +9,11 @@
     "courseUrl": "https://cs336.stanford.edu"
   },
   "coverage": {
-    "lecturesCovered": 7,
+    "lecturesCovered": 8,
     "lecturesTotal": 18,
-    "transcripts": 7,
-    "wikiLecturePages": 7,
-    "wikiTopicPages": 57
+    "transcripts": 8,
+    "wikiLecturePages": 8,
+    "wikiTopicPages": 66
   },
   "materials": {
     "primary": "mixed",
@@ -23,7 +23,7 @@
     },
     "slideDecks": {
       "available": 8,
-      "transcribed": 3
+      "transcribed": 4
     },
     "method": "mixed",
     "byLecture": {
@@ -33,7 +33,8 @@
       "4": "page-images",
       "5": "page-images",
       "6": "source-text",
-      "7": "source-text"
+      "7": "source-text",
+      "8": "page-images"
     },
     "figuresAudited": true,
     "sourceRepo": "https://github.com/stanford-cs336/lectures"
@@ -44,7 +45,7 @@
       "claude-sonnet-5"
     ],
     "caveats": [
-      "PARTIAL: covers lectures 1-7 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 8-18 - the second parallelism lecture, scaling laws, inference, evaluation, data, mid/post-training, RLVR, multimodality - have no transcripts and no wiki pages here. NOTE that lectures 7 AND 8 are both titled 'Parallelism': lecture 7 (Percy Liang's executable lecture on collective operations and data/tensor/pipeline parallelism) IS covered; lecture 8 (Tatsunori Hashimoto's deck, which is where FSDP and ZeRO are taught) is NOT. Lecture 7 defers to it repeatedly, so this KB names FSDP and ZeRO but does not explain them.",
+      "PARTIAL: covers lectures 1-8 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 9-18 - scaling laws, inference, evaluation, data, alignment, mid/post-training, RLVR and multimodality - have no transcripts and no wiki pages. Both lectures titled \"Parallelism\" (7 and 8) are covered.",
       "materials.method is 'mixed' and the split matters. Lectures 1, 2, 6 and 7 are executable Python programs (lecture_01.py, lecture_02.py, lecture_06.py, lecture_07.py), transcribed exactly from source text; that is not a lower grade than page-images, because there are no slides to have looked at. Lectures 3, 4 and 5 are PDF decks (67, 60 and 55 pages) read as page images, so their figures, charts and tables ARE captured. See materials.byLecture.",
       "Figures: described for lectures 3, 4 and 5, NOT described for lectures 1, 2, 6 and 7. The four executable lectures display images via image() calls, and raw/slides records each one at the point it appears, by path or URL, WITHOUT describing its contents, because those lectures were read as source text. No wiki claim rests on one of those figures. This matters most for lectures 4 and 5, whose decks are 102 images across 60 pages and 83 across 55 with most pages carrying under 40 words of native text - the figure descriptions there carry the content rather than illustrating it.",
       "None of the three transcribed decks prints a page number on any page, so slide labels in raw/slides/03-architectures.md, 04-attention-alternatives.md and 05-gpus-tpus.md are PDF page numbers, and all three files say so in their front matter. For lecture 3 a page-number scan reported one printed number; that glyph is the numerator of the MQA arithmetic-intensity fraction on page 61, not a folio. For lecture 4 the scan reported none and all 60 pages were checked by eye. For lecture 5 the scan reported none, a corner-position text-layer scan returned only mid-page body text, and the three readers who split the deck each confirmed the absence independently over their own range. On lecture 5 the numbering was derived in the parent BEFORE any page was read and handed to the readers as a conclusion, so no reader made a numbering judgement of its own.",
@@ -70,7 +71,14 @@
       "Lecture 7 is an executable lecture (lecture_07.py), so it is source-text: its figures are recorded by path only and no wiki claim rests on one, exactly as for lectures 1, 2 and 6.",
       "Lecture 7 is the ONE lecture in this KB whose runtime output is quoted rather than withheld, and the reason is that the course publishes it: the program's own stdout from a real four-GPU run is committed to the lectures repo at var/traces/lecture_07_stdout.txt. Its measured collective bandwidths (all-reduce 366-426 GB/s, reduce-scatter 450-490 GB/s on 400 MiB payloads), its per-rank losses and its printed tensors are marked '(recorded run)' and are measurements of THAT machine (Modal, CUDA 13.2, four GPUs, NCCL) - not values a reader's own run will reproduce. The per-rank losses additionally depend on an unseeded random batch. Every bandwidth quoted was independently re-derived from the lecture's own formula and the printed durations, and matches to within one unit in the last place (rounding in the displayed milliseconds).",
       "Lecture 7 cannot be traced the way the other executable lectures can, because it genuinely launches multiple processes. Its spawn() helper detects a tracer and runs the function in a single process with every torch.distributed call replaced by a no-op and rank hard-coded to 0. So the browser trace view shows the code with no communication happening, and any @inspect value that depends on rank shows the rank-0 value only. This is why the separate stdout file exists.",
-      "Lecture 7's transcript carries ten [Ed:] notes, several on passages the captions leave genuinely garbled - a 'the first three' that then names four operations, an unparseable 'collective commission' at a paragraph boundary, and a crosstalk fragment at 1:08:54. Where the wiki would otherwise have quoted across one of those gaps it says so instead. One reading, isend/irecv at 1:13:32, rests on outside knowledge of the PyTorch API and is confined to an [Ed:] note; the lecture source never mentions those calls. Adjudication also corrected the drafting agent's own report, which had claimed 'Grace' and 'critical batch size' rested on outside knowledge alone - both words are in fact present in the captions."
+      "Lecture 7's transcript carries ten [Ed:] notes, several on passages the captions leave genuinely garbled - a 'the first three' that then names four operations, an unparseable 'collective commission' at a paragraph boundary, and a crosstalk fragment at 1:08:54. Where the wiki would otherwise have quoted across one of those gaps it says so instead. One reading, isend/irecv at 1:13:32, rests on outside knowledge of the PyTorch API and is confined to an [Ed:] note; the lecture source never mentions those calls. Adjudication also corrected the drafting agent's own report, which had claimed 'Grace' and 'critical batch size' rested on outside knowledge alone - both words are in fact present in the captions.",
+      "lecture_08.pdf prints no page number on any of its 73 pages, so slide citations for lecture 8 are PDF page numbers. The mapping was derived before any page was read and independently confirmed by all five readers over their own ranges; a corner-position text-layer scan returned zero digit tokens across the whole deck.",
+      "Lecture 8's deck contradicts itself in one place that matters for citation: slide 70 states Nemotron 3 Super's pipeline-parallel degree as 0 while slide 72's overview table records it as unknown (\"??\"). Both are transcribed as printed and neither is reconciled.",
+      "Lecture 8's deck misspells FSDP as \"FDSP\" on slides 26, 35 and 63. The slide file transcribes the typo as printed; the transcript and wiki use the correct spelling, since the lecturer says FSDP aloud.",
+      "Lecture 8 figure audit: 12 of 73 pages checked across two passes (12, 21, 30, 36, 37, 45, 55, 60, 61, 62, 67, 72). Ten came back clean; four errors were corrected on slides 30 and 37. All 48 cross-slide assertions in the slide file were separately swept, finding three more errors, two of which were in the file's own aggregating front matter rather than in any reader's page.",
+      "At 29:53 in the lecture 8 transcript the speaker says \"ZeRO stage two\" where slide 30 shows he means stage 3. The body records what he said and an [Ed:] note gives the correction, rather than rewriting his words.",
+      "Slide 67's Llama 3 failure table has printed percentages summing to 94.9%, not 100%, and they are not percentages of the 419 total interruptions either. The gap is in the source table as pasted; do not compute a percentage from that table's counts.",
+      "Slide 44 of lecture 8 prints an eight-category legend of which only five bands are visually separable at any magnification; three categories could not be located and the slide file says so rather than guessing."
     ]
   },
   "entryPoint": "INDEX.md",

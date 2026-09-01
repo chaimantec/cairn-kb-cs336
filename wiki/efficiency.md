@@ -175,3 +175,25 @@ those do not reliably survive the jump across scales.
 - [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
 - Edited transcripts: [Lecture 1](../raw/transcripts/01-overview-tokenization.md),
   [Lecture 2](../raw/transcripts/02-pytorch-resource-accounting.md)
+
+## Efficiency at cluster scale
+
+Lecture 8 is the point where the efficiency question stops being about one chip.
+Its framing: "the new unit of compute is not the GPU, it's the entire data center"
+([10:02]), and what you want from that unit is control over memory, control over
+compute, and losslessness — "we want to use all of the resources we have"
+([10:48]).
+
+The efficiency currency at this scale is **utilisation**: keeping every accelerator
+busy given that some links are fast and some are slow. Every technique in the
+lecture is a trade of one resource against another —
+[batch size](critical-batch-size.md) for pipeline bubble, memory for batch size,
+communication for [activation memory](activation-memory.md), complexity for
+utilisation. The [summary table](3d-parallelism.md) exists to show that "there is no
+one strictly dominant parallelization strategy" ([1:02:00]).
+
+Two results are worth carrying: [ZeRO stages 1 and 2](zero-and-fsdp.md) are
+genuinely **free** — large memory savings at identical communication cost, from a
+collective identity ([18:26]) — and, combined properly, utilisation stays flat
+"even as you go to ludicrously large numbers of GPUs" ([1:10:27]). That flatness is
+why data-centre-scale training is economically sensible at all.

@@ -1,6 +1,6 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after run 7: **Lectures 1–7.** Run 8 (lecture 8) in progress. The
+Coverage after run 8: **Lectures 1–8.** The
 course has 18 recorded lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
@@ -711,32 +711,66 @@ Sonnet. Page 72's overview table is read at Sonnet and audited at Opus.
       `\]\*(?!\*)` so the marker's `]**` is never touched.
 
 ### Wiki
-- [ ] wiki/08-parallelism-2.md
-- [ ] Topic pages — zero-and-fsdp is the big gap lecture 7 left open; also
-      sequence-parallelism, activation-memory, 3d-parallelism, and a case-study
-      page for what real models do
-- [ ] Extend rather than duplicate: data-parallelism, tensor-parallelism,
-      pipeline-parallelism, expert-parallelism, sharding-vs-replication,
-      collective-operations, gpu-interconnect and activation-checkpointing all
-      already exist from run 7 and must be extended, not re-created
-- [ ] INDEX.md — eight-lecture coverage; the banner's "lectures 7 AND 8 are both
-      Parallelism, only 7 is covered" warning is now STALE and must be rewritten
-- [ ] Link sweep
-- [ ] Citation checks
-- [ ] Quote checks
+- [x] wiki/08-parallelism-2.md (239 lines) — three parts mirroring the deck:
+      the network, the primitives, and putting it together, with the through-line
+      that one idea (store sharded, materialise on demand) recurs in four disguises
+- [x] Topic pages (9 new) — zero-and-fsdp (the gap lecture 7 left open: three
+      stages, why two are free, the overlap argument, and why it is not pipelining),
+      activation-memory (the 34sbh accounting and the five-row table),
+      sequence-parallelism, context-parallelism, zero-bubble-pipelining (B vs W),
+      critical-batch-size (batch size as a budget), network-topology (mesh vs tree,
+      Huawei Ascend, the TPU8i news), 3d-parallelism (the prescription and the
+      Narayanan evidence), parallelism-case-studies (slide 72's table plus the ten
+      runs)
+- [x] Extend rather than duplicate (13 pages) — data-parallelism,
+      pipeline-parallelism, tensor-parallelism, expert-parallelism,
+      sharding-vs-replication, collective-operations (the all-reduce identity gets
+      its own section, since it is what makes ZeRO free), gpu-interconnect,
+      activation-checkpointing, memory-accounting-for-training, mixture-of-experts,
+      tpus, flash-attention, scaling-laws. Plus efficiency, executable-lectures,
+      course-map and 07-parallelism for cross-lecture continuity.
+- [x] INDEX.md — eight-lecture coverage. The banner's "Lecture 8 is NOT covered, so
+      this KB has no treatment of FSDP or ZeRO" warning was the most misleading
+      stale text in the KB and is rewritten; new Start-here entry, a Lecture 8 wiki
+      section with 9 annotated entries, raw-material updated for a fourth deck.
+- [x] Link sweep — 1,325 relative links and 162 anchors all resolve; all 74 wiki
+      pages appear in INDEX.md; no LaTeX inside code fences. (The 5 "unresolved"
+      hits are false positives: the regex matches Python call syntax like
+      `kernel[grid](x, y, BLOCK_SIZE=...)` inside lecture 6's code fences.)
+- [x] Citation checks — 968 [MM:SS] citations across the WHOLE wiki checked against
+      all 8 transcripts; zero point at a non-existent marker. Four were fixed, all
+      the same fault: a dropped hour prefix, [11:57] for [1:11:57] and [12:44] for
+      [1:12:44]. Worth knowing that this lecture runs past an hour, so any citation
+      after 1:00:00 is a candidate for it.
+- [x] Quote checks — 115 quoted fragments across the 10 new pages checked against
+      the transcript, the slide file and the raw captions. 6 real slips found and
+      fixed: a comma where the speaker has an em dash, "which involves" for "This
+      then involves", a quote begun one word early, LaTeX reformatted inside
+      quotation marks (twice), and the parent's own editorial aside set as a
+      blockquote — which reads as a quotation of the lecturer and was not one.
+      2 residual flags verified verbatim by direct substring test; they are the
+      checker failing to strip a citation that sits inside the blockquote.
 
 ### Publish
-- [ ] Update sources.md (lecture_08.pdf transcribed; the two-Parallelism note)
-- [ ] kb.json — coverage 8/18, slideDecks 4 of 8, byLecture."8" = page-images
-- [ ] AGENTS.md — run 8 precedents
+- [x] Update sources.md — lecture_08.pdf transcribed; the two-Parallelism note
+      rewritten now that both halves are covered; the numbering paragraph now
+      covers four decks and records that lecture 8's corner scan returned ZERO
+      digit tokens, the cleanest of the four
+- [x] kb.json — coverage 8/18, 66 topic pages, slideDecks 4 of 8, byLecture."8" =
+      page-images, 34 caveats. Also removed a duplicate PARTIAL caveat and rewrote
+      the stale one that still listed lecture 8 among the uncovered.
+- [x] AGENTS.md — run 8 precedents: the heading-vs-text-layer cross-check (the new
+      cheap strong check), the front matter being the least-audited layer, the
+      mis-hearing vs speaker-slip test for transcripts, no LaTeX in transcripts,
+      and three more checker bugs
 - [ ] Commit and push
 - n/a  kbUrl already set on the catalog entry from run 1
 
 ## Not done (future runs)
-- [ ] Lectures 8–18 — transcripts and wiki pages. **Lecture 8 is the priority**: it
-      is the other half of parallelism (FSDP/ZeRO), which lecture 7 defers to
-      repeatedly, so the KB currently names those techniques without explaining them.
-- [ ] Transcribe the 5 remaining PDF decks (lectures 8, 9, 11, 15, 16) — these need
+- [ ] Lectures 9–18 — transcripts and wiki pages. Lecture 9 (Scaling Laws,
+      lecture_09.pdf, video Q15rhEWZPQ4) is the natural next one: lecture 8 ends by
+      pointing at it, and critical-batch-size already sets it up.
+- [ ] Transcribe the 4 remaining PDF decks (lectures 9, 11, 15, 16) — these need
       page-images, not source-text, and a figure audit
 - [ ] Transcribe the 5 remaining executable lectures (10, 12, 13, 14, 17). Check each
       for a published `var/traces/lecture_NN_stdout.txt` in the lectures repo before

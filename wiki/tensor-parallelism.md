@@ -102,6 +102,46 @@ Two more cuts are named but not implemented ([1:15:05]–[1:15:51]):
 The lecture groups tensor and expert parallelism together as width cuts in its
 final summary ([1:18:54]).
 
+## Where lecture 8 takes this
+
+Lecture 7 implemented a column-wise cut; lecture 8 fills in the transformer-level
+picture, the cost model, and the memory consequences.
+
+**Both cuts, in their places** ([41:20]). Column-wise at the inputs — the MLP
+inputs and the attention projections. Row-wise at the corresponding second stage —
+the MLP down-projections and the attention outputs. Small layers (LayerNorm,
+the nonlinearity, [MoE routers](moe-routing.md)) stay **fully replicated**, because
+"you don't really want to bother with the overhead of cutting those" ([42:05]).
+
+**The $f$/$g$ duality**, on slide 40 ([40:34]): in the forward pass $f$ is the
+identity (just copy $X$ to both ranks) and $g$ is an all-reduce; in the backward
+pass they swap — $g$ becomes the identity and $f$ becomes the sum of partials.
+This is the same forward/backward collective swap that appears in
+[sequence parallelism](sequence-parallelism.md).
+
+**The degree-8 rule.** Communication is activation-sized and happens at every
+matmul, so tensor parallelism is "extremely communication-hungry" ([42:05]) and
+belongs inside one node: "for GPUs, eight GPUs are networked tightly together in a
+single box, so up to eight, you might be willing to do some tensor parallel"
+([42:50]). Slide 61 confirms 8 is quantitatively the right stopping point
+([1:11:12]), and slide 72 shows TP ≤ 8 across essentially every published run.
+
+This is a **GPU** constraint, not a law. On a TPU [toroidal mesh](network-topology.md)
+there is no fast-group boundary, so "you can tensor-parallel over very large
+numbers, compared to the GPU world" ([43:36]) — which is why
+[Gemma 2](parallelism-case-studies.md) needs no pipeline at all.
+
+**Against pipelines** ([44:21]): no bubble and low complexity, but communication
+rises from point-to-point $B \times S \times H$ to roughly
+$8 \times B \times S \times H$ all-to-all. "Tensor parallel is great whenever we
+have high-speed interconnects — every other time, we probably want to use pipeline
+parallel."
+
+**What it does not fix.** It divides 24 of the 34 terms of
+[activation memory](activation-memory.md), leaving a stubborn $10sbh$ that needs
+[sequence parallelism](sequence-parallelism.md) ([48:56]). And for MoE models
+[expert parallelism](expert-parallelism.md) is preferred outright ([54:19]).
+
 ## See also
 
 - [Data parallelism](data-parallelism.md) — the batch cut.

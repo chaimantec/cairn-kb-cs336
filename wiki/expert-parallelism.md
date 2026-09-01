@@ -174,3 +174,44 @@ balancing term on top of the per-expert one.
 - [Tensor parallelism](tensor-parallelism.md) — the other width cut; lecture 7 groups the
   two together.
 - [Lecture 4](04-attention-alternatives.md), [Lecture 7](07-parallelism.md).
+
+## Where lecture 8 takes this
+
+Lecture 8 promotes expert parallelism from "a thing MoE models allow" to a
+first-class parallelism axis with its own rules — and its own mess.
+
+**Prefer it over tensor parallelism.** Slide 51 reproduces Megatron's guideline
+directly: if you are going to do either EP or TP, use EP ([54:19]). Two reasons
+([55:04]): cutting matrices too finely starves GPU utilisation — "you want your
+matmuls as big as possible, and tensor parallel reduces that" — and routing sparse
+token activations is easier than routing dense tensor-parallel ones. The general
+rule for MoE runs: "once you go to MoEs, you replace tensor parallelism with expert
+parallelism — they serve similar goals, but expert parallelism is just a little
+more efficient" ([1:14:16]).
+
+**It is genuinely hard.** Both DeepSeek and NVIDIA ship dedicated libraries —
+**DeepEP** and **HybridEP** — for expert dispatch, working at the level of
+"low-level GPU networking primitives" ([55:50]–[56:37]). The difficulty is
+all-to-all dispatch under a latency constraint: "you need to do this in a very
+latency-sensitive way, because your computation is waiting for your tokens to
+arrive" ([56:37]). The lecture's favourite detail: the DeepEP authors found
+**undocumented [PTX](ptx.md) instructions** to speed the networking up ([57:23]).
+
+**Two composition problems**, and these are what make EP messier than the other
+axes:
+
+1. **EP is usually nested inside DP.** The naive arrangement makes the DP and EP
+   replica groups the same — "say I have a data parallelism of eight: I'm going to
+   shard my eight experts across those eight replicas" ([58:08]). Natural, but it
+   "bound[s] how far you can parallelize with EP, and it constrains how DP and TP
+   interact" ([58:53]).
+2. **EP applies unevenly to the model.** MoE changes the MLPs, not the attention
+   ([59:39]). So you want *high* tensor parallelism to cut up attention and *low*
+   tensor parallelism to keep the expert matmuls big — a direct conflict. The
+   modern fix decouples them: "the attention layers get one kind of tensor
+   parallel, and the MoE layers get another kind of tensor parallel" ([1:00:25]).
+
+**In the wild** ([parallelism case studies](parallelism-case-studies.md)): DeepSeek
+V3 runs 64-way EP by grouping eight machines, using pipelining tricks to keep
+utilisation up ([1:13:31]); Qwen 3 runs EP 32; Mixtral 8x22B runs EP 8. Slide 72's
+summary is that "EP can be big (but hard!)".

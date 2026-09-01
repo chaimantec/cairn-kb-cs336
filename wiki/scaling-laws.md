@@ -151,3 +151,22 @@ must spend carefully — "of course, this is low-stakes."
   that the feedforward ratio and the aspect ratio each have a broad flat basin.
 - [`lecture_01.py` transcription](../raw/slides/01-overview-tokenization.md#unit-3--scaling-laws-assignment-3)
 - [Edited transcript](../raw/transcripts/01-overview-tokenization.md)
+
+## The systems constraint: critical batch size
+
+Lecture 8 introduces [critical batch size](critical-batch-size.md) not as an
+optimisation topic but as the reason [data parallelism](data-parallelism.md) has a
+ceiling ([29:07]):
+
+> At a certain point there's something called the critical batch size, where the
+> gain you get from an additional batch element is less than if you had taken
+> another SGD step on that single element.
+
+Below it, extra batch elements are worth as much as extra steps; above it they are
+not, so "an infinitely large batch size is not infinitely better than infinitely
+many single steps" ([29:53]). Since data parallelism spends batch size to buy
+accelerators, this is a hard limit on how far it can scale, and it is what forces
+the entire model-parallelism half of that lecture.
+
+Lecture 8 closes by pointing here: "next week, I think, we're talking about scaling
+laws" ([1:19:41]).

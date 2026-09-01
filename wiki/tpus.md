@@ -117,3 +117,27 @@ matrices very fast" ([22:18]).
   objects," but "maybe we can talk about it offline" ([35:37]).
 - [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md).
 - [Transcript](../raw/transcripts/05-gpus-tpus.md), [slide deck](../raw/slides/05-gpus-tpus.md).
+
+## Lecture 8: the networking difference, and a plot twist
+
+Lecture 5 covered the TPU as a chip. Lecture 8's interest is entirely in its
+**network**, which is where it says the real difference lies ([4:40]).
+
+A TPU network is a **toroidal mesh** — a grid whose edges wrap — so every chip
+talks to neighbours and "the number of neighbors you have stays the same no matter
+how large your network gets" ([5:26]). Contrast the GPU fat tree, which grows more
+complex with scale. See [network topology](network-topology.md).
+
+The consequence for parallelism is direct: there is no fast-eight-then-slow
+boundary, so [tensor parallelism](tensor-parallelism.md) can run much wider than
+the GPU limit of 8 ([43:36]). [Gemma 2](parallelism-case-studies.md) is the proof —
+FSDP plus tensor and sequence parallel, **no pipeline parallelism at all**, because
+"for TPUs, you really don't need to do pipelines — you just take a really big
+toroidal mesh" ([1:16:36]). Whether that scales indefinitely is left open.
+
+**The twist.** Google announced TPU8i and TPU8t the morning of this lecture, and
+both move toward GPU-like all-to-all connectivity — TPU8i with a tree topology,
+TPU8t with cross-rack connectivity via a fabric called Virgo ([7:45]). The reading:
+[MoE](mixture-of-experts.md) workloads demand unpredictable routing, so "it's a
+little bit of a convergent evolution across both TPUs and GPUs, where the workloads
+are really defining the network that we need to have" ([8:31]).

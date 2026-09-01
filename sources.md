@@ -60,10 +60,14 @@ Supporting modules used by those programs: [`references.py`](https://github.com/
 captions mention XLA or JAX anywhere. This KB uses the course site's own name for
 it, "Kernels, Triton", and no XLA material is present in this offering.
 
-**A note on lectures 7 and 8.** Both are titled "Parallelism". Lecture 7 is Percy
-Liang's executable lecture and is transcribed here; Lecture 8 is Tatsunori
-Hashimoto's `lecture_08.pdf` deck and is not yet in this KB. A reader looking for
-parallelism material should not assume the two are interchangeable.
+**A note on lectures 7 and 8.** Both are titled "Parallelism", and **both are now
+transcribed here**. Lecture 7 is Percy Liang's executable lecture, on the collective
+primitives and the three cuts. Lecture 8 is Tatsunori Hashimoto's `lecture_08.pdf`
+deck, on what you do with them at cluster scale — ZeRO/FSDP, the pipeline bubble,
+activation memory, expert and context parallelism, and how real runs combine them.
+They are complements, not alternatives, and a reader wanting FSDP wants lecture 8.
+This KB titles the second one "Parallelism (Part 2)"; the deck's own title page
+reads "Parallelism Basics".
 
 **Lecture 7 has published runtime output**, which the other executable lectures do
 not. The course committed the program's own standard output from a real four-GPU
@@ -90,18 +94,18 @@ timings, measured FLOP/s, MFU, peak-memory readings) are marked
 | 3 | Architectures, hyperparameters | [`lecture_03.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf) — **transcribed**, all 67 pages, at [`raw/slides/03-architectures.md`](raw/slides/03-architectures.md) |
 | 4 | Attention alternatives and mixture of experts | [`lecture_04.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf) — **transcribed**, all 60 pages, at [`raw/slides/04-attention-alternatives.md`](raw/slides/04-attention-alternatives.md) |
 | 5 | GPUs, TPUs | [`lecture_05.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf) — **transcribed**, all 55 pages, at [`raw/slides/05-gpus-tpus.md`](raw/slides/05-gpus-tpus.md) |
-| 8 | Parallelism | [`lecture_08.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf) |
+| 8 | Parallelism (Part 2) | [`lecture_08.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf) — **transcribed**, all 73 pages, at [`raw/slides/08-parallelism-2.md`](raw/slides/08-parallelism-2.md) |
 | 9 | Scaling laws | [`lecture_09.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf) |
 | 11 | Scaling laws | [`lecture_11.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_11.pdf) |
 | 15 | Mid/post-training (SFT/RLHF) | [`lecture_15.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_15.pdf) |
 | 16 | Post-training — RLVR | [`lecture_16.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_16.pdf) |
 
-**`lecture_03.pdf`, `lecture_04.pdf` and `lecture_05.pdf` have been transcribed.** All were read as
+**`lecture_03.pdf`, `lecture_04.pdf`, `lecture_05.pdf` and `lecture_08.pdf` have been transcribed.** All were read as
 page images — every figure described in prose, every table transcribed cell by cell
 — because a text extractor recovers nothing from these decks' tables, which are
 pasted images, and flattens their equations into a single line.
 
-**None of the three decks prints a page number on any page**, so all three
+**None of the four decks prints a page number on any page**, so all four
 transcriptions label slides by PDF page number and say so in their front matter. For
 `lecture_03.pdf` an automated scan reported one printed number, which turned out to
 be the numerator of a fraction on page 61; for `lecture_04.pdf` the scan reported
@@ -109,10 +113,15 @@ none, and the absence was separately confirmed by eye across all 60 pages; for
 `lecture_05.pdf` the scan again reported none, a corner-position scan returned only
 mid-page body text (a "32" belonging to "a warp of 32 threads", a "5" belonging to
 "Trick 5"), and each of the three readers who split the deck confirmed the absence
-independently over its own range.
+independently over its own range. `lecture_08.pdf` is the cleanest case of the four:
+the corner-position scan returned **zero** digit tokens anywhere in 73 pages, and all
+five readers who split the deck confirmed the absence over their own ranges. The one
+near-miss worth naming, so nobody rediscovers it as a finding, is an isolated "10"
+beside slide 56's table — the $10^{-2}$ tick of the adjacent chart, not a folio.
 
-Lectures 4 and 5 are the figure-dependent decks — 102 pasted images across 60 pages
-and 83 across 55, with most pages carrying only 30–40 words of native text — so
+Lectures 4, 5 and 8 are the figure-dependent decks — 102 pasted images across 60
+pages, 83 across 55, and 86 across 73, with most pages carrying only 30–40 words of
+native text — so
 their figure descriptions carry the content rather than illustrating it. On each,
 chart- and table-heavy pages were audited against the PDF at high magnification —
 eight pages on lecture 4, and on lecture 5 two passes over fourteen; see `kb.json`

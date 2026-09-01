@@ -254,3 +254,19 @@ structure will always be there" ([1:20:26]).
   [`var/traces/lecture_07_stdout.txt`](https://github.com/stanford-cs336/lectures/blob/main/var/traces/lecture_07_stdout.txt),
   a real four-GPU run. Numbers quoted from it in this KB are marked "(recorded
   run)" and are measurements of that machine.
+
+## The sequel
+
+This lecture builds the machinery and cuts the network three ways. **Lecture 8 is
+the other half**, and it is where the things this lecture repeatedly defers to get
+explained: [ZeRO and FSDP](zero-and-fsdp.md), the
+[pipeline bubble](zero-bubble-pipelining.md) and how to shrink it,
+[activation memory](activation-memory.md) and
+[sequence parallelism](sequence-parallelism.md), and how real runs
+[combine four or more strategies at once](3d-parallelism.md).
+
+Both lectures are titled "Parallelism" in the course catalog. The division of
+labour: this one is Percy Liang's executable lecture on the primitives; lecture 8
+is Tatsunori Hashimoto's deck on what you do with them at cluster scale.
+
+Start at [Lecture 8 — Parallelism (Part 2)](08-parallelism-2.md).

@@ -213,3 +213,26 @@ shared memory. See [GPU architecture](gpu-architecture.md) for the hierarchy,
   — `optimizer()` and `AdaGrad`, lines 602–680; `motivating_questions()`,
   lines 71–86
 - [Edited transcript](../raw/transcripts/02-pytorch-resource-accounting.md)
+
+## Lecture 8's version: five copies, 16 bytes
+
+Lecture 8 restates the budget as a rule of thumb — "something like five copies of
+the weights, and 16 bytes per parameter, to store a model" ([13:52]) — itemised as
+parameters, gradients, a possible higher-precision accumulator, and Adam's first
+and second moments, the last often kept in high precision for stability ([14:37]).
+
+The punchline is that **optimizer state dominates**: "if you look at the
+accounting, this is most of the memory cost of doing an SGD update" ([14:37]).
+Slide 18 colours it consistently through the ZeRO sequence — blue parameters,
+orange gradients, green optimizer state — with green visibly the largest block and
+parameters and gradients equal ([15:23]).
+
+Which is what makes [ZeRO](zero-and-fsdp.md) so effective: the biggest slice of the
+budget is also the one that is cheapest to shard, since only the rank that owns a
+parameter slice needs its optimizer state. Slide 18's example runs 120 GB down to
+1.9 GB for a 7.5B model at $K=12$ and 64 ranks ([16:09]).
+
+But this whole budget is the **static** part. Slide 44's profile shows that real
+peak memory is dominated by a transient hump of activations that peaks *after* the
+forward pass, and that at scale activations dwarf parameters —
+see [activation memory](activation-memory.md) ([45:07]).

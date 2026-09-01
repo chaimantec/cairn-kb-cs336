@@ -51,7 +51,7 @@ Three consequences for anyone extending this KB:
 - **A website crawl misses the executable lectures entirely**, since the `.py`
   files are not linked as documents. `sources.md` lists them by hand.
 
-For decks (lectures 3, 4, 5, 8, 9, 11, 15, 16), the normal rules apply: read the
+For decks (lectures 3, 4, 5, 8, 9, 11, 15, 16 — of which 3, 4, 5 and 8 are done), the normal rules apply: read the
 pages visually, transcribe per slide, and audit the figure descriptions. **Lectures
 3, 4 and 5 are the ones done so far**, and they set four precedents worth
 following:
@@ -268,3 +268,80 @@ Built and updated by the `cairn-kb` skill. To add newly released lectures or
 extend coverage, append entries to `TODO.md` and re-run the skill — it only does
 unchecked work. Update `kb.json` whenever coverage changes; a stale `kb.json` is
 worse than none.
+
+## Run 8 precedents (lecture 8, a 73-page deck)
+
+- **Cross-check heading titles against the PDF text layer.** After assembling a
+  deck transcription, slug each `## Slide N — Title` and look for it near the top
+  of page N's extracted text. On lecture 8, 72 of 73 matched **verbatim**, the
+  single exception being a title page whose text layer letter-spaces its words.
+  This confirms page-to-heading attribution — that no reader skipped or shifted a
+  page — **without opening a single page image in the parent**, which is the
+  expensive thing the cost rules forbid. It costs one script and it is now the
+  cheapest strong check available at this step. Run it before the figure audit.
+
+- **The front matter is the least-checked layer of a slide file.** The figure
+  audit targets pages; nothing targets the aggregating prose the parent writes
+  *after* every reader has finished. On lecture 8, a sweep of all 48 cross-slide
+  assertions found four errors, and **two were in that front matter** rather than
+  in any reader's page — a legend list naming a slide that has no such legend, and
+  an audit note whose "within 1-3 teraFLOP/s" read as a data range when it meant an
+  agreement tolerance. Sweep the cross-slide claims explicitly, and include the
+  front matter in the sweep.
+
+- **A cross-slide claim is a distinct error class from a figure error.** All three
+  of the audit's remaining findings were sentences that described a *neighbouring*
+  slide, written by readers whose own pages were perfect. Add "check every
+  assertion about another slide" to the audit prompt; it needs no page images and
+  is therefore nearly free.
+
+- **Verify an auditor's findings before applying them.** Lecture 8's cross-slide
+  auditor reported four errors; one was its own. It read the readers' "no figure on
+  this page" remarks as contradicting a raster count, but every one of those pages
+  does carry a raster — pasted equations and tables rather than figures. Checking
+  it against the PDF took one command and saved a correct sentence from being
+  "fixed" into a wrong one.
+
+- **A dirty audit sample does not always mean the sample was too small.** Run 12 of
+  the CS224N build set the rule that a dirty sample warrants a second pass. Here
+  pass 1 came back 6 of 8 clean with the two failures on one page each, and pass 2
+  found **nothing** — because it could be aimed at a specific hypothesis rather than
+  sampling more pages. The slide-30 error was a series' x-positions inherited from a
+  neighbouring series; pass 2 checked the four other paired-series charts and
+  established that each has a genuine *single* categorical axis, so the failure mode
+  had no opportunity to occur. Prefer a targeted second pass over a larger one.
+
+- **Mis-hearings get fixed in the transcript body; speaker slips get an `[Ed:]`
+  note.** The drafting agent rewrote a spoken "ZeRO stage two" to "stage 3" because
+  the slide he was reading makes stage 3 unambiguous. The substance was right and
+  the change was still wrong: "two" and "three" are not acoustically confusable, so
+  the captions are reliable and it is the *speaker* who slipped. Contrast the same
+  transcript's "computation hungry" → "communication-hungry", which was kept — those
+  two words are a plausible ASR confusion and the same paragraph ends "very
+  communication hungry". **The test is whether the caption could plausibly have
+  mis-heard it.** If not, the body records what was said.
+
+- **LaTeX must never enter a transcript.** A drafting agent rendered a spoken "W
+  naught" as `$W_0$`. `raw/transcripts/` is a verbatim record and stays spelled
+  out; the wiki is where notation gets reconstructed. Same agent also interpolated
+  the word "layer" into a sentence the speaker did not put it in. Both reverted.
+
+- **A fourth checker bug, in the transcript ratio script.** Stripping the
+  floor-question label with a bare `]*` replace *also* matches inside the
+  `**[0:05]**` markers and destroys every one of them, so the ratio check reports
+  "105 paragraphs vs 0". Strip labels **per paragraph, after splitting**, and use
+  `\]\*(?!\*)` so a marker's `]**` is never touched.
+
+- **Two quote-checker bugs, both new.** Stripping `$...$` LaTeX from the haystack
+  desynchronizes exactly like the old `"([^"]{12,})"` quote regex did — an unpaired
+  or display-math `$` eats large spans and produces a wave of false failures.
+  **Do not strip math from either side.** And tolerate a quote that ends early and
+  adds a full stop: that is ordinary truncation, not misquotation, and it is
+  otherwise indistinguishable from a real slip in the output.
+
+- **Quote-check yield, lecture 8: 6 real slips in 115 fragments.** A comma where the
+  speaker has an em dash; "which involves" for "This then involves"; a quote begun a
+  word early; LaTeX reformatted inside quotation marks (twice); and — the one to
+  watch for — **the parent's own editorial aside set as a blockquote**, which reads
+  as a quotation of the lecturer and is not one.
+

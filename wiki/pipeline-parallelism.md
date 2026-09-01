@@ -120,6 +120,36 @@ pipeline parallelism is what you reach for when you have run out of the other tw
 apart to do anything else. Combinations "also will show up in the assignment"
 ([1:15:51]).
 
+## Where lecture 8 takes this
+
+Lecture 8 gives the bubble a number and a fix, and explains where pipelines belong.
+
+**The bubble ratio.** Utilisation is governed by the number of stages over the
+number of micro-batches, so the bubble shrinks as one over the micro-batch count
+and "we need a huge batch size in order to reduce this bubble towards zero"
+([33:42]). Slide 36 sweeps this: at large batch sizes a deep pipeline reaches
+nearly the utilisation of no pipeline at all, and at small batch sizes it
+collapses. Pipelines spend [batch size](critical-batch-size.md) as their fuel.
+
+**Why put up with it.** The communication properties are the best of any strategy:
+activations of size $B \times S \times H$, moved **point-to-point** rather than
+all-to-all ([34:27]). Asked to be specific, the answer is that this "is almost
+always a smaller amount of data than attempting to communicate a whole parameter
+matrix" ([36:00]). Hence the placement rule, which is the practical takeaway:
+
+> In practice, what we're going to do is put pipelines on the slowest networking
+> links ([35:14]).
+
+Across data centres or between slow pods, pipeline parallel is what you reach for.
+
+**Shrinking the bubble further.** Interleaving forward and backward micro-batch
+steps buys a little ([36:45]); [zero-bubble pipelining](zero-bubble-pipelining.md)
+buys much more, by splitting the backward pass into the part the next stage is
+waiting on and the part that can be deferred ([38:16]).
+
+The folklore verdict, quoted in the lecture: "parallelization code looks reasonable
+and people can understand it, until you implement pipeline parallel" ([33:42]).
+
 ## See also
 
 - [Data parallelism](data-parallelism.md) — the batch cut, and the one that

@@ -150,3 +150,23 @@ The kernels are written in [Triton](triton.md), which is what Assignment 2 asks 
   throughput.
 - [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md).
 - [Transcript](../raw/transcripts/05-gpus-tpus.md), [slide deck](../raw/slides/05-gpus-tpus.md).
+
+## Its place in the activation-memory budget
+
+Lecture 8 gives FlashAttention a precise role in the memory accounting. Per-layer
+[activation memory](activation-memory.md) is $sbh(34 + 5as/h)$, and that second
+term is exactly what FlashAttention removes ([47:25]):
+
+> This odd-looking term, $5as/h$, comes from the quadratic attention terms,
+> including the dropout terms, and we can drop this term via recomputation, if we
+> do flash attention.
+
+That is the difference between rows 2 and 4 of slide 49's table, and between rows 3
+and 5. The reason it is worth doing here specifically, rather than recomputing the
+MLP as well, is the asymmetry noted at ([52:48]): attention recomputation "is
+generally cheaper, because you do it tile-wise as well, and also you don't want to
+pay the quadratic cost again". Cheap to recompute, quadratic to store.
+
+[Context parallelism / ring attention](context-parallelism.md) applies the same
+block-wise accumulation across *devices* rather than within one, so a sequence too
+long for any single accelerator can still be attended over ([1:01:12]).

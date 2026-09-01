@@ -2,12 +2,13 @@
 
 > **Coverage note.** This page is the syllabus as Percy Liang presents it in
 > [Lecture 1](01-overview-tokenization.md) ([27:04]–[1:03:57]). It is a map of the
-> whole course, but **this knowledge base currently covers Lectures 1–7 of 18**.
+> whole course, but **this knowledge base currently covers Lectures 1–8 of 18**.
 > Every unit below is a preview here rather than a treatment, except
-> tokenization (Lecture 1), model architecture (Lectures 3 and 4) and most of
-> Systems (Lectures 2, 5, 6 and 7 — everything but Lecture 8's sharded data
-> parallelism and Lecture 10's inference). See [`kb.json`](../kb.json) for exact
-> coverage.
+> tokenization (Lecture 1), model architecture (Lectures 3 and 4) and the whole of
+> the Systems unit except inference (Lectures 2, 5, 6, 7 and 8 — Lecture 8 closes
+> the sharded-data-parallelism gap this note used to flag, leaving Lecture 10's
+> inference as the only Systems topic still uncovered). See
+> [`kb.json`](../kb.json) for exact coverage.
 
 CS336 is five units, each paired with an assignment. The unifying question, stated
 at [1:02:23], is [efficiency](efficiency.md): how do you build the best model given

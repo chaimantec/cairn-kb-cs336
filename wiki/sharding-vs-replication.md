@@ -73,6 +73,36 @@ appetite grows to consume whatever the fast tier can hold. The
 [efficiency](efficiency.md) framing of the course is the same claim from the other
 direction: the binding constraint moves, but there is always one.
 
+## Where lecture 8 takes this
+
+Lecture 8 sharpens the distinction into a question of **what flies across the
+network**, which turns out to be the cleaner way to separate the two families
+([30:38]):
+
+> Model parallelism is going to be this idea of, essentially like FSDP, splitting
+> the parameters up across GPUs. But I think the important conceptual difference
+> between what we talked about and what we'll talk about next is that now we're
+> going to communicate **activations**. In FSDP, we cut up the parameters, but in
+> some sense it was just a wrapper — we were still doing the normal computation,
+> just sending parameters back and forth before doing it.
+
+So [ZeRO/FSDP](zero-and-fsdp.md) shards parameters but still moves *parameters*,
+and every rank still runs the whole model start to finish. True model parallelism
+—[pipeline](pipeline-parallelism.md), [tensor](tensor-parallelism.md),
+[expert](expert-parallelism.md) — moves *activations* instead.
+
+The lecture admits the taxonomy leaks: "the boundary between these two is a little
+leaky, because one of the algorithms here will actually cut up parameters too"
+([11:33]) — that algorithm being FSDP.
+
+**The recurring pattern.** Store sharded, materialise on demand, free immediately.
+It appears as ZeRO stage 2's incremental gradient reduction, stage 3's per-layer
+all-gather, sequence parallelism's on-demand pointwise activations, and
+[recomputation](activation-checkpointing.md). The lecture names the resemblance
+itself, calling sequence parallelism "conceptually very similar to the FSDP-style
+idea, where we're storing them in this sharded format, and gathering them as we
+need them" ([50:28]).
+
 ## See also
 
 - [Arithmetic intensity](arithmetic-intensity.md) — the same

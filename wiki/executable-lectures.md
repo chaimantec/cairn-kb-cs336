@@ -141,3 +141,30 @@ extending this knowledge base.
 - [`lecture_02.py` transcription](../raw/slides/02-pytorch-resource-accounting.md)
   — the second worked example of the format, and the one with machine-dependent
   values in it
+
+## The other half: the deck lectures
+
+Four of the eight lectures covered so far are **not** executable programs. Lectures
+3, 4, 5 and 8 are Tatsunori Hashimoto's PDF slide decks, transcribed page by page
+into `raw/slides/` from the rendered pages.
+
+Citation practice differs accordingly, and getting it wrong makes a citation
+unfollowable:
+
+- **Executable lectures** (1, 2, 6, 7) — cite the **function name and source line
+  range**. There are no slide numbers.
+- **Deck lectures** (3, 4, 5, 8) — cite the **slide number**, which for all four
+  decks means the **PDF page number**, since none of them prints a folio on any
+  page.
+
+Lecture 8's deck is the largest so far at 73 pages, and the most figure-dense
+relative to its text: 86 raster images against about 2,749 words, roughly 38 words
+per page. As with lectures 3–5, the figures *are* the content rather than an
+illustration of it, so the slide file describes every chart, diagram and table in
+prose. See [`raw/slides/08-parallelism-2.md`](../raw/slides/08-parallelism-2.md).
+
+One consequence worth knowing when reading a deck transcription: the decks contain
+their own typos and self-contradictions, which are transcribed **as printed** and
+flagged rather than silently repaired. Lecture 8's deck misspells FSDP as "FDSP" on
+three separate slides, and slides 70 and 72 disagree about the same model's
+pipeline-parallel degree.

@@ -128,6 +128,26 @@ exploring in assignment two" ([1:14:18]). Gradients for the last layer are
 finished long before the first layer's, so most of the communication can hide
 under the remaining computation.
 
+## Where lecture 8 takes this
+
+Lecture 8 opens by re-deriving this scheme's cost — perfect compute scaling,
+$2\times$ parameters of communication per step, and **no memory scaling at all**,
+since "every GPU has the same copy of the model" ([13:06]) — and then spends the
+next half hour removing the replication.
+
+[ZeRO and FSDP](zero-and-fsdp.md) shard the optimizer state, then the gradients,
+then the parameters. The first two stages cost **nothing extra**, because a
+reduce-scatter plus an all-gather is exactly an all-reduce ([18:26]).
+
+It also names the limit that no amount of sharding fixes: data parallelism
+*consumes* [batch size](critical-batch-size.md), so "if you have a batch size of
+eight, you can never have more than eight accelerators" ([29:07]). That is why the
+lecture moves on to model parallelism.
+
+In practice data parallelism is still the strategy you maximise —
+[every case study](parallelism-case-studies.md) pushes DP as high as it can and
+uses model parallelism only to make the model fit.
+
 ## See also
 
 - [Collective operations](collective-operations.md) — all-reduce, and why it

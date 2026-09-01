@@ -119,6 +119,26 @@ really bad, because that's going to be one node which is not providing that much
 compute and also is very expensive to communicate with." Topology is not a
 detail you can round off.
 
+## Topology, not just bandwidth
+
+Lecture 8 adds the shape of the network to the speeds of its links — see
+[network topology](network-topology.md) for the full treatment. In short: TPUs use
+a **toroidal mesh** where each chip's neighbour count is constant however large the
+machine grows, while GPUs use a **fat tree** that gets deeper and more complex with
+scale ([5:26]–[6:12]).
+
+That difference is why the "stay inside the node" rule is a GPU rule. On GPUs there
+is a hard boundary at eight, so [tensor](tensor-parallelism.md) and
+[expert](expert-parallelism.md) parallelism live inside an NVLink domain and
+[pipelines](pipeline-parallelism.md) cross between nodes ([42:50], [1:07:22]). On a
+TPU mesh no such boundary exists, so tensor parallelism can run much wider
+([43:36]).
+
+The mapping of strategy to link speed is the practical conclusion of the whole
+lecture: **fastest links get tensor or expert parallel, slowest links get
+pipeline** ([35:14], [1:06:37]), because pipeline communication is point-to-point
+and activation-sized while tensor communication is all-to-all and frequent.
+
 ## See also
 
 - [GPU architecture](gpu-architecture.md) — the hierarchy inside the chip.
