@@ -660,9 +660,55 @@ Sonnet. Page 72's overview table is read at Sonnet and audited at Opus.
 ### Transcript
 - [x] 08 — verbatim captions fetched (105 paragraphs, ~15.8k words, runs to
       1:20:02), saved to raw/transcripts/original/08-parallelism-2.md
-- [ ] 08 — copy-edited transcript (draft at Sonnet, adjudicate here). Must wait
-      for the slide file: the edit is cross-checked against the deck.
-- [ ] 08 — verify: timestamps, number inventory, per-paragraph word ratios
+- [x] 08 — copy-edited transcript (drafted by Sonnet, adjudicated here)
+- [x] 08 — verify: all three checks pass. Timestamps: 105 markers, identical
+      sequence, [MM:SS] and [H:MM:SS] alike. Numbers: one loss and 21 gains, all
+      adjudicated — the loss is "8x24 22B" -> "8x22B" (slide 69 lists a Mixtral
+      8x22B row and the same paragraph names it a sentence earlier), and every
+      gain is either a spelled-out "zero stage one/two/three" written as a digit
+      to match the deck's own "ZeRO stage 1", or the TPU8i/TPU8t restoration.
+      Word ratios: retention 84.0%; three paragraphs a hair under the band at
+      0.66-0.72 (41:20, 42:05, 57:23), all read in full against the original and
+      confirmed pure filler — this speaker's "you know"/"sort of" density is the
+      same signature lectures 6 and 7 showed.
+      Restored proper nouns: all 16 deck-supported terms verified present in
+      raw/slides/08-parallelism-2.md by grep (TPU8i x3, TPU8t, ZeRO x83, GeLU x7,
+      OLMo x3, DeepSeek x14, Nemotron x8, DeepEP x4, HybridEP x4, 8x22B x5,
+      A100 x10, Kahan, GShard x2, NCCL, Megatron x17, Qwen x19). The only two
+      restorations absent from BOTH deck and captions are "convergent evolution"
+      (captions: "conversion evolution") and "scaling laws" (captions: "scaling
+      loss") — exactly the two the draft itself labelled outside-knowledge, so
+      its evidence claims held up, unlike run 7's.
+- [x] 08 — adjudication: FOUR changes made here.
+      (1) "$W_0$" reverted to "that W naught". LaTeX must not enter a transcript;
+      raw/transcripts/ is a verbatim record and the wiki is where notation gets
+      reconstructed. This is the first time a drafting agent has broken that rule
+      in this build.
+      (2) "all-gathering LAYER one/two" reverted to "all-gathering one/two" —
+      "layer" is an interpolation, and the preceding sentence already supplies
+      "the next layer's parameters".
+      (3) "a quarter of the parameters" reverted to "1/4", the figure the
+      captions carry.
+      (4) THE IMPORTANT ONE. The draft rewrote a spoken "zero stage two" to
+      "ZeRO stage 3" at 29:53 because slide 30 shows stage 3 is what cuts
+      parameter memory. The substance is right — the slide is unambiguous — but
+      the body has been reverted to what he said, with the [Ed:] note rewritten
+      to explain it. The distinguishing test, worth reusing: "two" and "three"
+      are not acoustically confusable, so the captions are reliable there and the
+      SPEAKER slipped while reading his own slide. Contrast 42:05, where
+      "computation hungry" was restored to "communication-hungry" and KEPT: those
+      two words are a plausible ASR confusion, and the same paragraph ends "very
+      communication hungry". Mis-hearings get fixed in the body; speaker slips get
+      an [Ed:] note and stay as spoken.
+      Left correctly as heard by the draft, with notes: "300 chips" against the
+      deck's 384 (10:02), an unidentifiable "P200" accelerator, and "DeepSeek V1"
+      at 1:13:31 where slide 64's excerpt is from the V2 paper — he said V1, so V1
+      it stays. 7 [Ed:] notes, 12 student questions marked.
+      CHECKER BUG, the fourth distinct one in this build: stripping the floor-
+      question label with a bare `]*` replace ALSO matched inside the `**[0:05]**`
+      markers and destroyed every one of them, so the ratio check reported
+      "105 paragraphs vs 0". Strip labels per-paragraph AFTER splitting, and use
+      `\]\*(?!\*)` so the marker's `]**` is never touched.
 
 ### Wiki
 - [ ] wiki/08-parallelism-2.md
