@@ -30,9 +30,13 @@ numbering: >
 figures: >
   86 raster images across 73 pages against roughly 2,749 words of native text —
   about 38 words per page — so, as in lectures 3, 4 and 5, the pasted figures ARE
-  the content rather than an illustration of it. Only seven pages carry no image
-  at all (3, 13, 14, 21, 28, 55, 72), and several of those are the deck's own
-  dense native tables. Every figure below was described from the rendered page
+  the content rather than an illustration of it. Only seven pages carry no raster
+  image at all (3, 13, 14, 21, 28, 55, 72), and several of those are the deck's own dense native tables, drawn
+  as live vector text. Note that "raster image" here counts pasted equations and
+  pasted tables as well as figures, so a page an entry below describes as having
+  "no figure" may still hold one — slides 46 and 47, for instance, carry their
+  boxed equations as images. There is no repeated template graphic; every raster
+  in this deck is distinct content. Every figure below was described from the rendered page
   image, re-rendered and cropped at 600-4800 dpi wherever labels were small.
   Chart values on slides 56, 60, 61 and 62 were obtained by colour-masked pixel
   sampling against the detected axis ticks rather than by eye. Where something
@@ -45,7 +49,8 @@ audit: >
   clean: page 12's two Huawei-vs-Nvidia sub-tables (15 rows, plus the Chinese
   photo annotations), page 21's DDP-vs-ZeRO-1 comparison table, page 55's 42-cell
   recap table including every red-highlighted cell, page 60's chart (all 12 data
-  points within 1-3 teraFLOP/s), page 67's 72-cell Llama 3 failure table, and
+  points agree with the transcribed values to within 1-3 teraFLOP/s, on series
+  spanning roughly 44-171), page 67's 72-cell Llama 3 failure table, and
   page 72's 40-cell overview table. Four errors were found and corrected, two
   each on pages 30 and 37; see the entries themselves. Three further errors were
   found in cross-slide COMMENTARY on pages 67 and 72 rather than in the pages'
@@ -135,7 +140,7 @@ transcription error.
   misspelling rather than a one-off slip.
 - **Slide 4**: "The word's fastest supercomputers" — "word's" for "world's".
 - **Slide 22**: the bullet text calls the gradient shards "pink slices", but the
-  diagram — and every legend on slides 18, 19, 23 and 24 — renders gradients
+  diagram — and every legend on slides 18, 19 and 24 — renders gradients
   orange.
 - **Slide 37**: the interleaved pipeline schedule visibly uses four cell colours
   (two shades of blue, two of green) for two model chunks per device, while the
@@ -157,7 +162,7 @@ transcription error.
   about 94.9%, not 100%, although the interruption counts do sum to 419. The gap
   is in the source table as pasted.
 - **Slide 71**: the sub-heading reads "225B-A22B" while its own table names the
-  model "Qwen3-235B-A22B" four times.
+  model "Qwen3-235B-A22B" three times.
 - **Slides 70 and 72 disagree with each other** about the same model: slide 70
   gives Nemotron 3 Super's pipeline-parallel degree as 0 in "TP / PP / CP / EP
   (2/0/64/64)", while slide 72's overview table records its PP as "??". The
@@ -525,7 +530,7 @@ Text: "Emboldened by our success, let's shard even more stuff"
 
 "**Complexity** – we can never instantiate a full gradient vector, but each worker must compute a full gradient (since we're data parallel)"
 
-Note: the bullet calls the gradient slices "pink," but the diagram (and the legend on slides 18/19/23) render the gradient color as orange. Transcribed as printed — this is the deck's own inconsistency, not a resolution artifact.
+Note: the bullet calls the gradient slices "pink," but the diagram (and the legend on slides 18/19) render the gradient color as orange. Transcribed as printed — this is the deck's own inconsistency, not a resolution artifact.
 
 ## Slide 23 — ZeRO stage 2. how it works
 
