@@ -622,14 +622,41 @@ Sonnet. Page 72's overview table is read at Sonnet and audited at Opus.
       contradicting itself in its own parenthetical; and a reference to "slide
       68's later heading" when slide 68 is Gemma 2. Cross-references were not
       something the audit prompt asked for; they should be next time.
-- [ ] Figure audit, pass 2 — NOT run yet. Pass 1 was 6/8 clean, so it is not
-      mandatory under the dirty-sample rule, but two targeted leads are worth it:
-      (a) the slide-30 error class — any other chart with paired 175B-vs-530B
-      style series where the reader may have assumed a shared x-axis (slides 36,
-      45, 61, 62 are the candidates); (b) every cross-slide assertion in the file,
-      which the Opus auditor explicitly recommended re-checking after finding all
-      three of its discrepancies there.
-
+- [x] Figure audit, pass 2 — both leads run; NOTHING wrong on any page.
+      (a) Charts 36, 45, 61, 62, re-checked for the slide-30 error class by
+      extracting each native raster, calibrating against located axis ticks and
+      colour-matching marker blobs. ALL FOUR CLEAN, with a structural reason
+      rather than a lucky sample: each of these charts has a genuine SINGLE
+      categorical x-axis, so the failure mode had no opportunity to occur. Slide
+      30 was the deck's only chart with two paired continuous-x series, which is
+      why it was the only one to show the error. On 61 and 62 the occluded blue
+      markers were recovered by least-squares circle-fitting the visible arc, and
+      the recovered values are DISTINCT from the orange values covering them —
+      that positively rules out a copied value rather than merely failing to find
+      one. Page 45's stacked bars were confirmed to record segment heights, not
+      cumulative totals, and its red dashed line sits exactly on the calibrated
+      y=80 gridline, confirming it is a threshold and not a series.
+      (b) Cross-slide assertions — all 48 in the file swept, text against text,
+      no page images. Four wrong, three real:
+        * slide 23 was listed among the legends rendering gradients orange; its
+          diagrams are colour-coded by RANK (blue/red/green/yellow) and carry no
+          such legend. Dropped from both lists.
+        * slide 71's table was said to name "Qwen3-235B-A22B" four times; it
+          prints that exact string three times, the fourth occurrence being this
+          file quoting it.
+        * an audit note reading "within 1-3 teraFLOP/s" was ambiguous enough to
+          be read as the data range; it meant the agreement tolerance, and now
+          says so.
+      The fourth was the AUDITOR's error, not the file's, and is worth recording
+      because it nearly cost a correct sentence: it read the readers' "no figure
+      on this page" remarks as contradicting the front matter's raster count, but
+      every one of those pages does carry a raster — pasted equations and tables
+      rather than figures. Verified in the parent against the PDF before
+      applying; the wording now states the distinction.
+      LESSON: two of the four errors were in FRONT MATTER I wrote, not in any
+      reader's page. The aggregating prose is the least-checked layer of a slide
+      file, because it is written after every reader has finished and no audit
+      targets it. Sweep it explicitly next deck.
 ### Transcript
 - [x] 08 — verbatim captions fetched (105 paragraphs, ~15.8k words, runs to
       1:20:02), saved to raw/transcripts/original/08-parallelism-2.md
