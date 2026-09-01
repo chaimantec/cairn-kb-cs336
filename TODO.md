@@ -585,8 +585,50 @@ Sonnet. Page 72's overview table is read at Sonnet and audited at Opus.
       34/t, and selective recomputation drops the 5as/(ht) term from each), and
       the reader for 16-30 reported the ZeRO formulas on 18/19/22/24 reproducing
       their own printed GB values. No LaTeX inside code fences.
-- [ ] Figure audit, pass 1
-- [ ] Figure audit, pass 2 (mandatory if pass 1 comes back dirty)
+- [x] Figure audit, pass 1 — eight pages (12, 21, 30, 37, 55, 60, 67, 72), at
+      least one from each of the five readers' ranges, chosen from the pages the
+      readers themselves nominated. Three auditors: Sonnet on 12/21/30 and
+      37/55/60, Opus on 67/72 because those two tables are the deck's most-quoted
+      and had been read at Sonnet. SIX CLEAN, two dirty, 4 errors + 3 more in
+      cross-slide commentary, all 7 applied.
+      Clean: 12 (both sub-tables, 15 rows, plus the Chinese photo annotations),
+      21 (the load-bearing DDP-vs-ZeRO-1 table), 55 (42 cells incl. every
+      red-highlighted cell, and the two distinct senses of "None" confirmed),
+      60 (all 12 data points within 1-3 teraFLOP/s), 67 (72 cells), 72 (40 cells,
+      column alignment PROVEN by identical text-layer span x-origins down each
+      column).
+      Errors on 30: the ZeRO-3 530B diamond series' first two x-positions were
+      assumed to mirror the 175B circle series (768, 1152) when both 530B series
+      sit at their own rightward-shifted positions (~815, ~1250). A
+      series-conflation error, not a scattered value error.
+      Errors on 37: the interleaved schedule's Device 1 readout — the pale-blue
+      run is 4 cells not 6 and returns to dark blue for 5,6; and the gray gap
+      sits BEFORE the single "13" cell, with the four colours forming two
+      sequential two-colour blocks rather than one interleaved run. Every
+      STRUCTURAL claim on 37 was correct (4 device rows, 2-entry legend against 4
+      visible colours, numbering continuing past the step boundary).
+      Two contested editorial claims were put to the auditors deliberately and
+      BOTH were confirmed: slide 67's counts sum to exactly 419 while its
+      percentages sum to exactly 94.9% (gap is in the pasted source), and slide
+      60's own "flat utilization!" caption is contradicted by its own chart —
+      the orange PTD-P series sag ~12 teraFLOP/s while both blue ZeRO-3 series
+      fall 69% and 65%. A caution was added to slide 67: the percentages are not
+      percentages OF 419 either (148/419 = 35.3% vs a printed 30.1%), so the
+      pasted table lists only leading categories.
+      NEW ERROR CLASS this run: all 3 remaining errors were in cross-slide
+      COMMENTARY, not in the audited page's own content — a CP value called
+      common to all three of slide 66's rows when it is 1, 1, 16; a sentence
+      asserting the Llama3 DP=128 matches slide 66's first row and then
+      contradicting itself in its own parenthetical; and a reference to "slide
+      68's later heading" when slide 68 is Gemma 2. Cross-references were not
+      something the audit prompt asked for; they should be next time.
+- [ ] Figure audit, pass 2 — NOT run yet. Pass 1 was 6/8 clean, so it is not
+      mandatory under the dirty-sample rule, but two targeted leads are worth it:
+      (a) the slide-30 error class — any other chart with paired 175B-vs-530B
+      style series where the reader may have assumed a shared x-axis (slides 36,
+      45, 61, 62 are the candidates); (b) every cross-slide assertion in the file,
+      which the Opus auditor explicitly recommended re-checking after finding all
+      three of its discrepancies there.
 
 ### Transcript
 - [x] 08 — verbatim captions fetched (105 paragraphs, ~15.8k words, runs to

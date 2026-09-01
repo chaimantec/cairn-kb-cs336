@@ -38,6 +38,19 @@ figures: >
   sampling against the detected axis ticks rather than by eye. Where something
   could not be resolved at any magnification the entry says so rather than
   guessing; there are two such places, both recorded under "Known limits" below.
+audit: >
+  Figure audit pass 1 covered eight pages — 12, 21, 30, 37, 55, 60, 67 and 72 —
+  at least one from each of the five readers' ranges, chosen from the pages the
+  readers themselves nominated as most chart- or table-dense. Six came back
+  clean: page 12's two Huawei-vs-Nvidia sub-tables (15 rows, plus the Chinese
+  photo annotations), page 21's DDP-vs-ZeRO-1 comparison table, page 55's 42-cell
+  recap table including every red-highlighted cell, page 60's chart (all 12 data
+  points within 1-3 teraFLOP/s), page 67's 72-cell Llama 3 failure table, and
+  page 72's 40-cell overview table. Four errors were found and corrected, two
+  each on pages 30 and 37; see the entries themselves. Three further errors were
+  found in cross-slide COMMENTARY on pages 67 and 72 rather than in the pages'
+  own content, and are also corrected. Every value, table cell and structural
+  claim on the six clean pages was exact.
 math: >
   Equations were transcribed from the rendered page, never from the text layer,
   which flattens fractions onto one line. This matters most for the
@@ -653,7 +666,7 @@ Figure: a line chart (reproduced from an external paper on large-scale training 
 There are **four data series**, distinguished by color (blue vs. orange) and by line style/marker (dashed-circle vs. solid-diamond for blue; dashed-triangle vs. solid-square for orange):
 
 - **ZeRO-3, 175B** (dashed blue line, circle markers): three points, approximately (just left of 768, ≈143), (≈960, ≈88), (1536, ≈44) — a steep decline as GPU count grows.
-- **ZeRO-3, 530B** (solid blue line, diamond markers): three points, approximately (just left of 768, ≈140), (1152, ≈97), (rightmost/unlabeled x beyond 1920, ≈48) — also declining, but staying above the 175B dashed-blue curve until they nearly meet by the last point.
+- **ZeRO-3, 530B** (solid blue line, diamond markers): three points, approximately (just right of 768, ≈140), (≈1250, ≈97), (rightmost/unlabeled x beyond 1920, ≈48) — also declining, but staying above the 175B dashed-blue curve until they nearly meet by the last point. Note that the two 530B series (this one and PTD-P 530B) share their own set of x-positions, shifted right of the two 175B series: the 530B points sit at roughly 815 and 1250 where the 175B points sit just left of 768 and at roughly 960. Do not assume the four series share x-positions.
 - **PTD-P, 175B** (dashed orange line, triangle markers): three points, approximately (just left of 768, ≈152), (≈960, ≈147), (1536, ≈140) — nearly flat, gently declining.
 - **PTD-P, 530B** (solid orange line, square markers): three points, approximately (just right of 768, ≈172), (≈1250, ≈166), (rightmost/unlabeled x beyond 1920, ≈158) — nearly flat, the highest curve on the chart throughout.
 
@@ -748,7 +761,7 @@ No chart or table on this page.
 
 **Top schedule (before — one stage per device, i.e. standard 1F1B/GPipe-style layout).** Four rows, "Device 1"–"Device 4". Reading left to right: each device does 4 forward passes (blue, numbered 1–4) staggered so Device 1 starts first, Device 2 one step later, Device 3 two steps later, Device 4 three steps later (ascending staircase), separated by idle gray cells that grow with device depth. Backward cells (green) then appear staggered in the reverse order once the top-most stage's backward begins propagating back, interleaved with more forward passes of later microbatches (e.g. Device 1's sequence continues "... 1(green), 5(blue), 2(green), 6(blue), 3(green), 7(blue), 4(green), 8(blue), 5(green) ..."), i.e. steady-state 1-forward-1-backward alternation, with occasional single idle gray cells still visible between later backward cells for the earlier devices. After the vertical step-boundary line, the pattern repeats: Device 1 shows forward passes 9,10,11,12 (blue) immediately, then (after a short gray gap) backward passes 9, 10 begin appearing (green); Device 3 similarly shows forwards 9–12 then backward 9, then a forward labelled **13**, then backward 10, gray gap, backward 11 — i.e. the microbatch counter keeps incrementing past 12 across the boundary rather than resetting, consistent with a continuously-overlapping training loop rather than a hard per-iteration reset (the deck does not explain this explicitly).
 
-**Bottom schedule (after — multiple, non-contiguous stages per device, the "interleaved" schedule).** Four rows, "Device 1"–"Device 4", but now **four** distinct cell colors appear rather than two: dark blue, a lighter/pale blue, a pale green, and a darker olive green — evidently forward and backward passes for two different model chunks assigned to the same device (e.g., Device 1's opening cells read 1,2,3,4 in dark blue immediately followed by 1,2,3,4,5,6 in pale blue — two separate forward sequences back to back). **This is a contradiction/gap in the deck**: the legend printed under the figure labels only two colors ("Forward Pass" = dark blue, "Backward Pass" = dark/olive green), but the bottom schedule itself clearly uses two shades of blue and two shades of green (four colors total) with no separate legend entries for the paler shades. Structurally, the bottom schedule has visibly fewer and shorter gray idle gaps than the top schedule, especially in the steady-state region — consistent with the slide's point that interleaving stages improves utilization — while the numbering pattern (verified at high zoom for Devices 1–2 immediately after the step-boundary line) shows each device cycling through its two assigned chunks, e.g. Device 1 reads dark-blue 9,10,11,12, pale-blue 9,10,11,12, dark-blue 13,14, [gray gap], then interleaved dark-blue/pale-green/pale-blue/dark-green cells numbered 15,9,16,10,13,11,14,12,15,9,16,10 — i.e. forward and backward passes for both of the device's chunks interleaved at fine grain.
+**Bottom schedule (after — multiple, non-contiguous stages per device, the "interleaved" schedule).** Four rows, "Device 1"–"Device 4", but now **four** distinct cell colors appear rather than two: dark blue, a lighter/pale blue, a pale green, and a darker olive green — evidently forward and backward passes for two different model chunks assigned to the same device (e.g., Device 1's opening cells read 1,2,3,4 in dark blue, then 1,2,3,4 in pale blue — two equal-length forward sequences of four back to back — before returning to dark blue for 5,6). **This is a contradiction/gap in the deck**: the legend printed under the figure labels only two colors ("Forward Pass" = dark blue, "Backward Pass" = dark/olive green), but the bottom schedule itself clearly uses two shades of blue and two shades of green (four colors total) with no separate legend entries for the paler shades. Structurally, the bottom schedule has visibly fewer and shorter gray idle gaps than the top schedule, especially in the steady-state region — consistent with the slide's point that interleaving stages improves utilization — while the numbering pattern (verified at high zoom for Devices 1–2 immediately after the step-boundary line) shows each device cycling through its two assigned chunks, e.g. Device 1 reads dark-blue 9,10,11,12, then pale-blue 9,10,11,12, then a three-cell gray gap, then a single dark-blue 13, then alternating dark-blue/pale-green pairs numbered 13,9,14,10,15,11,16,12, and then a *separate* block of alternating pale-blue/olive-green pairs numbered 13,9,14,10,15,11 — i.e. forward and backward passes for the device's two chunks interleaved at fine grain, but as two sequential two-colour blocks rather than all four colours interleaving in one run.
 
 "Some more crazy pipeline patterns can improve utilization, but at the cost of bandwidth"
 
@@ -1391,7 +1404,7 @@ No printed page number visible on slides 63–66.
 
 ## Slide 67 — Llama 3 405B
 
-Heading, in blue: "Llama 3 405B". Note this heading is spelled "Llama 3" with a space, distinct from slide 66's "Llama3" (no space) and slide 68's later heading — transcribed as printed on each page.
+Heading, in blue: "Llama 3 405B". Note this heading is spelled "Llama 3" with a space, distinct from slide 66's "Llama3" (no space) — transcribed as printed on each page.
 
 Sub-heading in bold black: "**Side note** – Lots of GPU failures at this scale!"
 
@@ -1420,7 +1433,7 @@ A pasted table, transcribed cell by cell (columns: Component, Category, Interrup
 
 This is every row in the table; there is no total/summary row printed beneath it. Caption below the table, in bold run-in + plain text: "**Table 5**  **Root-cause categorization of unexpected interruptions during a 54-day period of Llama 3 405B pre-training.**  About 78% of unexpected interruptions were attributed to confirmed or suspected hardware issues."
 
-Arithmetic check (not printed on the slide, noted here for the reader): the 18 Interruption Count values sum to 419, but the 18 printed percentages sum to approximately 94.9%, not 100%. This gap is in the source table as pasted (confirmed at 600 dpi against the original crop) — it is not a transcription error here, and the slide does not reconcile or explain it.
+Arithmetic check (not printed on the slide, noted here for the reader): the 18 Interruption Count values sum to 419, but the 18 printed percentages sum to exactly 94.9%, not 100%. This gap is in the source table as pasted (confirmed at 600 dpi against the original crop) — it is not a transcription error here, and the slide does not reconcile or explain it. Note also that the printed percentages are not percentages *of* 419 — 148/419 is 35.3%, against a printed 30.1% — so the pasted table appears to list only the leading categories out of a larger interruption total. Quote the two sums as they stand; do not compute a percentage from the counts in this table.
 
 ## Slide 68 — Gemma 2
 
@@ -1525,7 +1538,7 @@ Every "??" cell above is printed exactly that way in the table (an unfilled/unkn
 
 Below the table, in bold + plain text: "**Patterns** – TP generally <= 8. EP can be big (but hard!). Long context phases use large CP"
 
-Cross-check against other slides in this range: this table's Llama3 405B row (DP 128, TP/SP 8, EP 0, PP 16, CP 1) matches the first row of slide 66's Llama 3 GPU-count table (8,192 GPUs = TP8 × PP16 × DP64... — note slide 66's first row gives DP=64, not 128; this table's DP=128 instead matches slide 66's *second* row, 16,384 GPUs, TP8/PP16/DP128). This table does not specify which of Llama 3's three training stages its Llama3 405B row is drawn from, and it picks the middle (16,384-GPU, DP128) stage's DP value while carrying TP=8, PP=16, CP=1 that are common to all three of slide 66's rows. This table's Mixtral 8x22 row (DP 2, TP/SP 4, EP 8, PP 4, CP 1) matches slide 69's Mixtral 8x22B row exactly, including the "DP likely 2" inference given on that slide. This table's Qwen 3 row (TP/SP 2, EP 32, PP 8, CP 1) matches slide 71's Qwen3-235B-A22B pretrain row (TP 2, PP 8, EP 32) exactly.
+Cross-check against other slides in this range: this table's Llama3 405B row (DP 128, TP/SP 8, EP 0, PP 16, CP 1) matches the **second** row of slide 66's Llama 3 GPU-count table (16,384 GPUs, TP8 / PP16 / DP128), not the first, which gives DP=64. This table does not specify which of Llama 3's three training stages its Llama3 405B row is drawn from. TP=8 and PP=16 are common to all three of slide 66's rows; CP is **not** — slide 66 reads CP1, CP1, CP16 down its three rows, so this table's CP=1 matches the first two rows only. The third row is the long-context stage, and it is also the row whose DP is 8 rather than 128. This table's Mixtral 8x22 row (DP 2, TP/SP 4, EP 8, PP 4, CP 1) matches slide 69's Mixtral 8x22B row exactly, including the "DP likely 2" inference given on that slide. This table's Qwen 3 row (TP/SP 2, EP 32, PP 8, CP 1) matches slide 71's Qwen3-235B-A22B pretrain row (TP 2, PP 8, EP 32) exactly.
 
 One cross-slide discrepancy, flagged rather than reconciled: slide 70 states outright, in the lecturer's own words, "TP / PP / CP / EP (2/0/64/64)" for Nemotron 3 Super 120B-A12B — i.e. PP = 0. This table's Nemotron 3 row instead gives PP as "??" (unknown) rather than 0, for the same model. The TP (2), EP (64), and CP (64) values agree between the two slides; only PP disagrees between "stated as 0" (slide 70) and "marked unknown" (slide 72).
 
