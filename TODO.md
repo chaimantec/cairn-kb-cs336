@@ -1,6 +1,6 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after run 7: **Lectures 1–7.** The
+Coverage after run 7: **Lectures 1–7.** Run 8 (lecture 8) in progress. The
 course has 18 recorded lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
@@ -536,6 +536,72 @@ THAT machine, not as facts about GPUs in general.
       share a title; and quote-check the wiki, with the two checker bugs recorded
 - [x] Commit and push
 - n/a  kbUrl already set on the catalog entry from run 1; re-fetched and confirmed
+
+## Run 8 — Lecture 8: Parallelism (Part 2)
+
+Video 6-cXp-aOmdg (80 min). Tatsunori Hashimoto. PDF deck — `lecture_08.pdf`,
+73 pages, `page-images`. This is the FSDP/ZeRO half of parallelism that lecture 7
+deferred to repeatedly, plus pipeline/tensor/sequence/expert parallel, the
+combined-strategy rules of thumb, and ten model case studies.
+
+Title note: the catalog calls both lectures 7 and 8 "Parallelism". The KB calls
+this one "Parallelism (Part 2)" to distinguish it from Percy's executable
+lecture 7; the deck's own title page reads "PARALLELISM BASICS".
+
+Numbering: derived in the parent BEFORE any page was read. `slide_number_map.py`
+reports no printed number on any of the 73 pages, and a corner-position
+text-layer scan for isolated 1-3 digit tokens returns ZERO hits anywhere in the
+deck — cleaner than lectures 3, 4 or 5, each of which had at least one mid-page
+digit land in the scan region. Mapping is a plain 1..73, page N = slide N;
+`--verify` must use the Python heading-sequence fallback.
+
+Density: 86 embedded images across 73 pages against only ~2,749 words of native
+text (~38 words/page). Same profile as lectures 3-5 — the figures are the content.
+Only 7 pages carry no image at all (3, 13, 14, 21, 28, 55, 72), and several of
+those are the deck's dense native tables.
+
+Model split (user's call, cost-aware): pages 46-62 read at Opus because that band
+carries the activation-memory algebra and the two comparison tables; the rest at
+Sonnet. Page 72's overview table is read at Sonnet and audited at Opus.
+
+### Course material
+- [x] Download lecture_08.pdf (73 pages, 6.5 MB) to raw/pdfs/
+- [x] Numbering derived in the parent and handed to the readers as a conclusion
+- [ ] raw/slides/08-parallelism-2.md — five parallel readers over pages
+      1-15 / 16-30 / 31-45 / 46-62 / 63-73, appending incrementally; parent
+      concatenates and writes front matter and the section table
+- [ ] Heading-sequence check — expect exactly 73 headings 1..73 in order
+- [ ] Figure audit, pass 1
+- [ ] Figure audit, pass 2 (mandatory if pass 1 comes back dirty)
+
+### Transcript
+- [x] 08 — verbatim captions fetched (105 paragraphs, ~15.8k words, runs to
+      1:20:02), saved to raw/transcripts/original/08-parallelism-2.md
+- [ ] 08 — copy-edited transcript (draft at Sonnet, adjudicate here). Must wait
+      for the slide file: the edit is cross-checked against the deck.
+- [ ] 08 — verify: timestamps, number inventory, per-paragraph word ratios
+
+### Wiki
+- [ ] wiki/08-parallelism-2.md
+- [ ] Topic pages — zero-and-fsdp is the big gap lecture 7 left open; also
+      sequence-parallelism, activation-memory, 3d-parallelism, and a case-study
+      page for what real models do
+- [ ] Extend rather than duplicate: data-parallelism, tensor-parallelism,
+      pipeline-parallelism, expert-parallelism, sharding-vs-replication,
+      collective-operations, gpu-interconnect and activation-checkpointing all
+      already exist from run 7 and must be extended, not re-created
+- [ ] INDEX.md — eight-lecture coverage; the banner's "lectures 7 AND 8 are both
+      Parallelism, only 7 is covered" warning is now STALE and must be rewritten
+- [ ] Link sweep
+- [ ] Citation checks
+- [ ] Quote checks
+
+### Publish
+- [ ] Update sources.md (lecture_08.pdf transcribed; the two-Parallelism note)
+- [ ] kb.json — coverage 8/18, slideDecks 4 of 8, byLecture."8" = page-images
+- [ ] AGENTS.md — run 8 precedents
+- [ ] Commit and push
+- n/a  kbUrl already set on the catalog entry from run 1
 
 ## Not done (future runs)
 - [ ] Lectures 8–18 — transcripts and wiki pages. **Lecture 8 is the priority**: it
