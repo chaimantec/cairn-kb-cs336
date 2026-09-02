@@ -952,7 +952,18 @@ Agents now append findings per page, per the run-9 lesson.
       The auditor also CONFIRMED the earlier reader's hardest call on page 22: the
       pale line crossing the legend box really is the q=0.00 series continuing
       behind a semi-transparent box, not a fourth series.
-- [ ] Batch 3 — pages 23, 25, 30
+- [x] Batch 3 — pages 23, 25, 30. 2 dirty, 6 errors, applied. **Page 25 came back
+      CLEAN**, which is the most reassuring result of this pass: it was the highest-risk
+      page in the triage — ~40 numbers, only 3 spoken aloud — and every point across
+      three charts measured within ~0.01, with the three fitted exponents
+      (0.23/0.23/0.24) genuinely supporting the slide's "slopes stay similar" claim.
+      Page 23: three black x-marks on the data-mixing bowl, not two.
+      Page 30: four errors, including the THIRD linear-vs-log axis mislabel in this
+      deck (settled by fitting tick rows: R^2 0.99998 log vs 0.986 linear). Also a
+      claim that "4 Layers" stops leftmost of the three LSTM curves — which the
+      file's OWN recorded coordinates already contradicted, so that one was
+      detectable without opening the PDF. Worth remembering: internal consistency of
+      an entry is a free check.
 - [ ] Batch 4 — pages 32, 33, 35
 - [ ] Batch 5 — pages 36, 37, 39
 - [ ] Batch 6 — pages 43, 44, 47
