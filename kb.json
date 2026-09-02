@@ -60,6 +60,23 @@
       "note": "Coverage is every figure-bearing page of each deck (46 of 67, 48 of 60, 51 of 55, 51 of 73, 40 of 57), and the course's own figures for the executable lectures, which have no deck. Roughly a third of each deck was deliberately NOT rendered - title cards, outlines, section dividers, pure-text bullets, and the pasted tables and equation blocks that raw/slides already reproduces cell by cell. So an image path must be read from a file, never constructed: slide-31.jpg existing says nothing about slide-32.jpg."
     }
   },
+  "license": {
+    "file": "LICENSE.md",
+    "repositoryWide": null,
+    "summary": "No single repository-wide licence. Three layers: (1) the compilation's own editorial work - INDEX/AGENTS/SEE_ALSO/TODO/kb.json/sources.md and the original explanatory prose in wiki/ - is CC-BY-4.0; (2) Stanford CS336 course material, including everything in raw/images/ and the content described in raw/slides/, has NO licence of any kind and is included for study under fair use; (3) third-party paper figures reproduced inside the decks belong to their authors. raw/transcripts/ and raw/slides/ are derivative works and are NOT offered under CC BY, because the underlying lecture and slides are not the compiler's to license.",
+    "editorialWork": "CC-BY-4.0",
+    "courseMaterial": {
+      "license": null,
+      "basis": "fair use (17 U.S.C. 107); reliance is the compiler's and does not transfer to a reader",
+      "checked": "2026-09-03",
+      "evidence": "stanford-cs336/lectures has no LICENSE/LICENSE.md/COPYING/NOTICE; its README states no reuse terms; cs336.stanford.edu carries no licence, copyright or reuse statement; no page of any transcribed deck contains licence text and no PDF records one in metadata; the YouTube recordings carry no Creative Commons marker, consistent with the default Standard YouTube License."
+    },
+    "thirdPartyFigures": {
+      "note": "Reproduced inside the decks with a credit line, and not licensable by Stanford or by this compilation. 32 distinct cited sources across the 236 rendered pages; heaviest is Kaplan et al. at 8 pages over three lectures, then Fedus et al. at 8 in one; only 3 of 32 appear on more than three pages.",
+      "arxivLicensesChecked": "2026-09-03: 9 of the 10 most-reproduced sources are arXiv nonexclusive-distrib/1.0, which grants arXiv distribution rights and third parties none. The exception is Wei et al., Emergent Abilities (arXiv:2206.07682), which is CC BY 4.0."
+    },
+    "takedown": "Open a GitHub issue or contact the repository owner; the file and every reference to it are deleted and the removal noted here."
+  },
   "provenance": {
     "builtBy": [
       "claude-opus-5",

@@ -28,6 +28,7 @@ partially covered while the rest of that unit is still a preview.
 | `sources.md` | Every lecture, deck, assignment and linked document, with URLs. |
 | `kb.json` | Machine-readable coverage and provenance. Read this to know what this KB does and does not cover, and how far to trust a citation. |
 | `SEE_ALSO.md` | Sibling KBs worth reading for this course, by repo URL. |
+| `LICENSE.md` | Three layers of copyright, and which one covers what. Read it before reusing anything. |
 | `TODO.md` | Build tracker. Unchecked boxes are outstanding work. |
 
 ## What is special about CS336
@@ -322,6 +323,10 @@ scaling grid, Shazeer et al.'s GLU conclusions, the Switch Transformer and OLMoE
 the DeepSeek and Megatron-LM tables and diagrams, and a screenshot of a public tweet by
 Stephen Roller. These are reproduced here for study, at the resolution the deck itself used,
 with the deck linked at its canonical URL beside every image.
+
+The full copyright position — what is licensed, what is not, and what is relied on as fair
+use — is in [`LICENSE.md`](LICENSE.md). Short version: none of this layer is mine to
+license, and the fair-use reliance is this repo's own and does not transfer to a reader.
 
 If the course, or an author of a reproduced figure, asks for something to come down: delete
 the file and every Markdown image line that points at it, and note it in `kb.json`.

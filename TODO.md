@@ -1097,5 +1097,32 @@ signals disagree in both directions:
       audit a dense panel — the first read of slide 44 at thumbnail scale miscounted row -4
       and looked like an error. Crop from the PDF before calling a discrepancy
 
+### Licensing (added after the image work, in response to a question about reuse)
+- [x] Established that CS336 has NO licence of any kind — not CC BY-NC-SA, not anything.
+      Checked on 2026-09-03: no LICENSE/LICENSE.md/COPYING/NOTICE in stanford-cs336/lectures,
+      no reuse terms in its README, no licence/copyright/reuse statement on
+      cs336.stanford.edu, no licence text on any page of any transcribed deck and none in
+      any PDF's metadata, and no Creative Commons marker on the YouTube recordings
+      (consistent with the default Standard YouTube License). Default all-rights-reserved.
+- [x] Checked the third-party layer against arXiv licence metadata. 9 of the 10
+      most-reproduced sources are arXiv nonexclusive-distrib/1.0, which grants arXiv
+      distribution rights and third parties NONE. The one exception is Wei et al.,
+      Emergent Abilities (2206.07682), which is CC BY 4.0.
+- [x] Measured the per-source amount, which is the evidence for the fair-use position on
+      the papers: 32 distinct cited sources across the 236 rendered pages; heaviest is
+      Kaplan et al. at 8 pages spread over three lectures, then Fedus et al. at 8 in one;
+      only 3 of 32 appear on more than three pages, most once or twice. That is the same
+      order of use the lectures themselves make.
+      CORRECTION TO AN EARLIER CLAIM IN THIS BUILD: "fair use doesn't chain" was the wrong
+      frame. This KB has its own independent position against each paper's rightsholder,
+      judged on what it took from THAT work. The 68-92% figure is the amount relative to
+      Stanford's DECK (layer 2) and must not be applied to the papers (layer 3).
+- [x] LICENSE.md — scoped, three layers. CC-BY-4.0 on the compilation's own editorial
+      work only; raw/transcripts/ and raw/slides/ explicitly NOT offered under it, because
+      they are derivative of material that is not ours to license; layer 2 and 3 stated as
+      unlicensed with the evidence; takedown procedure.
+- [x] Linked from INDEX.md (the Also list and the images entry), AGENTS.md (layout table
+      and the images provenance section) and kb.json (a new top-level `license` block)
+
 ### Publish
 - [x] Commit and push

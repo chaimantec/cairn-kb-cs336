@@ -563,7 +563,8 @@ usually the faster route than the lecture pages.
   deck was deliberately *not* rendered — title cards, outlines, dividers, and the tables
   and equations `raw/slides/` already reproduces cell by cell — so **read an image path
   out of a file rather than constructing one**. `AGENTS.md` has the conventions and the
-  attribution.
+  attribution; [`LICENSE.md`](LICENSE.md) has the copyright position, which is not the
+  same for these as for the rest of the repo.
 
 `raw/pdfs/` is empty by design — no binaries are committed. The course's decks are
 5–7 MB each and live at the URLs in `sources.md`. The rendered slide images in
@@ -578,6 +579,10 @@ a picture is the thing a prose description cannot replace.
   backpropagation, tensors and einops.
 - **[`kb.json`](kb.json)** — machine-readable coverage and provenance. Read this to
   know how far to trust a citation from here.
+- **[`LICENSE.md`](LICENSE.md)** — **read this before reusing anything.** This repo has
+  no single licence: the explanatory writing is CC BY 4.0, but the CS336 course material
+  and the paper figures reproduced inside the decks are not mine to license, and are
+  included for study under fair use. That reliance does not transfer to you.
 - **[`AGENTS.md`](AGENTS.md)** — how this wiki is organized, for future maintainers.
 - **[`TODO.md`](TODO.md)** — build tracker. Unchecked boxes are outstanding work.
 
