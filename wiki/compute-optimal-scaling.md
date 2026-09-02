@@ -104,13 +104,15 @@ reliably identifying the envelope is fiddly.
 *Slide 47 — Method 1 – minimum over runs. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
 
 [^unaud]: The 67B figure is stated aloud in the lecture and so rests on the verified
-    transcript. The **1.5T token figure is read off slide 47 only**, and slide 47 is
-    one of the pages whose figure audit did not run — see the `audit` note in the
-    [slide file](../raw/slides/09-scaling-laws.md). Treat it as provisional. The same
-    applies to the exact algebraic form of the two joint scaling equations quoted
-    above from slide 43: the transcript corroborates their *shape* ("really just the
-    sum of two inverse terms, two scaling laws added together", [58:20]) but not
-    their symbols. Every other number on this page — all six Chinchilla exponents,
+    transcript. The **1.5T token figure is read off slide 47 only** — but slide 47 has
+    since been figure-audited against the PDF, and both teal annotations (67B in the
+    centre panel, 1.5T in the right) were confirmed present and correctly valued, so
+    this is no longer provisional. The audit did move where those labels sit: they
+    mark the start of each horizontal reference line at the y-axis, not the crosshair
+    intersection. The exact algebraic form of the two joint scaling equations quoted
+    above from slide 43 is likewise now confirmed against the page — the transcript
+    had only corroborated their *shape* ("really just the sum of two inverse terms,
+    two scaling laws added together", [58:20]), not their symbols. Every other number on this page — all six Chinchilla exponents,
     Kaplan's 0.73/0.27, the 63B and 67B projections, the 20:1 ratio and GPT-3's 3:1 —
     is stated in the lecture itself and independently corroborated.
 

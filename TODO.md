@@ -1010,9 +1010,42 @@ Agents now append findings per page, per the run-9 lesson.
       run-9 lesson: the agent told to create its findings file as its literal FIRST
       action, before reading anything, left behind a usable file; the one told merely
       to "append as you go" left nothing when it died early.
-- [ ] Batch 6 — pages 43, 44, 47
-- [ ] Batch 7 — page 53
-- [ ] After all batches: update kb.json coverage of audited pages, sources.md, AGENTS.md
+- [x] Batch 6 — pages 43 and 47 (44 handled separately, see below). BOTH dirty, 8 errors,
+      applied. Two more undisclosed logarithmic y-axes — page 43's Loss (R^2 0.99997 log vs
+      0.9920 linear) and page 47's Training loss (0.9998 vs 0.9797) — taking this deck to
+      SEVEN mis-stated axes, by a wide margin its most repeated error class. Page 47's
+      Parameters axis was given as "100M to 10B" when its printed ticks run to 1T, two
+      orders out; and the "67B"/"1.5T" teal labels were placed beside the vertical
+      crosshair when they actually sit at the panel's left edge, ~2,000 px away. Page 43's
+      3D landscape had the data-fraction direction backwards: the red high-error ridge
+      traces to log2(data fraction) = -5, so the blue low-error corner is the FULL-data
+      end, not the "less-data" end the entry claimed — which contradicted the slide's own
+      thesis. That one was adjudicated in the parent with a confirming crop, because the
+      agent flagged it as resting partly on monotonicity rather than a direct trace.
+      Page 44: NOT audited by this batch. Its panel (a) grid was verified cell by cell
+      while checking the committed slide images and is exact; panels (b) and (c) were read
+      at page scale only. Recorded as partial in both the slide file and kb.json.
+- [x] Batch 7 — page 53. Dirty, 4 errors, applied. The best of them is this deck's THIRD
+      internal contradiction: the entry capped Hoffmann's residuals at +0.06 while its own
+      axis note said points sit above 0.10 — measured, two green outliers at +0.115 and
+      +0.125. The "Ours" outlier was also wrong in both count and value (two points at
+      +0.154/+0.169, not one at +0.11), the green/blue crossing is at 7-9e18 FLOPs rather
+      than ~1e20, and the Chinchilla dot sits at 6.2e23 rather than 3-4e23 — which is
+      corroborated by the 5.76e23 Gopher budget the deck itself quotes on slide 47.
+- [x] After all batches — record written ONCE, at the end. This was overdue: pass 3 had
+      run five batches and applied 36 corrections while the slide file's front matter and
+      kb.json both still said "TWO PASSES DONE, 18 of 57", so the KB was telling readers
+      that pages it had audited were provisional. Exactly the index rot AGENTS.md warns
+      about, and it understated the work rather than overstating it.
+      Final tally, checked arithmetically rather than by eye (an earlier draft of this
+      record said 37 audited; 9 + 9 + 18 = 36): **36 of 57 pages fully audited across three
+      passes, 26 of them dirty, 84 errors found and applied**, plus existence-only checks
+      on 17/19/27/28 and a partial on 44. 20 pages remain unaudited.
+      Also resolved the two provisional flags in wiki/compute-optimal-scaling.md: slide
+      47's 1.5T token figure and slide 43's two joint-scaling equations were both confirmed
+      against the page, so the footnote no longer hedges them. Checked that no wiki page
+      repeats any of the 12 newly-corrected values — none does; the Epoch AI passages
+      describe the finding qualitatively from the verified transcript.
 
 - [ ] Figure audit, lecture 9: the remaining unaudited pages beyond those 19. Highest value are the ones the
       wiki quotes and could not check: 37, 38, 39 (critical batch size) and 43, 44,
