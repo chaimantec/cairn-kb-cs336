@@ -4,6 +4,18 @@ Take a trained dense model, clone its feedforward block into $N$ experts, bolt o
 randomly initialized router, and keep training. Lecture 4 covers it in slides 51–53 as a
 technique worth understanding that has largely fallen out of use.
 
+![Slide 51 — Other training methods - upcycling](../raw/images/04-attention-alternatives/slide-51.jpg)
+
+*Slide 51 — Other training methods - upcycling. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 52 — Upcycling example - MiniCPM](../raw/images/04-attention-alternatives/slide-52.jpg)
+
+*Slide 52 — Upcycling example - MiniCPM. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 53 — Upcycling example – Qwen MoE](../raw/images/04-attention-alternatives/slide-53.jpg)
+
+*Slide 53 — Upcycling example – Qwen MoE. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 Hashimoto is explicit about that framing: "This has actually become a lot less popular in
 the last year — I don't think I've seen a single upcycled model this year — but it's a cool
 idea, and there were some very nice models earlier on using this trick, so I want to

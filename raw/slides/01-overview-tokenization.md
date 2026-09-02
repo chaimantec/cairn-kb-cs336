@@ -131,15 +131,27 @@ technical report ([arXiv:2303.08774](https://arxiv.org/pdf/2303.08774.pdf)):
 
 *Figure: `images/gpt4-no-details.png` (width 600).*
 
+![GPT-4 technical report scope section, with the no-details sentence highlighted](../images/01-overview-tokenization/gpt4-no-details.png)
+
+*Section 2 of the GPT-4 technical report, with the disclosure refusal highlighted: "Given both the competitive landscape and the safety implications of large-scale models like GPT-4, this report contains no further details about the architecture (including model size), hardware, training compute, dataset construction, training method, or similar." Source: [`images/gpt4-no-details.png`](https://github.com/stanford-cs336/lectures/blob/main/images/gpt4-no-details.png) in the lectures repo.*
+
 Frontier models are out of reach for us. We could build small language models
 (<1B parameters), but this might not be representative of large language models.
 
 - Example 1: fraction of FLOPs spent in attention versus MLP changes with scale.
   ([post](https://x.com/stephenroller/status/1579993017234382849))
   *Figure: `images/roller-flops.png` (width 400).*
+
+![Stephen Roller's tweet tabulating the FLOPs split across OPT model sizes](../images/01-overview-tokenization/roller-flops.png)
+
+*A screenshot of a public tweet by Stephen Roller (11 Oct 2022) giving the FLOPs split for eight OPT setups from 760M to 175B. As the model grows the feedforward share rises from 44% to 80%, while multi-head attention falls from 35% to 17%, attention from 14.8% to 3.3% and the logit layer from 5.8% to 0.3%. Source: [`images/roller-flops.png`](https://github.com/stanford-cs336/lectures/blob/main/images/roller-flops.png) in the lectures repo.*
 - Example 2: emergence of behavior with scale
   ([arXiv:2206.07682](https://arxiv.org/pdf/2206.07682))
   *Figure: `images/wei-emergence-plot.png` (width 600).*
+
+![Wei et al. emergent abilities: eight tasks against training FLOPs](../images/01-overview-tokenization/wei-emergence-plot.png)
+
+*Wei et al.'s emergent-abilities figure: eight panels (A-H), each plotting accuracy against training FLOPs for LaMDA, GPT-3, Gopher, Chinchilla and PaLM against a dashed random-chance line. In every panel the curves sit at chance across several orders of magnitude, then rise sharply past roughly 1e22-1e23 FLOPs. Source: [`images/wei-emergence-plot.png`](https://github.com/stanford-cs336/lectures/blob/main/images/wei-emergence-plot.png) in the lectures repo.*
 
 ### What can we learn in this class that transfers to frontier models?
 
@@ -159,6 +171,10 @@ experimentation. Example: Noam Shazeer paper that introduced SwiGLU
 ([arXiv:2002.05202](https://arxiv.org/pdf/2002.05202.pdf)).
 
 *Figure: `images/divine-benevolence.png` (width 600).*
+
+![Shazeer 2020 conclusion, with the divine-benevolence sentence highlighted](../images/01-overview-tokenization/divine-benevolence.png)
+
+*The conclusion of Shazeer's 2020 GLU Variants paper, its last sentence highlighted: "We offer no explanation as to why these architectures seem to work; we attribute their success, as all else, to divine benevolence." Used in the lecture as the emblem of how empirical the architecture literature is. Source: [`images/divine-benevolence.png`](https://github.com/stanford-cs336/lectures/blob/main/images/divine-benevolence.png) in the lectures repo.*
 
 ### The bitter lesson
 
@@ -411,6 +427,10 @@ between raw inputs (bytes) and sequences of integers (tokens).
 
 *Figure: `images/tokenized-example.png` (width 600).*
 
+![Encode and decode round trip for a short sentence](../images/01-overview-tokenization/tokenized-example.png)
+
+*The encode/decode round trip. "Stanford was founded in 1885." maps to the id sequence 93447, 9201, 673, 24303, 306, 220, 13096, 20, 13, shown beneath as coloured spans over the original characters; decode maps it back. Source: [`images/tokenized-example.png`](https://github.com/stanford-cs336/lectures/blob/main/images/tokenized-example.png) in the lectures repo.*
+
 Popular tokenizer: **Byte-Pair Encoding** (BPE)
 ([Sennrich et al., arXiv:1508.07909](https://arxiv.org/abs/1508.07909)).
 Intuition: break input into frequently-occurring chunks.
@@ -434,6 +454,10 @@ Starting point: the original Transformer
 ([arXiv:1706.03762](https://arxiv.org/pdf/1706.03762.pdf)).
 
 *Figure: `images/transformer-architecture.png` (width 500).*
+
+![The assignment-1 Transformer: full stack, and one pre-norm block expanded](../images/01-overview-tokenization/transformer-architecture.png)
+
+*Two views of the model built in assignment 1. Left, the whole stack: token and absolute position embeddings, add and dropout, a run of Transformer blocks, a final norm, then the output linear and softmax. Right, one block expanded - norm, causal multi-head self-attention, dropout, add; then norm, position-wise feedforward, dropout, add - a pre-norm block, with both residual additions drawn as arrows bypassing the sublayer. Source: [`images/transformer-architecture.png`](https://github.com/stanford-cs336/lectures/blob/main/images/transformer-architecture.png) in the lectures repo.*
 
 Refinements:
 
@@ -524,6 +548,10 @@ Components: kernels, parallelism, inference.
 
 *Figure: `images/compute-memory.png` (width 300).*
 
+![Compute and memory joined by a narrow bandwidth pipe](../images/01-overview-tokenization/compute-memory.png)
+
+*Compute and memory as two blocks joined by a narrow pipe: many small arithmetic units in the compute block against one wide memory block, the thin connector standing for the bandwidth between them. The lecture's picture of why moving memory, not doing arithmetic, is usually the limit. Source: [`images/compute-memory.png`](https://github.com/stanford-cs336/lectures/blob/main/images/compute-memory.png) in the lectures repo.*
+
 - Model parameters must be moved from memory (HBM) to the compute (SMs)
 - Example: B200 can perform 2.25 PFLOP/sec (bf16) with 8TB/sec memory bandwidth
 - Roofline analysis: understand whether we're compute-bound or memory-bound
@@ -563,6 +591,10 @@ is also needed for reinforcement learning, test-time compute, evaluation.
 Two phases: prefill and decode.
 
 *Figure: `images/prefill-decode.png` (width 500).*
+
+![Prefill and decode phases sharing a KV cache](../images/01-overview-tokenization/prefill-decode.png)
+
+*Prefill and decode as two shaded phases. Prefill (yellow) is iteration 1 over the whole prompt "Computer science is"; decoding (green) is iterations 2-4, each emitting one token - "a", "discipline", ".", then <EOS>. A KV-cache bar spans both, written by every iteration and read by the next. Source: [`images/prefill-decode.png`](https://github.com/stanford-cs336/lectures/blob/main/images/prefill-decode.png) in the lectures repo.*
 
 - Prefill (similar to training): tokens are given, can process all at once
   (compute-bound)
@@ -627,6 +659,10 @@ Classic compute-optimal scaling laws:
 - Then fit a scaling law to extrapolate to large FLOPs budgets
 
 *Figure: `images/chinchilla-isoflop.png` (width 800).*
+
+![Chinchilla IsoFLOP curves and the compute-optimal extrapolation](../images/01-overview-tokenization/chinchilla-isoflop.png)
+
+*The Chinchilla IsoFLOP analysis (Hoffmann et al. 2022). Left: training loss against parameter count for nine fixed compute budgets from 6e18 to 3e21 FLOPs, each curve a parabola in log space whose minimum moves right as the budget grows. Centre and right: those minima replotted against FLOPs, both falling on a straight line in log-log, extrapolated to Gopher's budget at 63B parameters and 1.4T tokens. Source: [`images/chinchilla-isoflop.png`](https://github.com/stanford-cs336/lectures/blob/main/images/chinchilla-isoflop.png) in the lectures repo.*
 
 TL;DR: D = 20 N is roughly optimal (e.g., 70B parameter model should be trained
 on ~1.4T tokens). Caveat: this doesn't take into account inference costs (want a

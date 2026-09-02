@@ -28,6 +28,10 @@ GPT-J, BLOOM. RMSNorm: the LLaMA family, PaLM, Chinchilla, T5. The database on
 slides 7 and 29 shows the transition plainly — the `Norm` column is mixed grey
 LayerNorm and blue RMSNorm until about 2022, and almost solid blue afterwards.
 
+![Slide 7 — Let's look at the data (on dense architectures)](../raw/images/03-architectures/slide-7.jpg)
+
+*Slide 7 — Let's look at the data (on dense architectures). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 Note that **LayerNorm is strictly more expressive than RMSNorm**: it can represent
 everything RMSNorm can, plus a mean shift. Hashimoto is explicit at [13:52] that
 "there's really no representational reason why you have to use RMSNorm." The
@@ -41,6 +45,10 @@ The case for RMSNorm has two steps, and the second is the interesting one.
 reproduces a table from Ivanov et al. 2023 breaking a transformer's work down by
 operator class:
 
+![Slide 15 — Why RMSNorm?](../raw/images/03-architectures/slide-15.jpg)
+
+*Slide 15 — Why RMSNorm? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 | Operator class | % FLOPs |
 | --- | --- |
 | Tensor contraction | 99.80 |
@@ -53,6 +61,10 @@ it would be pointless.
 
 **Step two: it is not a negligible fraction of the runtime.** Slide 16 adds one
 column to the same table, and the column changes the conclusion:
+
+![Slide 16 — Why RMSNorm (2)](../raw/images/03-architectures/slide-16.jpg)
+
+*Slide 16 — Why RMSNorm (2). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 | Operator class | % FLOPs | % Runtime |
 | --- | --- | --- |
@@ -89,6 +101,10 @@ a claim about a frontier-scale training run.
 Slide 17 reproduces Narang et al. 2020, a controlled comparison on a 223M-parameter
 model where RMSNorm is the only row with bolded values:
 
+![Slide 17 — RMSNorm - validation](../raw/images/03-architectures/slide-17.jpg)
+
+*Slide 17 — RMSNorm - validation. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 | Model | Params | Step/s | Early loss | Final loss | SGLUE | XSum | WebQ | WMT EnDe |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Vanilla Transformer | 223M | 3.50 | 2.182 ± 0.005 | 1.838 | 71.66 | 17.78 | 23.02 | 26.62 |
@@ -123,6 +139,10 @@ things from the systems perspective."
 
 This is also why the assignment-1 model has no bias terms in its linear layers or
 its norms (slide 4).
+
+![Slide 4 — What you implemented – simple, modern variant](../raw/images/03-architectures/slide-4.jpg)
+
+*Slide 4 — What you implemented – simple, modern variant. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 ## What to take from this
 

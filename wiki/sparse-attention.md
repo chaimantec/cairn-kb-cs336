@@ -7,6 +7,14 @@ every token, it keeps the softmax and discards most of the tokens.
 DeepSeek Sparse Attention (DSA) is lecture 4's worked example, introduced in DeepSeek
 V3.2 and adopted by GLM-5 (slides 12–13).
 
+![Slide 12 — Alternative to hybrids: sparse adaptation](../raw/images/04-attention-alternatives/slide-12.jpg)
+
+*Slide 12 — Alternative to hybrids: sparse adaptation. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 13 — DSA – Deepseek Sparse Attention (v3.2, GLM5)](../raw/images/04-attention-alternatives/slide-13.jpg)
+
+*Slide 13 — DSA – Deepseek Sparse Attention (v3.2, GLM5). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 ## The mechanism
 
 Two components. A **lightning indexer** scores every preceding token against the current

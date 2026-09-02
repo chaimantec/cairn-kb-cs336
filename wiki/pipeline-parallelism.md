@@ -131,6 +131,10 @@ and "we need a huge batch size in order to reduce this bubble towards zero"
 nearly the utilisation of no pipeline at all, and at small batch sizes it
 collapses. Pipelines spend [batch size](critical-batch-size.md) as their fuel.
 
+![Slide 36 — Pipeline performance is highly dependent on batch size](../raw/images/08-parallelism-2/slide-36.png)
+
+*Slide 36 — Pipeline performance is highly dependent on batch size. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 **Why put up with it.** The communication properties are the best of any strategy:
 activations of size $B \times S \times H$, moved **point-to-point** rather than
 all-to-all ([34:27]). Asked to be specific, the answer is that this "is almost

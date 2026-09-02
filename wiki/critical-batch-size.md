@@ -71,10 +71,22 @@ Once you see batch size as a budget, several otherwise-unrelated facts line up:
   order to do the parallelization" ([1:02:00]), whereas tensor parallelism "doesn't
   touch global batch size" ([1:02:46]).
 
+![Slide 36 — Pipeline performance is highly dependent on batch size](../raw/images/08-parallelism-2/slide-36.png)
+
+*Slide 36 — Pipeline performance is highly dependent on batch size. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
+![Slide 62 — Activation recomputation can pay for itself (via memory)](../raw/images/08-parallelism-2/slide-62.jpg)
+
+*Slide 62 — Activation recomputation can pay for itself (via memory). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 ## The utilisation curve
 
 Slide 56 plots this directly: efficiency against per-chip batch size, with a
 threshold above which you are compute-bound ([1:05:06]):
+
+![Slide 56 — Model vs Tensor parallel (TPU book)](../raw/images/08-parallelism-2/slide-56.jpg)
+
+*Slide 56 — Model vs Tensor parallel (TPU book). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 > If your batch size is big enough, FSDP only is good. If you have a batch size of
 > 2,000 per chip, how far can you go? Well, you've got FSDP doing extremely well,
@@ -154,6 +166,10 @@ raised: **large runs can afford large batches.** "If you have a really large-sca
 training run, where you go all the way to the right of this plot, your batch sizes
 can be quite large."
 
+![Slide 39 — 4. Batch size: critical batch size](../raw/images/09-scaling-laws/slide-39.jpg)
+
+*Slide 39 — 4. Batch size: critical batch size. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 And the intuition for why ([47:37]): as you approach the minimum you are resolving
 finer and finer differences, so gradient noise matters proportionally more, so
 variance reduction is worth more.
@@ -182,3 +198,7 @@ suboptimal for the smaller models ([1:09:54], see
 - [Scaling laws](scaling-laws.md) — the hub for the lecture 9 thread.
 - Lecture 8 material: [slide 29](../raw/slides/08-parallelism-2.md#slide-29--issues-remain-with-data-parallel--compute-scaling) · [transcript](../raw/transcripts/08-parallelism-2.md)
 - Lecture 9 material: slides [37–39](../raw/slides/09-scaling-laws.md) · [transcript](../raw/transcripts/09-scaling-laws.md)
+
+![Slide 29 — Issues remain with data parallel – compute scaling](../raw/images/08-parallelism-2/slide-29.jpg)
+
+*Slide 29 — Issues remain with data parallel – compute scaling. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*

@@ -39,6 +39,10 @@ all you need to know. But in practice, the performance is very sensitive to the
 hardware, and so you need to really deeply understand the hardware to obtain high
 performance" ([7:47]).
 
+![One GPU: eight SMs over a shared L2, with a single link to HBM](../raw/images/06-kernels-triton/gpu-hardware.png)
+
+*One GPU drawn as eight streaming multiprocessors, each with its own register file and L1/shared memory, sitting over a shared L2 cache, with a single link out to HBM. This is the memory hierarchy a Triton kernel is written against. Source: [`images/gpu-hardware.png`](https://github.com/stanford-cs336/lectures/blob/main/images/gpu-hardware.png).*
+
 The five details, each with its own page:
 
 - **[Warps and control divergence](gpu-execution-model.md)** — 32 threads that
@@ -117,6 +121,14 @@ hardware-dependent" ([36:13]).
 *thread* does; in Triton you say what each *thread block* does, and the conceptual
 framework is one sentence: a block "is going to load data into shared memory,
 operate on it, and write it back to global memory" ([38:32]).
+
+![The Triton softmax kernel, one program instance per row](../raw/images/06-kernels-triton/triton-softmax.png)
+
+*The softmax kernel: one program instance per row, pid being the row index. Row 1 is loaded with tl.load, its max subtracted, exp and sum taken with tl.exp and tl.sum, and the normalized row written back with tl.store. Source: [`images/triton-softmax.png`](https://github.com/stanford-cs336/lectures/blob/main/images/triton-softmax.png).*
+
+![A worked trace of the Triton row-sum kernel on a 4 x 10 input](../raw/images/06-kernels-triton/triton-row-sum.png)
+
+*A worked trace of the row-sum kernel. Block 1 (pid=1) takes row 1 and walks it in three tiles of BLOCK_SIZE 4: cols 0-3 load x = 3, 1, 4, 1 into four threads' accumulators; cols 4-7 add 5, 9, 2, 6 to give acc = 8, 10, 6, 7; cols 8-11 load 5, 3 and mask the two out-of-range lanes. tl.sum then tree-reduces across threads to out[1] = 39. Source: [`images/triton-row-sum.png`](https://github.com/stanford-cs336/lectures/blob/main/images/triton-row-sum.png).*
 
 Every kernel in the lecture has the same skeleton, which Percy states outright at
 [50:09]: "you generally have your inputs, your outputs — you wake up, you figure

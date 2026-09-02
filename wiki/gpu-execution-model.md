@@ -60,6 +60,10 @@ top-branch threads execute while the bottom-branch threads wait. "So to execute 
 `if` statement, you're actually clock-walking through both branches, and some
 threads are just waiting, doing nothing."
 
+![Slide 23 — Control divergence (not a memory issue)](../raw/images/05-gpus-tpus/slide-23.jpg)
+
+*Slide 23 — Control divergence (not a memory issue). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 This is **control divergence**. Its cost is idle compute — "big compute gaps where
 your GPU is doing nothing."
 
@@ -76,6 +80,10 @@ moving less data; this one is about not stalling lanes.
 ## The memory model, from the thread's point of view
 
 Slide 12 lists what device code can reach, and Hashimoto walks it at [15:21]–[16:53]:
+
+![Slide 12 — Memory model of a GPU](../raw/images/05-gpus-tpus/slide-12.jpg)
+
+*Slide 12 — Memory model of a GPU. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 | Level | Scope | Notes from the lecture |
 | --- | --- | --- |

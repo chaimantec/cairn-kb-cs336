@@ -78,6 +78,10 @@ At [9:19] Percy corrects what he considers a common misreading. The wrong
 interpretation is that scale is all that matters and algorithms don't. The right
 one is that **algorithms that scale are what matter**. The compact form he uses is
 
+![Wei et al. emergent abilities: eight tasks against training FLOPs](../raw/images/01-overview-tokenization/wei-emergence-plot.png)
+
+*Wei et al.'s emergent-abilities figure: eight panels (A-H), each plotting accuracy against training FLOPs for LaMDA, GPT-3, Gopher, Chinchilla and PaLM against a dashed random-chance line. In every panel the curves sit at chance across several orders of magnitude, then rise sharply past roughly 1e22-1e23 FLOPs. Source: [`images/wei-emergence-plot.png`](https://github.com/stanford-cs336/lectures/blob/main/images/wei-emergence-plot.png).*
+
 $$\text{accuracy} = \text{efficiency} \times \text{resources}$$
 
 where efficiency is output over input and resources is the input. Efficiency
@@ -162,6 +166,10 @@ been told this is exaggerated. Budget accordingly.
 The technical unit starts at [1:04:46] and Percy flags Andrej Karpathy's
 [tokenization video](https://www.youtube.com/watch?v=zduSFxRajkE) as the
 inspiration for it.
+
+![Encode and decode round trip for a short sentence](../raw/images/01-overview-tokenization/tokenized-example.png)
+
+*The encode/decode round trip. "Stanford was founded in 1885." maps to the id sequence 93447, 9201, 673, 24303, 306, 220, 13096, 20, 13, shown beneath as coloured spans over the original characters; decode maps it back. Source: [`images/tokenized-example.png`](https://github.com/stanford-cs336/lectures/blob/main/images/tokenized-example.png).*
 
 ### The problem
 

@@ -8,6 +8,10 @@ some kind."
 This is also the change you implement in assignment 1, which asks for SwiGLU rather
 than ReLU (slide 4).
 
+![Slide 4 — What you implemented – simple, modern variant](../raw/images/03-architectures/slide-4.jpg)
+
+*Slide 4 — What you implemented – simple, modern variant. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 ## From ReLU to a gate
 
 Start with the standard feedforward layer — project up with $W_1$, threshold, project
@@ -52,6 +56,10 @@ dipping to about $-0.17$ around input $-0.75$. As Hashimoto puts it at [20:45], 
 difference is "this tiny divot at the bottom here, which for most of the activation
 doesn't change anything, but changes the gradients right near zero."
 
+![Slide 21 — A few of the common activations](../raw/images/03-architectures/slide-21.jpg)
+
+*Slide 21 — A few of the common activations. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 Which gated variant a model uses splits roughly by lineage ([23:50]): **Google
 models use GeGLU** — T5 v1.1, mT5, LaMDA, Phi-3, and the Gemma series — while
 **LLaMA descendants use SwiGLU** — LLaMA 1/2/3, PaLM, Mistral, OLMo, and most
@@ -84,6 +92,10 @@ parameter-matched basis — the 2/3 correction is applied throughout, which is w
 makes the comparison fair. On the headline "Score Average" column, every gated
 variant except Bilinear beats every non-gated one:
 
+![Slide 24 — Do gated linear units work?](../raw/images/03-architectures/slide-24.jpg)
+
+*Slide 24 — Do gated linear units work? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 | | Score Average | CoLA MCC | SST-2 Acc |
 | --- | --- | --- | --- |
 | FFN<sub>ReLU</sub> | 83.80 | 51.32 | 94.04 |
@@ -105,6 +117,10 @@ setup used for the RMSNorm comparison. The five gated rows hold the five lowest
 final losses in the table — SwiGLU lowest at **1.789**, against 1.838 for the
 vanilla ReLU transformer — while the ungated alternatives ELU (1.932) and SeLU
 (1.948) are markedly worse than baseline.
+
+![Slide 25 — Do gated linear units work (2)?](../raw/images/03-architectures/slide-25.jpg)
+
+*Slide 25 — Do gated linear units work (2)? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 The size of the effect is worth keeping in proportion. Hashimoto calls it "a nice
 boost without much computational cost" ([26:08]) and "in some ways a free win"

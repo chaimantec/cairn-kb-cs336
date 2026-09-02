@@ -119,12 +119,20 @@ pass they swap — $g$ becomes the identity and $f$ becomes the sum of partials.
 This is the same forward/backward collective swap that appears in
 [sequence parallelism](sequence-parallelism.md).
 
+![Slide 40 — Tensor parallel – GPUs have submatrices](../raw/images/08-parallelism-2/slide-40.jpg)
+
+*Slide 40 — Tensor parallel – GPUs have submatrices. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 **The degree-8 rule.** Communication is activation-sized and happens at every
 matmul, so tensor parallelism is "extremely communication-hungry" ([42:05]) and
 belongs inside one node: "for GPUs, eight GPUs are networked tightly together in a
 single box, so up to eight, you might be willing to do some tensor parallel"
 ([42:50]). Slide 61 confirms 8 is quantitatively the right stopping point
 ([1:11:12]), and slide 72 shows TP ≤ 8 across essentially every published run.
+
+![Slide 61 — Tensor parallel = 8 is often optimal](../raw/images/08-parallelism-2/slide-61.jpg)
+
+*Slide 61 — Tensor parallel = 8 is often optimal. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 This is a **GPU** constraint, not a law. On a TPU [toroidal mesh](network-topology.md)
 there is no fast-group boundary, so "you can tensor-parallel over very large

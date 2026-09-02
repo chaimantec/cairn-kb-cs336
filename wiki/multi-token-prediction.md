@@ -5,6 +5,10 @@ covers it in slide 59 as the last of DeepSeek V3's bonus mechanisms, and as the 
 Hashimoto likes most while conceding it did not catch on: "something I thought was a very
 cool idea for MoE… but this hasn't caught on very much" ([1:24:41]).
 
+![Slide 59 — What else do you need to make DeepSeek MoE v3?](../raw/images/04-attention-alternatives/slide-59.jpg)
+
+*Slide 59 — What else do you need to make DeepSeek MoE v3? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 ## The idea
 
 Standard language modelling trains one head to predict token $t+1$ from the prefix. MTP adds

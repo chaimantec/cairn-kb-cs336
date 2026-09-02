@@ -41,6 +41,10 @@ large per-chip batch and falls off as batch shrinks; adding tensor parallelism
 "push[es] that curve out a bit more" ([1:05:51]). Each added strategy extends the
 compute-bound region further.
 
+![Slide 56 — Model vs Tensor parallel (TPU book)](../raw/images/08-parallelism-2/slide-56.jpg)
+
+*Slide 56 — Model vs Tensor parallel (TPU book). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 ## The prescription
 
 Despite the complexity, the recipe is short ([1:05:51]–[1:06:37]):
@@ -54,6 +58,10 @@ Despite the complexity, the recipe is short ([1:05:51]–[1:06:37]):
 
 Slide 58 shows NVIDIA's Megatron guidance saying the same thing in reverse order
 ([1:07:22]):
+
+![Slide 58 — Example from Metagron's current recommendations](../raw/images/08-parallelism-2/slide-58.jpg)
+
+*Slide 58 — Example from Metagron's current recommendations. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 > Guideline number one is minimize model parallelism, maximize data parallelism …
 > Now, if you're using GPUs, stay within NVLink — that's one machine, one box. Keep
@@ -71,6 +79,18 @@ parameter-sized ([34:27]).
 
 Slides 59–62 come from Narayanan et al. 2021 (the Megatron paper), which the
 lecture rates highly ([1:09:41]):
+
+![Slide 60 — Careful '3D' parallelism gives linear gains](../raw/images/08-parallelism-2/slide-60.jpg)
+
+*Slide 60 — Careful '3D' parallelism gives linear gains. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
+![Slide 61 — Tensor parallel = 8 is often optimal](../raw/images/08-parallelism-2/slide-61.jpg)
+
+*Slide 61 — Tensor parallel = 8 is often optimal. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
+![Slide 62 — Activation recomputation can pay for itself (via memory)](../raw/images/08-parallelism-2/slide-62.jpg)
+
+*Slide 62 — Activation recomputation can pay for itself (via memory). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 > This is an old paper, but it's actually probably one of the best resources — and
 > also, the networking fundamentals haven't changed that much, so I think the
@@ -117,3 +137,7 @@ how it interacts with data parallelism — see
 - [Critical batch size](critical-batch-size.md) — the resource being budgeted.
 - [Network topology](network-topology.md) — why the fast/slow link split drives everything.
 - [Lecture 8](08-parallelism-2.md) · [slides 55–62](../raw/slides/08-parallelism-2.md#slide-55--recap-llm-parallelism-table) · [transcript](../raw/transcripts/08-parallelism-2.md)
+
+![Slide 57 — '3D (4D) parallelism' – putting it all together](../raw/images/08-parallelism-2/slide-57.jpg)
+
+*Slide 57 — '3D (4D) parallelism' – putting it all together. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*

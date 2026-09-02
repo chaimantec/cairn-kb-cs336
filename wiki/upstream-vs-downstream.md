@@ -10,6 +10,10 @@ From Tay et al. 2023 (slide 41), the same 13 T5 variants plotted twice: negative
 log-perplexity against parameters on the left, SuperGLUE accuracy against
 parameters on the right.
 
+![Slide 41 — Caution – scaling behaviors can differ downstream](../raw/images/09-scaling-laws/slide-41.jpg)
+
+*Slide 41 — Caution – scaling behaviors can differ downstream. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 The left panel is "a very beautiful linear trend" — more parameters, better
 perplexity, predictably ([51:27]). The right panel reorders the models. The best
 downstream model is **NL32-XL**, at about 79.7 on SuperGLUE, and it is only
@@ -81,6 +85,10 @@ a much more discontinuous measure than loss — a point already made by Hestness
 al. in 2017, where capabilities appear suddenly as models grow ([9:15]). Slide 13
 shows the corresponding shape: benchmark scaling curves are fitted as **sigmoids**
 in compute, not lines ([12:19]).
+
+![Slide 13 — Scaling laws – power law relationships for many factors](../raw/images/09-scaling-laws/slide-13.jpg)
+
+*Slide 13 — Scaling laws – power law relationships for many factors. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
 
 ## See also
 

@@ -20,9 +20,10 @@ partially covered while the rest of that unit is still a preview.
 | --- | --- |
 | `INDEX.md` | Entry point. Course summary + annotated table of contents. |
 | `wiki/` | Durable pages: one per lecture, plus cross-lecture topics. |
-| `raw/slides/` | The written course material, transcribed. See the note below — CS336 has no slide numbers for half its lectures, and none of the three decks transcribed so far prints one either. |
+| `raw/slides/` | The written course material, transcribed. See the note below — CS336 has no slide numbers for half its lectures, and none of the five decks transcribed so far prints one either. |
 | `raw/transcripts/` | Copy-edited lecture transcripts with `[MM:SS]` paragraph marks. **These are the ones to read.** |
 | `raw/transcripts/original/` | Verbatim auto-captions, kept as the record of what was said, plus the raw caption segment JSON they were generated from. |
+| `raw/images/NN-<slug>/` | Rendered slide images and the course's own figures. See **Images** below for what is and is not here. |
 | `raw/pdfs/` | Gitignored and empty. No binaries are committed; `sources.md` carries canonical URLs. |
 | `sources.md` | Every lecture, deck, assignment and linked document, with URLs. |
 | `kb.json` | Machine-readable coverage and provenance. Read this to know what this KB does and does not cover, and how far to trust a citation. |
@@ -223,6 +224,107 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
   against the lecturer's screen.
 - **Transcripts stay spelled-out.** Captions render notation as speech ("n
   squared"); reconstructing it as $n^2$ belongs in `wiki/`, not `raw/transcripts/`.
+
+## Images
+
+Every lecture 1-9 has images. They are committed, not hotlinked, and they are the only
+part of this KB that redistributes course material rather than pointing at it.
+
+| Lecture | Files | Where they came from |
+| --- | --- | --- |
+| 1 Overview, Tokenization | 9 | the course's own `images/*.png`, fetched from the lectures repo |
+| 2 PyTorch, Resource Accounting | 6 | same |
+| 3 Architectures | 46 of 67 pages | rendered from `lecture_03.pdf` |
+| 4 Attention Alternatives, MoE | 48 of 60 pages | rendered from `lecture_04.pdf` |
+| 5 GPUs, TPUs | 51 of 55 pages | rendered from `lecture_05.pdf` |
+| 6 Kernels, Triton | 4 | the course's own `images/*.png` |
+| 7 Parallelism | 4 | same |
+| 8 Parallelism 2 | 51 of 73 pages | rendered from `lecture_08.pdf` |
+| 9 Scaling Laws | 40 of 57 pages | rendered from `lecture_09.pdf` |
+
+Lectures 10-18 are not in this KB at all, so they have no images.
+
+### Using them
+
+**Use an image path you have actually read in a file. Never construct one from the
+pattern, and never assume a slide has an image because a neighbouring one does.** Roughly
+a third of each deck's pages were deliberately not rendered (see the next section), so
+`slide-31.jpg` existing tells you nothing about `slide-32.jpg`. Reading a path that is not
+in the repo returns an error rather than a URL, which costs a turn; a guessed path is
+never worth it.
+
+Links are **relative**, like every other link here — `../raw/images/09-scaling-laws/slide-44.jpg`
+from `wiki/`, `../images/09-scaling-laws/slide-44.jpg` from `raw/slides/`. To show one,
+read the path and use the URL that comes back; do not write an absolute
+`raw.githubusercontent.com` URL into a file, because that bakes the owner, repo and branch
+into the page and a fork or rename breaks every figure.
+
+To list a lecture's images without reading the whole page:
+`grep -o 'raw/images/[^)]*' wiki/09-scaling-laws.md`.
+
+Three further conventions:
+
+- **Prefer the transcription for numbers.** `raw/slides/` reproduces every table cell and
+  equation as text, checked against the page. Quote that, and use the image to *show* the
+  reader what you are quoting. Reading a value off a 1400px JPEG is strictly worse than
+  reading it out of the file that was written from the page at 600-4800 dpi.
+- **Show one image, not a gallery.** Each is a whole slide at 1400px; two in an answer is
+  already a lot.
+- **Keep the citation.** The image sits next to the slide citation it belongs to. An answer
+  that shows a figure should still say which slide it is, so the reader can find the rest
+  of that slide's content in `raw/slides/`.
+
+### What was rendered, and what was not
+
+A deck page was rendered when the PDF carries a raster covering more than 4% of the page
+**and** the slide file's own prose describes an actual figure there. Neither signal is
+sufficient alone, and both were overruled by hand where they disagreed: lecture 3's slide
+32 (the hand-drawn RoPE rotation diagrams) and lecture 5's slide 2 are vector art with no
+pasted raster, so the PDF test missed them; lecture 3's slides 38, 43, 44 and 47, lecture
+4's 21 and 22, and lecture 8's 59, 66, 67, 69 and 71 carry pasted rasters that are *tables*
+the slide file already reproduces cell by cell.
+
+That last case is the rule worth remembering: **a transcribed table beats a picture of
+one**, because it can be quoted, searched and cited by cell. The same goes for the pasted
+equation blocks on lecture 4's slides 38 and 41 and lecture 8's 46 and 49. Title cards,
+outline slides, section dividers and pure-text bullets are not rendered either — their
+content is already fully in the slide file, so an image is bytes for nothing.
+
+Two of the course's own figures were deliberately not fetched: `course-staff.png`
+(a photo grid of the teaching staff, no course content) and `ranks.png` (four boxes
+labelled Rank 0-3, which the prose states completely).
+
+`raw/slides/` holds an image for **every** page that was rendered. `wiki/` holds one only
+where a page cites that slide, which is the KB's convention anyway — so most images are
+slide-file-only, and that is the intended outcome rather than a shortfall. Do not add a
+citation merely to give an image a home.
+
+### Provenance and attribution
+
+Every image here comes from Stanford CS336 (Spring 2026), by Percy Liang and Tatsunori
+Hashimoto, from the course's own lecture repository at
+<https://github.com/stanford-cs336/lectures>:
+
+- **Slide renders** are whole pages of `lecture_03.pdf`, `lecture_04.pdf`, `lecture_05.pdf`,
+  `lecture_08.pdf` and `lecture_09.pdf`, at 1400px wide, JPEG q85 or PNG whichever came out
+  smaller. Each is named by its PDF page number, which is what this KB cites as a slide
+  number — none of the five decks prints a folio.
+- **The course's own figures** for lectures 1, 2, 6 and 7 are the files those executable
+  lectures pass to `image()`, fetched unmodified from `images/` in the same repository.
+  Figures those lectures display by *external* URL — NVIDIA documentation, arXiv, Wikimedia,
+  Springer, the JAX scaling book — were **not** copied; they stay as links in `raw/slides/`.
+
+**The source repository carries no LICENSE file.** The material is published for public
+reading but is not explicitly licensed for redistribution, and the decks reproduce figures
+from third-party papers — among them Hoffmann et al.'s Chinchilla IsoFLOP figure, Wei et
+al.'s emergent-abilities panels, Kaplan et al.'s scaling curves, Rosenfeld et al.'s joint
+scaling grid, Shazeer et al.'s GLU conclusions, the Switch Transformer and OLMoE ablations,
+the DeepSeek and Megatron-LM tables and diagrams, and a screenshot of a public tweet by
+Stephen Roller. These are reproduced here for study, at the resolution the deck itself used,
+with the deck linked at its canonical URL beside every image.
+
+If the course, or an author of a reproduced figure, asks for something to come down: delete
+the file and every Markdown image line that points at it, and note it in `kb.json`.
 
 ## Verifying an edit to the transcripts
 

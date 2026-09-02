@@ -21,6 +21,10 @@ consideration rather than a modelling one.
 The width of the feedforward hidden layer relative to the model dimension. Slide 37
 states the rule of thumb in the middle of the slide, in bold:
 
+![Slide 37 — Surprising (?) consensus hyperparameter 1](../raw/images/03-architectures/slide-37.png)
+
+*Slide 37 — Surprising (?) consensus hyperparameter 1. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 $$d_{ff} = 4\,d_{model}$$
 
 and calls it "*almost always* true. There's just a few exceptions."
@@ -54,6 +58,10 @@ multiplier." The paper's own justification, quoted on the slide, is a systems
 argument — "modern accelerators (such as the TPUs we train our models on) are most
 efficient for large dense matrix multiplications."
 
+![Slide 39 — Exception #2 – T5](../raw/images/03-architectures/slide-39.jpg)
+
+*Slide 39 — Exception #2 – T5. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 Hashimoto plainly enjoys this one ([46:49]): "most people are just very boring in
 their choice of architectures — they're like, we did LLaMA but we changed one
 thing. But folks at Google are very bold sometimes."
@@ -65,6 +73,10 @@ increase — then climbs steeply: about 1.8% at ratio 8, 4.8% at ratio 25, and 8
 at the far right around ratio 50. Hashimoto describes the basin as running "from
 about one and end up at about maybe 10" ([48:21]), which is the wider reading of
 the same chart, and notes that above that "your loss starts really shooting up."
+
+![Slide 40 — Why this range of multipliers?](../raw/images/03-architectures/slide-40.png)
+
+*Slide 40 — Why this range of multipliers? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 The punchline is slide 41's third bullet, and Hashimoto's at [49:07]: T5 v1.1, the
 improved follow-up to T5, quietly went back to a 2.5 multiplier. Nobody says why,
@@ -80,6 +92,10 @@ reproduces the CS224n slide explaining why this makes multi-head attention
 essentially free — you compute $XQ \in \mathbb{R}^{n \times d}$, reshape to
 $\mathbb{R}^{n \times h \times d/h}$, and treat the head axis like a batch axis, so
 "the **matrices are the same sizes**."
+
+![Slide 42 — Surprising (?) consensus hyperparameter 2](../raw/images/03-architectures/slide-42.png)
+
+*Slide 42 — Surprising (?) consensus hyperparameter 2. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 Nothing forces this. As the slide says, "we can have head-dimensions > model-dim /
 num-heads." But slide 43 shows almost everyone sticking to a ratio of about 1:
@@ -101,6 +117,10 @@ The exceptions are again Google models — T5 at 16 and LaMDA at 2.
 > transcribes it as printed rather than correcting it. And slide 51's own summary is
 > unusually candid about the evidence base for this rule: "Head dim\*Num head = D
 > model is standard – but low to no validation."
+
+![Slide 51 — Summary: hyperparameters](../raw/images/03-architectures/slide-51.jpg)
+
+*Slide 51 — Summary: hyperparameters. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 ## Aspect ratio: $d_{model}/n_{layer} \approx 100$
 
@@ -132,6 +152,10 @@ by width is tensor parallelism, "much, much simpler to deal with." Slide 45 also
 quotes Tay et al. 2021 making the same point about depth being "non-parallelizable
 across different machines."
 
+![Slide 45 — Considerations about aspect ratio](../raw/images/03-architectures/slide-45.jpg)
+
+*Slide 45 — Considerations about aspect ratio. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 So: "there's systems reasons to go wide, and maybe there's expressiveness reasons
 to go deep, and you end up at roughly a hundred."
 
@@ -141,6 +165,10 @@ Kaplan et al. plot loss against aspect ratio for three model sizes (50M, 274M an
 annotation between them reading **"A wide range of architectures achieve similar
 performance"**. All three curves are close together and nearly flat between the
 rules, rising steeply outside them.
+
+![Slide 46 — Evidence on aspect ratio scaling](../raw/images/03-architectures/slide-46.jpg)
+
+*Slide 46 — Evidence on aspect ratio scaling. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 > The y-axis of that Kaplan panel carries gridlines but **no tick labels and no axis
 > title** in the deck's paste. That was verified against the PDF at high
@@ -207,6 +235,10 @@ all three colours lie interleaved along a single diagonal band, with no colour
 systematically above or below. The slide's caption: "It's not to control
 overfitting."
 
+![Slide 50 — Why weight decay LLMs?](../raw/images/03-architectures/slide-50.jpg)
+
+*Slide 50 — Why weight decay LLMs? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 The middle and right panels show what it *is* doing. Under a 10× cosine
 learning-rate decay, the stronger weight-decay runs start out worse — the blue
 $\lambda = 0.3$ curve is highest for most of the run — and then converge to a
@@ -270,6 +302,10 @@ reframing is worth having: the question is not "what is the best value" but
   Slide 34's middle panel shows the three model-size curves dipping to a shared
   near-zero minimum, with a bracket annotating the flat region: "a wide range of
   architectures achieve similar performance."
+
+![Slide 34 — 3. Depth/Width: and other Transformer hypers](../raw/images/09-scaling-laws/slide-34.jpg)
+
+*Slide 34 — 3. Depth/Width: and other Transformer hypers. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
 
 That distinction is what licenses the Lecture 3 advice. "If your strategy is 'I'm
 going to fix my aspect ratio and scale up,' you can make plots like this and

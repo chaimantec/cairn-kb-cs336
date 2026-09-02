@@ -25,6 +25,10 @@ feed-forward block versus attention as sequence length grows. The feed-forward c
 connection between all the different positions — quadratic — so it quickly outpaces
 feed-forward as the sequence length grows" ([2:22]).
 
+![Slide 2 — Attention alternatives](../raw/images/04-attention-alternatives/slide-2.jpg)
+
+*Slide 2 — Attention alternatives. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 That inverts an old assumption. For big models at short sequence lengths, the
 feed-forward block dominated. At long ones, attention does.
 
@@ -35,6 +39,10 @@ very local attentions, you've very much controlled the cost" ([3:09]); this is t
 sliding-window and sparse-attention material from
 [attention variants](attention-variants.md). The second is **systems engineering**,
 and it prompts one of the lecture's recurring themes:
+
+![Slide 3 — The 'basic' toolkit](../raw/images/04-attention-alternatives/slide-3.jpg)
+
+*Slide 3 — The 'basic' toolkit. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 > Constant factors really, really matter. Part of the theme of this course is that you
 > need to pay attention to the details, and it's very easy for people trained in a more
@@ -110,6 +118,10 @@ the design constraint the whole family respects.
 **Mamba-2** (slide 7) adds one input-dependent gate $\gamma_t$ controlling how much
 state to carry forward:
 
+![Slide 7 — From linear attention to Mamba-2](../raw/images/04-attention-alternatives/slide-7.png)
+
+*Slide 7 — From linear attention to Mamba-2. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 $$S_t = \gamma_t S_{t-1} + k_t v_t^\top, \qquad y_t = q_t^\top S_t + v_t^\top D, \qquad \gamma_t = f(x_t)$$
 
 Hashimoto motivates it from LSTMs: "we know from the olden days of LSTMs that it's
@@ -144,6 +156,18 @@ Every deployed model in this section is a **hybrid** with periodic full attentio
 | Nemotron 3 | ~3:1 Mamba-2 to attention | slide 8 |
 | Qwen 3.5 / Qwen Next | 3:1 Gated DeltaNet to attention | slide 10 |
 
+![Slide 6 — Minimax M1](../raw/images/04-attention-alternatives/slide-6.jpg)
+
+*Slide 6 — Minimax M1. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 8 — Nemotron 3](../raw/images/04-attention-alternatives/slide-8.jpg)
+
+*Slide 8 — Nemotron 3. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 10 — Qwen 3.5 / Qwen Next](../raw/images/04-attention-alternatives/slide-10.jpg)
+
+*Slide 10 — Qwen 3.5 / Qwen Next. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 "No one has thus far really proven out fully linear time attention mechanisms at
 scale; everything I'm going to talk about in the next couple of slides is a hybrid"
 ([10:49]).
@@ -156,6 +180,10 @@ all these architectures" ([20:04]). He is candid that the evidence is thin — "
 hasn't been that many great controlled studies of how hybrid architectures perform"
 ([18:31]) — and that single-key retrieval is a task these architectures explicitly
 optimize for, so QA performance is the more honest column to read.
+
+![Slide 11 — Hybrid performance](../raw/images/04-attention-alternatives/slide-11.jpg)
+
+*Slide 11 — Hybrid performance. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 ### Which step is lossy
 
@@ -181,6 +209,14 @@ A different answer to the same problem, and one that is explicitly **not** linea
 DeepSeek Sparse Attention (slides 12–13) puts a lightweight **indexer** in front of
 attention: it scores every preceding token, keeps the top-$k$, and runs full attention
 on that subset only.
+
+![Slide 12 — Alternative to hybrids: sparse adaptation](../raw/images/04-attention-alternatives/slide-12.jpg)
+
+*Slide 12 — Alternative to hybrids: sparse adaptation. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 13 — DSA – Deepseek Sparse Attention (v3.2, GLM5)](../raw/images/04-attention-alternatives/slide-13.jpg)
+
+*Slide 13 — DSA – Deepseek Sparse Attention (v3.2, GLM5). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 $$I_{t,s} = \sum_{j=1}^{H^I} w^I_{t,j} \cdot \mathrm{ReLU}\!\left(\mathbf{q}^I_{t,j} \cdot \mathbf{k}^I_s\right)$$
 
@@ -223,10 +259,26 @@ equivalents in the OLMoE ablations ([38:35]); released MoEs beat dense models at
 *active* parameters, which is what governs inference cost. And they add an axis of
 parallelism — experts are natural chunks to place on separate devices ([40:08]).
 
+![Slide 16 — Why are MoEs getting popular?](../raw/images/04-attention-alternatives/slide-16.jpg)
+
+*Slide 16 — Why are MoEs getting popular? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 17 — Why are MoEs getting popular?](../raw/images/04-attention-alternatives/slide-17.jpg)
+
+*Slide 17 — Why are MoEs getting popular? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 20 — Some MoE results – from the west](../raw/images/04-attention-alternatives/slide-20.png)
+
+*Slide 20 — Some MoE results – from the west. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 Slide 24 asks why, then, they caught on so slowly — Google was pushing them in 2022,
 the field moved around 2024. The answer is complexity: hard to parallelize efficiently,
 hard to fit, and "MoEs can really blow up on you" ([46:19]). Applying MoE to the
 attention block rather than the FFN has been tried and mostly abandoned ([47:06]).
+
+![Slide 24 — Why haven't MoEs been more popular?](../raw/images/04-attention-alternatives/slide-24.jpg)
+
+*Slide 24 — Why haven't MoEs been more popular? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 Full treatment: [mixture of experts](mixture-of-experts.md).
 
@@ -234,6 +286,10 @@ Full treatment: [mixture of experts](mixture-of-experts.md).
 
 Almost universally **token-choice top-$k$**: each token picks its $k$ experts, by inner
 product against a per-expert vector. The DeepSeekMoE router (slide 31):
+
+![Slide 31 — Top-K routing in detail.](../raw/images/04-attention-alternatives/slide-31.jpg)
+
+*Slide 31 — Top-K routing in detail. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 $$\mathbf{h}^l_t = \sum_{i=1}^{N} g_{i,t}\,\mathrm{FFN}_i\!\left(\mathbf{u}^l_t\right) + \mathbf{u}^l_t$$
 
@@ -250,6 +306,10 @@ more and smaller experts — and **shared experts**, always on, bypassing the ro
 common processing is offloaded and the routed experts can specialize further ([55:33]).
 The evidence is not unanimous: DeepSeek's ablations show gains from both, OLMoE's find
 fine-graining helps but shared experts "don't help very much" ([56:18]).
+
+![Slide 32 — Recent variations from DeepSeek and other Chinese LMs](../raw/images/04-attention-alternatives/slide-32.jpg)
+
+*Slide 32 — Recent variations from DeepSeek and other Chinese LMs. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 Full treatment: [MoE routing](moe-routing.md).
 
@@ -272,6 +332,10 @@ The failure mode without them is **expert collapse**: chosen experts get stronge
 gradients, stronger weights mean more selection, "and they kind of run away, taking on
 everything" ([1:03:59]). The Switch Transformer auxiliary loss (slide 40):
 
+![Slide 40 — Heuristic balancing losses](../raw/images/04-attention-alternatives/slide-40.jpg)
+
+*Slide 40 — Heuristic balancing losses. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 $$\mathrm{loss} = \alpha \cdot N \cdot \sum_{i=1}^{N} f_i \cdot P_i$$
 
 with $f_i$ the fraction of tokens dispatched to expert $i$ and $P_i$ the router
@@ -283,6 +347,10 @@ more tokens you get, the more negative gradient you get" ([1:05:30]).
 Removing it is catastrophic — OLMoE's ablation (slide 43) shows losses rise and, more
 tellingly, "almost all the tokens go to two experts," against even utilization with the
 loss on ([1:08:33]).
+
+![Slide 43 — What happens when removing load balancing losses?](../raw/images/04-attention-alternatives/slide-43.jpg)
+
+*Slide 43 — What happens when removing load balancing losses? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 Hashimoto's own summary of why the whole edifice holds:
 
@@ -304,6 +372,18 @@ block-diagonal and structured sparse matrix multiplies that hardware supports na
 cost is communication, and Nemotron 3's trick is to down-project the residual stream
 before the collective call so fewer bytes cross the wire ([1:13:57]).
 
+![Slide 44 — Training MoEs – the systems side](../raw/images/04-attention-alternatives/slide-44.jpg)
+
+*Slide 44 — Training MoEs – the systems side. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 45 — Training MoEs – the systems side](../raw/images/04-attention-alternatives/slide-45.jpg)
+
+*Slide 45 — Training MoEs – the systems side. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 46 — MoE parallelism and architecture modifications](../raw/images/04-attention-alternatives/slide-46.jpg)
+
+*Slide 46 — MoE parallelism and architecture modifications. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 Full treatment: [expert parallelism](expert-parallelism.md).
 
 **Token dropping** (slide 47) is a historical curiosity with a memorable consequence.
@@ -312,15 +392,31 @@ returned zeros — so "if other users are sending queries that hit the experts y
 using, you could actually get a worse result, because they'd bump you out of the expert
 queue" ([1:15:30]). Dropless implementations such as MegaBlocks have since removed this.
 
+![Slide 47 — Fun side issue – stochasticity of MoE models](../raw/images/04-attention-alternatives/slide-47.jpg)
+
+*Slide 47 — Fun side issue – stochasticity of MoE models. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 **Stability** (slides 48–49) follows lecture 3's rule that exponentials and divisions
 are danger zones — and MoE adds another softmax in the router. The fixes are float32
 for the router specifically and a [z-loss](training-stability.md) on it, which OLMoE's
 ablation supports with visibly spikier loss curves when removed ([1:17:48]).
 
+![Slide 48 — Issues with MoEs - stability](../raw/images/04-attention-alternatives/slide-48.jpg)
+
+*Slide 48 — Issues with MoEs - stability. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 49 — Z-loss stability for the router](../raw/images/04-attention-alternatives/slide-49.jpg)
+
+*Slide 49 — Z-loss stability for the router. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 **Fine-tuning** (slide 50) overfits badly: dense models keep train and validation close,
 sparse models show an extremely large gap. Mitigations are to fine-tune only the
 non-MoE feedforwards or only attention, or "the bitter-lesson version" — use enough
 data to effectively retrain the MoE ([1:19:18]).
+
+![Slide 50 — Issues with MoEs – fine-tuning](../raw/images/04-attention-alternatives/slide-50.jpg)
+
+*Slide 50 — Issues with MoEs – fine-tuning. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 ### Upcycling
 
@@ -340,6 +436,22 @@ The lecture closes by tracing one lineage (slides 54–59), on the grounds that 
 DeepSeek papers are unusually well documented — Hashimoto says the lecture's first
 iteration was going to be nothing but a DeepSeek paper walkthrough ([43:59]).
 
+![Slide 54 — DeepSeek MoE v1-v2-v3](../raw/images/04-attention-alternatives/slide-54.jpg)
+
+*Slide 54 — DeepSeek MoE v1-v2-v3. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 57 — Bonus: What else do you need to make DeepSeek MoE v3?](../raw/images/04-attention-alternatives/slide-57.jpg)
+
+*Slide 57 — Bonus: What else do you need to make DeepSeek MoE v3? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 58 — What else do you need to make DeepSeek MoE v3?](../raw/images/04-attention-alternatives/slide-58.jpg)
+
+*Slide 58 — What else do you need to make DeepSeek MoE v3? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 59 — What else do you need to make DeepSeek MoE v3?](../raw/images/04-attention-alternatives/slide-59.jpg)
+
+*Slide 59 — What else do you need to make DeepSeek MoE v3? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 - **V1** is already "the prototypical, Platonic ideal of an MoE model": shared and
   fine-grained experts, top-$k$ routing, auxiliary-loss balancing ([1:22:22]).
 - **V2** scales it and adds systems-motivated losses — device routing and communication
@@ -351,6 +463,10 @@ iteration was going to be nothing but a DeepSeek paper walkthrough ([43:59]).
   the honest caveat: DeepSeek call it "auxiliary loss free balancing," but a
   complementary sequence-wise balance loss remains, so "the approach is not fully aux
   loss free."
+
+![Slide 42 — DeepSeek v3 variation – per-expert biases](../raw/images/04-attention-alternatives/slide-42.jpg)
+
+*Slide 42 — DeepSeek v3 variation – per-expert biases. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 Two bonus mechanisms get a slide each. **Multi-head latent attention** (slides 57–58)
 projects to a low-dimensional latent $\mathbf{c}^{KV}_t$ and reconstructs keys and

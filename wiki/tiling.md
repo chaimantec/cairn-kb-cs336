@@ -25,6 +25,10 @@ again, when it could have been fetched once into fast memory and reused there.
 The name comes from the geometry. Cut each matrix into small square submatrices —
 tiles — and process a tile at a time. Slide 41 gives the phases:
 
+![Slide 41 — Tiling – store and reuse information in shared memory](../raw/images/05-gpus-tpus/slide-41.jpg)
+
+*Slide 41 — Tiling – store and reuse information in shared memory. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 1. Load the $M_{0,0}$ and $N_{0,0}$ tiles into shared memory.
 2. Compute partial sums for the output tile $P$ (done with one tile).
 3. Load the $M_{0,0}$ and $N_{2,0}$ tiles into shared memory.
@@ -45,6 +49,10 @@ pieces of memory."
 ## The arithmetic
 
 Slide 42 states the result in two lines:
+
+![Slide 42 — Tiling math](../raw/images/05-gpus-tpus/slide-42.jpg)
+
+*Slide 42 — Tiling math. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 - **Non-tiled matrix multiply:** each input is read $N$ times from global memory.
 - **Tiled matrix multiply:** each input is read $\frac{N}{T}$ times from global
@@ -90,10 +98,18 @@ a single tile in one go" — so you need at least two tiles' worth of reads to g
 one tile of data ([1:04:28]). The fix is **padding**, to line the burst-section
 boundaries up with the tile size.
 
+![Slide 44 — Complexities with tiling 2 – memory alignment](../raw/images/05-gpus-tpus/slide-44.jpg)
+
+*Slide 44 — Complexities with tiling 2 – memory alignment. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 ## Why padding a vocabulary made nanoGPT 25% faster
 
 That padding result explains a famous oddity, which slide 45 reproduces as a
 screenshot of Andrej Karpathy's tweet:
+
+![Slide 45 — Putting it together: understanding a matrix mystery](../raw/images/05-gpus-tpus/slide-45.jpg)
+
+*Slide 45 — Putting it together: understanding a matrix mystery. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 > The most dramatic optimization to nanoGPT so far (~25% speedup) is to simply
 > increase vocab size from 50257 to 50304 (nearest multiple of 64). This calculates

@@ -27,6 +27,10 @@ is strong: "for every concept in the GPU, there's a corresponding concept in the
 TPU, and the mapping is actually pretty precise" ([19:14]). Whatever he says about
 GPUs in the rest of the lecture, "you can map directly to the TPU."
 
+![Slide 14 — Side thread – What about TPUs?](../raw/images/05-gpus-tpus/slide-14.jpg)
+
+*Slide 14 — Side thread – What about TPUs? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 The correspondence goes deeper than the block diagram. A GPU tensor core and a TPU
 MXU "actually use the same underlying circuitry — they're both what's called a
 **systolic array**, which streams data in and out to do a matrix multiply"

@@ -8,6 +8,10 @@ and the two refinements DeepSeek added on top.
 
 Slide 27 lays out three possible directions of choice:
 
+![Slide 27 — Routing function - overview](../raw/images/04-attention-alternatives/slide-27.jpg)
+
+*Slide 27 — Routing function - overview. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 - **Token choice** — each token picks its favourite $k$ experts.
 - **Expert choice** — each expert picks its favourite tokens.
 - **Global assignment** — a joint optimization assigning tokens to experts across the
@@ -23,9 +27,21 @@ been the standard for all the models we see today" ([49:24]). Hashimoto believes
 the Llama 4 models used expert choice, adds "I don't think that's necessarily a strong
 vote of confidence," and then corrects himself that it was an unreleased one.
 
+![Slide 28 — Routing type](../raw/images/04-attention-alternatives/slide-28.jpg)
+
+*Slide 28 — Routing type. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 ## The four routing algorithms
 
 Slides 29–30 survey what has been tried.
+
+![Slide 29 — Common routing variants in detail](../raw/images/04-attention-alternatives/slide-29.jpg)
+
+*Slide 29 — Common routing variants in detail. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 30 — Other routing methods](../raw/images/04-attention-alternatives/slide-30.jpg)
+
+*Slide 30 — Other routing methods. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 **Top-$k$ by inner product** — by far the most common. Each expert owns a vector; the
 router takes the inner product with the token's hidden state and keeps the top $k$.
@@ -49,6 +65,10 @@ overhead, in terms of both the RL algorithm and the stochasticity" ([51:42]). Cl
 (slide 37) shows REINFORCE-based routing being beaten by baselines in its own paper
 ([1:00:08]).
 
+![Slide 37 — RL for MoEs](../raw/images/04-attention-alternatives/slide-37.jpg)
+
+*Slide 37 — RL for MoEs. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 **Linear assignment** — compute all pairwise token–expert scores and solve exactly for
 the optimal global assignment. Hashimoto likes it on principle — "an idea that I think is
 really cool, and that I love, as a person who likes things that make sense" — but it
@@ -62,6 +82,10 @@ more complicated" ([51:42]).
 ## Top-$k$ routing in detail
 
 Slide 31 gives the DeepSeekMoE router, which is the canonical form:
+
+![Slide 31 — Top-K routing in detail.](../raw/images/04-attention-alternatives/slide-31.jpg)
+
+*Slide 31 — Top-K routing in detail. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 $$\mathbf{h}^l_t = \sum_{i=1}^{N} \left( g_{i,t}\, \mathrm{FFN}_i\!\left(\mathbf{u}^l_t\right) \right) + \mathbf{u}^l_t$$
 
@@ -94,6 +118,10 @@ able to recognize" ([52:27]).
 
 DeepSeekMoE's two contributions (slide 32), now near-universal.
 
+![Slide 32 — Recent variations from DeepSeek and other Chinese LMs](../raw/images/04-attention-alternatives/slide-32.jpg)
+
+*Slide 32 — Recent variations from DeepSeek and other Chinese LMs. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 **Fine-grained segmentation.** Keep the parameter budget, cut it into more and smaller
 experts, and raise $k$ correspondingly. Slide 32's panel (b) shows $N$ experts becoming
 $2N$ half-sized ones with $K$ going from 2 to 4.
@@ -117,6 +145,14 @@ TriviaQA and Natural Questions. OLMoE (slide 34) — which Hashimoto calls "the 
 Western, carefully controlled MoE study" — agrees that fine-grained helps but concludes
 "that shared experts don't help very much" ([56:18]). Both are careful studies that
 disagree on this point.
+
+![Slide 33 — Various ablations from the DeepSeek paper](../raw/images/04-attention-alternatives/slide-33.jpg)
+
+*Slide 33 — Various ablations from the DeepSeek paper. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 34 — Ablations from OlMoE](../raw/images/04-attention-alternatives/slide-34.jpg)
+
+*Slide 34 — Ablations from OlMoE. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 ## What the models actually use
 

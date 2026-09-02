@@ -35,6 +35,10 @@ the GPU MODE community (renamed from CUDA MODE, which a student corrects him on
 mid-sentence), and the JAX book by the Google team — "a really incredible resource"
 whose exercises resemble the course assignment.
 
+![Slide 3 — Before we start..](../raw/images/05-gpus-tpus/slide-3.jpg)
+
+*Slide 3 — Before we start.. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 ## Part 1 — what a GPU is
 
 **Why GPUs at all.** Dennard scaling ended in the 2000s: transistors kept shrinking
@@ -113,6 +117,14 @@ A few things worth pulling out of the individual pages:
   shared memory once, and reuse it. Global memory reads drop from $N$ per input to
   $N/T$ — a factor of $T$ (slide 42).
 
+![Slide 35 — Storing (and retrieving) activations can be expensive!](../raw/images/05-gpus-tpus/slide-35.jpg)
+
+*Slide 35 — Storing (and retrieving) activations can be expensive! [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
+![Slide 42 — Tiling math](../raw/images/05-gpus-tpus/slide-42.jpg)
+
+*Slide 42 — Tiling math. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 ## The matrix mystery, solved
 
 The benchmark from the opening is explained in three pieces, and this is the
@@ -132,6 +144,10 @@ lecture's set piece.
 The same reasoning explains Karpathy's nanoGPT result, reproduced on slide 45:
 padding the vocabulary from 50257 to 50304 gave a ~25% speedup. More arithmetic, less
 wasted bandwidth ([1:05:14]).
+
+![Slide 45 — Putting it together: understanding a matrix mystery](../raw/images/05-gpus-tpus/slide-45.jpg)
+
+*Slide 45 — Putting it together: understanding a matrix mystery. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 ## Part 3 — FlashAttention
 

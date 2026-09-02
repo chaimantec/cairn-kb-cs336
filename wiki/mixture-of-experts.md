@@ -15,6 +15,10 @@ Slide 25 draws it. The usual block is attention, normalization, then a feedforwa
 network where "a lot of the dense, big information processing happens" ([35:29]).
 Replace that single FFN with $N$ of them, plus a router that picks which to use.
 
+![Slide 25 — What MoEs generally look like](../raw/images/04-attention-alternatives/slide-25.jpg)
+
+*Slide 25 — What MoEs generally look like. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 If each of the $N$ experts is the size of the original FFN and you activate one per
 token, you have $N\times$ the parameters at $1\times$ the compute:
 
@@ -38,6 +42,14 @@ look so good.
 ## Why they took over
 
 Slides 16–23 assemble the case, and it is unusually one-sided.
+
+![Slide 16 — Why are MoEs getting popular?](../raw/images/04-attention-alternatives/slide-16.jpg)
+
+*Slide 16 — Why are MoEs getting popular? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 17 — Why are MoEs getting popular?](../raw/images/04-attention-alternatives/slide-17.jpg)
+
+*Slide 17 — Why are MoEs getting popular? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 **Same FLOPs, more experts, lower loss.** Fedus et al. 2022's Switch Transformer curves
 (slide 16) hold active parameters fixed and vary expert count from 1 to 256; test loss
@@ -66,6 +78,10 @@ model is one ([37:01]).
 
 Slide 24. Google was publishing seriously on MoEs in 2022; the field moved to them
 around 2024. The gap is engineering, not science.
+
+![Slide 24 — Why haven't MoEs been more popular?](../raw/images/04-attention-alternatives/slide-24.jpg)
+
+*Slide 24 — Why haven't MoEs been more popular? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 > There are a lot of complexities that come from MoEs: it's not easy to train an MoE, or
 > to use one, or to do many things with them — the infrastructure is very complex.
@@ -208,6 +224,10 @@ Two results:
 Slide 55 carries both as 3D IsoFLOP surfaces, one over sparsity and total
 parameters and one over sparsity and active parameters, with a shared sparsity
 colour scale running orange at 0% to dark purple at 98%.
+
+![Slide 55 — DeepSeek MoE v2](../raw/images/04-attention-alternatives/slide-55.jpg)
+
+*Slide 55 — DeepSeek MoE v2. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 The point Hashimoto draws is methodological rather than architectural: "all of these
 kinds of quantities we care about in optimizing an MoE have predictable scaling and

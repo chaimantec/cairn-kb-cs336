@@ -29,6 +29,10 @@ and the stubborn $10sbh$ is LayerNorm, dropout, and the residual inputs to
 attention and the MLP. Slide 48's observation is that these are all **pointwise
 operations over the sequence** ([49:43]):
 
+![Slide 48 — Making memory truly linear – sequence parallel](../raw/images/08-parallelism-2/slide-48.jpg)
+
+*Slide 48 — Making memory truly linear – sequence parallel. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 > These terms are very lightweight — layer norms, stuff that doesn't have much
 > computation. And what I'm going to do is split them up, over the sequence axis,
 > rather than over the hidden axis.
@@ -80,6 +84,10 @@ Sequence parallelism travels with tensor parallelism, and the pair is often writ
 as a single unit: slide 68 records Gemma 2 as using "MP (=TP+SP)", and slide 72's
 overview table has a single combined **TP/SP** column rather than two. DeepSeek V1
 used "ZeRO stage 1, with tensor, sequence, and pipeline parallel" ([1:13:31]).
+
+![Slide 68 — Gemma 2](../raw/images/08-parallelism-2/slide-68.jpg)
+
+*Slide 68 — Gemma 2. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 ## See also
 

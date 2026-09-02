@@ -15,6 +15,10 @@ that are implemented, but we can program specific shaders that will actually giv
 us matrix multiplies, and different rendering settings give us faster matrix
 multiplies."
 
+![Slide 16 — GPUs as fast matrix multipliers](../raw/images/05-gpus-tpus/slide-16.jpg)
+
+*Slide 16 — GPUs as fast matrix multipliers. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 That era ended when the hardware arrived. "As of the V100, Nvidia decided, here is
 a piece of hardware that will do your matrix multiplies for you" ([24:37]).
 Confirmed in Q&A at [27:43]: before the V100 there was no tensor core specialized
@@ -28,6 +32,10 @@ Slide 17 is the quantitative claim, and it is large. Once tensor cores existed,
 there's a gigantic gap between the throughput you'll get on parallelizable but
 non-matrix-multiply operations and the amount of operations you can do in a matrix
 multiply" ([24:37]).
+
+![Slide 17 — New matmul hardware means matmuls are fast and special](../raw/images/05-gpus-tpus/slide-17.jpg)
+
+*Slide 17 — New matmul hardware means matmuls are fast and special. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 The size of it: **more than 10× faster than any other floating-point operation you
 can do on a GPU** ([25:23]).
@@ -67,6 +75,10 @@ Slide 7's chart tracks GPU throughput by generation, and Hashimoto reads the
 inflection at [6:12]: in the era of K20s and M40s the numbers were "respectable, but
 somewhat pitiful by today's standards," and then "around P100s and V100s, this curve
 takes off, and you get super-exponential scaling."
+
+![Slide 7 — Parallel scaling continues](../raw/images/05-gpus-tpus/slide-7.jpg)
+
+*Slide 7 — Parallel scaling continues. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 Two ingredients drive that, and neither is clock speed ([6:59]):
 

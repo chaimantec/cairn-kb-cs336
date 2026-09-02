@@ -12,6 +12,10 @@ static budget. Parameters are a flat floor, optimizer state another, but the
 dominant feature is a large transient hump of activations. And the peak arrives
 *after* the forward pass ends ([45:07]):
 
+![Slide 44 — A final complexity – memory is dynamic!](../raw/images/08-parallelism-2/slide-44.jpg)
+
+*Slide 44 — A final complexity – memory is dynamic! [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 > Maximum memory usage happens a little bit after the maximum activation point.
 > Like, after you start sweeping backwards on your gradient, you still need to
 > keep a lot of your activations — those are usually the maximum-memory points.
@@ -20,6 +24,10 @@ Slide 45 then shows why this only gets worse with scale: across model sizes at
 moderately long sequence lengths, activation memory dwarfs parameter memory. So
 "any memory-saving strategy has to reason about activations in order to be fully
 effective" ([45:52]).
+
+![Slide 45 — A final complexity – activation memory](../raw/images/08-parallelism-2/slide-45.png)
+
+*Slide 45 — A final complexity – activation memory. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 *(Slide 44's chart prints an eight-category legend of which only five bands are
 visually separable even at high magnification; the slide file says so rather than
@@ -50,6 +58,10 @@ dropout terms, and we can drop this term via recomputation, if we do
 [Tensor parallelism](tensor-parallelism.md) splits the matrix multiplies in
 attention and the MLP. Of the 34, **24 belong to the MLPs** and divide by the
 tensor-parallel degree $t$; the attention term divides too ([48:10], slide 47):
+
+![Slide 47 — Activation under tensor parallel](../raw/images/08-parallelism-2/slide-47.jpg)
+
+*Slide 47 — Activation under tensor parallel. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 $$sbh\left(10 + \frac{24}{t} + 5\frac{as}{ht}\right)$$
 
@@ -114,6 +126,10 @@ the reverse.
 Saving activation memory is not only about fitting the model. Slide 62 makes the
 argument that recomputation **pays for itself** ([1:11:57]):
 
+![Slide 62 — Activation recomputation can pay for itself (via memory)](../raw/images/08-parallelism-2/slide-62.jpg)
+
+*Slide 62 — Activation recomputation can pay for itself (via memory). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 > You should do a bunch of activation recomputation, because if you do activation
 > recomputation cleverly, you can get a bigger batch size, and the bigger batch
 > size then lets you get better utilization. This is, initially, I think, a very
@@ -133,3 +149,7 @@ fed. See [critical batch size](critical-batch-size.md) for the limit on that tra
 - [ZeRO and FSDP](zero-and-fsdp.md) — the memory this does *not* overlap with.
 - [Memory accounting for training](memory-accounting-for-training.md).
 - [Lecture 8](08-parallelism-2.md) · [slides 44–49](../raw/slides/08-parallelism-2.md#slide-44--a-final-complexity--memory-is-dynamic) · [transcript](../raw/transcripts/08-parallelism-2.md)
+
+![Slide 48 — Making memory truly linear – sequence parallel](../raw/images/08-parallelism-2/slide-48.jpg)
+
+*Slide 48 — Making memory truly linear – sequence parallel. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*

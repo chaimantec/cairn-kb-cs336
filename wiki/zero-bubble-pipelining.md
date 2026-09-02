@@ -42,6 +42,10 @@ is *filled* with work that was always going to be needed and had no deadline. Sl
 38 draws the computation graph alongside two hand-built schedules showing the B and
 W cells placed separately.
 
+![Slide 38 — 'Zero bubble' pipelining](../raw/images/08-parallelism-2/slide-38.jpg)
+
+*Slide 38 — 'Zero bubble' pipelining. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 ## The cost
 
 Complexity, and a lot of it ([39:02]):
@@ -60,6 +64,10 @@ It is not a free win independent of the model shape.
 Before zero-bubble, slide 37 shows the more conventional route: interleaving, where
 each device holds several non-contiguous stages and forward and backward micro-batch
 steps are woven together ([36:45]):
+
+![Slide 37 — Trading communication bandwidth for utilization](../raw/images/08-parallelism-2/slide-37.jpg)
+
+*Slide 37 — Trading communication bandwidth for utilization. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 > You can sequence different forward-pass elements in between different
 > backward-pass elements, and by doing this clever scheduling, you can further

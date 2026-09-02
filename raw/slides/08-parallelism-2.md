@@ -197,6 +197,8 @@ No figure on this page.
 
 ## Slide 4 — Limits to GPU-based scaling – compute
 
+![Slide 4 — Limits to GPU-based scaling – compute](../images/08-parallelism-2/slide-4.jpg)
+
 Heading: "Limits to GPU-based scaling – compute". Two figures side by side, followed by two lines of body text below them.
 
 **Figure 1 (left) — NVIDIA "Single-Chip Inference Performance – 1000X in 10 years" slide capture.** This is a pasted screenshot of an NVIDIA presentation slide (itself containing an inset photo of a presenter, apparently a smaller superimposed chart thumbnail near the middle of the frame). On the left side of the pasted slide is a bulleted list headed "Gains from," attributing the 1000x, ten-year improvement in single-chip inference performance to five sources, each with a bullet of contributing factors and an approximate multiplier:
@@ -228,6 +230,8 @@ Below the two figures, two lines of body text: "There are limits to single-GPU s
 
 ## Slide 5 — Limits to GPU-based scaling - memory
 
+![Slide 5 — Limits to GPU-based scaling - memory](../images/08-parallelism-2/slide-5.jpg)
+
 Heading: "Limits to GPU-based scaling - memory". Body text below the heading: "Models are getting really big..".
 
 **Figure — log-scale line chart of model size over time.** Y-axis "Model Size (in billions of parameters)," log-scaled, ticked 0.01, 0.1, 1, 10, 100, 1000. X-axis "year," ticked 2018, 2019, 2020, 2021, 2022 (unlabeled axis title, but the values are years). There is one blue-line series (dots connected by a solid blue line) tracing named models, each labelled with a leader line to its point, plus one dashed red reference/trend line with no series markers of its own. The blue series' labelled points, in order of increasing year:
@@ -245,6 +249,8 @@ The dashed red line is a straight trend/reference line on the log-scale plot, ru
 Below the figure, body text: "A single GPU can't fit most of these large models!"
 
 ## Slide 6 — What do we do? Multi-GPU, multi-machine parallelism
+
+![Slide 6 — What do we do? Multi-GPU, multi-machine parallelism](../images/08-parallelism-2/slide-6.jpg)
 
 Heading: "What do we do? Multi-GPU, multi-machine parallelism". Two text labels sit above the figure: "Intra-node parallelism via high-speed interconnects" (left) and "High-speed inter-node parallelism" (right).
 
@@ -266,6 +272,8 @@ Below the figure, body text: "Split up memory and compute requirements across GP
 
 ## Slide 7 — But first.. Some basics about collective communication
 
+![Slide 7 — But first.. Some basics about collective communication](../images/08-parallelism-2/slide-7.jpg)
+
 Heading: "But first.. Some basics about collective communication". The body of the slide is four labelled collective-communication diagrams (All reduce, Broadcast on the left column; Reduce, All Gather, Reduce Scatter on the right column), each showing per-rank input/output boxes before and after an arrow, plus the resulting formula beneath.
 
 **Diagram 1 — "All reduce" (left, top).** Four input columns labelled "rank 0," "rank 1," "rank 2," "rank 3," each holding a colored box: rank 0 = blue "in0", rank 1 = red "in1", rank 2 = green "in2", rank 3 = yellow "in3". A grey arrow points right to four output columns (rank 0–3), each holding a white box labelled "out". Formula beneath: $out[i] = sum(inX[i])$.
@@ -280,6 +288,8 @@ Heading: "But first.. Some basics about collective communication". The body of t
 
 ## Slide 8 — Important detail – all reduce vs reduce-scatter-gather.
 
+![Slide 8 — Important detail – all reduce vs reduce-scatter-gather.](../images/08-parallelism-2/slide-8.png)
+
 Heading: "Important detail – all reduce vs reduce-scatter-gather." Body text below heading: "Reduce can be implemented as two steps: reduce-scatter and all-gather". Below that, three labelled panels under a shared "GPUs" bracket label, connected by a grey "=" sign between panels 1 and 2, and a grey "+" sign between panels 2 and 3.
 
 **Panel 1 — "All Reduce."** Four columns of GPUs, each a single tall box shaded a progressively darker blue left to right, labelled A, B, C, D respectively (four separate GPU boxes, top row). A downward grey arrow leads to a second row of four dark-navy boxes, each labelled "A+B+C+D" — i.e., after all-reduce every GPU holds the full sum of A, B, C, and D.
@@ -291,6 +301,8 @@ Heading: "Important detail – all reduce vs reduce-scatter-gather." Body text b
 Below the three panels, body text: "Importantly, in the bandwidth-limited regime, this is the best you can do".
 
 ## Slide 9 — TPUs vs GPUs – design differences at the comm level
+
+![Slide 9 — TPUs vs GPUs – design differences at the comm level](../images/08-parallelism-2/slide-9.jpg)
 
 Heading: "TPUs vs GPUs – design differences at the comm level". Two labelled text callouts on the left: "**TPU networking** — toroidal mesh" (upper) and "**GPU networking** — All-to-all (up to 256)" (lower). Three figures occupy the right/main area of the slide.
 
@@ -307,6 +319,8 @@ Heading: "TPUs vs GPUs – design differences at the comm level". Two labelled t
 
 ## Slide 10 — Mesh vs tree vs other
 
+![Slide 10 — Mesh vs tree vs other](../images/08-parallelism-2/slide-10.jpg)
+
 Heading: "Mesh vs tree vs other". Sub-heading: "Why mesh? Why tree?" followed by two lines of body text: "Pro mesh – Cheaper to operate, can be made fast (and just do tensor parallel)" and "Pro tree/A2A – Better for less structured communications (expert parallel)".
 
 **Figure — pasted screenshot of a Substack article excerpt.** A browser-style URL bar reads "taekim.substack.com/p/nvidias-bill-dally-and-googles-jeff". Below it, the article text (quoted verbatim as printed on the slide):
@@ -320,6 +334,8 @@ Heading: "Mesh vs tree vs other". Sub-heading: "Why mesh? Why tree?" followed by
 "Dean: \"I totally agree. It depends on exactly what your workload is.\""
 
 ## Slide 11 — But then things change.. TPU8i/t
+
+![Slide 11 — But then things change.. TPU8i/t](../images/08-parallelism-2/slide-11.jpg)
 
 Heading: "But then things change.. TPU8i/t". Three figures span the slide, followed by two bolded lines of body text.
 
@@ -335,6 +351,8 @@ The Jupiter Network sub-section shows a white box labelled "Optical Circuit Swit
 Below the two large figures, two bold lines of body text: "**TPU8i networking** – closer to tree-style topologies (maybe for MoEs?)" and "**TPU8t scale-out networking** – 'Virgo' with switched networks".
 
 ## Slide 12 — Why not connect everything?
+
+![Slide 12 — Why not connect everything?](../images/08-parallelism-2/slide-12.jpg)
 
 Heading: "Why not connect everything?" Sub-heading text: "**Domain sizes** – why not connect everything?"
 
@@ -404,6 +422,8 @@ No figure on this page.
 
 ## Slide 15 — Naïve data parallelism
 
+![Slide 15 — Naïve data parallelism](../images/08-parallelism-2/slide-15.png)
+
 Heading: "Naïve data parallelism". Body text: "**Starting point** – imagine we are doing naïve SGD".
 
 Displayed equation:
@@ -418,6 +438,8 @@ Below that, a pale-blue bordered box headed "How does this do?" with three lines
 
 No other figure on this page.
 ## Slide 16 — What's wrong with naïve data parallel?
+
+![Slide 16 — What's wrong with naïve data parallel?](../images/08-parallelism-2/slide-16.jpg)
 
 No printed page number seen (top-left, top-right, bottom-left, bottom-right all checked at 200 dpi).
 
@@ -450,6 +472,8 @@ A vertical bracket line to the right of the last three bullets (the FP32 master-
 
 ## Slide 18 — ZeRO – solving the memory overhead issue of DP
 
+![Slide 18 — ZeRO – solving the memory overhead issue of DP](../images/08-parallelism-2/slide-18.jpg)
+
 Title (blue): "**ZeRO – solving the memory overhead issue of DP**"
 
 Text: "**Core idea:** split up the expensive parts (state) and use the reduce-scatter equivalence."
@@ -466,6 +490,8 @@ Legend at bottom: blue swatch = "Parameters", orange swatch = "Gradients", green
 
 ## Slide 19 — ZeRO stage 1. optimizer state sharding
 
+![Slide 19 — ZeRO stage 1. optimizer state sharding](../images/08-parallelism-2/slide-19.png)
+
 Title (blue): "**ZeRO stage 1. optimizer state sharding**"
 
 Figure: the same diagram style as slide 18, but showing only the top two rows (Baseline and $P_{os}$), with the same three example columns ($gpu_0$, $gpu_i$, $gpu_{N-1}$), the same legend colors (blue = Parameters, orange = Gradients, green = Optimizer States), and the same memory-consumed formulas/values as slide 18: Baseline $(2+2+K)*\Psi$ = 120GB; $P_{os}$: $2\Psi + 2\Psi + \frac{K*\Psi}{N_d}$ = 31.4GB, using the same constants K=12, Ψ=7.5B, N_d=64. Visually: Baseline shows full-width blue, orange, and thick green bars on every column; $P_{os}$ shows the same full-width blue and orange bars but the green Optimizer-States block reduced to a short sliver at the left edge of each column.
@@ -479,6 +505,8 @@ Text below the figure:
 "Each worker is responsible for updating a subset of params (corresponding to their slice)"
 
 ## Slide 20 — ZeRO stage 1. how it works
+
+![Slide 20 — ZeRO stage 1. how it works](../images/08-parallelism-2/slide-20.png)
 
 Title (blue): "**ZeRO stage 1. how it works**"
 
@@ -518,6 +546,8 @@ Text below the table: "ZeRO stage 1 is *free* (in the bandwidth limited regime) 
 
 ## Slide 22 — ZeRO stage 2. the simple extension to gradient sharding
 
+![Slide 22 — ZeRO stage 2. the simple extension to gradient sharding](../images/08-parallelism-2/slide-22.png)
+
 Title (blue): "**ZeRO stage 2. the simple extension to gradient sharding**"
 
 Figure: a single diagram row, labelled "$P_{os+g}$" on the left, showing three example GPU columns ($gpu_0$/$gpu_i$/$gpu_{N-1}$-style, with "…" ellipses between them, matching the visual style of slides 18–19). Each column shows a full-width thin blue bar (Parameters) on top, with a short two-color sliver — a thin orange (Gradients) segment directly above a green (Optimizer States) segment — hanging beneath it at the left edge of the column; the green portion of the sliver is taller than the orange portion. To the right, the "Memory Consumed" formula $2\Psi + \frac{(2+K)*\Psi}{N_d}$ = **16.6GB** is given (identical formula/value to $P_{os+g}$ on slide 18).
@@ -533,6 +563,8 @@ Text: "Emboldened by our success, let's shard even more stuff"
 Note: the bullet calls the gradient slices "pink," but the diagram (and the legend on slides 18/19) render the gradient color as orange. Transcribed as printed — this is the deck's own inconsistency, not a resolution artifact.
 
 ## Slide 23 — ZeRO stage 2. how it works
+
+![Slide 23 — ZeRO stage 2. how it works](../images/08-parallelism-2/slide-23.png)
 
 Title (blue): "**ZeRO stage 2. how it works**"
 
@@ -551,6 +583,8 @@ Diagram for Step 3 (AllGather): identical in layout to slide 20's Step 4 diagram
 
 ## Slide 24 — ZeRO stage 3 (aka FSDP) shard everything
 
+![Slide 24 — ZeRO stage 3 (aka FSDP) shard everything](../images/08-parallelism-2/slide-24.png)
+
 Title (blue): "**ZeRO stage 3 (aka FSDP) shard *everything***"
 
 Figure: a single diagram row labelled "$P_{os+g+p}$", with three example GPU columns ($gpu_0$/$gpu_i$/$gpu_{N-1}$-style, "…" between them). Each column now shows only a small stack of thin slivers — a thin blue (Parameters) segment on top, a thin orange (Gradients) segment below it, and a taller green (Optimizer States) segment at the bottom — with no full-width bar remaining at all (unlike every previous row on slides 18/19/22, where at least the parameters bar spanned the full column width). To the right: "Memory Consumed" formula $\frac{(2+2+K)*\Psi}{N_d}$ = **1.9GB** (same formula/value as $P_{os+g+p}$ on slide 18).
@@ -567,6 +601,8 @@ Text: "We've gotten almost everything for free so far.. lets try to solve *all* 
 "Is it possible to do this with low overhead?"
 
 ## Slide 25 — ZeRO stage 3 (aka FSDP) how it works (baby version)
+
+![Slide 25 — ZeRO stage 3 (aka FSDP) how it works (baby version)](../images/08-parallelism-2/slide-25.jpg)
 
 Title (blue): "**ZeRO stage 3 (aka FSDP) how it works (baby version)**"
 
@@ -587,6 +623,8 @@ Caption beneath the whole figure: "Communication cost – 2 all gather (#param),
 Source URL printed at the very bottom of the page: `https://pytorch.org/tutorials/intermediate/FSDP_tutorial.html`
 
 ## Slide 26 — Actual picture of how FDSP / ZeRO stage 3 works
+
+![Slide 26 — Actual picture of how FDSP / ZeRO stage 3 works](../images/08-parallelism-2/slide-26.jpg)
 
 Title (blue): "**Actual picture of how FDSP / ZeRO stage 3 works**" — note the title itself misspells FSDP as "**FDSP**"; the body text one line below spells it correctly ("Let's walk through a FSDP example…"). Transcribed as printed; this looks like a typo in the title only.
 
@@ -646,6 +684,8 @@ The header row is white text on a dark-blue band; body rows alternate light-grey
 
 ## Slide 29 — Issues remain with data parallel – compute scaling
 
+![Slide 29 — Issues remain with data parallel – compute scaling](../images/08-parallelism-2/slide-29.jpg)
+
 Title (blue): "**Issues remain with data parallel – compute scaling**"
 
 Text: "With data parallel**, #machines < batch size** (and near this, comm overhead is high)"
@@ -659,6 +699,8 @@ There is **one data series**: a solid blue curve that rises from the bottom-left
 A vertical grey dashed line marks $x=10^0$ (i.e. $B=\mathcal{B}$) — this is a reference line, not a second data series. Two text labels with leader lines point at the curve: "**Perfect scaling**" pointing at the steep, roughly-linear rising portion of the curve (left of the dashed line), and "**Ineffective scaling**" pointing at the flattened portion of the curve (right of the dashed line, around $x\approx10^{1}$–$10^{2}$) — both are annotations of the single curve, not additional series.
 
 ## Slide 30 — Issues remain with data parallel – models don't fit
+
+![Slide 30 — Issues remain with data parallel – models don't fit](../images/08-parallelism-2/slide-30.jpg)
 
 Title (blue): "**Issues remain with data parallel – models don't fit**"
 
@@ -698,11 +740,15 @@ No chart or table on this page.
 
 ## Slide 32 — Layer-wise parallel
 
+![Slide 32 — Layer-wise parallel](../images/08-parallelism-2/slide-32.png)
+
 **Figure — four-layer pipeline across four GPUs.** Four vertical rounded-rectangle boxes are drawn left to right, labelled "Layer 0" (pale blue), "Layer 1" (pale yellow), "Layer 2" (pale red/pink), "Layer 3" (pale orange). A red arrow labelled "forward" runs left-to-right above the chain, connecting Layer 0 → Layer 1 → Layer 2 → Layer 3. A blue arrow labelled "backward" runs right-to-left below the chain, connecting Layer 3 → Layer 2 → Layer 1 → Layer 0. Beneath each layer box sits a small GPU icon, labelled respectively "GPU 0", "GPU 1", "GPU 2", "GPU 3" — i.e., each layer (or subset of layers) is pinned to one GPU in sequence.
 
 Below the figure: "**Layer-wise parallel** cuts up layers, assigns some subset to GPUS." / "**Activations and partial gradients** are passed back and forth"
 
 ## Slide 33 — What's wrong with layer-wise parallel
+
+![Slide 33 — What's wrong with layer-wise parallel](../images/08-parallelism-2/slide-33.png)
 
 "Utilization of layer-wise parallelism is *terrible*.."
 
@@ -722,6 +768,8 @@ The overall shape is a symmetric staircase: ascending steps of solitary forward 
 "Each GPU is idling most of the time, waiting for the backward pass to propagate back"
 
 ## Slide 34 — A solution: pipeline parallel
+
+![Slide 34 — A solution: pipeline parallel](../images/08-parallelism-2/slide-34.jpg)
 
 **Figure — four-stage, four-microbatch pipeline schedule (the classic GPipe-style bubble diagram).** Four rows of coloured cells, one row per pipeline stage/GPU, each cell double-subscripted $\text{stage},\text{microbatch}$. Colours match the previous slide's per-row scheme: bottom row gray (stage 0), next tan/orange (stage 1), next blue (stage 2), top mauve/pink (stage 3). There are 4 micro-batches (indices 0–3) per stage. Reading left to right:
 
@@ -753,6 +801,8 @@ No chart or table on this page.
 
 ## Slide 36 — Pipeline performance is highly dependent on batch size
 
+![Slide 36 — Pipeline performance is highly dependent on batch size](../images/08-parallelism-2/slide-36.png)
+
 **Chart — line plot, two series.** Y-axis: "Achieved teraFLOP/s per GPU", ticked 0, 50, 100, 150, 200. X-axis: "Pipeline-parallel size", ticked 1, 2, 4, 8 (categorical/log-like spacing, not linear). Two data series, both with marker-connected lines:
 
 - **Batch size = 8** (blue, circle markers): ~163 at x=1, ~142 at x=2, ~121 at x=4, ~87 at x=8 — a steady, steep decline.
@@ -761,6 +811,8 @@ No chart or table on this page.
 "Batch sizes are key to hiding the bubble – otherwise pipeline rapidly degrades perf"
 
 ## Slide 37 — Trading communication bandwidth for utilization
+
+![Slide 37 — Trading communication bandwidth for utilization](../images/08-parallelism-2/slide-37.jpg)
 
 **Figure — two stacked Gantt-style pipeline schedules (4 devices each), before/after "assign multiple stages to each device."** Both schedules share a legend at the bottom of the figure: dark blue = "Forward Pass", medium green = "Backward Pass" (gray cells = idle). A large downward arrow between the two schedules is labelled "Assign multiple stages to each device." A thin vertical black line partway across each schedule marks a step/iteration boundary; numbers resume past it rather than resetting to 1.
 
@@ -771,6 +823,8 @@ No chart or table on this page.
 "Some more crazy pipeline patterns can improve utilization, but at the cost of bandwidth"
 
 ## Slide 38 — 'Zero bubble' pipelining
+
+![Slide 38 — 'Zero bubble' pipelining](../images/08-parallelism-2/slide-38.jpg)
 
 "Split up backwards into two parts"
 1. Backpropagating activations (z,x)
@@ -788,6 +842,8 @@ No chart or table on this page.
 
 ## Slide 39 — Model parallel along the width axes
 
+![Slide 39 — Model parallel along the width axes](../images/08-parallelism-2/slide-39.jpg)
+
 "Are there model parallel schemes with better utilization?"
 "We can think of pipeline parallel as cutting up along depth. What about width?"
 
@@ -799,6 +855,8 @@ A downward arrow leads to the decomposed version below: $X$ is split into two $2
 
 ## Slide 40 — Tensor parallel – GPUs have submatrices
 
+![Slide 40 — Tensor parallel – GPUs have submatrices](../images/08-parallelism-2/slide-40.jpg)
+
 **Figure — Megatron-style tensor-parallel MLP block diagram, two dashed panels side by side.** Left panel, headed "$Y = \text{GeLU}(XA)$": input $X$ (tan box) → $f$ (dark green box) → splits into two parallel rows (one per GPU): top row $X$ (tan) → $XA_1$ (cyan) → GeLU (pink) → $Y_1$ (bright green); bottom row $X$ (tan) → $XA_2$ (cyan) → GeLU (pink) → $Y_2$ (bright green). Caption at the bottom of the panel: "$A = [A_1, A_2]$" (i.e., $A$ split by columns). Right panel, headed "$Z = \text{Dropout}(YB)$": top row $Y_1B_1$ (cyan) → $Z_1$ (bright green); bottom row $Y_2B_2$ (cyan) → $Z_2$ (bright green); both rows feed into $g$ (dark green box) → Dropout (pink) → $Z$ (bright green). Caption at the bottom: "$B = \begin{bmatrix}B_1\\B_2\end{bmatrix}$" (i.e., $B$ split by rows). Arrows throughout point left to right (forward-pass direction).
 
 "Assign columns ($A_1$, $A_2$) and rows ($B_1$, $B_2$) to separate GPUs."
@@ -806,6 +864,8 @@ A downward arrow leads to the decomposed version below: $X$ is split into two $2
 - In the backward pass, $f$ is an all-reduce, $g$ is the identity.
 
 ## Slide 41 — Row vs Column tensor parallel
+
+![Slide 41 — Row vs Column tensor parallel](../images/08-parallelism-2/slide-41.jpg)
 
 **Figure (a) — "MLP" (left half of page).** Identical to slide 40's diagram: left dashed panel "$Y = \text{GeLU}(XA)$" with $X \to f \to$ two parallel rows ($XA_1\to$GeLU$\to Y_1$; $XA_2\to$GeLU$\to Y_2$), caption "$A=[A_1,A_2]$"; right dashed panel "$Z=\text{Dropout}(YB)$" with two rows ($Y_1B_1\to Z_1$; $Y_2B_2\to Z_2$) feeding $g\to$Dropout$\to Z$, caption "$B=\begin{bmatrix}B_1\\B_2\end{bmatrix}$". Captioned beneath: "(a) MLP".
 
@@ -817,6 +877,8 @@ A downward arrow leads to the decomposed version below: $X$ is split into two $2
 - Replicated – norms, routers, etc
 
 ## Slide 42 — When do we tensor parallel?
+
+![Slide 42 — When do we tensor parallel?](../images/08-parallelism-2/slide-42.jpg)
 
 "On GPUs, tensor parallel within a node (up to 8 GPUs) due to high speed interconnects."
 
@@ -851,6 +913,8 @@ No chart or table on this page (aside from the boxed text above).
 
 ## Slide 44 — A final complexity – memory is dynamic!
 
+![Slide 44 — A final complexity – memory is dynamic!](../images/08-parallelism-2/slide-44.jpg)
+
 "Memory isn't just the static bits, but also activations! This can be big"
 
 **Chart — stacked memory-timeline / allocator snapshot, one series per memory category (8 legend entries).** Text printed above the plot: "Max memory allocated: 0.53 GB" / "Max memory reserved: 0.59 GB". Y-axis: "Memory (GB)", ticked 0.0, 0.1, 0.2, 0.3, 0.4 (the plotted curves reach just under 0.5 at their peaks, above the last labelled tick). X-axis: "Time (ms)", ticked 0, 50, 100, 150, 200, 250. Legend, top to bottom: PARAMETER (dark green), OPTIMIZER_STATE (tan/gold), INPUT (dark gray/near-black), TEMPORARY (light purple), ACTIVATION (red), GRADIENT (blue), AUTOGRAD_DETAIL (light blue), Unknown (gray, rendered as dense vertical hatching rather than a smooth fill).
@@ -865,6 +929,8 @@ This is a stacked-area "memory over time" trace (a GPU memory-allocator snapshot
 - **INPUT** (dark gray/black), **TEMPORARY** (light purple), and **AUTOGRAD_DETAIL** (light blue) are listed in the legend but **not visibly distinguishable as separate bands in the plot at this resolution** — re-rendered at 2400 dpi, no separately-colored region matching these three swatches could be identified; they may be too thin to render as visible bands, or are present only as a sliver blended into an adjacent band. Flagged rather than guessed.
 
 ## Slide 45 — A final complexity – activation memory
+
+![Slide 45 — A final complexity – activation memory](../images/08-parallelism-2/slide-45.png)
 
 "Thus far, we have only really discussed parameter memory."
 
@@ -912,6 +978,8 @@ No figure on this page beyond the boxed equation and the legend.
 
 ## Slide 47 — Activation under tensor parallel
 
+![Slide 47 — Activation under tensor parallel](../images/08-parallelism-2/slide-47.jpg)
+
 The displayed formula, printed at the top of the page (not boxed; a short
 horizontal rule is drawn under the words "Activations memory" only, as an
 underline-style emphasis):
@@ -933,6 +1001,8 @@ The same $a$/$b$/$h$/$L$/$p$/$s$/$t$/$v$ legend from slide 46 is repeated at the
 bottom right. No other figure.
 
 ## Slide 48 — Making memory truly linear – sequence parallel
+
+![Slide 48 — Making memory truly linear – sequence parallel](../images/08-parallelism-2/slide-48.jpg)
 
 **Figure — the Megatron sequence-parallel transformer-layer diagram**, a wide
 left-to-right pipeline running the full width of the page. Reading left to right:
@@ -997,6 +1067,8 @@ No figure on this page other than the table.
 
 ## Slide 50 — Expert parallelism
 
+![Slide 50 — Expert parallelism](../images/08-parallelism-2/slide-50.jpg)
+
 Sub-heading: "Instead of splitting up the matmul, split up the experts and route activations"
 
 **Figure — the GShard/MoE device-placement diagram**, two panels separated by a
@@ -1033,6 +1105,8 @@ labels. No citation line is printed on the page.
 
 ## Slide 51 — Why EP?
 
+![Slide 51 — Why EP?](../images/08-parallelism-2/slide-51.jpg)
+
 Line under the title: "EP is *roughly* like TP in behavior for MLPs – high bandwidth, reduces activation" ("roughly" is italicised in the deck).
 
 **Figure — a pasted screenshot of an NVIDIA-style dark-themed documentation panel**, black background with white text and lime-green accents. Its own heading reads "**Guideline 4: Prefer EP over TP for Expert Layers**". Beneath it a two-column table, with a lime-green rule under the header row:
@@ -1049,6 +1123,8 @@ Below the table, still inside the black panel: "**Example:** For Mixtral 8x7B, `
 Below the pasted panel, the deck's own line: "But, splitting matmuls can reduce efficiency vs routing activations". No citation URL is printed on this page.
 
 ## Slide 52 — Complexity – combining EP and others
+
+![Slide 52 — Complexity – combining EP and others](../images/08-parallelism-2/slide-52.jpg)
 
 Text above the figure:
 
@@ -1071,6 +1147,8 @@ No source citation beyond the figure's own "Fig. 8" label is printed on the page
 
 ## Slide 53 — Complexity: Decoupling attention / expert parallelism
 
+![Slide 53 — Complexity: Decoupling attention / expert parallelism](../images/08-parallelism-2/slide-53.png)
+
 Text:
 
 - "**Recall**: MoEs apply to the MLPs, not the attention (with some exotic exceptions)"
@@ -1092,6 +1170,8 @@ Citation at the bottom right of the page: `https://docs.nvidia.com/megatron-core
 Note that both dimension products end in `PP` — pipeline parallelism is the one axis the folding does *not* decouple — and that the deck's summary line lists the two triples in different orders from the table cells (table: "TP × CP × DP × PP" and "ETP × EP × EDP × PP"; prose: "TP/CP/DP" and "ETP/EP/EDP"), which agree.
 
 ## Slide 54 — Other parallelism strategies
+
+![Slide 54 — Other parallelism strategies](../images/08-parallelism-2/slide-54.jpg)
 
 **Figure — the Ring Attention / Blockwise Parallel Transformer schematic**, labelled "(a)" at its top left. Two dashed-outlined vertical columns, labelled "Device 1" (left) and "Device 2" (right) beneath them. Each column contains a grey square panel with, bottom to top:
 
@@ -1126,6 +1206,8 @@ Six rows, seven columns; no total or average row. Note the two distinct senses o
 No figure or citation on this page beyond the table.
 
 ## Slide 56 — Model vs Tensor parallel (TPU book)
+
+![Slide 56 — Model vs Tensor parallel (TPU book)](../images/08-parallelism-2/slide-56.jpg)
 
 Left half of the page carries a centred call-out: "**Key quantity**" over "Global batch size (divided by GPU)".
 
@@ -1163,6 +1245,8 @@ No citation line is printed on the page beyond "(TPU book)" in the title.
 
 ## Slide 57 — '3D (4D) parallelism' – putting it all together
 
+![Slide 57 — '3D (4D) parallelism' – putting it all together](../images/08-parallelism-2/slide-57.jpg)
+
 Text (left half):
 
 "**Simple rules of thumb from the literature.**"
@@ -1186,6 +1270,8 @@ Between the two data-parallel panels, a row of vertical double-headed block arro
 No citation is printed on the page.
 
 ## Slide 58 — Example from Metagron's current recommendations
+
+![Slide 58 — Example from Metagron's current recommendations](../images/08-parallelism-2/slide-58.jpg)
 
 The title is printed as "Metagron's" — a typo for "Megatron's"; transcribed as printed.
 
@@ -1279,6 +1365,8 @@ Below the table:
 
 ## Slide 60 — Careful '3D' parallelism gives linear gains
 
+![Slide 60 — Careful '3D' parallelism gives linear gains](../images/08-parallelism-2/slide-60.jpg)
+
 **Figure — a pasted line chart from the Narayanan 2021 paper.**
 
 - y-axis: "Achieved teraFLOP/s per GPU", linear, ticked 0, 50, 100, 150, 200.
@@ -1301,6 +1389,8 @@ Note the caption says "dotted lines" for the 175B series; the lines are drawn da
 
 ## Slide 61 — Tensor parallel = 8 is often optimal
 
+![Slide 61 — Tensor parallel = 8 is often optimal](../images/08-parallelism-2/slide-61.jpg)
+
 **Figure — a pasted line chart from the same Narayanan 2021 paper ("Figure 13").**
 
 - y-axis: "Achieved teraFLOP/s per GPU", linear, ticked 0, 50, 100, 150, 200.
@@ -1321,6 +1411,8 @@ Below the caption, in the deck's own type: "When parallelizing across 64 machine
 
 ## Slide 62 — Activation recomputation can pay for itself (via memory)
 
+![Slide 62 — Activation recomputation can pay for itself (via memory)](../images/08-parallelism-2/slide-62.jpg)
+
 **Figure — a two-series line chart** (no pasted paper caption on this page).
 
 - y-axis: "Throughput (sequences/second)", linear, ticked 0.0, 2.5, 5.0, 7.5, 10.0.
@@ -1335,6 +1427,8 @@ Below the figure, in the deck's own type: "Activation recomputation enables larg
 
 No citation URL is printed on the page.
 ## Slide 63 — Recent LMs – what do they do?
+
+![Slide 63 — Recent LMs – what do they do?](../images/08-parallelism-2/slide-63.jpg)
 
 Heading, in blue: "Recent LMs – what do they do?" This opens the case-study section: what real recent language models actually do for parallelism.
 
@@ -1354,6 +1448,8 @@ Note: the slide's own caption spells it "FDSP" (not "FSDP") — transcribed as p
 
 ## Slide 64 — DeepSeek
 
+![Slide 64 — DeepSeek](../images/08-parallelism-2/slide-64.jpg)
+
 Heading, in blue: "DeepSeek".
 
 The page pastes a boxed screenshot from a paper, headed "**2.4. Infrastructures**". The pasted paragraph reads (verbatim):
@@ -1371,6 +1467,8 @@ Below the box, in the lecturer's own words:
 (The third line is indented under the "V3" line, describing DeepSeek-V3's expert-parallel implementation detail: that its expert-parallel all-to-all communication is overlapped using a 1F1B — one-forward-one-backward — schedule.)
 
 ## Slide 65 — Yi
+
+![Slide 65 — Yi](../images/08-parallelism-2/slide-65.jpg)
 
 Heading, in blue: "Yi".
 
@@ -1442,6 +1540,8 @@ Arithmetic check (not printed on the slide, noted here for the reader): the 18 I
 
 ## Slide 68 — Gemma 2
 
+![Slide 68 — Gemma 2](../images/08-parallelism-2/slide-68.jpg)
+
 Heading, in blue: "Gemma 2".
 
 Left side, in the lecturer's own words: "**For 2, 9, 27B models**" then, below it: "ZeRO-3, MP (=TP+SP), DP"
@@ -1473,6 +1573,8 @@ A pasted table on a dark (black) background with white text, titled "**Mixture-o
 The lecturer's note above the table ("TP / PP / CP / EP (4/4/1/8), DP likely 2") matches the Mixtral 8x22B row exactly (4×4×1×8 = 128, ×2 DP = 256 GPUs, matching the table's GPUs column for that row).
 
 ## Slide 70 — Nemotron 3 Super 120B-A12B
+
+![Slide 70 — Nemotron 3 Super 120B-A12B](../images/08-parallelism-2/slide-70.jpg)
 
 Heading, in blue: "Nemotron 3 Super 120B-A12B".
 

@@ -30,6 +30,10 @@ diagram is the fastest way to see the difference: in the post-LN block the green
 Layer Norm boxes interrupt the thick grey residual arrow; in the pre-LN block they
 sit on the branch and the arrow runs unbroken from $x_l$ to $x_{l+1}$.
 
+![Slide 10 — Pre-vs-post norm](../raw/images/03-architectures/slide-10.jpg)
+
+*Slide 10 — Pre-vs-post norm. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 ### A note on the names
 
 The terminology is genuinely confusing and Hashimoto flags it at [8:29]. "Pre-norm"
@@ -53,6 +57,10 @@ both validation loss and BLEU. Warm-up did not actually go away — Hashimoto no
 that modern training still does it ([9:15]) — but the experiment established that
 post-norm converges worse when it is removed.
 
+![Slide 11 — Pre-vs-post-norm, the data](../raw/images/03-architectures/slide-11.jpg)
+
+*Slide 11 — Pre-vs-post-norm, the data. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 **Gradients propagate more cleanly.** This is the argument Hashimoto finds
 clearest ([10:48]). The design heuristic he quotes from practitioners is *keep your
 residual stream clean*: if $x$ runs from the bottom of the network to the top
@@ -63,6 +71,10 @@ layer 1 and 0.18 at layer 6 — while Post-LN at initialization grows from about
 at layer 1 to about 1.3 at layer 6, and Post-LN after warm-up is essentially zero
 at every layer. The pre-norm gradient magnitude barely depends on depth; the
 post-norm one depends on it strongly, in both directions.
+
+![Slide 12 — Pre-vs-post norm, explanations?](../raw/images/03-architectures/slide-12.jpg)
+
+*Slide 12 — Pre-vs-post norm, explanations? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 **It is more stable.** Slide 12's right chart plots the global gradient norm on a
 log scale over 1200 iterations. `PostNorm+LayerNorm` has both the highest baseline
@@ -79,6 +91,10 @@ at scale — see [training stability](training-stability.md).
 stream," Hashimoto says at [8:29] — "this is just a thing that basically everybody
 does." The deck's model database (slides 7, 9, 29 and 67) bears this out across
 roughly forty models from 2017 onward.
+
+![Slide 7 — Let's look at the data (on dense architectures)](../raw/images/03-architectures/slide-7.jpg)
+
+*Slide 7 — Let's look at the data (on dense architectures). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 There is one exception, and it is a joke rather than a lesson. **OPT-350M** is
 post-norm, alone among the models in the table. Hashimoto's comment at [8:29]:
@@ -98,6 +114,10 @@ branch feeding the sublayer, and a *second* norm on the branch after it, with th
 residual stream carrying no norm at any point. This is called **double norm**, or
 **non-residual post-norm**. The deck names Grok and Gemma 2 as adopters, and notes
 that **OLMo 2 does only the non-residual post-norm** rather than both.
+
+![Slide 13 — New things – 'double' norm or non-residual postnorm](../raw/images/03-architectures/slide-13.png)
+
+*Slide 13 — New things – 'double' norm or non-residual postnorm. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 This is why four rows of the model database have their `Pre-norm` checkbox
 unticked — **Olmo 2, OLMo 3, Gemma 3 and Gemma 4** — even though none of them is

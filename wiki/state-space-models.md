@@ -24,6 +24,10 @@ which is the only reason they are competitive with attention at all.
 Slide 7. Start from linear attention and add a single input-dependent forget gate
 $\gamma_t$:
 
+![Slide 7 — From linear attention to Mamba-2](../raw/images/04-attention-alternatives/slide-7.png)
+
+*Slide 7 — From linear attention to Mamba-2. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 $$S_t = \gamma_t S_{t-1} + k_t v_t^\top, \qquad y_t = q_t^\top S_t + v_t^\top D, \qquad \gamma_t = f(x_t)$$
 
 Compare linear attention, which is this with $\gamma_t = 1$ and no $D$ term. The deck
@@ -95,6 +99,18 @@ softmax attention:
 | Nemotron 3 | ~3 Mamba-2 : 1 attention | Interleaved with MoE layers throughout | slide 8 |
 | Qwen 3.5 / Qwen Next | 3 Gated DeltaNet : 1 attention | slide 10 |
 
+![Slide 6 — Minimax M1](../raw/images/04-attention-alternatives/slide-6.jpg)
+
+*Slide 6 — Minimax M1. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 8 — Nemotron 3](../raw/images/04-attention-alternatives/slide-8.jpg)
+
+*Slide 8 — Nemotron 3. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 10 — Qwen 3.5 / Qwen Next](../raw/images/04-attention-alternatives/slide-10.jpg)
+
+*Slide 10 — Qwen 3.5 / Qwen Next. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 Hashimoto states the limit plainly: "No one has thus far really proven out fully linear
 time attention mechanisms at scale; everything I'm going to talk about in the next
 couple of slides is a hybrid" ([10:49]).
@@ -108,6 +124,10 @@ groups repeated ×5, ×3, ×1 and ×4.
 Slide 11 carries what Hashimoto says is close to the only controlled study, from
 ByteDance Seed and UC Santa Cruz, sweeping the proportion of RNN layers against a
 full-attention dashed baseline.
+
+![Slide 11 — Hybrid performance](../raw/images/04-attention-alternatives/slide-11.jpg)
+
+*Slide 11 — Hybrid performance. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 The shape of the result, in his reading: at low ratios "there's basically no hit," past
 some point degradation sets in, and "at the end, as you go to full RNN, you have very

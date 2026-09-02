@@ -18,6 +18,10 @@ section is accessed, all the other locations in it can be delivered at no extra
 cost. A typical figure is **128 bytes to a burst** ([53:49]) — one read returning
 up to 128 bytes, provided the data lives in the same contiguous block.
 
+![Slide 37 — Trick (?) 4: Memory coalescing and DRAM](../raw/images/05-gpus-tpus/slide-37.jpg)
+
+*Slide 37 — Trick (?) 4: Memory coalescing and DRAM. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 Hashimoto's own account of the physics, at [54:35]–[55:20], is hedged and the
 transcript marks it as a garbled exchange: the memory cells are arranged in a grid,
 the amplifiers select at a column-wise level, and "activating the voltage for this
@@ -31,6 +35,10 @@ while wasting it is not — is stated unambiguously on the slides.
 
 Slide 38 gives the definition: **a memory access is coalesced if all the threads in
 a warp fall in the same burst section.**
+
+![Slide 38 — Memory coalescing](../raw/images/05-gpus-tpus/slide-38.jpg)
+
+*Slide 38 — Memory coalescing. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 That is the whole idea. A [warp](gpu-execution-model.md) is 32 threads issuing the
 same instruction at the same time. If their 32 addresses land inside one burst
@@ -46,6 +54,10 @@ section, and I'm fully utilizing this nice property of DRAM memory."
 
 The consequence for matrices is concrete, and slide 39 states the rule: for
 row-major matrices, threads reading **along** the major axis are *not* coalesced.
+
+![Slide 39 — Coalescing for matrix multiplication](../raw/images/05-gpus-tpus/slide-39.jpg)
+
+*Slide 39 — Coalescing for matrix multiplication. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 Hashimoto's mnemonic, with the 4×4 example at [56:05]–[56:51]. The matrix is stored
 row-major, so consecutive memory addresses run along each row. Now have the threads
@@ -77,6 +89,10 @@ Coalescing rarely appears as a thing you tune directly. It appears as the
   dimensions divisible by 16 or 32 help because the tile then fits the burst window,
   not because powers of two are magic. It is a divisor property: going higher does
   not help further ([1:10:35]).
+
+![Slide 44 — Complexities with tiling 2 – memory alignment](../raw/images/05-gpus-tpus/slide-44.jpg)
+
+*Slide 44 — Complexities with tiling 2 – memory alignment. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 ## Lecture 6: not the same thing as a bank conflict
 

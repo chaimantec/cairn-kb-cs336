@@ -39,6 +39,10 @@ and the slide file leaves both as printed rather than reconciling them. Separate
 the Llama3 405B row matches the **second** of slide 66's three rows (16,384 GPUs),
 not the first.
 
+![Slide 70 — Nemotron 3 Super 120B-A12B](../raw/images/08-parallelism-2/slide-70.jpg)
+
+*Slide 70 — Nemotron 3 Super 120B-A12B. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 ## The individual runs
 
 ### FSDP is enough, if the model is small
@@ -81,6 +85,10 @@ more efficient."
 
 **Yi-Lightning** (2025) makes the same swap, replacing tensor with expert
 parallelism (slide 65).
+
+![Slide 65 — Yi](../raw/images/08-parallelism-2/slide-65.jpg)
+
+*Slide 65 — Yi. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 ### The full breakdown: Llama 3 405B
 
@@ -166,3 +174,15 @@ significantly affect the performance" ([1:18:09]).
 - [Context parallelism](context-parallelism.md) — the long-context stage.
 - [Network topology](network-topology.md) — why Gemma 2 has no pipeline.
 - [Lecture 8](08-parallelism-2.md) · [slides 63–72](../raw/slides/08-parallelism-2.md#slide-63--recent-lms--what-do-they-do) · [transcript](../raw/transcripts/08-parallelism-2.md)
+
+![Slide 63 — Recent LMs – what do they do?](../raw/images/08-parallelism-2/slide-63.jpg)
+
+*Slide 63 — Recent LMs – what do they do? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
+![Slide 64 — DeepSeek](../raw/images/08-parallelism-2/slide-64.jpg)
+
+*Slide 64 — DeepSeek. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
+![Slide 68 — Gemma 2](../raw/images/08-parallelism-2/slide-68.jpg)
+
+*Slide 68 — Gemma 2. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*

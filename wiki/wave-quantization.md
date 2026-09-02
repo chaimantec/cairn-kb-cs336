@@ -15,11 +15,19 @@ Slide 46 shows throughput for square matmuls against matrix size $N$. After
 colour-coding by divisibility, one band still shows "weird periodic behavior, where
 performance suddenly drops" ([1:07:32]).
 
+![Slide 46 — Matrix mystery](../raw/images/05-gpus-tpus/slide-46.jpg)
+
+*Slide 46 — Matrix mystery. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 Hashimoto's reaction is the right one to have: "This is very strange, because I'm
 just multiplying matrices — why does adding a single extra dimension suddenly kill
 my throughput?"
 
 The specific cliff, from slide 48: **it happens between $N = 1792$ and $N = 1793$.**
+
+![Slide 48 — Part 2: wave quantization](../raw/images/05-gpus-tpus/slide-48.jpg)
+
+*Slide 48 — Part 2: wave quantization. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 ## The arithmetic
 
@@ -75,6 +83,10 @@ SMs," reading from slide 10's die annotation, which reports the GA100 die as
 the shipped product are not the same thing — chips are sold with some units
 disabled — and the wave-quantization arithmetic is the one that has to match the
 benchmark, so 108 is the number that governs this effect.
+
+![Slide 10 — Anatomy of a GPU (memory)](../raw/images/05-gpus-tpus/slide-10.jpg)
+
+*Slide 10 — Anatomy of a GPU (memory). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 ## Practical upshot
 

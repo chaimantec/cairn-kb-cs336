@@ -32,6 +32,10 @@ sitting idle while another queues is throughput thrown away.
 Slide 40, from Fedus et al. 2022. Given $N$ experts and a batch $\mathcal{B}$ of $T$
 tokens, add to the model loss:
 
+![Slide 40 — Heuristic balancing losses](../raw/images/04-attention-alternatives/slide-40.jpg)
+
+*Slide 40 — Heuristic balancing losses. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 $$\mathrm{loss} = \alpha \cdot N \cdot \sum_{i=1}^{N} f_i \cdot P_i$$
 
 where $f_i$ is the **fraction of tokens dispatched** to expert $i$,
@@ -113,6 +117,10 @@ expert lives on is arbitrary.
 Slide 42. Instead of an auxiliary loss, add a learned bias $b_i$ per expert that shifts
 its position in the top-$k$ competition — but is *not* applied to the gate value:
 
+![Slide 42 — DeepSeek v3 variation – per-expert biases](../raw/images/04-attention-alternatives/slide-42.jpg)
+
+*Slide 42 — DeepSeek v3 variation – per-expert biases. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 $$g'_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} + b_i \in \mathrm{Topk}\!\left(\{s_{j,t} + b_j \mid 1 \leqslant j \leqslant N_r\},\, K_r\right) \\ 0, & \text{otherwise} \end{cases}$$
 
 The biases are updated online — raised for underused experts, lowered for overused ones.
@@ -135,6 +143,10 @@ Slide 43 is OLMoE's ablation, and it is decisive. Removing the load-balancing lo
 validation loss on both C4 and the Pile and worsens training loss. But the second figure
 is the one Hashimoto calls more telling — per-expert token share over training:
 
+![Slide 43 — What happens when removing load balancing losses?](../raw/images/04-attention-alternatives/slide-43.jpg)
+
+*Slide 43 — What happens when removing load balancing losses? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 > Without load balancing, almost all the tokens go to two experts: the yellow expert and
 > the pinkish expert you see here. Whereas with the load-balancing loss, even though it's
 > a heuristic thing, all of the experts are being utilized across the tokens — nice, even
@@ -152,9 +164,17 @@ Worth knowing, because both are what a theoretician would reach for first.
 the earliest work. Clark 2020 finds REINFORCE-based routing beaten by its own paper's
 baselines, and the gradient variance and overhead sink it ([1:00:08]).
 
+![Slide 37 — RL for MoEs](../raw/images/04-attention-alternatives/slide-37.jpg)
+
+*Slide 37 — RL for MoEs. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 **Stochastic perturbation** (slides 38–39). The original Shazeer MoE injects
 input-scaled noise into the router logits before the top-$k$, so near-tied experts get
 explored:
+
+![Slide 39 — Stochastic approximations](../raw/images/04-attention-alternatives/slide-39.jpg)
+
+*Slide 39 — Stochastic approximations. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 > If you have two experts that are closely tied, or very close to each other, then
 > stochastically you'll pick one of them and not the other. And as you backprop, you'll

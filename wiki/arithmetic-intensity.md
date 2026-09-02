@@ -224,6 +224,10 @@ flat compute-bound plateau — and draws the practical conclusion that "what you
 to do is be on" the compute-bound side, "which means we want to increase the
 operational intensity" ([31:32]–[32:18]).
 
+![Slide 21 — What makes ML workloads fast?](../raw/images/05-gpus-tpus/slide-21.jpg)
+
+*Slide 21 — What makes ML workloads fast? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 Slide 21's version of the chart is more informative than a single roofline, because
 it draws **a separate ceiling for each level of the memory hierarchy** — GPU
 registers, GPU shared memory, GPU main memory, and CPU main memory — each turning
@@ -246,6 +250,10 @@ upward on that plot:
 The exception is control divergence, which wastes compute rather than bandwidth —
 slide 23's own heading calls it out as "not a memory issue." See
 [the GPU execution model](gpu-execution-model.md).
+
+![Slide 23 — Control divergence (not a memory issue)](../raw/images/05-gpus-tpus/slide-23.jpg)
+
+*Slide 23 — Control divergence (not a memory issue). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 ## Where lecture 6 takes this
 

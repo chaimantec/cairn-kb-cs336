@@ -9,6 +9,10 @@ you'll be surprised how much it doesn't already happen" ([47:40]).
 Slide 30's picture, which the lecture leans on: think of a GPU as a factory. There
 is a memory warehouse, a compute factory, and a conveyor belt running between them.
 
+![Slide 30 — Trick 2: Operator fusion](../raw/images/05-gpus-tpus/slide-30.jpg)
+
+*Slide 30 — Trick 2: Operator fusion. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 Scale up the compute and the conveyor belt becomes the bottleneck. Worse, the
 problem compounds with the number of operations: "imagine I've got lots of
 different operations to do, and I'm shipping raw materials to my factory and back,
@@ -24,6 +28,10 @@ only have to pay for memory bandwidth twice" ([48:26]).
 Slide 32 computes $\sin^2 x + \cos^2 x$. The PyTorch computation graph is five
 pointwise operations: sine, cosine, two squarings, one addition.
 
+![Slide 32 — Example – sines and cosines](../raw/images/05-gpus-tpus/slide-32.jpg)
+
+*Slide 32 — Example – sines and cosines. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 Done naively, "each of these will be its own factory, so to speak — you'll read and
 write from global memory every time one of these is called, and incur quite a bit
 of memory cost each time" ([48:26]). Five operations, five round trips to global
@@ -32,6 +40,10 @@ memory, for arithmetic that is trivial by comparison.
 Fused, the whole chain becomes one kernel: read once from global memory, do
 everything inside the SM, write the result back once ([49:14]). Slide 33 states
 that all five pointwise operations can be fused.
+
+![Slide 33 — Fusion example](../raw/images/05-gpus-tpus/slide-33.jpg)
+
+*Slide 33 — Fusion example. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 This is the same reasoning as [arithmetic intensity](arithmetic-intensity.md)
 applied to a chain rather than a single operation. Each pointwise op in isolation
@@ -69,6 +81,10 @@ ingredients slide 54 lists, and no compiler derived FlashAttention on its own �
 required the online-softmax reformulation first. That is the general shape of it:
 compilers fuse chains that are already fusible, but restructuring a computation so
 that it *becomes* fusible is a human's job.
+
+![Slide 54 — Putting it all together – the forward pass of flash attention](../raw/images/05-gpus-tpus/slide-54.jpg)
+
+*Slide 54 — Putting it all together – the forward pass of flash attention. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 ## Lecture 6: the same argument, measured
 

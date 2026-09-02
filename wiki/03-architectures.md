@@ -44,6 +44,14 @@ Slide 3 shows the 2017 encoder–decoder with its sinusoidal position encodings,
 feedforward and post-norm placement. Slide 4 shows the assignment-1 model beside it.
 Four differences, and the rest of the lecture is an explanation of each:
 
+![Slide 3 — Starting point: the 'original' transformer](../raw/images/03-architectures/slide-3.jpg)
+
+*Slide 3 — Starting point: the 'original' transformer. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
+![Slide 4 — What you implemented – simple, modern variant](../raw/images/03-architectures/slide-4.jpg)
+
+*Slide 4 — What you implemented – simple, modern variant. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 | | Original (2017) | Modern (what you implement) |
 | --- | --- | --- |
 | Norm placement | post-norm, in the residual stream | **pre-norm**, on the branch |
@@ -79,6 +87,10 @@ explain ([8:29]). Recent models add a second norm *after* the sublayer, still of
 residual path — the "double norm" or non-residual post-norm of Grok, Gemma 2 and
 OLMo 2. Full treatment: [pre-norm and post-norm](pre-norm-and-post-norm.md).
 
+![Slide 12 — Pre-vs-post norm, explanations?](../raw/images/03-architectures/slide-12.jpg)
+
+*Slide 12 — Pre-vs-post norm, explanations? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 **What: RMSNorm, for systems reasons.** RMSNorm drops LayerNorm's mean subtraction
 and bias, making it strictly *less* expressive — "there's really no representational
 reason why you have to use RMSNorm" ([13:52]). The argument is entirely about data
@@ -88,6 +100,14 @@ because it reads and writes whole activation tensors to do almost no arithmetic 
 low [arithmetic intensity](arithmetic-intensity.md). Slide 16 tags multi-head
 attention at intensity 153 against LayerNorm at 3.5. Dropping bias terms follows the
 same logic. Full treatment: [RMSNorm and dropping bias terms](rmsnorm.md).
+
+![Slide 15 — Why RMSNorm?](../raw/images/03-architectures/slide-15.jpg)
+
+*Slide 15 — Why RMSNorm? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
+![Slide 16 — Why RMSNorm (2)](../raw/images/03-architectures/slide-16.jpg)
+
+*Slide 16 — Why RMSNorm (2). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 ## Activations
 
@@ -104,6 +124,14 @@ the lowest final loss at 1.789 against 1.838 for a vanilla ReLU transformer. Goo
 lineages use GeGLU, LLaMA lineages SwiGLU, and Hashimoto's view is that between them
 "it doesn't really matter" ([23:50]).
 
+![Slide 24 — Do gated linear units work?](../raw/images/03-architectures/slide-24.jpg)
+
+*Slide 24 — Do gated linear units work? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
+![Slide 25 — Do gated linear units work (2)?](../raw/images/03-architectures/slide-25.jpg)
+
+*Slide 25 — Do gated linear units work (2)? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 The piece of trivia that becomes a hyperparameter: gating adds a third matrix, so
 $d_{ff}$ is conventionally scaled **down by 2/3** to keep the parameter count
 matched. Full treatment: [gated activations](gated-activations.md).
@@ -114,6 +142,10 @@ A short section, and the lecture's one clear example of an idea that was tried a
 mostly abandoned. A standard block computes attention, then the MLP. The parallel
 formulation, from GPT-J and adopted by PaLM, computes both from the same normalized
 input and adds both to the residual stream (slide 28):
+
+![Slide 28 — Parallel layers](../raw/images/03-architectures/slide-28.jpg)
+
+*Slide 28 — Parallel layers. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 $$y = x + \mathrm{MLP}(\mathrm{LayerNorm}(x)) + \mathrm{Attention}(\mathrm{LayerNorm}(x))$$
 
@@ -139,6 +171,10 @@ Attention is permutation-invariant, so position has to be injected deliberately
 ([31:29]). Slide 30 surveys four schemes — sines, absolute, relative, and RoPE — and
 RoPE is what essentially every post-2024 model uses.
 
+![Slide 30 — Many variations in position embeddings](../raw/images/03-architectures/slide-30.jpg)
+
+*Slide 30 — Many variations in position embeddings. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 The design constraint is that the inner product should depend only on the *relative*
 offset:
 
@@ -155,6 +191,10 @@ leaking absolute position — which is precisely what sinusoidal embeddings fail
 RoPE is applied to queries and keys at **every attention operation**, not once at the
 bottom of the network (slide 35). Full treatment: [RoPE](rope.md), which also covers
 the p-RoPE and NoPE variants that the 2026 hybrid models depend on.
+
+![Slide 35 — Implementation and code for RoPE](../raw/images/03-architectures/slide-35.jpg)
+
+*Slide 35 — Implementation and code for RoPE. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 ## Hyperparameters
 
@@ -180,6 +220,14 @@ is usually a systems argument ([53:45]).
   not separate training from validation loss, but it does interact with
   learning-rate decay to reach a better final minimum.
 
+![Slide 40 — Why this range of multipliers?](../raw/images/03-architectures/slide-40.png)
+
+*Slide 40 — Why this range of multipliers? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
+![Slide 50 — Why weight decay LLMs?](../raw/images/03-architectures/slide-50.jpg)
+
+*Slide 50 — Why weight decay LLMs? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 Full treatment: [transformer hyperparameters](transformer-hyperparameters.md).
 
 ## Stability
@@ -194,6 +242,10 @@ Slide 52's warning is subtler than it first appears: the run you should not want
 the one with the **lower** loss, because its gradient-norm trace is spiking with
 increasing density throughout training.
 
+![Slide 52 — Stability tricks](../raw/images/03-architectures/slide-52.jpg)
+
+*Slide 52 — Stability tricks. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 The usual suspect is the softmax, which contains both an exponential and a division
 ([1:06:07]), and a transformer has two of them. Each gets a fix:
 
@@ -202,6 +254,10 @@ The usual suspect is the softmax, which contains both an exponential and a divis
   "sprinkle in layer norms" heuristic applied one level deeper.
 - **Logit soft-capping** bounds the logits through a scaled $\tanh$. Unlike the
   other two, it measurably costs quality (slide 56).
+
+![Slide 56 — Logit soft-capping.](../raw/images/03-architectures/slide-56.jpg)
+
+*Slide 56 — Logit soft-capping. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 Full treatment: [training stability](training-stability.md).
 
@@ -226,6 +282,10 @@ on each kind of layer. LLaMA 4, Gemma 3, Gemma 4 and OLMo 3 all do a version of 
 Hashimoto marks this as unsettled: it "is still an active area of investigation —
 it's a place where the most architecture work and changes are still being done"
 ([1:26:49]). Full treatment: [attention variants](attention-variants.md).
+
+![Slide 65 — Current standard trick – interleave 'full' and 'LR' attention](../raw/images/03-architectures/slide-65.jpg)
+
+*Slide 65 — Current standard trick – interleave 'full' and 'LR' attention. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 ## What this lecture does not cover
 

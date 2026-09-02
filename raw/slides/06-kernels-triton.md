@@ -123,6 +123,10 @@ example, and the four Triton examples are ordered as *elementwise operation*,
 
 *Figure: `images/gpu-hardware.png` (width 800).*
 
+![One GPU: eight SMs over a shared L2, with a single link to HBM](../images/06-kernels-triton/gpu-hardware.png)
+
+*One GPU drawn as eight streaming multiprocessors, each with its own register file and L1/shared memory, sitting over a shared L2 cache, with a single link out to HBM. This is the memory hierarchy a Triton kernel is written against. Source: [`images/gpu-hardware.png`](https://github.com/stanford-cs336/lectures/blob/main/images/gpu-hardware.png) in the lectures repo.*
+
 The following table is printed verbatim by the source (lines 42–55):
 
 ```
@@ -780,6 +784,10 @@ def triton_softmax_kernel(x_ptr, y_ptr, x_row_stride, y_row_stride, num_cols, BL
 
 *Figure: `images/triton-softmax.png` (width 600).*
 
+![The Triton softmax kernel, one program instance per row](../images/06-kernels-triton/triton-softmax.png)
+
+*The softmax kernel: one program instance per row, pid being the row index. Row 1 is loaded with tl.load, its max subtracted, exp and sum taken with tl.exp and tl.sum, and the normalized row written back with tl.store. Source: [`images/triton-softmax.png`](https://github.com/stanford-cs336/lectures/blob/main/images/triton-softmax.png) in the lectures repo.*
+
 Two details worth noticing. The padding value on the load is `-inf`, not zero, so
 that padded lanes contribute nothing to either the max or the sum. And the whole
 five-operation sequence above now happens between one `tl.load` and one
@@ -816,6 +824,10 @@ y1 = builtin_row_sum(x)  # [10., 26.] (computed)
 ```
 
 *Figure: `images/triton-row-sum.png` (width 600).*
+
+![A worked trace of the Triton row-sum kernel on a 4 x 10 input](../images/06-kernels-triton/triton-row-sum.png)
+
+*A worked trace of the row-sum kernel. Block 1 (pid=1) takes row 1 and walks it in three tiles of BLOCK_SIZE 4: cols 0-3 load x = 3, 1, 4, 1 into four threads' accumulators; cols 4-7 add 5, 9, 2, 6 to give acc = 8, 10, 6, 7; cols 8-11 load 5, 3 and mask the two out-of-range lanes. tl.sum then tree-reduces across threads to out[1] = 39. Source: [`images/triton-row-sum.png`](https://github.com/stanford-cs336/lectures/blob/main/images/triton-row-sum.png) in the lectures repo.*
 
 ```python
 def builtin_row_sum(x: torch.Tensor):
@@ -902,6 +914,10 @@ compute both? Answer: yes, using shared memory!
 **Tiling:**
 
 *Figure: `images/gemm_tiled.png` (width 600).*
+
+![Tiled matrix multiplication with the loop structure colour-coded](../images/06-kernels-triton/gemm_tiled.png)
+
+*Tiled matrix multiplication, A times B = C, over an N x N grid cut into tiles of size T. Light purple marks the outer loop's tile row in A and tile column in B; dark purple the tile currently being multiplied; light and dark green the inner loop over elements; orange the temporary result tile accumulating in C. Source: [`images/gemm_tiled.png`](https://github.com/stanford-cs336/lectures/blob/main/images/gemm_tiled.png) in the lectures repo.*
 
 Key idea: divide the matrix C into output tiles (thread blocks). Fix an output
 tile in C. For each pair of (row tile of A, column tile of B):

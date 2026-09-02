@@ -16,6 +16,10 @@ This section is a direct application of [arithmetic intensity](arithmetic-intens
 from Lecture 2, and it will not make sense without it. Throughout, using the deck's
 own symbols from slide 58:
 
+![Slide 58 — GQA/MQA – Reducing attention head cost](../raw/images/03-architectures/slide-58.jpg)
+
+*Slide 58 — GQA/MQA – Reducing attention head cost. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 - $d$ — hidden (model) dimension
 - $b$ — batch size
 - $n$ — sequence length, with $n < d$
@@ -48,6 +52,10 @@ the keys and values already computed for previous positions, so each new step on
 computes the new query–key interactions rather than recomputing the whole matrix
 (slide 59).
 
+![Slide 59 — GQA/MQA – Reducing attention head cost](../raw/images/03-architectures/slide-59.png)
+
+*Slide 59 — GQA/MQA – Reducing attention head cost. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 That saves enormous compute. But it changes the memory pattern, and slide 60 shows
 the damage:
 
@@ -72,6 +80,10 @@ The trick ([1:19:08]): keep multiple **queries** per position, but share **one**
 and one value across all heads. Slide 61: "have multiple queries, but just one
 dimension for keys and values."
 
+![Slide 61 — MQA – just have fewer key dimensions.](../raw/images/03-architectures/slide-61.png)
+
+*Slide 61 — MQA – just have fewer key dimensions. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 The KV cache is what dominates the memory traffic, and this shrinks it by a factor
 of the head count. Slide 61's revised accounting:
 
@@ -92,6 +104,10 @@ The interpolation. Rather than collapsing to a single key–value pair, reduce t
 number while keeping all the queries. Slide 62 draws all three side by side from
 Ainslie et al. 2023:
 
+![Slide 62 — Additional extensions – GQA](../raw/images/03-architectures/slide-62.png)
+
+*Slide 62 — Additional extensions – GQA. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 | | Values | Keys | Queries |
 | --- | --- | --- | --- |
 | Multi-head | 8 | 8 | 8 |
@@ -105,6 +121,10 @@ very simply control the trade-off between expressiveness and inference efficienc
 
 **And the trade-off turns out to be favourable.** Slide 63 carries the evidence, in
 three figures that are worth reading carefully.
+
+![Slide 63 — Does MQA hurt? Sometimes..](../raw/images/03-architectures/slide-63.jpg)
+
+*Slide 63 — Does MQA hurt? Sometimes.. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 Shazeer 2019's Table 3 measures the quality cost of MQA on the Billion-Word
 benchmark:
@@ -151,6 +171,10 @@ keys." The head structure is fixed at training time.
 The other cost problem is that full attention is quadratic in sequence length. Slide
 64: "Attending to the entire context can be expensive (quadratic)."
 
+![Slide 64 — Sparse / sliding window attention](../raw/images/03-architectures/slide-64.png)
+
+*Slide 64 — Sparse / sliding window attention. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 The old answer is a structured mask. Child et al. 2019's three-panel figure shows a
 full lower-triangular causal mask, a **strided** sparse mask keeping a diagonal band
 plus regularly spaced stripes, and a **fixed** sparse mask keeping a local block
@@ -170,6 +194,10 @@ terms, but they differ in position embedding: the sliding-window blocks use RoPE
 and the **full-attention blocks use none at all**. The slide's summary: "Long-range
 info via NoPE, short-range info via RoPE + SWA." See [RoPE](rope.md).
 
+![Slide 65 — Current standard trick – interleave 'full' and 'LR' attention](../raw/images/03-architectures/slide-65.jpg)
+
+*Slide 65 — Current standard trick – interleave 'full' and 'LR' attention. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 Hashimoto's account of the mechanism ([1:26:01]): as you move through the stack,
 "you're aggregating local information into global information. The local attentions
 at the end can, of course, access more global information" — so purely local layers
@@ -180,6 +208,10 @@ Slide 65 names LLaMA 4, Gemma 3, Gemma 4 and OLMo 3 as adopters, with the note t
 OLMo 3 "does SWA+Full RoPE" — that is, it keeps RoPE on both kinds of layer rather
 than using NoPE. OLMo 3's own hyperparameter table (slide 66) puts sliding-window
 attention on **3/4 of layers with a 4,096-token window**.
+
+![Slide 66 — Other recent examples of interleaved attention](../raw/images/03-architectures/slide-66.jpg)
+
+*Slide 66 — Other recent examples of interleaved attention. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 Slide 66 shows three current examples. Gemma 4 stacks four local-attention blocks
 before a global one, uses p-RoPE so that only the leading coordinate pair carries

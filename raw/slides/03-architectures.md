@@ -77,6 +77,8 @@ No figures.
 
 ## Slide 3 — Starting point: the 'original' transformer
 
+![Slide 3 — Starting point: the 'original' transformer](../images/03-architectures/slide-3.jpg)
+
 **Left half — figure.** The canonical encoder–decoder block diagram from
 "Attention is All You Need", drawn in the paper's own pastel colouring. The
 encoder stack (left) reads bottom-to-top: "Inputs" → pink **Input Embedding** →
@@ -107,6 +109,8 @@ $$\mathrm{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2$$
 
 ## Slide 4 — What you implemented – simple, modern variant
 
+![Slide 4 — What you implemented – simple, modern variant](../images/03-architectures/slide-4.jpg)
+
 **Left — figure 1.** A vertical block diagram of the assignment-1 model, drawn
 in the same pastel style. Bottom to top: "Inputs" → pink **Token Embedding** →
 grey **Transformer Block** → vertical ellipsis → grey **Transformer Block** →
@@ -135,6 +139,8 @@ Differences:
 Then, in bold: "Why did we pick these? What should you pick?"
 
 ## Slide 5 — How should we think about architectures?
+
+![Slide 5 — How should we think about architectures?](../images/03-architectures/slide-5.jpg)
 
 The slide's own text — the title, the line "Lots of architecture. Just in
 2024-2025.." — is largely covered by a collage of overlapping screenshots of
@@ -178,6 +184,8 @@ overlapping so that several are partly hidden. The legible ones are:
   identified.
 
 ## Slide 6 — How should we think about architectures?
+
+![Slide 6 — How should we think about architectures?](../images/03-architectures/slide-6.jpg)
 
 Same title as slide 5, and again largely covered by a collage. The one line of
 slide text visible beneath the images is "There can't be that many LLMs released
@@ -228,6 +236,8 @@ and papers, overlapping and tilted. The legible ones are:
   otherwise not legible.
 
 ## Slide 7 — Let's look at the data (on dense architectures)
+
+![Slide 7 — Let's look at the data (on dense architectures)](../images/03-architectures/slide-7.jpg)
 
 Text: "Learn from the many other models (and papers) out there", and on the right,
 in bold, "We will talk through many major architecture and hyperparameter
@@ -317,6 +327,8 @@ A plain agenda slide, no figures.
 
 ## Slide 9 — Architecture variations..
 
+![Slide 9 — Architecture variations..](../images/03-architectures/slide-9.jpg)
+
 Text: "Let's think about the core architecture piece", and on the right, in bold,
 "High level view:" followed by two bullets:
 
@@ -335,6 +347,8 @@ chips in 2025–2026, the Activation column is dominated by tan "SwiGLU", and th
 "Other tricks" column fills with "QK-norm" only in the 2024+ rows.
 
 ## Slide 10 — Pre-vs-post norm
+
+![Slide 10 — Pre-vs-post norm](../images/03-architectures/slide-10.jpg)
 
 Subtitle: "The one thing *everyone* agrees on (in 2024)".
 
@@ -383,6 +397,8 @@ post-norm)", and beneath it "(One somewhat funny exception – OPT350M. I don't 
 why this is post-norm)".
 
 ## Slide 11 — Pre-vs-post-norm, the data
+
+![Slide 11 — Pre-vs-post-norm, the data](../images/03-architectures/slide-11.jpg)
 
 The slide carries almost no text of its own — only the title and two credits,
 "Salazar and Ngyuen 2019" (bottom left) and "Figure from Xiong 2020" (bottom
@@ -456,6 +472,8 @@ y-axis "Validation Loss", ticked 1.6, 1.7, 1.8, 1.9, 2.0. **Two** series:
 
 ## Slide 12 — Pre-vs-post norm, explanations?
 
+![Slide 12 — Pre-vs-post norm, explanations?](../images/03-architectures/slide-12.jpg)
+
 Two labelled figures side by side, with a two-line conclusion beneath.
 
 **Left — "Gradient attenuation [Xiong 2020]".** A grouped bar chart, captioned
@@ -492,6 +510,8 @@ Beneath the figures, in bold: "**Original stated advantage** – removing warmup
 **Today** – stability and larger LRs for large networks".
 
 ## Slide 13 — New things – 'double' norm or non-residual postnorm
+
+![Slide 13 — New things – 'double' norm or non-residual postnorm](../images/03-architectures/slide-13.png)
 
 Text: "If putting LayerNorms in residual streams is bad.. Why not post-norm outside
 the stream?"
@@ -537,6 +557,8 @@ The only image on the page is the blue header band; there is no figure.
 
 ## Slide 15 — Why RMSNorm?
 
+![Slide 15 — Why RMSNorm?](../images/03-architectures/slide-15.jpg)
+
 **Modern explanation** – it's faster (and just as good).
 
 - **Fewer operations** (no mean calculation)
@@ -563,6 +585,8 @@ Beneath the table, the slide's own caption: "Matrix multiplies are the *vast*
 majority of FLOPs (and memory)".
 
 ## Slide 16 — Why RMSNorm (2)
+
+![Slide 16 — Why RMSNorm (2)](../images/03-architectures/slide-16.jpg)
 
 **Important lesson:** FLOPS are not runtime! (we will discuss this in far more
 detail later)
@@ -602,6 +626,8 @@ Slide annotations printed under the diagram: "Left top ("43G") is FLOPS" and
 "[Ivanov et al 2023]".
 
 ## Slide 17 — RMSNorm - validation
+
+![Slide 17 — RMSNorm - validation](../images/03-architectures/slide-17.jpg)
 
 Text: "**RMSNorm** runtime (and surprisingly, perf) gains have been seen in
 papers". Credit at the bottom right: "Narang et al 2020".
@@ -665,6 +691,8 @@ LiGLU"
 In bold: "What are these things? What do people use? Does it matter?"
 
 ## Slide 21 — A few of the common activations
+
+![Slide 21 — A few of the common activations](../images/03-architectures/slide-21.jpg)
 
 Three rows: activation name and formula on the left, a small plot in the middle
 (for the first two), and a "Notable models:" list on the right.
@@ -738,6 +766,8 @@ $d_{ff}$ by 2/3"
 
 ## Slide 24 — Do gated linear units work?
 
+![Slide 24 — Do gated linear units work?](../images/03-architectures/slide-24.jpg)
+
 Text: "Yes, fairly consistently so." Credit at the bottom right: "Shazeer 2020".
 
 **Figure — a pasted results table** from Shazeer 2020. Three numeric columns:
@@ -765,6 +795,8 @@ baseline and the standard deviation of that baseline, not experimental
 conditions.
 
 ## Slide 25 — Do gated linear units work (2)?
+
+![Slide 25 — Do gated linear units work (2)?](../images/03-architectures/slide-25.jpg)
 
 Text: "Yes, with other works corroborating Shazeer 2020". Credit at bottom right:
 "Narang et al 2020".
@@ -805,6 +837,8 @@ Bulleted summary, no figures.
 
 ## Slide 27 — Serial vs Parallel layers
 
+![Slide 27 — Serial vs Parallel layers](../images/03-architectures/slide-27.png)
+
 Text: "Normal transformer blocks are *serial* – they compute attention, then the
 MLP", and beneath the figure: "Could we parallelize the transformer block?"
 
@@ -819,6 +853,8 @@ tapped off below the second Norm). The attention half is computed before, and
 feeds, the feed-forward half — that is what "serial" means here.
 
 ## Slide 28 — Parallel layers
+
+![Slide 28 — Parallel layers](../images/03-architectures/slide-28.jpg)
 
 Text: "A few models (GPTJ, PaLM, GPT-NeoX) do parallel layers. Originally in
 GPT-J". Below the boxed quotation: "If implemented right, LayerNorm can be shared,
@@ -848,6 +884,8 @@ The citation "Wang & Komatsuzaki, 2021" is rendered as a blue hyperlink within t
 screenshot.
 
 ## Slide 29 — Summary: architectures
+
+![Slide 29 — Summary: architectures](../images/03-architectures/slide-29.jpg)
 
 Four headed bullet pairs on the left:
 
@@ -920,6 +958,8 @@ present on slides 7 and 9 are not shown in this view.
 
 ## Slide 30 — Many variations in position embeddings
 
+![Slide 30 — Many variations in position embeddings](../images/03-architectures/slide-30.jpg)
+
 Four labelled schemes down the left, each with its "Notable models:" list opposite.
 
 **Sine embeddings:** add sines and cosines that enable localization
@@ -974,6 +1014,8 @@ The only image on this page is that pasted relative-attention equation.
 
 ## Slide 32 — RoPE: rotary position embeddings
 
+![Slide 32 — RoPE: rotary position embeddings](../images/03-architectures/slide-32.png)
+
 **How can we solve this problem?**
 
 - We want our embeddings to be invariant to absolute position
@@ -1000,6 +1042,8 @@ The angle between the "we" and "know" arrows is visibly the same in all three
 diagrams.
 
 ## Slide 33 — RoPE: rotary position embeddings
+
+![Slide 33 — RoPE: rotary position embeddings](../images/03-architectures/slide-33.jpg)
 
 **There are many rotations, which one do you pick?**
 
@@ -1051,6 +1095,8 @@ remaining six reads "only **semantic** information".
 
 ## Slide 34 — The actual RoPE math
 
+![Slide 34 — The actual RoPE math](../images/03-architectures/slide-34.jpg)
+
 Text: "Multiply with sines and cosines".
 
 **Figure — a pasted page fragment from Su et al 2021** carrying two numbered
@@ -1076,6 +1122,8 @@ fragment.
 Below the figure: "Difference with sine embeddings – not additive, no cross terms"
 
 ## Slide 35 — Implementation and code for RoPE
+
+![Slide 35 — Implementation and code for RoPE](../images/03-architectures/slide-35.jpg)
 
 **Figure — a pasted screenshot of syntax-highlighted Python** (the HuggingFace
 LLaMA attention forward pass), with three hand-added blue arrows and margin
@@ -1125,6 +1173,8 @@ And other model setting questions
 
 ## Slide 37 — Surprising (?) consensus hyperparameter 1
 
+![Slide 37 — Surprising (?) consensus hyperparameter 1](../images/03-architectures/slide-37.png)
+
 Text: "Feedforward – model dimension ratio."
 
 **Figure — a pasted equation image** (in a serif math face) repeating the original
@@ -1166,6 +1216,8 @@ and Mistral are slightly larger"
 
 ## Slide 39 — Exception #2 – T5
 
+![Slide 39 — Exception #2 – T5](../images/03-architectures/slide-39.jpg)
+
 "As we have (and will) see, most LMs are have boring, conservative hyperparameters.
 One exception is T5 [Raffel et al 2020] which has some *very bold* settings."
 
@@ -1189,6 +1241,8 @@ At the foot: "Other, recent exceptions – Gemma 2 (8x), SmolLM/Gemma 3/Gemma 4 
 GLU)"
 
 ## Slide 40 — Why this range of multipliers?
+
+![Slide 40 — Why this range of multipliers?](../images/03-architectures/slide-40.png)
 
 Text: "Empirically, there's a basin between 1-10 where this hyperparameter is
 near-optimal". Credit at the bottom right: "[Kaplan+ 2020]".
@@ -1224,6 +1278,8 @@ Three bullets, no figures.
   suboptimal.
 
 ## Slide 42 — Surprising (?) consensus hyperparameter 2
+
+![Slide 42 — Surprising (?) consensus hyperparameter 2](../images/03-architectures/slide-42.png)
 
 Text: "Head-dim*num-heads to model-dim ratio. As a reminder, slide from 224n."
 
@@ -1291,6 +1347,8 @@ spot?".
 
 ## Slide 45 — Considerations about aspect ratio
 
+![Slide 45 — Considerations about aspect ratio](../images/03-architectures/slide-45.jpg)
+
 Text: "**Extremely deep models are harder to parallelize and have higher latency**".
 Credit at the right: "[Tay et al 2021]".
 
@@ -1312,6 +1370,8 @@ Beneath each box sits a cartoon graphics-card icon, captioned "GPU 0", "GPU 1",
 on the one before it.
 
 ## Slide 46 — Evidence on aspect ratio scaling
+
+![Slide 46 — Evidence on aspect ratio scaling](../images/03-architectures/slide-46.jpg)
 
 The slide has almost no text of its own: only the title and two credits,
 "[Kaplan et al 2020]" (bottom left) and "[Tay et al 2021]" (bottom right). The
@@ -1442,6 +1502,8 @@ No figures beyond the table.
 
 ## Slide 50 — Why weight decay LLMs?
 
+![Slide 50 — Why weight decay LLMs?](../images/03-architectures/slide-50.jpg)
+
 Text: "[Andriushchenko et al 2023] has interesting observations about LLM weight
 decay". Below the figures, two captions: "It's not to control overfitting" (under
 the left chart) and "Weight decay interacts with learning rates (cosine schedule)"
@@ -1494,6 +1556,8 @@ below the solid ones.
   dashed reaches ~3.29 by 60k, the green dashed ~3.31, and the blue dashed ~3.36.
 
 ## Slide 51 — Summary: hyperparameters
+
+![Slide 51 — Summary: hyperparameters](../images/03-architectures/slide-51.jpg)
 
 Four headed bullets on the left:
 
@@ -1561,6 +1625,8 @@ cells are blank in the screenshot):
 
 ## Slide 52 — Stability tricks
 
+![Slide 52 — Stability tricks](../images/03-architectures/slide-52.jpg)
+
 Text: "Recently, lots of attention on *stable training*", and beneath the figure:
 "Don't train models that look like the blue curve!"
 
@@ -1593,6 +1659,8 @@ the unstable gradients.
 
 ## Slide 53 — Where do the issues arise? Beware of softmaxes!
 
+![Slide 53 — Where do the issues arise? Beware of softmaxes!](../images/03-architectures/slide-53.jpg)
+
 Text: "**Softmaxes** – can be ill-behaved due to exponentials / divison by zero"
 (the typo "divison" is on the slide).
 
@@ -1609,6 +1677,8 @@ softmax (the green box, top left) and the attention softmax (inside the orange
 box, right).
 
 ## Slide 54 — Output softmax stability – the 'z-loss'
+
+![Slide 54 — Output softmax stability – the 'z-loss'](../images/03-architectures/slide-54.jpg)
 
 Text: "Recall the softmax calculation". Credit under the equation boxes: "[From
 Devlin 2014]".
@@ -1636,6 +1706,8 @@ At the foot, in bold: "**Other examples:** Baichuan 2 (2023), DCLM (2024), OLMo 
 (2025), OLMo 3 (2025)"
 
 ## Slide 55 — Attention softmax stability – the 'QK norm'
+
+![Slide 55 — Attention softmax stability – the 'QK norm'](../images/03-architectures/slide-55.jpg)
 
 Slide text: "The query and keys are Layer (RMS) normed before going into the
 softmax operation." — note that the **middle of this sentence is covered by a
@@ -1667,6 +1739,8 @@ Gemma 4**", and beneath it "Originally from vision and multimodal models
 [Dehgani 2023, Idefcs, Chameleon]" (spellings as printed).
 
 ## Slide 56 — Logit soft-capping.
+
+![Slide 56 — Logit soft-capping.](../images/03-architectures/slide-56.jpg)
 
 Text: "**Soft-capping** the logits to some maximum value via Tanh"
 
@@ -1712,6 +1786,8 @@ exceptions.."
 
 ## Slide 58 — GQA/MQA – Reducing attention head cost
 
+![Slide 58 — GQA/MQA – Reducing attention head cost](../images/03-architectures/slide-58.jpg)
+
 Text: "**Let's think about the compute involved for attention**"
 
 **Figure — a hand-built diagram of batched multi-head attention**, drawn with
@@ -1747,6 +1823,8 @@ $O\left(\left(\frac{1}{k} + \frac{1}{bn}\right)^{-1}\right)$ - we can keep our G
 running"
 
 ## Slide 59 — GQA/MQA – Reducing attention head cost
+
+![Slide 59 — GQA/MQA – Reducing attention head cost](../images/03-architectures/slide-59.png)
 
 Text: "What about the *incremental* case when we generate text?", then in bold
 "**Key difference:** can't parallelize the generation process – needs to be step by
@@ -1792,6 +1870,8 @@ short seq length (n) or big model dimensions (d)"
 
 ## Slide 61 — MQA – just have fewer key dimensions.
 
+![Slide 61 — MQA – just have fewer key dimensions.](../images/03-architectures/slide-61.png)
+
 Text: "**Key idea** – have multiple queries, but just one dimension for keys and
 values"
 
@@ -1819,6 +1899,8 @@ https://blog.fireworks.ai/multi-query-attention-is-all-you-need-db072e758055]"
 
 ## Slide 62 — Additional extensions – GQA
 
+![Slide 62 — Additional extensions – GQA](../images/03-architectures/slide-62.png)
+
 Text: "Don't go all the way to one dimension of KV – have fewer dims"
 
 **Figure — the standard GQA schematic from Ainslie et al 2023**, three panels side
@@ -1840,6 +1922,8 @@ efficiency", and in bold "**More recently –** MLA (multihead latent attention)
 deepseek v2"
 
 ## Slide 63 — Does MQA hurt? Sometimes..
+
+![Slide 63 — Does MQA hurt? Sometimes..](../images/03-architectures/slide-63.jpg)
 
 The slide's only text is the title and two figure captions: "Small PPL hit w/ MQA
 [Shazeer 2019]" over the left figure and "Low/no hit w/ GQA [Ainslie 2023]" over
@@ -1891,6 +1975,8 @@ approaches the full head count, at which point it degenerates to MHA.
 
 ## Slide 64 — Sparse / sliding window attention
 
+![Slide 64 — Sparse / sliding window attention](../images/03-architectures/slide-64.png)
+
 Text: "**Attending to the entire context can be expensive (quadratic).**" and
 "Build sparse / structured attention that trades off expressiveness vs runtime
 (GPT3, GPT-OSS, Gemma4)". Credit at bottom right: "[Child et al 2019]".
@@ -1911,6 +1997,8 @@ cells in mid blue on a grey background). The three panels are captioned:
   blocks.
 
 ## Slide 65 — Current standard trick – interleave 'full' and 'LR' attention
+
+![Slide 65 — Current standard trick – interleave 'full' and 'LR' attention](../images/03-architectures/slide-65.jpg)
 
 Text: "From Cohere Command A – Every 4$^{th}$ layer is a full attention"
 
@@ -1939,6 +2027,8 @@ Text below: "Long-range info via NoPE, short-range info via RoPE + SWA." and, in
 bold, "**Other models –** LLaMA 4, Gemma 3, Gemma 4, OLMo 3 does SWA+Full RoPE."
 
 ## Slide 66 — Other recent examples of interleaved attention
+
+![Slide 66 — Other recent examples of interleaved attention](../images/03-architectures/slide-66.jpg)
 
 Three pasted figures side by side, each with a caption printed beneath it in the
 slide's own font: "Gemma 4" (left), "Olmo 3" (middle), "Qwen 3.5 / Qwen 3 Next"
@@ -1991,6 +2081,8 @@ Rule" box fed by $q$, $k$, $v$, $a$, $\beta$ paths, an "L2" normalisation node, 
 "Conv" boxes and "Linear" boxes at the bottom.
 
 ## Slide 67 — Recap, conclusion, etc.
+
+![Slide 67 — Recap, conclusion, etc.](../images/03-architectures/slide-67.jpg)
 
 Text: "Many aspects (arch, hparams) of transformers are in common across the big
 LMs", and beneath the figure, "Major differences? Position embeddings, activations,

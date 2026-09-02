@@ -162,6 +162,10 @@ capacity.
 Slides 35 and 36 take three stacked sigmoids. Storing the activations
 ([50:46]–[51:31]):
 
+![Slide 35 — Storing (and retrieving) activations can be expensive!](../raw/images/05-gpus-tpus/slide-35.jpg)
+
+*Slide 35 — Storing (and retrieving) activations can be expensive! [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 - forward: 1 read of $x$, 3 writes ($s_2$, $s_1$, out)
 - backward: 3 reads, 1 write
 - **8 memory accesses**, and, as the slide says, "very low arithmetic intensity"

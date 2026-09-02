@@ -237,6 +237,8 @@ No chart or table on this page.
 
 ## Slide 3 — Scaling isn't easy
 
+![Slide 3 — Scaling isn't easy](../images/09-scaling-laws/slide-3.jpg)
+
 Heading: "Scaling isn't easy". Body text: "Wide or deep? How many heads? Which nonlinearity?"
 
 **Table — a 20-row model-architecture database, pasted as a dark-mode screenshot.** Columns, in order: Name, Has paper, Link, Year, Tokenizer type, Vocab count, Norm, Parallel Layer, Pre-norm, Position embedding, Activations, MoE, MLP factor, num_layers, model_dim. The `model_dim` column is present as a header but is **blank for every row** — no value is filled in anywhere in that column. Every other cell below is exactly as printed; a blank in any other column below means the source cell itself was empty.
@@ -269,6 +271,8 @@ Notes on the table as rendered: "Has paper" is a coloured pill per row — purpl
 Below the table, body text: "We could cargo cult things from existing LMs… but how do these get optimized in the first place?"
 
 ## Slide 4 — Today: simple, predictive 'laws' for behaviors of LMs
+
+![Slide 4 — Today: simple, predictive 'laws' for behaviors of LMs](../images/09-scaling-laws/slide-4.jpg)
 
 Heading: "Today: simple, predictive 'laws' for behaviors of LMs". Body text: "The approach -" then, indented: "**scaling laws** which are simple, predictive rules for model performance". Below that: "**Old and unpleasant**: tune hyperparameters on big models" and "**New (over?) optimism**: tune on small models, extrapolate to large ones".
 
@@ -314,6 +318,8 @@ No chart or table (other than the two boxed-equation images) on this page.
 
 ## Slide 7 — Earliest (data) scaling law paper – 1993
 
+![Slide 7 — Earliest (data) scaling law paper – 1993](../images/09-scaling-laws/slide-7.jpg)
+
 Heading: "Earliest (data) scaling law paper – 1993". The body of the slide is a pasted screenshot of the first page of a 1993 paper, plus its Figure 2.
 
 **Paper scan (left).** Title: "Learning Curves: Asymptotic Values and Rate of Convergence". Authors: "Corinna Cortes, L. D. Jackel, Sara A. Solla, Vladimir Vapnik, and John S. Denker", affiliation "AT&T Bell Laboratories, Holmdel, NJ 07733". Abstract text (as printed): "Training classifiers on large databases is computationally demanding. It is desirable to develop efficient procedures for a reliable prediction of a classifier's suitability for implementing a given task, so that resources can be assigned to the most promising candidates or freed for exploring other classifier candidates. We propose such a practical and principled predictive method. Practical because it avoids the costly procedure of training poor classifiers on the whole training set, and principled because of its theoretical foundation. The effectiveness of the proposed procedure is demonstrated for both single- and multi-layer networks."
@@ -330,6 +336,8 @@ The two curves are converging toward each other (per the body text, both approac
 
 ## Slide 8 — Early history of scaling laws – data scaling
 
+![Slide 8 — Early history of scaling laws – data scaling](../images/09-scaling-laws/slide-8.jpg)
+
 Heading: "Early history of scaling laws – data scaling". Bottom-of-slide caption: "Log-linear scaling with data [Banko and Brill '01]".
 
 **Figure (left) — "Figure 1. Learning Curves for Confusion Set Disambiguation."** Y-axis "Test Accuracy", linear scale, labelled ticks at 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 1.00. X-axis "Millions of Words", log scale, labelled ticks at 0.1, 1, 10, 100, 1000. Four series, per the on-chart legend, each a distinct colour and marker:
@@ -344,6 +352,8 @@ All four series rise roughly log-linearly with training-data size; Winnow, Perce
 **Text box (right):** "these results suggest that we may want to reconsider the trade-off between spending time and money on algorithm development versus spending it on corpus development. At least for the problem of confusable disambiguation, none of the learners tested is close to asymptoting in performance at the training corpus size commonly employed by the field."
 
 ## Slide 9 — Early history of scaling laws – data scaling
+
+![Slide 9 — Early history of scaling laws – data scaling](../images/09-scaling-laws/slide-9.jpg)
 
 Heading: "Early history of scaling laws – data scaling". Body text: "**Early tests of functional forms**" and "Kolachina et al 2012 – power law relation between data and downstream performance".
 
@@ -361,6 +371,8 @@ Heading: "Early history of scaling laws – data scaling". Body text: "**Early t
 | ILog$_2$ | $y = c - (a/\log x)$ |
 
 ## Slide 10 — Hestness et al 2017
+
+![Slide 10 — Hestness et al 2017](../images/09-scaling-laws/slide-10.jpg)
 
 Heading: "Hestness et al 2017". Body text at the bottom: "**Earliest 'large scale neural' scaling work:** Hestness 2017" and "Predictable scaling on many tasks (MT, LM, Speech) and hypothesized scaling shape."
 
@@ -394,6 +406,8 @@ No chart or table on this page.
 
 ## Slide 13 — Scaling laws – power law relationships for many factors
 
+![Slide 13 — Scaling laws – power law relationships for many factors](../images/09-scaling-laws/slide-13.jpg)
+
 Heading: "Scaling laws – power law relationships for many factors". Body text: "These scaling laws hold on *many* different kind of phenomena!" Lower-left body text: "They even hold in non standard settings". Bottom-right citation: "[Kaplan+ 2020]".
 
 **Figure 1 (top row, three panels sharing a "Test Loss" y-axis, from Kaplan et al. 2020) — Test Loss vs. Compute, Dataset Size, and Parameters.**
@@ -412,16 +426,22 @@ Heading: "Scaling laws – power law relationships for many factors". Body text:
 
 ## Slide 14 — Data vs performance
 
+![Slide 14 — Data vs performance](../images/09-scaling-laws/slide-14.jpg)
+
 Heading: "Data vs performance". Body text: "What's a data scaling law?" followed by, indented: "**Data scaling laws** : simple formula that maps dataset size (n) to error". Below that: "What do we expect out of scaling laws?" Left-side label: "Monotonic, logistic-like curves". Bottom-right citation: "[Hestness+ 2017]".
 
 **Figure — the same "Small Data / Power-law / Irreducible Error" schematic diagram as slide 10's right-hand panel**, reused at a larger size. Y-axis "Generalization Error (Log-scale)" (no numeric ticks), x-axis "Training Data Set Size (Log-scale)" (no numeric ticks). Two grey vertical dividers separate "Small Data Region," "Power-law Region," and "Irreducible Error Region." A green dashed horizontal line labelled "Best Guess Error" runs across the top; a red dashed horizontal line labelled "Irreducible Error" runs across the bottom. The dark-navy curve is flat against the green line through the Small Data Region, descends through the Power-law Region, and flattens just above the red line (with a slight uptick at the very end) through the Irreducible Error Region — identical in shape to slide 10's version.
 
 ## Slide 15 — Data scaling laws for language models
 
+![Slide 15 — Data scaling laws for language models](../images/09-scaling-laws/slide-15.png)
+
 Heading: "Data scaling laws for language models". Body text: "First, an empirical observation" and, as a sub-heading: "**Loss and dataset size is linear on a log-log plot**". Right-side text: "'Scale-free' or 'Power law'". Bottom caption: "(For language modeling, from Kaplan+ 2020)".
 
 **Figure — Test Loss vs. Dataset Size, enlarged version of the middle panel from slide 13's Figure 1.** Y-axis "Test Loss", linear scale, labelled ticks 2.7, 3.0, 3.3, 3.6, 3.9, 4.2. X-axis "Dataset Size" (subtitle "tokens"), log scale, labelled ticks $10^8$, $10^9$. One blue line with 7 circular markers, closely tracking a grey fit line labelled "$L = (D/5.4\cdot10^{13})^{-0.095}$" (boxed legend entry). Values at the seven marked points, left to right: ($\approx2\times10^7$, 4.15), ($\approx5\times10^7$, 3.83), ($\approx9\times10^7$, 3.56), ($\approx1.8\times10^8$, 3.32), ($\approx3.5\times10^8$, 3.15), ($\approx7\times10^8$, 2.93), ($\approx1.4\times10^9$, 2.73) — a near-perfectly straight descending line on these log-x, linear-y axes, illustrating the slide's point that loss falls linearly in log(dataset size).
 ## Slide 16 — Conceptual foundations of data scaling laws.
+
+![Slide 16 — Conceptual foundations of data scaling laws.](../images/09-scaling-laws/slide-16.png)
 
 Title (blue): "**Conceptual foundations of data scaling laws.**"
 
@@ -458,6 +478,8 @@ Body text: "More generally, any polynomial rate $1/n^\alpha$ is a scaling law"
 No chart or table on this page.
 
 ## Slide 18 — Scaling law exponents: an intriguing mystery
+
+![Slide 18 — Scaling law exponents: an intriguing mystery](../images/09-scaling-laws/slide-18.jpg)
 
 Title (blue): "**Scaling law exponents: an intriguing mystery**"
 
@@ -508,6 +530,8 @@ No chart or table on this page.
 
 ## Slide 20 — Intrinsic dimensionality theory of data scaling laws
 
+![Slide 20 — Intrinsic dimensionality theory of data scaling laws](../images/09-scaling-laws/slide-20.png)
+
 Title (blue): "**Intrinsic dimensionality theory of data scaling laws**"
 
 A pale-blue bordered box:
@@ -547,6 +571,8 @@ No chart or table on this page.
 
 ## Slide 22 — Other advanced data scaling law: distribution shift
 
+![Slide 22 — Other advanced data scaling law: distribution shift](../images/09-scaling-laws/slide-22.png)
+
 Title (blue): "**Other advanced data scaling law: distribution shift**"
 
 Body text: "**Data scaling thus far**: how does dataset size relate to performance?" and "**Related question**: how does dataset *composition* affect performance"
@@ -571,6 +597,8 @@ Together the two figures make the slide's point: the per-source excess-error cur
 
 ## Slide 23 — In practice: data mixture selection via scaling is hard
 
+![Slide 23 — In practice: data mixture selection via scaling is hard](../images/09-scaling-laws/slide-23.jpg)
+
 Title (blue): "**In practice: data mixture selection via scaling is hard**"
 
 Two pasted paper screenshots sit side by side, each followed by its own caption below.
@@ -593,6 +621,8 @@ Caption beneath this whole figure, on the slide itself: "**Empirical eval** – 
 Together the two pasted papers illustrate two different practical answers to the same problem (predicting the best data mixture or dataset from small-scale experiments): building an explicit scaling law over mixtures (left paper) versus running many small-scale trials and just picking the empirically best option, without fitting a mixture-level scaling law (right paper).
 
 ## Slide 24 — Scaling laws under data repetition
+
+![Slide 24 — Scaling laws under data repetition](../images/09-scaling-laws/slide-24.jpg)
 
 Title (blue): "**Scaling laws under data repetition**"
 
@@ -620,6 +650,8 @@ Bottom-right, plain-text definitions for the equation's symbols (printed without
 
 ## Slide 25 — Scaling laws in *compute unbounded* settings
 
+![Slide 25 — Scaling laws in *compute unbounded* settings](../images/09-scaling-laws/slide-25.jpg)
+
 Title (blue, with "compute unbounded" in italic): "**Scaling laws in *compute unbounded* settings**"
 
 Top-right, a pasted citation block for a second paper: "**Pre-training under infinite compute**", authors "Konwoo Kim$^\infty$, Suhas Kotha$^\infty$, Percy Liang, Tatsunori Hashimoto" (the superscript is printed as an infinity symbol, "∞", not an asterisk — transcribed as printed), affiliation "Stanford University".
@@ -641,6 +673,8 @@ Three small charts, each with its own title and a data table underneath (charts 
 All three lines run roughly parallel across the four points, with the red "Standard recipe" line highest throughout and the gold "Ensemble asymptotes" line lowest throughout.
 
 ## Slide 26 — Data selection scaling and accounting for finiteness
+
+![Slide 26 — Data selection scaling and accounting for finiteness](../images/09-scaling-laws/slide-26.jpg)
 
 Title (blue): "**Data selection scaling and accounting for finiteness**"
 
@@ -709,6 +743,8 @@ A pale-blue bordered box with four bullets, each with generous vertical spacing:
 No chart or table on this page.
 ## Slide 30 — 1. Architecture: transformers vs LSTMs
 
+![Slide 30 — 1. Architecture: transformers vs LSTMs](../images/09-scaling-laws/slide-30.jpg)
+
 Heading: "1. Architecture: transformers vs LSTMs". A light-blue rounded box below the heading reads: "**Q:** Are transformers better than LSTMs?" and "Brute force way: spend tens of millions to train a LSTM GPT-3". Below the box, body text: "Scaling law way:"
 
 **Figure — log-linear line chart, test loss vs parameter count, transformers vs LSTMs [Kaplan+ 2021].** Y-axis "Test Loss", **log** scale, ticked 2.4, 3.0, 3.6, 4.2, 4.8, 5.4. (Established by measurement, not by eye: the six tick rows fit $\text{row} = -13458.5\log_{10}(v) + 10241$ with $R^2 = 0.99998$, against $R^2 = 0.986$ for a linear fit whose residuals run to ~270 px. The tick-to-tick spacing widens monotonically — 697, 766, 906, 1083, 1283 px going 5.4 down to 2.4 — which is the log signature. This is the third axis in this deck to have been described as linear and turn out to be logarithmic.) X-axis "Parameters (non-embedding)", log scale, ticked 10^5 through 10^9. Four series, distinguished by colour and a curved-arrow label pointing at each cluster ("Transformers" and "LSTMs"), plus per-curve text labels "1 Layer", "2 Layers", "4 Layers" for the three LSTM curves:
@@ -726,6 +762,8 @@ The figure illustrates the "scaling law way" of answering the slide's question: 
 
 ## Slide 31 — 1. Many architectures
 
+![Slide 31 — 1. Many architectures](../images/09-scaling-laws/slide-31.jpg)
+
 Heading: "1. Many architectures". A two-part figure occupies most of the page, followed by a one-line caption.
 
 **Figure (left) — a large aggregate scatter/bubble plot, "Negative Log-Perplexity" vs "FLOPS."** Y-axis "Negative Log-Perplexity", linear scale, ticked -3.0, -2.8, -2.6, -2.4, -2.2, -2.0, -1.8, -1.6, -1.4 (top); less-negative values toward the top are better. X-axis "FLOPS", log scale, ticked 1.1e12, 2.2e12, 4.4e12, 8.8e12, 1.8e13, 3.5e13, 7.0e13, 1.4e14. The plot is a dense field of several dozen circular bubble markers, one per named model checkpoint, coloured by architecture family (teal, brown, red, orange, blue, pink, purple, yellow, grey — the same families as the small-multiple panels on the right) with bubble size varying (generally larger toward the top-right, smaller toward the bottom-left). Individually legible labels include, among the smaller/lower-left points, "Performer Tiny", "Funnel Tiny", "UT Tiny", "Albert NH8", "Evolved NL2", "Albert NL2/NL4/NL8/NL16/NL24/NL36", "Albert FF6K/FF9K/FF12K/NH16/NH24/NH32", "GLU Tiny", "MoS- Tiny", "DConv Tiny/Small", "LConv Tiny/Small/Base/NL2/NL4/NL16/FF9K/FF12K/Large/3B", "Switch 460M", "UT NR1–NR6", "Performer Small/Base/Large/PK Base/PK Small", "MLP Mixer Small/Large/3B"; toward the top-right, "GLU 3B", "MoS- ..." (a large bubble whose label is cut off after "MoS-" at the right edge of the plot), "Evolved 3B", "Switch 4B", "DConv Large". In the dense central band (roughly 4×10^12–3×10^13 FLOPS) dozens of overlapping labels and circles could not be individually resolved at any magnification tried. The overall pattern is a rising cloud: FLOPS increasing from bottom-left to top-right tracks with negative log-perplexity rising from about -3.0 (worst, e.g. "Performer Tiny") to about -1.4 (best, e.g. the large "MoS-..." bubble at the top right).
@@ -740,6 +778,8 @@ Reading the panels: in most of them (ALBERT, DConv, Evolved, Funnel, Transformer
 Below both figures, a one-line caption: "Cross-architecture scaling in Tay et al 2022."
 
 ## Slide 32 — 2. Optimizer choice
+
+![Slide 32 — 2. Optimizer choice](../images/09-scaling-laws/slide-32.jpg)
 
 Heading: "2. Optimizer choice". Body text: "What about ADAM vs SGD?"
 
@@ -757,6 +797,8 @@ Below the figure, body text: "(Note, this is in 2017, so pre-transformers. RHN i
 The chart shows the fitted power-law exponents for SGD (-0.094) and Adam (-0.095) are nearly identical, with the Adam trend sitting consistently below (better than) the SGD trend — i.e. the optimizer choice shifts the curve's constant slightly but barely changes its scaling exponent.
 
 ## Slide 33 — 3. Depth/Width: Number of layers
+
+![Slide 33 — 3. Depth/Width: Number of layers](../images/09-scaling-laws/slide-33.jpg)
 
 Heading: "3. Depth/Width: Number of layers". Body text: "Does depth or width make a huge difference?"
 
@@ -778,6 +820,8 @@ Below the figure, two bullets:
 
 ## Slide 34 — 3. Depth/Width: and other Transformer hypers
 
+![Slide 34 — 3. Depth/Width: and other Transformer hypers](../images/09-scaling-laws/slide-34.jpg)
+
 Heading: "3. Depth/Width: and other Transformer hypers". Body text: "Do hyperparameters like the aspect ratio depend on scale?"
 
 **Figure — three side-by-side line charts, all sharing a "Loss Increase" y-axis (linear, 0% to 10%, ticked every 2%).**
@@ -792,6 +836,8 @@ Below the three panels, a native-text figure caption, reproduced in full: "**Fig
 
 ## Slide 35 — 3. Depth/Width: But not all parameters are made equal
 
+![Slide 35 — 3. Depth/Width: But not all parameters are made equal](../images/09-scaling-laws/slide-35.jpg)
+
 Heading: "3. Depth/Width: But not all parameters are made equal". Body text: "We've been thinking about 'parameters' but not all parameters are equal"
 
 **Figure — two side-by-side log-linear line charts, test loss vs parameter count, by layer count.** Both panels share a "Test Loss" y-axis, **log** scale, ticked from 2 up to about 7 — verified against the extracted raster at native resolution, where the tick rows fit $\ln(\text{value})$ at $R^2 \approx 0.999992$ against $\approx 0.968$ linear. Both panels are log-log.
@@ -805,6 +851,8 @@ Below the figure, body text: "Embedding layer parameters don't behave the same!"
 The point of the two-panel comparison is that a 0-layer (embedding-only) model's loss barely falls as its embedding-parameter count grows, unlike every layered model — so counting embedding parameters on the same axis as "real" transformer parameters is misleading, which is why the deck's other depth/width charts use the "non-embedding" parameter count.
 
 ## Slide 36 — Side note – 'Value of parameters'
+
+![Slide 36 — Side note – 'Value of parameters'](../images/09-scaling-laws/slide-36.jpg)
 
 Heading: "Side note – 'Value of parameters'". Body text: "With MoEs, we expect parameter scaling to change"
 
@@ -821,6 +869,8 @@ Heading: "Side note – 'Value of parameters'". Body text: "With MoEs, we expect
 The slide's point, per its own heading and text, is that under MoE sparsity the relationship between parameter count and useful capacity changes, motivating the paper's two separate parameter-scaling laws (total vs. active) shown in panels (b) and (c).
 
 ## Slide 37 — 4. Batch size: Critical batch size
+
+![Slide 37 — 4. Batch size: Critical batch size](../images/09-scaling-laws/slide-37.jpg)
 
 Heading: "4. Batch size: Critical batch size".
 
@@ -856,6 +906,8 @@ No chart or table on this page.
 
 ## Slide 39 — 4. Batch size: critical batch size
 
+![Slide 39 — 4. Batch size: critical batch size](../images/09-scaling-laws/slide-39.jpg)
+
 Heading: "4. Batch size: critical batch size".
 
 **Figure — "Critical Batch Size vs. Performance" log-log scatter/line chart.** Y-axis "Critical Batch Size (Tokens)", log scale, ticked 10^3, 10^4, 10^5, 10^6. X-axis "WebText2 Train Loss", log scale but running in decreasing order left to right, ticked 10^1, 6×10^0, 4×10^0, 3×10^0 (i.e. loss decreases moving right). Four series, per the legend:
@@ -872,6 +924,8 @@ $$C_{min}(C) \equiv \frac{C}{1 + B/B_{crit}(L)}$$
 and, to its right, the parenthetical note "(minimum compute, at $B \ll B_{crit}$)".
 
 ## Slide 40 — 5. Learning rates: muP and scale-aware LR choices
+
+![Slide 40 — 5. Learning rates: muP and scale-aware LR choices](../images/09-scaling-laws/slide-40.jpg)
 
 Heading: "5. Learning rates: muP and scale-aware LR choices".
 
@@ -898,6 +952,8 @@ Citation "Yao et al 2024" printed beneath the table.
 Below both figures, body text: "**If we naively scale up** – optimal learning rate depends on scale." and "We need *scaling aware* initialization and learning rate scaling"
 
 ## Slide 41 — Caution – scaling behaviors can differ downstream
+
+![Slide 41 — Caution – scaling behaviors can differ downstream](../images/09-scaling-laws/slide-41.jpg)
 
 Heading: "Caution – scaling behaviors can differ downstream". Two lines of body text: "**Thus far**: scaling is predictable and depends mainly on parameters" and "**Catch**: downstream scaling can often be much less predictable"
 
@@ -926,6 +982,8 @@ No chart or table on this page.
 
 ## Slide 43 — One important use of scaling laws
 
+![Slide 43 — One important use of scaling laws](../images/09-scaling-laws/slide-43.jpg)
+
 Heading: "One important use of scaling laws". Body text: "**Q:** Do we need more data or bigger models?"
 
 "Clearly, lots of data is wasted on small models"
@@ -951,6 +1009,8 @@ $$Error = [m^{-\alpha} + n^{-1}]^{\beta}$$
 The two figures together illustrate the slide's point: extra tokens help a small model much less than they help a large one (Figure 1's flat low-parameter curves), and the Rosenfeld et al. joint error surface (Figure 2) is the kind of landscape the two displayed equations are fit to.
 ## Slide 44 — Model-data joint scaling is accurate
 
+![Slide 44 — Model-data joint scaling is accurate](../images/09-scaling-laws/slide-44.jpg)
+
 Heading (blue): "**Model-data joint scaling is accurate**". Body text: "From Rosenfeld – fit scaling exponents on small data, small models. Predict rest."
 
 **Figure — three panels, labelled (a), (b), (c) beneath each.**
@@ -975,6 +1035,8 @@ The point of the figure: fitting the joint model-size/data-size scaling exponent
 Below the figure, body text: "Trading off data size and model size: optimize $n^{-\alpha}+m^{-\beta} + C$ with your costs."
 
 ## Slide 45 — 'Optimal' compute and data tradeoffs as a case study.
+
+![Slide 45 — 'Optimal' compute and data tradeoffs as a case study.](../images/09-scaling-laws/slide-45.png)
 
 Heading (blue): "**'Optimal' compute and data tradeoffs as a case study.**" Body text: "Rosenfeld, Kaplan both predict relationship of data, model and perf." Bold line: "**Kaplan claims**: $N_{opt} = C^{0.73}$, $D_{opt} = C^{0.27}$ (tokens per param decreases w/ C)". Bold, centered: "**Chinchilla [Hoffman et al] argue these fits are quite off.**"
 
@@ -1004,6 +1066,8 @@ Bottom-right corner: citation "Hoffman+ 2022".
 
 ## Slide 46 — Chinchilla in depth – 3 methods
 
+![Slide 46 — Chinchilla in depth – 3 methods](../images/09-scaling-laws/slide-46.jpg)
+
 Heading (blue): "**Chinchilla in depth – 3 methods**"
 
 **Table.**
@@ -1023,6 +1087,8 @@ No other figure on this page besides the table.
 
 ## Slide 47 — Method 1 – minimum over runs.
 
+![Slide 47 — Method 1 – minimum over runs.](../images/09-scaling-laws/slide-47.jpg)
+
 Heading (blue): "**Method 1 – minimum over runs.**" Body text, centered, two lines: "Similar to the FLOPS figure on Kaplan –" / "the minimum over the union of all training curves is a power law."
 
 **Figure — three panels, reproduced from the Chinchilla paper (Figure 2).**
@@ -1037,6 +1103,8 @@ Caption below the figure: "Figure 2 | **Training curve envelope.** On the **left
 
 ## Slide 48 — Method 2 - IsoFLOPS
 
+![Slide 48 — Method 2 - IsoFLOPS](../images/09-scaling-laws/slide-48.jpg)
+
 Heading (blue): "**Method 2 - IsoFLOPS**" Body text, two lines: "Pick a range of FLOP budgets, vary the total parameter count, take the min over these" / "convex shapes. The minima form a power law."
 
 **Figure — three panels, reproduced from the Chinchilla paper (Figure 3).**
@@ -1050,6 +1118,8 @@ Heading (blue): "**Method 2 - IsoFLOPS**" Body text, two lines: "Pick a range of
 Caption below the figure: "Figure 3 | **IsoFLOP curves.** For various model sizes, we choose the number of training tokens such that the final FLOPs is a constant. The cosine cycle length is set to match the target FLOP count. We find a clear valley in loss, meaning that for a given FLOP budget there is an optimal model to train (**left**). Using the location of these valleys, we project optimal model size and number of tokens for larger models (**center** and **right**). In green, we show the estimated number of parameters and tokens for an *optimal* model trained with the compute budget of *Gopher*."
 
 ## Slide 49 — Method 3 – Joint fits
+
+![Slide 49 — Method 3 – Joint fits](../images/09-scaling-laws/slide-49.jpg)
 
 Heading (blue): "**Method 3 – Joint fits**" Body text: "Run a bunch of models on the size-data grid. Use least squares to fit a joint scaling law"
 
@@ -1067,6 +1137,8 @@ Caption below the figure: "Figure 4 | **Parametric fit.** We fit a parametric mo
 
 ## Slide 50 — Why do we have this big difference?
 
+![Slide 50 — Why do we have this big difference?](../images/09-scaling-laws/slide-50.jpg)
+
 Heading (blue): "**Why do we have this big difference?**" Bold line: "**Kaplan claims**: $N_{opt} = C^{0.73}$, $D_{opt} = C^{0.27}$ (tokens per param decreases w/ C)"
 
 **Figure — identical to the chart on slide 45** (same log-log "Parameters" vs "FLOPs" plot, same series: solid blue/orange/teal lines "Approach 1"/"Approach 2"/"Approach 3", dashed black "Kaplan et al (2020)" line, and the four stars "Chinchilla (70B)" teal, "Gopher (280B)" orange, "GPT-3 (175B)" red, "Megatron-Turing NLG (530B)" purple, plus the same underlying blue-dot scatter). See slide 45 for the full structure-and-values description; this page repeats the same figure without the "Chinchilla … argue these fits are quite off" text box above it.
@@ -1074,6 +1146,8 @@ Heading (blue): "**Why do we have this big difference?**" Bold line: "**Kaplan c
 Below the figure, centered body text: "Why such a big difference (when both fit joint scaling laws?)"
 
 ## Slide 51 — Explanation 1
+
+![Slide 51 — Explanation 1](../images/09-scaling-laws/slide-51.jpg)
 
 Heading (blue): "**Explanation 1**"
 
@@ -1099,6 +1173,8 @@ Below the figure, three bullets:
 
 ## Slide 52 — Explanation 2
 
+![Slide 52 — Explanation 2](../images/09-scaling-laws/slide-52.jpg)
+
 Heading (blue): "**Explanation 2**". A downward black arrow leads from the heading into a large rounded box. In the top-right corner, a pasted screenshot of a paper's title block: "**Reconciling Kaplan and Chinchilla Scaling Laws**", authors "Tim Pearce *Microsoft Research*" and "Jinyeop Song *MIT*", with a line "Reviewed on OpenReview: https://openreview.net/forum?id=NLoaLyuUUF".
 
 **Left rounded box.** Text: "Start from fitted model of **Chinchilla's** training curves". Displayed equation:
@@ -1122,6 +1198,8 @@ The red dot / black dashed frontier runs from about ($10^{11}$, $2\times10^2$) u
 Below the whole figure, body text: "Non-embedding vs total param choice + small nonlinearities"
 
 ## Slide 53 — Fun addendum – errors in chinchilla method 3
+
+![Slide 53 — Fun addendum – errors in chinchilla method 3](../images/09-scaling-laws/slide-53.jpg)
 
 Heading (blue): "**Fun addendum – errors in chinchilla method 3**". Body text: "Note that this method three was likely flawed in the original paper. Some authors did data forensics, recovered the raw data, and re-did the fit and got results more consistent with methods 1 and 2"
 
@@ -1162,6 +1240,8 @@ Below the list, body text: "The more usage we expect, the more it becomes worth 
 No chart or table on this page.
 
 ## Slide 55 — Isoflops everywhere
+
+![Slide 55 — Isoflops everywhere](../images/09-scaling-laws/slide-55.jpg)
 
 Heading (blue): "**Isoflops everywhere**". Body text: "Methods like IsoFLOPS are pretty easy to execute and usually pretty clean"
 

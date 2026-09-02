@@ -9,6 +9,10 @@ compute is growing and the amount of data we have is not growing" ([25:23]).
 
 From *Scaling Data-Constrained Language Models* (Muennighoff et al.), slide 24:
 
+![Slide 24 — Scaling laws under data repetition](../raw/images/09-scaling-laws/slide-24.jpg)
+
+*Slide 24 — Scaling laws under data repetition. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 > Up to about four epochs, with standard training recipes, you just don't get hurt
 > at all. But if you go past that point, your realized scaling law — this dark
 > curve — is much worse than the projected scaling law you'd get with fresh data.
@@ -75,6 +79,10 @@ top-quality bucket only, at medium compute it grows to include the next bucket
 down, and at large compute wider still. Its estimated scaling curves show the
 aggressive-filtering line winning early and then flattening into the *worst* of the
 four by the right-hand side of the plot.
+
+![Slide 26 — Data selection scaling and accounting for finiteness](../raw/images/09-scaling-laws/slide-26.jpg)
+
+*Slide 26 — Data selection scaling and accounting for finiteness. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
 
 ## See also
 

@@ -77,6 +77,8 @@ page. No figure.
 
 ## Slide 2 — Attention alternatives
 
+![Slide 2 — Attention alternatives](../images/04-attention-alternatives/slide-2.jpg)
+
 Text: "Cost of attention rises with large context sizes… how do we control those
 costs?"
 
@@ -119,6 +121,8 @@ ticked 0, 5000, 10000, 15000; the y-axis is "ms", ticked 0 to 600 in steps of
   feed-forward at around sequence length 4000.
 
 ## Slide 3 — The 'basic' toolkit
+
+![Slide 3 — The 'basic' toolkit](../images/04-attention-alternatives/slide-3.jpg)
 
 The slide's own text is two captions and a banner. Under the left figure group:
 "Combine local + global attention". Under the right figure: "Systems
@@ -212,6 +216,8 @@ No figure on this page.
 
 ## Slide 6 — Minimax M1
 
+![Slide 6 — Minimax M1](../images/04-attention-alternatives/slide-6.jpg)
+
 The slide's own text is a pale blue banner across the bottom: "**Minimax M1**
 (and minimax-text-01) use a 7-to-1 hybrid (7 linear, 1 full) linear attention."
 and, below it, "Performance (generally) seems strong, and they show linear
@@ -295,6 +301,8 @@ dashed blocks form the model body, each drawn around a vertical residual arrow.
 
 ## Slide 7 — From linear attention to Mamba-2
 
+![Slide 7 — From linear attention to Mamba-2](../images/04-attention-alternatives/slide-7.png)
+
 The whole slide sits in a thin black box.
 
 Text: "Let's generalize linear attention a little bit and add per-position
@@ -333,6 +341,8 @@ normalization, multiplication)".
   green output projection.
 
 ## Slide 8 — Nemotron 3
+
+![Slide 8 — Nemotron 3](../images/04-attention-alternatives/slide-8.jpg)
 
 The slide's own text is a pale blue banner across the bottom: "Mamba attention
 hybrid (3-1 ish) – comparable (or better) pref to other similar models".
@@ -415,6 +425,8 @@ No figure on this page.
 
 ## Slide 10 — Qwen 3.5 / Qwen Next
 
+![Slide 10 — Qwen 3.5 / Qwen Next](../images/04-attention-alternatives/slide-10.jpg)
+
 The slide's own text is a pale blue banner across the bottom: "The newest qwen
 are 3-1 GDN / Attention hybrids." and "Once again, pretty reasonable performance
 with good inference characteristics". Everything above is three pasted figures.
@@ -481,6 +493,8 @@ ticked 2, 4, 6, 8, 10. There are **three** series:
   4K, 4.9 at 8K, 8.1 at 16K, 10.0 at 32K, 10.1 at 64K, 11.0 at 128K.
 
 ## Slide 11 — Hybrid performance
+
+![Slide 11 — Hybrid performance](../images/04-attention-alternatives/slide-11.jpg)
 
 The slide's own text is a pale blue banner across the bottom: "Not many
 controlled ablations, but some evidence of low losses at small hybrid ratios".
@@ -563,6 +577,8 @@ its own, so the curves are identified by colour and marker:
 
 ## Slide 12 — Alternative to hybrids: sparse adaptation
 
+![Slide 12 — Alternative to hybrids: sparse adaptation](../images/04-attention-alternatives/slide-12.jpg)
+
 Subtitle, in bold: "Instead of attending to every token, do sparse attention
 (DSA)".
 
@@ -599,6 +615,8 @@ $\{\mathbf{c}_s\}$:
 $$\mathbf{u}_t = \mathrm{Attn}\left(\mathbf{h}_t, \{\mathbf{c}_s \mid I_{t,s} \in \mathrm{Top\text{-}k}(I_{t,:})\}\right). \qquad (2)$$"
 
 ## Slide 13 — DSA – Deepseek Sparse Attention (v3.2, GLM5)
+
+![Slide 13 — DSA – Deepseek Sparse Attention (v3.2, GLM5)](../images/04-attention-alternatives/slide-13.jpg)
 
 The slide has no body text of its own beyond the title: it is four pasted
 figures.
@@ -683,6 +701,8 @@ jointly trains both for 150B tokens."
 
 ## Slide 14 — Mixture of experts
 
+![Slide 14 — Mixture of experts](../images/04-attention-alternatives/slide-14.jpg)
+
 The slide has no prose beyond the title; it is a collage of six pasted images
 plus one hand-typed caption, "GPT4 (?)", under the first image.
 
@@ -729,6 +749,8 @@ University of Washington, Princeton University", and contacts
 
 ## Slide 15 — What's a MoE?
 
+![Slide 15 — What's a MoE?](../images/04-attention-alternatives/slide-15.png)
+
 Text below the figure: "Replace big feedforward with (many) big feedforward
 networks and a selector layer" and "You can increase the # experts without
 affecting FLOPs". Credit at the right, beneath the figure: "[Fedus et al 2022]".
@@ -756,6 +778,8 @@ to it by dashed leader lines, an expanded two-token view on its right.
   have no arrows into or out of them.
 
 ## Slide 16 — Why are MoEs getting popular?
+
+![Slide 16 — Why are MoEs getting popular?](../images/04-attention-alternatives/slide-16.jpg)
 
 Subtitle: "Same FLOP, more param does better". Credit at the bottom right:
 "[Fedus et al 2022]".
@@ -787,6 +811,8 @@ Step", ticked 0, 1, 2, 3, 4 with the multiplier "1e5" at the right; the y-axis i
   $-1.59$ at 3e5, $-1.57$ at 4e5, ending near $-1.56$.
 
 ## Slide 17 — Why are MoEs getting popular?
+
+![Slide 17 — Why are MoEs getting popular?](../images/04-attention-alternatives/slide-17.jpg)
 
 Subtitle: "Faster to train MoEs". Credit at the bottom right: "[OlMoE]".
 
@@ -843,6 +869,8 @@ model, each on 128 H100 GPUs. Apart from MoE-related changes, we train both …"
 
 ## Slide 18 — Why are MoEs getting popular?
 
+![Slide 18 — Why are MoEs getting popular?](../images/04-attention-alternatives/slide-18.jpg)
+
 Text at the foot, in bold: "Highly competitive vs dense equivalents".
 
 **Figure — a scatter plot with family trend lines.** The x-axis is "**Activated
@@ -881,6 +909,8 @@ The labelled points, by approximate coordinates:
 
 ## Slide 19 — Why are MoEs getting popular?
 
+![Slide 19 — Why are MoEs getting popular?](../images/04-attention-alternatives/slide-19.jpg)
+
 Subtitle: "Parallelizable to many devices".
 
 **Figure — a two-part block diagram** (the GShard MoE figure), with a hollow
@@ -909,6 +939,8 @@ grey arrow pointing from the left part to the right part.
   sublayers are replicated per device and carry no cross-device arrows.
 
 ## Slide 20 — Some MoE results – from the west
+
+![Slide 20 — Some MoE results – from the west](../images/04-attention-alternatives/slide-20.png)
 
 Text at the foot: "MoEs are most of the highest-performance open models, and are
 quite quick".
@@ -1018,6 +1050,8 @@ identical FLOPs.
 
 ## Slide 23 — Recent MoE results – DeepSeek v3
 
+![Slide 23 — Recent MoE results – DeepSeek v3](../images/04-attention-alternatives/slide-23.png)
+
 The slide has no text of its own beyond the title. The body is one large **pasted
 grouped bar chart** (the headline figure from the DeepSeek-V3 report).
 
@@ -1044,6 +1078,8 @@ DeepSeek-V3 leads on MATH 500, AIME 2024 and Codeforces by wide margins; Claude-
 Sonnet leads on MMLU-Pro, GPQA-Diamond and SWE-bench Verified.
 
 ## Slide 24 — Why haven't MoEs been more popular?
+
+![Slide 24 — Why haven't MoEs been more popular?](../images/04-attention-alternatives/slide-24.jpg)
 
 Two reasons, each a heading with a pasted excerpt beneath it.
 
@@ -1080,6 +1116,8 @@ series and each with x-axis "Step" ticked 0, 2500, 5000, 7500, 10000, 12500, 150
   1.8 from step 12500 to 15000. This is a healthy run, shown for contrast.
 
 ## Slide 25 — What MoEs generally look like
+
+![Slide 25 — What MoEs generally look like](../images/04-attention-alternatives/slide-25.jpg)
 
 Two column headings — "Typical: replace MLP with MoE layer" on the left, "Less
 common: MoE for attention heads" on the right — over two pasted diagrams. The credit
@@ -1128,6 +1166,8 @@ These are the three axes the following sections work through.
 
 ## Slide 27 — Routing function - overview
 
+![Slide 27 — Routing function - overview](../images/04-attention-alternatives/slide-27.jpg)
+
 Subtitle: "Many of the routing algorithms boil down to 'choose top k'". Credit at the
 bottom right: "[Fedus et al 2022]".
 
@@ -1159,6 +1199,8 @@ matrix is:
   The selection is made jointly over the whole matrix.
 
 ## Slide 28 — Routing type
+
+![Slide 28 — Routing type](../images/04-attention-alternatives/slide-28.jpg)
 
 Subtitle: "Almost all the MoEs do a standard 'token choice topk' routing. Some recent
 ablations". No credit line is printed on the page.
@@ -1195,6 +1237,8 @@ while the two are a wash on MMLU.
 
 ## Slide 29 — Common routing variants in detail
 
+![Slide 29 — Common routing variants in detail](../images/04-attention-alternatives/slide-29.jpg)
+
 Two row labels down the left — "Top-k" and "Hashing" — each with a pasted diagram in
 the middle column and commentary text on the right. Credit at the bottom right:
 "[Fedus et al 2022]".
@@ -1225,6 +1269,8 @@ deterministic and unweighted.
 Commentary on the right: "Common baseline".
 
 ## Slide 30 — Other routing methods
+
+![Slide 30 — Other routing methods](../images/04-attention-alternatives/slide-30.jpg)
 
 Same three-column layout as slide 29 — row label at the left, pasted diagram in the
 middle, commentary at the right. Credit at the bottom right: "[Fedus et al 2022]".
@@ -1257,6 +1303,8 @@ Clark '22".
 
 ## Slide 31 — Top-K routing in detail.
 
+![Slide 31 — Top-K routing in detail.](../images/04-attention-alternatives/slide-31.jpg)
+
 Subtitle, with the first word in italics: "*Most* papers do the old and classic
 top-k routing. How does this work?" Credit at the bottom right: "[Dai et al 2024]".
 
@@ -1286,6 +1334,8 @@ The distinction being drawn is where the softmax goes — before the top-k selec
 (as written above, so the surviving gates do not sum to 1) or after it.
 
 ## Slide 32 — Recent variations from DeepSeek and other Chinese LMs
+
+![Slide 32 — Recent variations from DeepSeek and other Chinese LMs](../images/04-attention-alternatives/slide-32.jpg)
 
 The slide's own text is one line beneath the figure — "Smaller, larger number of
 experts + a few shared experts that are always on." — and a credit at the bottom
@@ -1319,6 +1369,8 @@ Routing", "(b) + Fine-grained Expert Segmentation", "(c) + Shared Expert Isolati
 
 ## Slide 33 — Various ablations from the DeepSeek paper
 
+![Slide 33 — Various ablations from the DeepSeek paper](../images/04-attention-alternatives/slide-33.jpg)
+
 The slide's own text is the single line at the bottom: "More experts, shared experts
 all seem to generally help". Everything above it is a pasted figure with its own
 caption.
@@ -1350,6 +1402,8 @@ can find that fine-grained expert segmentation and shared expert isolation both
 contribute to stronger overall performance."
 
 ## Slide 34 — Ablations from OlMoE
+
+![Slide 34 — Ablations from OlMoE](../images/04-attention-alternatives/slide-34.jpg)
 
 Subtitle: "Gains from fine-grained experts, none from shared experts."
 
@@ -1440,6 +1494,8 @@ use in practice?"
 
 ## Slide 37 — RL for MoEs
 
+![Slide 37 — RL for MoEs](../images/04-attention-alternatives/slide-37.jpg)
+
 Subtitle: "RL via REINFORCE does work, but not so much better that it's a clear win".
 A small credit beneath the figure reads "(REINFORCE baseline approach, Clark et al
 2020)". A two-line conclusion is centred at the foot: "RL is the 'right solution' but
@@ -1495,6 +1551,8 @@ No figure other than the equation box.
 
 ## Slide 39 — Stochastic approximations
 
+![Slide 39 — Stochastic approximations](../images/04-attention-alternatives/slide-39.jpg)
+
 The second of the two same-titled slides. Two pasted images and one line of prose
 between them.
 
@@ -1534,6 +1592,8 @@ Jitter and dropout make every run stable (3/3 vs the baseline's 4/6) but cost qu
 which is why the jitter was dropped.
 
 ## Slide 40 — Heuristic balancing losses
+
+![Slide 40 — Heuristic balancing losses](../images/04-attention-alternatives/slide-40.jpg)
 
 Subtitle: "Another key issue – systems efficiency requires that we use experts
 evenly..". Credit at the right beneath the box: "From the Switch Transformer [Fedus
@@ -1590,6 +1650,8 @@ $\alpha_1$ and $\alpha_2$ are the two loss weights.
 
 ## Slide 42 — DeepSeek v3 variation – per-expert biases
 
+![Slide 42 — DeepSeek v3 variation – per-expert biases](../images/04-attention-alternatives/slide-42.jpg)
+
 Text: "Set up a per-expert bias (making it more likely to get tokens) and use
 online learning", followed by the gate definition:
 
@@ -1615,6 +1677,8 @@ $$P_i = \frac{1}{T} \sum_{t=1}^{T} s'_{i,t}, \qquad (20)$$
 At the foot of the page: "(but the approach is not fully aux loss free..)".
 
 ## Slide 43 — What happens when removing load balancing losses?
+
+![Slide 43 — What happens when removing load balancing losses?](../images/04-attention-alternatives/slide-43.jpg)
 
 The title is the only text the slide itself contributes; the two pasted OLMoE
 figures, with their printed captions, are the content.
@@ -1676,6 +1740,8 @@ blue).
   ~1B tokens.
 
 ## Slide 44 — Training MoEs – the systems side
+
+![Slide 44 — Training MoEs – the systems side](../images/04-attention-alternatives/slide-44.jpg)
 
 Two headed halves, each a pasted figure. Left heading: "MoEs parallelize nicely –
 Each FFN can fit in a device". Right heading: "Enables additional kinds of
@@ -1745,6 +1811,8 @@ Bottom row (data):
 
 ## Slide 45 — Training MoEs – the systems side
 
+![Slide 45 — Training MoEs – the systems side](../images/04-attention-alternatives/slide-45.jpg)
+
 Text above the figure: "MoE routing allows for parallelism, but also some
 complexities". Text beneath it: "Modern libraries like MegaBlocks (used in many
 open MoEs) use smarter sparse MMs".
@@ -1782,6 +1850,8 @@ result.
   Everything else is pale grey.
 
 ## Slide 46 — MoE parallelism and architecture modifications
+
+![Slide 46 — MoE parallelism and architecture modifications](../images/04-attention-alternatives/slide-46.jpg)
 
 The only slide text besides the title is the line beneath the figure: "New ideas
 from Nemotron 3 – down-projecting the activations to reduce communication".
@@ -1823,6 +1893,8 @@ the all-to-all, so the tensors that cross the network are the low-dimensional
 latents.
 
 ## Slide 47 — Fun side issue – stochasticity of MoE models
+
+![Slide 47 — Fun side issue – stochasticity of MoE models](../images/04-attention-alternatives/slide-47.jpg)
 
 Text above the figure: "MoEs can have additional stochasticity beyond normal
 models.." and "Why would a MoE have additional randomness?". Text beneath it, in
@@ -1866,6 +1938,8 @@ The worked example uses the six tokens "the", "quick", "brown", "fox", "jumped",
 
 ## Slide 48 — Issues with MoEs - stability
 
+![Slide 48 — Issues with MoEs - stability](../images/04-attention-alternatives/slide-48.jpg)
+
 Credit at the right, beneath the pasted text: "[Zoph 2022]".
 
 **Figure 1 (top left) — a single-series line chart.** x-axis "Step", ticked 0,
@@ -1898,6 +1972,8 @@ Slide text in bold beneath: "**Solution:** Use Float 32 just for the expert rout
 $$L_z(x) = \frac{1}{B} \sum_{i=1}^{B} \left( \log \sum_{j=1}^{N} e^{x_j^{(i)}} \right)^2 \qquad (5)$$
 
 ## Slide 49 — Z-loss stability for the router
+
+![Slide 49 — Z-loss stability for the router](../images/04-attention-alternatives/slide-49.jpg)
 
 Below the figure, the slide asks: "What happens when we remove the z-loss?"
 
@@ -1940,6 +2016,8 @@ results, logs, and configurations:
 `https://wandb.ai/ai2-llm/olmoe/reports/Plot-Zloss-vs-none--Vmlldzo4NDM4NjUz`".
 
 ## Slide 50 — Issues with MoEs – fine-tuning
+
+![Slide 50 — Issues with MoEs – fine-tuning](../images/04-attention-alternatives/slide-50.jpg)
 
 Heading above the first figure: "Sparse MoEs can overfit on smaller fine-tuning
 data". Two captions below: "Zoph et al solution – finetune non-MoE MLPs" (left)
@@ -1996,6 +2074,8 @@ in bilingual scenarios."
 
 ## Slide 51 — Other training methods - upcycling
 
+![Slide 51 — Other training methods - upcycling](../images/04-attention-alternatives/slide-51.jpg)
+
 The only slide text besides the title is the question at the foot: "Can we use a
 pre-trained LM to initialize a MoE?" Two pasted figures sit above it.
 
@@ -2048,6 +2128,8 @@ are annotations, not data series.
 
 ## Slide 52 — Upcycling example - MiniCPM
 
+![Slide 52 — Upcycling example - MiniCPM](../images/04-attention-alternatives/slide-52.jpg)
+
 Text above the table: "Uses the MiniCPM model (topk=2, 8 experts, ~ 4B active
 params)." Text below it: "Simple MoE, shows gains from the base model with ~ 520B
 tokens for training".
@@ -2073,6 +2155,8 @@ model in every column.
 
 ## Slide 53 — Upcycling example – Qwen MoE
 
+![Slide 53 — Upcycling example – Qwen MoE](../images/04-attention-alternatives/slide-53.jpg)
+
 Text above the table: "**Qwen MoE** – Initialized from the Qwen 1.8B model
 top-k=4, 60 experts w/ 4 shared." Text beneath: "Similar architecture / setup to
 DeepSeekMoE, but one of the first (confirmed) upcycling successes".
@@ -2089,6 +2173,8 @@ average row). The two parameter columns are in billions.
 | Qwen1.5-MoE-A2.7B | 14.3 | 2.7 | 62.5 | 61.5 | 34.2 | 40.8 | 7.17 |
 
 ## Slide 54 — DeepSeek MoE v1-v2-v3
+
+![Slide 54 — DeepSeek MoE v1-v2-v3](../images/04-attention-alternatives/slide-54.jpg)
 
 Text: "To wrap up, we'll walk through the DeepSeek MoE architecture." Then, in
 bold, "**V1 (16B – 2.8 active):**". Centred above the figure, in bold: "Shared (2)
@@ -2134,6 +2220,8 @@ $$P_i = \frac{1}{T} \sum_{t=1}^{T} s_{i,t},$$
 
 ## Slide 55 — DeepSeek MoE v2
 
+![Slide 55 — DeepSeek MoE v2](../images/04-attention-alternatives/slide-55.jpg)
+
 Bold text: "**V2 (236B – 21 active):**". Centred above the figure, in bold:
 "Shared (2) + Fine-grained (160/10) experts, 6 active". Below the figure, in bold:
 "New things:".
@@ -2178,6 +2266,8 @@ communications."
 
 ## Slide 56 — DeepSeek MoE v3
 
+![Slide 56 — DeepSeek MoE v3](../images/04-attention-alternatives/slide-56.jpg)
+
 Bold text: "**V2 (671B – 37 active):**" (printed as "V2" on the slide even though
 the title says v3). Centred above the figure, in bold: "Shared (1) + Fine-grained
 (258) experts, 8 active". Below the figure, in bold: "New things".
@@ -2209,6 +2299,8 @@ equation box** holding the biased-gate rule already seen on slide 42:
 $$g'_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} + b_i \in \mathrm{Topk}(\{s_{j,t} + b_j \mid 1 \leqslant j \leqslant N_r\},\, K_r), \\[4pt] 0, & \text{otherwise.} \end{cases}$$
 
 ## Slide 57 — Bonus: What else do you need to make DeepSeek MoE v3?
+
+![Slide 57 — Bonus: What else do you need to make DeepSeek MoE v3?](../images/04-attention-alternatives/slide-57.jpg)
 
 Text above the figure: "**MLA :** Multihead, latent attention". Text beneath it:
 "**Basic idea:** express the Q, K, V as functions of a lower-dim, 'latent'
@@ -2247,6 +2339,8 @@ The hatching makes the point of the slide visible: only $\mathbf{c}^{KV}_t$ and
 $\mathbf{k}^R_t$ are cached, not the full per-head keys and values.
 
 ## Slide 58 — What else do you need to make DeepSeek MoE v3?
+
+![Slide 58 — What else do you need to make DeepSeek MoE v3?](../images/04-attention-alternatives/slide-58.jpg)
 
 Restates at the top: "**Basic idea:** express the Q, K, V as functions of a
 lower-dim, 'latent' activation", followed by the three defining equations:
@@ -2294,6 +2388,8 @@ Beneath, in smaller grey type: "The solution – Have a few non-latent key dimen
 that can be rotated".
 
 ## Slide 59 — What else do you need to make DeepSeek MoE v3?
+
+![Slide 59 — What else do you need to make DeepSeek MoE v3?](../images/04-attention-alternatives/slide-59.jpg)
 
 Text: "**MTP:** Have small, lightweight models that predict multiple steps ahead".
 Two pasted figures side by side, credited beneath as "[Deepseek v3]" (left) and

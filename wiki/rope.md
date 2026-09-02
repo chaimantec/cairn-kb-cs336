@@ -4,6 +4,10 @@ How modern language models tell the difference between "we know" and "know we".
 RoPE is the position embedding used by essentially every model after 2024, and it
 is what assignment 1 asks you to implement (slide 4).
 
+![Slide 4 — What you implemented – simple, modern variant](../raw/images/03-architectures/slide-4.jpg)
+
+*Slide 4 — What you implemented – simple, modern variant. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 It is also, in Hashimoto's assessment, the part of the architecture where the most
 genuine variation remains: "really, the thing that is very different across
 implementations, and I think a place where a lot of the architecture stuff is still
@@ -17,6 +21,10 @@ products, so you can shuffle them and attention would be the same if you don't h
 a position embedding" ([31:29]). Position has to be injected deliberately.
 
 Slide 30 lays out the four families that have been tried.
+
+![Slide 30 — Many variations in position embeddings](../raw/images/03-architectures/slide-30.jpg)
+
+*Slide 30 — Many variations in position embeddings. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 **Sine embeddings** add fixed sinusoids of varying frequency to the token
 embedding:
@@ -82,6 +90,10 @@ depending only on the difference.
 Slide 32 draws this with three hand-drawn vector diagrams, and Hashimoto works the
 example aloud ([34:33]–[35:19]):
 
+![Slide 32 — RoPE: rotary position embeddings](../raw/images/03-architectures/slide-32.png)
+
+*Slide 32 — RoPE: rotary position embeddings. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 Take the phrase **"we know that"**. The word *we* is at position 0, so it is not
 rotated at all. *know* is at position 1, so it is rotated by one unit angle.
 
@@ -109,6 +121,10 @@ coordinates and rotate each pair in its own 2-D plane.**
 Each pair $j$ gets its own constant angular frequency $\theta_j$, and a token at
 position $m$ has that pair rotated by $m\theta_j$. Slide 34 gives the matrix form
 from Su et al. 2021 — a block-diagonal matrix of $2\times2$ rotation blocks:
+
+![Slide 34 — The actual RoPE math](../raw/images/03-architectures/slide-34.jpg)
+
+*Slide 34 — The actual RoPE math. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 $$f_{\{q,k\}}(\boldsymbol{x}_m, m) = \boldsymbol{R}^d_{\Theta,m} \boldsymbol{W}_{\{q,k\}} \boldsymbol{x}_m$$
 
@@ -147,6 +163,10 @@ embeddings, because that means there are no cross terms."
 prints this in bold: "embedding at *each attention operation* to enforce position
 invariance."
 
+![Slide 35 — Implementation and code for RoPE](../raw/images/03-architectures/slide-35.jpg)
+
+*Slide 35 — Implementation and code for RoPE. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 The slide shows the HuggingFace LLaMA implementation, which is the practical
 answer to "how do I actually write this":
 
@@ -167,6 +187,14 @@ records it as "Gemma 4 alternative: just first 2", and slide 66 illustrates it a
 strip of cells where only the leading pair carries positional information and the
 remainder is "only **semantic** information".
 
+![Slide 33 — RoPE: rotary position embeddings](../raw/images/03-architectures/slide-33.jpg)
+
+*Slide 33 — RoPE: rotary position embeddings. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
+![Slide 66 — Other recent examples of interleaved attention](../raw/images/03-architectures/slide-66.jpg)
+
+*Slide 66 — Other recent examples of interleaved attention. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 The rationale, from Hashimoto's answer to a student at [41:27]: "You don't rotate
 most of them, because the argument ... is that the low-frequency parts just aren't
 rotating very much, and so you can drop them if you're really strapped for extra
@@ -177,6 +205,10 @@ hybrid models. Cohere's Command A applies RoPE on its sliding-window layers and
 none on its full-attention layers, so that "long-range info via NoPE, short-range
 info via RoPE + SWA" (slide 65). See
 [attention variants](attention-variants.md).
+
+![Slide 65 — Current standard trick – interleave 'full' and 'LR' attention](../raw/images/03-architectures/slide-65.jpg)
+
+*Slide 65 — Current standard trick – interleave 'full' and 'LR' attention. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 **RoPE scaling.** OLMo 3's hyperparameter table (slide 66) records YaRN scaling on
 full-attention layers with $\theta = 5 \times 10^5$.

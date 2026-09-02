@@ -31,6 +31,10 @@ So: use many. **MXFP8 assigns one scale factor per small block of elements.** Sl
 27's diagram shows a 4×8 grid of data cells divided into eight colour groups of
 four, each group paired with its own scale-factor swatch.
 
+![Slide 27 — Frontiers in low precision](../raw/images/05-gpus-tpus/slide-27.png)
+
+*Slide 27 — Frontiers in low precision. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 Two design choices follow, both printed on slide 27:
 
 - **The elements use E4M3** — the FP8 variant with more mantissa and less exponent
@@ -69,6 +73,10 @@ Slide 28 makes the point that quantization is selective — "not all weights" �
 Hashimoto ties it to the trial-and-error character of the whole area: "you're only
 going to quantize certain layers you think are safe to quantize" ([42:18]).
 
+![Slide 28 — MXFP8 training in practice](../raw/images/05-gpus-tpus/slide-28.jpg)
+
+*Slide 28 — MXFP8 training in practice. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 The payoff is real but not the factor you might expect: **20 to 30% savings on the
 matrix multiplies, maybe more depending on matrix size** ([42:18]). Not a 2×
 speedup, "because you have to do all these quantization operations — there's a big
@@ -84,6 +92,10 @@ brings both instability and loss increases.
 Slide 29 shows the entire format on one page — all sixteen representable values,
 running $-6$ to $6$. "The entirety of MXFP4 can be shown to you in this slide"
 ([43:04]).
+
+![Slide 29 — Frontiers in low precision](../raw/images/05-gpus-tpus/slide-29.png)
+
+*Slide 29 — Frontiers in low precision. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 The structure is the same idea at four bits: a block of 4-bit values sharing a
 scale factor. Hashimoto states the parameters at [43:04] as "every 16 of these

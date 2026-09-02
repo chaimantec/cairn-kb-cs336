@@ -70,6 +70,10 @@ So the entire memory budget is being replicated for no benefit.
 more: stage 1 the optimizer state, stage 2 the gradients, stage 3 (**FSDP**) the
 parameters too, running slide 18's example from 120 GB down to 1.9 GB ([16:09]).
 
+![Slide 18 — ZeRO – solving the memory overhead issue of DP](../raw/images/08-parallelism-2/slide-18.jpg)
+
+*Slide 18 — ZeRO – solving the memory overhead issue of DP. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 The remarkable part is the price. Stage 1 replaces DDP's one all-reduce with a
 reduce-scatter plus an all-gather — *the same cost* — so "ZeRO stage 1 has the exact
 same communication characteristics as naive DDP — this was free" ([18:26]). Stage 2
@@ -90,6 +94,10 @@ Two walls ([29:07]–[29:53]):
    extra step.
 2. **It does not touch activations.** Slide 30 is explicit that even ZeRO stage 3
    "does not reduce activation memory".
+
+![Slide 30 — Issues remain with data parallel – models don't fit](../raw/images/08-parallelism-2/slide-30.jpg)
+
+*Slide 30 — Issues remain with data parallel – models don't fit. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 Both walls are what [model parallelism](sharding-vs-replication.md) exists to get
 past. The conceptual shift: in FSDP, *parameters* fly around the network; from here
@@ -122,6 +130,10 @@ Cut the matrices instead of the layers ([39:02]). Slide 40's worked example spli
 $A$ and $B$ around a GeLU into two sub-matrices each. The structure to remember is
 the **forward/backward duality**: in the forward pass $f$ is identity and $g$ is an
 all-reduce; in the backward pass they swap ([40:34]).
+
+![Slide 40 — Tensor parallel – GPUs have submatrices](../raw/images/08-parallelism-2/slide-40.jpg)
+
+*Slide 40 — Tensor parallel – GPUs have submatrices. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 In a transformer block the cuts alternate — **column-wise** at the inputs (MLP
 inputs, attention projections), **row-wise** at the corresponding outputs (MLP

@@ -89,6 +89,18 @@ Everything is a tensor ([4:44]): parameters, gradients, optimizer states, data,
 activations. Each has a shape and a precision, and its memory is just **number of
 elements × bytes per element** ([7:01]) — a 4-by-8 fp32 matrix is 128 bytes.
 
+![The IEEE 754 single-precision bit layout](../raw/images/02-pytorch-resource-accounting/fp32.png)
+
+*IEEE 754 single-precision: 1 sign bit, 8 exponent bits (30 down to 23), 23 fraction bits (22 down to 0). Source: [`images/fp32.png`](https://github.com/stanford-cs336/lectures/blob/main/images/fp32.png).*
+
+![The IEEE half-precision bit layout](../raw/images/02-pytorch-resource-accounting/fp16.png)
+
+*IEEE half-precision: 1 sign bit, 5 exponent bits (14 down to 10), 10 fraction bits (9 down to 0). Source: [`images/fp16.png`](https://github.com/stanford-cs336/lectures/blob/main/images/fp16.png).*
+
+![The bfloat16 bit layout](../raw/images/02-pytorch-resource-accounting/bf16.png)
+
+*bfloat16: 1 sign bit, 8 exponent bits (14 down to 7), 7 fraction bits (6 down to 0). The exponent field is the same width as fp32's, which is exactly why bf16 keeps fp32's dynamic range and gives up precision instead. Source: [`images/bf16.png`](https://github.com/stanford-cs336/lectures/blob/main/images/bf16.png).*
+
 That the arithmetic is trivial does not make it unimportant. One matrix in GPT-3's
 feedforward layer is about **2.3 GB** ([7:46]), in a model that is by 2026
 standards "fairly old" and far from the biggest imaginable.
@@ -202,6 +214,10 @@ The cartoon of hardware ([40:49]): high-bandwidth memory at the bottom, compute
 cores above. To compute anything you send inputs up, compute, and send outputs
 back — so the time depends on **two** speeds, the accelerator's FLOP/s and the
 memory bandwidth, which for an H100 is 3.3 TB/s ([41:34]).
+
+![Compute and memory joined by a narrow bandwidth pipe](../raw/images/02-pytorch-resource-accounting/compute-memory.png)
+
+*Compute and memory as two blocks joined by a narrow pipe: many small arithmetic units against one wide memory block, the thin connector standing for the bandwidth between them. Source: [`images/compute-memory.png`](https://github.com/stanford-cs336/lectures/blob/main/images/compute-memory.png).*
 
 Assuming communication and computation overlap perfectly, the time is the **max**
 of the two, and the larger term names the regime: **memory-bound** when you are

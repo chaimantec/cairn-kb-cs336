@@ -554,8 +554,21 @@ usually the faster route than the lecture pages.
   KB does not yet cover. Explains how CS336 splits between executable lectures and
   PDF decks.
 
+- **`raw/images/NN-<slug>/`** — pictures, so an answer can *show* a figure rather than
+  only describe it. All nine covered lectures have them: 40–51 images each for the five
+  PDF-deck lectures (3, 4, 5, 8, 9), one for every figure-bearing page; and 4–9 each for
+  the four executable lectures (1, 2, 6, 7), which have no deck, so these are the figures
+  the course serves from its own repo. Each image sits beside the slide it shows in
+  `raw/slides/`, and in `wiki/` wherever a page cites that slide. About a third of every
+  deck was deliberately *not* rendered — title cards, outlines, dividers, and the tables
+  and equations `raw/slides/` already reproduces cell by cell — so **read an image path
+  out of a file rather than constructing one**. `AGENTS.md` has the conventions and the
+  attribution.
+
 `raw/pdfs/` is empty by design — no binaries are committed. The course's decks are
-5–7 MB each and live at the URLs in `sources.md`.
+5–7 MB each and live at the URLs in `sources.md`. The rendered slide images in
+`raw/images/` (28 MB) are the one exception to "no binaries": they are committed, because
+a picture is the thing a prose description cannot replace.
 
 ## Also
 

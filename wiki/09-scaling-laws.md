@@ -140,6 +140,10 @@ three separate literatures:
   slice; with a lot of compute you loosen the filter rather than repeat that slice
   ([27:41]).
 
+![Slide 24 — Scaling laws under data repetition](../raw/images/09-scaling-laws/slide-24.jpg)
+
+*Slide 24 — Scaling laws under data repetition. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 ## Part 3 — scaling laws for model engineering
 
 The move here is from forecasting to **design**: use scaling trends to make
@@ -215,6 +219,10 @@ mid-pack on perplexity ([51:27]).
 > The KB's first transcription of slide 41 got this backwards; see the note in
 > [upstream vs downstream](upstream-vs-downstream.md).
 
+![Slide 41 — Caution – scaling behaviors can differ downstream](../raw/images/09-scaling-laws/slide-41.jpg)
+
+*Slide 41 — Caution – scaling behaviors can differ downstream. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 Hashimoto calls it "probably one of the worst correlations I've seen from upstream
 to downstream" and draws the practical rule: fit scaling laws on the clean,
 low-variance perplexity signal, then argue separately about transfer ([55:15]).
@@ -242,6 +250,10 @@ Kaplan and Rosenfeld proposed near-equivalent joint forms almost simultaneously
 ([58:20]). Rosenfeld's is the sum of two independent scaling terms; Kaplan's is
 slightly more involved (slide 43):
 
+![Slide 43 — One important use of scaling laws](../raw/images/09-scaling-laws/slide-43.jpg)
+
+*Slide 43 — One important use of scaling laws. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 $$\text{Error} = n^{-\alpha} + m^{-\beta} + C
 \qquad\qquad
 \text{Error} = \left[m^{-\alpha} + n^{-1}\right]^{\beta}$$
@@ -255,6 +267,10 @@ predict the rest of the grid accurately (slide 44, [59:06]). Then compute-optima
 allocation is just a constrained optimisation — minimise the joint form subject to
 the FLOP budget ([59:53]).
 
+![Slide 44 — Model-data joint scaling is accurate](../raw/images/09-scaling-laws/slide-44.jpg)
+
+*Slide 44 — Model-data joint scaling is accurate. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 ### Kaplan's answer, and the era of giant models
 
 $$N_{opt} \propto C^{0.73} \qquad D_{opt} \propto C^{0.27}$$
@@ -263,6 +279,10 @@ so tokens per parameter *decreases* with compute: spend new compute mostly on
 parameters (slide 45). This is why "there was a period where everyone was training
 these gigantic models, hundreds of billions of parameters, trillion-parameter dense
 models" ([1:00:40]).
+
+![Slide 45 — 'Optimal' compute and data tradeoffs as a case study.](../raw/images/09-scaling-laws/slide-45.png)
+
+*Slide 45 — 'Optimal' compute and data tradeoffs as a case study. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
 
 > In the lecture Hashimoto initially reads these exponents the wrong way round, then
 > corrects himself mid-sentence — "is that reversed? I think it's reversed" ([1:00:40]).
@@ -274,6 +294,10 @@ models" ([1:00:40]).
 Hoffmann et al. 2022 argued those fits were badly off, and answered with three
 independent estimators — which Hashimoto praises as robustness against your own
 modelling assumptions ([1:02:12]). Slide 46's table:
+
+![Slide 46 — Chinchilla in depth – 3 methods](../raw/images/09-scaling-laws/slide-46.jpg)
+
+*Slide 46 — Chinchilla in depth – 3 methods. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
 
 | Approach | $a$ where $N_{opt} \propto C^{a}$ | $b$ where $D_{opt} \propto C^{b}$ |
 |---|---|---|
@@ -287,6 +311,10 @@ training curves: each envelope point is the best loss achieved at that FLOP coun
 and each carries a model size. Scatter those and fit. For Gopher's budget this
 predicts **67B parameters** and 1.5T tokens (slide 47). Finding the envelope
 reliably is the fiddly part.
+
+![Slide 47 — Method 1 – minimum over runs.](../raw/images/09-scaling-laws/slide-47.jpg)
+
+*Slide 47 — Method 1 – minimum over runs. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
 
 **Method 2 — [IsoFLOPs](isoflop-method.md)** ([1:04:31]), and Hashimoto's own
 favourite. Pick a set of FLOP budgets; at each, sweep the parameter/data trade-off

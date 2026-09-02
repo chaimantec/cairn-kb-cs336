@@ -110,6 +110,10 @@ GPUs per node on NVLink into an NVSwitch, nodes grouped into pods on InfiniBand,
 pods joined by Ethernet ([23:14]). Percy flags one of his own numbers as invented
 — "eight is typical, but this 256 is made up."
 
+![One node: four GPUs on an NVSwitch, leaving over InfiniBand or Ethernet](../raw/images/07-parallelism/gpu-node-overview.png)
+
+*One node: four GPUs, each with four streaming multiprocessors (a register file and L1/shared memory apiece) over an L2 cache and its own HBM. Each GPU meets an NVSwitch over NVLink, and the switch leaves the node over InfiniBand or Ethernet. The file is a screen capture and carries a stray "To exit full screen, press Esc" browser banner across the top. Source: [`images/gpu-node-overview.png`](https://github.com/stanford-cs336/lectures/blob/main/images/gpu-node-overview.png).*
+
 Two ideas carry most of the weight. **NVSwitch makes the node look flat**: "from a
 programming perspective, you can think about GPUs as connected to any other GPU"
 ([24:01]). And **RDMA is what keeps the CPU out of the way** ([27:06]) — without
@@ -149,6 +153,18 @@ All three are demonstrated on deep MLPs rather than Transformers, and the source
 justifies that: "MLPs are the ones that are the actual compute bottleneck in a
 transformer, so this is actually pretty representative" ([54:56]). The shared
 setup is a batch of 128 rows of dimension 1024 ([56:29]).
+
+![Data parallelism drawn as a horizontal cut through the data](../raw/images/07-parallelism/data-parallelism.png)
+
+*Data parallelism as a cut: four layers stacked above a Data block, with a horizontal orange line through the Data block only. The model is replicated; the batch is split. Source: [`images/data-parallelism.png`](https://github.com/stanford-cs336/lectures/blob/main/images/data-parallelism.png).*
+
+![Tensor parallelism drawn as a vertical cut through every layer](../raw/images/07-parallelism/tensor-parallelism.png)
+
+*Tensor parallelism as a cut: the same four-layer stack, with a vertical orange line running through every layer. The model is split by width. Source: [`images/tensor-parallelism.png`](https://github.com/stanford-cs336/lectures/blob/main/images/tensor-parallelism.png).*
+
+![Pipeline parallelism drawn as a horizontal cut between layers](../raw/images/07-parallelism/pipeline-parallelism.png)
+
+*Pipeline parallelism as a cut: the same four-layer stack, with a horizontal orange line between layer 1 and layer 2. The model is split by depth. Source: [`images/pipeline-parallelism.png`](https://github.com/stanford-cs336/lectures/blob/main/images/pipeline-parallelism.png).*
 
 | | What is cut | What is replicated | What moves, and when |
 | --- | --- | --- | --- |

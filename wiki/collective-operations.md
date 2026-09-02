@@ -217,6 +217,10 @@ Slide 8 shows it as two steps, and the consequence is stated plainly: "the fact
 that these two have the same cost, in some sense, means that we can do the
 algorithm on the right for free" ([3:08]).
 
+![Slide 8 — Important detail – all reduce vs reduce-scatter-gather.](../raw/images/08-parallelism-2/slide-8.png)
+
+*Slide 8 — Important detail – all reduce vs reduce-scatter-gather. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 That is the whole argument for [ZeRO stages 1 and 2](zero-and-fsdp.md). Naive DDP
 does one all-reduce, costing $2\times$ parameters. ZeRO stage 1 does a
 reduce-scatter of the gradients and then an all-gather of the updated parameters —

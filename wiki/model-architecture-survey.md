@@ -7,6 +7,10 @@ the lecture's method is to read the trends off it. Five different views of that
 table appear in the deck — slides 7, 9, 29, 51 and 67 — and all five are
 transcribed cell by cell in [the slide file](../raw/slides/03-architectures.md).
 
+![Slide 7 — Let's look at the data (on dense architectures)](../raw/images/03-architectures/slide-7.jpg)
+
+*Slide 7 — Let's look at the data (on dense architectures). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 This page explains what the table shows and how to use it. **For the actual values,
 go to the slide file** — reproducing forty-plus rows here would create a second copy
 to drift out of date.
@@ -40,6 +44,10 @@ expected the flow to slow down and it did not, though he notes most of the new
 arrivals are mixtures of experts, which are next lecture's subject rather than this
 one's ([3:54]).
 
+![Slide 5 — How should we think about architectures?](../raw/images/03-architectures/slide-5.jpg)
+
+*Slide 5 — How should we think about architectures? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 ## Which view is on which slide
 
 The five screenshots show overlapping column sets. If you are looking for a
@@ -56,6 +64,10 @@ specific field, this is where it is:
 Slide 67 also carries two sparse columns worth knowing about: **MoE**, checked on
 exactly two rows (GPT-4 and Mixtral), and **Parametrization**, filled on exactly one
 (Phi-3, tagged MuP).
+
+![Slide 67 — Recap, conclusion, etc.](../raw/images/03-architectures/slide-67.jpg)
+
+*Slide 67 — Recap, conclusion, etc. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 > These five views were transcribed independently, in different reading passes.
 > Cross-checking them against each other compared **296 overlapping (model, column)
@@ -115,6 +127,10 @@ Three ways this table is useful to someone actually training a model:
    of language models these days." The table is the aggregation that no individual
    paper provides.
 
+![Slide 51 — Summary: hyperparameters](../raw/images/03-architectures/slide-51.jpg)
+
+*Slide 51 — Summary: hyperparameters. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 ## A caveat on the table's own limits
 
 The database records what models *did*, not what is *best*. Several of its
@@ -128,6 +144,18 @@ Consensus in this table is evidence about practice. Where it coincides with a
 controlled study — as it does for gating (slides 24, 25), RMSNorm (slide 17) and
 the feedforward basin (slide 40) — it is evidence about quality too. Those are
 different things, and the lecture is careful to distinguish them.
+
+![Slide 24 — Do gated linear units work?](../raw/images/03-architectures/slide-24.jpg)
+
+*Slide 24 — Do gated linear units work? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
+![Slide 17 — RMSNorm - validation](../raw/images/03-architectures/slide-17.jpg)
+
+*Slide 17 — RMSNorm - validation. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
+![Slide 40 — Why this range of multipliers?](../raw/images/03-architectures/slide-40.png)
+
+*Slide 40 — Why this range of multipliers? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 ## Related
 
@@ -151,3 +179,7 @@ different things, and the lecture is careful to distinguish them.
   [upstream vs downstream](upstream-vs-downstream.md).
 - [The full slide file](../raw/slides/03-architectures.md) — all five views,
   transcribed.
+
+![Slide 35 — Implementation and code for RoPE](../raw/images/03-architectures/slide-35.jpg)
+
+*Slide 35 — Implementation and code for RoPE. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*

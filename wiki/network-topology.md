@@ -37,6 +37,10 @@ communication topology will get more complicated" ([6:12]).
 
 Slide 10 states it as a pro/con ([6:12]):
 
+![Slide 10 — Mesh vs tree vs other](../raw/images/08-parallelism-2/slide-10.jpg)
+
+*Slide 10 — Mesh vs tree vs other. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 > If you're communicating only to neighbors, TPUs are great — they're
 > cost-effective, and you can make each connection more beefy with the same power
 > consumption. But if you're connecting in very random, stochastic, unpredictable
@@ -70,6 +74,10 @@ sequence parallel, **no pipeline parallelism at all** ([1:16:36]).
 Slide 11 records news that broke the morning of the lecture: Google's TPU8i and
 TPU8t ([7:45]):
 
+![Slide 11 — But then things change.. TPU8i/t](../raw/images/08-parallelism-2/slide-11.jpg)
+
+*Slide 11 — But then things change.. TPU8i/t. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 > "Oh my god, TPU8i, that's a tree topology — they've switched to a much more
 > all-to-all connection." And if you think about it, it makes sense: modern-day
 > language models are MoEs, and if you're going to serve a MoE, you're going to
@@ -90,6 +98,10 @@ answers with the Huawei Ascend 910 ([8:31]–[10:02]). Per chip it is "a lot wor
 than an H200 — it's a lot slower at matmuls". But with a rack of fibre-optic
 switches connecting **384 chips**, you can compensate for slower chips with far
 more of them.
+
+![Slide 12 — Why not connect everything?](../raw/images/08-parallelism-2/slide-12.jpg)
+
+*Slide 12 — Why not connect everything? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 The catch is power: "the power consumption is insanely high — it's four times that
 of the equivalent NVIDIA system" ([9:16]). The lesson generalises ([10:02]):
@@ -125,3 +137,7 @@ resources we have" ([10:48]).
 - [Tensor parallelism](tensor-parallelism.md) — the strategy topology most constrains.
 - [Collective operations](collective-operations.md) — what runs on top of the topology.
 - [Lecture 8](08-parallelism-2.md) · [slides 9–13](../raw/slides/08-parallelism-2.md#slide-9--tpus-vs-gpus--design-differences-at-the-comm-level) · [transcript](../raw/transcripts/08-parallelism-2.md)
+
+![Slide 9 — TPUs vs GPUs – design differences at the comm level](../raw/images/08-parallelism-2/slide-9.jpg)
+
+*Slide 9 — TPUs vs GPUs – design differences at the comm level. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*

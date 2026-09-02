@@ -104,6 +104,10 @@ closing taxonomy, expert parallelism is grouped with
 Slide 46, which Hashimoto flags as "a very recent development" ([1:13:57]) and offers as
 the answer to the communication question raised earlier in the lecture.
 
+![Slide 46 — MoE parallelism and architecture modifications](../raw/images/04-attention-alternatives/slide-46.jpg)
+
+*Slide 46 — MoE parallelism and architecture modifications. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 The observation is that the shared expert and the routed experts have different
 communication requirements. A shared expert processes every token locally, so it never
 needs its activations shipped and can stay at full width. Routed experts do need shipping.
@@ -136,6 +140,10 @@ memory — the usual trade.
 
 Slide 47. Hashimoto calls this "one final trivia detail of MoEs that I think is fun — but
 which has been solved in recent years" ([1:14:43]).
+
+![Slide 47 — Fun side issue – stochasticity of MoE models](../raw/images/04-attention-alternatives/slide-47.jpg)
+
+*Slide 47 — Fun side issue – stochasticity of MoE models. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 Unless experts are perfectly balanced on the input distribution, some fill up faster than
 others. Older infrastructure handled overflow by discarding:
@@ -188,6 +196,10 @@ token activations is easier than routing dense tensor-parallel ones. The general
 rule for MoE runs: "once you go to MoEs, you replace tensor parallelism with expert
 parallelism — they serve similar goals, but expert parallelism is just a little
 more efficient" ([1:14:16]).
+
+![Slide 51 — Other training methods - upcycling](../raw/images/04-attention-alternatives/slide-51.jpg)
+
+*Slide 51 — Other training methods - upcycling. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 **It is genuinely hard.** Both DeepSeek and NVIDIA ship dedicated libraries —
 **DeepEP** and **HybridEP** — for expert dispatch, working at the level of

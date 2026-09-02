@@ -914,7 +914,9 @@ PDF deck `lecture_09.pdf`, 57 pages — the most figure-dense deck in the build:
       wiki quote on ellipses; and scope to all transcripts, not just this lecture's.
 
 ### Publish
-- [ ] sources.md — lecture_09.pdf transcribed
+- [x] sources.md — lecture_09.pdf was already recorded as transcribed. Fixed the header,
+      which still said "covers Lectures 1-6" in one sentence and "1-7" in the next, and
+      the now-false "nothing is committed as a binary"
 - [ ] kb.json — coverage 9/18, slideDecks 5, byLecture."9"
 - [ ] AGENTS.md — run 9 precedents
 - [x] Commit and push — pushed to chaimantec/cairn-kb-cs336 at 4a8b703
@@ -1030,3 +1032,70 @@ Agents now append findings per page, per the run-9 lesson.
       the mechanics differ. Lecture 6 has four such figures, two of them the
       lecture's own diagrams of the softmax and row-sum kernels; lecture 7 has five
   (the node overview, ranks, and one schematic per parallelism strategy).
+
+## Run 10 — Slide images (Step 1c) for lectures 1-9
+
+The user opted in to full figure coverage, to the course's own images for the four
+executable lectures, and to attribution in `AGENTS.md` rather than asking the course
+staff first. Source repo `stanford-cs336/lectures` carries **no LICENSE file**, so the
+material is public-to-read but not explicitly licensed for redistribution; that is
+recorded in `AGENTS.md` and in `kb.json` caveats.
+
+Selection method, per deck: the PDF raster test (a pasted image covering >4% of the
+page) INTERSECTED with the slide file's own prose describing an actual figure, minus
+title cards, outlines and section dividers. Then adjudicated by hand, because the two
+signals disagree in both directions:
+  - ADDED, raster test missed them (vector-drawn, no pasted raster): L3 32 (the
+    hand-drawn RoPE rotation diagrams), L5 2 (an "Outline" slide that actually carries
+    the matmul-throughput scatter and the FlashAttention figures).
+  - DROPPED, raster present but not a figure: L3 31 (equations), L4 21, 22 (pasted
+    paper tables the file transcribes cell by cell), L8 59, 66, 67, 69, 71 (same).
+    The skill's rule is that a transcribed table beats a picture of one, because it can
+    be quoted, searched and cited by cell.
+
+### Render
+- [x] L3 46/67 pages — NOTE: lecture 3 needs the number-map bypass. A stray "1" on
+      page 61 (the numerator of the MQA arithmetic-intensity fraction) is read as a
+      folio, which makes pages 61-67 resolve to slides 1-7 and collide. Pages 1-60 are
+      unaffected. The slide file's headings are a plain 1..67.
+- [x] L4 48/60, L5 51/55, L8 51/73, L9 40/57 — identity map, script works directly
+- [x] Lectures 1, 2, 6, 7 — 23 of 25 fetched. Dropped `course-staff.png` (staff photo
+      grid, no course content) and `ranks.png` (four boxes labelled Rank 0-3, which the
+      prose states completely). The course's own `images/*.png` from the lectures repo.
+      Third-party hotlinks (NVIDIA docs, arXiv, Wikimedia, Springer, jax-ml) are NOT
+      copied; they stay as URLs in the slide files.
+
+### Wire in
+- [x] embed_slide_images.py into raw/slides/ and wiki/ for each deck lecture. 259 images
+      in raw/slides/ (one per rendered page), 257 refs across 59 wiki pages. Topic-page
+      anchoring needed a per-page deck assignment, since a bare "slide 44" is ambiguous
+      across five decks that all print no folio: 41 pages resolved to one deck by the
+      slide file they link, 13 mixed pages were adjudicated by reading every citation in
+      context, and 5 of those needed a per-slide split (critical-batch-size L8+L9,
+      training-stability L3+L4, transformer-hyperparameters L3+L9)
+- [x] Captions. The script captions the deck renders from the slide heading; the 23
+      executable-lecture figures were each looked at and given a written description,
+      which is the first time this KB describes any of their contents
+- [x] AGENTS.md — Images section: coverage table, the no-constructed-paths rule, what
+      was rendered and what was not, attribution, the no-LICENSE note and a takedown
+      procedure. Also fixed "three decks" -> "five decks" in the layout table
+- [x] kb.json — materials.images with per-lecture counts, 3 new caveats, and 2 stale
+      ones corrected (the method split still said 3 decks; the figures caveat still said
+      lectures 1, 2, 6, 7 had no described figures)
+- [x] INDEX.md — a raw/images/ entry in the source-material section, and the
+      "no binaries" paragraph corrected to name its one exception
+
+### Check
+- [x] slide_number_map --verify PASSES on all five decks after the insertions (lecture 3
+      via the bypass, as above)
+- [x] every referenced image path exists: 259 files, 259 slide-file refs, 257 wiki refs,
+      0 missing. Full repo link sweep: 1,906 relative links, 0 broken
+- [x] Read two rendered images against raw/slides. BOTH CLEAN. L9 slide 44's Rosenfeld
+      grid checked cell by cell across all seven rows (the file's green/red/open split is
+      exact); L8 slide 40's Megatron tensor-parallel diagram checked box by box, including
+      the f/g forward-backward bullets. Worth recording: the 1400px render is NOT enough to
+      audit a dense panel — the first read of slide 44 at thumbnail scale miscounted row -4
+      and looked like an error. Crop from the PDF before calling a discrepancy
+
+### Publish
+- [x] Commit and push

@@ -227,6 +227,10 @@ Slide 18 colours it consistently through the ZeRO sequence — blue parameters,
 orange gradients, green optimizer state — with green visibly the largest block and
 parameters and gradients equal ([15:23]).
 
+![Slide 18 — Compute scaling is faster than memory scaling](../raw/images/05-gpus-tpus/slide-18.jpg)
+
+*Slide 18 — Compute scaling is faster than memory scaling. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 Which is what makes [ZeRO](zero-and-fsdp.md) so effective: the biggest slice of the
 budget is also the one that is cheapest to shard, since only the rank that owns a
 parameter slice needs its optimizer state. Slide 18's example runs 120 GB down to
@@ -236,3 +240,7 @@ But this whole budget is the **static** part. Slide 44's profile shows that real
 peak memory is dominated by a transient hump of activations that peaks *after* the
 forward pass, and that at scale activations dwarf parameters —
 see [activation memory](activation-memory.md) ([45:07]).
+
+![Slide 44 — Complexities with tiling 2 – memory alignment](../raw/images/05-gpus-tpus/slide-44.jpg)
+
+*Slide 44 — Complexities with tiling 2 – memory alignment. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*

@@ -5,6 +5,14 @@ cache a single low-dimensional latent vector per token and reconstruct keys and 
 it on demand. Lecture 4 covers it in slides 57–58 as one of the "bonus" mechanisms in
 DeepSeek V3, alongside [multi-token prediction](multi-token-prediction.md).
 
+![Slide 57 — Bonus: What else do you need to make DeepSeek MoE v3?](../raw/images/04-attention-alternatives/slide-57.jpg)
+
+*Slide 57 — Bonus: What else do you need to make DeepSeek MoE v3? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
+![Slide 58 — What else do you need to make DeepSeek MoE v3?](../raw/images/04-attention-alternatives/slide-58.jpg)
+
+*Slide 58 — What else do you need to make DeepSeek MoE v3? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
+
 It belongs to the same family of concerns as
 [attention variants](attention-variants.md) — MQA and GQA also exist to shrink the KV cache
 — but attacks it differently: MQA and GQA share keys and values across heads, while MLA

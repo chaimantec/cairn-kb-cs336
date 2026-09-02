@@ -29,6 +29,10 @@ to its own minimum and then blows up almost vertically past it, and — the poin
 $\log_2(\text{LR}) \approx -15$, with narrower models' optima progressively further
 right, out to about $-10$. The slide labels this "optimum shifts".
 
+![Slide 40 — 5. Learning rates: muP and scale-aware LR choices](../raw/images/09-scaling-laws/slide-40.jpg)
+
+*Slide 40 — 5. Learning rates: muP and scale-aware LR choices. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 That is fatal for the small-scale-tuning programme. If the best learning rate at
 your experiment scale is not the best learning rate at your target scale, tuning
 small tells you nothing directly.

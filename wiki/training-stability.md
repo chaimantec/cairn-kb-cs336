@@ -22,6 +22,10 @@ Slide 52 shows two OLMo runs on shared axes. The top panel is loss, the bottom i
 the L2 norm of the gradient, and both carry the same two series: blue **OLMo 0424
 7B** and orange **OLMo 2 1124 7B**.
 
+![Slide 52 — Stability tricks](../raw/images/03-architectures/slide-52.jpg)
+
+*Slide 52 — Stability tricks. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 The instructive part is that **the blue run has the lower loss**. It falls to about
 2.2 by 100k steps and drifts to about 2.1 by 600k, while orange sits consistently
 higher, around 2.45 falling to 2.28. If you were reading the loss panel alone,
@@ -47,6 +51,10 @@ contain the two operations most likely to misbehave numerically. Hashimoto at
 quickly. You also divide two numbers, and that's also a potentially very dangerous
 operation."
 
+![Slide 53 — Where do the issues arise? Beware of softmaxes!](../raw/images/03-architectures/slide-53.jpg)
+
+*Slide 53 — Where do the issues arise? Beware of softmaxes! [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 A transformer has exactly two softmaxes, and the slide points at both on the
 architecture diagram:
 
@@ -60,6 +68,10 @@ Each gets its own fix.
 
 The log-probability of a token splits into two terms, one well-behaved and one not
 (slide 54):
+
+![Slide 54 — Output softmax stability – the 'z-loss'](../raw/images/03-architectures/slide-54.jpg)
+
+*Slide 54 — Output softmax stability – the 'z-loss'. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 $$\log P(x) = \log\left(\frac{e^{U_r(x)}}{Z(x)}\right) = U_r(x) - \log Z(x), \qquad Z(x) = \sum_{r'=1}^{|V|} e^{U_{r'}(x)}$$
 
@@ -89,6 +101,10 @@ mid-sentence from 2024 ([1:08:23]) — and was revived by open models. Slide 54'
 adopter list: **Baichuan 2 (2023), DCLM (2024), OLMo 2 (2025), OLMo 3 (2025)**.
 OLMo 3's hyperparameter table on slide 66 records a z-loss weight of $10^{-5}$.
 
+![Slide 66 — Other recent examples of interleaved attention](../raw/images/03-architectures/slide-66.jpg)
+
+*Slide 66 — Other recent examples of interleaved attention. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 ## Fix 2 — QK norm, for the attention softmax
 
 The attention softmax is the harder case, and the fix is the "sprinkle in more
@@ -110,6 +126,10 @@ printed on the slide) — which Hashimoto confirms at [1:10:40]: "Some folks who
 making multimodal models initially discovered QK norm. Idefics and Chameleon really
 used this and proved it out."
 
+![Slide 55 — Attention softmax stability – the 'QK norm'](../raw/images/03-architectures/slide-55.jpg)
+
+*Slide 55 — Attention softmax stability – the 'QK norm'. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
+
 His assessment at [1:11:27]: "QK norm is actually a very standard intervention that
 most of the large models now introduce. It doesn't seem to affect performance ...
 but it does definitely prevent the kinds of attention degeneracies."
@@ -130,6 +150,10 @@ The strongest and least popular intervention. Where QK norm controls the *inputs
 to the softmax and hopes the outputs behave, soft-capping constrains the logits
 directly, squashing them through a scaled $\tanh$ so they can never leave a bounded
 range (slide 56):
+
+![Slide 56 — Logit soft-capping.](../raw/images/03-architectures/slide-56.jpg)
+
+*Slide 56 — Logit soft-capping. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
 $$\mathrm{logits} \leftarrow \mathrm{soft\_cap} \cdot \tanh(\mathrm{logits}/\mathrm{soft\_cap})$$
 
@@ -183,6 +207,10 @@ counterparts because they target the router alone:
   (slide 49) removes it and gets visibly spikier training-loss curves; Hashimoto's
   reading is that "z-loss on the router can be quite helpful," and that it "was
   actually quite popular for MoE router stability, even in the early days" ([1:17:48]).
+
+![Slide 49 — Z-loss stability for the router](../raw/images/04-attention-alternatives/slide-49.jpg)
+
+*Slide 49 — Z-loss stability for the router. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 Note this is a different failure mode from
 [expert collapse](load-balancing-losses.md), which is about routing *dynamics* rather

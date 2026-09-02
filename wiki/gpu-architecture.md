@@ -13,6 +13,10 @@ a GPU actually is" ([8:31]).
 
 The difference from a CPU is not incremental, and slide 8 puts the two side by side.
 
+![Slide 8 — How is a GPU different from a CPU?](../raw/images/05-gpus-tpus/slide-8.jpg)
+
+*Slide 8 — How is a GPU different from a CPU? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 A **CPU** is built for fast serial execution with complex branching. It therefore
 spends its transistor budget on large control units and a handful of ALUs, aiming
 for **low latency** — "the time between when you get an instruction and when you
@@ -52,6 +56,14 @@ count and the one the wave-quantization arithmetic depends on. Slide 10's panel 
 records the die as 7nm TSMC, 8192 FP32 units, 4096 FP64 units, 48MB L2 cache,
 6144-bit HBM2(e), and roughly 826–837 mm². An H100, per [20:46], has "something like
 132 streaming multiprocessors."
+
+![Slide 10 — Anatomy of a GPU (memory)](../raw/images/05-gpus-tpus/slide-10.jpg)
+
+*Slide 10 — Anatomy of a GPU (memory). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
+![Slide 48 — Part 2: wave quantization](../raw/images/05-gpus-tpus/slide-48.jpg)
+
+*Slide 48 — Part 2: wave quantization. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 ## The memory hierarchy
 
@@ -111,6 +123,10 @@ deck; see the note in [the transcript header](../raw/transcripts/05-gpus-tpus.md
 
 Slide 18 is the chart that justifies the rest of the lecture. Three quantities are
 improving at very different rates ([25:23]–[26:09]):
+
+![Slide 18 — Compute scaling is faster than memory scaling](../raw/images/05-gpus-tpus/slide-18.jpg)
+
+*Slide 18 — Compute scaling is faster than memory scaling. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 - **Compute throughput** — fastest.
 - **Memory bandwidth** — "growing comparatively slowly."

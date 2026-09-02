@@ -16,6 +16,10 @@ from only one and error is high either way, so the best intercept comes from a
 *mixture*. Writing down how that intercept behaves gives "very interesting insights
 about how having more data diversity is very helpful" ([23:05]).
 
+![Slide 23 — In practice: data mixture selection via scaling is hard](../raw/images/09-scaling-laws/slide-23.jpg)
+
+*Slide 23 — In practice: data mixture selection via scaling is hard. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 ## The idealised method
 
 The obvious procedure ([23:51]):
@@ -65,6 +69,10 @@ Mixture selection assumes the pool is fixed. It is not — how aggressively you 
 filter depends on your compute budget, and the optimal filter loosens as compute
 grows. See [data repetition](data-repetition.md), which covers slide 26's
 quality-versus-compute grid.
+
+![Slide 26 — Data selection scaling and accounting for finiteness](../raw/images/09-scaling-laws/slide-26.jpg)
+
+*Slide 26 — Data selection scaling and accounting for finiteness. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
 
 ## See also
 

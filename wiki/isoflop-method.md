@@ -61,6 +61,10 @@ parameters/data question:
   sparsity without really changing the amount of compute I'm spending" ([39:57]) —
   which is exactly the condition an IsoFLOP sweep needs.
 
+![Slide 55 — Isoflops everywhere](../raw/images/09-scaling-laws/slide-55.jpg)
+
+*Slide 55 — Isoflops everywhere. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 The general advice: "if you're ever in a situation where you're thinking, 'how am I
 going to decide all these tradeoffs?', IsoFLOPs is always a good default"
 ([1:16:03]).

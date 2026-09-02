@@ -27,6 +27,10 @@ and a matmul with $V$ — "three matrix multiplies and one softmax."
 The three matmuls are not the problem. We know how to tile a matmul, and slide 52's
 figure is "literally just tiled matrix multiplies — we've seen this before."
 
+![Slide 52 — Tiling part 1: tiling for the KQV matrix multiply](../raw/images/05-gpus-tpus/slide-52.jpg)
+
+*Slide 52 — Tiling part 1: tiling for the KQV matrix multiply. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
+
 ## The obstacle: softmax is global
 
 The difficulty is the softmax in the middle. As Hashimoto puts it at [1:13:42]:
@@ -42,6 +46,10 @@ yet. So it "might not seem obvious how to tile attention."
 
 The resolution predates FlashAttention. Slide 53 credits Milakov and Gimelshein
 (2018) and shows the two algorithms side by side.
+
+![Slide 53 — Tiling part 2: incremental computation of the softmax](../raw/images/05-gpus-tpus/slide-53.jpg)
+
+*Slide 53 — Tiling part 2: incremental computation of the softmax. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 **Safe softmax** (the version every framework uses) takes three passes: find the
 maximum for numerical stability, sum the shifted exponentials, then divide.
@@ -78,6 +86,10 @@ rest of the tiles to compute this."
 
 Slide 54 traces it concretely, with a legend separating what is **stored in HBM**
 from what is **computed in SRAM and never materialized in HBM**. For tiles 1 and 2:
+
+![Slide 54 — Putting it all together – the forward pass of flash attention](../raw/images/05-gpus-tpus/slide-54.jpg)
+
+*Slide 54 — Putting it all together – the forward pass of flash attention. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 $$S^{(1)} = Q (K^{(1)})^\top, \qquad A^{(1)} = \exp(S^{(1)}), \qquad l^{(1)} = \sum_i \exp(S^{(1)})_i$$
 
@@ -166,6 +178,10 @@ and 5. The reason it is worth doing here specifically, rather than recomputing t
 MLP as well, is the asymmetry noted at ([52:48]): attention recomputation "is
 generally cheaper, because you do it tile-wise as well, and also you don't want to
 pay the quadratic cost again". Cheap to recompute, quadratic to store.
+
+![Slide 49 — Recap of part 2: making ML workloads go fast](../raw/images/05-gpus-tpus/slide-49.jpg)
+
+*Slide 49 — Recap of part 2: making ML workloads go fast. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 [Context parallelism / ring attention](context-parallelism.md) applies the same
 block-wise accumulation across *devices* rather than within one, so a sequence too

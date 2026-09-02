@@ -29,6 +29,10 @@ Plot log dataset size against log test loss and the points are strikingly linear
 ([14:35], slide 15, taken from Kaplan et al. 2020). Assignment 3 has you reproduce
 something like it yourself.
 
+![Slide 15 — Data scaling laws for language models](../raw/images/09-scaling-laws/slide-15.png)
+
+*Slide 15 — Data scaling laws for language models. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 A line on a log-log plot carries two pieces of information ([15:22]):
 
 - Error is decaying **polynomially**, not exponentially.
@@ -60,6 +64,10 @@ plots would have slope $-1$.
 They do not. Reading off the Hestness and Kaplan fits, the exponents are roughly
 $-0.1$, $-0.3$, $-0.1$ ([17:41], slide 18) — still polynomial, but "much, much
 slower convergence" than estimating a mean.
+
+![Slide 18 — Scaling law exponents: an intriguing mystery](../raw/images/09-scaling-laws/slide-18.jpg)
+
+*Slide 18 — Scaling law exponents: an intriguing mystery. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
 
 The resolution offered is **non-parametric** estimation ([18:28]). Suppose you want
 to estimate an arbitrary smooth function rather than a finite-dimensional

@@ -23,6 +23,10 @@ The same compute spent on a larger model reaches a much lower loss.
 To optimise the split you need loss as a function of *both* variables. Kaplan and
 Rosenfeld proposed near-equivalent forms almost simultaneously ([58:20], slide 43):
 
+![Slide 43 — One important use of scaling laws](../raw/images/09-scaling-laws/slide-43.jpg)
+
+*Slide 43 — One important use of scaling laws. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 $$\text{Error} = n^{-\alpha} + m^{-\beta} + C
 \qquad\qquad
 \text{Error} = \left[m^{-\alpha} + n^{-1}\right]^{\beta}$$
@@ -41,12 +45,20 @@ hold up on the large-model, large-data corner, on both ImageNet and WikiText-103
 (slide 44, [59:06]). Given that, compute-optimal allocation is a constrained
 optimisation — minimise the joint form subject to the FLOP budget ([59:53]).
 
+![Slide 44 — Model-data joint scaling is accurate](../raw/images/09-scaling-laws/slide-44.jpg)
+
+*Slide 44 — Model-data joint scaling is accurate. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 ## Kaplan's answer
 
 $$N_{opt} \propto C^{0.73} \qquad D_{opt} \propto C^{0.27}$$
 
 Tokens per parameter therefore *decrease* as compute grows: put new compute mainly
 into parameters (slide 45).
+
+![Slide 45 — 'Optimal' compute and data tradeoffs as a case study.](../raw/images/09-scaling-laws/slide-45.png)
+
+*Slide 45 — 'Optimal' compute and data tradeoffs as a case study. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
 
 This had consequences. "If you were around in the days of GPT-3… there was a period
 where everyone was training these gigantic models, hundreds of billions of
@@ -73,6 +85,10 @@ robustifying yourself against modeling assumptions you may have made" ([1:02:12]
 
 *(Slide 46. The table also prints confidence intervals for each approach.)*
 
+![Slide 46 — Chinchilla in depth – 3 methods](../raw/images/09-scaling-laws/slide-46.jpg)
+
+*Slide 46 — Chinchilla in depth – 3 methods. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
+
 Roughly equal exponents mean a **fixed ratio** between tokens and parameters, and
 that ratio is where the famous **20 tokens per parameter** comes from ([1:01:26]).
 
@@ -82,6 +98,10 @@ FLOP count, and it belongs to a run of known model size. Scatter model size agai
 FLOPs for those points and fit. At Gopher's budget: **67B parameters** ([1:03:44]),
 and 1.5T tokens per slide 47's own annotation.[^unaud] The weakness is practical —
 reliably identifying the envelope is fiddly.
+
+![Slide 47 — Method 1 – minimum over runs.](../raw/images/09-scaling-laws/slide-47.jpg)
+
+*Slide 47 — Method 1 – minimum over runs. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
 
 [^unaud]: The 67B figure is stated aloud in the lecture and so rests on the verified
     transcript. The **1.5T token figure is read off slide 47 only**, and slide 47 is
@@ -143,6 +163,10 @@ Slide 52 carries their reconciliation chart, where the true frontier is a single
 curved line that looks like Kaplan's steeper 0.78 exponent at small compute and
 Chinchilla's shallower 0.51 exponent at large compute — each paper's law being
 locally right in its own range.
+
+![Slide 52 — Explanation 2](../raw/images/09-scaling-laws/slide-52.jpg)
+
+*Slide 52 — Explanation 2. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf)*
 
 ### The generalisable lesson
 

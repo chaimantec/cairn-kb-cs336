@@ -117,6 +117,8 @@ in blue letter-spaced caps: "G P U s". Below that, in grey: "CS336" and
 
 ## Slide 2 — Outline and goals
 
+![Slide 2 — Outline and goals](../images/05-gpus-tpus/slide-2.jpg)
+
 Text: "❖Make CUDA and GPUs less magic", and, as two sub-headings over the two
 figures, "Understand when GPUs get slow" (left) and "Understand how to make
 fast algorithms" (right).
@@ -189,6 +191,8 @@ bracket-labelled segments by height rather than by colour, so there are
 
 ## Slide 3 — Before we start..
 
+![Slide 3 — Before we start..](../images/05-gpus-tpus/slide-3.jpg)
+
 Text: "Substantial credit goes to a few sources that I'd like to highlight..",
 and, beneath the three screenshotted cards, the captions "Horace He's blog",
 "CUDA Mode group", and "TPU (and now GPU) book (!!)". At the foot: "And other
@@ -229,6 +233,8 @@ together – unpacking FlashAttention". No figure.
 
 ## Slide 5 — Setting the stage: compute leads to predictable perf
 
+![Slide 5 — Setting the stage: compute leads to predictable perf](../images/05-gpus-tpus/slide-5.jpg)
+
 Text: "Often times, compute leads to predictable performance gains for
 language models" and, below the figure, "Faster hardware, better utilization,
 improved parallelization alone can drive progress (for now..)". Credit at the
@@ -262,6 +268,8 @@ them by colour band instead:
   curves — this is an annotation of the trend, not an additional data series.
 
 ## Slide 6 — How do we get compute scaling? Early on – Dennard scaing
+
+![Slide 6 — How do we get compute scaling? Early on – Dennard scaing](../images/05-gpus-tpus/slide-6.jpg)
 
 (Title printed exactly as shown, including the typo "scaing" for "scaling".)
 Text: "But the traditional form of scaling (*Dennard scaling*) from 1980-2000s
@@ -319,6 +327,8 @@ Olukotun, L. Hammond, and C. Batten" / "New plot and data collected for
 
 ## Slide 7 — Parallel scaling continues
 
+![Slide 7 — Parallel scaling continues](../images/05-gpus-tpus/slide-7.jpg)
+
 Text: "Parallel scaling with GPUs has scaled > 1000x in 10 years." / "*There
 is no LLM scaling without GPU scaling*". Credit at the foot: "Bill dally,
 HotChips keynote" (printed lower-case as shown).
@@ -351,6 +361,8 @@ K20X 3.94" label are visible behind him) — this is a photo of the speaker, not
 separate chart data.
 
 ## Slide 8 — How is a GPU different from a CPU?
+
+![Slide 8 — How is a GPU different from a CPU?](../images/05-gpus-tpus/slide-8.jpg)
 
 Text: "CPUs optimize for a few, fast threads while GPUs optimize for many
 many threads"; below the two block diagrams, "Many tiny compute units
@@ -388,6 +400,8 @@ segments, whereas the CPU core processes each thread's full timeline with its
 own waiting gaps, one thread at a time.
 
 ## Slide 9 — Anatomy of a GPU (execution units)
+
+![Slide 9 — Anatomy of a GPU (execution units)](../images/05-gpus-tpus/slide-9.jpg)
 
 Text: below the two figures, "Each SM further contains many **SPs (streaming
 processor)** that can execute 'threads' in parallel" (left) and "GPUs have
@@ -430,6 +444,8 @@ highlighted (red-outlined) tile inside the die over to Figure 1, indicating
 that Figure 1 is a zoomed-in view of one single SM inside this full die.
 
 ## Slide 10 — Anatomy of a GPU (memory)
+
+![Slide 10 — Anatomy of a GPU (memory)](../images/05-gpus-tpus/slide-10.jpg)
 
 Text: "**The closer the memory to the SM, the faster it is** – L1 and shared
 memory is *inside* the SM. L2 cache is on die, and global memory are the
@@ -488,6 +504,8 @@ from Nvidia" / "Annotations by Locuza, June 2021".
 
 ## Slide 11 — Execution model of a GPU
 
+![Slide 11 — Execution model of a GPU](../images/05-gpus-tpus/slide-11.jpg)
+
 Text: "There are 3 important players in the execution model"; "**Threads:**
 Threads 'do the work' in parallel – all threads execute the same
 instructions but with different inputs (SIMT)."; "**Blocks:** Blocks are
@@ -531,6 +549,8 @@ left to right:
 
 ## Slide 12 — Memory model of a GPU
 
+![Slide 12 — Memory model of a GPU](../images/05-gpus-tpus/slide-12.jpg)
+
 Text: "Each thread can access its own register, and shared memory within
 the block."; "**Information that goes across blocks need to be read/written
 to global memory (slow)**". No credit line.
@@ -555,6 +575,8 @@ registers are private per thread, shared memory is shared within a block,
 and global/constant memory is shared across all blocks in the grid.
 
 ## Slide 13 — Side thread – What about TPUs?
+
+![Slide 13 — Side thread – What about TPUs?](../images/05-gpus-tpus/slide-13.jpg)
 
 Text: "GPUs, TPUs, and many other accelerators are at a high level, similar";
 "**Core structure** – lightweight control, fast (big) matmul unit, fast
@@ -581,6 +603,8 @@ states, new batch data etc"; "**HBM bandwidth**: determines how fast data
 goes to and from the computational elements."
 
 ## Slide 14 — Side thread – What about TPUs?
+
+![Slide 14 — Side thread – What about TPUs?](../images/05-gpus-tpus/slide-14.jpg)
 
 (Same heading text as slide 13 — this is a follow-on build slide reusing the
 title.) No standalone body text beyond the figure captions and the repeated
@@ -625,6 +649,8 @@ numbers in the second table, not a contradiction.
 
 ## Slide 15 — Strengths of the GPU model
 
+![Slide 15 — Strengths of the GPU model](../images/05-gpus-tpus/slide-15.jpg)
+
 Text: "❖ Easily scales up hard workloads (by adding more SMs)"; "❖ Easy (?)
 to program due to the SIMT model"; "❖ Threads are 'lightweight' and can be
 stopped and started".
@@ -650,6 +676,8 @@ data / Ready to be processed" colour legend at right) — reused here
 unchanged.
 
 ## Slide 16 — GPUs as fast matrix multipliers
+
+![Slide 16 — GPUs as fast matrix multipliers](../images/05-gpus-tpus/slide-16.jpg)
 
 Text: "Early days of NVIDIA GPUs – programmable shaders. Researchers hacked
 this to do matmuls". No URL credit line (the figure itself is a scanned
@@ -681,6 +709,8 @@ right column).
 
 ## Slide 17 — New matmul hardware means matmuls are fast and special
 
+![Slide 17 — New matmul hardware means matmuls are fast and special](../images/05-gpus-tpus/slide-17.jpg)
+
 Text: "Tensor cores (introduced in V, T series) are specialized matrix
 multiplication circuits."; "**Matmuls are >10x faster than other floating
 point ops!**" No URL credit line.
@@ -699,6 +729,8 @@ The two series are identical up to P100 and diverge only once tensor cores
 appear (V100 onward), which is the chart's point.
 
 ## Slide 18 — Compute scaling is faster than memory scaling
+
+![Slide 18 — Compute scaling is faster than memory scaling](../images/05-gpus-tpus/slide-18.jpg)
 
 Text: "FLOPs scale faster than memory – it's hard to keep our compute units
 fed with data!" Credit at the foot: `https://medium.com/riselab/ai-and-memory-wall-2cb4265cb0b8`
@@ -733,6 +765,8 @@ trend line.
 
 ## Slide 19 — Recap: GPUs – what are they and how do they work
 
+![Slide 19 — Recap: GPUs – what are they and how do they work](../images/05-gpus-tpus/slide-19.jpg)
+
 Text: "❖ GPUs are massively parallel – same instructions applied across many
 workers"; "❖ Compute (and esp matmuls) have scaled faster than memory"; "❖ We
 have to respect the memory hierarchy to make things go fast." No credit
@@ -758,6 +792,8 @@ matches Slide 18 exactly.
 LATENCIES" table from Slide 10**, reprised unchanged: Global memory 290,
 L2 cache 200, L1 cache 33, Shared Memory (ld/st) (23/19).
 ## Slide 20 — Part 2: Making ML workloads fast on a GPU
+
+![Slide 20 — Part 2: Making ML workloads fast on a GPU](../images/05-gpus-tpus/slide-20.jpg)
 
 A section-header slide. Below the heading is a chart, and below that the line:
 "Performance on a GPU can be complex, even for something as simple as a square
@@ -790,6 +826,8 @@ Overlaid in the instructor's handwriting, in three colors:
   loop/line drawn down from that oval toward the middle band around x=3072.
 
 ## Slide 21 — What makes ML workloads fast?
+
+![Slide 21 — What makes ML workloads fast?](../images/05-gpus-tpus/slide-21.jpg)
 
 Bold sub-heading: "The roofline model". Footer line: "Key to this section:
 **how do we avoid being memory bound?**"
@@ -843,6 +881,8 @@ outline:
 
 ## Slide 23 — Control divergence (not a memory issue)
 
+![Slide 23 — Control divergence (not a memory issue)](../images/05-gpus-tpus/slide-23.jpg)
+
 Text: "GPUs operate in a SIMT model – every thread in a warp is executing the
 same instruction" and, below the first figure, "Conditionals are fine, but
 lead to significant overhead from the execution model".
@@ -882,6 +922,8 @@ serially rather than concurrently. Both tracks then rejoin into a single green
 box labelled "Z;" at the right, once the warp reconverges.
 
 ## Slide 24 — Trick 1: Low precision computation
+
+![Slide 24 — Trick 1: Low precision computation](../images/05-gpus-tpus/slide-24.jpg)
 
 Text below the figure: "If you have fewer bits, you have fewer bits to move".
 
@@ -935,6 +977,8 @@ No figure.
 
 ## Slide 26 — Low precision drives faster matrix multiplies
 
+![Slide 26 — Low precision drives faster matrix multiplies](../images/05-gpus-tpus/slide-26.jpg)
+
 Text: "Lots of operations in modern GPUs are accelerated via low / mixed
 precision operations". Credit line at the foot of the page:
 `https://nvlabs.github.io/eccv2020-mixed-precision-tutorial/files/dusan_stosic_training-neural-networks-with-tensor-cores.pdf`
@@ -960,6 +1004,8 @@ storage (FP16/BF16)" vs. operations needing more precision or range:**
   $|f(x)| \gg |x|$ (e.g. exp, log, pow); Loss functions
 
 ## Slide 27 — Frontiers in low precision
+
+![Slide 27 — Frontiers in low precision](../images/05-gpus-tpus/slide-27.png)
 
 Two side-by-side panels.
 
@@ -1012,6 +1058,8 @@ Below the left panel, text: "MXFP8 has many *interesting* things about it" —
 
 ## Slide 28 — MXFP8 training in practice
 
+![Slide 28 — MXFP8 training in practice](../images/05-gpus-tpus/slide-28.jpg)
+
 Text below the figure: "Notice – not all weights in MXFP8, transposes also
 separately quantized". Credit line at the foot: `https://arxiv.org/html/2506.08027v2`
 
@@ -1045,6 +1093,8 @@ equivalent to quantizing the transposed tensor directly (matching the "Notice"
 caption and the "Transposes are now nontrivial!" bullet from slide 27).
 
 ## Slide 29 — Frontiers in low precision
+
+![Slide 29 — Frontiers in low precision](../images/05-gpus-tpus/slide-29.png)
 
 Text: "MXFP4.." and, below the figure: "This is all the values you can
 represent! 1 per 16 scaling, E4M3 scaling factors."
@@ -1082,6 +1132,8 @@ given different scale-factor encodings, so both are recorded here as printed.
 
 ## Slide 30 — Trick 2: Operator fusion
 
+![Slide 30 — Trick 2: Operator fusion](../images/05-gpus-tpus/slide-30.jpg)
+
 Text: "Think of a GPU like a factory – inputs come from a warehouse (memory)
 and is processed at a factory". Bold caption below the figure: "**Compute
 scales up, memory doesn't**", under a horizontal arrow spanning from the left
@@ -1111,6 +1163,8 @@ doesn't."
 
 ## Slide 31 — Operator fusion to minimize memory access
 
+![Slide 31 — Operator fusion to minimize memory access](../images/05-gpus-tpus/slide-31.jpg)
+
 Text: "What if we have to do many operations? Shipping back and forth is
 somewhat silly"
 
@@ -1138,6 +1192,8 @@ contrast between the two figures shows fusion collapsing three round trips to
 memory into one read and one write.
 
 ## Slide 32 — Example – sines and cosines
+
+![Slide 32 — Example – sines and cosines](../images/05-gpus-tpus/slide-32.jpg)
 
 Text below the figures: "Computing $\sin^2 x + \cos^2 x$ naively launches 5
 CUDA kernels (back and forth)". Credit line at the foot:
@@ -1184,6 +1240,8 @@ the five separately-launched CUDA kernels named in the caption.
 
 ## Slide 33 — Fusion example
 
+![Slide 33 — Fusion example](../images/05-gpus-tpus/slide-33.jpg)
+
 No native body text apart from two purple handwritten headers over the figure
 and the caption below it: "All 5 pointwise operations can be fused into a
 single CUDA kernel call. 'Easy' fusions like this can be done automatically by
@@ -1219,6 +1277,8 @@ depicting the whole cluster of ATen ops collapsing into the single
 `torch._inductor.debug.compute` kernel call.
 
 ## Slide 34 — Trick 3: recomputation
+
+![Slide 34 — Trick 3: recomputation](../images/05-gpus-tpus/slide-34.jpg)
 
 Displayed equation at top: $$\text{Loss}(x, y, \mathbf{w}) = (\mathbf{w}
 \cdot \phi(x) - y)^2$$
@@ -1262,6 +1322,8 @@ in bold, and the result in purple: "$\nabla_{\mathbf{w}} \text{Loss}(x, y,
 
 ## Slide 35 — Storing (and retrieving) activations can be expensive!
 
+![Slide 35 — Storing (and retrieving) activations can be expensive!](../images/05-gpus-tpus/slide-35.jpg)
+
 Text: "Let's say we stack 3 sigmoids on top of each other." Caption below the
 figure: "This is really terrible for perf – 8 mem read/writes, very low
 arithmetic intensity." Credit line at the foot:
@@ -1285,6 +1347,8 @@ divider line.
 
 ## Slide 36 — Throw away the activations, re-compute them!
 
+![Slide 36 — Throw away the activations, re-compute them!](../images/05-gpus-tpus/slide-36.jpg)
+
 Caption below the figure: "Throwing away computation can actually be optimal,
 w/ 5/8th the memory accesses!" Credit line at the foot:
 `https://dev-discuss.pytorch.org/t/min-cut-optimal-recomputation-i-e-activation-checkpointing-with-aotautograd/467`
@@ -1304,6 +1368,8 @@ as in slide 35, the forward sigmoids are simply recomputed during the
 backward pass and fed straight into the backward graph.
 
 ## Slide 37 — Trick (?) 4: Memory coalescing and DRAM
+
+![Slide 37 — Trick (?) 4: Memory coalescing and DRAM](../images/05-gpus-tpus/slide-37.jpg)
 
 Text: "**DRAM** (global memory) is read in 'burst mode' – each read gives you
 many bytes!" Bulleted text in the figure's grey box:
@@ -1340,6 +1406,8 @@ illustrates that reading one column pulls an entire burst section's worth of
 cells through the sense amplifiers at once.
 ## Slide 38 — Memory coalescing
 
+![Slide 38 — Memory coalescing](../images/05-gpus-tpus/slide-38.jpg)
+
 Text: "Memory accesses are *coalesced* if all the threads (in a warp) fall within the same burst"
 
 **Figure 1 (top) — a pasted diagram illustrating coalesced loads.** A horizontal strip of 16 numbered cells, 0–15, is grouped into four colour-coded "Burst section" blocks of four cells each: cells 0–3 (yellow), 4–7 (red), 8–11 (dark navy), 12–15 (green). Above the yellow block, a "Coalesced Loads" box lists $T_0, T_1, T_2, T_3$, with four upward arrows connecting each thread to one of the four yellow cells (cell 0→$T_0$, 1→$T_1$, 2→$T_2$, 3→$T_3$). A second, identical "Coalesced Loads" box with $T_0$–$T_3$ sits above the dark-navy block, with arrows from cells 8, 9, 10, 11 up to $T_0$–$T_3$. Below the strip, a caption reads: "When all threads of a warp execute a load instruction, if all accessed locations fall into the same burst section, only one DRAM request will be made and the access is fully coalesced." A faint grey watermark is overprinted on this caption: "https://blog.csdn.net/xll_bit".
@@ -1350,6 +1418,8 @@ To the right of Figure 2, boxed text: "**Reminder**: a warp is a set of 32 conse
 
 ## Slide 39 — Coalescing for matrix multiplication
 
+![Slide 39 — Coalescing for matrix multiplication](../images/05-gpus-tpus/slide-39.jpg)
+
 Text: "For row-major matrices – **threads that move along rows are not coalesced**" / "Note how the second diagram reads the entire vector at each step!"
 
 **Figure 1 (left pair) — two green square diagrams labelled "(A)" and "(B)".** Panel (A), captioned "not coalesced": a green square labelled "d_M" at top left and "WIDTH" at bottom, with two horizontal orange lines marked "Thread 1" and "Thread 2" running left-to-right across two different rows, each ending in a rightward arrow — each thread reads along a row. Panel (B), captioned "coalesced": a green square labelled "d_N" at top left and "WIDTH" (rotated text) at right, with two vertical orange lines running top-to-bottom ending in a downward arrow — threads read down a column instead.
@@ -1357,6 +1427,8 @@ Text: "For row-major matrices – **threads that move along rows are not coalesc
 **Figure 2 (right) — a pasted diagram of the access order for a coalesced load of matrix $M$.** At top, a small 4×4 grid of cells labelled $M_{0,0}$…$M_{3,3}$, colour-coded by row (row 0 yellow, row 1 red/orange, row 2 dark blue, row 3 green), with an arrow above captioned "Access direction in Kernel code" pointing right. Below, two stacked horizontal brackets labelled "Load iteration 1" and "Load iteration 0", each spanning four thread labels $T_0, T_1, T_2, T_3$, with upward arrows running from a 16-cell horizontal strip up into the $T_0$–$T_3$ labels of both iterations. The 16-cell strip at the bottom is the flattened row-major layout of matrix $M$: $M_{0,0}, M_{0,1}, M_{0,2}, M_{0,3}$ (yellow), $M_{1,0}, M_{1,1}, M_{1,2}, M_{1,3}$ (red), $M_{2,0}, M_{2,1}, M_{2,2}, M_{2,3}$ (dark blue), $M_{3,0}, M_{3,1}, M_{3,2}, M_{3,3}$ (green), with a label "M" and a downward arrow at the far left marking the start of the array.
 
 ## Slide 40 — Trick 5 (the big one): tiling
+
+![Slide 40 — Trick 5 (the big one): tiling](../images/05-gpus-tpus/slide-40.jpg)
 
 Text: "**Tiling** is the idea of grouping and ordering threads to minimize global memory access." / "Let's go back to matrix multiplication.." / "Note that memory access is not coalesced, and repeated (M0,0 and N1,0)"
 
@@ -1374,11 +1446,15 @@ Two cells are boxed to highlight repeated global reads: $M_{0,0}$ (red box) appe
 
 ## Slide 41 — Tiling – store and reuse information in shared memory
 
+![Slide 41 — Tiling – store and reuse information in shared memory](../images/05-gpus-tpus/slide-41.jpg)
+
 Text: "Cut up the matrix into smaller 'tiles', and load this into shared memory" / "Compute the matrix multiply in 'phases'", numbered: "1. Load $M_{0,0}$ and $N_{0,0}$ tiles into SHM", "2. Compute partial sums for $P$" (grey sub-note: "(Done with one tile)"), "3. Load the $M_{0,0}$ and $N_{2,0}$ tile into SHM", "4. …" / "**Advantages**: repeated reads now access shared, not global memory and memory access can be coalesced"
 
 **Figure 1 (left) — a diagram of tiled matrix multiplication using 2×2 tiles.** Top right: a 4×2 matrix $N$ divided into two bold-outlined 2×2 tiles — the top tile ($N_{0,0}, N_{0,1}, N_{1,0}, N_{1,1}$, green/dark-blue by column) and the bottom tile ($N_{2,0}, N_{2,1}, N_{3,0}, N_{3,1}$, same colours). Bottom left: a 2×4 matrix $M$ divided into two bold-outlined 2×2 tiles — a left tile ($M_{0,0..1}, M_{1,0..1}$, yellow/red rows) and a right tile ($M_{0,2..3}, M_{1,2..3}$). Two black arrows run from the top $N$ tile down into a 4×4 output grid of $P$ values ($P_{0,0}$ through $P_{3,3}$); the top-left 2×2 block of $P$ ($P_{0,0}, P_{0,1}, P_{1,0}, P_{1,1}$) is outlined in bold and filled with matching yellow/green/red/dark-blue triangular quadrants, marking it as the tile currently being computed, while the other nine $P$ cells are blank.
 
 ## Slide 42 — Tiling math
+
+![Slide 42 — Tiling math](../images/05-gpus-tpus/slide-42.jpg)
 
 No page text besides the figure caption/legend and the two definitional statements beneath it.
 
@@ -1388,6 +1464,8 @@ Below the figure: "**Non-tiled matrix multiply:** each input is read $N$ times f
 
 ## Slide 43 — Complexities with tiling
 
+![Slide 43 — Complexities with tiling](../images/05-gpus-tpus/slide-43.jpg)
+
 Text: "**Tile sizes may not divide the matrix size** and lead to low utilization" / "Factors affecting tile sizes", bullets: "Coalesced memory access", "Shared memory size", "Divisibility of the matrix dim"
 
 Credit at the foot: `https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html#tile-quant`
@@ -1395,6 +1473,8 @@ Credit at the foot: `https://docs.nvidia.com/deeplearning/performance/dl-perform
 **Figure 1 — a pasted NVIDIA documentation figure**, captioned in-image: "Figure 6. Example of tiling with 128x128 thread block tiles. (a) Best case - matrix dimensions are divisible by tile dimensions (b) Worse case - tile quantization results in six thread blocks being launched, two of which waste most of their work." Panel (a): a square labelled 256 on both axes, divided by dashed lines into a 2×2 grid of shaded 128×128 tiles — all four tiles are full and useful. Panel (b): a rectangle labelled 257 across the top and 256 down the left, divided into a 2×2 grid of shaded 128×128 tiles plus a dashed, unshaded sliver of tile space to the right (the leftover single column beyond 256), forcing a third column of thread blocks that mostly go to waste.
 
 ## Slide 44 — Complexities with tiling 2 – memory alignment
+
+![Slide 44 — Complexities with tiling 2 – memory alignment](../images/05-gpus-tpus/slide-44.jpg)
 
 Text: "Memory comes in bursts" / "Loading tiles are fast if bursts align with the matrix" / "**Coalesced accesses may be impossible depending on the dimension of the matrix..** (have to do padding)"
 
@@ -1408,6 +1488,8 @@ Credit at the foot: `https://www.thonking.ai/p/what-shapes-do-matrix-multiplicat
 
 ## Slide 45 — Putting it together: understanding a matrix mystery
 
+![Slide 45 — Putting it together: understanding a matrix mystery](../images/05-gpus-tpus/slide-45.jpg)
+
 Text: "Why is it *faster* to have bigger matrices?"
 
 Credit at the foot: "This section is from https://www.thonking.ai/p/what-shapes-do-matrix-multiplications"
@@ -1415,6 +1497,8 @@ Credit at the foot: "This section is from https://www.thonking.ai/p/what-shapes-
 **Figure 1 — a screenshot of a tweet by Andrej Karpathy (@karpathy), verified account, timestamped 10:36 AM · Feb 3, 2023 · 1.2M Views.** Tweet text: "The most dramatic optimization to nanoGPT so far (~25% speedup) is to simply increase vocab size from 50257 to 50304 (nearest multiple of 64). This calculates added useless dimensions but goes down a different kernel path with much higher occupancy. Careful with your Powers of 2."
 
 ## Slide 46 — Matrix mystery
+
+![Slide 46 — Matrix mystery](../images/05-gpus-tpus/slide-46.jpg)
 
 Text: "We understand some of this (compute intensity, tiling). Let's take a closer look.."
 
@@ -1425,6 +1509,8 @@ TF/s) holds a single entry, "128", drawn as a plain grey horizontal line with no
 - Hand-drawn additions (not part of the original chart): a pink arrow labelled "Compute Intensity" points from the origin up along the initial common rise of all bands at small $N$. Orange annotations reading "Tiling!" lead to **three** stacked vertical double-headed arrows marking the vertical gaps between the bands at around $N\approx2048$–2200, spanning roughly TF/s 180–195, 90–160 and 55–90. Two of the three leader lines visibly start from the word "Tiling!"; the third, feeding the topmost arrow, is a separate near-horizontal squiggle beginning in blank space to the left of the lettering at the same height. A large green ellipse circles the top band's points between roughly $N=2560$ and $N=3584$; a smaller green ellipse circles part of the middle band around $N\approx2700$–2900; and a green vertical line runs from about $N=3072$ down to the green caption "Wave Quantization" at the bottom of the chart, naming the effect behind the top band's structure.
 
 ## Slide 47 — Part 1: tiling
+
+![Slide 47 — Part 1: tiling](../images/05-gpus-tpus/slide-47.jpg)
 
 Text: "Tiling has a major impact through alignment."
 
@@ -1443,6 +1529,8 @@ So the chart carries **five** visible point series (one of them unlabeled) plus 
 
 ## Slide 48 — Part 2: wave quantization
 
+![Slide 48 — Part 2: wave quantization](../images/05-gpus-tpus/slide-48.jpg)
+
 Text: "What's with the periodic behavior?" / "This happens at 1792 to 1793 size." / "Why? Using a tile size of $256\times128$, there are" / "tiles. If we increase this to 1793, we have" / "tiles." / "**An A100 has 108 SMs, so it cannot execute all 120**"
 
 $$\frac{1792}{256} \times \frac{1792}{128} = 7 \times 14 = 98$$
@@ -1454,6 +1542,8 @@ $$8 \times 15 = 120$$
 
 ## Slide 49 — Recap of part 2: making ML workloads go fast
 
+![Slide 49 — Recap of part 2: making ML workloads go fast](../images/05-gpus-tpus/slide-49.jpg)
+
 Text, a three-level nested bullet list: "Reduce memory accesses" → "Coalescing", "Fusion"; "Move memory to shared memory" → "Tiling"; "Trade memory for compute/accuracy" → "Quantization", "Recomputation"
 
 **Figure 1 (top right) — a small reused copy of the "coalesced loads" burst-section diagram from Slide 38**, with its "When all threads of a warp execute a load instruction..." caption, shown at reduced size.
@@ -1463,6 +1553,8 @@ Text, a three-level nested bullet list: "Reduce memory accesses" → "Coalescing
 **Figure 3 (bottom right) — a new diagram illustrating recomputation, contrasting a "New Fwd pass" and "New Bwd pass".** Left ("New Fwd pass"): a vertical chain $x \to$ sigmoid $\to$ sigmoid $\to$ sigmoid $\to$ out, each box in plain grey with a downward arrow to the next. Right ("New Bwd pass"): the same three-sigmoid chain in blue, again taking $x$ as input, but now each of the three sigmoid boxes also sends a diagonal arrow rightward into a box labelled "Original Backward graph", which itself receives "dout" from below and outputs "dx" above. This illustrates recomputation: the forward sigmoids are recomputed during the backward pass and fed into the original backward graph rather than being stored from the first forward pass.
 
 ## Slide 50 — Part 3: Using what we know to understand Flash Attention
+
+![Slide 50 — Part 3: Using what we know to understand Flash Attention](../images/05-gpus-tpus/slide-50.jpg)
 
 Text: "**Flash attention** [Dao et al] dramatically accelerates attention.. But how?" / "**Technique from paper:**" followed by a pasted paragraph from the FlashAttention paper.
 
@@ -1478,6 +1570,8 @@ The pasted paper excerpt has two lines. The first line is largely occluded by th
 
 ## Slide 51 — Recap of attention computation
 
+![Slide 51 — Recap of attention computation](../images/05-gpus-tpus/slide-51.jpg)
+
 Text: "**Attention computation**: 3 matrix multiplies (K, Q, V) with a softmax in between"
 
 **Figure 1 — a labelled block diagram of the attention computation as batched matrix multiplies.** At the top left, a single letter "t" labels the diagram. Below it, a pink block of three side-by-side vertical bars is labelled "$XQ$"; to its right, a tan/orange block of three stacked horizontal bars is labelled "$K^\top X^\top$". These feed (via an "=") into a grey, depth-stacked block of three overlapping rounded squares labelled "$XQK^\top X^\top$", annotated to the right "$\in \mathbb{R}^{3\times n\times n}$" with a teal caption "3 sets of all pairs of attention scores!"
@@ -1485,6 +1579,8 @@ Text: "**Attention computation**: 3 matrix multiplies (K, Q, V) with a softmax i
 Below, a black curved arrow carries this stacked result down into a second row: "softmax(" wraps the same grey depth-stacked "$XQK^\top X^\top$" block ")", multiplied by a teal block of three vertical bars labelled "$XV$", equals a grey block of vertical bars feeding into a small box labelled "$P$" with the sub-label "mix" underneath it, which in turn equals a single grey vertical bar labelled "output $\in \mathbb{R}^{n\times d}$".
 
 ## Slide 52 — Tiling part 1: tiling for the KQV matrix multiply
+
+![Slide 52 — Tiling part 1: tiling for the KQV matrix multiply](../images/05-gpus-tpus/slide-52.jpg)
 
 Text: "This figure 1 from the paper is literally just tiling for a KQV matrix multiply.." / "**But what do we do about the softmax?**"
 
@@ -1495,6 +1591,8 @@ Text: "This figure 1 from the paper is literally just tiling for a KQV matrix mu
 **Figure 2 (right) — the FlashAttention paper's own tiling diagram, labelled "FlashAttention" at the bottom.** At top, a green row of blocks labelled "$K^\top: d\times N$" with a red "Outer Loop" arrow above it; a black arrow labelled "Copy Block to SRAM" runs down from it through an orange square into a large dashed rectangle. To the left, a green column labelled "$Q: N\times d$" with a blue "Inner Loop" arrow, feeding through an orange "Copy" square into the dashed rectangle, which contains "$QK^\top: N\times N$" and, inside it, a smaller dashed box labelled "Compute Block on SRAM" (in purple text) with a second red "Outer Loop" arrow above. To the right, a green column labelled "$V: N\times d$" with its own red "Outer Loop" arrow and blue "Inner Loop" arrow, feeding through an orange "Copy" square (arrow pointing left into the dashed rectangle) via a dashed purple connector. A black arrow labelled "Output to HBM" runs from the dashed rectangle down to a green row at the bottom labelled "$sm(QK^\top)V: N\times d$", under a blue "Inner Loop" arrow.
 
 ## Slide 53 — Tiling part 2: incremental computation of the softmax
+
+![Slide 53 — Tiling part 2: incremental computation of the softmax](../images/05-gpus-tpus/slide-53.jpg)
 
 Text: "From Mikailov and Gimelshein 2018," / "**Normal softmax**" / "All major DL frameworks are using this safe version for the Softmax computation: TensorFlow" / "**Online softmax**" / "To keep track of the max, incrementally update the max, and set up a telescoping sum" / "**This lets you compute the softmax tile-by-tile**"
 
@@ -1528,6 +1626,8 @@ The two algorithms compute the same normal-softmax formula above, but Algorithm 
 
 ## Slide 54 — Putting it all together – the forward pass of flash attention
 
+![Slide 54 — Putting it all together – the forward pass of flash attention](../images/05-gpus-tpus/slide-54.jpg)
+
 Text: "From Dao 2023, we see" bullets: "Tile-wise computation of the inner products, $(S)$", "Fusion of the exponential operator", "Tile-wise computation of the softmax via the online, telescoping sum trick" / "(We won't cover the backward pass – but they recompute tile-by-tile..)"
 
 **Figure 1 — a worked two-tile numerical trace of the FlashAttention forward pass, with a legend distinguishing "Stored in HBM" (solid light-blue boxes) from "Computed in SRAM (not materialized in HBM)" (dashed orange boxes).** Top row: two solid blue boxes, $(K^{(1)})^\top$ and $(K^{(2)})^\top$, each with a downward arrow into a dashed orange box below it. Second row: a solid blue box $Q$ on the left with an arrow into the two dashed orange boxes $S^{(1)} = Q(K^{(1)})^\top$ and $S^{(2)} = Q(K^{(2)})^\top$. Third row: two more dashed orange boxes, $A^{(1)} = \exp(S^{(1)})$ and $A^{(2)} = \exp(S^{(2)})$, each with a downward arrow from the $S$ box above it. Below these, in red and blue text respectively:
@@ -1542,6 +1642,8 @@ $$O^{(2)} = \frac{l^{(1)}}{l^{(2)}} O^{(1)} + \frac{A^{(2)}}{l^{(2)}} \cdot V^{(
 A grey arrow points from the $\frac{l^{(1)}}{l^{(2)}}$ term in the $O^{(2)}$ line to a caption reading "Rescaling to correct denominator" — marking that term as the correction factor that turns the tile-1-only estimate $O^{(1)}$ into a running estimate correctly normalized by the combined denominator $l^{(2)}$.
 
 ## Slide 55 — Recap for the whole lecture
+
+![Slide 55 — Recap for the whole lecture](../images/05-gpus-tpus/slide-55.jpg)
 
 Text, three top-level bullets: "Hardware powers scale, and low-level details determine what scales or doesnt" / "Curent GPU based compute strongly encourages thinking about matmul + data movement" / "Thinking carefully about the GPU (coalescing, tiling, fusion) leads us to good performance"
 

@@ -142,6 +142,10 @@ GPUs.
 
 *Figure: `images/gpu-node-overview.png` (width 700).*
 
+![One node: four GPUs on an NVSwitch, leaving over InfiniBand or Ethernet](../images/07-parallelism/gpu-node-overview.png)
+
+*One node: four GPUs, each with four streaming multiprocessors (a register file and L1/shared memory apiece) over an L2 cache and its own HBM. Each GPU meets an NVSwitch over NVLink, and the switch leaves the node over InfiniBand or Ethernet. The file is a screen capture and carries a stray "To exit full screen, press Esc" browser banner across the top. Source: [`images/gpu-node-overview.png`](https://github.com/stanford-cs336/lectures/blob/main/images/gpu-node-overview.png) in the lectures repo.*
+
 In both cases, **compute** (arithmetic logic units) is far from inputs/outputs
 (**data**).
 
@@ -724,6 +728,10 @@ a factor of two for send-plus-receive and reduce-scatter does not.
 
 *Figure: `images/data-parallelism.png` (width 300).*
 
+![Data parallelism drawn as a horizontal cut through the data](../images/07-parallelism/data-parallelism.png)
+
+*Data parallelism as a cut: four layers stacked above a Data block, with a horizontal orange line through the Data block only. The model is replicated; the batch is split. Source: [`images/data-parallelism.png`](https://github.com/stanford-cs336/lectures/blob/main/images/data-parallelism.png) in the lectures repo.*
+
 Sharding strategy: each rank gets a slice of the data.
 
 ```python
@@ -830,6 +838,10 @@ which is the point. The loss values themselves depend on an unseeded
 
 *Figure: `images/tensor-parallelism.png` (width 300).*
 
+![Tensor parallelism drawn as a vertical cut through every layer](../images/07-parallelism/tensor-parallelism.png)
+
+*Tensor parallelism as a cut: the same four-layer stack, with a vertical orange line running through every layer. The model is split by width. Source: [`images/tensor-parallelism.png`](https://github.com/stanford-cs336/lectures/blob/main/images/tensor-parallelism.png) in the lectures repo.*
+
 Sharding strategy: each rank gets part of each layer, transfer all data/activations.
 
 ```python
@@ -908,6 +920,10 @@ The backward pass is left as a homework exercise.
 ## Pipeline parallelism
 
 *Figure: `images/pipeline-parallelism.png` (width 300).*
+
+![Pipeline parallelism drawn as a horizontal cut between layers](../images/07-parallelism/pipeline-parallelism.png)
+
+*Pipeline parallelism as a cut: the same four-layer stack, with a horizontal orange line between layer 1 and layer 2. The model is split by depth. Source: [`images/pipeline-parallelism.png`](https://github.com/stanford-cs336/lectures/blob/main/images/pipeline-parallelism.png) in the lectures repo.*
 
 Sharding strategy: each rank gets subset of layers, transfer all data/activations.
 

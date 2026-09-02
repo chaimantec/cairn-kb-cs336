@@ -27,6 +27,10 @@ groups consistently through the whole ZeRO sequence: **blue** parameters, **oran
 gradients, **green** optimizer state — and the green block is visibly the largest,
 with parameters and gradients equal in size ([15:23]).
 
+![Slide 18 — ZeRO – solving the memory overhead issue of DP](../raw/images/08-parallelism-2/slide-18.jpg)
+
+*Slide 18 — ZeRO – solving the memory overhead issue of DP. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 Under naive DDP every rank holds all of it. Memory consumption is therefore
 *linear in the number of accelerators* while buying you no memory headroom at all
 ([15:23]). Slide 18's own worked example runs the total from **120 GB down to
@@ -46,6 +50,10 @@ keeps optimizer state only for that slice ([16:55]). Everyone still holds full
 parameters and full gradients.
 
 The step, from slide 20:
+
+![Slide 20 — ZeRO stage 1. how it works](../raw/images/08-parallelism-2/slide-20.png)
+
+*Slide 20 — ZeRO stage 1. how it works. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 1. Every rank computes a **full gradient** on its own shard of the batch.
 2. **Reduce-scatter** the gradients, so each rank receives the summed gradient for
@@ -91,6 +99,10 @@ the parameters, gradients, and optimizer states at any one time" ([20:45]).
 
 The per-layer cycle, from slide 25 ([21:31]):
 
+![Slide 25 — ZeRO stage 3 (aka FSDP) how it works (baby version)](../raw/images/08-parallelism-2/slide-25.jpg)
+
+*Slide 25 — ZeRO stage 3 (aka FSDP) how it works (baby version). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 1. **All-gather** this layer's weights.
 2. Forward through the layer.
 3. **Free** the weights — you no longer need them.
@@ -118,6 +130,10 @@ Slide 26 draws this as three streams — CPU, GPU compute, GPU communication —
 the PyTorch FSDP paper (arXiv:2304.11277). Bubbles are visible, but "if your comms
 are very fast and your computation is very big, you can easily see how the
 computation can take longer than the communication" ([24:34]). The result:
+
+![Slide 26 — Actual picture of how FDSP / ZeRO stage 3 works](../raw/images/08-parallelism-2/slide-26.jpg)
+
+*Slide 26 — Actual picture of how FDSP / ZeRO stage 3 works. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 > In practice, if you run FSDP, you're going to see GPU utilization very close to
 > just the single-GPU performance — it's actually quite remarkable how good FSDP
@@ -166,6 +182,10 @@ Two limits then force the rest of the lecture ([29:07]–[29:53]):
   at long sequence lengths, activations dominate — see
   [activation memory](activation-memory.md).
 
+![Slide 30 — Issues remain with data parallel – models don't fit](../raw/images/08-parallelism-2/slide-30.jpg)
+
+*Slide 30 — Issues remain with data parallel – models don't fit. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 Those two gaps are exactly what [model parallelism](sharding-vs-replication.md)
 exists to close.
 
@@ -199,3 +219,19 @@ and this wiki use the correct spelling; see the
 - [Memory accounting for training](memory-accounting-for-training.md) — where the
   16 bytes/parameter comes from.
 - [Lecture 8](08-parallelism-2.md) · [slides 18–28](../raw/slides/08-parallelism-2.md#slide-18--zero--solving-the-memory-overhead-issue-of-dp) · [transcript](../raw/transcripts/08-parallelism-2.md)
+
+![Slide 19 — ZeRO stage 1. optimizer state sharding](../raw/images/08-parallelism-2/slide-19.png)
+
+*Slide 19 — ZeRO stage 1. optimizer state sharding. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
+![Slide 22 — ZeRO stage 2. the simple extension to gradient sharding](../raw/images/08-parallelism-2/slide-22.png)
+
+*Slide 22 — ZeRO stage 2. the simple extension to gradient sharding. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
+![Slide 23 — ZeRO stage 2. how it works](../raw/images/08-parallelism-2/slide-23.png)
+
+*Slide 23 — ZeRO stage 2. how it works. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
+![Slide 24 — ZeRO stage 3 (aka FSDP) shard everything](../raw/images/08-parallelism-2/slide-24.png)
+
+*Slide 24 — ZeRO stage 3 (aka FSDP) shard everything. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*

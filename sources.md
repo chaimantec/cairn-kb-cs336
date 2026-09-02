@@ -3,15 +3,19 @@
 Course website: <https://cs336.stanford.edu> · lecture source repo:
 <https://github.com/stanford-cs336/lectures> · crawled 2026-08-27.
 
-Nothing is committed into this repo as a binary. Every document below is recorded
-at its canonical URL, because this knowledge base is read by an agent that
-navigates markdown — a PDF blob in the repo would be unreadable to it — and the
-current lecture decks alone total roughly 50 MB.
+No source *document* is committed into this repo. Every one below is recorded at
+its canonical URL, because this knowledge base is read by an agent that navigates
+markdown — a PDF blob in the repo would be unreadable to it — and the current
+lecture decks alone total roughly 50 MB.
 
-**This KB currently covers Lectures 1–6.** The inventory below spans the
-whole course (and its two earlier offerings) so that provenance is recorded once,
-but only Lectures 1–7 have been transcribed into `wiki/` and `raw/`. See
-`kb.json`.
+The one exception is pictures. `raw/images/` holds 259 rendered slide images and
+course figures (28 MB), so that an answer can *show* a figure instead of only
+describing it. See the Images section of `AGENTS.md` for what was rendered, what
+was not, and the attribution.
+
+**This KB currently covers Lectures 1–9 of 18.** The inventory below spans the
+whole course (and its two earlier offerings) so that provenance is recorded once.
+See `kb.json`.
 
 ## How CS336 publishes its lectures
 
@@ -78,9 +82,12 @@ lectures 2 and 6 withhold their timings. Those numbers are marked "(recorded run
 and are measurements of one machine (Modal, CUDA 13.2, four GPUs, NCCL) — not
 values a reader's own run will reproduce.
 
-All four were transcribed from source text. None of those transcriptions describes the
-images the programs display: `image()` targets are recorded at the point they
-appear, by path or URL, and nothing in the wiki rests on a figure's contents.
+All four were transcribed from source text. `image()` targets are recorded at the
+point they appear, by path or URL. The 23 figures the course serves from its own
+repo are now committed under `raw/images/` and each carries a written description;
+the ones these lectures display by *external* URL — NVIDIA documentation, arXiv,
+Wikimedia, Springer, the JAX scaling book — were not copied and their contents are
+still undescribed. Nothing in the wiki rests on a figure's contents either way.
 Lectures 2, 6 and 7 additionally compute many of their numbers at runtime — the deterministic
 ones were recomputed from the lecture's own expressions and are marked
 "(computed)"; the ones that depend on which GPU the program runs on (wall-clock

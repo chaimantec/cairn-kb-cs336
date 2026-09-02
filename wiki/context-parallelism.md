@@ -9,6 +9,10 @@ lot of what we've already talked about" ([1:01:12]).
 
 From slide 54 ([1:00:25]–[1:01:12]):
 
+![Slide 54 — Other parallelism strategies](../raw/images/08-parallelism-2/slide-54.jpg)
+
+*Slide 54 — Other parallelism strategies. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
+
 > Context parallel, or ring attention, is an idea of basically splitting
 > activations, in a very long sequence, across different accelerators. And you can
 > do things like pass to the device that's needed, in this ring-like way, following
@@ -32,6 +36,10 @@ to 16 only for the long-context extension stage, dropping data parallel from 128
 8 to pay for it ([1:15:03], slide 66). Nemotron 3 Super's long-context section
 shows CP 64 ([1:17:23], slide 70). The Megatron guidance is the same: "if you're
 doing long sequences, use context parallel — ring attention" ([1:07:22]).
+
+![Slide 70 — Nemotron 3 Super 120B-A12B](../raw/images/08-parallelism-2/slide-70.jpg)
+
+*Slide 70 — Nemotron 3 Super 120B-A12B. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 
 ## Not the same as sequence parallelism
 

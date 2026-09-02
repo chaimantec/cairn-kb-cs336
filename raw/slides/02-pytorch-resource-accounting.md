@@ -210,6 +210,10 @@ Elements of tensors are generally floating point numbers.
 ### fp32
 
 *Figure: `images/fp32.png` (width 700).*
+
+![The IEEE 754 single-precision bit layout](../images/02-pytorch-resource-accounting/fp32.png)
+
+*IEEE 754 single-precision: 1 sign bit, 8 exponent bits (30 down to 23), 23 fraction bits (22 down to 0). Source: [`images/fp32.png`](https://github.com/stanford-cs336/lectures/blob/main/images/fp32.png) in the lectures repo.*
 ([Wikipedia](https://en.wikipedia.org/wiki/Single-precision_floating-point_format))
 
 The fp32 data type (also known as float32 or single precision) is the default.
@@ -237,6 +241,10 @@ assert get_memory_usage(torch.empty(12288 * 4, 12288)) == 2304 * 1024 * 1024  # 
 ### fp16
 
 *Figure: `images/fp16.png` (width 400).*
+
+![The IEEE half-precision bit layout](../images/02-pytorch-resource-accounting/fp16.png)
+
+*IEEE half-precision: 1 sign bit, 5 exponent bits (14 down to 10), 10 fraction bits (9 down to 0). Source: [`images/fp16.png`](https://github.com/stanford-cs336/lectures/blob/main/images/fp16.png) in the lectures repo.*
 ([Wikipedia](https://en.wikipedia.org/wiki/Half-precision_floating-point_format))
 
 The fp16 data type (also known as float16 or half precision) cuts down the
@@ -259,6 +267,10 @@ If this happens when you train, you can get instability.
 ### bf16
 
 *Figure: `images/bf16.png` (width 400).*
+
+![The bfloat16 bit layout](../images/02-pytorch-resource-accounting/bf16.png)
+
+*bfloat16: 1 sign bit, 8 exponent bits (14 down to 7), 7 fraction bits (6 down to 0). The exponent field is the same width as fp32's, which is exactly why bf16 keeps fp32's dynamic range and gives up precision instead. Source: [`images/bf16.png`](https://github.com/stanford-cs336/lectures/blob/main/images/bf16.png) in the lectures repo.*
 ([Wikipedia](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format))
 
 Google Brain developed brain floating point (bf16) in 2018 to address this issue.
@@ -330,6 +342,10 @@ assert x.device == torch.device("cpu")
 However, what about GPUs?
 
 *Figure: `images/cpu-gpu.png` (width 600).*
+
+![CPU and GPU joined by the PCI bus](../images/02-pytorch-resource-accounting/cpu-gpu.png)
+
+*CPU and GPU as two boxes joined by the PCI bus. The CPU side holds one CPU over its RAM; the GPU side holds six streaming multiprocessors over a shared DRAM block. Source: [`images/cpu-gpu.png`](https://github.com/stanford-cs336/lectures/blob/main/images/cpu-gpu.png) in the lectures repo.*
 
 In order to take advantage of the massive parallelism of GPUs, we need to move
 them to GPU memory.
@@ -530,6 +546,10 @@ closely at how computations are done on GPUs...
 
 *Figure: `images/compute-memory.png` (width 300).*
 
+![Compute and memory joined by a narrow bandwidth pipe](../images/02-pytorch-resource-accounting/compute-memory.png)
+
+*Compute and memory as two blocks joined by a narrow pipe: many small arithmetic units against one wide memory block, the thin connector standing for the bandwidth between them. Source: [`images/compute-memory.png`](https://github.com/stanford-cs336/lectures/blob/main/images/compute-memory.png) in the lectures repo.*
+
 How to compute a thing:
 
 1. Send inputs from memory to accelerator
@@ -700,6 +720,10 @@ We can now relate this back to MFU:
 ## A deep network
 
 *Figure: `images/deep-network.png` (width 800).*
+
+![A three-layer MLP drawn at tensor shapes](../images/02-pytorch-resource-accounting/deep-network.png)
+
+*A three-layer MLP drawn as tensors: a B x D input, then linear (D x D), ReLU, linear, ReLU, linear, ReLU, to a B x D output, with every intermediate activation shown at its B x D shape. Source: [`images/deep-network.png`](https://github.com/stanford-cs336/lectures/blob/main/images/deep-network.png) in the lectures repo.*
 
 Consider a deep network with L layers and D-dimensional inputs, activations, and
 outputs.
