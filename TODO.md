@@ -1,6 +1,6 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after run 8: **Lectures 1–8**; run 9 (lecture 9) in progress. The
+Coverage after run 9: **Lectures 1–9.** The
 course has 18 recorded lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
@@ -917,15 +917,23 @@ PDF deck `lecture_09.pdf`, 57 pages — the most figure-dense deck in the build:
 - [ ] sources.md — lecture_09.pdf transcribed
 - [ ] kb.json — coverage 9/18, slideDecks 5, byLecture."9"
 - [ ] AGENTS.md — run 9 precedents
-- [ ] Commit and push
+- [x] Commit and push — pushed to chaimantec/cairn-kb-cs336 at 4a8b703
 - n/a  kbUrl already set on the catalog entry from run 1
 
 ## Not done (future runs)
-- [ ] Lectures 9–18 — transcripts and wiki pages. Lecture 9 (Scaling Laws,
-      lecture_09.pdf, video Q15rhEWZPQ4) is the natural next one: lecture 8 ends by
-      pointing at it, and critical-batch-size already sets it up.
-- [ ] Transcribe the 4 remaining PDF decks (lectures 9, 11, 15, 16) — these need
-      page-images, not source-text, and a figure audit
+- [ ] Lectures 10–18 — transcripts and wiki pages. Lecture 10 (Inference,
+      video EfM546A79aM, 85 min) is the natural next one: it is the last uncovered
+      Systems topic, and lecture 9 ends by pointing at it. Lecture 11 (advanced
+      scaling laws) would then close the scaling-laws pair, and the wiki already has
+      eight topic pages waiting to be extended by it.
+- [ ] Figure audit, lecture 9: the 39 unaudited pages. Highest value are the ones the
+      wiki quotes and could not check: 37, 38, 39 (critical batch size) and 43, 44,
+      46, 47 (joint scaling, Chinchilla methods 1-2). A pass over these was killed by
+      a rate limit. WHEN RE-RUNNING, tell the agent to append findings to a file per
+      page — the pass that failed reported at the end and lost everything.
+- [ ] Transcribe the 3 remaining PDF decks (lectures 11, 15, 16) — these need
+      page-images, not source-text, and two figure-audit passes each if they are as
+      chart-dense as lecture 9
 - [ ] Transcribe the 5 remaining executable lectures (10, 12, 13, 14, 17). Check each
       for a published `var/traces/lecture_NN_stdout.txt` in the lectures repo before
       writing off its runtime values as machine-dependent — lecture 7 had one.
