@@ -979,7 +979,21 @@ Agents now append findings per page, per the run-9 lesson.
       -0.094 vs -0.095, so the slide's "slopes barely change" claim stands.
       SECOND internal contradiction found this pass (after page 30's). Checking an
       entry against ITSELF costs nothing and has now caught two errors.
-- [~] Batch 5 — pages 36, 37, 39. PARTIAL. Page 36 is HALF DONE: two findings were
+- [x] Batch 5 — pages 36, 37, 39. COMPLETE on the fourth attempt. All three dirty,
+      9 more errors, applied — 11 counting the two salvaged earlier, so page 36 alone
+      cost four findings after its half-audit. Page 39 was the worst: its blue-series
+      bullet had THREE errors bundled together, the most interesting being that its
+      stated endpoint was actually the ORANGE line's final point, duplicated into the
+      wrong bullet, and that the early dip it describes belongs to orange too. Page 37
+      conflated a solid arrow and a separate dash-dot extension into one object.
+      Page 36's 3D panel had four of nine sparsity ticks each off by one point.
+      Recorded a CROSS-SLIDE note in the slide file's front matter: slides 36 and 55
+      show the same Abnar 3D figure but embed DIFFERENT image objects (different
+      MD5s), so their tick lists legitimately differ and have not been reconciled.
+      Slide 36's is measured; slide 55's is not. Do not assume either is wrong.
+      FOUR attempts were needed: session rate limit, server error, 600s stall, then
+      success. Original partial note follows.
+- [~] (superseded) Batch 5 first attempt — PARTIAL. Page 36 is HALF DONE: two findings were
       salvaged from an agent killed mid-task and are applied (panel (b)'s y-axis is
       labelled "Pretraining Loss L" ticked 2.2-3.0, so the illegibility claim was
       false — that is now SIX false illegibility claims out of six ever tested; and
