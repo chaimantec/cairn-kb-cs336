@@ -737,10 +737,10 @@ Heading: "2. Optimizer choice". Body text: "What about ADAM vs SGD?"
 
 **Figure — log-log line chart, "Minimum Validation Loss (Log-scale)" vs "Training Data Set Size, Number of Chars (Log-scale)" [Hestness+ 2017].** Y-axis ticked 0.86, 0.93, 1.00, 1.08, 1.17, 1.26, 1.36, 1.47, 1.59 (evenly spaced in log space). X-axis ticked 2^19, 2^21, 2^23, 2^25, 2^27. Four series, per the legend:
 
-- Solid blue "Depth-10 RHNs, SGD": runs the full width of the plot, from about (2^18, 1.55) down to (2^27, ≈0.93–0.96).
-- Solid orange "Depth-10 RHNs, Adam": starts alongside the blue curve at about (2^18, 1.5) but stops early, around x = 2^24, at about y = 1.15 — it does not reach the right edge of the plot.
-- Dashed green "Depth-10 RHNs, SGD Trend": a straight-line fit spanning the full x-range, closely tracking the solid blue SGD curve; labelled "$\varepsilon(m) = 5.37\,m^{-0.094}$" where the fit crosses the middle of the plot; ends at about (2^27, 0.87).
-- Dashed red "Depth-10 RHNs, Adam Trend": a straight-line fit spanning the full x-range, closely tracking the solid orange Adam curve while data exists and continuing past where the Adam data stops; labelled "$\varepsilon(m) = 5.25\,m^{-0.095}$"; ends lowest of all four series, at about (2^27, 0.80).
+- Solid blue "Depth-10 RHNs, SGD": runs the full width of the plot, from about (2^18.4, 1.63) — above the topmost labelled tick of 1.59 — down to (2^27, ≈0.93–0.97).
+- Solid orange "Depth-10 RHNs, Adam": starts alongside the blue curve at about (2^18, 1.5) but stops early, around x = 2^23.8, at about y = 1.10, just above the 1.08 gridline — it does not reach the right edge of the plot.
+- Dashed green "Depth-10 RHNs, SGD Trend": a straight-line fit spanning the full x-range, closely tracking the solid blue SGD curve; labelled "$\varepsilon(m) = 5.37\,m^{-0.094}$" where the fit crosses the middle of the plot; ends at about (2^27, 0.93), almost exactly on the 0.93 gridline.
+- Dashed red "Depth-10 RHNs, Adam Trend": a straight-line fit spanning the full x-range, closely tracking the solid orange Adam curve while data exists and continuing past where the Adam data stops; labelled "$\varepsilon(m) = 5.25\,m^{-0.095}$"; ends lowest of all four series, at about (2^27, 0.88).
 
 Citation "[Hestness+ 2017]" printed to the right of the chart.
 
@@ -752,13 +752,15 @@ The chart shows the fitted power-law exponents for SGD (-0.094) and Adam (-0.095
 
 Heading: "3. Depth/Width: Number of layers". Body text: "Does depth or width make a huge difference?"
 
-**Figure — log-linear line chart, test loss vs parameter count, by layer count.** Y-axis "Test Loss", linear, ticked 2 through 7. X-axis "Parameters (non-embedding)", log scale, ticked 10^3 through 10^9. Five series, per the legend (colour scale runs indigo → magenta/pink → orange → gold):
+**Figure — log-LOG line chart, test loss vs parameter count, by layer count.** Y-axis "Test Loss", **log** scale, ticked 2 through 7. (Measured, not assumed: tick rows fit $\ln(\text{value})$ with $R^2 \approx 0.9999997$ against $\approx 0.968$ for a linear fit. This is the fourth axis in this deck first recorded as linear that is in fact logarithmic, and it changes how every curve's position on this chart should be read.) X-axis "Parameters (non-embedding)", log scale, ticked 10^3 through 10^9. Five series, per the legend (colour scale runs indigo → magenta/pink → orange → gold):
 
 - Dark purple/indigo "1 Layer": the topmost (worst) curve, from about (8×10^2, 6.4) to about (5×10^7, 3.6) — the shortest of the five curves, stopping well before the others.
-- Medium purple "2 Layers": from about (8×10^2, 6.0) down to about (1.3×10^8, 3.15).
-- Pink/rose "3 Layers": from about (8×10^2, 6.0), tracking closely with "2 Layers" through the low-to-mid range and then continuing further right, ending around (1.3×10^9, 2.55).
-- Orange "6 Layers": joins the plot later, around (2×10^6, 4.6), tracking almost on top of "> 6 Layers" for the rest of its length, ending around (1.3×10^9, 2.5).
-- Gold/yellow "> 6 Layers": also joins around (2×10^6, 4.6), ending around (1.3×10^9, 2.45) — the best (lowest-loss) curve at the largest scale shown.
+- Medium purple "2 Layers": begins well to the right of "1 Layer", at about (5.6×10^3, 5.9), and runs down to about (1.1×10^8, 3.0).
+- Pink/rose "3 Layers": begins later still, at about (8×10^3, 5.9), tracks closely with "2 Layers" through the low-to-mid range, and stops at about (1.7×10^8, 2.8) — it does NOT reach 10^9.
+- Orange "6 Layers": joins the plot at about (1.1×10^6, 4.0), tracking almost on top of "> 6 Layers" for the rest of its length, ending around (1.5×10^9, 2.42).
+- Gold/yellow "> 6 Layers": joins much later than "6 Layers", at about (2.3×10^7, 3.1) — over an order of magnitude further right — and ends around (1.6×10^9, 2.34), the best (lowest-loss) curve at the largest scale shown.
+
+  Only "6 Layers" and "> 6 Layers" reach the far right of the plot. The left-to-right stopping order of the five is 1 Layer, 2 Layers, 3 Layers, then 6 Layers and "> 6 Layers" together. (Corrected at audit: an earlier reading had 2 Layers and 3 Layers starting at the same point as 1 Layer, had 3 Layers running out to 1.3×10^9 — an order of magnitude too far — and had 6 Layers and "> 6 Layers" joining the plot together.)
 
 Below the figure, two bullets:
 - "1 vs 2 layers makes a huge difference."
@@ -784,11 +786,11 @@ Below the three panels, a native-text figure caption, reproduced in full: "**Fig
 
 Heading: "3. Depth/Width: But not all parameters are made equal". Body text: "We've been thinking about 'parameters' but not all parameters are equal"
 
-**Figure — two side-by-side log-linear line charts, test loss vs parameter count, by layer count.** Both panels share a "Test Loss" y-axis, linear, ticked from 2 up to about 7.
+**Figure — two side-by-side log-linear line charts, test loss vs parameter count, by layer count.** Both panels share a "Test Loss" y-axis, **log** scale, ticked from 2 up to about 7 — verified against the extracted raster at native resolution, where the tick rows fit $\ln(\text{value})$ at $R^2 \approx 0.999992$ against $\approx 0.968$ linear. Both panels are log-log.
 
-**Left panel**, x-axis "Parameters (with embedding)", log scale, from about 10^6 to 10^9. Six series: dark-navy "0 Layer" — a near-flat curve running only from about (2×10^5, 6.9) to (5×10^7, 5.85), the shortest curve on the panel and the only one that barely improves as parameters increase — plus the same five layer-count series as slide 33: dark purple "1 Layer", magenta "2 Layers", pink "3 Layers", orange "6 Layers", gold "> 6 Layers", each following the same relative shape as on slide 33 but re-plotted against the "with embedding" parameter count.
+**Left panel**, x-axis "Parameters (with embedding)", log scale, spanning roughly 1.6×10^5 to 3×10^9. (An earlier reading gave the range as 10^6 to 10^9, which its own next sentence contradicted by placing the "0 Layer" curve's start at 2×10^5.) Six series: dark-navy "0 Layer" — a near-flat curve running only from about (2×10^5, 6.9) to (5×10^7, 5.85), the shortest curve on the panel and the only one that barely improves as parameters increase — plus the same five layer-count series as slide 33: dark purple "1 Layer", magenta "2 Layers", pink "3 Layers", orange "6 Layers", gold "> 6 Layers", each following the same relative shape as on slide 33 but re-plotted against the "with embedding" parameter count.
 
-**Right panel**, x-axis "Parameters (non-embedding)", log scale, from about 10^3 to 10^9 — the same five-series chart as slide 33 (no "0 Layer" series here): purple "1 Layer" (shortest, ending around (5×10^7, 3.6)), magenta "2 Layers", pink "3 Layers", orange "6 Layers", gold "> 6 Layers" (the latter four converging by the right edge, around (1.3×10^9, 2.4–2.55)).
+**Right panel**, x-axis "Parameters (non-embedding)", log scale, from about 10^3 to 10^9 — the same five-series chart as slide 33 (no "0 Layer" series here): purple "1 Layer" (shortest, ending around (7.6×10^7, 3.55)), magenta "2 Layers" (stopping at about (1.5×10^8, 3.0)), pink "3 Layers" (stopping at about (2.3×10^8, 2.8)), and only orange "6 Layers" and gold "> 6 Layers" running out to the right edge, where they converge at about (2×10^9, 2.42) and (2.2×10^9, 2.34). (Corrected at audit: "2 Layers" and "3 Layers" do not reach the right edge and do not converge with the other two — the same error this file made for the identical chart on slide 33.)
 
 Below the figure, body text: "Embedding layer parameters don't behave the same!" and a further bullet: "**Related**: recent papers on scaling laws for mixtures of experts."
 

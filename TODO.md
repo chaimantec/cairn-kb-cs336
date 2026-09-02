@@ -964,7 +964,21 @@ Agents now append findings per page, per the run-9 lesson.
       file's OWN recorded coordinates already contradicted, so that one was
       detectable without opening the PDF. Worth remembering: internal consistency of
       an entry is a free check.
-- [ ] Batch 4 — pages 32, 33, 35
+- [x] Batch 4 — pages 32, 33, 35. ALL THREE dirty, 11 errors, applied. The worst
+      batch of the pass. Pages 33 and 35 BOTH had their shared "Test Loss" y-axis
+      recorded as linear when it is logarithmic — that is the fourth and fifth such
+      axis in this deck, and on 33 it means the chart is log-log rather than
+      log-linear, changing how every curve's position reads. Page 33 also had three
+      series wrong: 2 Layers and 3 Layers were given 1 Layer's starting point, 3
+      Layers was run out to 1.3e9 when it stops near 1.7e8, and 6 Layers and
+      "> 6 Layers" were said to join together when the gold series starts over an
+      order of magnitude later. Page 35 repeated the same false convergence for the
+      identical chart, and stated an x-range of 10^6-10^9 that its own next sentence
+      contradicted with a 2e5 start point. Page 32's four endpoint values were all
+      slightly off, though its synthesis held — the fitted exponents really are
+      -0.094 vs -0.095, so the slide's "slopes barely change" claim stands.
+      SECOND internal contradiction found this pass (after page 30's). Checking an
+      entry against ITSELF costs nothing and has now caught two errors.
 - [ ] Batch 5 — pages 36, 37, 39
 - [ ] Batch 6 — pages 43, 44, 47
 - [ ] Batch 7 — page 53
