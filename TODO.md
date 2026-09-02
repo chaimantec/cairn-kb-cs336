@@ -940,7 +940,18 @@ Agents now append findings per page, per the run-9 lesson.
       plateau was placed a full data point too early, at x=10 where it is actually
       ≈0.91 inside a three-way bundle, plus an invented dip to 0.94 at x=100. Page 9's
       six-formula table was exact character for character.
-- [ ] Batch 2 — pages 10, 16, 22
+- [x] Batch 2 — pages 10, 16, 22. 2 dirty, 3 errors, applied. Page 10: a middle-panel
+      endpoint read at 0.30 when the solid curve ends at 0.39 and its trend line at
+      0.36 — the 0.30 matched neither series — plus a FOURTH fabricated "cropped"
+      claim, this time about a panel that is fully rendered with every tick visible.
+      Page 22: the orange and green endpoints were overstated about 4x. That
+      correction is self-verifying — the measured values put all three series'
+      slopes at -0.94/-1.00/-0.98, closely parallel, which is precisely what the
+      slide's own text claims ("data composition affects the offset, not the
+      slope"), while the overstated ones implied -0.69/-0.66 and contradicted it.
+      The auditor also CONFIRMED the earlier reader's hardest call on page 22: the
+      pale line crossing the legend box really is the q=0.00 series continuing
+      behind a semi-transparent box, not a fourth series.
 - [ ] Batch 3 — pages 23, 25, 30
 - [ ] Batch 4 — pages 32, 33, 35
 - [ ] Batch 5 — pages 36, 37, 39
