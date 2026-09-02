@@ -926,7 +926,29 @@ PDF deck `lecture_09.pdf`, 57 pages — the most figure-dense deck in the build:
       Systems topic, and lecture 9 ends by pointing at it. Lecture 11 (advanced
       scaling laws) would then close the scaling-laws pair, and the wiki already has
       eight topic pages waiting to be extended by it.
-- [ ] Figure audit, lecture 9: the 39 unaudited pages. Highest value are the ones the
+### Figure audit pass 3 (run 9 continued) — 19 chart pages, 3 at a time, sequential
+Pages 7, 8, 9, 10, 16, 22, 23, 25, 30, 32, 33, 35, 36, 37, 39, 43, 44, 47, 53.
+Chosen by a triage that scored each unaudited section for chart signal and for how
+many of its numbers also appear in the transcript. The answer for most was "almost
+none" — page 25 had 3 of 40 corroborated, page 30 3 of 18 — so unlike the Chinchilla
+numbers, these values have NO second source and can only be checked by looking.
+Agents now append findings per page, per the run-9 lesson.
+- [x] Batch 1 — pages 7, 8, 9. 2 dirty, 5 errors, applied. Page 7: BOTH series' marker
+      fills were wrong — training error is open triangles throughout (the dense
+      cluster only looks solid because outlines overlap), and test error is open for
+      only its first five or six points, solid black thereafter. Page 8: Winnow's 0.95
+      plateau was placed a full data point too early, at x=10 where it is actually
+      ≈0.91 inside a three-way bundle, plus an invented dip to 0.94 at x=100. Page 9's
+      six-formula table was exact character for character.
+- [ ] Batch 2 — pages 10, 16, 22
+- [ ] Batch 3 — pages 23, 25, 30
+- [ ] Batch 4 — pages 32, 33, 35
+- [ ] Batch 5 — pages 36, 37, 39
+- [ ] Batch 6 — pages 43, 44, 47
+- [ ] Batch 7 — page 53
+- [ ] After all batches: update kb.json coverage of audited pages, sources.md, AGENTS.md
+
+- [ ] Figure audit, lecture 9: the remaining unaudited pages beyond those 19. Highest value are the ones the
       wiki quotes and could not check: 37, 38, 39 (critical batch size) and 43, 44,
       46, 47 (joint scaling, Chinchilla methods 1-2). A pass over these was killed by
       a rate limit. WHEN RE-RUNNING, tell the agent to append findings to a file per
