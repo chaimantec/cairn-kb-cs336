@@ -15,7 +15,8 @@ The central claim ([38:26]):
 > the hyperparameters are set right, and only under those conditions does it become
 > possible to get predictable scaling across many orders of magnitude of compute.
 
-This is the same point [lecture 1](01-overview-tokenization.md) makes as "you have
+This is the same point [lecture 1](01-overview-tokenization.md) makes as "scaling
+laws are not laws of nature. They don't just happen automatically. You kind of have
 to will them into existence" ([47:47] of that lecture), arrived at from the other
 direction — lecture 1 asserts it, lecture 9 demonstrates it by showing three
 separate ways the Kaplan fit went wrong.

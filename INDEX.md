@@ -8,15 +8,21 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1–8 of 18
+> ## ⚠️ This knowledge base covers Lectures 1–9 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
 > Mixtures of Experts), Lecture 5 (GPUs and TPUs), Lecture 6 (Kernels and
-> Triton), Lecture 7 (Parallelism) and Lecture 8 (Parallelism, Part 2) are covered
-> in depth.** Nothing else is. There are no transcripts and no wiki pages for
-> scaling laws, inference, evaluation, data, mid/post-training, RLVR or
-> multimodality.
+> Triton), Lecture 7 (Parallelism), Lecture 8 (Parallelism, Part 2) and Lecture 9
+> (Scaling Laws — Basics) are covered in depth.** Nothing else is. There are no
+> transcripts and no wiki pages for inference, evaluation, data, mid/post-training,
+> RLVR or multimodality.
+>
+> **A note specific to scaling laws:** CS336 splits them across *two* lectures,
+> with inference in between. **Lecture 9 — the basics — is now covered**: data
+> scaling laws, scaling laws for model engineering, and the whole
+> Kaplan-versus-Chinchilla story. **Lecture 11, the advanced treatment** (muP in
+> depth, modern open-model tech reports, optimizers), is not.
 >
 > **A note specific to parallelism:** CS336 has *two* lectures called
 > "Parallelism", and **both are now covered**. Lecture 7 is Percy Liang's
@@ -80,10 +86,64 @@ compute and data?
   parallelism along the width, pipeline parallelism along the depth — each
   implemented from primitives rather than called from a library.
 
+- **[Lecture 9 — Scaling Laws (basics)](wiki/09-scaling-laws.md)** — how to spend a
+  budget you only get to spend once. Why loss is log-linear in data, parameters and
+  compute; where the ≈0.1 exponent comes from and what it says about how networks
+  learn; using scaling trends to settle architecture, optimizer and depth/width
+  questions without training the big model; critical batch size and learning-rate
+  scaling; and the Kaplan-versus-Chinchilla dispute in full — the three methods, the
+  three small decisions that caused the disagreement, and why you should overtrain
+  past the answer anyway.
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 9 — scaling laws
+
+- **[Compute-optimal scaling](wiki/compute-optimal-scaling.md)** — the
+  Kaplan-versus-Chinchilla story end to end: the joint model-data scaling forms,
+  Kaplan's $N \propto C^{0.73}$ and the era of trillion-parameter dense models,
+  Chinchilla's three methods and the 20-tokens-per-parameter rule, the three small
+  methodological decisions that separated them, the fitting error in Chinchilla's
+  own method 3, and why production models deliberately overtrain past 20:1.
+  **Start here if you came looking for Chinchilla.**
+- **[Data scaling laws](wiki/data-scaling-laws.md)** — the univariate law. The
+  mean-estimation derivation of why error decays polynomially, why classical
+  statistics predicts a slope of $-1$, why neural exponents come out near $-0.1$
+  instead, and the non-parametric argument that reads that exponent as "learning at
+  the rate of a ten-dimensional smoother". Also the result reused everywhere else in
+  the lecture: interventions move intercepts, not slopes.
+- **[Scaling law methodology](wiki/scaling-law-methodology.md)** — how not to fool
+  yourself. Predictability is engineered rather than observed; a scaling law is a
+  lower bound on a *recipe*, so it inherits every defect of the runs underneath it;
+  choosing the right x-axis; scale-invariant quantities; and why a narrow compute
+  range cannot distinguish a polynomial from an exponential.
+- **[The IsoFLOP method](wiki/isoflop-method.md)** — fix the compute budget, sweep
+  everything else, read the minimum off the curve. Chinchilla's method 2, the most
+  robust of the three, and the one tool from this lecture that keeps working
+  elsewhere — diffusion models, MoE sparsity surfaces.
+- **[Upstream vs downstream](wiki/upstream-vs-downstream.md)** — where the
+  predictability stops. Perplexity scales beautifully and benchmark accuracy does
+  not; the model that wins downstream is mid-table upstream. Also which measurements
+  are clean enough to fit from a single run and which are not.
+- **[Critical batch size](wiki/critical-batch-size.md)** — now carrying both
+  lectures' treatments. Lecture 8's systems view (batch size as a consumable
+  resource that caps data parallelism) plus Lecture 9's optimisation view: the
+  noise-limited and bias-limited regimes, the estimation recipe, $B_{crit} =
+  E_{min}/S_{min}$, and the power law by which it grows as your loss target falls.
+- **[Learning rate scaling and muP](wiki/learning-rate-scaling-and-mup.md)** — the
+  other hyperparameter you cannot inherit. Why the optimum shifts with width, the
+  $1/\text{width}$ rule of thumb, and the two competing philosophies: predict where
+  the minimum goes, or reparameterise so it stops moving.
+- **[Data repetition](wiki/data-repetition.md)** — four epochs are free, forty are
+  worthless, and the effective-data formula in between. Plus the finding that
+  optimal data *filtering* loosens as compute grows, so filter aggressiveness is a
+  function of scale rather than a property of the corpus.
+- **[Data mixture selection](wiki/data-mixture-selection.md)** — fitting mixture
+  scaling laws, why practitioners mostly skip it and just bake off small models, and
+  why that shortcut is justified by the same theory that motivated the laws.
 
 ### Lecture 8 — parallelism at cluster scale
 
@@ -430,11 +490,11 @@ usually the faster route than the lecture pages.
   useful page for "where in CS336 is X taught?" Substantive on each unit's
   vocabulary and concerns, but it is the preview, not the treatment — except the
   resource-accounting part of Unit 2, which Lecture 2 delivers and this KB covers.
-- **[Scaling laws](wiki/scaling-laws.md)** — scaling recipes rather than single
-  models, hyperparameter transfer, predictability over optimality, ISOFLOP curves
-  and the $D \approx 20N$ Chinchilla rule, and why inference cost has pushed
-  practice away from it. Lecture 1's preview; CS336 teaches this properly in
-  Lectures 9 and 11, which are not in this KB.
+- **[Scaling laws](wiki/scaling-laws.md)** — the **hub page** for the scaling-law
+  thread, and no longer a preview-only page. It keeps Percy's Lecture 1 framing —
+  scaling recipes rather than single models, hyperparameter transfer, predictability
+  over optimality — and indexes the Lecture 9 treatment, with a section reading the
+  two against each other. Lecture 11 (advanced) remains uncovered.
 
 ## Raw material
 
@@ -447,7 +507,8 @@ usually the faster route than the lecture pages.
   [Lecture 5](raw/transcripts/05-gpus-tpus.md),
   [Lecture 6](raw/transcripts/06-kernels-triton.md),
   [Lecture 7](raw/transcripts/07-parallelism.md),
-  [Lecture 8](raw/transcripts/08-parallelism-2.md).
+  [Lecture 8](raw/transcripts/08-parallelism-2.md),
+  [Lecture 9](raw/transcripts/09-scaling-laws.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.

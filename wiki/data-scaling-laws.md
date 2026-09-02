@@ -120,7 +120,7 @@ seemingly linear axes ([29:14]). Two separate points, both worth carrying:
 - The axis in question was doubling — log scale in disguise — and its y-range was
   so narrow that linear and log are visually identical anyway ([29:14]).
 - More generally, over a small slice of compute you **cannot distinguish polynomial
-  from exponential scaling**, "because Taylor approximations are a thing —
+  from exponential scaling**, "because Taylor approximations are a thing,
   everything looks linear if you zoom in enough" ([29:59]).
 
 ## See also

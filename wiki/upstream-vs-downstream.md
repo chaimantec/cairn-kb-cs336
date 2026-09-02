@@ -25,8 +25,8 @@ upstream to downstream" ([51:27]).
 > systematically low and concluded that NL12- "only reaches the middle of the
 > ranking", which inverts the slide's argument; the figure audit caught it and the
 > [slide file](../raw/slides/09-scaling-laws.md) now records the corrected values.
-> The lecturer's spoken account — "we're going to ship our best model, NL12. It
-> turns out NL12 is not your best model, it was actually NL32-XL" ([51:27]) — is
+> The lecturer's spoken account — "we're going to ship our best model, NL12." It
+> turns out NL12 is not your best model — it was actually NL32-XL" ([51:27]) — is
 > about which model *wins*, and is correct as stated.
 
 ## Why it matters practically
@@ -55,8 +55,8 @@ prescribes instead ([55:15]):
 
 The contrast that makes the point is a hypothetical: if the upstream trend itself
 were "a very noisy, jagged line of this form — you wouldn't really know what's going
-on. You'd say, maybe I believe it will go on, but maybe it's a line, maybe it's a
-curve" ([55:15]). The whole method rests on starting from a measurement you can
+on. You'd say, 'maybe I believe it will go on, but maybe it's a line, maybe it's a
+curve'" ([55:15]). The whole method rests on starting from a measurement you can
 trust.
 
 ## Variance, and where it bites

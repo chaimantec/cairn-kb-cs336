@@ -9,11 +9,11 @@
     "courseUrl": "https://cs336.stanford.edu"
   },
   "coverage": {
-    "lecturesCovered": 8,
+    "lecturesCovered": 9,
     "lecturesTotal": 18,
-    "transcripts": 8,
-    "wikiLecturePages": 8,
-    "wikiTopicPages": 66
+    "transcripts": 9,
+    "wikiLecturePages": 9,
+    "wikiTopicPages": 74
   },
   "materials": {
     "primary": "mixed",
@@ -23,7 +23,7 @@
     },
     "slideDecks": {
       "available": 8,
-      "transcribed": 4
+      "transcribed": 5
     },
     "method": "mixed",
     "byLecture": {
@@ -34,7 +34,8 @@
       "5": "page-images",
       "6": "source-text",
       "7": "source-text",
-      "8": "page-images"
+      "8": "page-images",
+      "9": "page-images"
     },
     "figuresAudited": true,
     "sourceRepo": "https://github.com/stanford-cs336/lectures"
@@ -45,7 +46,7 @@
       "claude-sonnet-5"
     ],
     "caveats": [
-      "PARTIAL: covers lectures 1-8 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 9-18 - scaling laws, inference, evaluation, data, alignment, mid/post-training, RLVR and multimodality - have no transcripts and no wiki pages. Both lectures titled \"Parallelism\" (7 and 8) are covered.",
+      "PARTIAL: covers lectures 1-9 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 10-18 - inference, advanced scaling laws, evaluation, data, alignment, mid/post-training, RLVR and multimodality - have no transcripts and no wiki pages. Note in particular that CS336 splits scaling laws across two lectures: lecture 9 (basics) is covered in full, lecture 11 (advanced - muP in depth, modern open-model tech reports, optimizers) is not.",
       "materials.method is 'mixed' and the split matters. Lectures 1, 2, 6 and 7 are executable Python programs (lecture_01.py, lecture_02.py, lecture_06.py, lecture_07.py), transcribed exactly from source text; that is not a lower grade than page-images, because there are no slides to have looked at. Lectures 3, 4 and 5 are PDF decks (67, 60 and 55 pages) read as page images, so their figures, charts and tables ARE captured. See materials.byLecture.",
       "Figures: described for lectures 3, 4 and 5, NOT described for lectures 1, 2, 6 and 7. The four executable lectures display images via image() calls, and raw/slides records each one at the point it appears, by path or URL, WITHOUT describing its contents, because those lectures were read as source text. No wiki claim rests on one of those figures. This matters most for lectures 4 and 5, whose decks are 102 images across 60 pages and 83 across 55 with most pages carrying under 40 words of native text - the figure descriptions there carry the content rather than illustrating it.",
       "None of the three transcribed decks prints a page number on any page, so slide labels in raw/slides/03-architectures.md, 04-attention-alternatives.md and 05-gpus-tpus.md are PDF page numbers, and all three files say so in their front matter. For lecture 3 a page-number scan reported one printed number; that glyph is the numerator of the MQA arithmetic-intensity fraction on page 61, not a folio. For lecture 4 the scan reported none and all 60 pages were checked by eye. For lecture 5 the scan reported none, a corner-position text-layer scan returned only mid-page body text, and the three readers who split the deck each confirmed the absence independently over their own range. On lecture 5 the numbering was derived in the parent BEFORE any page was read and handed to the readers as a conclusion, so no reader made a numbering judgement of its own.",
@@ -78,9 +79,16 @@
       "Lecture 8 figure audit: 12 of 73 pages checked across two passes (12, 21, 30, 36, 37, 45, 55, 60, 61, 62, 67, 72). Ten came back clean; four errors were corrected on slides 30 and 37. All 48 cross-slide assertions in the slide file were separately swept, finding three more errors, two of which were in the file's own aggregating front matter rather than in any reader's page.",
       "At 29:53 in the lecture 8 transcript the speaker says \"ZeRO stage two\" where slide 30 shows he means stage 3. The body records what he said and an [Ed:] note gives the correction, rather than rewriting his words.",
       "Slide 67's Llama 3 failure table has printed percentages summing to 94.9%, not 100%, and they are not percentages of the 419 total interruptions either. The gap is in the source table as pasted; do not compute a percentage from that table's counts.",
-      "Slide 44 of lecture 8 prints an eight-category legend of which only five bands are visually separable at any magnification; three categories could not be located and the slide file says so rather than guessing."
+      "Slide 44 of lecture 8 prints an eight-category legend of which only five bands are visually separable at any magnification; three categories could not be located and the slide file says so rather than guessing.",
+      "Lecture 9's slide deck (lecture_09.pdf, 57 pages) is the most figure-dependent in this KB — 93 pasted images against 2,063 words of native text, about 36 words per page — so its figure descriptions carry the lecture's content rather than illustrating it.",
+      "Lecture 9's deck is also the dirtiest transcription in this build. Two figure-audit passes covered 18 of its 57 pages and found errors on 11 of them, 36 in total, all now corrected. Error classes: series endpoints overstated, two axes described as linear that are logarithmic, a colorbar placed on the wrong side, three fabricated or mis-explained source-image defects, and three false 'illegible at any magnification' claims that all read cleanly at zoom.",
+      "The worst of those, now fixed, had inverted a slide's own argument: misread SuperGlue values on slide 41 led the file to state that the best upstream model falls to mid-pack downstream, when it places about 2nd-3rd of 13. The lecture's actual point is that a mid-table model rises, not that the leader falls.",
+      "39 of lecture 9's 57 slide pages have NOT been figure-audited. Their slide TEXT is reliable — 56 of 57 headings matched the PDF text layer verbatim and no audited page has shown an error in transcribed prose or a native-text caption — but a CHART VALUE from an unaudited page should be treated as provisional.",
+      "A third figure-audit pass over lecture 9's pages 37-39 and 43-47 was attempted and killed by a session rate limit before producing anything, so those pages are unaudited. As mitigation, every value the wiki quotes from them was cross-checked against the copy-edited transcript, which is independently verified; all matched except slide 47's '1.5T tokens' and the exact algebra of slide 43's two joint-scaling equations, which are not spoken aloud and are flagged as provisional at the point of use.",
+      "Lecture 9's transcript preserves a spoken self-correction: Hashimoto initially reads Kaplan's exponents the wrong way round before correcting himself. Slide 45 settles it as N_opt proportional to C^0.73. The wiki states the corrected form and flags the slip.",
+      "wiki/critical-batch-size.md draws on two different lectures and therefore carries timestamps from two different transcripts. The page states explicitly which section cites which, because both lectures discuss the topic around the same point in their runtime."
     ]
   },
   "entryPoint": "INDEX.md",
-  "updated": "2026-09-01"
+  "updated": "2026-09-02"
 }

@@ -99,6 +99,19 @@ audit: >
   (5) FALSE ILLEGIBILITY, three times, all on slide 52. All three read cleanly at
   zoom. Across this entire build that claim has now been false in every instance
   ever tested. Treat the phrase as a flag, never as a fact.
+  A THIRD PASS WAS ATTEMPTED AND DID NOT RUN. It was aimed at pages 37, 38, 39, 43,
+  44, 46 and 47 — the two clusters (critical batch size, and joint scaling plus
+  Chinchilla methods 1-2) whose numbers the wiki quotes directly — on the principle
+  that those should be checked before the prose is written rather than after. The
+  agent was killed by a session rate limit partway through and returned nothing, so
+  THOSE SEVEN PAGES ARE UNAUDITED like the rest. What was done instead, at no cost:
+  every figure the wiki quotes from them was cross-checked against the copy-edited
+  transcript, which is independently verified. All six Chinchilla exponents,
+  Kaplan's 0.73/0.27, the 67B and 63B projections, the 20:1 ratio and GPT-3's 3:1
+  are stated aloud in the lecture and match. The two values that are NOT
+  transcript-corroborated are slide 47's "1.5T tokens" and the exact algebra of
+  slide 43's two joint-scaling equations; both are flagged as provisional at the
+  point of use in the wiki.
   WHAT REMAINS. 39 pages are unaudited. Their SLIDE TEXT is reliable — 56 of 57
   headings matched the PDF text layer verbatim, and no audited page has yet shown
   an error in transcribed prose or in a native-text caption. Every error found in

@@ -839,7 +839,20 @@ PDF deck `lecture_09.pdf`, 57 pages — the most figure-dense deck in the build:
       unaudited. Priority targets: 48 (nine IsoFLOP parabolas — same figure family
       as 49, the dirtiest page found), then the multi-series log-log pages
       13, 18, 24, 26, 34, 40, 41, and 56. All were done.
-- [ ] Figure audit pass 3 — targeted, in flight: 37, 38, 39 (critical batch size)
+- [x] Figure audit pass 3 — ATTEMPTED, KILLED, NOT DONE. The agent was terminated
+      by a session rate limit partway through and returned no report, so pages 37,
+      38, 39, 43, 44, 46 and 47 remain unaudited. Note for future runs: this agent
+      was told to report findings as text at the end, which is exactly the pattern
+      the skill warns about — an audit agent should be told to APPEND findings to a
+      file per page, like the transcription agents are, so a kill costs one page
+      rather than everything. The transcription agents in this run all survived
+      because they appended; this one lost 100% of its work.
+      Mitigation applied instead, at no cost: every value the wiki quotes from those
+      seven slides was cross-checked against the copy-edited transcript, which is
+      independently verified. All of them matched except slide 47's "1.5T tokens"
+      and the exact algebra of slide 43's equations, which are not spoken aloud;
+      both are flagged provisional at the point of use.
+- [ ] Superseded plan (kept for the record) — pass 3 was to cover: 37, 38, 39 (critical batch size)
       and 43, 44, 46, 47 (joint scaling and Chinchilla methods 1-2). These are the
       two clusters whose CHART VALUES the wiki will quote directly, so they are
       audited before the prose is written rather than after. The other 32
@@ -848,16 +861,57 @@ PDF deck `lecture_09.pdf`, 57 pages — the most figure-dense deck in the build:
 
 ### Transcript
 - [x] 09 Scaling Laws — verbatim captions at raw/transcripts/original/09-scaling-laws.md
-- [ ] 09 Scaling Laws — copy-edited transcript (slides first, then delegate to
-      Sonnet, then adjudicate: timestamp diff, number-inventory diff of BODIES,
-      per-paragraph word-ratio, grep restored proper nouns against the deck)
+- [x] 09 Scaling Laws — copy-edited transcript, delegated to Sonnet, adjudicated
+      here. All three checks pass: 102 markers identical and in order; per-paragraph
+      word ratios ALL inside the 0.72-1.10 band at 84.6% retention (matching lecture
+      8's 84.0% for the same speaker); number inventory clean but for one adjudicated
+      difference — at 1:13:00 the captions read "that sort of 2D surface or sorry, 3D
+      surface", a self-correction, and the false start is removed. Slide 49 confirms
+      Chinchilla's method 3 fits a 3D surface.
+      All 20 restored proper nouns verified present in the deck by grep — the first
+      lecture in this build where every single restoration is deck-supported (run 12
+      of CS224N managed 51 of 60). The agent under-claimed on one: it recorded
+      "DeepSeek" as outside knowledge, but slide 13's ECI scatter labels a point
+      "DeepSeek-R1". Header corrected.
+      SIXTH CHECKER BUG, recorded in AGENTS.md: this transcript puts each floor
+      question's full text inside the *[Question from the floor: ...]* block, where
+      lecture 8 used a bare label, so a clean() that strips those blocks wholesale
+      deletes real words. It reported two paragraphs at 0.66/0.68 that are fine.
+      Strip the label, keep the content.
 
 ### Wiki
-- [ ] wiki/09-scaling-laws.md
-- [ ] Topic pages (new + extend existing — critical-batch-size and scaling-laws
-      already exist and were written pointing forward to this lecture)
-- [ ] INDEX.md table of contents
-- [ ] Link sweep, citation checks, quote checks
+- [x] wiki/09-scaling-laws.md (400 lines) — four parts mirroring the lecture:
+      prehistory, data scaling, model engineering, compute-optimal scaling, with the
+      through-line that interventions move intercepts and not slopes
+- [x] Topic pages (8 new) — data-scaling-laws, compute-optimal-scaling,
+      isoflop-method, upstream-vs-downstream, data-repetition, data-mixture-selection,
+      learning-rate-scaling-and-mup, scaling-law-methodology
+- [x] Extend rather than duplicate (6 pages) — scaling-laws (rewritten from a
+      preview-only page into the hub, with a section reading lecture 1's framing
+      against lecture 9's delivery), critical-batch-size (now carries both lectures,
+      with an explicit note on whose timestamps are whose, since both discuss it
+      around the same point in their runtime), transformer-hyperparameters,
+      mixture-of-experts, model-architecture-survey, course-map
+- [x] Fixed SIX stale coverage claims predating this run: four pages still said
+      lecture 8 was uncovered, course-map contradicted itself about it in two places,
+      and scaling-laws said lecture 2 was uncovered. This is the rot the skill warns
+      about — the index is trusted and never re-read.
+- [x] INDEX.md — nine-lecture coverage, new banner section on the two scaling-laws
+      lectures, a Start-here entry, a Lecture 9 wiki section with 9 annotated
+      entries, and the stale "preview only" entry for scaling-laws rewritten
+- [x] Link sweep — 1,368 relative links, zero unresolved
+- [x] Citation checks — 1,615 [MM:SS] citations across the whole wiki checked
+      against all 9 transcripts. One bad, now fixed, and it was the SAME fault run 8
+      found four of: a dropped hour prefix, [11:57] for [1:11:57]. It was in
+      critical-batch-size.md, a page run 8 itself wrote — so run 8's sweep missed one.
+- [x] Quote checks — 127 fragments; 8 real slips fixed. Two em dashes became a comma
+      and a semicolon, one dropped a pair of em dashes, two dropped inner quotation
+      marks, one dropped the speaker's "kind of", and TWO were the parent's own
+      paraphrases set in quotation marks — the same failure run 8 caught, now twice
+      in a row. Also caught myself over-correcting one quote mid-fix and reverted it.
+      FIFTH CHECKER BUG: strip [MM:SS] markers from the SOURCE before matching, or
+      every quote spanning a paragraph break reports as a misquotation; split the
+      wiki quote on ellipses; and scope to all transcripts, not just this lecture's.
 
 ### Publish
 - [ ] sources.md — lecture_09.pdf transcribed

@@ -26,9 +26,8 @@ cause:
 1. **Log-linear regularity is real and pervasive.** Plot log loss against log of
    almost any resource — data, parameters, compute, even MoE sparsity — and you
    get a line ([1:16:48]).
-2. **The regularity is engineered, not given.** "Scaling laws aren't magic…
-   this kind of predictability across scales is engineered, it doesn't happen
-   automatically" ([38:26]). Picking the right x-axis and getting the
+2. **The regularity is engineered, not given.** "Scaling laws aren't magic… that scaling laws — and this kind of predictability
+   across scales — is engineered, it doesn't happen automatically" ([38:26]). Picking the right x-axis and getting the
    hyperparameters right is most of the work.
 3. **Small methodological choices move the answer a lot.** The Kaplan–Chinchilla
    disagreement — a factor of several in how big your model should be — comes down
@@ -198,8 +197,8 @@ finer differences and noise matters more.
 **Learning rate** is previewed rather than settled ([48:23]). Width scaling wants a
 smaller learning rate as the model grows, with a $1/\text{width}$ rule of thumb
 ([49:08]). The alternative is to reparameterise so the optimum stops moving —
-**muP** ([49:54]). The two philosophies are "predict where the minimum goes" versus
-"make the minimum stay put"; both have been used successfully at scale, though
+**muP** ([49:54]). The two philosophies are, in short, predicting where the minimum goes versus
+making the minimum stay put; both have been used successfully at scale, though
 "anecdotally, it does seem like more people are favoring the scaling law approach"
 ([50:41]). See [learning rate scaling and muP](learning-rate-scaling-and-mup.md).
 

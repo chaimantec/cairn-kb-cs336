@@ -95,17 +95,17 @@ timings, measured FLOP/s, MFU, peak-memory readings) are marked
 | 4 | Attention alternatives and mixture of experts | [`lecture_04.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf) — **transcribed**, all 60 pages, at [`raw/slides/04-attention-alternatives.md`](raw/slides/04-attention-alternatives.md) |
 | 5 | GPUs, TPUs | [`lecture_05.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf) — **transcribed**, all 55 pages, at [`raw/slides/05-gpus-tpus.md`](raw/slides/05-gpus-tpus.md) |
 | 8 | Parallelism (Part 2) | [`lecture_08.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf) — **transcribed**, all 73 pages, at [`raw/slides/08-parallelism-2.md`](raw/slides/08-parallelism-2.md) |
-| 9 | Scaling laws | [`lecture_09.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf) |
+| 9 | Scaling laws (basics) | [`lecture_09.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf) — **transcribed**, all 57 pages, at [`raw/slides/09-scaling-laws.md`](raw/slides/09-scaling-laws.md) |
 | 11 | Scaling laws | [`lecture_11.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_11.pdf) |
 | 15 | Mid/post-training (SFT/RLHF) | [`lecture_15.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_15.pdf) |
 | 16 | Post-training — RLVR | [`lecture_16.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_16.pdf) |
 
-**`lecture_03.pdf`, `lecture_04.pdf`, `lecture_05.pdf` and `lecture_08.pdf` have been transcribed.** All were read as
+**`lecture_03.pdf`, `lecture_04.pdf`, `lecture_05.pdf`, `lecture_08.pdf` and `lecture_09.pdf` have been transcribed.** All were read as
 page images — every figure described in prose, every table transcribed cell by cell
 — because a text extractor recovers nothing from these decks' tables, which are
 pasted images, and flattens their equations into a single line.
 
-**None of the four decks prints a page number on any page**, so all four
+**None of the five decks prints a page number on any page**, so all five
 transcriptions label slides by PDF page number and say so in their front matter. For
 `lecture_03.pdf` an automated scan reported one printed number, which turned out to
 be the numerator of a fraction on page 61; for `lecture_04.pdf` the scan reported
@@ -118,14 +118,26 @@ the corner-position scan returned **zero** digit tokens anywhere in 73 pages, an
 five readers who split the deck confirmed the absence over their own ranges. The one
 near-miss worth naming, so nobody rediscovers it as a finding, is an isolated "10"
 beside slide 56's table — the $10^{-2}$ tick of the adjacent chart, not a folio.
+`lecture_09.pdf` behaves the same way: a whole-page edge scan of all 57 pages
+returned only **two** numeric tokens, both on page 33 and both inside a plot area,
+and the reader assigned that range independently identified them as the chart's
+$10^7$ x-axis tick. Its heading sequence was additionally cross-checked against the
+PDF text layer, matching verbatim on 56 of 57 pages — the exception being the title
+page, whose text layer letter-spaces its own title, exactly as lecture 8's does.
 
-Lectures 4, 5 and 8 are the figure-dependent decks — 102 pasted images across 60
-pages, 83 across 55, and 86 across 73, with most pages carrying only 30–40 words of
-native text — so
-their figure descriptions carry the content rather than illustrating it. On each,
-chart- and table-heavy pages were audited against the PDF at high magnification —
-eight pages on lecture 4, and on lecture 5 two passes over fourteen; see `kb.json`
-for what those found. The remaining five decks are recorded here by URL only.
+Lectures 4, 5, 8 and 9 are the figure-dependent decks — 102 pasted images across 60
+pages, 83 across 55, 86 across 73, and 93 across 57, with most pages carrying only
+30–40 words of native text — so their figure descriptions carry the content rather
+than illustrating it. **Lecture 9 is the most extreme of the four at 36 words per
+page**, and also the one where auditing found the most: two passes over 18 of its 57
+pages found errors on 11 of them, 36 in all, including one that inverted a slide's
+own argument. A third pass aimed at seven further pages was killed by a rate limit
+and did not run. On each deck, chart- and table-heavy pages were audited against the
+PDF at high magnification — eight pages on lecture 4, two passes over fourteen on
+lecture 5, eight on lecture 8, and eighteen on lecture 9; see `kb.json` for what
+those found, and each slide file's own `audit` front-matter field for the detail and
+for which pages remain unchecked. The remaining four decks are recorded here by URL
+only.
 
 ## Assignments — Spring 2026
 

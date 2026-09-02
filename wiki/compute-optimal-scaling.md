@@ -15,7 +15,7 @@ $$C \approx 6ND$$
 
 for $N$ parameters and $D$ tokens ([56:47]). Spending it badly is easy to see:
 push enormous data through a tiny model and its curve flattens early — "this thing
-has been flat for a very long time; this is a complete waste of compute" ([57:32]).
+has been flat for a very long time — this is a complete waste of compute" ([57:32]).
 The same compute spent on a larger model reaches a much lower loss.
 
 ## Joint scaling laws
@@ -79,8 +79,20 @@ that ratio is where the famous **20 tokens per parameter** comes from ([1:01:26]
 **Method 1 — minimum over runs** ([1:02:59]). Take every training curve and read off
 its lower envelope: each envelope point is the lowest loss anyone achieved at that
 FLOP count, and it belongs to a run of known model size. Scatter model size against
-FLOPs for those points and fit. At Gopher's budget: **67B parameters, 1.5T tokens**
-(slide 47). The weakness is practical — reliably identifying the envelope is fiddly.
+FLOPs for those points and fit. At Gopher's budget: **67B parameters** ([1:03:44]),
+and 1.5T tokens per slide 47's own annotation.[^unaud] The weakness is practical —
+reliably identifying the envelope is fiddly.
+
+[^unaud]: The 67B figure is stated aloud in the lecture and so rests on the verified
+    transcript. The **1.5T token figure is read off slide 47 only**, and slide 47 is
+    one of the pages whose figure audit did not run — see the `audit` note in the
+    [slide file](../raw/slides/09-scaling-laws.md). Treat it as provisional. The same
+    applies to the exact algebraic form of the two joint scaling equations quoted
+    above from slide 43: the transcript corroborates their *shape* ("really just the
+    sum of two inverse terms, two scaling laws added together", [58:20]) but not
+    their symbols. Every other number on this page — all six Chinchilla exponents,
+    Kaplan's 0.73/0.27, the 63B and 67B projections, the 20:1 ratio and GPT-3's 3:1 —
+    is stated in the lecture itself and independently corroborated.
 
 **Method 2 — [IsoFLOPs](isoflop-method.md)** ([1:04:31]). At each of several fixed
 budgets, sweep the parameter/data trade-off and watch terminal loss trace a

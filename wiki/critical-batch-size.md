@@ -62,7 +62,7 @@ Once you see batch size as a budget, several otherwise-unrelated facts line up:
   collapsing at small batch sizes and large pipeline degrees.
 - **[Activation recomputation](activation-checkpointing.md) buys it back.** Saving
   activation memory frees room for a larger batch, which improves utilisation —
-  "memory can be turned into batch size" ([11:57], slide 62).
+  "memory can be turned into batch size" ([1:11:57], slide 62).
 - **Gradient accumulation converts it.** In the standard recipe, "if your batch
   size ends up too small, you can do gradient accumulation, to get better GPU
   utilization" ([1:06:37]).

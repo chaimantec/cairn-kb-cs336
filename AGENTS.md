@@ -345,3 +345,95 @@ worse than none.
   watch for — **the parent's own editorial aside set as a blockquote**, which reads
   as a quotation of the lecturer and is not one.
 
+
+## Run 9 precedents (lecture 9, a 57-page deck and the dirtiest transcription yet)
+
+Lecture 9 is the most figure-dependent deck in this KB — 93 pasted images against
+2,063 words of native text, 36 words per page — and it produced more transcription
+errors than the previous four decks combined. What follows is what that cost and
+what it taught.
+
+- **Audit yield was 11 dirty pages out of 18, 36 errors.** Runs 8 and 9 of the
+  CS224N build set the expectation at roughly two small corrections per deck. That
+  expectation does not hold for a deck where the charts *are* the content. Budget
+  two audit passes for such a deck from the start rather than discovering the need
+  after pass 1.
+
+- **The error that matters is the one that inverts the slide's argument.** On slide
+  41 a set of SuperGlue values read systematically low led the file to state that
+  the best upstream model falls to mid-pack downstream. It places 2nd-3rd of 13. The
+  lecture's actual point is that a *mid-table* model rises. Nothing but an audit
+  catches this: the numbers were individually plausible, the prose was fluent, and
+  the conclusion was stated with confidence. **When a slide entry ends with "the
+  point of this chart is X", audit X against the data, not just the data against the
+  page.** That check is now in the audit prompt.
+
+- **Two axes were described as linear that are logarithmic** (slides 49 and 13, the
+  latter shared across all three Kaplan Figure-1 panels). Both were settled by
+  measuring inter-tick pixel spacing. An axis-scale error silently corrupts every
+  value in the entry, so it is worth more than any individual value check. Tell
+  auditors to *measure* tick spacing rather than judge scale by eye.
+
+- **"The source image is cropped" is the new "not legible at this resolution".**
+  Three readers, on three different pages, explained something they could not read
+  by asserting a crop in the source. Two were pure fabrication — the pages are
+  complete. The third (slide 41's "NL12-") is a real truncation with a wrong cause
+  attached: both instances sit in open white space. **Verify the explanation, not
+  just the observation.**
+
+- **False illegibility is now 0-for-every-instance ever tested in this build.**
+  Three more on slide 52 — two equation intercepts and a ~19-entry legend — all read
+  cleanly at zoom. Treat the phrase in a slide file as a flag, never a fact.
+
+- **Pixel-classification beats eye-reading on colour, and the legend can poison it.**
+  Two readers resolved series identity by sampling legend-swatch RGB and calibrating
+  axes off detected ticks, and it caught two errors eye-reading had already made. But
+  on slide 4 a naive colour trace invented four data points that were **the legend
+  swatches themselves, sitting inside the plot's coordinate space**. Mask the
+  legend's bounding box before classifying pixels. This is the known "a label is not
+  a series" failure wearing a different hat.
+
+- **Audit agents must append per page, exactly like transcription agents.** Run 9's
+  third audit pass was killed by a session rate limit and returned *nothing*, because
+  it had been told to report findings as text at the end. The four transcription
+  agents in the same run all survived interruption-free precisely because they
+  appended each chunk. **Instruct audit agents to write findings to a file as they
+  finish each page.** A kill should cost one page, not the whole pass.
+
+- **When an audit cannot run, cross-check against the transcript instead — it is
+  free.** Every figure the wiki quoted from the seven unaudited pages was checked
+  against the copy-edited transcript, which is independently verified. All six
+  Chinchilla exponents, Kaplan's 0.73/0.27, the 67B and 63B projections, the 20:1
+  ratio and GPT-3's 3:1 are spoken aloud and matched. Only two quoted values were not
+  transcript-corroborated, and both are flagged as provisional at the point of use.
+  **A number that appears in both the deck and the speech is far better attested than
+  one that appears in only the deck** — prefer those when writing prose over an
+  unaudited deck.
+
+- **State the reliability boundary in the slide file's own front matter.** Every error
+  in both passes was in a chart description; none was in slide text or a native-text
+  caption. That asymmetry is worth recording explicitly, because it tells a later
+  reader exactly what an unaudited page can still be trusted for.
+
+- **Checker bug, the fifth in this build: strip markers before comparing quotes.**
+  A quote that spans an `[MM:SS]` boundary is legitimate — the captions break
+  mid-sentence constantly — but a checker that compares against the raw file reports
+  every one as a misquotation. Strip `**[MM:SS]**` from the *source* before matching,
+  and split the *wiki* quote on ellipses so an elided quotation is checked fragment by
+  fragment. Scope the check to all transcripts and slide files, not just the current
+  lecture's, or every quote a cross-lecture page inherited is reported as false.
+
+- **Checker bug, the sixth: a question convention can deflate a word-ratio check.**
+  Lecture 9's transcript puts each floor question's full text inside an
+  `*[Question from the floor: …]*` block, where lecture 8 used a bare label. A
+  `clean()` that strips those blocks wholesale deletes real words and pushed two
+  paragraphs to 0.66 and 0.68. Retaining the question text put every paragraph inside
+  the band at 84.6% retention. **Strip only the label, never the content.**
+
+- **Quote-check yield, lecture 9: 8 real slips in 127 fragments.** Two em dashes
+  silently became a comma and a semicolon; one dropped a pair of em dashes inside a
+  quotation; two dropped inner quotation marks; one dropped the speaker's "kind of";
+  and — the repeat offender from run 8 — **two of the parent's own paraphrases were
+  set in quotation marks**, reading as quotations of the lecturer when they were not.
+  That failure has now appeared in two consecutive runs. Check every quoted string
+  you wrote yourself, not only the ones you copied.
