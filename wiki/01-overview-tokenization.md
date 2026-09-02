@@ -18,7 +18,7 @@ before it is the course's argument for itself.
   [executable lecture](executable-lectures.md), not a slide deck.
   Run it live at [the trace viewer](https://cs336.stanford.edu/lectures/?trace=lecture_01).
 - **Transcript:** [edited](../raw/transcripts/01-overview-tokenization.md) ·
-  [verbatim captions](../raw/transcripts/original/01-overview-tokenization.md)
+  the verbatim captions (not committed; regenerable from the video)
 
 ## Why the course exists
 

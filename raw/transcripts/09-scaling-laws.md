@@ -3,7 +3,7 @@ title: "Lecture 9: Scaling Laws (Basics)"
 lecture: 9
 video: https://www.youtube.com/watch?v=Q15rhEWZPQ4
 source: copy-edited from the YouTube auto-captions
-verbatim_original: original/09-scaling-laws.md
+verbatim_original: not committed - regenerate from the video (see below)
 material: ../slides/09-scaling-laws.md
 ---
 
@@ -14,11 +14,12 @@ segmented into sentences, stripped of filler ("um," "uh," "you know," "sort
 of," "kind of," "right?," "okay"), and had mis-heard technical terms and
 proper names restored. No content was added, removed, or reordered, and
 every `[MM:SS]` / `[H:MM:SS]` marker is preserved in its original position —
-content that was under a marker is still under that marker. The verbatim
-captions are kept at
-[`original/09-scaling-laws.md`](original/09-scaling-laws.md); that file is
-the record of what was actually said, and this one is the readable version of
-it.
+content that was under a marker is still under that marker. The verbatim captions are **not committed to this repo** — they are a
+complete reproduction of the lecture and none of that text is this KB's own work.
+They stay reproducible on demand: the `cairn-kb` skill's `fetch_transcript.py`
+run on the video id in this file's front matter, piped through
+`transcript_to_md.py`, reproduces them exactly — so the checks above can be
+re-run by anyone who wants to verify this edit.
 
 Terminology was cross-checked against
 [the lecture's slide deck](../slides/09-scaling-laws.md) (`lecture_09.pdf`,

@@ -3,7 +3,7 @@ title: "Lecture 5: GPUs, TPUs"
 lecture: 5
 video: https://www.youtube.com/watch?v=izZba4UA7iY
 source: copy-edited from the YouTube auto-captions
-verbatim_original: original/05-gpus-tpus.md
+verbatim_original: not committed - regenerate from the video (see below)
 material: ../slides/05-gpus-tpus.md
 ---
 
@@ -24,9 +24,12 @@ content drifting across a marker boundary — all 103 paragraphs landed inside t
 0.72–1.10 ratio band. This speaker leans just as heavily on "you know," "sort
 of," "kind of" and "right?" as filler here as he does in lecture 4, so this
 transcript retains about 84% of the caption word count (13,445 of 16,022 words),
-essentially the same share as lecture 4's 84%. The verbatim captions are kept at
-[`original/05-gpus-tpus.md`](original/05-gpus-tpus.md); that file is the record
-of what was actually said, and this one is the readable version of it.
+essentially the same share as lecture 4's 84%. The verbatim captions are **not committed to this repo** — they are a
+complete reproduction of the lecture and none of that text is this KB's own work.
+They stay reproducible on demand: the `cairn-kb` skill's `fetch_transcript.py`
+run on the video id in this file's front matter, piped through
+`transcript_to_md.py`, reproduces them exactly — so the checks above can be
+re-run by anyone who wants to verify this edit.
 
 Terminology was cross-checked against
 [the lecture's slide deck](../slides/05-gpus-tpus.md) (`lecture_05.pdf`),

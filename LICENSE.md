@@ -38,6 +38,13 @@ expression, so I do not offer these directories under CC BY 4.0. Read them, cite
 quote them as you would quote the lecture itself — but do not treat them as freely
 relicensable text.
 
+The verbatim auto-captions these were edited from are **deliberately not published here**.
+They were a complete reproduction of nine lectures with no editorial contribution at all —
+the weakest thing in the repository on every fair-use factor except purpose — so they are
+gitignored rather than committed. Nothing is lost for verification: they are regenerable
+from the public video with the `cairn-kb` skill's `fetch_transcript.py`, using the video id
+recorded in each transcript's front matter, so anyone can re-derive them and audit an edit.
+
 ---
 
 ## Layer 2 — Stanford CS336 course material

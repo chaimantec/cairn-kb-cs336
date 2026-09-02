@@ -3,7 +3,7 @@ title: "Lecture 3: Architectures"
 lecture: 3
 video: https://www.youtube.com/watch?v=lVynu4bo1rY
 source: copy-edited from the YouTube auto-captions
-verbatim_original: original/03-architectures.md
+verbatim_original: not committed - regenerate from the video (see below)
 material: ../slides/03-architectures.md
 ---
 
@@ -17,9 +17,11 @@ under that marker. That was checked mechanically against the verbatim captions
 three ways: the 117 timestamp markers match exactly in order and form, the
 inventory of numbers in the two bodies matches token for token, and every
 paragraph's word count was compared with its original to catch content drifting
-across a marker boundary. The verbatim captions are kept at
-[`original/03-architectures.md`](original/03-architectures.md); that file is the
-record of what was actually said, and this one is the readable version of it.
+across a marker boundary. The verbatim captions are **not committed to this repo** — they are a
+complete reproduction of the lecture and nothing in them is this KB's own
+work. They remain reproducible on demand: regenerate them with the `cairn-kb` skill's `fetch_transcript.py <video_id>` piped through `transcript_to_md.py`
+against the video id in this file's front matter reproduces them exactly, so
+the three checks above can be re-run by anyone who wants to verify this edit.
 
 Terminology was cross-checked against
 [the lecture's slide deck](../slides/03-architectures.md) (`lecture_03.pdf`),

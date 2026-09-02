@@ -262,7 +262,7 @@ structure will always be there" ([1:20:26]).
 - Lecture source, transcribed: [`raw/slides/07-parallelism.md`](../raw/slides/07-parallelism.md)
   — the program `lecture_07.py`, section by section with line ranges.
 - Transcript: [`raw/transcripts/07-parallelism.md`](../raw/transcripts/07-parallelism.md)
-  (copy-edited; the [verbatim captions](../raw/transcripts/original/07-parallelism.md)
+  (copy-edited; the the verbatim captions (not committed; regenerable from the video)
   are kept beside it).
 - The program itself: [`lecture_07.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_07.py),
   steppable at <https://cs336.stanford.edu/lectures/?trace=lecture_07>.

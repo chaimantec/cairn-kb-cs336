@@ -1124,5 +1124,27 @@ signals disagree in both directions:
 - [x] Linked from INDEX.md (the Also list and the images entry), AGENTS.md (layout table
       and the images provenance section) and kb.json (a new top-level `license` block)
 
+### Remove the verbatim captions from the repo
+- [x] `raw/transcripts/original/` gitignored and untracked — 16 files, 2.0 MB, 132k words,
+      25% of the repo's text and the weakest item in it on every fair-use factor except
+      purpose: a complete verbatim reproduction of nine lectures with no editorial
+      contribution at all. Kept on disk locally, exactly as `raw/pdfs/` is.
+- [x] Audit trail preserved as a recipe rather than a copy: `fetch_transcript.py <video_id>`
+      piped through `transcript_to_md.py` reproduces them exactly, and the video id is in
+      each transcript's front matter. Note lectures 8 and 9 never had a `.segments.json`
+      stored, so the video is the source of truth for all nine either way.
+- [x] Rewrote every reference so nothing dangles: 9 transcript headers (front matter plus
+      the inline sentence, whose wording varied per file), 5 wiki pages, AGENTS.md's layout
+      table, INDEX.md's source-material list, LICENSE.md and a kb.json caveat.
+- [x] Checked: 1,895 relative links, 0 broken, and 0 links pointing at a file that is on
+      disk but not in the repo — so a public reader hits no dead reference.
+- [ ] NOT DONE, and a deliberate open question: the captions remain in git HISTORY and on
+      GitHub, since they were committed and pushed before this. Removing them for real needs
+      a history rewrite (git filter-repo or BFG) plus a force push, which would invalidate
+      every commit SHA — including the ones this file cites — and would not purge GitHub's
+      unreferenced objects without asking support. Left as-is: the material is out of the
+      working tree, unbrowsable and unindexed, which is the practical benefit; a rewrite is
+      a separate decision.
+
 ### Publish
 - [x] Commit and push

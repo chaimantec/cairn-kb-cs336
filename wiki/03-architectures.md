@@ -303,7 +303,6 @@ in the course ([1:22:56]).
   `lecture_03.pdf`. Slide numbers cited above are PDF page numbers; the deck prints
   no page numbers of its own.
 - [Copy-edited transcript](../raw/transcripts/03-architectures.md) — timestamps
-  cited above index this file. The verbatim captions are at
-  [`original/`](../raw/transcripts/original/03-architectures.md).
+  cited above index this file.
 - The deck is linked at its canonical URL in [sources.md](../sources.md); PDFs are
   not committed to this repo.

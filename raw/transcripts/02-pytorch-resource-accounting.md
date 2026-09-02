@@ -3,7 +3,7 @@ title: "Lecture 2: PyTorch, Resource Accounting"
 lecture: 2
 video: https://www.youtube.com/watch?v=kuYAsz7zspQ
 source: copy-edited from the YouTube auto-captions
-verbatim_original: original/02-pytorch-resource-accounting.md
+verbatim_original: not committed - regenerate from the video (see below)
 material: ../slides/02-pytorch-resource-accounting.md
 ---
 
@@ -17,10 +17,12 @@ under that marker. That was checked mechanically against the verbatim captions
 three ways: the 101 timestamp markers match exactly in order and form, the
 inventory of numbers in the two bodies matches token for token, and every
 paragraph's word count was compared with its original to catch content drifting
-across a marker boundary. The verbatim captions are kept at
-[`original/02-pytorch-resource-accounting.md`](original/02-pytorch-resource-accounting.md);
-that file is the record of what was actually said, and this one is the readable
-version of it.
+across a marker boundary. The verbatim captions are **not committed to this repo** — they are a
+complete reproduction of the lecture and none of that text is this KB's own work.
+They stay reproducible on demand: the `cairn-kb` skill's `fetch_transcript.py`
+run on the video id in this file's front matter, piped through
+`transcript_to_md.py`, reproduces them exactly — so the checks above can be
+re-run by anyone who wants to verify this edit.
 
 Terminology was cross-checked against
 [the lecture's source program](../slides/02-pytorch-resource-accounting.md)

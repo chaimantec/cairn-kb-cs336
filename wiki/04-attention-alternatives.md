@@ -488,7 +488,7 @@ yet; see [`kb.json`](../kb.json) for coverage.
 ## Sources for this page
 
 - [Edited transcript](../raw/transcripts/04-attention-alternatives.md) — timestamps
-  above refer to it. [Verbatim captions](../raw/transcripts/original/04-attention-alternatives.md)
+  above refer to it. the verbatim captions (not committed; regenerable from the video)
   are kept alongside.
 - [Slide-by-slide transcription](../raw/slides/04-attention-alternatives.md) of
   [`lecture_04.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf),

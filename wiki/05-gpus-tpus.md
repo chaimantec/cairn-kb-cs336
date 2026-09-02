@@ -185,6 +185,6 @@ His own summary, at [1:17:30]:
 - [Lecture 4 — attention alternatives](04-attention-alternatives.md), the previous
   lecture.
 - [Transcript](../raw/transcripts/05-gpus-tpus.md) —
-  [verbatim captions](../raw/transcripts/original/05-gpus-tpus.md).
+  the verbatim captions (not committed; regenerable from the video).
 - [Slide deck transcription](../raw/slides/05-gpus-tpus.md) — 55 pages;
   [`lecture_05.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf).

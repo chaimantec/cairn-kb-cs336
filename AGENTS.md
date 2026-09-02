@@ -22,7 +22,7 @@ partially covered while the rest of that unit is still a preview.
 | `wiki/` | Durable pages: one per lecture, plus cross-lecture topics. |
 | `raw/slides/` | The written course material, transcribed. See the note below — CS336 has no slide numbers for half its lectures, and none of the five decks transcribed so far prints one either. |
 | `raw/transcripts/` | Copy-edited lecture transcripts with `[MM:SS]` paragraph marks. **These are the ones to read.** |
-| `raw/transcripts/original/` | Verbatim auto-captions, kept as the record of what was said, plus the raw caption segment JSON they were generated from. |
+| `raw/transcripts/original/` | **Gitignored, not in the repo.** The verbatim auto-captions are a complete reproduction of the lecture with none of this KB's own work in them, so they are kept locally and not published. Regenerate with `fetch_transcript.py <video_id>` piped through `transcript_to_md.py`; the video id is in each transcript's front matter. |
 | `raw/images/NN-<slug>/` | Rendered slide images and the course's own figures. See **Images** below for what is and is not here. |
 | `raw/pdfs/` | Gitignored and empty. No binaries are committed; `sources.md` carries canonical URLs. |
 | `sources.md` | Every lecture, deck, assignment and linked document, with URLs. |

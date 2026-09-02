@@ -513,10 +513,12 @@ usually the faster route than the lecture pages.
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
   Each header lists every restoration made and every place left marked unclear.
-- **[`raw/transcripts/original/`](raw/transcripts/original/)** — the verbatim
-  auto-captions, kept as the record of what was actually said, alongside the raw
-  caption segment JSON they were generated from. Consult these to check the edited
-  version, not to read the lecture.
+- **`raw/transcripts/original/`** — *not in this repo.* The verbatim auto-captions
+  are a complete reproduction of each lecture with none of this KB's own work in
+  them, so they are deliberately not published here. They remain reproducible by
+  anyone who wants to audit an edit: run the `cairn-kb` skill's
+  `fetch_transcript.py` on the video id in the transcript's front matter and pipe it
+  through `transcript_to_md.py`. See [`LICENSE.md`](LICENSE.md).
 - **[`raw/slides/`](raw/slides/)** — the written course material. **This is the
   authority for anything the lecturer wrote down**; the transcript is the authority
   for what was said. CS336 supplies it in two very different forms:
