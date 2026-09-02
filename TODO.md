@@ -979,7 +979,21 @@ Agents now append findings per page, per the run-9 lesson.
       -0.094 vs -0.095, so the slide's "slopes barely change" claim stands.
       SECOND internal contradiction found this pass (after page 30's). Checking an
       entry against ITSELF costs nothing and has now caught two errors.
-- [ ] Batch 5 — pages 36, 37, 39
+- [~] Batch 5 — pages 36, 37, 39. PARTIAL. Page 36 is HALF DONE: two findings were
+      salvaged from an agent killed mid-task and are applied (panel (b)'s y-axis is
+      labelled "Pretraining Loss L" ticked 2.2-3.0, so the illegibility claim was
+      false — that is now SIX false illegibility claims out of six ever tested; and
+      panel (c)'s x-axis has a seventh tick, 4B). Page 36's remaining panels, and
+      pages 37 and 39 entirely, are NOT audited.
+      THREE consecutive agent failures here, three different modes: session rate
+      limit, server error mid-response, then a 600s stall. The session limit resets
+      at 16:00 Asia/Bangkok and low-priority mode was on, which pauses for spare
+      capacity — so these look like capacity failures, not task failures. Retrying a
+      fourth time in the same window is likely to burn quota for nothing.
+      The salvage did work, though, and it is worth recording as the payoff for the
+      run-9 lesson: the agent told to create its findings file as its literal FIRST
+      action, before reading anything, left behind a usable file; the one told merely
+      to "append as you go" left nothing when it died early.
 - [ ] Batch 6 — pages 43, 44, 47
 - [ ] Batch 7 — page 53
 - [ ] After all batches: update kb.json coverage of audited pages, sources.md, AGENTS.md
