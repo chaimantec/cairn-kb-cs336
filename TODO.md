@@ -1,6 +1,6 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after run 9: **Lectures 1–9.** The
+Coverage after run 11: **Lectures 1–10.** The
 course has 18 recorded lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
@@ -1298,5 +1298,5 @@ source line ranges, not slide numbers.
       note and the 22-of-28 image split recorded)
 - [x] kb.json — coverage 10/18, 84 topic pages, executableLectures 5 of 9,
       byLecture."10" = source-text, images 281 files / 32.3 MB, 50 caveats (6 new)
-- [ ] Commit and push
+- [x] Commit and push — pushed to chaimantec/cairn-kb-cs336 at 1e765f7
 - n/a  kbUrl already set on the catalog entry from run 1
