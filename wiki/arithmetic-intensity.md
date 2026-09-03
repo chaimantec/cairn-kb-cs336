@@ -279,9 +279,51 @@ is roughly *constant* below about 2000 dimensions and cubic above it, because a
 small matmul never reaches the compute roof at all ([25:24]). See
 [benchmarking](benchmarking.md).
 
+## Where lecture 10 takes this
+
+Lecture 10 applies the whole framework to inference, and the derivation is the
+spine of that lecture. It is done symbolically, in sympy, so what comes out is
+algebra rather than measurements — see
+[`raw/slides/10-inference.md`](../raw/slides/10-inference.md) for the full
+accounting.
+
+**The warm-up.** For $X\,(B \times D)$ times $W\,(D \times F)$ in bf16, FLOPs are
+$2BDF$ and bytes are $2BD + 2DF + 2BF$, so
+
+$$\text{intensity} = \frac{BDF}{BD + BF + DF} \;\xrightarrow[\;D, F \gg B\;]{}\; B$$
+
+**The arithmetic intensity of a matrix multiply is the batch size** ([16:15]).
+Against an H100's own ratio of $989 \times 10^{12} / 3.35 \times 10^{12} = 295$,
+that means you are compute-bound only when $B > 295$ ([17:48]). This is the same
+result as this page's matrix–matrix row, restated for non-square matrices — Percy
+makes the connection explicitly: it is "the analog where, instead of having one
+variable for dimension and square matrices, we have non-square matrices" ([17:02]).
+
+**Applied to a Transformer**, with $S$ tokens conditioned on and $T$ tokens being
+produced or scored:
+
+| Layer | Intensity | Prefill ($T = S$) | Generation ($T = 1$) |
+| --- | --- | --- | --- |
+| MLP | $\to BT$ | $BS$ — compute-bound | $B$ — needs concurrent requests |
+| Attention | $\dfrac{ST}{S+T}$ | $S/2$ | $\dfrac{S}{S+1} < 1$ |
+
+The last cell is the finding: generation's attention is roughly 300× short of
+saturating an H100, and **no amount of batching fixes it**, because $B$ cancels out
+of the ratio. Every sequence hits the same MLP weights but carries its own
+[KV cache](kv-cache.md), so batching amortizes one and not the other ([31:46]).
+
+This is also where the $B=1$ matrix–vector case from lecture 2 stops being a toy.
+"You don't get these full matrices, you get these very thin matrices or tensors"
+([18:35]) — incremental decoding *is* the matrix–vector regime, which is why this
+page's intensity-1 row describes the dominant workload of the entire inference
+industry. See [prefill and generation](prefill-and-generation.md).
+
 ## Sources
 
 - [Lecture 2 — PyTorch, Resource Accounting](02-pytorch-resource-accounting.md)
+- [Lecture 10 — Inference](10-inference.md) — the largest application of this page
+  in the course: the whole lecture follows from generation's attention intensity
+  being below 1.
 - [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md) — the roofline as the frame for the
   systems unit, and the hardware reason intensity matters more every year: compute
   throughput is growing faster than memory bandwidth or interconnect.

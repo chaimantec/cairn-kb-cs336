@@ -42,7 +42,7 @@ programs are not linked as documents. Both are listed below.
 | 2 | PyTorch (einops), resource accounting | [`lecture_02.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_02.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_02) |
 | 6 | Kernels, Triton | [`lecture_06.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_06.py) — **transcribed**, at [`raw/slides/06-kernels-triton.md`](raw/slides/06-kernels-triton.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_06) |
 | 7 | Parallelism | [`lecture_07.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_07.py) — **transcribed**, at [`raw/slides/07-parallelism.md`](raw/slides/07-parallelism.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_07) |
-| 10 | Inference | [`lecture_10.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_10.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_10) |
+| 10 | Inference | [`lecture_10.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_10.py) — **transcribed**, at [`raw/slides/10-inference.md`](raw/slides/10-inference.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_10) |
 | 12 | Evaluation | [`lecture_12.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_12.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_12) |
 | 13 | Data (sources, datasets) | [`lecture_13.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_13.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_13) |
 | 14 | Data (filtering, dedup, mixing, synthetic) | [`lecture_14.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_14.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_14) |
@@ -58,6 +58,22 @@ Supporting modules used by those programs: [`references.py`](https://github.com/
 - `lecture_02.py` → [`raw/slides/02-pytorch-resource-accounting.md`](raw/slides/02-pytorch-resource-accounting.md)
 - `lecture_06.py` → [`raw/slides/06-kernels-triton.md`](raw/slides/06-kernels-triton.md)
 - `lecture_07.py` → [`raw/slides/07-parallelism.md`](raw/slides/07-parallelism.md)
+- `lecture_10.py` → [`raw/slides/10-inference.md`](raw/slides/10-inference.md)
+
+**Lecture 10 computes symbolically**, which makes it unlike every other executable
+lecture in this KB. Its FLOP and byte counts are sympy expressions in the model's
+dimension symbols, simplified and only then substituted with a Llama 2 13B
+configuration, so there is nothing machine-dependent to withhold: every value in
+[`raw/slides/10-inference.md`](raw/slides/10-inference.md) was reproduced by
+evaluating the lecture's own expression and matches the `assert` the source makes
+about it. Its latency and throughput figures are theoretical maxima under the
+source's own "can overlap compute and communication perfectly and ignore overhead"
+assumption, not measurements.
+
+It also displays 28 images. The 22 that live in the course's own repository are
+copied into `raw/images/10-inference/` and described; the 6 hotlinked to third
+parties (four from the JAX scaling book, one from Baseten, one from Anyscale) are
+recorded as URLs only.
 
 **A note on lecture 6's title.** The Cairn catalog entry for that video is called
 "Lecture 6: Kernels, Triton, XLA", but neither `lecture_06.py` nor the lecture's

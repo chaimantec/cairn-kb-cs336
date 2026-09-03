@@ -213,8 +213,18 @@ The lecture's own caution, and the reason it is not simply a recipe:
 [stops at the benchmark boundary](upstream-vs-downstream.md).
 
 Note the course's ordering: scaling laws are split across Lectures 9 and 11 with
-**Lecture 10 (inference) in between**, for scheduling reasons ([0:51] of
-Lecture 9).
+**[Lecture 10 (inference)](10-inference.md) in between**, for scheduling reasons
+([0:51] of Lecture 9). That lecture is covered in this KB — it is the course's only
+treatment of [inference](inference.md), and it belongs with Unit 2's systems
+material as much as with anything here: it applies lecture 2's
+[arithmetic intensity](arithmetic-intensity.md) to the generation loop, finds that
+[generation is memory-bound](prefill-and-generation.md), and spends the rest of the
+hour buying back memory traffic — [KV cache](kv-cache.md) reductions,
+[quantization](quantization.md),
+[pruning and distillation](pruning-and-distillation.md),
+[speculative sampling](speculative-sampling.md),
+[continuous batching](continuous-batching.md) and
+[PagedAttention](paged-attention.md).
 
 **Assignment 3:** a simulated training API (config in, loss out) backed by cached
 offline runs; gather points under a budget, fit scaling laws, extrapolate, submit

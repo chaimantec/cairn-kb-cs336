@@ -93,6 +93,54 @@ way, from $\mathbf{q}^C_{t,i}$ and $\mathbf{q}^R_{t,i}$.
 
 Hence the two cached tensors: the shared latent, and the one rotary key.
 
+## What lecture 10 adds
+
+[Lecture 10](10-inference.md) revisits MLA from the serving side, and supplies two
+things this page's construction does not: the compression ratio, and the accuracy
+evidence.
+
+**The ratio.** DeepSeek V2 reduces $NH = 16{,}384$ dimensions of stored key/value
+per token to a latent of $C = 512$, plus 64 more for the rotary key described
+above, for **576 total** — a factor of about 28. Percy calls it "quite aggressive
+compression" ([52:38]). Compare [GQA's](attention-variants.md) factor of $N/K$,
+which is typically 4–8. The corresponding claim on latency follows mechanically,
+because [generation is memory-bound](prefill-and-generation.md): "the smaller the
+KV cache, the faster you go — almost a linear scaling, up until some point"
+([53:24]).
+
+**The evidence, in two tables.** The lecture builds a deliberate two-step argument
+([53:24]–[54:11]), and both tables are transcribed in
+[`raw/slides/10-inference.md`](../raw/slides/10-inference.md):
+
+*Table 8 — MHA beats GQA and MQA*, on 7B dense models: BBH 37.0 / 35.6 / 33.2,
+MMLU 45.2 / 41.2 / 37.9, C-Eval 42.9 / 37.7 / 30.0, CMMLU 43.5 / 38.4 / 34.6 for
+MHA / GQA / MQA respectively. Every MHA cell is bolded. This is the step that sets
+up the comparison: the *expensive* baseline is genuinely the accurate one.
+
+*Table 9 — MLA matches or beats MHA*, on MoE models, while cutting the cache
+enormously. KV cache per token falls from 110.6K elements to 15.6K on the small
+model and from 860.2K to 34.6K on the large one, and MLA is bolded on three of four
+benchmarks for the small model and all four for the large one (BBH 50.7 vs 46.6,
+MMLU 59.0 vs 57.5, C-Eval 59.2 vs 57.9, CMMLU 62.5 vs 60.7).
+
+So the claim is not the usual one. GQA trades accuracy for speed; MLA is claimed to
+be *better* than the expensive baseline while being much cheaper than the cheap
+one. Percy's own reading is more cautious than the bolding: "they show that their
+method, MLA, works even a little bit better than MHA. But let's just say it's about
+the same" ([54:11]).
+
+**A caveat carried from the same passage.** Table 8 directly contradicts the GQA
+paper's own accuracy evals, which report that GQA costs almost nothing. Both are in
+this lecture, minutes apart, and the moral drawn is general: "take everything
+that's not just math with a grain of salt" ([51:06]).
+
+**One student question worth keeping** ([54:57]): why compress the KV cache rather
+than just shrinking the model dimension? The ablations do not answer it, and Percy
+gives a judgement rather than data — reducing $D$ "just makes things worse, because
+you're indiscriminately reducing everything… the trick in all of this is to find
+places in the model where you can squeeze", and which places those are is not
+knowable a priori.
+
 ## Related pages
 
 - [Attention variants](attention-variants.md) — MQA and GQA, the other KV-cache reductions.
@@ -101,3 +149,6 @@ Hence the two cached tensors: the shared latent, and the one rotary key.
   different purpose.
 - [Multi-token prediction](multi-token-prediction.md) — DeepSeek V3's other bonus mechanism.
 - [Lecture 4](04-attention-alternatives.md).
+- [Lecture 10 — Inference](10-inference.md) — the compression ratio and the accuracy tables.
+- [KV cache](kv-cache.md) — the four axes; MLA cuts the dimension one.
+- [Cross-layer attention](cross-layer-attention.md) — the layer-axis cut, composable with this.

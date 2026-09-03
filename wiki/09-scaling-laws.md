@@ -3,9 +3,9 @@
 **Tatsunori Hashimoto.** The first of two scaling-laws lectures, and the point
 where the course leaves systems behind: "we're now leaving — well, temporarily
 leaving — the land of systems to talk about more deep learning stuff" ([0:05]).
-The advanced treatment comes two lectures later; [inference](course-map.md) is
-spliced in between for scheduling reasons, so the order runs scaling laws,
-inference, scaling laws again.
+The advanced treatment comes two lectures later;
+[inference](10-inference.md) is spliced in between for scheduling reasons, so the
+order runs scaling laws, inference, scaling laws again.
 
 - **Course material:** [`lecture_09.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf), 57 pages, transcribed at [`raw/slides/09-scaling-laws.md`](../raw/slides/09-scaling-laws.md)
 - **Transcript:** [`raw/transcripts/09-scaling-laws.md`](../raw/transcripts/09-scaling-laws.md)

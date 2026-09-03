@@ -482,8 +482,19 @@ Full treatments: [multi-head latent attention](multi-head-latent-attention.md),
 
 Expert parallelism is *introduced* here but taught in the systems lectures — Hashimoto
 defers it explicitly ([40:08], [1:11:37]), as he does FlashAttention ([3:09]) and
-speculative decoding ([1:24:41]). None of those lectures are in this knowledge base
-yet; see [`kb.json`](../kb.json) for coverage.
+speculative decoding ([1:24:41]). Two of those three deferrals now have a
+destination in this knowledge base: [FlashAttention](flash-attention.md) is built
+in [lecture 6](06-kernels-triton.md), and
+[speculative decoding](speculative-sampling.md) is taught in
+[lecture 10](10-inference.md). [Expert parallelism](expert-parallelism.md) is
+covered in [lecture 8](08-parallelism-2.md). See [`kb.json`](../kb.json) for
+coverage.
+
+Lecture 10 is also where this lecture's KV-cache reductions are *priced*. GQA, MLA
+and sparse attention are presented here as architecture; there they are put through
+a performance model and turned into milliseconds and tokens per second — and the
+accuracy evidence for GQA turns out to be contested between two papers shown in the
+same hour. See [KV cache](kv-cache.md) for the four axes in one table.
 
 ## Sources for this page
 

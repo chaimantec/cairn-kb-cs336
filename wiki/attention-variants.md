@@ -260,6 +260,55 @@ preceding token with a cheap indexer and runs full attention on the top-$k$. It 
 not linear time, and lecture 4 is emphatic about that — the win is entirely in
 constant factors.
 
+## Where lecture 10 takes this
+
+Lecture 3 asks whether GQA hurts accuracy. [Lecture 10](10-inference.md) asks what
+it is *worth*, by putting it through a performance model — and it is the same
+figure, `gqa-speed.png`, reappearing as the course's own copy of the Ainslie plot.
+
+**The mechanism, restated for inference.** GQA reduces the
+[KV cache](kv-cache.md) by exactly $N/K$, and since
+[generation is memory-bound](prefill-and-generation.md), less memory is directly
+less time: "reducing memory usage leads to speedup, since we're memory-bound"
+([48:50]).
+
+**The numbers**, for Llama 2 13B on an H100, recomputed from the lecture's own
+expressions:
+
+| | KV cache/seq | Memory at $B=64$ | Latency | Throughput |
+| --- | --- | --- | --- | --- |
+| MHA ($K = 40$) | 0.84 GB | 79.72 GB | 23.80 ms/token | 2,689.5 tok/s |
+| GQA ($K = 8$) | 0.168 GB | 33.41 GB | 9.97 ms/token | 6,416.7 tok/s |
+| GQA, $B = 256$ | 0.168 GB | 65.63 GB | 19.59 ms/token | 13,068.2 tok/s |
+
+The third row is the real point. At MHA, $B = 256$ needed 240.78 GB and simply did
+not run on an 80 GB H100; with GQA it fits, and throughput is 4.9× the best the
+MHA configuration could reach. "Sometimes you play with these parameters jointly —
+you can reduce the KV cache, but that allows you to increase the batch size"
+([50:20]). GQA also shrinks the model slightly, from 13.02B to 11.34B parameters,
+because the key/value projections are part of the parameter count.
+
+**A blunter verdict on MQA.** Lecture 3 treats $K=1$ as a live option with a
+measurable expressiveness cost. Percy's summary is shorter: multi-query attention
+is the one "which no one uses because it's really bad" ([47:19]).
+
+**And the accuracy evidence does not agree with itself.** The GQA paper's own
+evals say quality holds up. DeepSeek-V2's Table 8, shown in the same lecture,
+compares 7B dense models and puts MHA ahead of GQA on every hard benchmark —
+BBH 37.0 vs 35.6, MMLU 45.2 vs 41.2, C-Eval 42.9 vs 37.7, CMMLU 43.5 vs 38.4 — with
+MQA lower still. Percy draws the general moral rather than adjudicating: "with
+these accuracy evals, I think you always have to take it with a grain of salt…
+take everything that's not just math with a grain of salt here" ([51:06]).
+
+**Sliding windows, from the inference side.** Lecture 3 presents local attention as
+a way to escape the quadratic cost of long contexts. Lecture 10 names the property
+that matters for serving: the KV cache becomes **independent of sequence length**
+([57:14]) — an $O(S) \to O(1)$ change, which is the largest single cut available
+to any of these methods. The accuracy cost is real and the lecture is blunt about
+it — "there's no free lunch here, or at least this was an expensive lunch"
+([58:00]) — which is why deployed models interleave local and global layers rather
+than going local everywhere.
+
 ## Related
 
 - [Linear attention](linear-attention.md), [state space models](state-space-models.md)
@@ -272,3 +321,6 @@ constant factors.
   half of the resource picture.
 - [RoPE](rope.md) — including NoPE and p-RoPE, which the hybrid designs depend on.
 - [Lecture 3 — architectures](03-architectures.md).
+- [Lecture 10 — Inference](10-inference.md) — what GQA is worth, in milliseconds.
+- [KV cache](kv-cache.md) — the four axes these variants cut, in one table.
+- [Cross-layer attention](cross-layer-attention.md) — the same trick applied to layers.

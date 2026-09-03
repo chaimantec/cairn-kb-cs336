@@ -161,6 +161,27 @@ linear time attention stuff has converged a lot into LSTM-like or linear-attenti
 architectures, and I don't really see that changing too much in the near future"
 ([30:50]).
 
+## Where lecture 10 puts them
+
+Briefly, but pointedly. [Lecture 10](10-inference.md) lists linear attention and
+state space models — naming **Mamba 2** and **Gated DeltaNet** — as the "other
+ideas" for reducing the [KV cache](kv-cache.md), alongside diffusion models as a
+non-autoregressive way to generate ([1:04:11]).
+
+Asked to compare them with sliding-window attention, Percy rates them above it on
+capability rather than cost: Mamba and DeltaNet "are more powerful than the
+sliding-window attention" ([1:01:03]), since the recurrence can represent looking at
+recent state and more besides, whereas "once you do sliding-window attention, you're
+done" ([1:01:49]). The counterweight is the same one this page's trade-off section makes:
+compressing a long history into a fixed state loses information you may need to
+retrieve ([1:01:03]).
+
+The lecture ends by pointing here for the largest available win — attention's KV
+cache makes the Transformer "an inference-unfriendly kind of architecture", and an
+architecture designed for inference instead "can maybe unlock a lot" ([1:24:51]).
+See [inference](inference.md) for why the bar is so low: generation's attention
+runs at an arithmetic intensity under 1 against hardware that wants 295.
+
 ## Related pages
 
 - [Linear attention](linear-attention.md) — the base case and the duality property.
@@ -168,3 +189,4 @@ architectures, and I don't really see that changing too much in the near future"
 - [Mixture of experts](mixture-of-experts.md) — Nemotron 3 and Qwen Next are MoEs too;
   the two ideas compose.
 - [Lecture 4](04-attention-alternatives.md).
+- [Lecture 10 — Inference](10-inference.md) — why an inference-first architecture is the big prize.

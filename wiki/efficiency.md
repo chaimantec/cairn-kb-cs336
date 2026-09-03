@@ -124,6 +124,39 @@ efficiency work is about **moving fewer bytes**, not doing less arithmetic. An
 MFU of 0.5 counts as good precisely because the other half of the machine was
 never reachable for that workload.
 
+## Inference is where the principle bites hardest
+
+[Lecture 10](10-inference.md) is this page's argument applied to the one workload
+where the resource is spent over and over. Training is a one-time cost; inference
+"is a repeated cost. You incur it every single day" ([1:37] of Lecture 10), and the ratio it
+gives is the striking part: OpenAI is estimated to process ~8.6T tokens a day
+against the 32T tokens DeepSeek v4 was trained on. Under four days of serving is a
+training run.
+
+Two things make it a different efficiency problem from everything in Unit 2.
+
+**The resource that binds is memory bandwidth, not compute.** Training sees every
+token at once and parallelizes over the sequence, so its
+[arithmetic intensity](arithmetic-intensity.md) is high and MFU is the metric.
+Generation produces one token at a time, so attention's intensity falls below 1
+against hardware that wants 295 — "it's frustrating that your accelerators are
+sitting there not doing anything" ([35:43] of Lecture 10). See
+[prefill and generation](prefill-and-generation.md).
+
+**"Fast" splits into two metrics that fight.**
+[Latency and throughput](latency-and-throughput.md) point in opposite directions as
+soon as there is a batch, so unlike training there is no single number to maximize —
+you have to know which one your application is buying. The escape is the one this
+page keeps recommending: reduce the resource itself. Shrinking the
+[KV cache](kv-cache.md) improves both at once, because only the *batch* dimension
+is where the two are in tension.
+
+That lecture is also where the architecture row of the table above gets its
+justification. "A lot are driven by inference speed" is stated here as an aside; in
+lecture 10 it is the whole hour, with the shared KV caches and sliding windows in
+that row shown to be worth 2.4× in latency and 4.9× in throughput on a real model
+configuration.
+
 ## The honest caveat
 
 Efficiency is a *mindset*, and mindset is one of the two kinds of knowledge Percy

@@ -204,8 +204,25 @@ Hashimoto also gives the realistic figure for what fp8 training buys once
 quantization overhead is paid: **20–30% on the matrix multiplies**, not a 2×
 speedup ([42:18]).
 
+## Quantization for inference
+
+The formats above are the training story. [Lecture 10](10-inference.md) uses the
+same formats for a different purpose — shrinking a *trained* model so it can be
+served — and that has its own page: [quantization](quantization.md), covering the
+scale/zero-point mechanics, quantization-aware training versus post-training
+quantization, GPTQ, and AWQ.
+
+The one distinction worth carrying back here is why int8 is an inference-only
+format while fp8 is not. They cost the same byte, but fp8 spends part of it on an
+exponent, so it covers a wide dynamic range with uneven spacing while int8 covers
+$[-128, 127]$ evenly. Training needs the range, which is the same argument this
+page makes for [bf16 over fp16](#bf16--the-one-that-is-actually-used); inference,
+where activations are bounded and calibratable, can live with the grid.
+
 ## Sources
 
+- [Lecture 10 — Inference](10-inference.md) — the same formats used to compress a
+  trained model, via [quantization](quantization.md).
 - [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md) — low precision as trick 2 of six,
   and the MXFP8/MXFP4 frontier.
 - [Lecture 2 — PyTorch, Resource Accounting](02-pytorch-resource-accounting.md)

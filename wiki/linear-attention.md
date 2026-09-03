@@ -116,6 +116,47 @@ and an erase term gives Gated DeltaNet. The rule governing which elaborations pr
 duality — gates may depend on the input, never on the state — is developed in
 [state space models](state-space-models.md).
 
+## The inference case for it, from lecture 10
+
+[Lecture 10](10-inference.md) arrives at this family from the serving side, and a
+student asks the question this page and
+[attention variants](attention-variants.md) jointly raise: what is the tradeoff
+between a linear-attention variant and a sliding window? ([58:46])
+
+Percy's answer separates the two by *what they are good at* rather than by cost.
+Both make the [KV cache](kv-cache.md) independent of sequence length, but "if you
+care about local, high-resolution stuff, then sliding-window attention is better.
+If you just want broad summaries of the past, then linear attention might be
+better" ([1:00:17]) — and combining full attention, sliding windows and linear
+layers is legitimate precisely because they capture different things.
+
+Pressed on long context, he declines the easy answer: "there's no free lunch. If
+you have to compress your entire history into a small state, you're just going to
+lose information, and you might not be able to retrieve it" ([1:01:03]) — the
+needle-in-a-haystack failure mode.
+
+But on the direct comparison he comes down on this page's side, with a ceiling
+argument rather than a benchmark ([1:01:03]–[1:01:49]):
+
+> Mamba and DeltaNet are more powerful than sliding-window attention. Maybe you can
+> think about the Mambas — […] it certainly can represent some of the aspects of
+> sliding-window attention, because, as you're doing the recurrence, it can just
+> look at the last state. So, maybe you can think of linear attention, or its
+> extensions, as being better — at least, they have more room. Once you do
+> sliding-window attention, you're done, there's nothing else you can —
+
+The naive linear-attention baseline he gives is the one this page starts from: "you
+just sum the KV values up into a single vector", which is trivially independent of
+sequence length, and the gated variants exist to compress without forgetting as
+much ([59:31]).
+
+The lecture's closing judgement makes this the place where it thinks the large
+remaining gains are: the KV cache and attention's structure "fundamentally make it
+an inference-unfriendly kind of architecture", so an architecture designed for
+inference —
+linear attention, state space models, or diffusion — "can maybe unlock a lot"
+([1:24:51]).
+
 ## Related pages
 
 - [State space models](state-space-models.md) — Mamba-2, Gated DeltaNet, and the
@@ -125,3 +166,5 @@ duality — gates may depend on the input, never on the state — is developed i
 - [Attention variants](attention-variants.md) — MQA, GQA and sliding-window attention
   from lecture 3.
 - [Lecture 4](04-attention-alternatives.md) — the lecture this comes from.
+- [Lecture 10 — Inference](10-inference.md) — the serving argument, and where it beats a sliding window.
+- [KV cache](kv-cache.md) — the object a fixed-size recurrent state replaces.

@@ -917,17 +917,20 @@ PDF deck `lecture_09.pdf`, 57 pages — the most figure-dense deck in the build:
 - [x] sources.md — lecture_09.pdf was already recorded as transcribed. Fixed the header,
       which still said "covers Lectures 1-6" in one sentence and "1-7" in the next, and
       the now-false "nothing is committed as a binary"
-- [ ] kb.json — coverage 9/18, slideDecks 5, byLecture."9"
-- [ ] AGENTS.md — run 9 precedents
+- [x] kb.json — coverage 9/18, slideDecks 5, byLecture."9" (superseded by run 11's
+      update to 10/18; boxes ticked retrospectively in run 11 after confirming both
+      artifacts are present)
+- [x] AGENTS.md — run 9 precedents (the "Run 9 precedents" section exists)
 - [x] Commit and push — pushed to chaimantec/cairn-kb-cs336 at 4a8b703
 - n/a  kbUrl already set on the catalog entry from run 1
 
 ## Not done (future runs)
-- [ ] Lectures 10–18 — transcripts and wiki pages. Lecture 10 (Inference,
-      video EfM546A79aM, 85 min) is the natural next one: it is the last uncovered
-      Systems topic, and lecture 9 ends by pointing at it. Lecture 11 (advanced
-      scaling laws) would then close the scaling-laws pair, and the wiki already has
-      eight topic pages waiting to be extended by it.
+- [x] Lecture 10 (Inference) — DONE in run 11.
+- [ ] Lectures 11–18 — transcripts and wiki pages. Lecture 11 (advanced scaling
+      laws) is the natural next one: it closes the scaling-laws pair that lecture 9
+      opened and lecture 10 interrupts, and the wiki already has eight topic pages
+      waiting to be extended by it. It is a Hashimoto PDF deck, so page-images plus
+      figure audits.
 ### Figure audit pass 3 (run 9 continued) — 19 chart pages, 3 at a time, sequential
 Pages 7, 8, 9, 10, 16, 22, 23, 25, 30, 32, 33, 35, 36, 37, 39, 43, 44, 47, 53.
 Chosen by a triage that scored each unaudited section for chart signal and for how
@@ -1055,16 +1058,18 @@ Agents now append findings per page, per the run-9 lesson.
 - [ ] Transcribe the 3 remaining PDF decks (lectures 11, 15, 16) — these need
       page-images, not source-text, and two figure-audit passes each if they are as
       chart-dense as lecture 9
-- [ ] Transcribe the 5 remaining executable lectures (10, 12, 13, 14, 17). Check each
+- [ ] Transcribe the 4 remaining executable lectures (12, 13, 14, 17). Check each
       for a published `var/traces/lecture_NN_stdout.txt` in the lectures repo before
       writing off its runtime values as machine-dependent — lecture 7 had one.
-- [ ] Describe the figures in lectures 1, 2, 6 and 7 — the image() targets are recorded
-      by path in raw/slides but their contents were never looked at. Lecture 3 now
-      sets the precedent for how (page-images plus a targeted figure audit), but
-      these lectures display images by URL or repo path rather than as PDF pages, so
-      the mechanics differ. Lecture 6 has four such figures, two of them the
-      lecture's own diagrams of the softmax and row-sum kernels; lecture 7 has five
-  (the node overview, ranks, and one schematic per parallelism strategy).
+      Lecture 10, done in run 11, needed neither: it computes symbolically, so every
+      value is reproducible from the source with sympy and nothing is
+      machine-dependent. Check for that shape first — it is much the cheapest case.
+- [x] Describe the figures in lectures 1, 2, 6 and 7 — DONE in run 10, and again for
+      lecture 10 in run 11 (22 figures, the largest set of any executable lecture).
+      What still has no description is the THIRD-PARTY layer: the figures these
+      lectures display by external URL (NVIDIA docs, arXiv, Wikimedia, Springer, the
+      JAX scaling book, Baseten, Anyscale) are recorded as links only and were never
+      looked at, because they are not ours to copy. No wiki claim rests on one.
 
 ## Run 10 — Slide images (Step 1c) for lectures 1-9
 
@@ -1181,3 +1186,117 @@ signals disagree in both directions:
 
 ### Publish
 - [x] Commit and push
+
+## Run 11 — Lecture 10: Inference
+
+Video EfM546A79aM (85 min). Percy Liang. **Executable lecture** — `lecture_10.py`,
+611 lines, so `source-text`, no deck and no page numbers. Cite function names and
+source line ranges, not slide numbers.
+
+### Course material
+- [x] raw/slides/10-inference.md — transcribe lecture_10.py (611 source lines ->
+      1113 lines). All 279 text() literals accounted for, all 30 source URLs
+      present, all 28 image() calls recorded. Every @inspect value recomputed in
+      sympy 1.14 and matched against the source's own asserts: the two intensity
+      limits (B and B*T), S*T/(S+T) with its S/2 and S/(S+1) specializations,
+      accelerator_intensity 295.22, and the full Llama-2-13B performance table at
+      B=1/64/256 and the two GQA variants. This lecture has NO machine-dependent
+      numbers — the arithmetic is symbolic, so nothing had to be withheld.
+      Source discrepancies recorded: (1) the GQA comments say "worse latency" when
+      the computed latency improves against the row above — they are consistent
+      only against the B=1 baseline; (2) the TransformerPerformanceStats docstring
+      says num_params is "in bytes" when it is a count; (3) quantization says
+      "higher latency" where it means better.
+
+### Transcript
+- [x] 10 — verbatim captions fetched (111 paragraphs, ~13.1k words)
+- [x] 10 — copy-edited transcript (drafted by Sonnet, adjudicated here)
+- [x] 10 — verify: all three checks pass, after one real fix.
+      Timestamps: 111 markers, identical sequence.
+      Numbers: NOTHING lost. Three digits added, each a word-to-digit
+      normalisation of a mathematical or format term — "N over three" -> "N over
+      3", "S over S plus one" -> "S over S plus 1", "int four" -> "int4". The
+      instructed DeepSeek v4 restoration was applied at both 1:37 and 2:23 and is
+      net-neutral in the count (it replaces "GPT-4").
+      Word ratios: 86.0% retention. FOUND A REAL DRIFT — the sentence "Yeah, I
+      guess maybe I'll say that Mamba and DeltaNet are more powerful than
+      sliding-window attention. Maybe you can think about the Mambas" had been
+      moved from [1:01:03] into [1:01:49], which passes both the timestamp and
+      number checks and breaks exactly the citation the markers exist for. Moved
+      back in the parent; both paragraphs then sit inside the band (0.85, 0.76).
+      The three remaining outliers (1:00:17, 1:05:45, 1:14:54, all 0.69-0.70) were
+      read in full and are pure filler removal.
+      A distinctive-word sweep across all 111 paragraphs found no other
+      cross-boundary movement.
+      Restorations: 26 of 28 restored terms appear verbatim in the course
+      material. The two that do not are "QKV" (the source writes Q, K and V
+      separately, in that order — a letter-order fix, not a new name) and "Tatsu"
+      (a spoken name with no printed counterpart). 4 [Ed:] notes mark genuine
+      ambiguity; 11 student-question markers over 8 exchanges.
+
+### Wiki
+- [x] wiki/10-inference.md (291 lines)
+- [x] Topic pages (10 new) — inference (the hub), kv-cache (the four axes:
+      heads/dimension/layers/sequence), prefill-and-generation (the intensity
+      table), latency-and-throughput (the Llama-2-13B performance model),
+      quantization (formats, QAT/PTQ, GPTQ, AWQ), pruning-and-distillation,
+      speculative-sampling (algorithm + the two-token exactness proof),
+      continuous-batching (Orca, selective batching), paged-attention (vLLM),
+      cross-layer-attention
+- [x] Extend rather than duplicate: arithmetic-intensity gains the inference
+      derivation; attention-variants gains the GQA performance table, the MQA
+      verdict and the contested accuracy evidence; multi-head-latent-attention
+      gains the 16384->576 ratio and Tables 8/9; sparse-attention gains DeepSeek
+      v4's CSA/DSA/HCA; linear-attention and state-space-models gain the
+      sliding-window comparison; flash-attention gains why it is ASSUMED by the
+      inference accounting; precision-and-data-types points at the new
+      quantization page; efficiency, course-map, executable-lectures updated
+- [x] Fixed three stale claims found while extending: lecture 4's page said none
+      of its three deferred topics were in the KB (two now are), INDEX's deck list
+      omitted lecture_09.pdf, and AGENTS.md still said only 3, 4, 5 and 8 of the
+      decks were done
+- [x] INDEX.md — ten-lecture coverage: banner, Start here entry, a Lecture 10
+      section with 10 annotated entries, raw-material section rewritten
+- [x] Link sweep — 2,333 relative links, 0 broken, 0 missing anchors; all 94 wiki
+      pages appear in INDEX.md; no LaTeX inside code fences
+- [x] Citation checks — all 127 [MM:SS] citations in the new pages and all 32 in
+      the lecture-10 sections of extended pages match a real marker.
+      QUOTE CHECK, and it found real work: 104 quoted fragments were compared
+      against the finished transcript and slide file. 45 did not match, because
+      they had been drafted from the VERBATIM captions before the copy-edit landed
+      and the editor legitimately reworded them ("produces is" -> "produces are",
+      "waiting for a bus" recast, and so on). All 45 rewritten to the published
+      wording. Two further slips fixed: an unmarked elision that dropped "kind of"
+      from the lecture's closing line in five pages, and a citation of the Mamba
+      quote at [1:01:49] that the drift fix moved to [1:01:03].
+
+### Images (Step 1c)
+- [x] Copy the 22 course-own images/*.png into raw/images/10-inference/ (3.1 MB).
+      The 6 third-party hotlinks (4 jax-ml scaling book, 1 Baseten, 1 Anyscale) are
+      NOT copied; they stay as URLs in the slide file.
+- [x] 22 descriptions written by a Sonnet reader that opened and zoomed each image.
+      Spot-checked 2 in the parent: mla-accuracy.png exact (12 numbers, param row,
+      bolding, verbatim Table 8 caption); gqa-speed.png structurally right (3 series,
+      GQA meets MHA at 64 groups) but its sub-1 values were stated more precisely
+      than a y-axis with ticks only at 1 and 2 supports — rewritten as relative
+      statements. Three source-image quirks recorded rather than silently fixed:
+      "9% bettter" and "Je t'amie" are typos IN the images, and
+      deepseek-v4-attention.png does not label CSA/DSA/HCA at all.
+- [x] Embedded all 22 into raw/slides/10-inference.md by script (blank line either
+      side, alt text, one-paragraph caption, attribution link). All paths resolve.
+- [x] Wire into wiki/ pages — the 22 images live in raw/slides/10-inference.md
+      under the figure marker each one belongs to. No wiki embeds: lecture 10 has
+      no slide numbers, so there is no "cites slide N" anchor for the script to
+      use, and the executable lectures' figures are referenced from the slide file
+      the wiki links. Same shape as lectures 1, 2, 6 and 7.
+- [x] AGENTS.md — images coverage table now runs 1-10, the executable-lecture
+      count is five, the ownership-not-content filter for lecture 10 is stated, and
+      the three source-image quirks are recorded
+
+### Publish
+- [x] Update sources.md (lecture_10.py now transcribed; the symbolic-computation
+      note and the 22-of-28 image split recorded)
+- [x] kb.json — coverage 10/18, 84 topic pages, executableLectures 5 of 9,
+      byLecture."10" = source-text, images 281 files / 32.3 MB, 50 caveats (6 new)
+- [ ] Commit and push
+- n/a  kbUrl already set on the catalog entry from run 1

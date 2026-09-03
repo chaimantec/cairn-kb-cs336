@@ -34,8 +34,8 @@ partially covered while the rest of that unit is still a preview.
 ## What is special about CS336
 
 **Half the lectures are Python programs, not slide decks.** Percy Liang's lectures
-(1, 2, 6, 7, 10, 12, 13, 14, 17) — four of which, 1, 2, 6 and 7, are transcribed here —
-are *executable lectures* — programs whose
+(1, 2, 6, 7, 10, 12, 13, 14, 17) — five of which, 1, 2, 6, 7 and 10, are transcribed
+here — are *executable lectures* — programs whose
 execution delivers the content, rendered by a trace viewer. Tatsunori Hashimoto's
 (3, 4, 5, 8, 9, 11, 15, 16) are conventional PDFs.
 
@@ -53,10 +53,11 @@ Three consequences for anyone extending this KB:
 - **A website crawl misses the executable lectures entirely**, since the `.py`
   files are not linked as documents. `sources.md` lists them by hand.
 
-For decks (lectures 3, 4, 5, 8, 9, 11, 15, 16 — of which 3, 4, 5 and 8 are done), the normal rules apply: read the
-pages visually, transcribe per slide, and audit the figure descriptions. **Lectures
-3, 4 and 5 are the ones done so far**, and they set four precedents worth
-following:
+For decks (lectures 3, 4, 5, 8, 9, 11, 15, 16 — of which 3, 4, 5, 8 and 9 are done),
+the normal rules apply: read the pages visually, transcribe per slide, and audit the
+figure descriptions. The precedents below come from lectures 3, 4 and 5; the later
+runs' additions are in the **Run 8** and **Run 9 precedents** sections at the end of
+this file. Four worth following:
 
 - **Derive the slide numbering before anyone reads a page, and hand over the
   conclusion.** `lecture_03.pdf` prints no page number on any of its 67 pages;
@@ -228,7 +229,7 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 
 ## Images
 
-Every lecture 1-9 has images. They are committed, not hotlinked, and they are the only
+Every lecture 1-10 has images. They are committed, not hotlinked, and they are the only
 part of this KB that redistributes course material rather than pointing at it.
 
 | Lecture | Files | Where they came from |
@@ -242,8 +243,17 @@ part of this KB that redistributes course material rather than pointing at it.
 | 7 Parallelism | 4 | same |
 | 8 Parallelism 2 | 51 of 73 pages | rendered from `lecture_08.pdf` |
 | 9 Scaling Laws | 40 of 57 pages | rendered from `lecture_09.pdf` |
+| 10 Inference | 22 | the course's own `images/*.png` |
 
-Lectures 10-18 are not in this KB at all, so they have no images.
+Lectures 11-18 are not in this KB at all, so they have no images.
+
+Lecture 10 is by far the richest of the executable lectures — 22 against 4-9 for the
+others — because it is an unusually illustrated program: most of its figures are
+reproduced tables and charts from the papers it discusses. It also hotlinks **6** further
+images to third parties (four from the JAX scaling book, one from Baseten, one from
+Anyscale). Those were **not** copied. They appear in `raw/slides/10-inference.md` as bare
+URLs with no description, because they were not looked at and are not ours to
+redistribute.
 
 ### Using them
 
@@ -294,6 +304,18 @@ content is already fully in the slide file, so an image is bytes for nothing.
 Two of the course's own figures were deliberately not fetched: `course-staff.png`
 (a photo grid of the teaching staff, no course content) and `ranks.png` (four boxes
 labelled Rank 0-3, which the prose states completely).
+
+For lecture 10 the rule was different, because there is no deck to sample from: **all 22
+of the course's own images for that lecture were taken**, since a program only calls
+`image()` where it wants a figure shown — there are no title cards or dividers to filter
+out. The filtering there was on *ownership*, not content: the 6 third-party hotlinks were
+left as URLs.
+
+Three things in lecture 10's images are faithful to the source rather than transcription
+errors, and are recorded in that slide file's front matter: `pruning-kd.png` prints
+"9% bettter", `paged-attention-sharing.png` prints "Je t'amie", and
+`deepseek-v4-attention.png` does **not** label the CSA/DSA/HCA acronyms that the lecture's
+own bullets name right after it.
 
 `raw/slides/` holds an image for **every** page that was rendered. `wiki/` holds one only
 where a page cites that slide, which is the KB's convention anyway — so most images are

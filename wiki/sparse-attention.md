@@ -125,6 +125,35 @@ selection, and using load balancing or other kinds of auxiliary losses to work a
 that non-differentiability, will be an ingredient of future architecture design"
 ([1:10:05]).
 
+## The DeepSeek v4 stack, from lecture 10
+
+[Lecture 10](10-inference.md) returns to this family a lecture later and names
+three mechanisms rather than one, in a model supporting **1M context**
+([1:02:36]):
+
+- **CSA — Compressed Sparse Attention.** Compresses every $m$ tokens into one.
+- **DSA — DeepSeek Sparse Attention.** Selects the top $k$, exactly as this page
+  describes: "you compute some lighter-weight queries and keys and then do a small
+  attention to get these index scores, so you know what to keep — a lightning-fast
+  way to figure out what tokens you need to keep."
+- **HCA — Heavily Compressed Attention.** Compresses further still.
+
+Percy is candid that the acronyms are not the point — "I never remember all these
+acronyms and what they mean" — and reads the architecture off the diagram instead.
+Note a gap for anyone going to that diagram: the figure in the lecture source shows
+one general indexer-based architecture (a *Lightning Indexer* producing index
+scores, a *Top-k Selector*, a token-level compressor, and a concatenation of
+selected compressed entries with sliding-window entries) and **does not label CSA,
+DSA or HCA anywhere**. The three names come from the lecture's own bullets, not
+from the figure.
+
+What lecture 10 adds conceptually is the *reason* to care, stated in the currency
+of serving rather than of context length: all three mechanisms shrink the
+[KV cache](kv-cache.md), and since
+[generation is memory-bound](prefill-and-generation.md), a smaller cache is
+directly lower latency and higher throughput. Compression and selection are two of
+the four axes in that page's table, applied to the sequence dimension.
+
 ## Related pages
 
 - [Linear attention](linear-attention.md) and [state space models](state-space-models.md)
@@ -133,3 +162,5 @@ that non-differentiability, will be an ingredient of future architecture design"
 - [Attention variants](attention-variants.md) — sliding-window and fixed-pattern sparsity
   from lecture 3, which is sparsity with a *static* pattern rather than a learned one.
 - [Lecture 4](04-attention-alternatives.md).
+- [Lecture 10 — Inference](10-inference.md) — CSA, DSA and HCA as KV-cache reduction.
+- [KV cache](kv-cache.md) — why shrinking the sequence axis is worth so much.

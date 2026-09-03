@@ -88,14 +88,15 @@ CS336 splits by instructor, and the split is exactly the format split:
 Both live in [`stanford-cs336/lectures`](https://github.com/stanford-cs336/lectures).
 Full inventory in [`sources.md`](../sources.md).
 
-**This KB covers four executable lectures and three decks.** Lectures 1, 2, 6 and 7 are
-executable lectures, transcribed from source text; [Lecture 3](03-architectures.md)
-(67 pages), [Lecture 4](04-attention-alternatives.md) (60 pages) and
-[Lecture 5](05-gpus-tpus.md) (55 pages) are decks, transcribed from the rendered
-page images. The citation rules differ accordingly — cite a *function name and line
+**This KB covers five executable lectures and five decks.** Lectures 1, 2, 6, 7 and 10
+are executable lectures, transcribed from source text; [Lecture 3](03-architectures.md)
+(67 pages), [Lecture 4](04-attention-alternatives.md) (60 pages),
+[Lecture 5](05-gpus-tpus.md) (55 pages), [Lecture 8](08-parallelism-2.md) (73 pages)
+and [Lecture 9](09-scaling-laws.md) (57 pages) are decks, transcribed from the
+rendered page images. The citation rules differ accordingly — cite a *function name and line
 range* for the first kind, a *slide number* for the second.
 
-One wrinkle applies to all three decks: **none prints a page number on any page**,
+One wrinkle applies to all five decks: **none prints a page number on any page**,
 so their "slide N" labels are PDF page numbers, and each slide file says so in its
 front matter. For `lecture_03.pdf` an automated scan reported a printed number that
 turned out to be the numerator of a fraction on page 61; for `lecture_04.pdf` the
@@ -128,6 +129,24 @@ falls back to running in one process with every `torch.distributed` call replace
 a no-op, with rank hard-coded to 0. The stepped-through view therefore shows the code
 with no communication happening — which is exactly why the separate stdout file
 exists. See [torch.distributed](torch-distributed.md#a-wrinkle-in-reading-the-lecture).
+
+[Lecture 10](10-inference.md) is the executable format at its most unusual: almost
+none of its numbers are runtime measurements, because **it computes symbolically**.
+FLOPs and bytes are accumulated as sympy expressions in $B, S, T, D, F, N, K, H, L,
+V$, simplified, and only then substituted with a Llama 2 13B configuration — so
+where lecture 6 had to withhold machine-dependent timings and lecture 7 could only
+quote them because the course published a stdout file, lecture 10 has nothing
+machine-dependent to withhold at all. Every `@inspect` value in
+[`raw/slides/10-inference.md`](../raw/slides/10-inference.md) was reproduced by
+evaluating the lecture's own expression, and each matches the `assert` the source
+makes about it.
+
+That format has a second consequence worth knowing when reading it: the source's
+`assert` statements are the lecture *checking its own claims*, so they are the
+authoritative statement of what each derivation should come out to. Where a
+hand-written comment disagrees with the computed value — lecture 10 has three such
+slips, recorded in its slide file's front matter — the arithmetic is the part to
+trust.
 
 A crawl of the course website finds the PDFs and misses the programs entirely,
 since the programs are not linked as documents — worth knowing if you are

@@ -150,6 +150,29 @@ derived on its own.
 
 The kernels are written in [Triton](triton.md), which is what Assignment 2 asks for.
 
+## Why it is assumed in the inference accounting
+
+[Lecture 10](10-inference.md) does not re-derive FlashAttention; it *assumes* it,
+and the assumption is load-bearing. Its attention accounting is headed "focusing on
+the matrix multiplications with FlashAttention", and the reason matters: the
+$B \times S \times T$ attention matrix never appears in the byte count. Without
+FlashAttention it would have to — writing and re-reading it would dominate the
+transfer — and the [arithmetic intensity](arithmetic-intensity.md) of generation
+would be worse still.
+
+So the bytes read per attention step are just $Q$, $K$, $V$ and the output,
+$4BSD + 4BTD$, giving an intensity of $ST/(S+T)$. That expression is the one that
+collapses to below 1 during generation. In other words the memory-bound verdict in
+[prefill and generation](prefill-and-generation.md) is the verdict *after* the best
+known kernel has already been applied — it is not a problem a better kernel can
+fix, which is why the rest of that lecture changes the model instead.
+
+vLLM's kernel list also names **FlashDecoding** alongside FlashAttention
+([1:23:18] of Lecture 10) — the generation-time variant, which parallelizes over
+the KV sequence length because at $T = 1$ there is no query dimension left to
+parallelize over. See [PagedAttention](paged-attention.md) for the surrounding
+optimizations.
+
 ## Related
 
 - [Tiling](tiling.md) — the mechanism, and the tile-size and alignment concerns.
@@ -161,6 +184,7 @@ The kernels are written in [Triton](triton.md), which is what Assignment 2 asks 
 - [Arithmetic intensity](arithmetic-intensity.md) — why moving less memory raises
   throughput.
 - [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md).
+- [Lecture 10 — Inference](10-inference.md) — where it is assumed rather than derived.
 - [Transcript](../raw/transcripts/05-gpus-tpus.md), [slide deck](../raw/slides/05-gpus-tpus.md).
 
 ## Its place in the activation-memory budget

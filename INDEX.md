@@ -8,15 +8,15 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1–9 of 18
+> ## ⚠️ This knowledge base covers Lectures 1–10 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
 > Mixtures of Experts), Lecture 5 (GPUs and TPUs), Lecture 6 (Kernels and
-> Triton), Lecture 7 (Parallelism), Lecture 8 (Parallelism, Part 2) and Lecture 9
-> (Scaling Laws — Basics) are covered in depth.** Nothing else is. There are no
-> transcripts and no wiki pages for inference, evaluation, data, mid/post-training,
-> RLVR or multimodality.
+> Triton), Lecture 7 (Parallelism), Lecture 8 (Parallelism, Part 2), Lecture 9
+> (Scaling Laws — Basics) and Lecture 10 (Inference) are covered in depth.**
+> Nothing else is. There are no transcripts and no wiki pages for evaluation,
+> data, mid/post-training, RLVR or multimodality.
 >
 > **A note specific to scaling laws:** CS336 splits them across *two* lectures,
 > with inference in between. **Lecture 9 — the basics — is now covered**: data
@@ -95,10 +95,70 @@ compute and data?
   three small decisions that caused the disagreement, and why you should overtrain
   past the answer anyway.
 
+- **[Lecture 10 — Inference](wiki/10-inference.md)** — the only lecture about what
+  happens *after* training, and the one that explains why "inference is memory
+  bound" is true rather than folklore. It derives the arithmetic intensity of both
+  phases (prefill is compute-bound, generation is not, and batching cannot rescue
+  attention because every sequence carries its own KV cache), turns that into a
+  performance model for Llama 2 13B on an H100, and then spends the rest of the
+  hour buying memory traffic back: KV-cache reductions, quantization, pruning with
+  distillation, speculative sampling, continuous batching and PagedAttention.
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 10 — inference
+
+- **[Inference](wiki/inference.md)** — the hub. Why serving is a repeated cost that
+  now rivals training in aggregate compute, why agents removed the ceiling on how
+  much speed is worth buying, the three metrics (TTFT, latency, throughput) and
+  which application each belongs to, the serving landscape (vLLM, SGLang,
+  TensorRT-LLM, llama.cpp), and the three-way split of the techniques.
+- **[KV cache](wiki/kv-cache.md)** — the object everything in this lecture is
+  trying to shrink. Why it exists (naive generation is $O(T^3)$), its exact size
+  formula, why one 1024-token request costs 0.84 GB against 26 GB of Llama 2 13B
+  weights, and the **four axes** — heads, dimension, layers, sequence — that GQA,
+  MLA, CLA and local attention each cut. **Start here if you want the one table
+  that organizes the whole lecture.**
+- **[Prefill and generation](wiki/prefill-and-generation.md)** — the two phases and
+  their opposite bottlenecks, with the full intensity table: prefill is
+  compute-bound at $BS$ and $S/2$, generation is memory-bound at $B$ and
+  $S/(S+1) < 1$ against hardware that wants 295. Also why batching rescues the MLP
+  and cannot rescue attention, which is the structural fact the rest follows from.
+- **[Latency and throughput](wiki/latency-and-throughput.md)** — the tradeoff, and
+  the symbolic performance model behind it. Llama 2 13B on an H100 at batch 1, 64
+  and 256: latency linear in $B$, throughput asymptoting, and 240 GB of memory
+  demanded by a configuration an 80 GB card cannot run. Also why reducing memory
+  escapes the tradeoff entirely while increasing batch size does not.
+- **[Speculative sampling](wiki/speculative-sampling.md)** — the lossless one. The
+  draft-and-verify algorithm in full, the two-token proof that the output
+  distribution is *exactly* the target model's, the measured 1.92–2.46× speedups,
+  why $K \approx 3$–4 is the sweet spot, and Medusa and EAGLE as ways to improve
+  the draft model.
+- **[Quantization](wiki/quantization.md)** — scale and zero point worked through
+  one number, the format table from fp32 to int4 with the ranges that explain why
+  int8 is inference-only, quantization-aware training versus post-training
+  quantization, GPTQ's error propagation, and AWQ's finding that *activations*
+  decide which weights deserve precision.
+- **[Pruning and distillation](wiki/pruning-and-distillation.md)** — rip pieces out
+  of a trained model and heal it. NVIDIA's importance-rank-trim-distill loop, how
+  importance is actually measured (and the student question about a
+  constant-output neuron that gets the right answer), and Minitron 8B reaching a
+  15B model's neighbourhood for about 40× less training.
+- **[Continuous batching](wiki/continuous-batching.md)** — Orca's iteration-level
+  scheduling, which edits the batch between decode steps so an arriving request
+  never waits, plus selective batching, which splits attention from the MLP along
+  exactly the line the intensity derivation predicted.
+- **[PagedAttention](wiki/paged-attention.md)** — virtual memory for the KV cache.
+  Internal and external fragmentation (2,038 reserved-and-never-used slots in the
+  paper's own figure), fixed-size blocks with a block table, and prefix sharing
+  with copy-on-write for system prompts and multi-sample generation. The core idea
+  of vLLM.
+- **[Cross-layer attention](wiki/cross-layer-attention.md)** — the least-known of
+  the four cache cuts, and the cleanest illustration of the idea: share keys and
+  values *down the layer stack*, just as GQA shares them across heads.
 
 ### Lecture 9 — scaling laws
 
@@ -508,7 +568,8 @@ usually the faster route than the lecture pages.
   [Lecture 6](raw/transcripts/06-kernels-triton.md),
   [Lecture 7](raw/transcripts/07-parallelism.md),
   [Lecture 8](raw/transcripts/08-parallelism-2.md),
-  [Lecture 9](raw/transcripts/09-scaling-laws.md).
+  [Lecture 9](raw/transcripts/09-scaling-laws.md),
+  [Lecture 10](raw/transcripts/10-inference.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
@@ -523,9 +584,10 @@ usually the faster route than the lecture pages.
   authority for anything the lecturer wrote down**; the transcript is the authority
   for what was said. CS336 supplies it in two very different forms:
   - [`lecture_01.py`](raw/slides/01-overview-tokenization.md),
-    [`lecture_02.py`](raw/slides/02-pytorch-resource-accounting.md) and
-    [`lecture_06.py`](raw/slides/06-kernels-triton.md) and
-    [`lecture_07.py`](raw/slides/07-parallelism.md) are Percy
+    [`lecture_02.py`](raw/slides/02-pytorch-resource-accounting.md),
+    [`lecture_06.py`](raw/slides/06-kernels-triton.md),
+    [`lecture_07.py`](raw/slides/07-parallelism.md) and
+    [`lecture_10.py`](raw/slides/10-inference.md) are Percy
     Liang's *executable lectures* — Python programs, transcribed from source text,
     each with a section-to-source-line table and the code verbatim. There are no
     slide numbers to cite. Where such a lecture computes a number at runtime, a
@@ -535,14 +597,20 @@ usually the faster route than the lecture pages.
     **Lecture 7 is the exception**: the course publishes that one program's own
     standard output from a real four-GPU run, so its measured bandwidths and
     per-rank losses are quoted and marked "(recorded run)" — measurements of that
-    machine, not of yours.
+    machine, not of yours. **Lecture 10 is the opposite extreme**: it computes
+    symbolically with sympy, so it has no machine-dependent values at all — every
+    quantity was reproduced by evaluating the lecture's own expression, and each
+    matches the `assert` the source makes about it. Its Llama 2 13B latency and
+    throughput figures are theoretical maxima under a stated
+    perfect-overlap assumption, not benchmarks.
   - [`lecture_03.pdf`](raw/slides/03-architectures.md) (67 pages),
     [`lecture_04.pdf`](raw/slides/04-attention-alternatives.md) (60 pages),
-    [`lecture_05.pdf`](raw/slides/05-gpus-tpus.md) (55 pages) and
-    [`lecture_08.pdf`](raw/slides/08-parallelism-2.md) (73 pages) are Tatsunori
+    [`lecture_05.pdf`](raw/slides/05-gpus-tpus.md) (55 pages),
+    [`lecture_08.pdf`](raw/slides/08-parallelism-2.md) (73 pages) and
+    [`lecture_09.pdf`](raw/slides/09-scaling-laws.md) (57 pages) are Tatsunori
     Hashimoto's slide decks, transcribed from the rendered page images, with every
     figure described in prose and every table transcribed cell by cell. Slide
-    numbers in all four are **PDF page numbers**, because none of the decks prints
+    numbers in all five are **PDF page numbers**, because none of the decks prints
     any of its own. Lectures 4, 5 and 8 are the figure-dependent ones — 102 images
     across 60 pages, 83 across 55, and 86 across 73, most pages carrying only 30–40
     words of their own text — so the figure descriptions there are not a supplement
@@ -552,15 +620,17 @@ usually the faster route than the lecture pages.
     audited: twelve pages checked across two passes, plus a sweep of every
     cross-slide claim in the file.
 - **[`sources.md`](sources.md)** — every lecture, deck, assignment and linked
-  document with its canonical URL, including the material for the 10 lectures this
+  document with its canonical URL, including the material for the 8 lectures this
   KB does not yet cover. Explains how CS336 splits between executable lectures and
   PDF decks.
 
 - **`raw/images/NN-<slug>/`** — pictures, so an answer can *show* a figure rather than
-  only describe it. All nine covered lectures have them: 40–51 images each for the five
-  PDF-deck lectures (3, 4, 5, 8, 9), one for every figure-bearing page; and 4–9 each for
-  the four executable lectures (1, 2, 6, 7), which have no deck, so these are the figures
-  the course serves from its own repo. Each image sits beside the slide it shows in
+  only describe it. All ten covered lectures have them: 40–51 images each for the five
+  PDF-deck lectures (3, 4, 5, 8, 9), one for every figure-bearing page; and 4–22 each for
+  the five executable lectures (1, 2, 6, 7, 10), which have no deck, so these are the
+  figures the course serves from its own repo. Lecture 10 is much the richest of those
+  five, with 22 — it is a heavily illustrated lecture whose figures are mostly
+  reproduced tables and charts from the papers it discusses. Each image sits beside the slide it shows in
   `raw/slides/`, and in `wiki/` wherever a page cites that slide. About a third of every
   deck was deliberately *not* rendered — title cards, outlines, dividers, and the tables
   and equations `raw/slides/` already reproduces cell by cell — so **read an image path
@@ -570,7 +640,7 @@ usually the faster route than the lecture pages.
 
 `raw/pdfs/` is empty by design — no binaries are committed. The course's decks are
 5–7 MB each and live at the URLs in `sources.md`. The rendered slide images in
-`raw/images/` (28 MB) are the one exception to "no binaries": they are committed, because
+`raw/images/` (31 MB) are the one exception to "no binaries": they are committed, because
 a picture is the thing a prose description cannot replace.
 
 ## Also
