@@ -62,25 +62,36 @@ reading: >
   and 45, and the converse trap - ticks at powers of two that read as log-2 and are
   linear - appeared on slides 4, 31 and 40.
 audit: >
-  NO FIGURE AUDIT HAS RUN YET. The verification behind this file is structural and
-  cross-referential rather than a second reading of the pages: 58 headings in sequence
+  FIGURE AUDIT PASS 1 IS PARTIAL - 2 of 7 planned pages. The pass was killed by a session
+  rate limit after page 11, but it appended per page, so both finished pages survived.
+  PAGE 37: CLEAN, and fully audited - all 30 marker values re-measured by colour-keyed
+  pixel clustering, both axes' calibration reproduced from minor-gridline geometry, all
+  three panel titles and six colorbar ranges confirmed character by character. Its
+  learning-rate scale, previously this deck's largest open question, is settled three ways
+  that do not depend on the 2-3 px glyph at all; see Known limits.
+  PAGE 11: ONE substantive error, now corrected - the file gave panel 1's left BORDER as
+  1.4e4, which is where the data begins; the border is exactly 1e4, with the labelled tick
+  on the spine. The file's own numbers had been internally inconsistent (199 px/decade over
+  the stated range gives 350 px for a 377.5 px panel), which is a reminder that an entry
+  can be checked against itself for free. The page's unverified y-axis exponents were
+  confirmed as transcribed, and six marker values and two red-line traces were refined.
+  So: 2 pages audited, 1 dirty, 1 error. That is a far better rate than lecture 9's
+  Sonnet read (26 of 36 pages dirty, 84 errors), which is the comparison the Opus choice
+  was made against - but 2 pages is a sample, not a verdict.
+  STILL UNAUDITED: 29, 41, 45, 35 and 51 from the planned pass, and the other 51 pages of
+  the deck. Until they are done, treat SLIDE TEXT AND TABLES as reliable and CHART VALUES
+  as provisional. That asymmetry is measured, not assumed: every error found across
+  lecture 9's three audit passes was in a chart description, and none was in slide text or
+  a native-text caption.
+  Structural verification is complete and separate from the above: 58 headings in sequence
   1..58 with no gaps or duplicates, and all 58 matched verbatim against the deck's own
-  title text, identified by title font size and position rather than by content-stream
-  order. (Content-stream order gets slide 49 wrong - its title sits at y=34 in 23.8pt
-  but is not the first string in the stream - which is worth knowing before anyone
-  rebuilds this check.)
-  Beyond that the readers cross-checked inside the deck wherever it was free, and two
-  such checks came back consistent: slide 24's eight grey circles are numerically
-  identical to the eight IsoFLOP minima measured off slide 23, and slide 12's printed
-  fit log(BS) = -6.24 log(L) + 20.91 reproduces its own traced line to within 1% once
-  the logs are read as natural logs, which independently validates that page's axis
-  calibration.
-  Until an audit runs, treat SLIDE TEXT AND TABLES as reliable and CHART VALUES as
-  provisional. That asymmetry held across every error found in lecture 9: all of them
-  were in chart descriptions, none in slide text or a native-text caption.
-  Priority pages for a first audit pass, nominated by the readers who wrote them:
-  37 (its entire learning-rate scale rests on one 2-3 px glyph), then 11 (the unverified
-  y-axis exponents), then 29, 41, 45, 35 and 51.
+  title text, identified by title font size and position rather than content-stream order.
+  (Content-stream order gets slide 49 wrong - its title sits at y=34 in 23.8pt but is not
+  the first string in the stream - which is worth knowing before anyone rebuilds that
+  check.) Two internal cross-checks also came back consistent: slide 24's eight grey
+  circles are numerically identical to the eight IsoFLOP minima measured off slide 23, and
+  slide 12's printed fit log(BS) = -6.24 log(L) + 20.91 reproduces its own traced line to
+  within 1% once the logs are read as natural logs.
 ---
 
 ## Sections
@@ -110,7 +121,7 @@ audit: >
 Collected from the six readers. Each is a place where the source PDF, not the reading
 pass, sets the ceiling. Two of them are inferences that a later audit should settle.
 
-- **Slide 11 — the y-axis tick exponents are not verified.** The pasted raster is a
+- **Slide 11 — the y-axis tick exponents, RESOLVED by audit; the axis calibration remains genuinely unrecoverable.** The pasted raster is a
   1547×457 JPEG holding all three panels (an effective ~177 dpi), so re-rendering the PDF
   at higher dpi adds no detail. Each y tick label is typeset as a power of ten whose
   exponent is a single digit about 4 px tall. Attempted: 14×–20× bicubic and nearest
@@ -121,13 +132,32 @@ pass, sets the ceiling. Two of them are inferences that a later audit should set
   consistent reading (9M / 30M / 170M models, tokens rising with model size). Treat it as
   a reading, not a fact. Relatedly, no minor ticks exist on those axes, so px-per-decade
   is not recoverable and **no y values are quoted for slide 11** beyond the tick labels.
-- **Slide 37 — every learning-rate value depends on one 2–3 px glyph.** The LR axes carry
+  **The audit settled the exponents and confirmed the calibration limit.** Two independent
+  routes agreed on $10^8$ / $10^9$ / $10^9$: a structural glyph test (a 4-5 px "8" is
+  vertically balanced, a "9" top-heavy; the per-row ink ratios came out 1.03, 1.33 and 1.55,
+  and at 18x the panel-2/3 glyphs show an open bowl and tail where panel 1's is a solid
+  block), and cross-panel plausibility (panels 1 and 2 share five of six batch columns, so
+  reading panel 1 as $10^9$ would put the 9M model at more tokens than the 170M one). The
+  "unrecoverable calibration" claim was also tested rather than taken on trust: a tick scan
+  found exactly one tick per panel and no minor ticks on either axis, and an attempt to
+  recover the scale from marker-row pitch failed because the ~30 curves overlap too heavily
+  (26-32 blobs per column, pitches scattered 3-14 px). Quoting no y values is correct.
+- **Slide 37 — RESOLVED. The $10^{-3}$ reading is confirmed, and the page audited clean.** The LR axes carry
   a single tick whose exponent is 2–3 px wide at the embedded image's native resolution.
   It is read here as $10^{-3}$, on three independent grounds: the grayscale ink-profile of
   the crispest instance, the higher-resolution copies of the same figure family on slides
-  34–36, and the implausibility of the $10^{-4}$ alternative. **If that reading is wrong,
-  every LR number on slide 37 scales by 10×.** This is the single highest-value target for
-  a figure audit of this deck.
+  34–36, and the implausibility of the $10^{-4}$ alternative. **An audit has since settled
+  it three further ways, none of which relies on the glyph at all.** (1) The gold "OpenAI
+  Law" line is Kaplan et al.'s $\eta = 0.003239 - 0.0001395\ln N$, which at $N=2.155\times10^9$
+  gives $2.41\times10^{-4}$; its measured position reads $2.404\times10^{-4}$ if the tick is
+  $10^{-3}$ — agreement to 0.3% — and $2.4\times10^{-5}$ if it were $10^{-4}$, off by exactly
+  the factor in question. (2) DeepSeek's own published laws $\eta=0.3118\,C^{-0.1250}$ and
+  $B=0.2920\,C^{0.3271}$ predict 1.15e-3 / 6.74e5 and 1.05e-3 / 8.58e5 for the left and
+  middle panels against measured 1.13e-3 / 6.9e5 and 1.04e-3 / 8.6e5 — and because the batch
+  axis is independently labelled, this pins both axes jointly. (3) Slide 36 carries the same
+  figure family at a resolution where the $10^{-3}$ tick is unambiguous. All 30 marker values
+  on the page were then re-measured by colour-keyed pixel clustering and confirmed. **Slide
+  37 is the one page of this deck that has been fully audited, and it is clean.**
 - **Slide 15 — the six WSD curves are physically coincident during the stable phase.** At
   the pasted image's native 1249×778 the six lines occupy a band about 4 px thick, and the
   colour ramp between neighbours is only 11–16 RGB units. The entry reports the *band*
@@ -468,16 +498,16 @@ Body text: "Three model sizes (9m, 30m, 170m) as a function of data size (y), ba
 
 Only two ticks are drawn on each x-axis and one on each y-axis; the x-axis being log was confirmed by measurement rather than by eye — the labelled decade is 199 px wide in panel 1 and 216 px in panels 2 and 3, and the columns of markers sit at a constant pixel spacing of about 60–65 px, i.e. exactly one factor-of-two step per column on a log axis.
 
-- **Panel 1 — "0009b" (9M).** X-axis "Batch Size" labelled $10^4$ and $10^5$; the plotted range runs from about $1.4\times10^4$ at the left border to about $8\times10^5$ at the right. Y-axis "Tokens Processed" with a single labelled tick, $10^8$, sitting about a quarter of the way up from the bottom. Colourbar "Loss" ticked 4.4, 4.6, 4.8, 5.0, 5.2, with dark purple at 4.4 and the top of the bar (yellow) above 5.2. Six marker columns, at batch sizes of roughly $1.6\times10^4$, $3.5\times10^4$, $7\times10^4$, $1.4\times10^5$, $2.9\times10^5$ and $6\times10^5$ — one doubling apart.
+- **Panel 1 — "0009b" (9M).** X-axis "Batch Size" labelled $10^4$ and $10^5$. The panel's **left border is exactly $10^4$** — the labelled tick sits on the spine — and its right border is about $7.9\times10^5$; the plotted *data* begins a little inside the border, at about $1.4\times10^4$. Y-axis "Tokens Processed" with a single labelled tick, $10^8$, sitting about a quarter of the way up from the bottom. Colourbar "Loss" ticked 4.4, 4.6, 4.8, 5.0, 5.2, with dark purple at 4.4 and the top of the bar (yellow) above 5.2. Six marker columns, at batch sizes of $1.66\times10^4$, $3.65\times10^4$, $7.40\times10^4$, $1.47\times10^5$, $2.91\times10^5$ and $5.9\times10^5$ — a doubling apart for five of the six steps; the first gap is 68 px rather than ~60, i.e. a factor of about 2.2.
 - **Panel 2 — "003b" (30M).** X-axis labelled $10^5$ and $10^6$. Y-axis single tick $10^9$, sitting high in the panel (about 80% of the way up). Colourbar ticked 3.8, 4.0, 4.2, 4.4, 4.6. Six marker columns at roughly $3.7\times10^4$, $7.4\times10^4$, $1.5\times10^5$, $3\times10^5$, $5.9\times10^5$ and $1.2\times10^6$.
-- **Panel 3 — "017b" (170M).** X-axis labelled $10^5$ and $10^6$. Y-axis single tick $10^9$, about a third of the way up. Colourbar ticked 3.4, 3.6, 3.8, 4.0, 4.2. Six marker columns at roughly $1.3\times10^5$, $2.6\times10^5$, $5.2\times10^5$, $1.0\times10^6$, $2.1\times10^6$ and $4.2\times10^6$.
+- **Panel 3 — "017b" (170M).** X-axis labelled $10^5$ and $10^6$, with the $10^5$ tick sitting on the left spine, so that border is exactly $10^5$. Y-axis single tick $10^9$, about a third of the way up. Colourbar ticked 3.4, 3.6, 3.8, 4.0, 4.2. Six marker columns at roughly $1.3\times10^5$, $2.6\times10^5$, $5.2\times10^5$, $1.0\times10^6$, $2.1\times10^6$ and $4.2\times10^6$.
 
 Within each panel the markers form those six vertical columns (the slide's own text: "Vertical columns of points represent a single training curve (fixed batch, more points)"), coloured by loss — yellow (high loss) low in the panel, darkening to purple (low loss) as tokens processed increases. Threaded through the columns is a dense family of U-shaped curves, each running from upper-left down to a minimum and back up to upper-right, drawn as solid lines shadowed by dashed lines of the same colour; a vertical scan across the widest part of panel 1 separates 29 distinct strands, so there are on the order of 30 such curves per panel. There is no legend distinguishing the solid from the dashed curves.
 
 **The red line.** Exactly one series in each panel is red: a single connected polyline running from lower-left to upper-right, drawn on top of everything else. It is not a marker series and it has no legend entry — it is the slide's own annotation, described in the body text below the figure. Traced against the axes:
-- Panel 1: from batch $\approx3.1\times10^4$ at its bottom end up to $\approx8.5\times10^4$ near the top, with a small kink near the bottom and a slight leftward drift at the very top.
+- Panel 1: from batch $\approx3.07\times10^4$ at its bottom end up to a peak of $\approx9.3\times10^4$, then drifting back left to $\approx8.6\times10^4$ at the very top, with a small kink near the bottom.
 - Panel 2: from batch $\approx4.5\times10^4$ at the bottom to $\approx2.0\times10^5$ at the top, wobbling between about $1.5\times10^5$ and $2.0\times10^5$ over the top third.
-- Panel 3: from batch $\approx1.4\times10^5$ at the bottom to $\approx5.5\times10^5$ at the top, again flattening out over the top third.
+- Panel 3: from batch $\approx1.30\times10^5$ at the bottom to $\approx5.2$–$5.6\times10^5$ over the top third, again flattening out there.
 In all three panels the red line rises monotonically overall: the more tokens processed, the larger the loss-minimising batch.
 
 Two further lines of body text below the figure:
@@ -1324,7 +1354,7 @@ Both figures use **log** axes on both dimensions, measured rather than assumed. 
 
 > Figure 7: **Validation loss landscapes of MoE models under varying sparsity ratios** ($N_a/N$). Left: Low sparsity ($N_a/N = 0.27$). Middle: Medium sparsity ($N_a/N = 0.58$). Right: Medium sparsity at D=8.0B. Our method consistently approximates global minima across sparsity regimes.
 
-Each panel has its own title line giving the configuration, and its own vertical "Loss" colorbar running dark teal (low) → slate blue → magenta → orange (high). All three share the plotted ranges: learning rate $\approx1.7\times10^{-4}$ to $2.8\times10^{-3}$, batch size $\approx6.5\times10^{4}$ to $1.05\times10^{6}$.
+Each panel has its own title line giving the configuration, and its own vertical "Loss" colorbar running dark teal (low) → slate blue → magenta → orange (high). The plotted ranges are learning rate $\approx1.7\times10^{-4}$ to $2.8\times10^{-3}$ and batch size $\approx6.5\times10^{4}$ to $1.05\times10^{6}$ — those upper bounds are the **middle** panel's, which is 8 px narrower than its neighbours, so the left and right panels actually run out to $\approx3.0\times10^{-3}$. The lower bounds are common to all three.
 
 | panel | printed title | colorbar ticks | Global Minimum (✕) | Ours/Step Law (★) | DeepSeek Law (▲) | Microsoft Law | OpenAI Law |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1334,7 +1364,7 @@ Each panel has its own title line giving the configuration, and its own vertical
 
 The star lands essentially on the ✕ in the left and right panels (a 10% difference in learning rate, identical batch size) and inside the innermost contour; in the middle panel it is up and to the left of the ✕ but still within the second contour. The two vertical lines are learning-rate-only predictions with no batch-size dependence: OpenAI's sits about a factor of two *below* the optimum in every panel and Microsoft's roughly on it in the middle panel but above it in the other two. The DeepSeek triangle is consistently high and to the right of the ✕, outside the inner contours.
 
-**Figure 2 (bottom) — three landscapes on different data mixtures, sub-captioned "(a) Bilingual Corpus", "(b) Code Integration", "(c) Code-Dominante"** (spelled "Code-Dominante" on the page). No overall caption. Plotted ranges, all three: learning rate $\approx3.5\times10^{-4}$ to $3.9\times10^{-3}$, batch size $\approx6.6\times10^{4}$ to $7.0\times10^{5}$.
+**Figure 2 (bottom) — three landscapes on different data mixtures, sub-captioned "(a) Bilingual Corpus", "(b) Code Integration", "(c) Code-Dominante"** (spelled "Code-Dominante" on the page). No overall caption. Plotted ranges: learning rate $\approx3.5\times10^{-4}$ to $3.9\times10^{-3}$, batch size $\approx6.6\times10^{4}$ to $7.0\times10^{5}$ — again the upper LR bound is panel (b)'s, the narrower one; panels (a) and (c) run out to $\approx4.1\times10^{-3}$.
 
 | panel | colorbar ticks | Global Minimum (✕) | Ours/Step Law (★) | DeepSeek Law (▲) | Microsoft Law | OpenAI Law |
 | --- | --- | --- | --- | --- | --- | --- |
