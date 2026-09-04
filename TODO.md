@@ -1300,3 +1300,64 @@ source line ranges, not slide numbers.
       byLecture."10" = source-text, images 281 files / 32.3 MB, 50 caveats (6 new)
 - [x] Commit and push — pushed to chaimantec/cairn-kb-cs336 at 1e765f7
 - n/a  kbUrl already set on the catalog entry from run 1
+
+## Run 12 — Lecture 11: Scaling Laws (in the wild) — SLIDES + IMAGES ONLY
+
+Video vTfEyOyzV9E (77 min). Tatsunori Hashimoto. PDF deck `lecture_11.pdf`, 58
+pages. Scope this run, set by the user: **Step 1b (slide transcription) and
+Step 1c (image extraction) only** — no transcript, no wiki, no publish beyond
+committing what these two steps produce.
+
+### Course material
+- [x] Download lecture_11.pdf into raw/pdfs/ (gitignored) — 6.7 MB, 58 pages,
+      PDF metadata author "Tatsu Hashimoto", created 2026-05-04
+- [x] Numbering settled BEFORE any page was read. slide_number_map.py found no
+      printed number on any page (both bottom corners scanned, bare number and
+      running-footer forms). Same case as lectures 3, 4, 5, 8 and 9: `## Slide N`
+      == PDF page N, a plain 1..58. Readers were told the mapping and forbidden
+      from making a numbering judgment of their own; each was asked to report any
+      printed folio it saw, as an independent check.
+- [x] Page profile measured before reading: 50 of 58 pages carry a pasted raster
+      covering >4% of the page. The 8 that do not are 2, 30, 47, 48, 49, 50, 53
+      and 58 — the motivation slide, the "recent scaling law recipes" list, the
+      four muP derivation pages, the robustness prose slide and the recap.
+- [x] raw/slides/11-scaling-laws-in-the-wild.md — 1,908 lines, 58 sections, 210 KB,
+      33.9k words, 392 table rows. The largest slide file in this build (lecture 9 was
+      162 KB). Read by **six** Opus readers, not the four planned, because FOUR WERE
+      KILLED by session rate limits in three waves. Incremental appending meant zero
+      pages were lost and zero were re-read: the first wave delivered 1-12, 16-27,
+      30-36 and 45-58, then 13-15, then 28-29 and 37-44. Merged by slide number by a
+      script that refuses to assemble unless all 58 are present exactly once.
+- [x] Heading-sequence check — PASS. 58 headings, 1..58, no gaps, no dupes, in order.
+      `slide_number_map.py --verify` also passes (it degenerates to this check, since
+      the map is a 1..58 fallback rather than something read off the pages).
+- [x] Heading-vs-text-layer cross-check — 58/58 match the deck's own printed titles.
+      NOTE A CHECKER BUG, the seventh in this build: the first version of this check
+      took each page's heading as the first line of `get_text()`, which follows PDF
+      content-stream order, not visual position. That reported page 49 as a mismatch.
+      The page's real title sits at y=34 in 23.8pt ("Deriving muP (condition A2) part
+      2") and the string the check picked up was body text at 15.9pt. THE READER WAS
+      RIGHT AND THE CHECK WAS WRONG. Rebuilt to take the topmost band's largest-font
+      spans, left to right; 58/58 then matched. Anyone rebuilding this check on another
+      deck should start from position and font size, never stream order.
+- [x] YAML front matter parses (13 keys); no LaTeX inside code fences (no code fences
+      in the body at all)
+- [ ] Figure audit pass 1 — NOT RUN. Priority order nominated by the readers:
+      37, 11, 29, 41, 45, 35, 51. Until it runs the file's own front matter tells
+      readers to treat slide text and tables as reliable and chart values as
+      provisional.
+
+### Model choice
+- [x] Put to the user, as the skill requires for an unusually chart-dense deck.
+      **The user chose Opus readers**, against the Sonnet default used for
+      lectures 3-9. The evidence for the question: this deck is 50/58 raster
+      pages, the same profile as lecture 9, whose four Sonnet readers produced
+      the dirtiest file in the build — 26 of 36 audited pages carried errors, 84
+      in all, over three audit passes, one of which was killed by a rate limit
+      and lost everything. The trade being made is transcription cost up front
+      against audit passes afterwards.
+
+### Images (Step 1c)
+- [ ] Selection: raster test INTERSECTED with the slide file's own prose, minus
+      title cards and dividers; adjudicated by hand
+- [ ] Render, embed, check
