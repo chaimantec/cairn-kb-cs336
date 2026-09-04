@@ -62,40 +62,50 @@ reading: >
   and 45, and the converse trap - ticks at powers of two that read as log-2 and are
   linear - appeared on slides 4, 31 and 40.
 audit: >
-  FIGURE AUDIT PASS 1 COMPLETE - 7 of 58 pages: 37, 11, 29, 41, 45, 35 and 51. It took two
-  agents because the first was killed by a session rate limit after two pages; both
-  appended per page, so nothing was lost.
-  RESULT: DIRTY. Two pages clean (37 and 51), five carried errors, 16 in all (10
-  substantive, 6 minor), every one corrected below. By this build's own rule a dirty sample
-  means the sample was too small, so PASS 2 IS OWED over the remaining chart-heavy pages.
-  THE PATTERN IN THE ERRORS IS THE USEFUL PART, and it is not the pattern lecture 9 showed.
-  Every MEASURED quantity that was checked held up: all four nominated axis-scale claims
-  were confirmed (the log axes on 29, 41 and 45, whose even labelling makes them look
-  linear), slide 37's learning-rate exponent was confirmed three ways, slide 11's y-axis
-  exponents were confirmed, slide 35's axis calibration was confirmed against the rejected
-  alternative, and hundreds of individual values re-measured exactly - all 30 markers on
-  37, all 88 loss values on 35, all 40 table cells on 51, all 17 points on 41, all 20 on
-  45. What failed was the INTERPRETIVE SENTENCE laid over correct data: which interval of a
-  curve is the flat one (29), which series wins how often (29, 45), whether a fit is a
-  straight line or a curve (41), whether a marker is above another or level with it (41),
-  and one inverted colour reading (35). Several were contradicted by the file's own table
-  a few lines above. So on this deck, check the claim against the data, not just the data
-  against the page - and check an entry against itself first, because it is free.
+  TWO FIGURE AUDIT PASSES DONE - 15 of 58 pages. Pass 1: 37, 11, 29, 41, 45, 35, 51
+  (2 clean, 5 dirty, 16 corrections). Pass 2: 40, 39, 43, 31, 34, 13, 24, 23 (1 clean,
+  7 dirty, 15 corrections). Combined: THREE pages clean (37, 51, 23), twelve dirty, 31
+  corrections, all applied below. Three of the four agents involved were killed by session
+  rate limits; all appended per page, so no finding was lost.
+  WHAT THE TWO PASSES AGREE ON. Every AXIS-SCALE claim tested was correct - all of them,
+  across both passes. The log axes on 12, 29, 41 and 45 look linear because they are evenly
+  labelled, and are log; the axes on 4, 31 and 40 are ticked at powers of two, look log-2,
+  and are linear; all twelve axes on slide 13 are linear. Not one was wrong. Large blocks
+  of transcribed values were also re-measured and reproduced exactly: all 30 markers on 37,
+  all 88 loss values on 35, all 40 table cells on 51, all 17 points on 41, all 20 on 45,
+  all 22 on 40, all 38 on 39, and slide 23's eight IsoFLOP minima.
+  WHERE THE ERRORS ARE. Overwhelmingly in the INTERPRETIVE SENTENCE laid over correct data:
+  which interval of a curve is the flat one, which series wins how often, whether a fit is a
+  straight line or a curve, whether a marker is above another or level with it, whether a
+  contour is closed, where a pasted block is cropped. Several were contradicted by the
+  entry's own table a few lines above, which makes checking an entry against itself the
+  cheapest strong check available on this deck.
+  BUT NOT ONLY THERE, and this correction matters: pass 2 also found FOUR numeric faults.
+  Slide 13's top-right list carried a PHANTOM reading - a value for a tan curve that is not
+  drawn on that side of the panel at all, produced by a loose colour tolerance picking up a
+  neighbouring line's antialiased fringe, and it contradicted the entry's own conclusion.
+  Slide 31 quoted values for Soap in a panel where Soap has no visible curve whatsoever.
+  Slide 24's 67B offset was understated by about a factor of two. Two of slide 13's cells
+  were 0.01 low, implying an end-of-run upturn that does not exist. So "the numbers held and
+  only the prose failed" is the tendency, not the rule.
   ONE WITHDRAWN CLAIM ABOUT THE SOURCE: slide 35 was recorded as containing a colorbar that
   runs opposite to its surface height. It does not. See the withdrawn entry under "The
-  deck's own inconsistencies", which is kept as a correction rather than deleted.
-  FALSE ILLEGIBILITY, again: slide 35's per-point labels, called unreadable at native
-  resolution, were read at 6-14x zoom. In this build that claim has now been tested many
-  times and has never once survived.
-  STILL UNAUDITED: 51 of the 58 pages. Until pass 2, treat SLIDE TEXT AND TABLES as
-  reliable and CHART VALUES as provisional - though note this deck's own error profile puts
-  the risk in a chart entry's concluding sentence rather than in its numbers.
-  Structural verification is complete and separate: 58 headings in sequence 1..58 with no
-  gaps or duplicates, and all 58 matched verbatim against the deck's own title text,
-  identified by title font size and position rather than content-stream order. (Stream
-  order gets slide 49 wrong - its title sits at y=34 in 23.8pt but is not the first string
-  in the stream.) Two internal cross-checks came back consistent: slide 24's eight grey
-  circles are numerically identical to the eight IsoFLOP minima measured off slide 23, and
+  deck's own inconsistencies", kept as a correction rather than deleted.
+  A DISAGREEMENT BETWEEN TWO ENTRIES, now resolved: slides 4 and 31 reproduce the same
+  pasted optimizer figure, and their two write-ups disagreed about Soap. Slide 4's was
+  right. Where this deck repeats a figure - 31 and 36 share one too - the entries are worth
+  reading against each other.
+  FALSE ILLEGIBILITY: slide 35's per-point labels, called unreadable at native resolution,
+  read cleanly at 6-14x zoom. In this build that claim has never once survived a test.
+  STILL UNAUDITED: 43 of 58 pages. Treat their CHART VALUES as provisional and their slide
+  TEXT AND TABLES as reliable; and on this deck, treat a chart entry's concluding sentence
+  as the least reliable thing on the page.
+  Structural verification is complete and separate: 58 headings in sequence 1..58, no gaps
+  or duplicates, all 58 matched verbatim against the deck's own title text, identified by
+  title font size and position rather than content-stream order. (Stream order gets slide 49
+  wrong - its title sits at y=34 in 23.8pt but is not the first string in the stream.) Two
+  internal cross-checks hold: slide 23's eight IsoFLOP minima match slide 24's eight grey
+  circles to within 0.0013 bpb, about one pixel, now confirmed by audit at both ends; and
   slide 12's printed fit log(BS) = -6.24 log(L) + 20.91 reproduces its own traced line to
   within 1% once the logs are read as natural logs.
 ---
@@ -605,15 +615,15 @@ The two rows are the same six-series experiment run to two different total lengt
     - 1.5× (burnt orange): 2.867, 2.822, 2.784, 2.757, **2.729**
     - 2.0× (magenta): 2.872, 2.829, 2.799, 2.771, **2.754**
     - 5.0× (tan): 2.878, 2.838, 2.815, 2.794, **2.786**
-- **Column 3 — y-axis "C4 Loss" (linear, 3.20 down to 2.80 in 0.05 steps), x-axis "Million Sequences".** These are smooth (evaluated at intervals, not per step). In the **top-right** panel the opaque white legend box sits over the middle of the data, so each of the six curves is visible only as two arcs — roughly x ≈ 1.6–3.1 on the left of the legend and x ≈ 5–7.5 below/right of it — with the span behind the legend hidden. (This is genuine occlusion by the legend box drawn on top of the axes, not a crop of the source image.) The bottom-right panel has no legend and shows the curves unbroken.
-  - Top row, C4 Loss: all six enter at the 3.20 clip around x ≈ 1.6–2.5 and converge to ≈3.075–3.085 at x ≈ 3.1 where the legend cuts them off. On the right of the legend, at the last plotted point (x ≈ 7.3–7.5): 1.1× (orange) **2.917**, 1.0× (blue) **2.921**, 1.25× (green) **2.925**, 1.5× (burnt orange) **2.931**, 5.0× (tan) **2.931**, 2.0× (magenta) **2.954**.
+- **Column 3 — y-axis "C4 Loss" (linear, 3.20 down to 2.80 in 0.05 steps), x-axis "Million Sequences".** These are smooth (evaluated at intervals, not per step). In the **top-right** panel the opaque white legend box sits over the middle of the data, so most curves are visible only as two arcs — roughly x ≈ 1.6–3.1 on the left of the legend and x ≈ 5–7.5 below/right of it — with the span behind the legend hidden. This holds for **four of the six**: the 1.0× blue has no left arc at all (it is fully overplotted there by the later-drawn series) and the 5.0× tan has no right arc. Measured visible spans: blue x 5.18–7.43 only; amber 2.50–3.04 and 5.34–7.48; green 2.47–3.04 and 5.60–7.35; burnt orange 1.91–3.04 and 5.90–7.48; magenta 1.70–3.04 and 6.41–7.30; tan 1.59–3.04 only. (This is genuine occlusion by the legend box drawn on top of the axes, not a crop of the source image.) The bottom-right panel has no legend and shows the curves unbroken.
+  - Top row, C4 Loss: all six enter at the 3.20 clip around x ≈ 1.6–2.5 and converge to ≈3.075–3.085 at x ≈ 3.1 where the legend cuts them off. On the right of the legend, at the last plotted point (x ≈ 7.3–7.5): 1.1× (orange) **2.917**, 1.0× (blue) **2.921**, 1.25× (green) **2.925**, 1.5× (burnt orange) **2.931**, 2.0× (magenta) **2.954**. **The 5.0× tan curve is not present on this side of the legend at all** — masking its colour at tolerances 8, 12 and 18 returns tan pixels only over x ≈ 1.6–3.0, and an 1800-dpi crop below the legend shows exactly five curves. An earlier reading listed 5.0× here at 2.931, but that was the burnt-orange 1.5× line's antialiased fringe picked up at a looser tolerance, which is why the two came out identical. With the phantom removed the five visible curves are strictly ordered by cycle length — 1.1× 2.916 < 1.0× 2.921 < 1.25× 2.925 < 1.5× 2.931 < 2.0× 2.954 — and the panel no longer contradicts this entry's own conclusion that 5.0× is clearly worst.
   - Bottom row, C4 Loss at x = 4, 6, 8, 10, 12 and at the last point (≈12.6):
     - 1.0× (blue): 3.039, 2.976, 2.929, 2.891, — , **2.866**
     - 1.1× (orange): — , 2.980, 2.934, 2.897, 2.869, **2.864**
     - 1.25× (green): 3.042, 2.985, 2.942, 2.907, 2.876, **2.869**
     - 1.5× (burnt orange): — , 2.991, 2.953, 2.923, 2.893, **2.887**
     - 2.0× (magenta): 3.047, 2.995, 2.962, 2.936, 2.913, **2.906**
-    - 5.0× (tan): 3.049, 3.002, 2.974, 2.945, 2.928, **2.936**
+    - 5.0× (tan): 3.049, 3.002, 2.974, 2.955, 2.940, **2.936** — falling monotonically to the end. (An earlier reading gave the fourth and fifth of these as 2.945 and 2.928, which implied a small upturn at the very end; a dense per-column trace shows none: 2.963 at x = 9, 2.955 at 10, 2.945 at 11, 2.940 at 12, 2.936 at the last point, with only a 0.002 wobble near x = 10.1.)
 
 The ordering is the same in every loss panel and in both rows: **the shorter the cosine cycle, the lower the loss at the end of the run**, with 1.0× and 1.1× essentially tied for best, 1.25× just behind, and 5.0× clearly worst (a gap of ≈0.06 in training loss and ≈0.07 in C4 loss at the end of the top row). Equivalently, the loss reached at step $n$ by a run whose cosine cycle was set to $n$ is *not* recoverable by reading off an intermediate point of a longer-cycle run — which is exactly the slide's claim that a scaling law has to be fit from separate from-scratch runs rather than by early-stopping one long run, taking the cost from $n$ to $n^2$.
 
@@ -936,7 +946,7 @@ A legend box sits inside the plot at the top right with **two star entries**: a 
   - "7B MHA 2T Token": $C \approx 8.5\times10^{22}$, bits-per-byte **0.716**.
   - "67B GQA 2T Token": $C \approx 8.7\times10^{23}$, bits-per-byte **0.633**.
 
-Both stars land essentially on the fitted line. Measured against the dashed curve at the same x, the 7B star sits about 0.018 bits-per-byte **above** the fit (very slightly worse than predicted) and the 67B star about 0.008 **below** it (very slightly better than predicted). That is the sense in which the caption's "well-predicted" holds — a fit built from runs at $10^{17}$–$3\times10^{20}$ FLOPs extrapolates roughly 3.5 orders of magnitude and lands within ~0.02 bits-per-byte at $10^{23}$–$10^{24}$.
+Both stars land essentially on the fitted line. Measured against the dashed curve at the same x, the 7B star sits about 0.018 bits-per-byte **above** the fit (very slightly worse than predicted) and the 67B star about 0.016 **below** it (very slightly better than predicted). That is the sense in which the caption's "well-predicted" holds — a fit built from runs at $10^{17}$–$3\times10^{20}$ FLOPs extrapolates roughly 3.5 orders of magnitude and lands within ~0.02 bits-per-byte at $10^{23}$–$10^{24}$.
 
 **Native-text caption below the figure**, reproduced in full: "Figure 5 | Performance scaling curve. The metric is the bits-per-byte on the validation set. The dotted line represents the power law fitting the smaller model (grey circles). The blue stars represent DeepSeek LLM 7B and 67B. Their performance is well-predicted by the scaling curve."
 
@@ -1191,10 +1201,10 @@ The contrast between the two panels is the point: optimal learning rate depends 
 **Figure 2 — a three-panel optimizer-comparison figure (AdamW / NAdamW / Muon / Soap).** All three panels use **linear** axes (measured on the x-axes: the ticks 1, 2, 4, 8 sit at pixel gaps of 54.5, 106, 214.5 in the left panel and 55, 108.5, 217.5 in the middle — a 1:2:4 doubling of *distance* per doubling of *value*, which is linear, not log; the right panel's 1, 2, 4, 8, 16 gaps of 26, 49.5, 100.5, ≈200 are the same pattern).
 
 - **Left panel, titled "C4/EN Loss for 1.2B Model".** Y-axis "Loss", linear, ticked 2.76 to 2.90 in steps of 0.02. X-axis "Chinchilla Ratio", ticked 1, 2, 4, 8. **Four** series per the legend: AdamW (red dashed), NAdamW (purple dashed), Muon (orange solid), Soap (yellow-green solid). All four fall steeply from ratio 1 to 2 and then flatten. Values by x-position — at 1: AdamW ≈2.904, NAdamW ≈2.902, Soap ≈2.897, Muon ≈2.891; at 2: AdamW ≈2.836, NAdamW ≈2.834, Soap ≈2.830, Muon ≈2.827; at 4: AdamW ≈2.787, NAdamW ≈2.784, Soap ≈2.782, Muon ≈2.780; at 8: AdamW ≈2.753 and the other three converge at ≈2.748–2.749. AdamW is the worst (topmost) curve at every x; Muon is at or near the bottom throughout.
-- **Middle panel, titled "$D_{AdamW}$ vs $D_{Optimizer}$ (Model Size: 1.2B)".** Y-axis "Tokens Needed by AdamW / Chinchilla", linear, ticked 2, 4, 6, 8, 10. X-axis "Tokens / Chinchilla", linear, ticked 1, 2, 4, 8. **Three** curves in the upper legend — NAdamW (purple dashed with markers), Muon (orange solid with markers), Soap (yellow-green solid with markers, drawn underneath and almost entirely hidden by Muon) — plus a second legend headed "Speedup" whose three entries are shaded *bands*, not curves: 1.0–1.2× (pale orange), 1.2–1.3× (pale blue), 1.3–1.4× (pale green), stacked from lowest to highest across the panel. Curve values — at 1: Muon/Soap ≈1.1, NAdamW ≈1.0; at 2: Muon ≈2.25, NAdamW ≈2.05; at 4: Muon ≈4.55, NAdamW ≈4.2; at 8: all three ≈8.75. The curves track the bottom of the pale-orange 1.0–1.2× band, i.e. the measured speedups sit at the low end of the plotted range.
+- **Middle panel, titled "$D_{AdamW}$ vs $D_{Optimizer}$ (Model Size: 1.2B)".** Y-axis "Tokens Needed by AdamW / Chinchilla", linear, ticked 2, 4, 6, 8, 10. X-axis "Tokens / Chinchilla", linear, ticked 1, 2, 4, 8. **Three** entries in the upper legend — NAdamW (purple dashed with markers), Muon (orange solid with markers) and Soap (yellow-green) — but **only two curves are actually drawn**: a pixel sweep for Soap's olive over the whole panel, at tolerances 25, 40 and 60, returns matches *only* inside the legend box's own swatch. Not one olive pixel appears in the plotting area, so Soap has no visible curve at all and no value can be read for it. (Slide 4 reproduces this same figure and its entry records the same finding.) Alongside them is a second legend headed "Speedup" whose three entries are shaded *bands*, not curves: 1.0–1.2× (pale orange), 1.2–1.3× (pale blue), 1.3–1.4× (pale green), stacked from lowest to highest across the panel. Curve values, for the two traceable series only — Muon 1.116, 2.221, 4.525, 8.793 and NAdamW 0.943, 2.016, 4.178, ≈8.68 at ratios 1, 2, 4 and 8. Muon runs through the **middle** of the pale-orange 1.0–1.2× band rather than along its bottom — its fractional height within the band is 0.58, 0.55, 0.66 and 0.50 at the four ratios, i.e. speedups of 1.116×, 1.111×, 1.131× and 1.099×. Only NAdamW hugs or undercuts the band's lower edge, and at ratio 1 it sits **below** 1.0×, i.e. a slowdown.
 - **Right panel, titled "C4/EN Loss for 300M Model".** Y-axis "Loss", linear, ticked 3.00 to 3.25 in steps of 0.05. X-axis "Chinchilla Ratio", linear, ticked 1, 2, 4, 8, 16. Same **four** series (legend order here is Muon, AdamW, NAdamW, Soap). Values — at 1: AdamW ≈3.262, NAdamW ≈3.250, Soap ≈3.232, Muon ≈3.225; at 2: AdamW ≈3.162, NAdamW ≈3.160, Soap/Muon ≈3.145; at 4: AdamW ≈3.093, NAdamW ≈3.088, Muon/Soap ≈3.079; at 8: AdamW ≈3.042, NAdamW ≈3.038, Muon/Soap ≈3.029; at 16: AdamW ≈3.001, NAdamW ≈2.999, Muon/Soap ≈2.990. Muon and Soap run together as the lower pair at every x; AdamW is the upper (worst) curve throughout.
 
-Across all three panels the spread between the best and worst optimizer is small — a few thousandths of a nat in loss, and a speedup at the bottom of the 1.0–1.2× band — which is the setup for the slide's question, "How should we pick different optimizers?"
+The spread between the best and worst optimizer is small in the 1.2B panel — 0.012 in loss at ratio 1 falling to 0.005 at ratio 8 — but **not** in the 300M panel, where AdamW's 3.2615 against Muon's 3.2226 at ratio 1 is a spread of 0.039, about forty thousandths rather than a few. The speedup sits in the **middle** of the 1.0–1.2× band, not at its bottom — which is the setup for the slide's question, "How should we pick different optimizers?"
 
 ## Slide 32 — StepFun scaling law study
 
@@ -1255,12 +1265,12 @@ Heading: "The approach: purely empirical – grid search the space". Body text: 
 
 **Figure 1 (left) — a contour map of training loss over the (learning rate, batch size) plane, with each published scaling law's predicted optimum marked.** X-axis "Learning Rate", **log** scale, labelled at $5\times10^{-4}$, $10^{-3}$ and $5\times10^{-3}$ (measured, not assumed: the gaps are 124 px for the $\log_{10}2$ step and 286 px for the $\log_{10}5$ step, a ratio of 2.31 against the 2.32 that log predicts — ≈410 px per decade). Plotted x-range about $1.2\times10^{-4}$ to $5.5\times10^{-3}$. Y-axis "Batch Size", **log** scale, labelled at $5\times10^{6}$, $10^{6}$ and $5\times10^{5}$ (measured: 235 px for the $\log_{10}5$ step and 103 px for the $\log_{10}2$ step, ratio 2.28 — ≈338 px per decade). Plotted y-range about $1.3\times10^{5}$ to $8.3\times10^{6}$. A vertical colorbar on the right is labelled "Loss", **linear** (measured: its six tick labels are spaced 117.0, 117.5, 117.5, 117.0, 117.5 px — exactly even), ticked 2.08 at the bottom through 2.18 at the top in steps of 0.02, running dark teal (low loss) → slate blue → magenta → orange (high loss).
 
-The surface is drawn as **five nested closed iso-loss contours**, each labelled in-line with the percentage by which loss exceeds the global minimum, from the inside out:
+The surface is drawn as **five nested iso-loss contours**, of which only the inner three are closed — +1.000% and +2.000% both run off the right edge of the plot — each labelled in-line with the percentage by which loss exceeds the global minimum, from the inside out:
 - **+0.125%** — dark teal, the innermost loop. At batch size $10^{6}$ it spans learning rates from about $1.25\times10^{-3}$ to $2.1\times10^{-3}$.
 - **+0.250%** — navy.
 - **+0.500%** — slate blue-purple.
 - **+1.000%** — magenta. At batch size $10^{6}$ it is crossed at learning rate $\approx4.7\times10^{-4}$ on the left and $\approx4.2\times10^{-3}$ on the right.
-- **+2.000%** — orange, the outermost; it is the only contour that runs off the plot edges, appearing as arcs across the top and along the bottom-left and bottom-right.
+- **+2.000%** — orange, the outermost. It is **not** the only contour to leave the frame: the magenta +1.000% exits the right edge twice, at batch $\approx2.28\times10^{6}$ and $\approx1.34\times10^{6}$. Nor does the orange reach the top — its highest point is batch $4.96\times10^{6}$ against a frame top of $8.42\times10^{6}$. It leaves through the **right** edge (batch $\approx2.50\times10^{6}$ and $\approx6.8\times10^{5}$) and the **bottom** (LR $\approx1.63\times10^{-4}$ and $\approx8.8\times10^{-4}$); its leftmost point, LR $1.52\times10^{-4}$, turns around inside the plot.
 
 All five loops are elongated along a diagonal running from lower-left to upper-right — higher learning rate pairs with larger batch size — and they are convex and singly-peaked around one interior minimum.
 
@@ -1272,7 +1282,7 @@ Six legend entries (top right), i.e. **four point markers and two lines**:
 - **Microsoft Law** — a salmon dashed **vertical** line at learning rate $\approx3.5\times10^{-4}$, spanning the full height of the plot (it predicts a learning rate only, with no batch-size dependence).
 - **OpenAI Law** — a gold dash-dot **vertical** line at learning rate $\approx3.4\times10^{-4}$, essentially on top of the Microsoft line and just to its left, also spanning the full height.
 
-Both vertical lines sit about a factor of four below the optimal learning rate, well outside the +1.000% contour at every batch size shown. Read against the slide's argument, the picture is that Step Law's prediction lands inside the tightest contour while the other four laws land on progressively worse iso-loss rings.
+Both vertical lines sit about a factor of four below the optimal learning rate ($1.39\times10^{-3}/3.48\times10^{-4} = 4.0$), but they are **not** outside the +1.000% contour at every batch size: that contour bulges left to LR $3.14\times10^{-4}$, past both. The OpenAI gold line crosses inside it between batch $2.51\times10^{5}$ and $4.88\times10^{5}$, and the Microsoft salmon line likewise, with its upper crossing at batch $5.43\times10^{5}$. Read against the slide's argument, the picture is that Step Law's prediction lands inside the tightest contour while the other four laws land on progressively worse iso-loss rings.
 
 **Figure 2 (right) — a reproduced table, "Table 5: Dense Model Configuration."** Eighteen model configurations swept in the grid search.
 
@@ -1452,13 +1462,13 @@ Heading: "Problem 1 – hyper tuning is often off..". Two body lines below the f
 "Different optimizers can require different hyperparameters!"
 "(*and* likely have different optimal hyperparameter scaling)"
 
-A pasted title block sits in the top-right corner of the slide, above the blue header bar — the front matter of the paper the two charts come from:
+A pasted title block sits in the top-right corner of the slide, drawn **on top of** the blue header bar (the banner is full-width at row 30 but is covered from row 44 down, so it stops at x = 4702 by row 100) — the front matter of the paper the two charts come from:
 
 > **Fantastic Pretraining Optimizers and Where to Find Them**
 > Kaiyue Wen, Stanford University, kaiyuew@stanford.edu — David Hall, Stanford University, dlwh@cs.stanford.edu
 > Tengyu Ma, Stanford University — Percy Liang, Stanford University
 
-(The block is cropped by the slide's top edge: the e-mail addresses for the second row of authors are cut off. This is a genuine truncation — the text runs into the image's own boundary.)
+(The block is cropped at its own **bottom** edge, not the top: its first line, "Fantastic Pretraining Optimizers and", is complete and intact, while the ascender tips of the second author row's e-mail addresses are sliced off. This is a genuine truncation — the text runs into the image's own boundary.)
 
 **Figure 1 (left) — "Loss on C4/EN on 130M models": loss against training step for four optimizer/learning-rate settings.** Y-axis "Loss", **linear**, ticked 3.5 to 4.0 in 0.1 steps (measured: the six tick marks sit 77.0, 77.0, 77.5, 76.5, 78.0 px apart — flat; a log axis over 4.0→3.5 would have ramped monotonically 73.2 → 81.5 px). X-axis "Step", **linear**, ticked 2000 to 10000 in 2000s (measured: 126.5, 124.0, 125.0, 125.5 px apart).
 
@@ -1482,7 +1492,7 @@ The three fast runs all stop at step ≈5130 (Mars ends at 3.538, AdamW w/ lr 8e
 
 **The purple "Nesterov AdamW" curve is drawn underneath the red "AdamW w/ lr 8e-3" curve** and is almost entirely hidden by it — the two agree to within 0.007 in loss over their whole common range (3.937 vs 3.944 at step 2500; 3.824 vs 3.832 at 3000; 3.731 vs 3.737 at 3500), and red is drawn last. Purple survives only as a thin fringe. It is present in the data, not absent — this is draw-order occlusion, not a missing series.
 
-Two round blue markers and a horizontal black arrow are drawn on top: a marker at (step ≈5000, loss 3.529) at the end of the fast runs, a marker at (step ≈10000, loss 3.590) at the end of the brown run, and a black arrow at loss 3.591 running right from step ≈4440 to that second marker. A boxed annotation sits inside the plot at the arrow's right: "**Tuning LR of AdamW leads to 2x speedup**".
+Two round blue markers and a horizontal black arrow are drawn on top: a marker at (step ≈5000, loss 3.529) at the end of the fast runs, a marker at (step ≈10000, loss 3.590) at the end of the brown run, and a black arrow at loss 3.591 running right from step ≈4670 to that second marker. (Step ≈4440 is where the red curve *reaches* that loss, a different point, reported separately below.) A boxed annotation sits inside the plot at the arrow's right: "**Tuning LR of AdamW leads to 2x speedup**".
 
 Checking that annotation against the traced curves: AdamW at lr 8e-3 reaches loss 3.591 at step ≈4440, and AdamW at lr 6e-4 reaches the same loss at step 10000 — a factor of **2.25** fewer steps, so "2x speedup" is right in direction and slightly conservative in size. Both runs are the same optimizer at the same model size; only the learning rate differs, by a factor of 13.
 
@@ -1538,7 +1548,7 @@ One pasted raster holds two panels.
 | 4 | 2.959 | 2.952 | 2.954 | ≈2.948 | **2.945** | 2.947 |
 | 8 | 2.913 | 2.906 | 2.908 | *(hidden)* | **2.899** | 2.900 |
 
-**The orange Muon curve is drawn underneath the brown Kron and olive Soap curves and disappears entirely to the right of the Chinchilla-ratio-4 tick** — its last visible pixels are at x = 851, exactly the ratio-4 gridline, and at high zoom it survives before that only as a thin sliver between the brown and olive lines. Muon's ratio-8 value is therefore not readable; it is occluded, not missing from the data, and I have not guessed it.
+**The orange Muon curve is drawn underneath the brown Kron and olive Soap curves and disappears entirely to the right of the Chinchilla-ratio-4 tick** — its last visible pixels are at x = 851, exactly the ratio-4 gridline, Before that tick it is **not** a sliver over most of the range: at ratio 1 it is a fully separated line, 46 px (at 600 dpi) below Soap and 73 px below Kron against its own ~17 px line width — visibly the lowest of the four, which is exactly what the table below records by bolding Muon at ratios 1 and 2. It narrows to a partly-occluded sliver only over roughly the ratio-2 to ratio-4 leg (line width 4 px against 8 px for Soap and Kron at x = 3900 and 4000), and there it sits **below** the olive Soap line, not between the brown and the olive: the screen order at x = 3900 is Kron 2.984, Soap 2.980, Muon 2.978, top to bottom. Muon's ratio-8 value is therefore not readable; it is occluded, not missing from the data, and I have not guessed it.
 
 A second opaque annotation box sits inside this plot: "**Matrix-based optimizers (solid) consistently outperform scalar-based optimizers (dashed)**".
 
@@ -1649,7 +1659,7 @@ Heading: "Muon and scaling". Three pasted charts across the slide, each with a c
 | 14 | 1.32 – 1.46 | 1.388 |
 | 15.4 (end) | 1.28 – 1.38 | 1.327 |
 
-The curve falls steeply to about 1.60 by 2T tokens, then descends only slowly — it is essentially flat between 5T and 12T (centre 1.52 → 1.47, with a visible plateau and a small bump around 8T) — and then drops again over the last 3T tokens to end near 1.33. There is no loss spike or divergence anywhere along it, and no second series: this panel compares nothing, it shows one long run completing cleanly.
+The curve falls steeply to about 1.60 by 2T tokens, then descends only slowly — it is essentially flat between about 5T and 11T (smoothed centre 1.517 → 1.478, a slope of 0.0065 per T against 0.024 per T over 2T–5T and 0.032 per T over 12T–15.4T). There is **no bump around 8T**: a 25-column median falls monotonically straight through that region (1.508 at 6.2T, 1.502 at 7.1T, 1.496 at 8.0T, 1.488 at 9.1T), and the apparent bump in an earlier single-column reading was a noise spike in that one column. The smoothed centre at 12T is 1.44; 1.47 is reached at about 11.2T — and then drops again over the last 3T tokens to end near 1.33. There is no divergence and no recovery-shaped spike anywhere along it, though the trace does carry one-off upward excursions — the largest at 11.07T reaching loss 1.643 against a local centre of 1.473, with smaller ones near 2.3T, 3.1T, 3.5T, 10.3T, 13.8T and 14.1T, and no second series: this panel compares nothing, it shows one long run completing cleanly.
 
 That matters for reading the slide's closing line. "Scaling gains are tricky to measure, but clearly muon 'works' at scale" is two claims, and the three panels support them unevenly. The left panel is a wallclock comparison at very small scale (the deck's own caption says "very small!"), the centre panel is the comparison that actually measures a gain and shows it shrinking from 1.38× at 130M to 1.10× at 1.2B, and the right panel has no baseline at all — it is evidence that a Muon-trained run of this size trains stably to 15.4T tokens, not evidence that it beat anything. The slide's hedge ("tricky to measure") is the accurate part; the "works at scale" claim rests on stability, not on a measured margin.
 

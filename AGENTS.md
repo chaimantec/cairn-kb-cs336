@@ -594,3 +594,74 @@ what it taught.
   set in quotation marks**, reading as quotations of the lecturer when they were not.
   That failure has now appeared in two consecutive runs. Check every quoted string
   you wrote yourself, not only the ones you copied.
+
+## Run 12 precedents (lecture 11, a 58-page deck, and the first read at Opus)
+
+Lecture 11 is the most figure-dependent deck in this KB — 81 pasted images against 1,917
+words of native text, 33 words per page, below even lecture 9's 36 — and it is the only one
+read at Opus rather than Sonnet. The choice was put to the user because the page profile
+matched lecture 9, whose Sonnet read produced 84 errors across 26 dirty pages. What that
+bought is worth stating precisely, because it is not what was expected.
+
+- **The model change moved the errors, it did not remove them.** Two audit passes over 15
+  pages found 3 clean, 12 dirty, 31 corrections. The rate is better than lecture 9's, but
+  the headline is the *shape*. **Every axis-scale claim tested was correct — all of them,
+  both passes**, including the four evenly-labelled axes that are log and the three
+  power-of-two axes that are linear. Large blocks of values also reproduced exactly: 30
+  markers on slide 37, all 88 loss values on 35, all 40 table cells on 51, all 17 points on
+  41, all 20 on 45, all 22 on 40, all 38 on 39. Lecture 9's errors were misread numbers;
+  lecture 11's are overwhelmingly **the interpretive sentence laid over correct data**:
+  which interval of a curve is the flat one, which series wins how often ("least at four of
+  the six" when it was two; "below at every shared point" when it was three of five),
+  whether a dashed fit is a straight line or a curve, whether a marker is above another or
+  level with it, whether a contour is closed, which edge a pasted block is cropped at.
+- **But do not overstate that, as the pass-2 agent's own summary did.** It reported "not one
+  measured number was wrong in a way that mattered" while its own findings listed four
+  numeric faults. Slide 13's entry carried a **phantom reading** — a value for a curve not
+  drawn on that side of the panel, produced by a loose colour tolerance picking up a
+  neighbouring line's antialiased fringe. Slide 31 quoted values for a series with **no
+  visible curve at all**. Slide 24's offset was understated about twofold. Two of slide 13's
+  cells were 0.01 low, implying an upturn that does not exist. A subagent's headline is a
+  claim to check against its own evidence, exactly like a slide's.
+- **When a deck repeats a figure, read the two entries against each other.** Slides 4 and 31
+  paste the same optimizer figure, and 31 and 36 share another. The two write-ups of the
+  first pair *disagreed* about whether a legend entry had a visible curve — slide 4's was
+  right — and nothing but reading them side by side would have surfaced it. A repeated figure
+  is a free second opinion.
+- **So audit the sentence, not only the data.** And note where several of these were caught:
+  **the file's own table, a few lines above the sentence, already contradicted it.** Reading
+  an entry against itself costs nothing and is now the highest-yield check available. It
+  also caught slide 11's error unaided — the entry's stated range and its own stated
+  px/decade implied a 350 px panel that is 377.5 px wide.
+- **A check that confirms half a claim makes the whole claim feel verified.** The worst
+  finding of this run was a claim about *the source*: slide 35 was recorded as having a
+  colorbar that runs opposite to its 3-D surface's height, and that was published as an
+  inconsistency in Stanford's deck. It is false. The original reading had sampled the
+  colorbar against its own tick rows — which establishes which end is which value, and says
+  nothing about which end the surface's floor is drawn in. The withdrawal is kept in the
+  slide file rather than deleted. **Before recording a defect in the source, ask which part
+  of the claim your evidence actually covers.**
+- **Incremental appending saved this run six times.** Four of six readers and one of two
+  audit agents were killed by session rate limits, in five separate waves. Total pages lost:
+  **zero**. Total pages re-read: **zero**. Recovery each time was to list the finished
+  headings and re-issue only the gaps. This is no longer a precaution, it is the thing that
+  makes a long deck survivable — and it applies to audit agents exactly as much as readers.
+- **A seventh checker bug: heading cross-checks must use position and font size, never
+  content-stream order.** The first version of the heading-vs-text-layer check read each
+  page's title as the first line of `get_text()` and reported slide 49 as a mismatch. The
+  file was right: page 49's title sits at y=34 in 23.8pt and simply is not the first string
+  in the stream. Rebuilt on the topmost band's largest spans, 58 of 58 matched.
+- **The raster test over-reports badly when a deck pastes its citations as pictures.** Here
+  it flagged 50 of 58 pages, and only 32 were rendered. The gap is not tables this time but
+  **screenshots of a paper's title block** — five pages whose entire content is a
+  transcribed title, author list and affiliation. A pasted image is not a figure; ask what
+  is *in* it.
+- **One page was rendered against the transcribed-table rule, deliberately.** Slide 20's two
+  panels are colour-coded heatmaps with a red star on the fitted optimum. Its 240 cells are
+  transcribed and remain the better source for any number, but the shape of the loss basin
+  is the slide's argument and does not survive as a markdown table. The rule is still right;
+  this is what its exception looks like.
+- **False illegibility remains 0-for-every-instance ever tested in this build.** Slide 35's
+  per-point labels, recorded as unreadable at native resolution, read cleanly at 6-14x zoom
+  — and the values measured around them turned out to be correct anyway. Treat the phrase as
+  a flag, never a fact.

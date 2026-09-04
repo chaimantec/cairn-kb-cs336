@@ -1367,9 +1367,34 @@ committing what these two steps produce.
       in, so a half-verified claim felt whole.
       FALSE ILLEGIBILITY again: slide 35's per-point labels, called unreadable, read
       fine at 6-14x. Still 0-for-every-instance ever tested in this build.
-- [ ] Figure audit pass 2 — OWED. 5 of 7 dirty means the sample was too small, by this
-      build's own rule. Target the remaining chart-heavy pages, and target concluding
-      sentences rather than numbers, since that is where this deck's errors live.
+- [x] Figure audit pass 2 — DONE, 8 pages (40, 39, 43, 31, 34, 13, 24, 23). 1 clean (23),
+      7 dirty, 15 corrections applied. Running total across both passes: 15 of 58 pages,
+      3 clean, 12 dirty, 31 corrections.
+      CONFIRMED AGAIN: every axis-scale claim tested was right, both passes, including all
+      twelve axes on slide 13 and the three power-of-two linear axes on 31. Big blocks of
+      values reproduced exactly (22 on 40, 38 on 39, slide 23's eight IsoFLOP minima).
+      The slide 23 <-> 24 internal cross-check now holds at BOTH ends: the eight minima
+      match the eight grey circles to 0.0013 bpb, about one pixel.
+      FOUR NUMERIC FAULTS, which qualify pass 1's "only the prose fails" reading:
+      slide 13's top-right list carried a PHANTOM value for a tan curve that is not drawn
+      on that side of the panel (a loose colour tolerance picking up the neighbouring
+      line's antialiased fringe) — and it contradicted the entry's own conclusion that
+      5.0x is worst; slide 31 quoted values for Soap in a panel where Soap has no visible
+      curve at all; slide 24's 67B offset was understated about twofold (-0.016, not
+      -0.008); and two of slide 13's cells were 0.01 low, implying an end-of-run upturn
+      that a dense trace shows does not exist.
+      A DISAGREEMENT BETWEEN TWO OF OUR OWN ENTRIES, found and resolved: slides 4 and 31
+      reproduce the same optimizer figure and their write-ups disagreed about Soap. Slide
+      4's was right. Slides 31 and 36 also share a figure. Where this deck repeats one,
+      the entries are a free second opinion — read them against each other.
+      NOTE ON THE AGENT'S OWN REPORT: it summarised as "not one measured number was wrong
+      in a way that mattered" while its own findings listed the four faults above. Checked
+      against its evidence rather than taken at face value.
+- [ ] Figure audit pass 3 — still owed on the numbers, 43 of 58 pages unaudited. 7 of 8
+      dirty in pass 2 means the sample is still too small. Highest-value remaining targets:
+      the multi-series log-log charts not yet touched (4, 12, 14, 17, 18, 21, 22, 26, 27,
+      28, 32, 36, 42, 44) and the 240-cell heatmap pair on 20. Target concluding sentences
+      first, then any value attributed to a series that may not be visible.
 
 ### Model choice
 - [x] Put to the user, as the skill requires for an unusually chart-dense deck.
