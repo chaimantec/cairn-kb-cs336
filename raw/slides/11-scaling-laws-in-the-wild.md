@@ -267,6 +267,8 @@ No chart or table on this page — all six pasted rasters are paper title blocks
 
 ## Slide 4 — Initialization and optimizers
 
+![Slide 4 — Initialization and optimizers](../images/11-scaling-laws-in-the-wild/slide-4.jpg)
+
 Title (blue): "**Initialization and optimizers**"
 
 Body text: "Initialization, optimizers, and various hyperparams (LR/batch) can be scale sensitive"
@@ -434,6 +436,8 @@ Two further lines of body text below the table:
 
 ## Slide 10 — Optimal LR
 
+![Slide 10 — Optimal LR](../images/11-scaling-laws-in-the-wild/slide-10.jpg)
+
 Title (blue): "**Optimal LR**"
 
 Body text: "According to muP – optimal learning rate should be (roughly) stable. Is it?"
@@ -453,6 +457,8 @@ The five dashed grey gridlines are gridlines, not series. Read against the axes,
 Caption printed below the chart (part of the pasted image, in the paper's own serif type): "Figure 3: Loss vs Learning Rate. After applying for the Tensor Program, the learning rate shift becomes minimal."
 
 ## Slide 11 — Optimal batch
+
+![Slide 11 — Optimal batch](../images/11-scaling-laws-in-the-wild/slide-11.jpg)
 
 Title (blue): "**Optimal batch**"
 
@@ -480,6 +486,8 @@ Two further lines of body text below the figure:
 
 ## Slide 12 — Optimal batch size
 
+![Slide 12 — Optimal batch size](../images/11-scaling-laws-in-the-wild/slide-12.png)
+
 Title (blue): "**Optimal batch size**"
 
 Body text: "We can then follow the Kaplan 2020 analysis and plot optimal batch size vs final loss."
@@ -497,6 +505,8 @@ Body text below the figure: "Fairly clean trend – polynomially increase the ba
 That reading is consistent with the data: batch size falls monotonically as loss rises, i.e. rises as loss falls, along a straight line on log–log axes — a power law with exponent −6.24, so the optimal batch grows very steeply (roughly as $L^{-6.2}$) as the loss target gets smaller.
 
 ## Slide 13 — What remains – model size vs data tradeoffs.
+
+![Slide 13 — What remains – model size vs data tradeoffs.](../images/11-scaling-laws-in-the-wild/slide-13.jpg)
 
 Heading: "What remains – model size vs data tradeoffs."
 
@@ -563,6 +573,8 @@ The ordering is the same in every loss panel and in both rows: **the shorter the
 
 ## Slide 14 — (partial) solution in miniCPM – WSD learning rate
 
+![Slide 14 — (partial) solution in miniCPM – WSD learning rate](../images/11-scaling-laws-in-the-wild/slide-14.jpg)
+
 Heading: "(partial) solution in miniCPM – WSD learning rate"
 
 Body line under the heading: "Instead of cosine, split learning rate into warmup, stable, and decay phases."
@@ -588,6 +600,8 @@ Caption printed beneath the figure (the paper's own): "Figure 15: Illustrative c
 "We measure the scaling law along the data and model axes by training SLMs of 6 sizes ranging from 0.04B to 2B, each with 6 decayed model starting from checkpoint of $10N$ to $60N$ data during the stable training stage. The final loss is evaluated on five held-out evaluation dataset. To potentially compare the loss when the model uses different tokenizer, we take the average of loss by number of bytes instead of number of tokens, following Achiam et al. (2023). The final loss of each pair of data size and model size is shown in the blue lines in Figure 17."
 
 ## Slide 15 — WSD learning rates work well in miniCPM
+
+![Slide 15 — WSD learning rates work well in miniCPM](../images/11-scaling-laws-in-the-wild/slide-15.jpg)
 
 Heading: "WSD learning rates work well in miniCPM"
 
@@ -639,6 +653,8 @@ Body text below the box: "MiniCPM authors choose method 1 (lower envelope) and m
 
 ## Slide 17 — Chinchlla method 1
 
+![Slide 17 — Chinchlla method 1](../images/11-scaling-laws-in-the-wild/slide-17.png)
+
 Heading: "Chinchlla method 1" (spelled exactly that way on the slide — the deck's own typo for "Chinchilla"). Body text above the figure: "Fairly clear (though maybe not linear?) trends". Body text below the figure: "Different colors indicate different models. Their runs suggest relatively low diminishing returns due to data."
 
 **Figure — three side-by-side log-log line panels under one shared title, "Real Loss w.r.t. Compute".** All three panels share the same x-axis, which carries no printed axis label, only tick labels $10^{-1}$, $10^0$, $10^1$, $10^2$, $10^3$ — measured evenly spaced at 127.7 px per decade, so the x-axis is logarithmic. Each panel's y-axis is also logarithmic (measured: the tick rows fit $\log_{10}$ of their values to within ~1%, at ~913, ~1465 and ~1590 px per decade respectively — the widening tick spacing toward smaller values is the log signature). The three y-axes are labelled, left to right, "Code" (ticks $6\times10^{-1}$, $4\times10^{-1}$, $3\times10^{-1}$, plus an unlabelled minor tick at $5\times10^{-1}$), "English (Wikihow)" (ticks $8\times10^{-1}$, $7\times10^{-1}$, $6\times10^{-1}$, $5\times10^{-1}$) and "Chinese (Wikihow)" (ticks $10^0$, $9\times10^{-1}$, $8\times10^{-1}$, $7\times10^{-1}$, $6\times10^{-1}$).
@@ -670,6 +686,8 @@ Each panel contains **exactly six series** — no legend is printed; they are th
 In every panel each successive colour picks up at lower loss and higher compute than the last, and the union of the six traces is close to — but visibly not exactly — a straight line on log-log axes, which is what the slide's parenthetical "(though maybe not linear?)" is pointing at. Each individual segment is also noticeably shallower than the overall envelope, which is the "relatively low diminishing returns due to data" the caption refers to.
 
 ## Slide 18 — Chinchilla method 3
+
+![Slide 18 — Chinchilla method 3](../images/11-scaling-laws-in-the-wild/slide-18.jpg)
 
 Heading: "Chinchilla method 3". Body text: "Their primary scaling approach is the joint fit – they find *very* high data-model ratios." ("very" is italicised on the slide.)
 
@@ -707,6 +725,8 @@ Heading: "DeepSeek". Body text above the pasted image: "DeepSeek (2024) – anot
 **Pasted paper header (centre).** The DeepSeek whale logo with the wordmark "deepseek" set in blue-violet, a horizontal rule below it, and then the paper title over two centred bold lines: "**DeepSeek LLM**" / "**Scaling Open-Source Language Models with Longtermism**". No chart or table on this page.
 
 ## Slide 20 — Scaling strategy – batch + LR
+
+![Slide 20 — Scaling strategy – batch + LR](../images/11-scaling-laws-in-the-wild/slide-20.jpg)
 
 Heading: "Scaling strategy – batch + LR". Body text: "**Scaling strategy**: don't use any muP, directly estimate optimal batch / LR"
 
@@ -754,6 +774,8 @@ Note the two panels do not share axes: going from 1e17 to 1e20 FLOPs, the batch-
 
 ## Slide 21 — Scaling analysis of learning rates
 
+![Slide 21 — Scaling analysis of learning rates](../images/11-scaling-laws-in-the-wild/slide-21.jpg)
+
 Heading: "Scaling analysis of learning rates". Body text above the figure: "Small scale runs + collect 'near optimal' (within 0.25% of min) models." Body text below the figure: "Learning rate fit looks a bit questionable.."
 
 **Pasted paper excerpt — a numbered pair of fitted power laws, printed above the two panels:**
@@ -782,6 +804,8 @@ The two fits are mutually consistent with the stars: $0.2920\times(10^{24})^{0.3
 
 ## Slide 22 — For chinchilla analysis: WSD-style learning rate
 
+![Slide 22 — For chinchilla analysis: WSD-style learning rate](../images/11-scaling-laws-in-the-wild/slide-22.jpg)
+
 Heading: "For chinchilla analysis: WSD-style learning rate". Body text above the figure: "Deepseek uses WSD-style learning rate – fast warmup + two decay steps of 10% each." Body text below the figure: "Generally seems to match performance of cosine learning rates."
 
 **Pasted paper excerpt (paragraph, above the charts).** Transcribed in full:
@@ -806,6 +830,8 @@ For the first ~30 B the two are indistinguishable (orange is drawn over blue). F
 All three multi-step schedules in panel (b) converge to essentially the same final loss, ≈2.33, despite decaying at 60%, 70% and 80% of the token budget — each one is lower than blue only during the window after its own decay begins and before blue's does.
 
 ## Slide 23 — Data-size tradeoff analysis: Chinchilla method 2
+
+![Slide 23 — Data-size tradeoff analysis: Chinchilla method 2](../images/11-scaling-laws-in-the-wild/slide-23.jpg)
 
 Heading: "Data-size tradeoff analysis: Chinchilla method 2". Body text: "Straightforward isoflop-style analysis for selecting the model size tradeoffs."
 
@@ -843,6 +869,8 @@ Full spans of the individual curves, left to right on $M$: blue $1.0\times10^8 \
 The two fitted exponents nearly split the compute evenly ($M \propto C^{0.51}$, $D \propto C^{0.48}$), and the two blue annotations are consistent with each other and with the x-axis: $4.3\times10^{11} \times 1.04\times10^{12} \approx 4.5\times10^{23}$ FLOPs. Note this deck reports model size as FLOPs/token ($M$), not parameter count.
 
 ## Slide 24 — Scaling predicts final model loss
+
+![Slide 24 — Scaling predicts final model loss](../images/11-scaling-laws-in-the-wild/slide-24.jpg)
 
 Heading: "Scaling predicts final model loss". Body text: "The fitted scaling models (generally) accurately predict the final model losses."
 
@@ -890,6 +918,8 @@ No chart or table on this page — both figures are pasted blocks of prose.
 
 ## Slide 26 — Kimi K2
 
+![Slide 26 — Kimi K2](../images/11-scaling-laws-in-the-wild/slide-26.jpg)
+
 Heading: "Kimi K2". Body text: "Many recent papers – sparsity scaling law to find the right sparsity levels"
 
 **Pasted paper excerpt (paragraph, top).** Transcribed in full (the bold run-in heading and the blue hyperlinked "Figure 5" are as printed):
@@ -922,6 +952,8 @@ In every one of the four budgets the doubled-head circles lie **below** the same
 Caption below (native text): "Figure 6: Scaling curves for models with number of attention heads equals to number of layers and their counterparts with doubled attention heads. Doubling the number of attention heads leads to a reduction in validation loss of approximately 0.5% to 1.2%."
 
 ## Slide 27 — Hunyuan (2024) large scaling laws
+
+![Slide 27 — Hunyuan (2024) large scaling laws](../images/11-scaling-laws-in-the-wild/slide-27.jpg)
 
 Heading: "Hunyuan (2024) large scaling laws". Body text above the figure: "Yet more isoflops-style scaling (but this time for MoE parameter sizes)". Body text below the figure: "Optimal ratio – 96-1 (data to active param)".
 
@@ -956,6 +988,8 @@ Caption below the two panels (native text): "Figure 3: Using quadratic polynomia
 Consistency check on the slide's own "96-1" claim: with $C \approx 6ND$, $C = 2.6\times10^{24}$ and $N = 5.81\times10^{10}$ activated parameters gives $D \approx 7.5\times10^{12}$ tokens, i.e. about 128 tokens per activated parameter, in the same ballpark as the "96-1 (data to active param)" ratio the slide states but not identical to it — the deck's number is quoted, not derived on the page.
 
 ## Slide 28 — LLaMA 3 (2024) Scaling laws
+
+![Slide 28 — LLaMA 3 (2024) Scaling laws](../images/11-scaling-laws-in-the-wild/slide-28.jpg)
 
 Heading: "LLaMA 3 (2024) Scaling laws".
 
@@ -1008,6 +1042,8 @@ The legend sits **inside the plot's coordinate space** (raster x 605–857, y 24
 Read together, the right pair is the two-step recipe the deck's caption line names: compute → validation NLL (a straight line in log-compute), then NLL → downstream accuracy (a sigmoid), with the predicted 405B point (0.955) and the realised one (0.962) essentially coinciding.
 
 ## Slide 29 — MiniMax-01 (2025)
+
+![Slide 29 — MiniMax-01 (2025)](../images/11-scaling-laws-in-the-wild/slide-29.jpg)
 
 Heading: "MiniMax-01 (2025)". Body line: "Architecture scaling laws + Chinchilla method 1".
 
@@ -1088,6 +1124,8 @@ Then a centred line: "Recent (late 2024+) but less detailed", followed by four e
 
 ## Slide 31 — Optimizer scaling
 
+![Slide 31 — Optimizer scaling](../images/11-scaling-laws-in-the-wild/slide-31.jpg)
+
 Heading: "Optimizer scaling". Body line above the first figure: "Optimizers choices / tuning can be tricky and scale sensitive". Body line above the second figure: "How should we pick different optimizers?"
 
 **Figure 1 — a two-panel log-log scatter-plus-fit figure: optimal learning rate and optimal batch size against dataset size $D$, one series per model size $N$.** Both panels share the same x-axis, "D", **log** scale (measured: within the left panel the major ticks $10^{10}$ and $10^{11}$ sit 307 px apart, and the intervening minor ticks fall at +93, +147, +185, +215, +239, +260, +277, +293 px — i.e. at $\log_{10}2, \log_{10}3, \ldots$ — which is the log signature). Plotted x-range is roughly $1.6\times10^{9}$ to $1.2\times10^{11}$ in both panels. Each panel shows the same **seven** series, per the legend: N=59M (blue), N=119M (orange), N=214M (green), N=268M (red), N=429M (purple), N=536M (brown), N=1B (pink). Each series is drawn as scatter dots plus a dashed straight fit line plus a translucent confidence band in the same colour.
@@ -1113,6 +1151,8 @@ The contrast between the two panels is the point: optimal learning rate depends 
 Across all three panels the spread between the best and worst optimizer is small — a few thousandths of a nat in loss, and a speedup at the bottom of the 1.0–1.2× band — which is the setup for the slide's question, "How should we pick different optimizers?"
 
 ## Slide 32 — StepFun scaling law study
+
+![Slide 32 — StepFun scaling law study](../images/11-scaling-laws-in-the-wild/slide-32.jpg)
 
 Heading: "StepFun scaling law study". Body text above the figure: "Large scale scaling law study from StepFun". Body text at the foot of the page, below the figure: "**Core question:** how do we set LR / batch params as we scale? (Deepseek / qwen approach)"
 
@@ -1162,6 +1202,8 @@ Below the table, body text:
   - .. Or something else?
 
 ## Slide 34 — The approach: purely empirical – grid search the space
+
+![Slide 34 — The approach: purely empirical – grid search the space](../images/11-scaling-laws-in-the-wild/slide-34.jpg)
 
 Heading: "The approach: purely empirical – grid search the space". Body text: "Much like the DeepSeek paper – train models to try to map out the hparam space". Two images sit side by side below it.
 
@@ -1213,6 +1255,8 @@ Both vertical lines sit about a factor of four below the optimal learning rate, 
 
 ## Slide 35 — Observation 1: loss over batch/LR are convex
 
+![Slide 35 — Observation 1: loss over batch/LR are convex](../images/11-scaling-laws-in-the-wild/slide-35.jpg)
+
 Heading: "Observation 1: loss over batch/LR are convex". Body text below the figure: "For pre-training losses, minimizers for LR/batch can be cleanly identified"
 
 **Figure 1 — a ten-panel figure inside a grey frame: two rows of four one-dimensional slices through the smooth-loss surface, each row ending in a 3-D rendering of that surface with the slicing plane drawn in.** A dashed horizontal rule separates the two rows. An italic annotation "4 LR-axis slices" sits above the top row's 3-D inset (clipped by the top edge of the pasted image, so only the bottom sliver of the letters survives); "4 BS-axis slices" sits above the bottom row's inset, fully printed.
@@ -1239,6 +1283,8 @@ Taken together, the slide's claim holds up against its own data: every one of th
 
 ## Slide 36 — Observation 2: scaling trends
 
+![Slide 36 — Observation 2: scaling trends](../images/11-scaling-laws-in-the-wild/slide-36.jpg)
+
 Heading: "Observation 2: scaling trends". Body text below the figure:
 
 "**For chinchilla style joint scaling:** batch is primarily dependent on dataset size."
@@ -1255,6 +1301,8 @@ Both panels: x-axis "D", **log** scale (measured on this copy: the labelled majo
 The two panels are exactly the evidence the slide's text claims: batch size lies on one curve in $D$ regardless of $N$, while learning rate needs both $N$ and $D$ — and the learning-rate fits do slope *upward* with $D$, which is the "higher optimal LR with D (for fixed M)" the text then flags as fragile.
 
 ## Slide 37 — Observation 3 (?) robustness
+
+![Slide 37 — Observation 3 (?) robustness](../images/11-scaling-laws-in-the-wild/slide-37.jpg)
 
 Heading: "Observation 3 (?) robustness". Two body lines, each labelling the pasted figure below it: "Generalization to MoEs" and "Generalization to other datasets".
 
@@ -1299,6 +1347,8 @@ The Step Law star is fixed at exactly the same point in all three panels — LR 
 Both figures are the deck's evidence for the "robustness" heading: one fitted law's prediction stays close to the empirical optimum as sparsity varies from $N_a/N = 0.09$ to $0.58$ and as the data mixture changes from bilingual to code-dominant. The heading's own "(?)" marks that the slide is presenting this as a claim to be weighed, not a settled result — and the data do show the largest miss where the observed optimum moves furthest (the middle MoE panel and panel (c)), where the fixed prediction is off by a factor of about 1.4 in learning rate.
 
 ## Slide 38 — Optimizers and scale
+
+![Slide 38 — Optimizers and scale](../images/11-scaling-laws-in-the-wild/slide-38.jpg)
 
 Heading: "Optimizers and scale". Two pasted charts side by side, with a bold line across the bottom of the slide: "**Optimization is a core part of LLMs (but also tricky, due to scale dependence!)**".
 
@@ -1348,6 +1398,8 @@ An opaque annotation box sits **inside the plot**, reading "Optimizers' speedup 
 Checking the annotation against the numbers it labels: the overall direction holds — every non-AdamW optimizer falls from a 1.18–1.41× speedup at 130M to 1.09–1.10× at 1.2B, and all three converge to nearly the same value at 1.2B. But the decrease is **not monotone** for two of the three: Soap dips to 1.236 at 300M and rises to 1.289 at 520M, and NAdamW dips to 1.060 at 300M and rises to 1.100 at 520M. Only Muon decreases at every step (and it is flat, 1.256 → 1.254, from 300M to 520M). So "decreases with model size" is a fair description of the endpoints and a rough one of the trend, but the 300M→520M leg runs the other way for three of the four curves.
 
 ## Slide 39 — Problem 1 – hyper tuning is often off..
+
+![Slide 39 — Problem 1 – hyper tuning is often off..](../images/11-scaling-laws-in-the-wild/slide-39.jpg)
 
 Heading: "Problem 1 – hyper tuning is often off..". Two body lines below the figures:
 
@@ -1412,6 +1464,8 @@ Checking that annotation: Lion's traced minimum is indeed at wd = 0.6 (3.3293), 
 
 ## Slide 40 — Problem 2 – fairly significant scale dependence
 
+![Slide 40 — Problem 2 – fairly significant scale dependence](../images/11-scaling-laws-in-the-wild/slide-40.jpg)
+
 Heading: "Problem 2 – fairly significant scale dependence". Two body lines below the figure:
 
 "General algorithm development note – *always* check scaling with respect to compute and chinchilla ratios. These are often major confounders to performance!"
@@ -1447,6 +1501,8 @@ Checking that annotation against the traced numbers: it holds at all four ratios
 Read against the slide's own heading — "fairly significant scale dependence" — the two panels carry different weights. The left panel is the strong evidence: the same optimizers' speedup over AdamW falls from 1.18–1.41× at 130M to 1.09–1.10× at 1.2B, roughly a fourfold shrink in the advantage over one decade of model size. The right panel is the weaker case: it holds model size fixed at 520M and varies the token budget, and there the ranking is stable and only the margin narrows. Both are consistent with the body text's warning that compute and Chinchilla ratio are confounders, but only the model-size axis shows a large effect here.
 
 ## Slide 41 — Problem 2.5 – establishing scaling is nontrivial!
+
+![Slide 41 — Problem 2.5 – establishing scaling is nontrivial!](../images/11-scaling-laws-in-the-wild/slide-41.jpg)
 
 Heading: "Problem 2.5 – establishing scaling is nontrivial!". Body line under it: "Sometimes, a good looking scaling can blow up". Citation on the right, below the figure: "[From https://oa.williamheld.com/blog/delphi/]". Two lines across the bottom of the slide:
 
@@ -1494,6 +1550,8 @@ This is exactly the slide's argument, and the data support it: a scaling law who
 
 ## Slide 42 — A few slides on muon..
 
+![Slide 42 — A few slides on muon..](../images/11-scaling-laws-in-the-wild/slide-42.jpg)
+
 Heading: "A few slides on muon..". Body line: "**Muon:**". Two lines across the bottom of the slide:
 
 "Optimizer for 'matrix valued' parameters."
@@ -1520,6 +1578,8 @@ So Muon is momentum SGD (line 4) with one extra step: the momentum buffer $B_t$ 
 *(Note the deck's own inconsistency: the slide's body line spells the routine "NewtonSchultz", while the pasted algorithm calls it "NewtonSchulz5".)*
 
 ## Slide 43 — Muon and scaling
+
+![Slide 43 — Muon and scaling](../images/11-scaling-laws-in-the-wild/slide-43.jpg)
 
 Heading: "Muon and scaling". Three pasted charts across the slide, each with a caption line printed beneath it by the deck: "NanoGPT speedrun (very small!)", "Scaling study", "Kimi K2". One line across the bottom: "Scaling gains are tricky to measure, but clearly muon 'works' at scale".
 
@@ -1548,6 +1608,8 @@ The curve falls steeply to about 1.60 by 2T tokens, then descends only slowly �
 That matters for reading the slide's closing line. "Scaling gains are tricky to measure, but clearly muon 'works' at scale" is two claims, and the three panels support them unevenly. The left panel is a wallclock comparison at very small scale (the deck's own caption says "very small!"), the centre panel is the comparison that actually measures a gain and shows it shrinking from 1.38× at 130M to 1.10× at 1.2B, and the right panel has no baseline at all — it is evidence that a Muon-trained run of this size trains stably to 15.4T tokens, not evidence that it beat anything. The slide's hedge ("tricky to measure") is the accurate part; the "works at scale" claim rests on stability, not on a measured margin.
 
 ## Slide 44 — Maximum update parametrization – in depth
+
+![Slide 44 — Maximum update parametrization – in depth](../images/11-scaling-laws-in-the-wild/slide-44.jpg)
 
 Heading: "Maximum update parametrization – in depth". Body line: "Recall – the maximum update parametrization makes appealing claims". Two lines across the bottom of the slide:
 
@@ -1608,6 +1670,8 @@ The table has its own header row, so no column mapping is inferred:
 The table is the recipe that produces the right-hand panel: widening a model by a factor $r$ means dividing the AdamW learning rate, the initialization variance and the output multiplier of the matrix-like/output tensors by $r$, and leaving everything else alone. Note the internal consistency between the two halves of the slide — the left panel's measured shift of about $2^{-0.9}$ per doubling of width is the $1/r$ scaling the table's first row prescribes, which is exactly why applying it makes the optimum stationary on the right.
 
 ## Slide 45 — CerebrasGPT
+
+![Slide 45 — CerebrasGPT](../images/11-scaling-laws-in-the-wild/slide-45.jpg)
 
 Heading: "CerebrasGPT". Body line: "CerebrasGPT – 0.1 to 13B models trained with the Chinchilla recipe."
 

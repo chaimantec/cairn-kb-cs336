@@ -22,7 +22,17 @@ compute and data?
 > with inference in between. **Lecture 9 — the basics — is now covered**: data
 > scaling laws, scaling laws for model engineering, and the whole
 > Kaplan-versus-Chinchilla story. **Lecture 11, the advanced treatment** (muP in
-> depth, modern open-model tech reports, optimizers), is not.
+> depth, modern open-model tech reports, optimizers), is a **partial** entry and
+> the one place this banner needs reading closely. Its slide deck is fully
+> transcribed — all 58 pages, at
+> [`raw/slides/11-scaling-laws-in-the-wild.md`](raw/slides/11-scaling-laws-in-the-wild.md),
+> with 32 of its pages rendered as images — but there is **no transcript of the
+> lecture and no wiki page for it**. So a question about MiniCPM's or DeepSeek's
+> published recipe, WSD schedules, the StepFun grid search, Muon, or the muP
+> derivation and its failure modes *can* be answered from that file, with a
+> citation to a slide number. A question about what the lecturer said, or one
+> expecting a lecture page like `wiki/09-scaling-laws.md`, cannot. Say which of
+> the two you are answering from.
 >
 > **A note specific to parallelism:** CS336 has *two* lectures called
 > "Parallelism", and **both are now covered**. Lecture 7 is Percy Liang's
@@ -607,11 +617,19 @@ usually the faster route than the lecture pages.
     [`lecture_04.pdf`](raw/slides/04-attention-alternatives.md) (60 pages),
     [`lecture_05.pdf`](raw/slides/05-gpus-tpus.md) (55 pages),
     [`lecture_08.pdf`](raw/slides/08-parallelism-2.md) (73 pages) and
-    [`lecture_09.pdf`](raw/slides/09-scaling-laws.md) (57 pages) are Tatsunori
+    [`lecture_09.pdf`](raw/slides/09-scaling-laws.md) (57 pages) and
+    [`lecture_11.pdf`](raw/slides/11-scaling-laws-in-the-wild.md) (58 pages) are
+    Tatsunori
     Hashimoto's slide decks, transcribed from the rendered page images, with every
     figure described in prose and every table transcribed cell by cell. Slide
-    numbers in all five are **PDF page numbers**, because none of the decks prints
-    any of its own. Lectures 4, 5 and 8 are the figure-dependent ones — 102 images
+    numbers in all six are **PDF page numbers**, because none of the decks prints
+    any of its own. **Lecture 11's deck is the odd one out in two ways**: it is the
+    only lecture here whose material is transcribed while the lecture itself is not
+    covered (no transcript, no wiki page), and it is the only deck read at Opus
+    rather than Sonnet — a choice made because at 33 words of native text per page
+    it is the most figure-dependent deck in the course. It has had no figure audit
+    yet, and its front matter states the boundary that follows: slide text and
+    tables reliable, chart values provisional. Lectures 4, 5 and 8 are the figure-dependent ones — 102 images
     across 60 pages, 83 across 55, and 86 across 73, most pages carrying only 30–40
     words of their own text — so the figure descriptions there are not a supplement
     to the content, they *are* the content. Each deck's front matter records which
@@ -625,10 +643,13 @@ usually the faster route than the lecture pages.
   PDF decks.
 
 - **`raw/images/NN-<slug>/`** — pictures, so an answer can *show* a figure rather than
-  only describe it. All ten covered lectures have them: 40–51 images each for the five
-  PDF-deck lectures (3, 4, 5, 8, 9), one for every figure-bearing page; and 4–22 each for
+  only describe it. All ten covered lectures have them, and so does lecture 11: 32–51
+  images each for the six PDF-deck lectures (3, 4, 5, 8, 9, 11), one for every
+  figure-bearing page; and 4–22 each for
   the five executable lectures (1, 2, 6, 7, 10), which have no deck, so these are the
-  figures the course serves from its own repo. Lecture 10 is much the richest of those
+  figures the course serves from its own repo. Lecture 11's 32 are the exception to how
+  these are found: with no wiki page for that lecture, they are reachable only from
+  `raw/slides/11-scaling-laws-in-the-wild.md`. Lecture 10 is much the richest of those
   five, with 22 — it is a heavily illustrated lecture whose figures are mostly
   reproduced tables and charts from the papers it discusses. Each image sits beside the slide it shows in
   `raw/slides/`, and in `wiki/` wherever a page cites that slide. About a third of every

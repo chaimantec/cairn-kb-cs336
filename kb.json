@@ -13,7 +13,9 @@
     "lecturesTotal": 18,
     "transcripts": 10,
     "wikiLecturePages": 10,
-    "wikiTopicPages": 84
+    "wikiTopicPages": 84,
+    "courseMaterialOnly": 1,
+    "courseMaterialOnlyNote": "Lecture 11's slide deck is transcribed (all 58 pages) and its 32 figure slides are rendered, but it has no transcript and no wiki page, so it is NOT counted in lecturesCovered. Cite it as course material, and say that the lecture itself is not yet covered."
   },
   "materials": {
     "primary": "mixed",
@@ -23,7 +25,7 @@
     },
     "slideDecks": {
       "available": 8,
-      "transcribed": 5
+      "transcribed": 6
     },
     "method": "mixed",
     "byLecture": {
@@ -36,16 +38,17 @@
       "7": "source-text",
       "8": "page-images",
       "9": "page-images",
-      "10": "source-text"
+      "10": "source-text",
+      "11": "page-images"
     },
     "figuresAudited": true,
     "sourceRepo": "https://github.com/stanford-cs336/lectures",
     "images": {
-      "lecturesWithImages": 10,
+      "lecturesWithImages": 11,
       "lecturesTotal": 18,
-      "files": 281,
-      "megabytes": 32.3,
-      "format": "For the five PDF decks: whole slides rendered at 1400px, JPEG q85 or PNG whichever is smaller, named by PDF page number. For the four executable lectures: the course's own images/*.png, fetched unmodified from the lectures repo.",
+      "files": 313,
+      "megabytes": 36.1,
+      "format": "For the six PDF decks: whole slides rendered at 1400px, JPEG q85 or PNG whichever is smaller, named by PDF page number. For the four executable lectures: the course's own images/*.png, fetched unmodified from the lectures repo.",
       "discovery": "inline in wiki/ and raw/slides/; no index file",
       "byLecture": {
         "1": 9,
@@ -57,9 +60,10 @@
         "7": 4,
         "8": 51,
         "9": 40,
-        "10": 22
+        "10": 22,
+        "11": 32
       },
-      "note": "Coverage is every figure-bearing page of each deck (46 of 67, 48 of 60, 51 of 55, 51 of 73, 40 of 57), and the course's own figures for the executable lectures, which have no deck. Roughly a third of each deck was deliberately NOT rendered - title cards, outlines, section dividers, pure-text bullets, and the pasted tables and equation blocks that raw/slides already reproduces cell by cell. So an image path must be read from a file, never constructed: slide-31.jpg existing says nothing about slide-32.jpg."
+      "note": "Coverage is every figure-bearing page of each deck (46 of 67, 48 of 60, 51 of 55, 51 of 73, 40 of 57, 32 of 58), and the course's own figures for the executable lectures, which have no deck. Roughly a third of each deck was deliberately NOT rendered - title cards, outlines, section dividers, pure-text bullets, and the pasted tables and equation blocks that raw/slides already reproduces cell by cell. So an image path must be read from a file, never constructed: slide-31.jpg existing says nothing about slide-32.jpg. LECTURE 11 IS THE EXCEPTION TO READ CAREFULLY: it has 32 images but no wiki page, so they are reachable only from raw/slides/11-scaling-laws-in-the-wild.md."
     }
   },
   "license": {
@@ -134,9 +138,14 @@
       "Lecture 10's source contradicts its own arithmetic in three places, all recorded as printed in raw/slides/10-inference.md rather than reconciled. (1) The GQA walk-through comments say 'Worse latency, but better throughput' for configurations whose computed latency IMPROVES against the row above; they are consistent only against the B=1 baseline. (2) The TransformerPerformanceStats docstring says num_params is 'in bytes' when it is a count. (3) The quantization section says 'less memory means higher latency/throughput' where it means better. In each case the computed value is the part to trust.",
       "Lecture 10 presents two accuracy claims about GQA that contradict each other, minutes apart, and the KB records both rather than picking. The GQA paper's own evals say quality holds up; DeepSeek-V2's Table 8, shown in the same lecture, puts MHA ahead of GQA on all four hard benchmarks. Percy draws the general moral instead of adjudicating - 'take everything that's not just math with a grain of salt' (51:06). See wiki/attention-variants.md and wiki/multi-head-latent-attention.md.",
       "Lecture 10's 22 images are the course's own PNGs, described by a reader that opened and zoomed each one. Two were independently spot-checked in the parent: mla-accuracy.png (a paper table) was exact cell for cell including the bolding and the verbatim Table 8 caption; gqa-speed.png (a line chart) was structurally right but had stated sub-1 values more precisely than a y-axis with ticks only at 1 and 2 supports, and those were rewritten as relative statements against the reading this KB already audited at higher resolution from lecture 3's slide 63, which shows the same figure. The other 20 descriptions rest on that single reader.",
-      "Three details in lecture 10's images are faithful to the source rather than transcription errors: pruning-kd.png prints '9% bettter', paged-attention-sharing.png prints \"Je t'amie\", and deepseek-v4-attention.png does NOT label the CSA/DSA/HCA acronyms that the lecture's own bullets name immediately after it - it is one general indexer-based sparse-attention diagram."
+      "Three details in lecture 10's images are faithful to the source rather than transcription errors: pruning-kd.png prints '9% bettter', paged-attention-sharing.png prints \"Je t'amie\", and deepseek-v4-attention.png does NOT label the CSA/DSA/HCA acronyms that the lecture's own bullets name immediately after it - it is one general indexer-based sparse-attention diagram.",
+      "Lecture 11 is COURSE MATERIAL ONLY. Its deck (lecture_11.pdf, 58 pages) is fully transcribed at raw/slides/11-scaling-laws-in-the-wild.md and 32 of its pages are rendered as images, but there is no transcript of the lecture and no wiki/11-*.md page. A question about lecture 11 can be answered from the deck, with that limit stated; it must not be answered as though the lecture were covered the way lectures 1-10 are.",
+      "Lecture 11's slide file has had NO FIGURE AUDIT. Its front matter says so and states the reliability boundary: slide text and tables are reliable, chart values are provisional. That asymmetry is measured, not assumed - every error found in lecture 9's three audit passes was in a chart description and none was in slide text or a native-text caption.",
+      "Two values in lecture 11's slide file rest on glyphs of 2-4 pixels and are flagged in its Known limits section rather than presented as read: slide 37's learning-rate axis exponent (read as 1e-3; every LR number on that page scales by 10x if wrong) and slide 11's y-axis tick exponents (read as 1e8/1e9/1e9). Both were attacked with upscaling, ink profiles and cross-correlation against known glyphs before being recorded as uncertain.",
+      "Lecture 11's deck is the only one in this KB read at Opus rather than Sonnet. The choice was the user's, put to them because the deck's profile (81 rasters, 1,917 words, 33 words/page - the lowest text density in the build) matched lecture 9, whose Sonnet read produced 84 errors over 26 audited pages. Provenance therefore differs between lecture 11 and lectures 3-9.",
+      "Four sentences in lecture 11's deck state a conclusion its own data only partly supports, and the slide file records each rather than repeating the slide: slide 15's 'WSD learning rates work well' holds only for the ~10%-decay variants (the three 2N-decay runs finish worse than the cosine baseline); slides 38 and 40's 'speedup decreases with model size' is not monotone; slide 40's 'matrix-based consistently outperform scalar-based' holds but with the margin collapsing from 0.015 to ~0.005; and slide 43's 'clearly muon works at scale' rests on a panel with no baseline."
     ]
   },
   "entryPoint": "INDEX.md",
-  "updated": "2026-09-03"
+  "updated": "2026-09-04"
 }

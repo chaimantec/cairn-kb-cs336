@@ -119,16 +119,23 @@ timings, measured FLOP/s, MFU, peak-memory readings) are marked
 | 5 | GPUs, TPUs | [`lecture_05.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf) — **transcribed**, all 55 pages, at [`raw/slides/05-gpus-tpus.md`](raw/slides/05-gpus-tpus.md) |
 | 8 | Parallelism (Part 2) | [`lecture_08.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf) — **transcribed**, all 73 pages, at [`raw/slides/08-parallelism-2.md`](raw/slides/08-parallelism-2.md) |
 | 9 | Scaling laws (basics) | [`lecture_09.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf) — **transcribed**, all 57 pages, at [`raw/slides/09-scaling-laws.md`](raw/slides/09-scaling-laws.md) |
-| 11 | Scaling laws | [`lecture_11.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_11.pdf) |
+| 11 | Scaling laws (in the wild) | [`lecture_11.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_11.pdf) — **transcribed**, all 58 pages, at [`raw/slides/11-scaling-laws-in-the-wild.md`](raw/slides/11-scaling-laws-in-the-wild.md). Course material only: this lecture has **no transcript and no wiki page** yet. |
 | 15 | Mid/post-training (SFT/RLHF) | [`lecture_15.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_15.pdf) |
 | 16 | Post-training — RLVR | [`lecture_16.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_16.pdf) |
 
-**`lecture_03.pdf`, `lecture_04.pdf`, `lecture_05.pdf`, `lecture_08.pdf` and `lecture_09.pdf` have been transcribed.** All were read as
+**`lecture_03.pdf`, `lecture_04.pdf`, `lecture_05.pdf`, `lecture_08.pdf`, `lecture_09.pdf` and `lecture_11.pdf` have been transcribed.** All were read as
 page images — every figure described in prose, every table transcribed cell by cell
 — because a text extractor recovers nothing from these decks' tables, which are
 pasted images, and flattens their equations into a single line.
 
-**None of the five decks prints a page number on any page**, so all five
+`lecture_11.pdf` is the only one of the six read at **Opus** rather than Sonnet. That
+choice was made because its page profile is the most figure-dependent in the course — 81
+rasters against 1,917 words of native text, 33 words per page — and because the
+comparable deck, `lecture_09.pdf`, had produced 84 errors across 26 audited pages when
+read at Sonnet. A scan of `lecture_11.pdf`'s whole text layer returns exactly **one** URL,
+so even its paper citations are inside the pasted images and had to be read off the page.
+
+**None of the six decks prints a page number on any page**, so all six
 transcriptions label slides by PDF page number and say so in their front matter. For
 `lecture_03.pdf` an automated scan reported one printed number, which turned out to
 be the numerator of a fraction on page 61; for `lecture_04.pdf` the scan reported
@@ -147,6 +154,14 @@ and the reader assigned that range independently identified them as the chart's
 $10^7$ x-axis tick. Its heading sequence was additionally cross-checked against the
 PDF text layer, matching verbatim on 56 of 57 pages — the exception being the title
 page, whose text layer letter-spaces its own title, exactly as lecture 8's does.
+`lecture_11.pdf` is the sixth and cleanest: the corner scan found nothing on any of its
+58 pages, and each of the six readers who split the deck confirmed the absence over its
+own range. Its heading cross-check matched **58 of 58** against the deck's own printed
+titles — but only after the check itself was rebuilt. The first version read each page's
+heading as the first line of `get_text()`, which follows PDF content-stream order rather
+than visual position, and it reported page 49 as a mismatch when the file was right: that
+page's title sits at y=34 in 23.8pt, and the string the check had picked up was body text
+at 15.9pt. Identify a heading by font size and position, never by stream order.
 
 Lectures 4, 5, 8 and 9 are the figure-dependent decks — 102 pasted images across 60
 pages, 83 across 55, 86 across 73, and 93 across 57, with most pages carrying only

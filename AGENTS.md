@@ -229,7 +229,7 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 
 ## Images
 
-Every lecture 1-10 has images. They are committed, not hotlinked, and they are the only
+Every lecture 1-11 has images. They are committed, not hotlinked, and they are the only
 part of this KB that redistributes course material rather than pointing at it.
 
 | Lecture | Files | Where they came from |
@@ -244,8 +244,16 @@ part of this KB that redistributes course material rather than pointing at it.
 | 8 Parallelism 2 | 51 of 73 pages | rendered from `lecture_08.pdf` |
 | 9 Scaling Laws | 40 of 57 pages | rendered from `lecture_09.pdf` |
 | 10 Inference | 22 | the course's own `images/*.png` |
+| 11 Scaling Laws in the Wild | 32 of 58 pages | rendered from `lecture_11.pdf` |
 
-Lectures 11-18 are not in this KB at all, so they have no images.
+Lectures 12-18 are not in this KB at all, so they have no images.
+
+**Lecture 11 is a partial entry and the one place this table can mislead.** Its deck is
+transcribed and its figures are rendered, but it has **no transcript and no wiki page
+yet** — that run covered course material only. So its 32 images are reachable *only* from
+`raw/slides/11-scaling-laws-in-the-wild.md`; there is no `wiki/11-*.md` to grep, and a
+question about lecture 11 will not find a lecture page because none exists. Say so rather
+than answering from the deck as though the lecture were fully covered.
 
 Lecture 10 is by far the richest of the executable lectures — 22 against 4-9 for the
 others — because it is an unusually illustrated program: most of its figures are
@@ -271,7 +279,9 @@ read the path and use the URL that comes back; do not write an absolute
 into the page and a fork or rename breaks every figure.
 
 To list a lecture's images without reading the whole page:
-`grep -o 'raw/images/[^)]*' wiki/09-scaling-laws.md`.
+`grep -o 'raw/images/[^)]*' wiki/09-scaling-laws.md`. For lecture 11, which has no wiki
+page, grep the slide file instead:
+`grep -o '\.\./images/[^)]*' raw/slides/11-scaling-laws-in-the-wild.md`.
 
 Three further conventions:
 
@@ -301,6 +311,24 @@ equation blocks on lecture 4's slides 38 and 41 and lecture 8's 46 and 49. Title
 outline slides, section dividers and pure-text bullets are not rendered either — their
 content is already fully in the slide file, so an image is bytes for nothing.
 
+Lecture 11 is the deck where that rule bit hardest: the raster test flags 50 of its 58
+pages, but only 32 were rendered. The 26 skipped pages fall into five groups, and the
+split is worth stating because this deck's rasters are unusually often *not* figures —
+8 pages carry no raster at all (2, 30, 47-50, 53, 58: the motivation slide, the recipe
+list, the four muP derivation pages, the robustness prose slide and the recap); slide 1's
+only raster is the template's blue footer bar; **five pages are screenshots of a paper's
+title block** (3, 5, 6, 19, 46) whose entire content is the transcribed title, authors and
+affiliation; **two are pasted blocks of paper prose and numbered equations** reproduced in
+full (16, 25); and **ten are tables transcribed cell by cell** (7, 8, 9, 33, 51, 52, 54,
+55, 56, 57). Slides 55 and 56 also paste pseudocode boxes, which are reproduced line by
+line and are text for the same reason.
+
+One page was rendered *against* the table rule, deliberately: **slide 20**, whose two
+panels are colour-coded heatmaps with a red star marking the fitted optimum. The 240 cell
+values are transcribed and are the better source for any number, but the colour basin —
+the shape of the loss surface over batch and learning rate — is the slide's actual
+argument and does not survive as a markdown table.
+
 Two of the course's own figures were deliberately not fetched: `course-staff.png`
 (a photo grid of the teaching staff, no course content) and `ranks.png` (four boxes
 labelled Rank 0-3, which the prose states completely).
@@ -329,9 +357,9 @@ Hashimoto, from the course's own lecture repository at
 <https://github.com/stanford-cs336/lectures>:
 
 - **Slide renders** are whole pages of `lecture_03.pdf`, `lecture_04.pdf`, `lecture_05.pdf`,
-  `lecture_08.pdf` and `lecture_09.pdf`, at 1400px wide, JPEG q85 or PNG whichever came out
-  smaller. Each is named by its PDF page number, which is what this KB cites as a slide
-  number — none of the five decks prints a folio.
+  `lecture_08.pdf`, `lecture_09.pdf` and `lecture_11.pdf`, at 1400px wide, JPEG q85 or PNG
+  whichever came out smaller. Each is named by its PDF page number, which is what this KB
+  cites as a slide number — none of the six decks prints a folio.
 - **The course's own figures** for lectures 1, 2, 6 and 7 are the files those executable
   lectures pass to `image()`, fetched unmodified from `images/` in the same repository.
   Figures those lectures display by *external* URL — NVIDIA documentation, arXiv, Wikimedia,
