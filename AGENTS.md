@@ -665,3 +665,32 @@ bought is worth stating precisely, because it is not what was expected.
   per-point labels, recorded as unreadable at native resolution, read cleanly at 6-14x zoom
   — and the values measured around them turned out to be correct anyway. Treat the phrase as
   a flag, never a fact.
+
+## Run order, set after run 12
+
+**Transcript and wiki come immediately after the slide transcription — before images, and
+before any figure auditing.**
+
+Run 12 did it the other way round and the result is the lesson. It transcribed lecture 11's
+58-page deck, rendered 32 figures, and ran two audit passes over 15 pages — and left the
+lecture with no transcript and no wiki page. That is the least useful shape a lecture can be
+left in. The deck is supporting material; the wiki page is what a learner reads and what the
+chat quotes. The run bought the cheap half first and ran out of budget before the valuable
+half.
+
+The order for a deck-based lecture:
+
+1. **Slide transcription** first — the transcript edit is cross-checked against the deck, so
+   the deck has to exist.
+2. **Transcript, then wiki, immediately.**
+3. **Images** after that.
+4. **One figure audit pass, then stop.** Two passes over 15 of lecture 11's pages cost more
+   than transcribing all 58, and the second pass's yield was mostly refinement — tenths of a
+   percent — alongside a handful of real faults. Prefer auditing **the pages the wiki
+   actually quotes** over the pages that merely look chart-heavy: a wrong value nobody cites
+   is cheaper to leave flagged than to hunt down.
+
+The "a dirty sample means the sample was too small" rule still stands as a description of
+risk. It is not a budget authority. When it and the budget disagree, state the boundary in
+the slide file's front matter and in `kb.json`, and stop — an acknowledged gap beats an audit
+spent past the point of diminishing return.

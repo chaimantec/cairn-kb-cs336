@@ -1390,11 +1390,43 @@ committing what these two steps produce.
       NOTE ON THE AGENT'S OWN REPORT: it summarised as "not one measured number was wrong
       in a way that mattered" while its own findings listed the four faults above. Checked
       against its evidence rather than taken at face value.
-- [ ] Figure audit pass 3 — still owed on the numbers, 43 of 58 pages unaudited. 7 of 8
-      dirty in pass 2 means the sample is still too small. Highest-value remaining targets:
-      the multi-series log-log charts not yet touched (4, 12, 14, 17, 18, 21, 22, 26, 27,
-      28, 32, 36, 42, 44) and the 240-cell heatmap pair on 20. Target concluding sentences
-      first, then any value attributed to a series that may not be visible.
+- [x] Figure audit pass 3 — **DELIBERATELY NOT RUN. The user stopped it on cost.** This is
+      a decision, not an omission, and it is recorded as one so nobody later reads the file
+      as unfinished business. By the build's own "a dirty sample means the sample was too
+      small" rule a third pass was indicated (7 of 8 dirty in pass 2), and the rule is not
+      being retracted — it was outweighed. Two passes over 15 pages had already cost more
+      than the whole 58-page transcription, and the marginal find was falling: pass 1
+      turned up an inverted claim about the source, pass 2 turned up refinements of tenths
+      of a percent alongside its four real faults.
+      What the KB does instead of a third pass is state the boundary and stop pretending:
+      43 of 58 pages carry chart values no one re-checked, the slide file's front matter
+      says so, and kb.json carries the same caveat. An acknowledged gap is worth more than
+      an audit budget spent past the point of return.
+      If anyone does resume it, the targets were: the multi-series log-log charts not yet
+      touched (4, 12, 14, 17, 18, 21, 22, 26, 27, 28, 32, 36, 42, 44) and the 240-cell
+      heatmap pair on 20 — concluding sentences first, then any value attributed to a
+      series that may not be visible at all.
+
+## Run order for future lectures — set by the user after run 12
+
+**Do the transcript and the wiki immediately, before any figure auditing.** Run 12 inverted
+that: it produced course material and images, then spent two audit passes, and finished with
+lecture 11 having a fully transcribed 58-page deck and no transcript and no wiki page. That
+is the least useful shape a lecture can be left in — the deck is the supporting material and
+the wiki is the thing a learner actually reads, so the run bought the cheap half first and
+ran out of budget before the valuable half.
+
+The rule for the next lecture:
+
+1. Slide transcription (Step 1b) — needed first, because the transcript edit is cross-checked
+   against the deck.
+2. **Transcript (Steps 1 and 1a), then the wiki (Step 3), immediately.**
+3. Images (Step 1c) after that.
+4. **ONE figure audit pass, then stop.** Two passes over 15 pages cost more than transcribing
+   all 58, and the second pass's yield was mostly refinement. Audit the pages the wiki
+   actually quotes, rather than the pages that look most chart-heavy — a wrong value nobody
+   cites is cheaper to leave flagged than to hunt.
+
 
 ### Model choice
 - [x] Put to the user, as the skill requires for an unusually chart-dense deck.

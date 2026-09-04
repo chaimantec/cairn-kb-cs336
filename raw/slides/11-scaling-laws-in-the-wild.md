@@ -97,9 +97,13 @@ audit: >
   reading against each other.
   FALSE ILLEGIBILITY: slide 35's per-point labels, called unreadable at native resolution,
   read cleanly at 6-14x zoom. In this build that claim has never once survived a test.
-  STILL UNAUDITED: 43 of 58 pages. Treat their CHART VALUES as provisional and their slide
-  TEXT AND TABLES as reliable; and on this deck, treat a chart entry's concluding sentence
-  as the least reliable thing on the page.
+  NO FURTHER PASS WILL RUN. A third pass was indicated by this build's own "a dirty sample
+  means the sample was too small" rule and was DELIBERATELY DECLINED on cost - two passes
+  over 15 pages cost more than transcribing all 58. So this is the final state, not an
+  interim one. 43 of 58 pages carry chart values that nobody re-checked. Treat those CHART
+  VALUES as provisional and the slide TEXT AND TABLES as reliable; and on this deck, treat a
+  chart entry's concluding sentence as the least reliable thing on the page, since that is
+  where the errors concentrated on every page that was checked.
   Structural verification is complete and separate: 58 headings in sequence 1..58, no gaps
   or duplicates, all 58 matched verbatim against the deck's own title text, identified by
   title font size and position rather than content-stream order. (Stream order gets slide 49
