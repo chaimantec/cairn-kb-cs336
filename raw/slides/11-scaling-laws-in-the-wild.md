@@ -62,33 +62,39 @@ reading: >
   and 45, and the converse trap - ticks at powers of two that read as log-2 and are
   linear - appeared on slides 4, 31 and 40.
 audit: >
-  FIGURE AUDIT PASS 1 IS PARTIAL - 2 of 7 planned pages. The pass was killed by a session
-  rate limit after page 11, but it appended per page, so both finished pages survived.
-  PAGE 37: CLEAN, and fully audited - all 30 marker values re-measured by colour-keyed
-  pixel clustering, both axes' calibration reproduced from minor-gridline geometry, all
-  three panel titles and six colorbar ranges confirmed character by character. Its
-  learning-rate scale, previously this deck's largest open question, is settled three ways
-  that do not depend on the 2-3 px glyph at all; see Known limits.
-  PAGE 11: ONE substantive error, now corrected - the file gave panel 1's left BORDER as
-  1.4e4, which is where the data begins; the border is exactly 1e4, with the labelled tick
-  on the spine. The file's own numbers had been internally inconsistent (199 px/decade over
-  the stated range gives 350 px for a 377.5 px panel), which is a reminder that an entry
-  can be checked against itself for free. The page's unverified y-axis exponents were
-  confirmed as transcribed, and six marker values and two red-line traces were refined.
-  So: 2 pages audited, 1 dirty, 1 error. That is a far better rate than lecture 9's
-  Sonnet read (26 of 36 pages dirty, 84 errors), which is the comparison the Opus choice
-  was made against - but 2 pages is a sample, not a verdict.
-  STILL UNAUDITED: 29, 41, 45, 35 and 51 from the planned pass, and the other 51 pages of
-  the deck. Until they are done, treat SLIDE TEXT AND TABLES as reliable and CHART VALUES
-  as provisional. That asymmetry is measured, not assumed: every error found across
-  lecture 9's three audit passes was in a chart description, and none was in slide text or
-  a native-text caption.
-  Structural verification is complete and separate from the above: 58 headings in sequence
-  1..58 with no gaps or duplicates, and all 58 matched verbatim against the deck's own
-  title text, identified by title font size and position rather than content-stream order.
-  (Content-stream order gets slide 49 wrong - its title sits at y=34 in 23.8pt but is not
-  the first string in the stream - which is worth knowing before anyone rebuilds that
-  check.) Two internal cross-checks also came back consistent: slide 24's eight grey
+  FIGURE AUDIT PASS 1 COMPLETE - 7 of 58 pages: 37, 11, 29, 41, 45, 35 and 51. It took two
+  agents because the first was killed by a session rate limit after two pages; both
+  appended per page, so nothing was lost.
+  RESULT: DIRTY. Two pages clean (37 and 51), five carried errors, 16 in all (10
+  substantive, 6 minor), every one corrected below. By this build's own rule a dirty sample
+  means the sample was too small, so PASS 2 IS OWED over the remaining chart-heavy pages.
+  THE PATTERN IN THE ERRORS IS THE USEFUL PART, and it is not the pattern lecture 9 showed.
+  Every MEASURED quantity that was checked held up: all four nominated axis-scale claims
+  were confirmed (the log axes on 29, 41 and 45, whose even labelling makes them look
+  linear), slide 37's learning-rate exponent was confirmed three ways, slide 11's y-axis
+  exponents were confirmed, slide 35's axis calibration was confirmed against the rejected
+  alternative, and hundreds of individual values re-measured exactly - all 30 markers on
+  37, all 88 loss values on 35, all 40 table cells on 51, all 17 points on 41, all 20 on
+  45. What failed was the INTERPRETIVE SENTENCE laid over correct data: which interval of a
+  curve is the flat one (29), which series wins how often (29, 45), whether a fit is a
+  straight line or a curve (41), whether a marker is above another or level with it (41),
+  and one inverted colour reading (35). Several were contradicted by the file's own table
+  a few lines above. So on this deck, check the claim against the data, not just the data
+  against the page - and check an entry against itself first, because it is free.
+  ONE WITHDRAWN CLAIM ABOUT THE SOURCE: slide 35 was recorded as containing a colorbar that
+  runs opposite to its surface height. It does not. See the withdrawn entry under "The
+  deck's own inconsistencies", which is kept as a correction rather than deleted.
+  FALSE ILLEGIBILITY, again: slide 35's per-point labels, called unreadable at native
+  resolution, were read at 6-14x zoom. In this build that claim has now been tested many
+  times and has never once survived.
+  STILL UNAUDITED: 51 of the 58 pages. Until pass 2, treat SLIDE TEXT AND TABLES as
+  reliable and CHART VALUES as provisional - though note this deck's own error profile puts
+  the risk in a chart entry's concluding sentence rather than in its numbers.
+  Structural verification is complete and separate: 58 headings in sequence 1..58 with no
+  gaps or duplicates, and all 58 matched verbatim against the deck's own title text,
+  identified by title font size and position rather than content-stream order. (Stream
+  order gets slide 49 wrong - its title sits at y=34 in 23.8pt but is not the first string
+  in the stream.) Two internal cross-checks came back consistent: slide 24's eight grey
   circles are numerically identical to the eight IsoFLOP minima measured off slide 23, and
   slide 12's printed fit log(BS) = -6.24 log(L) + 20.91 reproduces its own traced line to
   within 1% once the logs are read as natural logs.
@@ -165,12 +171,17 @@ pass, sets the ceiling. Two of them are inferences that a later audit should set
   rendering. A first pass with loose colour tolerance produced confident nonsense here
   (antialiasing on a dark line's bright edge lands within 15 RGB units of the next-lighter
   legend colour), and was redone at the columns where all six resolve individually.
-- **Slide 35 — the per-point value labels were not read glyph by glyph.** They sit 4–5 px
-  tall in a 1251×538 raster. Rather than guess them, the reader calibrated each panel's
-  axes from its tick labels and gridlines and measured the marker centroids; the four grid
-  cells shared between a top-row and a bottom-row panel then agree to within 0.0003 in
-  loss, which validates the calibration. **The values printed for slide 35 are measured,
-  not transcribed from the source's own two-decimal labels.**
+- **Slide 35 — RESOLVED, and the caution was unnecessary.** The entry's values were
+  *measured* rather than transcribed, because the source's per-point labels sit 4–5 px tall
+  in a 1251×538 raster and the reader judged them unreadable. The audit re-derived all
+  **88** values independently: every one agrees with the file to within 0.001, every stated
+  minimum and tie is right, and the sixteen (not four) grid cells shared between the two
+  rows agree to within 0.0004. It also read the printed two-decimal labels straight off the
+  raster at 6–14× zoom. **So the values are confirmed, and "not readable at this
+  resolution" was false here too** — which makes this build's tally of that claim unbroken:
+  it has never once survived being tested. The bottom-row axis calibration was checked in
+  the same pass and the file's 101 px/decade is right (the rejected 83.5 would put the four
+  printed learning rates in a 37.8 px span where the markers actually occupy 44.98 px).
 - **Slides 55 and 56 — the pasted table crop omits its header row.** The column headings
   ($2^{-10}$ … $2^{-2}$) are carried over from slides 52 and 54, which show the same table
   with its header. The evidence is geometric: the five numeric column centres on 55 and 56
@@ -220,10 +231,15 @@ silently corrected. They are recorded here so a later reader does not "fix" them
   "3.239 \* 10^-3 + -1.395 \* 10^-4 log(N)"; the "+ -" is in the source image. The same
   table's MiniCPM batch-size cell uses an upright italic $L$ where the OpenAI and MeiTuan
   cells use script $\mathcal{L}$.
-- **Slide 35** — in the 3-D insets the surface's floor (the loss *minimum*) is blue and its
-  rim dark red, while the colorbar beside it puts 0.82 at the blue end and 0.74 at the red.
-  Colour and height run opposite ways. Verified by sampling the colorbar's pixels against
-  its own tick-label rows, so this is what is printed.
+- **Slide 35 — WITHDRAWN. This entry was wrong, and it is left here as a correction rather
+  than deleted.** It previously claimed that the 3-D insets' colour runs opposite to height
+  (blue floor, red rim) and recorded that as an inconsistency in the source. The audit
+  refuted it: colour runs *with* height, the basin floor is dark red and the blue is the
+  tall high-loss corner. The original reading did sample the colorbar against its own tick
+  rows, which is why it looked verified — but sampling the colorbar establishes only which
+  end is which value, not which end the *surface's floor* is drawn in. The slide entry now
+  carries the four independent proofs. The lesson worth keeping: a check that confirms half
+  of a claim can make the whole claim feel confirmed.
 - **Slide 15** — the orange series is labelled "Cosine(80N)" but is plotted out to ~127N
   tokens. Its shape is consistent with an 80N cosine cycle followed by continued training
   at the 10%-of-peak learning-rate floor, the same floor measured on slides 13 and 14.
@@ -1088,7 +1104,7 @@ All six axes are **log**, verified by measurement:
 - Centre and right y-axes: decade gridlines 150.5, 150.0, 150.0 px apart.
 - **The left panel's y-axis is the one worth stating explicitly.** It is labelled 6.5, 6, 4.5, 4, 3.5, 3, 2.5, 2 in apparently even 0.5 steps (with unlabelled tick marks at 5.5 and 5), which reads as linear — it is **log**. Measured gaps, top to bottom: 6.5→6 = 31.5 px, 6→5.5 = 35, 5.5→5 = 37.5, 5→4.5 = 41.5, 4.5→4 = 47, 4→3.5 = 52.5, 3.5→3 = 61, 3→2.5 = 72.5, 2.5→2 = 88. A log fit at 911.3 px/decade predicts 31.7, 34.4, 37.7, 41.7, 46.6, 52.8, 61.0, 72.2, 88.3 — every residual under 0.5 px. A linear axis would have given nine identical 51.8 px gaps.
 
-**Panel 1 (left) — "Loss vs Compute".** Y-axis "Loss" (log, 2 to ~6.9); x-axis "PFLOP/s-days" (log, $10^{-2}$ to $10^{3}$). A dense fan of individual training curves — roughly a dozen visible crossing the top edge of the frame, in interleaved groups of three (one per architecture) at successive compute scales — each plunging steeply from above the top of the frame and then flattening into a common descending band. Under the fan run **three dashed fitted lines**, one per architecture, each a straight line on these log-log axes (thick dashed for Hybrid-lightning, thin dashed for the other two). Their values, taken as the lowest-drawn pixel of each colour family:
+**Panel 1 (left) — "Loss vs Compute".** Y-axis "Loss" (log, 2 to 6.99 at the top of the frame); x-axis "PFLOP/s-days" (log, $10^{-2}$ to $10^{3}$). A dense fan of individual training curves — roughly a dozen visible crossing the top edge of the frame, in interleaved groups of three (one per architecture) at successive compute scales — each plunging steeply from above the top of the frame and then flattening into a common descending band. Under the fan run **three dashed fitted lines**, one per architecture, each a straight line on these log-log axes (thick dashed for Hybrid-lightning, thin dashed for the other two). Their values, taken as the lowest-drawn pixel of each colour family:
 
 | PFLOP/s-days | Softmax (yellow, dashed) | Lightning (purple, dashed) | Hybrid-lightning (red, thick dashed) |
 | --- | --- | --- | --- |
@@ -1110,9 +1126,9 @@ The three lines are near-parallel and ordered the same way at every compute: **H
 | $\approx3.3\times10^{8}$ | *(no marker)* | 1.20 | 1.75 |
 | $\approx9.1\times10^{8}$ | 7.7 | 5.0 | 4.0 |
 | $\approx2.8\times10^{9}$ | 43 | 37 | 30 |
-| $\approx6.5\times10^{9}$ | 177 | ≈137 | ≈137 |
+| $\approx6.5\times10^{9}$ | ≈180 | ≈132 | ≈147 |
 
-At every parameter count the Softmax point sits furthest right, i.e. it needs the most compute to justify the same model size; Hybrid-lightning needs the least at four of the six. The three polylines are otherwise nearly coincident, and all three are visibly *not* straight: each has a flat stretch between about 0.3 and 1 PFLOP/s-days and a steeper stretch above it, which is why the straight dashed fits sit above the polylines at low compute and cross them around 1–5 PFLOP/s-days. (The Lightning and Hybrid markers at the two ends overlap so exactly that they render as one blended blob; the values above are from the blob centroid.)
+At every parameter count the Softmax point sits furthest right, i.e. it needs the most compute to justify the same model size; Hybrid-lightning needs the least at only **two** of the six (at $N\approx9.1\times10^{8}$, 4.07 against Lightning's 5.06, and at $N\approx2.8\times10^{9}$, 30.6 against 37.4); **Lightning is leftmost at the other four**, including the two rows the table above records as ties, which measurement separates narrowly in Lightning's favour. The three polylines are otherwise nearly coincident, and all three are visibly *not* straight: each is shallow **below** about 0.3 PFLOP/s-days, **steepest between roughly 0.3 and 4–8**, and shallow again above that. Measured segment slopes $d(\log N)/d(\log C)$ for the red (Hybrid) polyline are 0.45, 0.87, 1.22, 0.55, 0.54; purple gives 0.48, 0.93, 0.72 and yellow 0.56, 0.89, 0.65, 0.60. So the steeper stretch above it, which is why the straight dashed fits sit above the polylines at low compute and cross them around 1–5 PFLOP/s-days. (The Lightning and Hybrid markers at the two ends overlap so exactly that they render as one blended blob; the values above are from the blob centroid.)
 
 **Panel 3 (right) — "Tokens vs Compute".** Y-axis "Tokens" (log, $10^{9}$ to just above $10^{12}$); x-axis "PFLOP/s-days" (log, $10^{-2}$ to $10^{3}$). A scatter of dots in the three colour families plus **three solid straight fitted lines**. The fitted lines:
 
@@ -1305,9 +1321,9 @@ Heading: "Observation 1: loss over batch/LR are convex". Body text below the fig
 - **"Batch Size = 786432"** (y ticked 2.08–2.14 in steps of 0.01). Losses: 2.143, 2.125, 2.112, 2.102, 2.093, 2.086, 2.081, 2.078, **2.078**, 2.084, 2.096, 2.120. Minimum at LR $\approx1.4$–$2.0\times10^{-3}$.
 - **"Batch Size = 1048576"** (y ticked 2.08–2.15 in steps of 0.01). Losses: 2.150, 2.132, 2.119, 2.106, 2.097, 2.088, 2.082, **2.076**, 2.077, 2.083, 2.090, 2.111. Minimum at LR $\approx1.4\times10^{-3}$ — the lowest loss anywhere in the eight panels.
 
-(The eight panels are consistent with one another: the four cross-checks where a top-row and a bottom-row panel share a grid cell — e.g. LR $6.91\times10^{-4}$ with batch 1048576 — agree to within 0.0003 in loss.)
+(The eight panels are consistent with one another: the **sixteen** cross-checks where a top-row and a bottom-row panel share a grid cell (each of the 4 top-row learning rates against each of the 4 bottom-row batch sizes) — e.g. LR $6.91\times10^{-4}$ with batch 1048576 — agree to within 0.0004 in loss across all sixteen.)
 
-**The two 3-D insets** (one at the right of each row) are the same rendering: a 3-D surface over x-axis "Learning Rate (log10)" and y-axis "Batch Size (log2 D)", with a vertical axis and a colorbar both labelled "Smooth Loss (log)". The colorbar carries five evenly spaced tick labels, **0.82 at the top through 0.80, 0.78, 0.76 to 0.74 at the bottom**, and its gradient runs dark blue at the top, through white at about 0.78, to dark red at the bottom (measured pixel-by-pixel down the bar). The surface itself is a single smooth basin — a rim rising on all sides, coloured dark red, dropping to a blue-white floor at the centre of the grid. The top inset has a translucent **blue** vertical plane standing in it, with a dark-blue arrow running left from that plane to the fourth top panel; the bottom inset has a translucent **red/pink** vertical plane, with a red arrow running left to the fourth bottom panel — i.e. each plane marks which slice the neighbouring line panel is.
+**The two 3-D insets** (one at the right of each row) are the same rendering: a 3-D surface over x-axis "Learning Rate (log10)" and y-axis **"Batch Size (log10)"** — its ticks read 5.25, 5.50, 5.75, 6.00, 6.25, 6.50, 6.75, which is $\log_{10}$ of the $1.31\times10^{5}$–$8.39\times10^{6}$ batch range; $\log_2$ would print 17 through 23 — with a vertical axis and a colorbar both labelled "Smooth Loss (log)". The colorbar carries five evenly spaced tick labels, **0.82 at the top through 0.80, 0.78, 0.76 to 0.74 at the bottom**, and its gradient runs dark blue at the top, through white at about 0.78, to dark red at the bottom (measured pixel-by-pixel down the bar). The surface itself is a single smooth basin, and **its colour runs *with* height, not against it**: the basin floor — the loss minimum — is **dark red**, and the tall corner where the loss blows up is **blue**. (An earlier reading of this page had that inverted, and recorded it as an inconsistency in the source; it is not one. Four things settle it. Arithmetic: the eight panels' Smooth Loss values span 2.076–2.183, whose natural logs are 0.7304–0.7807 — exactly the colorbar's 0.74–0.82 — so the colorbar's 0.74 end is the minimum. Mechanism: the colorbar and the vertical axis carry the same label, "Smooth Loss (log)", so colour is a monotone increasing function of $z$. Local pixels: following one continuous slope down from its topmost sliver the colour runs pale blue (194,208,221) → (241,221,220) → (231,156,137) → saturated red (219,131,117), i.e. higher is bluer. Aggregate: over 6,484 strongly coloured surface pixels the correlation between screen-$y$ and recovered colorbar value is $-0.37$, and the darkest-blue pixels average 19 px higher on screen than the darkest-red ones.) The top inset has a translucent **blue** vertical plane standing in it, with a dark-blue arrow running left from that plane to the fourth top panel; the bottom inset has a translucent **red/pink** vertical plane, with a red arrow running left to the fourth bottom panel — i.e. each plane marks which slice the neighbouring line panel is.
 
 Taken together, the slide's claim holds up against its own data: every one of the eight slices is single-minimum and U-shaped, so an optimum in learning rate and in batch size can be read straight off each curve.
 
@@ -1555,9 +1571,9 @@ One pasted raster holds two panels sharing a single legend printed beneath them,
 | 1.8e+20 | indigo | $1.78\times10^{10}$ | 2.995 |
 | 3e+20 | dark red | $2.36\times10^{10}$ | 2.911 |
 
-The parabolas are wide and shallow — for the 3e+20 bucket, for instance, the plotted points run from $3.7\times10^{9}$ to $2.4\times10^{11}$ tokens and from loss 3.274 down to 2.892 and back up — and each one's ✕ sits at a visibly clean minimum. That cleanliness is the setup for the second panel.
+The parabolas are wide and shallow — for the 3e+20 bucket, for instance, the plotted points run from $4.05\times10^{9}$ to $2.23\times10^{11}$ tokens and from loss 3.120 at the left end down to 2.912 and back up to 3.259 at the right — and each one's ✕ sits at a visibly clean minimum. That cleanliness is the setup for the second panel.
 
-**Figure 2 (right) — "Scaling law + held-out validation".** Y-axis "Paloma macro loss at IsoFLOP optimum" (log, 2.2 to 3.8); x-axis "Compute (FLOPs)" (log, $10^{19}$ to $10^{23}$). A single tan series of round markers with a tan dashed straight fit line through them. A **vertical dotted divider at $5\times10^{20}$ FLOPs** splits the plot, annotated "fit  ←  ⋮  →  extrapolation".
+**Figure 2 (right) — "Scaling law + held-out validation".** Y-axis "Paloma macro loss at IsoFLOP optimum" (log, 2.2 to 3.8); x-axis "Compute (FLOPs)" (log, $10^{19}$ to $10^{23}$). A single tan series of round markers with a tan dashed fit through them — **a visibly curved (concave) dashed curve, not a straight line**: forcing a straight line through its ten dash-segment centroids leaves residuals in a textbook parabolic pattern (rms 1.91 px, running $-3.31$ to $+2.33$), while a quadratic fits to rms 0.06 px. Its local log-log slope varies smoothly from about $-0.055$ at $10^{19}$ to $-0.043$ at $10^{23}$. A **vertical dotted divider at $5\times10^{20}$ FLOPs** splits the plot, annotated "fit  ←  ⋮  →  extrapolation".
 
 Points, left to right:
 
@@ -1574,9 +1590,9 @@ Points, left to right:
 | $1.0\times10^{22}$ | 2.523 | extrapolation | "2.5% worse" |
 | $1.0\times10^{23}$ | **2.762** | extrapolation | "Run Diverged" (leader line to a large ✕) |
 
-The seven fit-region points fall on the dashed line essentially exactly — measured on this render, the line's log-log slope is about $-0.050$ (my measurement; no exponent is printed). The two held-out extrapolation runs land slightly *above* the line, by the printed 0.8% at $10^{21}$ and 2.5% at $10^{22}$ (my own pixel measurement of those two gaps gives 0.5% and 2.9%, consistent with the printed figures within measurement error). The third held-out run, at $10^{23}$ FLOPs, is drawn as a large ✕ at loss 2.762 — **above the $10^{21}$ point**, while the extrapolated line at $10^{23}$ sits near 2.18. It is not a slightly-worse point; it is a run that failed, and the loss it reached is about 27% worse than the law predicted.
+The seven fit-region points fall on the dashed line essentially exactly — measured on this render, its average log-log slope is about $-0.050$ (my measurement; no exponent is printed, and this is the average of a curve rather than the slope of a line). The two held-out extrapolation runs land slightly *above* the line, by the printed 0.8% at $10^{21}$ and 2.5% at $10^{22}$ (measured against the drawn curve those gaps are 0.71% and 2.49%, so the printed figures are reproduced almost exactly; an earlier measurement of 0.5% and 2.9% came from forcing a straight line through the curved fit). The third held-out run, at $10^{23}$ FLOPs, is drawn as a large ✕ at loss 2.7647 — **level with the $10^{21}$ point** (2.7662; the ✕ is a fifth of a pixel lower in loss, not above it), while the extrapolated curve at $10^{23}$ sits at 2.2248. It is not a slightly-worse point; it is a run that failed, and the loss it reached is **24.3%** worse than the law predicted.
 
-This is exactly the slide's argument, and the data support it: a scaling law whose fit region looks flawless (seven clean IsoFLOP parabolas, seven points on a straight line) drifts by 0.8% and then 2.5% as it is extrapolated one and two decades past the fit, and then breaks completely two and a half decades out. The bottom lines name the setup that produced the blow-up ("Cautious AdamC + Sqrt batch-size scaling of learning rates") and note it was "Fixed with some more careful parametrization / scaling / optimizer changes".
+This is exactly the slide's argument, and the data support it: a scaling law whose fit region looks flawless (seven clean IsoFLOP parabolas, seven points sitting on the fit to within ±0.16%) drifts by 0.8% and then 2.5% as it is extrapolated one and two decades past the fit, and then breaks completely two and a half decades out. The bottom lines name the setup that produced the blow-up ("Cautious AdamC + Sqrt batch-size scaling of learning rates") and note it was "Fixed with some more careful parametrization / scaling / optimizer changes".
 
 ## Slide 42 — A few slides on muon..
 
@@ -1707,9 +1723,9 @@ Heading: "CerebrasGPT". Body line: "CerebrasGPT – 0.1 to 13B models trained wi
 
 **Figure 1 (left) — Pile test loss vs. training FLOPs for Cerebras-GPT and comparison model families.** x-axis "Training FLOPs", **log scale**, decade gridlines labelled $10^{18}$, $10^{19}$, $10^{20}$, $10^{21}$, $10^{22}$, $10^{23}$ (measured: decades evenly spaced at ~329 px apart at 600 dpi). y-axis "Pile test loss", **log scale, not linear** — ticks are labelled 2.75, 2.50, 2.25, 2.00, 1.75, 1.50 but their pixel spacings grow monotonically (175.5, 193, 217.5, 245, 283.5 px); a fit against $\log_{10}(\text{loss})$ has residuals under 0.5 px, a linear fit has residuals up to 48 px. Legend, six entries:
 
-- **Cerebras-GPT** (blue, solid line with round markers) — 7 points, each annotated with its parameter count: 111M at ($\approx 10^{18.4}$, loss ≈ 2.61), 256M at ($10^{19.1}$, ≈ 2.36), 590M at ($10^{19.8}$, ≈ 2.185), 1.3B at ($10^{20.45}$, ≈ 2.00), 2.7B at ($10^{21.0}$, ≈ 1.83), 6.7B at ($10^{21.8}$, ≈ 1.70), 13B at ($10^{22.3}$, ≈ 1.57).
+- **Cerebras-GPT** (blue, solid line with round markers) — 7 points, each annotated with its parameter count: 111M at ($\approx 10^{18.4}$, loss ≈ 2.61), 256M at ($10^{19.1}$, ≈ 2.351 — its marker is hidden under the orange one and was recovered from the visible arc), 590M at ($10^{19.8}$, ≈ 2.185), 1.3B at ($10^{20.45}$, ≈ 2.00), 2.7B at ($10^{21.0}$, ≈ 1.83), 6.7B at ($10^{21.8}$, ≈ 1.70), 13B at ($10^{22.36}$, ≈ 1.57).
 - **Cerebras-GPT Scaling Law** (blue dotted line) — a straight fitted line running the full width of the panel, measured at ≈ 2.79 at the left edge (just left of $10^{18}$) falling to ≈ 1.48 at the right edge (just under $10^{23}$); it passes through the Cerebras-GPT points and is extrapolated beyond them at both ends.
-- **Cerebras-GPT $\mu$P** (orange, solid line with round markers) — 5 points only, stopping at 2.7B: ($10^{18.43}$, 2.587), ($10^{19.11}$, 2.360), ($10^{19.79}$, 2.155), ($10^{20.46}$, 1.984), ($10^{21.04}$, 1.847). It sits fractionally *below* the blue Cerebras-GPT line at every shared point.
+- **Cerebras-GPT $\mu$P** (orange, solid line with round markers) — 5 points only, stopping at 2.7B: ($10^{18.43}$, 2.587), ($10^{19.11}$, 2.360), ($10^{19.79}$, 2.155), ($10^{20.46}$, 1.984), ($10^{21.04}$, 1.847). It sits fractionally *below* the blue Cerebras-GPT line at three of the five shared points — 111M, 590M and 1.3B — but **above** it (i.e. worse) at **256M and 2.7B**. The right panel is exactly this quantity and agrees: baseline $-0.90$ against $\mu$P $-0.47$ at 256M, and $-0.86$ against $-0.23$ at 2.7B. This matters for the page's argument: the slide's own bottom line is that $\mu$P makes scaling more *stable* (spread 0.31 against 1.89 in the right panel), not uniformly better.
 - **Pythia** (green, solid line with round markers) — 8 points, annotated: 70M ($10^{20.2}$, 2.503), 160M ($10^{20.61}$, 2.186), 410M ($10^{21.03}$, 1.971), 1B ($10^{21.36}$, 1.845), 1.4B ($10^{21.51}$, 1.793), 2.8B ($10^{21.79}$, 1.720), 6.9B ($10^{22.15}$, 1.627), 12B ($10^{22.38}$, 1.582). The Pythia line is well *above* (worse than) the Cerebras-GPT line at equal FLOPs for the small models and converges onto it around $10^{22}$.
 - **GPT-J 6B** (purple, single point) — ($10^{22.23}$, 1.613), labelled "6B".
 - **GPT-NeoX 20B** (red, single point) — ($10^{22.81}$, 1.522), labelled "20B", sitting just above the extrapolated dotted scaling law.

@@ -1342,10 +1342,34 @@ committing what these two steps produce.
       deck should start from position and font size, never stream order.
 - [x] YAML front matter parses (13 keys); no LaTeX inside code fences (no code fences
       in the body at all)
-- [ ] Figure audit pass 1 — NOT RUN. Priority order nominated by the readers:
-      37, 11, 29, 41, 45, 35, 51. Until it runs the file's own front matter tells
-      readers to treat slide text and tables as reliable and chart values as
-      provisional.
+- [x] Figure audit pass 1 — DONE, 7 pages (37, 11, 29, 41, 45, 35, 51), two agents
+      because the first was killed by a rate limit after two pages. Both appended per
+      page, so nothing was lost. RESULT: DIRTY — 2 clean (37, 51), 5 with errors,
+      16 corrections (10 substantive, 6 minor), all applied.
+      What held and what failed is the finding. EVERY measured quantity checked out:
+      all four nominated axis-scale claims confirmed (the log axes on 29, 41 and 45
+      that look linear because they are evenly labelled), slide 37's LR exponent
+      settled three ways that never touch the 2-3 px glyph (Kaplan's published law
+      predicts the slide's own drawn line to 0.3% under the 1e-3 reading and is off by
+      exactly 10x under the alternative), slide 11's exponents confirmed, slide 35's
+      calibration confirmed against the rejected alternative, and hundreds of values
+      re-measured exactly — 30 markers on 37, all 88 loss values on 35, all 40 table
+      cells on 51, all 17 points on 41, all 20 on 45.
+      WHAT FAILED WAS THE INTERPRETIVE SENTENCE over correct data: which interval of a
+      curve is flat (29), which series wins how often (29, 45), straight line vs curve
+      (41), above vs level (41), and one inverted colour reading (35). Several were
+      contradicted by the file's own table a few lines above — so check an entry
+      against itself, it costs nothing.
+      ONE CLAIM ABOUT THE SOURCE WITHDRAWN: slide 35's "colorbar runs opposite to
+      surface height" is false. Kept in the file as a correction rather than deleted,
+      with the lesson — the original had sampled the colorbar against its own tick
+      rows, which fixes which end is which value but not which end the floor is drawn
+      in, so a half-verified claim felt whole.
+      FALSE ILLEGIBILITY again: slide 35's per-point labels, called unreadable, read
+      fine at 6-14x. Still 0-for-every-instance ever tested in this build.
+- [ ] Figure audit pass 2 — OWED. 5 of 7 dirty means the sample was too small, by this
+      build's own rule. Target the remaining chart-heavy pages, and target concluding
+      sentences rather than numbers, since that is where this deck's errors live.
 
 ### Model choice
 - [x] Put to the user, as the skill requires for an unusually chart-dense deck.
