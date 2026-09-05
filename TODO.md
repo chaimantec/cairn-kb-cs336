@@ -1509,3 +1509,46 @@ The rule for the next lecture:
 - [ ] Selection: raster test INTERSECTED with the slide file's own prose, minus
       title cards and dividers; adjudicated by hand
 - [ ] Render, embed, check
+
+## Run 13 — Lecture 12: Evaluation
+
+Video JpAxdTWQJxM (78 min). Percy Liang. **Executable lecture** — `lecture_12.py`,
+394 lines, so `source-text`, no deck and no slide numbers. It is the most
+image-dense executable lecture in the course: 43 `image()` calls, 33 of them the
+course's own `images/*.png` and 9 hot-linked to third parties.
+
+Run order is the one the user set after run 12: course material first, then the
+transcript and the wiki immediately, images after.
+
+### Course material
+- [ ] raw/slides/12-evaluation.md — transcribe lecture_12.py
+- [ ] Image descriptions for the 33 course-repo PNGs (delegated to Sonnet)
+- [ ] Spot-check two descriptions against the images here
+
+### Transcript
+- [x] 12 — verbatim captions fetched, video JpAxdTWQJxM (102 paragraphs, ~11,980
+      words). Kept at raw/transcripts/original/12-evaluation.md (gitignored).
+- [ ] 12 — copy-edited transcript (draft by Sonnet, adjudicate here)
+- [ ] 12 — verify: timestamps, number inventory, per-paragraph word ratios
+
+### Wiki
+- [ ] wiki/12-evaluation.md
+- [ ] Topic pages — grouped by kind, per the user's choice: perplexity-evaluation,
+      exam-benchmarks, chat-benchmarks, agentic-benchmarks, reasoning-benchmarks,
+      safety-evaluation, benchmark-contamination, construct-validity
+- [ ] Extend existing pages that now link a second lecture
+- [ ] INDEX.md — banner, start-here, lecture 12 section, transcripts list
+- [ ] Link sweep and citation/quote check
+
+### Images (Step 1c)
+- [ ] Fetch the 33 course PNGs into raw/images/12-evaluation/ (9.1MB)
+- [ ] Embed in the slide file at the point each appears; embed in the wiki where cited
+- [ ] Record the 9 third-party hot-links as URLs only, not redistributed
+
+### Publish
+- [ ] sources.md — lecture 12 row marked transcribed
+- [ ] kb.json — coverage 12/18; ALSO fix two stale entries carried from run 12:
+      the caveat still saying "covers lectures 1-10 of 18", and the images note
+      still saying lecture 11 has "32 images but no wiki page"
+- [ ] AGENTS.md — image coverage sentence
+- [ ] Commit and push (kbUrl already set; no re-link)
