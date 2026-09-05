@@ -1407,6 +1407,73 @@ committing what these two steps produce.
       heatmap pair on 20 — concluding sentences first, then any value attributed to a
       series that may not be visible at all.
 
+### Transcript (added after the audit was closed — the user asked for transcript and wiki next)
+- [x] 11 — verbatim captions fetched, video vTfEyOyzV9E (101 paragraphs, ~15,950 words,
+      2,356 raw segments, 76:55 of speech). Kept at
+      `raw/transcripts/original/11-scaling-laws-in-the-wild.md`, which is gitignored, as
+      every lecture's verbatim has been since run 10.
+      These captions are the CLEANEST of the build so far: "StepFun", "Muon" and "Cautious
+      AdamC" all survived intact, where CS224N's mangled "word2vec" into "word Tove". The
+      damage is concentrated in "mu p"/"mup" (33 occurrences of muP), "Kimmy" for Kimi K2,
+      and "Hess..." for Hestness.
+- [x] 11 — copy-edited transcript (drafted by Sonnet, adjudicated here). 299 lines,
+      13,963 words in the body.
+- [x] 11 — verify: ALL THREE CHECKS PASS.
+      Timestamps: 101 markers, identical sequence, in order.
+      Numbers: nothing lost. Two digits added, both normalisations to the deck's own
+      spelling ("Newton-Schulz five" -> "Newton-Schulz5", "MiniMax zero one" ->
+      "MiniMax-01"). Two more cancel in the count and are deliberate: "96 data point per
+      active parameter ratio" -> "96-to-1" (slide 27 prints it that way) and "I'll take
+      1 minute" -> "one minute" (the captions had rendered a spoken word as a digit).
+      Word ratios: ALL 101 paragraphs inside the 0.72-1.10 band, 86.5% retention, in
+      line with the same lecturer's lecture 8 (84.0%) and 9 (84.6%). No drift.
+      TWO PARENT CORRECTIONS. (1) The [Ed:] note at 23:05 had REPLACED the words it was
+      commenting on, deleting "Chinchilla 2" from the lecturer's speech — the note read
+      as the sentence's subject. Spoken words restored, note now follows them. This is a
+      new failure mode for this build: an editorial note that deletes rather than
+      annotates passes the timestamp and ratio checks and only shows up in a number diff.
+      (2) One dictated formula was set as `H_{L-1}`, the ONLY LaTeX-like construct in the
+      file and inconsistent with the same paragraph's own "square root of n sub L".
+      Spelled out.
+      RESTORATIONS: ~25 terms, all verified verbatim in the deck except three, each
+      checked elsewhere rather than trusted — Hestness (10x in lecture 9's deck, 11x in
+      its transcript), Newton-Schulz (the deck writes it unhyphenated, and inconsistently:
+      "NewtonSchultz" in prose, "NewtonSchulz5" in the algorithm), and Marin (the captions
+      heard "Moraine"; corroborated by wiki/scaling-laws.md's lecture-1 material AND by
+      slide 41's own cited URL, oa.williamheld.com — the agent had flagged this one as
+      outside knowledge, and it is better attested than that).
+
+### Wiki
+- [x] wiki/11-scaling-laws-in-the-wild.md (331 lines)
+- [x] Topic pages (5 new) — maximal-update-parametrization (201 lines: the two
+      conditions, both derivations, the prescription, and the three failure modes),
+      optimizer-scaling, published-scaling-recipes, wsd-schedules, step-law
+- [x] Extend rather than duplicate: learning-rate-scaling-and-mup (which had been
+      promising "I'll go into much more detail in the advanced scaling lecture" since
+      run 10 with nowhere to send the reader — that now resolves),
+      critical-batch-size, compute-optimal-scaling, isoflop-method,
+      scaling-law-methodology, training-stability, scaling-laws (hub TOC), course-map
+      (unit 3 was "half covered")
+- [x] INDEX.md — banner now 1-11, the scaling-laws note rewritten, a Start-here entry,
+      a Lecture 11 wiki section with 6 annotated entries, the transcripts list, and the
+      two raw-material notes that described the partial state
+- [x] Link sweep — 2,431 relative links, 0 broken; all 100 wiki pages appear in INDEX;
+      no LaTeX inside code fences
+- [x] Citation check — all 58 timestamp citations across the six new/edited pages match
+      a real marker.
+      QUOTE CHECK, and it found real work: 80 quoted fragments compared against the
+      finished transcript and slide file. THREE were misquotations of the lecturer —
+      "with respect to loss" for "with respect to the target loss", "if you haven't
+      played with it" for "with that before", and an elision that dropped "and a lot
+      more unknown than that". All corrected to the published wording.
+      FOUR more were the parent's OWN paraphrases set in quotation marks, reading as
+      quotations of the lecturer when they were not — the exact failure AGENTS.md
+      records from runs 8 and 9, now recurring a third time. All converted to italics.
+- [x] kb.json — coverage 11/18, 89 topic pages, the course-material-only caveat replaced
+      (it was false once the wiki landed) and a transcript-verification caveat added;
+      58 caveats
+- [x] sources.md, AGENTS.md — the "no transcript and no wiki page" notes removed
+
 ## Run order for future lectures — set by the user after run 12
 
 **Do the transcript and the wiki immediately, before any figure auditing.** Run 12 inverted

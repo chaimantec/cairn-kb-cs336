@@ -147,6 +147,10 @@ can sometimes be quite tricky objects."
 ## See also
 
 - [Compute-optimal scaling](compute-optimal-scaling.md) — the worked example of methodology mattering.
+- **[WSD schedules](wsd-schedules.md)** — lecture 11's answer to the cost of this methodology.
+  Because a cosine schedule's shape depends on the token budget declared up front, every point
+  on a scaling curve needs its own run from scratch, which makes fitting a law cost $n^2$. A
+  warmup–stable–decay schedule lets every budget branch off one stable trunk, at linear cost.
 - [The IsoFLOP method](isoflop-method.md) — the most robust of the estimators.
 - [Upstream vs downstream](upstream-vs-downstream.md) — the limit of the paradigm.
 - [Data scaling laws](data-scaling-laws.md) · [Lecture 9](09-scaling-laws.md)

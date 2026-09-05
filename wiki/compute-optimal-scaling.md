@@ -227,6 +227,12 @@ about how we should fit scaling laws".
 ## See also
 
 - [Lecture 9](09-scaling-laws.md) · [The IsoFLOP method](isoflop-method.md)
+- **[Published scaling recipes](published-scaling-recipes.md)** — what happens when practitioners
+  run this analysis for real (lecture 11). DeepSeek's IsoFLOP fit splits compute almost evenly,
+  $M \propto C^{0.51}$ and $D \propto C^{0.48}$, close to Chinchilla. MiniCPM's joint fit does not:
+  it reports **95.60 tokens per parameter** at $C = 10^{21}$, roughly $4.8\times$ Chinchilla's ~20:1,
+  with both exponents at 0.30 and a fitted compute-exponent of $-0.00$ — i.e. a ratio that does
+  not move with compute at all.
 - [Scaling law methodology](scaling-law-methodology.md) — the recipe-as-lower-bound idea generalised.
 - [Training FLOPs](training-flops.md) — where $C = 6ND$ comes from.
 - [Data scaling laws](data-scaling-laws.md) — the univariate case.

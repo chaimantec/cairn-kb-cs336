@@ -73,5 +73,11 @@ going to decide all these tradeoffs?', IsoFLOPs is always a good default"
 
 - [Compute-optimal scaling](compute-optimal-scaling.md) — the problem it was built for.
 - [Mixture of experts](mixture-of-experts.md) — the sparsity surfaces.
+- **[Published scaling recipes](published-scaling-recipes.md)** — lecture 11 shows this is the
+  method most recent open models actually publish: DeepSeek runs it over eight budgets from
+  $10^{17}$ to $3\times10^{20}$, and LLaMA 3 and Hunyuan publish "just IsoFLOPs (no other scaling
+  details)".
+- **[Optimizer scaling](optimizer-scaling.md)** — a cautionary case where seven clean IsoFLOP
+  parabolas produced a fit that drifted 0.8% and 2.5% one and two decades out, then diverged.
 - [Scaling law methodology](scaling-law-methodology.md) — running several estimators as insurance.
 - [Lecture 9](09-scaling-laws.md) · slides [48](../raw/slides/09-scaling-laws.md), [55](../raw/slides/09-scaling-laws.md) · [transcript](../raw/transcripts/09-scaling-laws.md)

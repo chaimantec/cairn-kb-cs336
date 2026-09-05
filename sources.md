@@ -119,7 +119,7 @@ timings, measured FLOP/s, MFU, peak-memory readings) are marked
 | 5 | GPUs, TPUs | [`lecture_05.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf) — **transcribed**, all 55 pages, at [`raw/slides/05-gpus-tpus.md`](raw/slides/05-gpus-tpus.md) |
 | 8 | Parallelism (Part 2) | [`lecture_08.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf) — **transcribed**, all 73 pages, at [`raw/slides/08-parallelism-2.md`](raw/slides/08-parallelism-2.md) |
 | 9 | Scaling laws (basics) | [`lecture_09.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf) — **transcribed**, all 57 pages, at [`raw/slides/09-scaling-laws.md`](raw/slides/09-scaling-laws.md) |
-| 11 | Scaling laws (in the wild) | [`lecture_11.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_11.pdf) — **transcribed**, all 58 pages, at [`raw/slides/11-scaling-laws-in-the-wild.md`](raw/slides/11-scaling-laws-in-the-wild.md). Course material only: this lecture has **no transcript and no wiki page** yet. |
+| 11 | Scaling laws (in the wild) | [`lecture_11.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_11.pdf) — **transcribed**, all 58 pages, at [`raw/slides/11-scaling-laws-in-the-wild.md`](raw/slides/11-scaling-laws-in-the-wild.md). |
 | 15 | Mid/post-training (SFT/RLHF) | [`lecture_15.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_15.pdf) |
 | 16 | Post-training — RLVR | [`lecture_16.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_16.pdf) |
 

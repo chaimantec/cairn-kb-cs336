@@ -10,6 +10,12 @@ This page covers the learning-rate half; the batch-size half is
 the detail: "I'll go into much more detail in the advanced scaling lecture"
 ([48:23]).
 
+**That advanced lecture is [lecture 11](11-scaling-laws-in-the-wild.md), and the promise is
+paid off at [maximal update parametrization](maximal-update-parametrization.md)** — where
+muP is derived from its two conditions, its prescription is given for both SGD and Adam, and
+its three measured failure modes are set out. Read this page for *why* the optimum moves and
+what your options are; read that one for the derivation and for what breaks it.
+
 ## Why the optimum moves
 
 The mental picture is width scaling on a plain MLP, holding depth fixed ([48:23]):
@@ -88,5 +94,7 @@ lecture does not quite make explicitly.
 
 - [Critical batch size](critical-batch-size.md) — the other hyperparameter you must re-tune, and the one this interacts with.
 - [Transformer hyperparameters](transformer-hyperparameters.md) — the ones that *are* roughly scale-invariant.
+- [Maximal update parametrization](maximal-update-parametrization.md) — the derivation, the prescription, and the three things that break it (lecture 11).
+- [Step Law and hyperparameter scaling](step-law.md) — the opposite philosophy: predict where the optimum moves instead of pinning it in place.
 - [Scaling law methodology](scaling-law-methodology.md) — hyperparameter transfer as a design goal.
 - [Lecture 9](09-scaling-laws.md) · slide [40](../raw/slides/09-scaling-laws.md) · [transcript](../raw/transcripts/09-scaling-laws.md)

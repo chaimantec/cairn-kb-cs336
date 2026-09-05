@@ -195,6 +195,11 @@ suboptimal for the smaller models ([1:09:54], see
 - [Data parallelism](data-parallelism.md) · [ZeRO and FSDP](zero-and-fsdp.md) — what spends the budget.
 - [Pipeline parallelism](pipeline-parallelism.md) — the other big consumer.
 - [Activation memory](activation-memory.md) — how memory converts into batch size.
+- **[Step Law and hyperparameter scaling](step-law.md)** — lecture 11's sequel to this page.
+  StepFun's grid search finds that optimal **batch size depends primarily on dataset size $D$**,
+  collapsing onto one curve regardless of model size, while the optimal learning rate needs both
+  $N$ and $D$. It also tabulates the competing published forms, which disagree about whether
+  batch is a function of loss (the view on this page), of compute, or of $N$ and $D$.
 - [Scaling laws](scaling-laws.md) — the hub for the lecture 9 thread.
 - Lecture 8 material: [slide 29](../raw/slides/08-parallelism-2.md#slide-29--issues-remain-with-data-parallel--compute-scaling) · [transcript](../raw/transcripts/08-parallelism-2.md)
 - Lecture 9 material: slides [37–39](../raw/slides/09-scaling-laws.md) · [transcript](../raw/transcripts/09-scaling-laws.md)

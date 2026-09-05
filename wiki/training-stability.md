@@ -225,4 +225,11 @@ than numerical range. Both afflict the same softmax; they need different fixes.
 - [RMSNorm](rmsnorm.md) — the norm QK norm actually uses.
 - [Attention variants](attention-variants.md) — the other set of changes made to
   the attention computation, for cost rather than stability.
+- **[Optimizer scaling](optimizer-scaling.md)** — lecture 11's blow-up case, and the sharpest
+  instance of instability in this KB: a scaling law whose seven fitted points sat on the line to
+  within ±0.16% drifted 0.8% one decade out, 2.5% two decades out, and then **diverged
+  outright** two and a half decades out.
+- **[Maximal update parametrization](maximal-update-parametrization.md)** — the stability
+  argument for muP: under standard parametrization the larger models diverge at learning rates
+  the smaller ones tolerate.
 - [Lecture 3 — architectures](03-architectures.md).

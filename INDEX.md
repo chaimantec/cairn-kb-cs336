@@ -8,31 +8,26 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1–10 of 18
+> ## ⚠️ This knowledge base covers Lectures 1–11 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
 > Mixtures of Experts), Lecture 5 (GPUs and TPUs), Lecture 6 (Kernels and
 > Triton), Lecture 7 (Parallelism), Lecture 8 (Parallelism, Part 2), Lecture 9
-> (Scaling Laws — Basics) and Lecture 10 (Inference) are covered in depth.**
+> (Scaling Laws — Basics), Lecture 10 (Inference) and Lecture 11 (Scaling Laws in
+> the Wild) are covered in depth.**
 > Nothing else is. There are no transcripts and no wiki pages for evaluation,
 > data, mid/post-training, RLVR or multimodality.
 >
 > **A note specific to scaling laws:** CS336 splits them across *two* lectures,
-> with inference in between. **Lecture 9 — the basics — is now covered**: data
-> scaling laws, scaling laws for model engineering, and the whole
-> Kaplan-versus-Chinchilla story. **Lecture 11, the advanced treatment** (muP in
-> depth, modern open-model tech reports, optimizers), is a **partial** entry and
-> the one place this banner needs reading closely. Its slide deck is fully
-> transcribed — all 58 pages, at
-> [`raw/slides/11-scaling-laws-in-the-wild.md`](raw/slides/11-scaling-laws-in-the-wild.md),
-> with 32 of its pages rendered as images — but there is **no transcript of the
-> lecture and no wiki page for it**. So a question about MiniCPM's or DeepSeek's
-> published recipe, WSD schedules, the StepFun grid search, Muon, or the muP
-> derivation and its failure modes *can* be answered from that file, with a
-> citation to a slide number. A question about what the lecturer said, or one
-> expecting a lecture page like `wiki/09-scaling-laws.md`, cannot. Say which of
-> the two you are answering from.
+> with inference in between, and **both are now covered in full**. Lecture 9 is the
+> basics: data scaling laws, scaling laws for model engineering, and the whole
+> Kaplan-versus-Chinchilla story. [Lecture 11](wiki/11-scaling-laws-in-the-wild.md)
+> is the advanced treatment — the published scaling recipes of MiniCPM, DeepSeek,
+> Qwen, Kimi K2, Hunyuan, LLaMA 3 and MiniMax-01 read off their own figures; WSD
+> learning-rate schedules; the StepFun grid search; optimizers and Muon; and muP
+> derived from its two conditions, with the three things that break it. Read them
+> in order: 11 assumes 9.
 >
 > **A note specific to parallelism:** CS336 has *two* lectures called
 > "Parallelism", and **both are now covered**. Lecture 7 is Percy Liang's
@@ -114,10 +109,49 @@ compute and data?
   hour buying memory traffic back: KV-cache reductions, quantization, pruning with
   distillation, speculative sampling, continuous batching and PagedAttention.
 
+- **[Lecture 11 — Scaling laws in the wild](wiki/11-scaling-laws-in-the-wild.md)** —
+  the practical companion to Lecture 9, and the lecture to read before you spend
+  money on a training run. It asks whether the Chinchilla approach survives contact
+  with people actually training frontier models, and answers by reading eight
+  published recipes off their own figures. Its spine is a genuine fork: either make
+  the optimal hyperparameters stop moving as you scale (muP, MiniCPM's route) or
+  accept that they move and fit a scaling law to where they move to (DeepSeek's).
+  Along the way: why fitting a scaling law honestly costs $n^2$ and how WSD
+  schedules make it linear, why most published optimizer comparisons are confounded
+  by scale, and a worked case where a flawless-looking fit diverged two and a half
+  decades out.
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 11 — scaling laws in the wild
+
+- **[Lecture 11 — scaling laws in the wild](wiki/11-scaling-laws-in-the-wild.md)** —
+  the lecture page: the two strategies, the two headline recipes, the rapid tour,
+  Step Law, optimizers, and the muP derivation, in the order the lecture gives them.
+- **[Published scaling recipes](wiki/published-scaling-recipes.md)** — MiniCPM and
+  DeepSeek set side by side, plus Qwen, Kimi K2, Hunyuan, LLaMA 3 and MiniMax-01.
+  Read this for what practitioners actually do, and for the two disagreeing answers
+  to the tokens-per-parameter question: MiniCPM's joint fit says 95.60 and DeepSeek's
+  IsoFLOP analysis splits compute almost evenly, close to Chinchilla.
+- **[Maximal update parametrization](wiki/maximal-update-parametrization.md)** — muP
+  in full: the two conditions, both derivations, the prescription for SGD and Adam,
+  the evidence that the optimum stays put from 2M to 10B parameters, and the three
+  things that break it — RMSNorm gains, Lion, and strong weight decay.
+- **[WSD schedules](wiki/wsd-schedules.md)** — warmup–stable–decay. Why a cosine
+  schedule forces you to retrain from scratch for every point on a scaling curve,
+  making the fit cost $n^2$, and how branching off a stable trunk makes it linear.
+  Includes the caveat the slide's own title hides: only the ~10% decays beat cosine.
+- **[Step Law and hyperparameter scaling](wiki/step-law.md)** — StepFun's brute-force
+  grid search. The published laws disagree about what the optimum is even a function
+  of; the sweep finds the loss surface convex in both, and batch size depending
+  primarily on dataset size while learning rate needs both $N$ and $D$.
+- **[Optimizer scaling](wiki/optimizer-scaling.md)** — Muon, and the three reasons
+  optimizer comparisons mislead: the hyperparameters are usually mistuned, the
+  advantage shrinks about fourfold over a decade of model size, and a clean-looking
+  scaling fit can still diverge out of sample.
 
 ### Lecture 10 — inference
 
@@ -564,7 +598,7 @@ usually the faster route than the lecture pages.
   thread, and no longer a preview-only page. It keeps Percy's Lecture 1 framing —
   scaling recipes rather than single models, hyperparameter transfer, predictability
   over optimality — and indexes the Lecture 9 treatment, with a section reading the
-  two against each other. Lecture 11 (advanced) remains uncovered.
+  two against each other, and now indexing the Lecture 11 treatment as well.
 
 ## Raw material
 
@@ -579,7 +613,8 @@ usually the faster route than the lecture pages.
   [Lecture 7](raw/transcripts/07-parallelism.md),
   [Lecture 8](raw/transcripts/08-parallelism-2.md),
   [Lecture 9](raw/transcripts/09-scaling-laws.md),
-  [Lecture 10](raw/transcripts/10-inference.md).
+  [Lecture 10](raw/transcripts/10-inference.md),
+  [Lecture 11](raw/transcripts/11-scaling-laws-in-the-wild.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
@@ -623,10 +658,8 @@ usually the faster route than the lecture pages.
     Hashimoto's slide decks, transcribed from the rendered page images, with every
     figure described in prose and every table transcribed cell by cell. Slide
     numbers in all six are **PDF page numbers**, because none of the decks prints
-    any of its own. **Lecture 11's deck is the odd one out in two ways**: it is the
-    only lecture here whose material is transcribed while the lecture itself is not
-    covered (no transcript, no wiki page), and it is the only deck read at Opus
-    rather than Sonnet — a choice made because at 33 words of native text per page
+    any of its own. **Lecture 11's deck is the odd one out**: it is the only deck read
+    at Opus rather than Sonnet — a choice made because at 33 words of native text per page
     it is the most figure-dependent deck in the course. It has had no figure audit
     yet, and its front matter states the boundary that follows: slide text and
     tables reliable, chart values provisional. Lectures 4, 5 and 8 are the figure-dependent ones — 102 images
@@ -647,9 +680,7 @@ usually the faster route than the lecture pages.
   images each for the six PDF-deck lectures (3, 4, 5, 8, 9, 11), one for every
   figure-bearing page; and 4–22 each for
   the five executable lectures (1, 2, 6, 7, 10), which have no deck, so these are the
-  figures the course serves from its own repo. Lecture 11's 32 are the exception to how
-  these are found: with no wiki page for that lecture, they are reachable only from
-  `raw/slides/11-scaling-laws-in-the-wild.md`. Lecture 10 is much the richest of those
+  figures the course serves from its own repo. Lecture 10 is much the richest of those
   five, with 22 — it is a heavily illustrated lecture whose figures are mostly
   reproduced tables and charts from the papers it discusses. Each image sits beside the slide it shows in
   `raw/slides/`, and in `wiki/` wherever a page cites that slide. About a third of every

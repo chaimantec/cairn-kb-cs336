@@ -22,6 +22,12 @@ treatment.
 | [Critical batch size](critical-batch-size.md) | Batch size as both a systems budget and an optimisation quantity. |
 | [Learning rate scaling and muP](learning-rate-scaling-and-mup.md) | The two philosophies for the other un-inheritable hyperparameter. |
 | [Data repetition](data-repetition.md) · [Data mixture selection](data-mixture-selection.md) | The data-composition questions. |
+| **[Lecture 11 — scaling laws in the wild](11-scaling-laws-in-the-wild.md)** | **The whole advanced lecture: published recipes, optimizers, and muP in depth.** |
+| [Published scaling recipes](published-scaling-recipes.md) | MiniCPM, DeepSeek, Qwen, Kimi K2, Hunyuan, LLaMA 3 and MiniMax-01 — what practitioners actually do. |
+| [Maximal update parametrization](maximal-update-parametrization.md) | muP derived from its two conditions, plus the three things that break it. |
+| [WSD schedules](wsd-schedules.md) | Warmup–stable–decay, and how it turns an $n^2$ scaling-law fit into a linear one. |
+| [Step Law and hyperparameter scaling](step-law.md) | The brute-force grid search over learning rate and batch size, and its three observations. |
+| [Optimizer scaling](optimizer-scaling.md) | Muon, and why most optimizer comparisons are confounded by scale. |
 
 What follows on this page is Lecture 1's framing — still the clearest short
 statement of *why* the technique exists.

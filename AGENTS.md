@@ -248,12 +248,9 @@ part of this KB that redistributes course material rather than pointing at it.
 
 Lectures 12-18 are not in this KB at all, so they have no images.
 
-**Lecture 11 is a partial entry and the one place this table can mislead.** Its deck is
-transcribed and its figures are rendered, but it has **no transcript and no wiki page
-yet** — that run covered course material only. So its 32 images are reachable *only* from
-`raw/slides/11-scaling-laws-in-the-wild.md`; there is no `wiki/11-*.md` to grep, and a
-question about lecture 11 will not find a lecture page because none exists. Say so rather
-than answering from the deck as though the lecture were fully covered.
+Lecture 11 was a partial entry for one run — deck and images but no transcript or wiki —
+and is now complete, with [a transcript](raw/transcripts/11-scaling-laws-in-the-wild.md)
+and [a lecture page](wiki/11-scaling-laws-in-the-wild.md) alongside its 32 images.
 
 Lecture 10 is by far the richest of the executable lectures — 22 against 4-9 for the
 others — because it is an unusually illustrated program: most of its figures are
@@ -279,8 +276,8 @@ read the path and use the URL that comes back; do not write an absolute
 into the page and a fork or rename breaks every figure.
 
 To list a lecture's images without reading the whole page:
-`grep -o 'raw/images/[^)]*' wiki/09-scaling-laws.md`. For lecture 11, which has no wiki
-page, grep the slide file instead:
+`grep -o 'raw/images/[^)]*' wiki/09-scaling-laws.md`. Lecture 11's images live only in its
+slide file, since its wiki page cites slides rather than embedding figures:
 `grep -o '\.\./images/[^)]*' raw/slides/11-scaling-laws-in-the-wild.md`.
 
 Three further conventions:

@@ -189,9 +189,9 @@ Google, so TPU-focused, but the concepts carry.
 
 ## Unit 3 — Scaling laws
 
-> **Half covered.** [Lecture 9](09-scaling-laws.md) — the basics — has a full
-> treatment. **Lecture 11**, the advanced lecture (muP in depth, modern open-model
-> tech reports, optimizers), does not.
+> **Fully covered.** [Lecture 9](09-scaling-laws.md) — the basics — and
+> [Lecture 11](11-scaling-laws-in-the-wild.md) — the advanced lecture (published
+> scaling recipes, optimizers, muP in depth) — both have full treatments.
 
 Percy's one-line framing, from Lecture 1: think in terms of a scaling *recipe*
 mapping FLOP budgets to hyperparameters, fit it at small scale, and extrapolate —
@@ -211,6 +211,17 @@ they disagreed, and why you should overtrain past the answer anyway.
 The lecture's own caution, and the reason it is not simply a recipe:
 [the regularity is engineered](scaling-law-methodology.md), and it
 [stops at the benchmark boundary](upstream-vs-downstream.md).
+
+[Lecture 11](11-scaling-laws-in-the-wild.md) is the sequel, and it is a different
+kind of lecture: where 9 derives the theory, 11 reads the
+[published recipes](published-scaling-recipes.md) of MiniCPM, DeepSeek, Qwen, Kimi
+K2, Hunyuan, LLaMA 3 and MiniMax-01 off their own figures, and asks whether the
+Chinchilla approach survives contact with practice. Its three threads are
+[muP](maximal-update-parametrization.md) — derived properly here, with the three
+things that break it — [WSD schedules](wsd-schedules.md), which make a scaling-law
+fit affordable, and [optimizer scaling](optimizer-scaling.md), including Muon and
+the argument that most optimizer comparisons are confounded. The systematic sweep
+behind the hyperparameter question is [Step Law](step-law.md).
 
 Note the course's ordering: scaling laws are split across Lectures 9 and 11 with
 **[Lecture 10 (inference)](10-inference.md) in between**, for scheduling reasons
