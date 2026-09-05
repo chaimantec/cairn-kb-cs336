@@ -1521,9 +1521,33 @@ Run order is the one the user set after run 12: course material first, then the
 transcript and the wiki immediately, images after.
 
 ### Course material
-- [ ] raw/slides/12-evaluation.md — transcribe lecture_12.py
-- [ ] Image descriptions for the 33 course-repo PNGs (delegated to Sonnet)
-- [ ] Spot-check two descriptions against the images here
+- [x] raw/slides/12-evaluation.md — transcribe lecture_12.py (1,374 lines). Written
+      here rather than delegated: at 394 lines of `text()`/`link()`/`image()` calls
+      the source is cheap to read, and the parent has to read it anyway to write the
+      wiki. The file records a section→source-line table, a 26-row table of every
+      benchmark the lecture names with its citation, and the lecture's own text in
+      order. NOTE: this lecture computes NOTHING — no @inspect values, no sympy, no
+      asserts — so unlike lectures 2, 6, 7 and 10 there was nothing machine-dependent
+      to withhold and nothing to recompute. Every number in the file is a claim the
+      lecture makes about a published benchmark.
+- [x] Image descriptions for the 33 course-repo PNGs (delegated to Sonnet, appended
+      per image so an interruption would have cost one entry). All 33 returned.
+- [x] Spot-check two descriptions against the images here — DONE, and both held.
+      `gpt2-perplexity.png` was EXACT across all 50 table cells, and independently
+      confirms the lecturer's spoken PTB figures (he says "35 compared to 46"; the
+      table prints 35.76 against 46.54). Its bolding claim was imprecise, not wrong,
+      and is now stated per column. `arc-agi-results.png` was structurally right —
+      two series, and the two dashed era annotations correctly NOT counted as series,
+      which is the failure this check exists to catch. One correction: the 2025 blue
+      points were said to span 5–65%, when a dense cluster also sits near 0–6%; the
+      width of that spread is the more interesting fact and now says so.
+      THE READER'S OWN FLAGS WERE THE HIGHER-YIELD OUTPUT: eight places where an
+      image is not the kind of object its filename implies — `clio-table4.png` is a
+      bar chart with NO printed values (so no number may be quoted from it), four
+      `*-results` files are plain tables rather than charts, `cybench-results.png`
+      has Subtask-Guided data for only the older nine models, `gdpval.png` is a card
+      grid, and `hle-examples.png` marks no correct answers. All recorded in the
+      file's Figure audit section.
 
 ### Transcript
 - [x] 12 — verbatim captions fetched, video JpAxdTWQJxM (102 paragraphs, ~11,980
@@ -1532,23 +1556,47 @@ transcript and the wiki immediately, images after.
 - [ ] 12 — verify: timestamps, number inventory, per-paragraph word ratios
 
 ### Wiki
-- [ ] wiki/12-evaluation.md
-- [ ] Topic pages — grouped by kind, per the user's choice: perplexity-evaluation,
-      exam-benchmarks, chat-benchmarks, agentic-benchmarks, reasoning-benchmarks,
-      safety-evaluation, benchmark-contamination, construct-validity
-- [ ] Extend existing pages that now link a second lecture
-- [ ] INDEX.md — banner, start-here, lecture 12 section, transcripts list
-- [ ] Link sweep and citation/quote check
+- [x] wiki/12-evaluation.md (301 lines + 3 figures)
+- [x] Topic pages (8 new), grouped by kind per the user's choice —
+      perplexity-evaluation, exam-benchmarks, chat-benchmarks, agentic-benchmarks,
+      reasoning-benchmarks, safety-evaluation, benchmark-contamination,
+      construct-validity
+- [x] Extend existing pages — course-map (which was still claiming coverage of
+      lectures 1–9; unit 4 now marked half-covered with a forward note),
+      SEE_ALSO (the CS224N KB's evaluation cluster, which is complementary rather
+      than duplicative: it derives metrics, this lecture judges them)
+- [x] INDEX.md — banner 1–12, an evaluation note, a Start-here entry, a Lecture 12
+      wiki section with 9 annotated entries, the transcripts list, and the
+      executable-lecture and images paragraphs in Raw material
+- [x] Link sweep — 2,616 relative links, 0 broken apart from the pending transcript;
+      all 109 wiki pages appear in INDEX; no LaTeX inside code fences.
+      NOTE A CHECKER BUG, the eighth in this build: the anchor check reported
+      wiki/pipeline-parallelism.md → torch-distributed.md#async_op-and-overlapping as
+      broken. It is not. GitHub KEEPS underscores in heading slugs and the checker's
+      character class was stripping them. THE LINK WAS RIGHT AND THE CHECK WAS WRONG.
+      Anyone rebuilding an anchor check must allow `_` in the slug alphabet.
+- [ ] Citation and quote check against the finished transcript
 
 ### Images (Step 1c)
-- [ ] Fetch the 33 course PNGs into raw/images/12-evaluation/ (9.1MB)
-- [ ] Embed in the slide file at the point each appears; embed in the wiki where cited
-- [ ] Record the 9 third-party hot-links as URLs only, not redistributed
+- [x] Fetch the 33 course PNGs into raw/images/12-evaluation/ (9.1MB, all PNG)
+- [x] Embed: all 33 in raw/slides/ at the point they appear, and all 33 in the wiki
+      passage that discusses them, plus 3 repeated on the lecture page. Inserted by
+      script, not by hand — the script walks to the end of the enclosing list before
+      inserting, so no list was split, and it enforces blank lines and a single-line
+      caption with no nested emphasis. Verified afterwards: 0 list-splitting
+      insertions, 0 malformed captions, 0 missing files.
+      Unlike every other lecture in this KB, the wiki here carries EVERY image rather
+      than a subset, because the figures are the lecture's argument rather than
+      illustrations of it.
+- [x] Record the 9 third-party hot-links as URLs only, not redistributed
 
 ### Publish
-- [ ] sources.md — lecture 12 row marked transcribed
-- [ ] kb.json — coverage 12/18; ALSO fix two stale entries carried from run 12:
-      the caveat still saying "covers lectures 1-10 of 18", and the images note
-      still saying lecture 11 has "32 images but no wiki page"
-- [ ] AGENTS.md — image coverage sentence
+- [x] sources.md — lecture 12 row marked transcribed
+- [x] kb.json — coverage 12/18, 97 topic pages, 346 images, 44.3MB; two new caveats;
+      and TWO STALE ENTRIES FIXED that were carried from run 12: the caveat still
+      saying "covers lectures 1-10 of 18", and the images note still saying lecture
+      11 has "32 images but no wiki page" (it has had both since run 12). INDEX also
+      still claimed lecture 11's deck had had no figure audit; it has had two passes.
+- [x] AGENTS.md — image coverage table, the lecture-12 note, and the dating caveat
+      that leaderboard screenshots are Spring 2026 snapshots
 - [ ] Commit and push (kbUrl already set; no re-link)
