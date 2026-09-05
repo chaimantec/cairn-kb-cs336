@@ -55,6 +55,10 @@ none of them:
    must be good"* — with the immediate caveat that OpenRouter's traffic is not
    representative of all usage (≈[4:42]).
 
+![Artificial Analysis leaderboard ranking models by an intelligence index](../raw/images/12-evaluation/artificial-analysis.png)
+
+*Answer one, made concrete. Each of the four framings has a site behind it that looks exactly this authoritative.*
+
 ## The survey, and its shape
 
 Five families follow, ordered by **what is being measured**:
@@ -139,6 +143,10 @@ they are **still useful for developing smaller models and fitting scaling laws**
 The beet salad example is the whole problem in one prompt (≈[32:22]). There is no
 exact match to check and no ground truth, so every benchmark here substitutes a judge.
 
+![Chatbot Arena side-by-side interface showing the beet salad prompt and two anonymised responses](../raw/images/12-evaluation/arena-beets.png)
+
+*The problem, and one answer to it: two anonymised responses to the lecture's own beet-salad prompt, and four buttons that turn a human's reaction into data.*
+
 - **Chatbot Arena** asks humans, pairwise, and fits ELO ratings. The property that
   makes it affordable is that **ELO does not require every model to see every prompt** —
   a sparse but connected comparison graph suffices, which matters precisely because a
@@ -191,6 +199,10 @@ A benchmark where scale does nothing and a change of *method* does everything is
 evidence it measures something the rest of the survey does not. Set that against
 [scaling laws](scaling-laws.md), where predictable improvement with scale is the whole
 premise.
+
+![Scatter plot of ARC-AGI-1 and ARC-AGI-2 scores against model release date, 2020 to 2026](../raw/images/12-evaluation/arc-agi-results.png)
+
+*The ARC-AGI trajectory. Flat through the whole pre-training scaling era, then abrupt once reasoning models arrive.*
 
 The honest limitation, stated by the lecture: because validity comes from being 100%
 human-solvable, ARC-AGI **cannot detect superhuman reasoning** — IMO gold medals, open

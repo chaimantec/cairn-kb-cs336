@@ -55,6 +55,10 @@ is plentiful (≈[8:33]). Percy adds a caveat in passing that becomes a whole
 section later: nobody knows how carefully that comparison was decontaminated
 (≈[8:33]) — see [benchmark contamination](benchmark-contamination.md).
 
+![GPT-2 zero-shot results table across ten datasets for four model sizes versus prior SOTA](../raw/images/12-evaluation/gpt2-perplexity.png)
+
+*GPT-2's own results table. Bold marks where GPT-2 beats the prior state of the art — note that nothing in the 1BW column ever is, which is the whole of the claim above.*
+
 That paper "ushered in a new paradigm": train on a large corpus, evaluate on
 standard benchmarks. Now standard, then a novelty (≈[9:19]).
 
@@ -118,10 +122,18 @@ context (≈[13:11]). That is exactly why the early GPT papers latched onto it �
 were interested in long-context modelling, and LAMBADA sharpens perplexity onto the
 positions where long-range dependencies actually matter (≈[13:56]).
 
+![LAMBADA example passage with the final word to be predicted](../raw/images/12-evaluation/lambada.png)
+
+*A LAMBADA item. The point is the length of context you have to hold to recover the final word — that is what separates it from ordinary perplexity.*
+
 **HellaSwag** ([arXiv 1905.07830](https://arxiv.org/pdf/1905.07830)) is
 multiple-choice sentence completion: given *"A woman is outside with a pug and a
 dog. The dog is running around, she ___"*, choose the continuation that fits best.
 Multiple choice on the surface, perplexity underneath (≈[14:41]).
+
+![HellaSwag multiple-choice sentence-completion example](../raw/images/12-evaluation/hellaswag.png)
+
+*A HellaSwag item. Four candidate continuations, scored by how probable the model finds each — accuracy on the surface, likelihood underneath.*
 
 The general point is a useful one when reading any benchmark table: a task scored
 by accuracy may still be scoring the same quantity as perplexity, just restricted

@@ -38,6 +38,10 @@ executable, so grading is exact, cheap and not susceptible to a judge's biases.
 That is why SWEBench pioneered the modern way of assessing coding agents, and why
 so much agentic attention went into coding first (≈[46:17], ≈[47:02]).
 
+![SWEBench task pipeline from issue and codebase to generated patch and unit tests](../raw/images/12-evaluation/swebench.png)
+
+*The SWEBench loop. The unit tests at the end are the answer key, which is why this benchmark needs no judge at all.*
+
 **Progress**: the lecture checks the SWE-bench **Verified** leaderboard and finds
 about **16%** in 2024 against roughly **93%** now (≈[47:02]). Why *Verified* rather
 than the original is a story told later in the lecture — see
@@ -56,13 +60,25 @@ The design argument is generality: a terminal is **simple and universal**, so on
 environment subsumes an enormous range of real tasks and no per-task harness is
 needed (≈[47:47]).
 
+![TerminalBench overview showing terminal-based task environments](../raw/images/12-evaluation/terminal-bench.png)
+
+*TerminalBench. One environment — a terminal — standing in for an enormous range of tasks.*
+
 The difficulty calibration is worth recording: these tasks take a human anywhere
 from **about an hour to over a week**, depending on whether they are an expert or a
 junior (≈[48:32]).
 
+![Table of TerminalBench tasks with estimated human completion times](../raw/images/12-evaluation/terminal-bench-human-time.png)
+
+*The human-time estimates. This is the closest thing TerminalBench has to a difficulty scale.*
+
 And this is where the lecture makes the scaffold point concrete — the top of the
 leaderboard is the frontier models, but the *agent* matters too, and two agents on
 the same model post different accuracies (≈[48:32]).
+
+![TerminalBench leaderboard listing agent and model pairs with accuracies](../raw/images/12-evaluation/terminal-bench-results.png)
+
+*The TerminalBench leaderboard, which lists an agent beside every model — the clearest evidence in the lecture that a score belongs to the pair.*
 
 ## CyBench
 
@@ -76,6 +92,10 @@ reach a web server — and must break into the server to extract a **flag**, a u
 string proving the compromise (≈[49:19]). These are real security exercises normally
 done by humans in competition.
 
+![CyBench overview of capture-the-flag task categories](../raw/images/12-evaluation/cybench.png)
+
+*CyBench's task set, drawn from real capture-the-flag competitions.*
+
 **First-solve time is the clever part.** CTF competitions record how long the first
 human team took on each challenge, which hands the benchmark a
 **human-calibrated difficulty scale for free** — something almost nothing else in
@@ -87,7 +107,15 @@ buffer that is concatenated back into context (≈[50:05]). Percy flags the obvi
 problem — that history grows, and you need better ways of managing context — which
 sets up the scaffold discussion below.
 
+![CyBench agent loop diagram with action, environment feedback and a growing memory buffer](../raw/images/12-evaluation/cybench-agent.png)
+
+*The simple scaffold: act, observe, append to one buffer, repeat. The buffer growing without bound is what the rest of the section is about.*
+
 **Progress**: about 10% at release, and now essentially **solved** (≈[50:05]).
+
+![CyBench results table across models](../raw/images/12-evaluation/cybench-results.png)
+
+*CyBench results. Read the Subtask-Guided columns with care — only the older models have data there at all.*
 
 ## MLEBench
 
@@ -100,8 +128,16 @@ The agent reads the dataset and the description, writes code, trains models, sub
 and is graded. The leaderboard shows the familiar frontier models with **considerable
 variation across agent scaffolds** (≈[50:54], ≈[51:39]).
 
+![MLEBench overview of the Kaggle-competition task pipeline](../raw/images/12-evaluation/mlebench.png)
+
+*MLEBench. Seventy-five Kaggle competitions, each requiring the full data-to-submission loop.*
+
 MLEBench is the most self-referential benchmark in the course: it evaluates a
 language model on the task of doing the machine learning that this class teaches.
+
+![MLEBench leaderboard of agent scaffolds and their overall scores](../raw/images/12-evaluation/mlebench-results.png)
+
+*The MLEBench leaderboard. The Overall column is the summary statistic — there is no aggregate row beneath it.*
 
 ## Agent scaffolds
 

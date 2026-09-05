@@ -49,6 +49,14 @@ The results figure is the section's real content (≈[55:30], ≈[56:16]):
   **extremely low** (≈[57:04], ≈[57:49]).
   [Technical report](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf).
 
+![Screenshot of an ARC-AGI-3 interactive puzzle game showing a grid maze and controls](../raw/images/12-evaluation/arc-agi-3.png)
+
+*ARC-AGI-3 is played rather than answered — an interactive environment whose rules have to be inferred from what happens.*
+
+![Table of four frontier models on ARC-AGI-3, all scoring under one percent](../raw/images/12-evaluation/arc-agi-3-results.png)
+
+*ARC-AGI-3 scores. Every frontier model listed is below one percent, which is the state the section describes as extremely low.*
+
 **This is the reason ARC-AGI belongs in a language modelling course.** A benchmark
 on which scaling pre-training does nothing, and a change of *method* does
 everything, is evidence that it measures something the rest of the survey does not.
@@ -59,6 +67,10 @@ Percy adds an honest qualification: without pre-training there would have been n
 explosion of reasoning models at all, so pre-training was arguably still necessary —
 just not *directly* visible in ARC-AGI scores for most of the benchmark's history
 (≈[57:04]).
+
+![Scatter plot of ARC-AGI-1 and ARC-AGI-2 scores against model release date, 2020 to 2026](../raw/images/12-evaluation/arc-agi-results.png)
+
+*The trajectory. Blue is ARC-AGI-1, orange ARC-AGI-2; the two dashed lines are era annotations, not data. Nothing moves until reasoning models arrive.*
 
 ## The limitations, stated by the lecture
 

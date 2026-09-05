@@ -30,12 +30,20 @@ is what the whole section is about.
 - Instead of one response they get **two, from two anonymised models**.
 - They vote: A is better, B is better, both good, both bad.
 
+![Chatbot Arena side-by-side interface showing the beet salad prompt and two anonymised responses](../raw/images/12-evaluation/arena-beets.png)
+
+*The Arena interface on the lecture's own beet-salad prompt. Two anonymised assistants, and the four vote buttons that are the entire data-collection mechanism.*
+
 **Scoring.** Pairwise votes are turned into ELO ratings under the standard model:
 
 $$p(A \text{ beats } B) = \frac{1}{1 + 10^{(\text{ELO}_B - \text{ELO}_A)/400}}$$
 
 The ratings are the parameters, and they are fit to maximise the probability of the
 observed pairwise comparisons (≈[33:53], ≈[34:39]).
+
+![LMArena leaderboard ranking models by ELO score](../raw/images/12-evaluation/lmarena-leaderboard.png)
+
+*The ratings those pairwise votes produce. A snapshot from when the lecture was prepared, not current standings.*
 
 ### What is good about it, and what is not
 
@@ -114,6 +122,10 @@ submit your model to a public arena, you can use AlpacaEval as a stand-in
 (≈[40:49]). The lecture notes the AlpacaEval leaderboard has not been maintained in
 over a year, so what it shows is a snapshot of its time (≈[40:49]).
 
+![AlpacaEval 2.0 leaderboard with length-controlled and raw win rates](../raw/images/12-evaluation/alpacaeval-leaderboard.png)
+
+*AlpacaEval 2.0. The two win-rate columns are the length-bias fix made visible — the debiased number and the raw one disagree by up to nine points.*
+
 ## WildBench — real prompts, judged with a checklist
 
 [arXiv 2406.04770](https://arxiv.org/pdf/2406.04770).
@@ -128,6 +140,10 @@ ill-defined task — good depends on what you care about. Generating a checklist
 rubric *for that particular prompt* scopes the judgement and makes the evaluation
 task well defined (≈[42:23]). Percy's analogy is to chain of thought, but for
 judging.
+
+![WildBench leaderboard and checklist-based evaluation scores](../raw/images/12-evaluation/wildbench.png)
+
+*WildBench. The scores come from a judge working through a checklist generated for each individual prompt, rather than answering an open question about quality.*
 
 He also names the circularity out loud: WildBench validates itself by correlating
 with Chatbot Arena, which raises the question of whether Arena is really ground

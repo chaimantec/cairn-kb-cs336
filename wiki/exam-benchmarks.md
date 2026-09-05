@@ -42,6 +42,10 @@ obvious that language models were general-purpose task solvers at all, and many
 people still thought of them as things that generate fluent English (≈[19:18],
 ≈[20:04]). MMLU's authors were deliberately trying to get ahead of the curve.
 
+![MMLU example questions and the few-shot prompt format](../raw/images/12-evaluation/mmlu.png)
+
+*MMLU's few-shot prompt format. The framing sentence, then in-context question/answer pairs, then the real question — mundane now, radical in 2020.*
+
 The initial results fit that framing: small models were barely above chance, and
 GPT-3 was well above it — encouraging rather than impressive (≈[20:50]).
 
@@ -71,6 +75,10 @@ it. Going from four choices to ten **lowers the random-guessing floor from 25% t
 the difficulty. Adding chain of thought moves scores back *up*. The reported drop
 is the net of all three.
 
+![MMLU-Pro figures comparing question difficulty and score distributions against MMLU](../raw/images/12-evaluation/mmlu-pro.png)
+
+*MMLU-Pro against MMLU. Ten choices instead of four drops the guessing floor from 25% to 10%, which moves every score before difficulty is considered at all.*
+
 And it did not last: the lecture notes accuracy is back to roughly 88, nearly 90
 (≈[22:23], ≈[23:11]).
 
@@ -89,6 +97,10 @@ pipeline (≈[23:57]):
 - The writer **revises**; a second expert reviews.
 - The question then goes to **non-experts with Google access**, to check that they
   cannot solve it.
+
+![GPQA example question with expert and non-expert answers](../raw/images/12-evaluation/gpqa.png)
+
+*A GPQA item with its validation record. What makes it Google-proof is the non-expert row, not the question.*
 
 The **diamond subset** you see quoted on leaderboards is the questions where both
 experts agreed *and* at most one non-expert answered correctly (≈[24:42]).
@@ -124,15 +136,27 @@ the previous three all saturated.
   data — though, as Percy notes, you still have to send the prompts to an API and
   hope they do not end up in training that way (≈[27:45]).
 
+![Four Humanity's Last Exam example questions across different subjects](../raw/images/12-evaluation/hle-examples.png)
+
+*Four HLE items. Unlike the GPQA figure, none of these cards marks which answer is correct.*
+
 The results figure follows the shape every dataset paper has: previous benchmarks,
 models do well; my dataset, models do terribly — single digits at release
 (≈[28:32]). Unlike the other three, HLE **still has room**: checking in 2026, the
 top score is **64.7** (≈[28:32]).
 
+![HLE question-collection pipeline from submission through LLM filtering to expert review](../raw/images/12-evaluation/hle-pipeline.png)
+
+*How HLE guarantees an unsaturated benchmark: questions frontier models already answer are filtered out before human review begins.*
+
 **The methodological hazard is the filter.** A benchmark defined as "questions
 today's frontier models get wrong" is defined *relative to today's models*. It
 guarantees an unsaturated benchmark at release and makes the question set a moving
 target rather than a fixed standard.
+
+![HLE accuracy results for frontier models, all scoring low](../raw/images/12-evaluation/hle-results.png)
+
+*HLE at release. The shape every dataset paper's results figure has — and the one benchmark in this section that still has room.*
 
 ## What the section concludes
 

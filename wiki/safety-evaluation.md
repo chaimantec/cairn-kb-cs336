@@ -62,6 +62,10 @@ weights the attacker never had, including GPT-4. The lecture's example is a
 step-by-step plan to destroy humanity that OpenAI's model complied with
 (≈[1:02:34]).
 
+![Examples of GCG adversarial suffixes and the model completions they elicit](../raw/images/12-evaluation/gcg-examples.png)
+
+*GCG suffixes and what they elicit. The strings look like nonsense because they were found by optimisation, not written.*
+
 Percy hedges the example in a way worth preserving: one could argue about whether
 the output was actually harmful, but *the expected behaviour is a refusal*, and that
 is what failed (≈[1:02:34], ≈[1:03:19]). He also expresses the hope that these

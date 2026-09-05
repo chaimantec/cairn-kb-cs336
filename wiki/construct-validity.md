@@ -30,9 +30,21 @@ with a site that embodies it (≈[2:23]–[4:42]). They are alternatives, not st
 4. **People choose to use and pay for it** — [OpenRouter](https://openrouter.ai/rankings),
    which serves many models through one endpoint and publishes usage statistics.
 
+![Artificial Analysis leaderboard ranking models by an intelligence index](../raw/images/12-evaluation/artificial-analysis.png)
+
+*Answer one, made concrete: a single intelligence index, and a ranking derived from it.*
+
+![Scatter plot of intelligence index against cost to run, with a most-attractive quadrant marked](../raw/images/12-evaluation/artificial-analysis-cost.png)
+
+*Answer two: the same index against cost. Correlated, as expected, and not aligned — which is why the chart needs a most-attractive quadrant drawn on it.*
+
 The fourth is "more of an economic lens: I don't know what good is, but if people are
 paying for it, it must be good" (≈[4:42]) — and Percy immediately flags that OpenRouter
 traffic is not representative of all model usage.
+
+![OpenRouter rankings of models by usage share](../raw/images/12-evaluation/openrouter.png)
+
+*Answer four: revealed preference. What people actually route their tokens to, which is a different question again from any of the first three.*
 
 None of these is the correct answer, and the lecture does not claim one is. The point
 of the list is that the construct genuinely underdetermines the metric.
@@ -64,6 +76,10 @@ claim about economic significance rather than about what happens to be convenien
 collect — a principled answer to "which real-world tasks?" that none of the other
 benchmarks in the lecture attempt.
 
+![Grid of nine GDPVal example task cards with prompts and human deliverables](../raw/images/12-evaluation/gdpval.png)
+
+*Nine GDPVal tasks. Each card pairs a prompt with the deliverable a working professional produced for it — the benchmark's answer key is a piece of real work.*
+
 ### MedHELM
 
 [arXiv 2505.23802](https://arxiv.org/abs/2505.23802).
@@ -92,6 +108,10 @@ The reasoning is that the people who actually have data on what users do are the
 developers, and privacy prevents anyone from reading it directly — but a language model
 can read it and report aggregate patterns, such as the kinds of things people use
 Claude for (≈[1:07:10], ≈[1:07:58]).
+
+![Bar chart comparing ground-truth categories against Clio-derived categories](../raw/images/12-evaluation/clio-table4.png)
+
+*Clio's categories against ground truth. The bars carry no printed values, so read this figure for shape rather than for numbers.*
 
 > Unfortunately, realism and privacy are sometimes at odds with each other.
 
@@ -194,6 +214,10 @@ The exception the lecture names is the **nanogpt speedrun**: fixed data, and the
 is the compute time to reach a particular validation loss. That is a *method*
 evaluation, deliberately — a way to evaluate an algorithm rather than an artifact
 (≈[1:16:27]).
+
+![Post showing the nanogpt speedrun record for time to a target validation loss](../raw/images/12-evaluation/karpathy-nanogpt-speedrun.png)
+
+*The nanogpt speedrun. Data fixed, target loss fixed, and the only thing that varies is the method — which is what makes it a method evaluation.*
 
 Both are legitimate and they serve different people. Evaluating methods encourages
 algorithmic innovation from researchers; evaluating models and systems is what

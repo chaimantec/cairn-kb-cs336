@@ -42,6 +42,10 @@ than a shuffling of it.
 If the model assigns **higher probability to the benchmark in its published order**,
 the model has seen the published file (≈[1:10:17]).
 
+![Diagram of canonical-order versus shuffled-order benchmark questions used to detect contamination](../raw/images/12-evaluation/contamination-exchangeability.png)
+
+*The exchangeability test. Same questions, two orders; a model that prefers the published one has seen the published file.*
+
 The virtue of this route is that it needs no cooperation from the model provider —
 only the ability to score sequences. Its limit is that it only detects the
 contamination it can find: a model trained on questions *derived* from the benchmark,

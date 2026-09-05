@@ -2,12 +2,13 @@
 
 > **Coverage note.** This page is the syllabus as Percy Liang presents it in
 > [Lecture 1](01-overview-tokenization.md) ([27:04]–[1:03:57]). It is a map of the
-> whole course, but **this knowledge base currently covers Lectures 1–9 of 18**.
+> whole course, but **this knowledge base currently covers Lectures 1–12 of 18**.
 > Covered in full: tokenization (Lecture 1), model architecture (Lectures 3 and 4),
-> the whole Systems unit except inference (Lectures 2, 5, 6, 7 and 8), and the first
-> of the two scaling-laws lectures (Lecture 9). Still previews rather than
-> treatments: Lecture 10 (inference), Lecture 11 (advanced scaling laws), and the
-> Data and Alignment units. See [`kb.json`](../kb.json) for exact coverage.
+> the whole Systems unit including inference (Lectures 2, 5, 6, 7, 8 and 10), both
+> scaling-laws lectures (9 and 11), and the **evaluation** half of the Data unit
+> (Lecture 12). Still previews rather than treatments: the rest of the Data unit
+> (Lectures 13–14) and the whole Alignment unit. See [`kb.json`](../kb.json) for
+> exact coverage.
 
 CS336 is five units, each paired with an assignment. The unifying question, stated
 at [1:02:23], is [efficiency](efficiency.md): how do you build the best model given
@@ -16,9 +17,9 @@ a fixed set of resources — data, compute, memory, communication bandwidth?
 | Unit | Assignment | Lectures | In this KB |
 | --- | --- | --- | --- |
 | [Basics](#unit-1--basics) | 1 | 1–4 | Lectures 1–4 |
-| [Systems](#unit-2--systems) | 2 | 5–8, 10 | Lectures 2, 5, 6, 7 and 8; Lecture 10 (inference) not covered |
-| [Scaling laws](#unit-3--scaling-laws) | 3 | 9, 11 | [Lecture 9](09-scaling-laws.md) covered; Lecture 11 (advanced) not |
-| [Data](#unit-4--data) | 4 | 12–14 | No |
+| [Systems](#unit-2--systems) | 2 | 5–8, 10 | Lectures 2, 5, 6, 7, 8 and [10](10-inference.md) |
+| [Scaling laws](#unit-3--scaling-laws) | 3 | 9, 11 | [Lecture 9](09-scaling-laws.md) and [Lecture 11](11-scaling-laws-in-the-wild.md) |
+| [Data](#unit-4--data) | 4 | 12–14 | [Lecture 12](12-evaluation.md) (evaluation) covered; 13–14 (data) not |
 | [Alignment](#unit-5--alignment) | 5 | 15–17 | No |
 
 ## Unit 1 — Basics
@@ -246,6 +247,13 @@ predictions.
 **Goal:** decide what capabilities you want, then get the data that produces them
 ([53:57]).
 
+> **Now covered in full.** The evaluation half of this unit is
+> [Lecture 12](12-evaluation.md), which is in this knowledge base with a transcript,
+> a lecture page and eight topic pages. What follows is Lecture 1's *preview* of it,
+> which is worth reading first because it makes a distinction the later lecture
+> assumes — internal versus external evaluation — and then reframes as one of the
+> four *purposes* of evaluation. The data half (Lectures 13–14) is still a preview.
+
 **Evaluation** serves two distinct purposes that Percy warns are often conflated
 ([54:45]):
 
@@ -259,6 +267,15 @@ predictions.
 Run perplexity on data that is *not* on the internet, to avoid contamination. And
 because LMs are general-purpose, you need a diverse evaluation suite — averaging
 into one number conflates things ([56:17]).
+
+Lecture 12 develops every one of those threads: the internal/external split becomes
+[four purposes of evaluation](construct-validity.md#whats-the-point-of-evaluation),
+"run perplexity on data that is not on the internet" becomes
+[private evals](benchmark-contamination.md#route-4-private-evals), and ecological
+validity gets [its own section](construct-validity.md#realism-and-ecological-validity)
+with GDPVal, MedHELM and Clio. The four external benchmarks named here — GPQA, HLE,
+SWE-Bench and Terminal-Bench — are all covered in
+[exam](exam-benchmarks.md) and [agentic](agentic-benchmarks.md) benchmarks.
 
 **Curation** ([56:17]): data does not fall from the sky. Sources are crawled
 webpages, books, arXiv, GitHub. Legal questions are live — is training on
