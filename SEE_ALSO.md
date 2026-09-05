@@ -26,12 +26,27 @@ markdown — a `github.com/.../blob/...` URL returns rendered HTML instead.
   the efficiency-first treatment in [tokenization](wiki/tokenization.md) and
   [byte-pair encoding](wiki/byte-pair-encoding.md).
 
+  **It is also the better source on evaluating generated text.** CS336
+  [lecture 12](wiki/12-evaluation.md) surveys benchmarks and argues about validity,
+  but it does not derive a single metric; CS224N does, and it has a whole cluster of
+  pages on the subject — including its own treatment of
+  [benchmark contamination](https://raw.githubusercontent.com/chaimantec/cairn-kb-cs224n/main/wiki/benchmark-contamination.md),
+  worth reading against
+  [this KB's page](wiki/benchmark-contamination.md) since the two courses reach the
+  problem from different directions. Reach for CS224N when the question is *how is
+  this score actually computed* — BLEU and machine translation, NLG metrics, human
+  evaluation protocols — and for CS336 when it is *what does this score mean and can
+  I trust it*.
+
   **Complete: all 23 lectures**, with slide-by-slide text for every deck.
   [INDEX](https://raw.githubusercontent.com/chaimantec/cairn-kb-cs224n/main/INDEX.md) ·
   [subword modeling / BPE](https://raw.githubusercontent.com/chaimantec/cairn-kb-cs224n/main/wiki/subword-modeling.md) ·
   [tokenizers in practice](https://raw.githubusercontent.com/chaimantec/cairn-kb-cs224n/main/wiki/tokenizers-in-practice.md) ·
   [attention](https://raw.githubusercontent.com/chaimantec/cairn-kb-cs224n/main/wiki/attention.md) ·
-  [transformer](https://raw.githubusercontent.com/chaimantec/cairn-kb-cs224n/main/wiki/transformer.md)
+  [transformer](https://raw.githubusercontent.com/chaimantec/cairn-kb-cs224n/main/wiki/transformer.md) ·
+  [evaluating LLMs](https://raw.githubusercontent.com/chaimantec/cairn-kb-cs224n/main/wiki/evaluating-llms.md) ·
+  [evaluating NLG](https://raw.githubusercontent.com/chaimantec/cairn-kb-cs224n/main/wiki/evaluating-nlg.md) ·
+  [evaluating machine translation](https://raw.githubusercontent.com/chaimantec/cairn-kb-cs224n/main/wiki/evaluating-machine-translation.md)
 
 - **CS221 — Artificial Intelligence: Principles and Techniques** (Stanford,
   Percy Liang, Autumn 2025).
