@@ -43,7 +43,7 @@ programs are not linked as documents. Both are listed below.
 | 6 | Kernels, Triton | [`lecture_06.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_06.py) — **transcribed**, at [`raw/slides/06-kernels-triton.md`](raw/slides/06-kernels-triton.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_06) |
 | 7 | Parallelism | [`lecture_07.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_07.py) — **transcribed**, at [`raw/slides/07-parallelism.md`](raw/slides/07-parallelism.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_07) |
 | 10 | Inference | [`lecture_10.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_10.py) — **transcribed**, at [`raw/slides/10-inference.md`](raw/slides/10-inference.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_10) |
-| 12 | Evaluation | [`lecture_12.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_12.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_12) |
+| 12 | Evaluation | [`lecture_12.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_12.py) — **transcribed**, at [`raw/slides/12-evaluation.md`](raw/slides/12-evaluation.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_12) |
 | 13 | Data (sources, datasets) | [`lecture_13.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_13.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_13) |
 | 14 | Data (filtering, dedup, mixing, synthetic) | [`lecture_14.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_14.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_14) |
 | 17 | Alignment, multimodality | [`lecture_17.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_17.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_17) |
@@ -59,6 +59,7 @@ Supporting modules used by those programs: [`references.py`](https://github.com/
 - `lecture_06.py` → [`raw/slides/06-kernels-triton.md`](raw/slides/06-kernels-triton.md)
 - `lecture_07.py` → [`raw/slides/07-parallelism.md`](raw/slides/07-parallelism.md)
 - `lecture_10.py` → [`raw/slides/10-inference.md`](raw/slides/10-inference.md)
+- `lecture_12.py` → [`raw/slides/12-evaluation.md`](raw/slides/12-evaluation.md)
 
 **Lecture 10 computes symbolically**, which makes it unlike every other executable
 lecture in this KB. Its FLOP and byte counts are sympy expressions in the model's

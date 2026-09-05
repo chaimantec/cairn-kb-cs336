@@ -229,7 +229,7 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 
 ## Images
 
-Every lecture 1-11 has images. They are committed, not hotlinked, and they are the only
+Every lecture 1-12 has images. They are committed, not hotlinked, and they are the only
 part of this KB that redistributes course material rather than pointing at it.
 
 | Lecture | Files | Where they came from |
@@ -245,8 +245,27 @@ part of this KB that redistributes course material rather than pointing at it.
 | 9 Scaling Laws | 40 of 57 pages | rendered from `lecture_09.pdf` |
 | 10 Inference | 22 | the course's own `images/*.png` |
 | 11 Scaling Laws in the Wild | 32 of 58 pages | rendered from `lecture_11.pdf` |
+| 12 Evaluation | 33 | the course's own `images/*.png` |
 
-Lectures 12-18 are not in this KB at all, so they have no images.
+Lectures 13-18 are not in this KB at all, so they have no images.
+
+**Lecture 12 is the image-dense one**, and unlike every other executable lecture its
+figures are not illustrations of the argument — they *are* the argument. The program is
+220 `text()` calls and 43 `image()` calls, and most of the text lines are one-line
+captions on a leaderboard screenshot, a benchmark example question or a results chart.
+A reader who takes only the text of that lecture gets materially less than one who
+looks at the figures, which is why every one of the 33 course-repo images carries a
+written description in `raw/slides/12-evaluation.md`. Nine further images are hot-linked
+by the course to third parties (two to X/Twitter, two to ARC Prize, two to Stanford
+CRFM's HELM asset host, one to the alpaca_eval repository, one to philschmid.de, and one
+stock crash-test photograph). Those were **not** copied; they appear as bare URLs with no
+description, on the same footing as lecture 10's six.
+
+**A dating caveat specific to lecture 12.** Many of its images are *leaderboard
+screenshots* — Artificial Analysis, LMArena, OpenRouter, AlpacaEval, and the results
+panels for SWE-bench, HLE, CyBench, MLEBench, TerminalBench and ARC-AGI. Every ranking in
+them is a snapshot from when the lecture was prepared (Spring 2026) and has since moved.
+Cite them as "as of the lecture", never as current standings.
 
 Lecture 11 was a partial entry for one run — deck and images but no transcript or wiki —
 and is now complete, with [a transcript](raw/transcripts/11-scaling-laws-in-the-wild.md)

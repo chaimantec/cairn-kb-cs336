@@ -8,16 +8,26 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1–11 of 18
+> ## ⚠️ This knowledge base covers Lectures 1–12 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
 > Mixtures of Experts), Lecture 5 (GPUs and TPUs), Lecture 6 (Kernels and
 > Triton), Lecture 7 (Parallelism), Lecture 8 (Parallelism, Part 2), Lecture 9
-> (Scaling Laws — Basics), Lecture 10 (Inference) and Lecture 11 (Scaling Laws in
-> the Wild) are covered in depth.**
-> Nothing else is. There are no transcripts and no wiki pages for evaluation,
-> data, mid/post-training, RLVR or multimodality.
+> (Scaling Laws — Basics), Lecture 10 (Inference), Lecture 11 (Scaling Laws in
+> the Wild) and Lecture 12 (Evaluation) are covered in depth.**
+> Nothing else is. There are no transcripts and no wiki pages for data,
+> mid/post-training, RLVR or multimodality.
+>
+> **A note specific to evaluation:** [Lecture 12](wiki/12-evaluation.md) is the
+> hinge of the course — the point where model-building stops and the question
+> becomes what behaviour you wanted in the first place. It surveys perplexity,
+> exam, chat, agentic, reasoning and safety benchmarks, then argues that the
+> survey was never the point: every benchmark is an attempt to turn an abstract
+> construct into a concrete metric, and each loses something in the translation.
+> It is the natural next read after the scaling-law lectures, because it is the
+> general case of their warning that a clean perplexity curve need not predict
+> anything a user cares about.
 >
 > **A note specific to scaling laws:** CS336 splits them across *two* lectures,
 > with inference in between, and **both are now covered in full**. Lecture 9 is the
@@ -121,10 +131,75 @@ compute and data?
   by scale, and a worked case where a flawless-looking fit diverged two and a half
   decades out.
 
+- **[Lecture 12 — Evaluation](wiki/12-evaluation.md)** — given a model, how good
+  is it? The lecture that sits between building a model and choosing its data, and
+  the one to read before you trust any number in a model card. Its spine is a
+  single line — *abstract construct → concrete metric* — and its survey is ordered
+  by what is being measured and, implicitly, by who judges: perplexity needs no
+  judge and is therefore untargeted; exams have an answer key and pay for it in
+  realism; chat has none and must hire a judge, inheriting the judge's biases;
+  agentic benchmarks get an executable answer key back, which is the cleanest
+  escape in the lecture; and safety has neither an answer key nor an agreed judge.
+  Then contamination, dataset quality, and the methods-versus-models distinction
+  that explains what this course's own assignments are actually measuring.
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 12 — evaluation
+
+- **[Lecture 12 — evaluation](wiki/12-evaluation.md)** — the lecture page: the core
+  challenge, the four rival answers to "what makes a model good", the five families
+  of benchmark in the order the lecture gives them, then realism, validity and the
+  methods-versus-models distinction. Also the three questions from the floor, one of
+  which fills a real gap the lecture leaves — how a multiple-choice answer is
+  actually extracted from a model's output, and how sensitive scores are to it.
+- **[Perplexity as an evaluation](wiki/perplexity-evaluation.md)** — the metric this
+  course has been optimising since lecture 1, examined as an evaluation. Both sides
+  of the argument: *perplexity is all you need* (best achievable is $H(t)$, attained
+  iff $p=t$; the lecture calls it more faith than science) against *perplexity is
+  more than you need* (it charges for every token, including the ones nobody cares
+  about). GPT-2's zero-shot break with in-distribution evaluation, the benchmarks
+  that are perplexity in disguise, and why a perplexity leaderboard can be won by a
+  distribution that does not sum to one.
+- **[Exam benchmarks](wiki/exam-benchmarks.md)** — MMLU, MMLU-Pro, GPQA and
+  Humanity's Last Exam in chronological order, because the order is the argument:
+  each exists because its predecessor saturated. GPQA's three numbers — experts 65%,
+  non-experts with Google 34%, GPT-4 39% — are the clearest statement of what an
+  exam benchmark is for. Includes the defence of multiple choice, and the point that
+  a saturated benchmark is dead as a leaderboard and alive as a development signal.
+- **[Chat benchmarks](wiki/chat-benchmarks.md)** — how to evaluate a response with no
+  right answer. Chatbot Arena's ELO and the property that makes it affordable (no
+  model has to see every prompt); AlpacaEval's length bias, the leaderboard gaming it
+  caused and the regression that fixed it; WildBench's per-prompt checklist. And the
+  sharpest question in the lecture: how do you evaluate a *metric*?
+- **[Agentic benchmarks](wiki/agentic-benchmarks.md)** — evaluating what a model
+  *does*. SWEBench and the executable answer key, TerminalBench, CyBench's
+  human-calibrated first-solve times, MLEBench. Why *agent = model + scaffold* is not
+  a definition but a warning: an agentic score is a property of the pair, and two
+  agents on the same model post different numbers.
+- **[Pure reasoning benchmarks](wiki/reasoning-benchmarks.md)** — ARC-AGI, and the one
+  trajectory in the course where scaling pre-training did nothing and a change of
+  method did everything. Also its constitutional limit: validity comes from being
+  100% human-solvable, which means it cannot detect superhuman reasoning.
+- **[Safety evaluation](wiki/safety-evaluation.md)** — why there is no crash-test
+  rating for AI. HarmBench and AIR-Bench get their lists of harms from two different
+  institutions because there is no first principle to derive one from; GCG shows
+  safety training is defeasible by optimisation *and transfers to closed models*; and
+  the risks relate to capability in opposite directions, which is why safety cannot
+  be one number.
+- **[Benchmark contamination](wiki/benchmark-contamination.md)** — what foundation
+  models destroyed. The old guarantee was a file layout, not an argument, and the
+  four routes to rebuilding it — infer overlap from the model via exchangeability,
+  reporting norms, fresh evals, private evals — trade off so that none is
+  simultaneously outsider-verifiable, durable and public.
+- **[Construct validity](wiki/construct-validity.md)** — the lecture's argument, in
+  one page: abstract construct → concrete metric, ecological validity (GDPVal,
+  MedHELM, Clio, and why realism fights privacy), dataset quality (SWE-Bench
+  Verified, broken questions, the agent that scores 38% by returning nothing), the
+  four purposes of evaluation, and methods versus models.
 
 ### Lecture 11 — scaling laws in the wild
 
@@ -614,7 +689,8 @@ usually the faster route than the lecture pages.
   [Lecture 8](raw/transcripts/08-parallelism-2.md),
   [Lecture 9](raw/transcripts/09-scaling-laws.md),
   [Lecture 10](raw/transcripts/10-inference.md),
-  [Lecture 11](raw/transcripts/11-scaling-laws-in-the-wild.md).
+  [Lecture 11](raw/transcripts/11-scaling-laws-in-the-wild.md),
+  [Lecture 12](raw/transcripts/12-evaluation.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
@@ -631,8 +707,9 @@ usually the faster route than the lecture pages.
   - [`lecture_01.py`](raw/slides/01-overview-tokenization.md),
     [`lecture_02.py`](raw/slides/02-pytorch-resource-accounting.md),
     [`lecture_06.py`](raw/slides/06-kernels-triton.md),
-    [`lecture_07.py`](raw/slides/07-parallelism.md) and
-    [`lecture_10.py`](raw/slides/10-inference.md) are Percy
+    [`lecture_07.py`](raw/slides/07-parallelism.md),
+    [`lecture_10.py`](raw/slides/10-inference.md) and
+    [`lecture_12.py`](raw/slides/12-evaluation.md) are Percy
     Liang's *executable lectures* — Python programs, transcribed from source text,
     each with a section-to-source-line table and the code verbatim. There are no
     slide numbers to cite. Where such a lecture computes a number at runtime, a
@@ -647,7 +724,11 @@ usually the faster route than the lecture pages.
     quantity was reproduced by evaluating the lecture's own expression, and each
     matches the `assert` the source makes about it. Its Llama 2 13B latency and
     throughput figures are theoretical maxima under a stated
-    perfect-overlap assumption, not benchmarks.
+    perfect-overlap assumption, not benchmarks. **Lecture 12 is different again**:
+    it computes *nothing at all* — no `@inspect` values, no benchmarks, no sympy, no
+    asserts — so every number in it is a claim about a published benchmark rather
+    than a measurement. What it has instead is figures: 43 of them, the most in the
+    course, and they carry the argument rather than illustrating it.
   - [`lecture_03.pdf`](raw/slides/03-architectures.md) (67 pages),
     [`lecture_04.pdf`](raw/slides/04-attention-alternatives.md) (60 pages),
     [`lecture_05.pdf`](raw/slides/05-gpus-tpus.md) (55 pages),
@@ -660,9 +741,10 @@ usually the faster route than the lecture pages.
     numbers in all six are **PDF page numbers**, because none of the decks prints
     any of its own. **Lecture 11's deck is the odd one out**: it is the only deck read
     at Opus rather than Sonnet — a choice made because at 33 words of native text per page
-    it is the most figure-dependent deck in the course. It has had no figure audit
-    yet, and its front matter states the boundary that follows: slide text and
-    tables reliable, chart values provisional. Lectures 4, 5 and 8 are the figure-dependent ones — 102 images
+    it is the most figure-dependent deck in the course. It has since had **two figure
+    audit passes over 15 of its 58 pages** — 3 clean, 12 dirty, 31 corrections applied —
+    and a third was deliberately declined on cost, so its front matter states the
+    boundary that remains: 43 of 58 pages carry chart values nobody re-checked. Lectures 4, 5 and 8 are the figure-dependent ones — 102 images
     across 60 pages, 83 across 55, and 86 across 73, most pages carrying only 30–40
     words of their own text — so the figure descriptions there are not a supplement
     to the content, they *are* the content. Each deck's front matter records which
@@ -676,13 +758,17 @@ usually the faster route than the lecture pages.
   PDF decks.
 
 - **`raw/images/NN-<slug>/`** — pictures, so an answer can *show* a figure rather than
-  only describe it. All ten covered lectures have them, and so does lecture 11: 32–51
+  only describe it. **All twelve covered lectures have them**: 32–51
   images each for the six PDF-deck lectures (3, 4, 5, 8, 9, 11), one for every
-  figure-bearing page; and 4–22 each for
-  the five executable lectures (1, 2, 6, 7, 10), which have no deck, so these are the
-  figures the course serves from its own repo. Lecture 10 is much the richest of those
-  five, with 22 — it is a heavily illustrated lecture whose figures are mostly
-  reproduced tables and charts from the papers it discusses. Each image sits beside the slide it shows in
+  figure-bearing page; and 4–33 each for
+  the six executable lectures (1, 2, 6, 7, 10, 12), which have no deck, so these are the
+  figures the course serves from its own repo. **Lecture 12 is the richest of those
+  six, with 33** — it is the most image-dense lecture in the course, and its figures
+  (leaderboard screenshots, benchmark example questions, results charts) *are* its
+  content rather than a supplement to it. Lecture 10 is next with 22, mostly
+  reproduced tables and charts from the papers it discusses. Nine further images in
+  lecture 12 are hot-linked by the course to third-party sites and are **not** copied
+  here; the slide file records their URLs at the point they appear. Each image sits beside the slide it shows in
   `raw/slides/`, and in `wiki/` wherever a page cites that slide. About a third of every
   deck was deliberately *not* rendered — title cards, outlines, dividers, and the tables
   and equations `raw/slides/` already reproduces cell by cell — so **read an image path
