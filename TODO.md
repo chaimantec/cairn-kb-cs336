@@ -2318,10 +2318,22 @@ conclusion. `--verify` therefore degenerates to a heading-sequence check.
 - [ ] Citation and quote check (reuse run 16's corrected checker)
 
 ### Images (Step 1c)
-- [ ] Render figure slides into raw/images/16-post-training-rlvr/
-      (raster test: 55 of 61 pages carry a raster >4%; the 6 that do not are
-      17, 35, 51, 56, 57, 61)
-- [ ] Embed into raw/slides/ and wiki/
+- [x] Render figure slides into raw/images/16-post-training-rlvr/ — 47 images,
+      5.2 MB. The raster test flagged 55 of 61 pages; 14 were skipped and one
+      was ADDED AGAINST THE TEST. Skipped: 1 (title), 4, 25, 39, 55 (paper
+      title-card screenshots whose entire content is the transcribed title and
+      authors — lecture 11's precedent), 5 and 43 (equations reproduced exactly
+      in LaTeX), 19 and 20 (code reproduced verbatim in a fence, and unlike
+      slides 11-15 they carry no highlighting the fence cannot show), and 17,
+      35, 51, 56, 61 (pure text, no raster anyway).
+      ADDED: slide 57, whose hand-drawn fan-out/fan-in distillation diagram is
+      VECTOR ART and so carries no raster at all — the same miss AGENTS.md
+      records for lecture 3's slide 32. --format auto independently confirmed
+      it, choosing PNG at 45K because the page is flat colour.
+- [x] Embed into raw/slides/ — 47 images under their headings (12 pre-inserted
+      by the reader of pages 1-15, 35 placed by the script). Heading sequence
+      still 1..61; imgcheck reports 0 problems.
+- [ ] Embed into wiki/
 
 ### Publish
 - [ ] Coverage in all six places: INDEX.md, sources.md, AGENTS.md, kb.json,

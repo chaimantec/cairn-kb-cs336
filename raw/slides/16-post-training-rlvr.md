@@ -164,7 +164,6 @@ Below the two charts: "Can we work in domains where RL excels? Where we optimize
 
 ## Slide 4 — The lecture today
 
-![Slide 4 — The lecture today](../images/16-post-training-rlvr/slide-4.jpg)
 
 Two numbered sections, each illustrated with paper title-card screenshots (no chart data; described in prose).
 
@@ -529,6 +528,8 @@ def _estimate_advantage(self, rewards: Tensor, values: Tensor) -> Dict[str, Tens
 Below the figure: "Funny detail – this is a bandit problem and gamma=lambda=1 works – this is the reward-to-go vs the value"
 ## Slide 16 — What do you expect to see in PPO?
 
+![Slide 16 — What do you expect to see in PPO?](../images/16-post-training-rlvr/slide-16.jpg)
+
 Three side-by-side line-chart panels, each with its own header text above it: "Increasing overall rewards", "Incl. reward model", "Negative KL rewards". Below the charts: "This is a bandit setting, you expect reasonable training curves"
 
 Each panel is a Weights & Biases-style plot with a small metric-name title printed above its axes and a two-line legend giving the same two run names in every panel:
@@ -560,6 +561,8 @@ That is two data series per panel (not three — the small metric-name text abov
 - Offline (though could be made online by iterating)
 
 ## Slide 18 — New kid on the block: GRPO
+
+![Slide 18 — New kid on the block: GRPO](../images/16-post-training-rlvr/slide-18.jpg)
 
 **What's GRPO?**
 - Start with PPO (many parts are similar)
@@ -726,6 +729,8 @@ return episodes, stats
 
 ## Slide 21 — How well does it work?
 
+![Slide 21 — How well does it work?](../images/16-post-training-rlvr/slide-21.jpg)
+
 **GRPO from the original paper**
 
 **Figure — two line charts side by side**, titled "GSM8K" (left) and "MATH" (right), reproduced from the GRPO/DeepSeekMath paper. A single legend above both panels applies to both: RFT (purple), Online RFT (green), GRPO+OS (orange), GRPO+PS (blue) — four data series total, and the legend order matches this description.
@@ -749,6 +754,8 @@ Below the figure: "Outperforms RFT (reinforcing correct answers), with some gain
 "We will get back to this later.."
 
 ## Slide 22 — Thinking carefully about the GRPO objective..
+
+![Slide 22 — Thinking carefully about the GRPO objective..](../images/16-post-training-rlvr/slide-22.jpg)
 
 "The key difference in GRPO vs PPO: the advantage"
 
@@ -777,6 +784,8 @@ $$\theta_{t+1} \doteq \theta_t + \alpha\big(G_t - b(S_t)\big)\frac{\nabla\pi(A_t
 Bottom-right citation: "Sutton and Barto"
 
 ## Slide 23 — GRPO doesn't use a "valid" baseline
+
+![Slide 23 — GRPO doesn't use a "valid" baseline](../images/16-post-training-rlvr/slide-23.jpg)
 
 "The division by the stdev term is not a valid baseline that preserves unbiasedness."
 
@@ -811,6 +820,8 @@ Bottom-right citation: "Liu et al 2025. (this gets pretty close to reinforce w/ 
 A dark teal arrow labeled "RL training progress" points up and to the right beneath/between the two curves, indicating the direction of training progress along each curve — this is an annotation, not a data series.
 
 ## Slide 24 — Length biases of GRPO
+
+![Slide 24 — Length biases of GRPO](../images/16-post-training-rlvr/slide-24.jpg)
 
 "What do these terms do? **Stdev** – upweights too easy or hard questions."
 
@@ -848,6 +859,8 @@ Three paper title-card images are stacked vertically on the left, each paired wi
 
 ## Slide 26 — Deepseek R1
 
+![Slide 26 — Deepseek R1](../images/16-post-training-rlvr/slide-26.png)
+
 "The paper that launched a bit of a social phenomenon.."
 
 **Figure — a single-line time-series chart** (styled like a Google Trends graph, though no source/title is printed on the chart itself). Y-axis unlabeled, gridlines at 25, 50, 75, 100. X-axis dates: "May 19, 2024", "Sep 8, 2024", "Dec 29, 2024", "Apr 20, 2025". One data series (blue line, no legend): the line sits near 0 from May 2024 through roughly December 2024 (with a very small bump just before the label), then spikes sharply to 100 right around the "Dec 29, 2024"/January 2025 mark, immediately drops back down to about 30 within the same short span, and then decays gradually down to a low plateau of roughly 5–10 which it holds through April 2025. An annotation reading "[Submitted on 22 Jan 2025]" sits above the chart with the bold label "DeepSeek-R1" and a dark-blue arrow pointing down to the point on the line just before the spike begins.
@@ -860,6 +873,8 @@ Three paper title-card images are stacked vertically on the left, each paired wi
 
 ## Slide 27 — Algorithm - GRPO
 
+![Slide 27 — Algorithm - GRPO](../images/16-post-training-rlvr/slide-27.jpg)
+
 "They build on the results of GRPO from DeepSeekMath.."
 
 **Figure — the same two-panel line chart as reproduced on Slide 21** (GSM8K and MATH accuracy curves for RFT, Online RFT, GRPO+OS, GRPO+PS vs. training steps, from the DeepSeekMath paper's Figure 5; see Slide 21 for the full per-series reading). Caption beneath: "Figure 5 | Performance of the DeepSeekMath-Instruct 1.3B model, which was further trained using various methods, on two benchmarks."
@@ -867,6 +882,8 @@ Three paper title-card images are stacked vertically on the left, each paired wi
 "But they do not use process supervision in R1 (more on this later..)"
 
 ## Slide 28 — Controlled setting – R1 zero.
+
+![Slide 28 — Controlled setting – R1 zero.](../images/16-post-training-rlvr/slide-28.jpg)
 
 "**Setup:**"
 
@@ -889,6 +906,8 @@ Three paper title-card images are stacked vertically on the left, each paired wi
 | DeepSeek-R1-Zero | 71.0 | 86.7 | 95.9 | 73.3 | 50.0 | 1444 |
 
 ## Slide 29 — Interesting phenomena (?)
+
+![Slide 29 — Interesting phenomena (?)](../images/16-post-training-rlvr/slide-29.jpg)
 
 Two side-by-side items, each with a caption beneath it: "Longer CoTs during training" (left) and "'aha' moment?" (right).
 
@@ -915,6 +934,8 @@ Next, I could square both sides again, treating the equation: ···
 
 ## Slide 30 — But maybe a bit overstated
 
+![Slide 30 — But maybe a bit overstated](../images/16-post-training-rlvr/slide-30.jpg)
+
 "From some follow-up analyses in Dr. GRPO.."
 
 Left-margin annotations: "Length due to biased objective?" and, lower down, "Base model already has 'aha'"
@@ -938,6 +959,8 @@ This second transcript illustrates the slide's point (paired with the left-margi
 
 ## Slide 31 — Pushing performance further – R1
 
+![Slide 31 — Pushing performance further – R1](../images/16-post-training-rlvr/slide-31.png)
+
 "**R1 vs R1-zero**"
 
 "**Key differences:**"
@@ -947,6 +970,8 @@ This second transcript illustrates the slide's point (paired with the left-margi
 
 **Figure — a four-box pipeline diagram**, boxes connected left-to-right by dark-blue arrows: "Deepseek-V3" → "Reasoning SFT" → "RL (GRPO)" → "SFT/RLHF".
 ## Slide 32 — SFT initialization..
+
+![Slide 32 — SFT initialization..](../images/16-post-training-rlvr/slide-32.jpg)
 
 **Figure — a boxed screenshot of quoted text**, apparently excerpted from the DeepSeek-R1 technical report, transcribed verbatim:
 
@@ -959,6 +984,8 @@ Bullets:
 - **Note**: Origins on the data not quite clear..
 
 ## Slide 33 — SFT for reasoning / math..
+
+![Slide 33 — SFT for reasoning / math..](../images/16-post-training-rlvr/slide-33.jpg)
 
 Body text: "Even a small number of samples is effective for bootstrapping reasoning from LMs"
 
@@ -998,6 +1025,8 @@ Footer text: "1k Math and science questions + Long CoTs from Gemini / r1"
 
 ## Slide 34 — RL step
 
+![Slide 34 — RL step](../images/16-post-training-rlvr/slide-34.jpg)
+
 Bold text: "The RL part is basically the same.."
 
 Body text: "Minor difference: additional language consistency loss"
@@ -1023,6 +1052,8 @@ Bold subheading: "RLHF step"
 - Non-verifiable tasks - V3 RLHF pipeline. Still uses GRPO (for RLHF)
 
 ## Slide 36 — How well does R1 work?
+
+![Slide 36 — How well does R1 work?](../images/16-post-training-rlvr/slide-36.jpg)
 
 Body text: "It's pretty good (but you knew that)"
 
@@ -1059,6 +1090,8 @@ Rows are grouped (as printed) under row-header labels "English" (MMLU through Ar
 
 ## Slide 37 — Distillation – can we get non-reasoning models to reason?
 
+![Slide 37 — Distillation – can we get non-reasoning models to reason?](../images/16-post-training-rlvr/slide-37.jpg)
+
 Bold subheading: "Pipeline"
 - Have R1 generate CoT traces (800k!)
 - Teach Qwen 2.5 via distillation
@@ -1081,6 +1114,8 @@ Bold subheading: "Pipeline"
 (Bold entries as printed, marking the best score in each column.)
 
 ## Slide 38 — Other, relevant observations
+
+![Slide 38 — Other, relevant observations](../images/16-post-training-rlvr/slide-38.jpg)
 
 Bold text: "There is a whole unsuccessful attempts section"
 
@@ -1112,6 +1147,8 @@ Bold subheading: "Why do we study this one?"
 
 ## Slide 40 — Long COT reasoning strategy
 
+![Slide 40 — Long COT reasoning strategy](../images/16-post-training-rlvr/slide-40.jpg)
+
 **Figure — a grouped bar chart spanning three panels ("Math," "Code," "Vision"), each panel showing one or more benchmarks along its own x-axis, with bar height as the y-value (no shared numeric y-axis is printed; each bar carries its own printed value label).** A legend at the top lists five series, in this left-to-right order: **Kimi k1.5 long-CoT** (bright blue, with a black "K" logo badge on each of its bars), **OpenAI o1** (medium periwinkle-blue, OpenAI-swirl logo badge), **OpenAI o1-mini** (pale/light-blue, OpenAI-swirl logo badge), **QVQ-72B-Preview** (medium/darker gray, a purple Qwen-swirl logo badge), and **QwQ-32B Preview** (light gray, a purple Qwen-swirl logo badge). Not every benchmark shows all five series — the plotting order within each benchmark always starts with Kimi k1.5 (leftmost, tallest-labeled bar in every group) followed by whichever of the other four series has data for that benchmark, in the same left-to-right legend order. Confirmed by pixel-level color sampling, no benchmark mixes both gray series in the same group.
 
 **Math panel** — two benchmarks, four bars each (Kimi k1.5, OpenAI o1, OpenAI o1-mini, QwQ-32B Preview; no QVQ-72B-Preview bar in this panel):
@@ -1135,6 +1172,8 @@ Bold subheading: "Key steps"
 
 ## Slide 41 — Data curation + SFT
 
+![Slide 41 — Data curation + SFT](../images/16-post-training-rlvr/slide-41.jpg)
+
 Bold subheading: "Data curation"
 - Standard curation across math-style settings, balancing topics
 
@@ -1153,6 +1192,8 @@ Further bullets:
 Bold subheading followed by body text: "**SFT** – little description, just described as 'prompt engineering' (distillation?)"
 
 ## Slide 42 — Kimi RL
+
+![Slide 42 — Kimi RL](../images/16-post-training-rlvr/slide-42.jpg)
 
 Bold text: "In kimi –" followed by "reference based reward model, so the optimization problem is"
 
@@ -1190,6 +1231,8 @@ Parenthetical note: "(They also only enable this later on in traning, due to its
 
 ## Slide 44 — Additional details
 
+![Slide 44 — Additional details](../images/16-post-training-rlvr/slide-44.png)
+
 Bold subheading: "Curriculum"
 - Assign difficulty labels to dataset, go from easy to hard
 - Sample problems proportional to (1-success_rate) to avoid repeating solved ones
@@ -1203,6 +1246,8 @@ Bold subheading: "Rewards"
 "During our manual spot checks, the Classic RM achieved an accuracy of approximately **84.4**, while the Chain-of-Thought RM reached **98.5** accuracy. In the RL training process, we adopted the Chain-of-Thought RM to ensure more correct feedback."
 
 ## Slide 45 — RL Infra
+
+![Slide 45 — RL Infra](../images/16-post-training-rlvr/slide-45.jpg)
 
 Body text: "Systems and utilization aspects of RL are very important."
 
@@ -1224,6 +1269,8 @@ Bold text: "Why is RL hard to make efficient?"
 **(b) Partial Rollout** — a diagram of one "rollout worker" box (pale teal, labeled "iteration N" above it) containing three horizontal lanes running left to right, fed from "from promt set" [sic, as printed] on the left. Markers along the lanes show three possible outcomes, per the legend at bottom right: a filled circle = "normal stop", an open diamond = "cut by length", and an "X" = "repeat, early stop". The top lane runs straight to a filled circle (normal stop) at the right edge. The middle lane passes through a filled circle, then continues to an open diamond at the box's right edge. The bottom lane passes through an "X" (repeat, early stop), then a filled circle, then an open diamond at the right edge. Dashed lines from the two open-diamond ("cut by length") points, labeled "save for partial rollout," loop down to the pink **"Replay Buffer"** box below. Solid vertical lines labeled "partial rollout" (on the left) also drop from points in the lanes down into the Replay Buffer.
 
 ## Slide 46 — Kimi's RL setup in detail
+
+![Slide 46 — Kimi's RL setup in detail](../images/16-post-training-rlvr/slide-46.jpg)
 
 **Figure — "Figure 4: Hybrid Deployment Framework"**, a systems diagram (reproduced from a paper, likely the Kimi k1.5 report) showing a single rounded outer box labeled "pod" containing two dashed, colored inner regions side by side, plus two boxes outside the pod:
 
@@ -1250,6 +1297,8 @@ Below the figure, three bulleted paragraphs (with blue hyperlinked in-text citat
 - **Inference Phase:** Following Megatron's offloading, vLLM starts with dummy model weights and updates them with the latest ones transferred from Megatron via Mooncake (Qin et al. 2024). Upon completion of the rollout, the checkpoint-engine halts all vLLM processes.
 - **Subsequent Training Phase:** Once the memory allocated to vLLM is released, Megatron onloads the memory and initiates another round of training.
 ## Slide 47 — Scaling results
+
+![Slide 47 — Scaling results](../images/16-post-training-rlvr/slide-47.jpg)
 
 Body text: "We already know this roughly matches / beats o1. Other interesting results.."
 
@@ -1298,6 +1347,8 @@ Approximate readings (values are hand-read off the small charts and are approxim
 
 ## Slide 48 — Ablation / comparison to expert iteration
 
+![Slide 48 — Ablation / comparison to expert iteration](../images/16-post-training-rlvr/slide-48.jpg)
+
 **Figure — a 3×4 grid of twelve small line charts**, each comparing two training methods on one benchmark: x-axis "Step" (0 to ≈48–50) and a y-axis "Accuracy" whose range differs per panel. There are exactly **two data series per panel**, both dashed with marker points: a blue-circle line labelled "ReST" and an orange-square line labelled "Ours". Panel titles, row by row: Row 1 — OMNI-MATH500, MATH500, AIMO2024, AIME2024. Row 2 — ChatGLMMath, GAOKAO_bmk, GPQA, k12-biology. Row 3 — k12-chemistry, k12-phys_cs, KAOYAN, Total. Caption below the figure: "Could we avoid RL-style negative gradients and just learn from positives?" — i.e. the figure is asking whether "Ours" (which, unlike ReST/expert-iteration, keeps negative-example gradients) beats a positives-only expert-iteration baseline.
 
 Approximate readings at the labelled step positions (0, ~8, 20, ~28, 40, 48 — the data points nearest each gridline; values are hand-read and approximate). In every panel "Ours" (orange) ends at or above "ReST" (blue), and both curves are noisy:
@@ -1316,6 +1367,8 @@ Approximate readings at the labelled step positions (0, ~8, 20, ~28, 40, 48 — 
 - **Total** (Accuracy ≈0.50–0.66): Ours: 0.511 → 0.596 → 0.604 → 0.611 → 0.647 → 0.651. ReST: 0.532 → 0.522 → 0.563 → 0.554 → 0.571 → 0.590.
 
 ## Slide 49 — Final case study – Qwen 3
+
+![Slide 49 — Final case study – Qwen 3](../images/16-post-training-rlvr/slide-49.jpg)
 
 Purple square logo at upper left: a stylised bear/robot mascot next to the wordmark "Qwen 3".
 
@@ -1338,6 +1391,8 @@ Body text below the table: "Better than o1 and R1 (though comes later)" / ".. Bu
 ("-" denotes no reported score for that model/benchmark pair.)
 
 ## Slide 50 — Overall picture
+
+![Slide 50 — Overall picture](../images/16-post-training-rlvr/slide-50.jpg)
 
 **Figure — "Post-training pipeline of the Qwen3 series models" (Figure 1)**, a boxed flowchart with two horizontal bands.
 
@@ -1362,6 +1417,8 @@ Bullets:
 No figures on this page.
 
 ## Slide 52 — Qwen 3 specific new stuff.
+
+![Slide 52 — Qwen 3 specific new stuff.](../images/16-post-training-rlvr/slide-52.jpg)
 
 Bold subheading: "**Thinking mode fusion** – controlling the length of the CoT."
 
@@ -1391,6 +1448,8 @@ Bold subheading: "**Thinking mode fusion** – controlling the length of the CoT
 
 ## Slide 53 — Test time scaling
 
+![Slide 53 — Test time scaling](../images/16-post-training-rlvr/slide-53.jpg)
+
 **Figure 2 — "Performance of Qwen3-235B-A22B with respect to the thinking budget."** A 2×2 grid of four line charts, each with x-axis "Thinking Budget (K tokens)" on a log scale with tick marks at 1, 2, 4, 8, 16, 32, and a y-axis "Pass@1" whose range differs per panel. Each panel has exactly two series: a red dashed horizontal line labelled "Non-thinking Mode" (a flat reference value, since non-thinking mode has no budget to vary) and a blue solid line with circular markers labelled "Thinking Mode" (rising as budget increases). Panel titles: AIME'24, AIME'25, LiveCodeBench (v5), GPQA Diamond.
 
 - **AIME'24** (Pass@1 axis ≈40–85+): Non-thinking Mode (red dashed): flat at ≈40. Thinking Mode (blue): ≈41 at 1K, ≈43 at 2K, ≈56 at 4K, ≈73 at 8K, ≈84 at 16K, ≈85 at 32K.
@@ -1401,6 +1460,8 @@ Bold subheading: "**Thinking mode fusion** – controlling the length of the CoT
 In all four panels, Thinking Mode starts close to the Non-thinking Mode baseline at the smallest budget and climbs steadily above it as the thinking budget grows, with the steepest gains typically between 2K and 8-16K tokens.
 
 ## Slide 54 — Composition of the different stages
+
+![Slide 54 — Composition of the different stages](../images/16-post-training-rlvr/slide-54.jpg)
 
 **Table.** Superscript deltas are colour-coded in the source: **green** for a positive change and **red** for a negative change, each measured against the same benchmark's score in the *previous* stage/column (e.g. Stage 3 Thinking's delta is relative to Stage 2 Reasoning RL; Stage 4 Thinking's delta is relative to Stage 3 Thinking; Stage 4 Non-Thinking's delta is relative to Stage 3 Non-Thinking).
 
@@ -1456,9 +1517,13 @@ No figures on this page.
 
 ## Slide 57 — Expert models
 
-**Figure — a hand-drawn-style flow diagram.** "Qwen 3 Next" (left) has four arrows fanning out to four labelled boxes stacked vertically: "Web dev expert", "UX expert", "Single-turn QA expert", "SWE expert". Each of these four boxes has an arrow converging back into a single box on the right, "Qwen 3 Next Coder". Below the convergence point, the label "Distillation" names this fan-out/fan-in process. No numeric data in this figure.
+![Slide 57 — Expert models](../images/16-post-training-rlvr/slide-57.png)
+
+**Figure — a hand-drawn-style flow diagram.** "Qwen 3 Next" (left) has four arrows fanning out to four bold text labels stacked vertically: "Web dev expert", "UX expert", "Single-turn QA expert", "SWE expert". Each of these four has an arrow converging back into a single bold label on the right, "Qwen 3 Next Coder". (The labels are plain text, not drawn boxes — verified against the rendered image.) Below the convergence point, the label "Distillation" names this fan-out/fan-in process. No numeric data in this figure.
 
 ## Slide 58 — Web dev / UX / QA expert
+
+![Slide 58 — Web dev / UX / QA expert](../images/16-post-training-rlvr/slide-58.jpg)
 
 Bold "**Web dev expert**"
 - SFT on "valid web code" based on checks (VLM + agent actions)
@@ -1596,6 +1661,8 @@ Bold "**QA**" (standard single turn code synthesis – just more data)
 
 ## Slide 59 — Agent environment construction
 
+![Slide 59 — Agent environment construction](../images/16-post-training-rlvr/slide-59.jpg)
+
 **Figure — a hand-drawn-style flowchart** describing an automated pipeline for building SWE-bench-style coding-agent environments, in four numbered stages that loop back on each other:
 
 - **① Repository Collection** — a "Codebase" icon (GitHub-style folder icon) listing example repo contents (`sklearn/`, `examples/`, `README.rst`, `reqs.txt`, `setup.cfg`, `setup.py`) feeds down, via an arrow labelled "code file", into a "Language-specific AST parser" box showing per-language icons (Python, Java, Go, C/C++, "...") next to a "tree-sitter library" icon (a stylised tree). This produces, via an arrow labelled "function/class", a code snippet box showing an example Python method (`@classmethod def parse_list(cls, api, lst): ...`).
@@ -1606,6 +1673,8 @@ Bold "**QA**" (standard single turn code synthesis – just more data)
 Caption below the figure: "Automated SWE-bench style environment construction (800k tasks)"
 
 ## Slide 60 — Agent RL
+
+![Slide 60 — Agent RL](../images/16-post-training-rlvr/slide-60.jpg)
 
 **Figure 7 — two line charts side by side, plus a table below them.**
 
