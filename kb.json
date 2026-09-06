@@ -9,17 +9,17 @@
     "courseUrl": "https://cs336.stanford.edu"
   },
   "coverage": {
-    "lecturesCovered": 12,
+    "lecturesCovered": 13,
     "lecturesTotal": 18,
-    "transcripts": 12,
-    "wikiLecturePages": 12,
-    "wikiTopicPages": 97
+    "transcripts": 13,
+    "wikiLecturePages": 13,
+    "wikiTopicPages": 105
   },
   "materials": {
     "primary": "mixed",
     "executableLectures": {
       "available": 9,
-      "transcribed": 6
+      "transcribed": 7
     },
     "slideDecks": {
       "available": 8,
@@ -38,16 +38,17 @@
       "9": "page-images",
       "10": "source-text",
       "11": "page-images",
-      "12": "source-text"
+      "12": "source-text",
+      "13": "source-text"
     },
     "figuresAudited": true,
     "sourceRepo": "https://github.com/stanford-cs336/lectures",
     "images": {
-      "lecturesWithImages": 12,
+      "lecturesWithImages": 13,
       "lecturesTotal": 18,
-      "files": 346,
-      "megabytes": 44.3,
-      "format": "For the six PDF decks: whole slides rendered at 1400px, JPEG q85 or PNG whichever is smaller, named by PDF page number. For the six executable lectures: the course's own images/*.png, fetched unmodified from the lectures repo.",
+      "files": 360,
+      "megabytes": 47.0,
+      "format": "For the six PDF decks: whole slides rendered at 1400px, JPEG q85 or PNG whichever is smaller, named by PDF page number. For the seven executable lectures: the course's own images/*.png, fetched unmodified from the lectures repo.",
       "discovery": "inline in wiki/ and raw/slides/; no index file",
       "byLecture": {
         "1": 9,
@@ -61,9 +62,11 @@
         "9": 40,
         "10": 22,
         "11": 32,
-        "12": 33
+        "12": 33,
+        "13": 14
       },
-      "note": "Coverage is every figure-bearing page of each deck (46 of 67, 48 of 60, 51 of 55, 51 of 73, 40 of 57, 32 of 58), and the course's own figures for the executable lectures, which have no deck. Roughly a third of each deck was deliberately NOT rendered - title cards, outlines, section dividers, pure-text bullets, and the pasted tables and equation blocks that raw/slides already reproduces cell by cell. So an image path must be read from a file, never constructed: slide-31.jpg existing says nothing about slide-32.jpg. LECTURE 12 IS THE IMAGE-DENSE ONE AND THE ONE TO READ CAREFULLY: 33 images, the most of any executable lecture, and its figures ARE its argument rather than illustrations of it - leaderboard screenshots, benchmark example questions and results charts, with the program's text lines mostly serving as one-line captions on them. Every ranking in those screenshots is a snapshot from when the lecture was prepared (Spring 2026) and has since moved, so cite them as 'as of the lecture', never as current. Nine further lecture-12 images are hot-linked by the course to third parties and were NOT copied; they appear in raw/slides/12-evaluation.md as bare URLs with no description, like lecture 10's six."
+      "note": "Coverage is every figure-bearing page of each deck (46 of 67, 48 of 60, 51 of 55, 51 of 73, 40 of 57, 32 of 58), and the course's own figures for the executable lectures, which have no deck. Roughly a third of each deck was deliberately NOT rendered - title cards, outlines, section dividers, pure-text bullets, and the pasted tables and equation blocks that raw/slides already reproduces cell by cell. So an image path must be read from a file, never constructed: slide-31.jpg existing says nothing about slide-32.jpg. LECTURE 12 IS THE IMAGE-DENSE ONE AND THE ONE TO READ CAREFULLY: 33 images, the most of any executable lecture, and its figures ARE its argument rather than illustrations of it - leaderboard screenshots, benchmark example questions and results charts, with the program's text lines mostly serving as one-line captions on them. Every ranking in those screenshots is a snapshot from when the lecture was prepared (Spring 2026) and has since moved, so cite them as 'as of the lecture', never as current. Nine further lecture-12 images are hot-linked by the course to third parties and were NOT copied; they appear in raw/slides/12-evaluation.md as bare URLs with no description, like lecture 10's six and lecture 13's four. LECTURE 13 IS THE OPPOSITE CASE TO LECTURE 12: only 14 images, and its argument is carried by the text rather than the figures, so a reader who reads only the text loses much less there. One of its figures, decline-consent.png, does NOT show what the lecture text implies - see the caveat about it.",
+      "thirdPartyNotRedistributed": "Lecture 13 hot-links four images that are NOT copied into this repo and are recorded as URLs only in raw/slides/13-data-sources-datasets.md: the Wikimedia web-crawler architecture diagram, the C4 domain breakdown and the Pile composition (both served from the Stanford CS324 Winter 2022 site), and a Dolma composition figure on a Medium CDN. Lecture 12 hot-links nine more on the same basis. No description of these exists here because nobody looked at them."
     }
   },
   "license": {
@@ -89,7 +92,7 @@
       "claude-sonnet-5"
     ],
     "caveats": [
-      "PARTIAL: covers lectures 1-12 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 13-18 - data (two lectures), mid/post-training, RLVR, alignment/multimodality and the Dan Fu guest lecture - have no transcripts and no wiki pages. Note that CS336 splits scaling laws across two lectures with inference in between: lecture 9 (basics), lecture 10 (inference) and lecture 11 (advanced - muP in depth, modern open-model tech reports, optimizers) are all covered in full, as is lecture 12 (evaluation), which is the hinge between building a model and choosing its data.",
+      "PARTIAL: covers lectures 1-13 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 14-18 - the second data lecture, mid/post-training, RLVR, alignment/multimodality and the Dan Fu guest lecture - have no transcripts and no wiki pages. DATA IS HALF COVERED: lecture 13 (sources and datasets) is here, lecture 14 (filtering, dedup, mixing, synthetic data and post-training data) is not. Note that CS336 splits scaling laws across two lectures with inference in between: lecture 9 (basics), lecture 10 (inference) and lecture 11 (advanced - muP in depth, modern open-model tech reports, optimizers) are all covered in full, as is lecture 12 (evaluation), which is the hinge between building a model and choosing its data.",
       "materials.method is 'mixed' and the split matters. Lectures 1, 2, 6, 7, 10 and 12 are executable Python programs (lecture_01.py, lecture_02.py, lecture_06.py, lecture_07.py, lecture_10.py, lecture_12.py), transcribed exactly from source text; that is not a lower grade than page-images, because there are no slides to have looked at. Lectures 3, 4, 5, 8, 9 and 11 are PDF decks (67, 60, 55, 73, 57 and 58 pages) read as page images, so their figures, charts and tables ARE captured. See materials.byLecture.",
       "Figures: fully described for the six deck lectures (3, 4, 5, 8, 9, 11), where a reader looked at every page. For the six executable lectures (1, 2, 6, 7, 10, 12) raw/slides records each image() call at the point it appears; the 78 figures the course serves from its own repo are committed under raw/images/ and each carries a written description, but the figures those lectures display by EXTERNAL URL (NVIDIA documentation, arXiv, Wikimedia, Springer, the JAX scaling book, Baseten, Anyscale, X/Twitter, ARC Prize, Stanford CRFM's HELM asset host, the alpaca_eval repository, philschmid.de) are recorded as links only, with no description of their contents. No wiki claim rests on one of those. This matters most for lectures 4 and 5, whose decks are 102 images across 60 pages and 83 across 55 with most pages carrying under 40 words of native text, and for LECTURE 12, which is the most image-dense lecture in the course at 43 figures and whose leaderboards, example questions and results charts carry its argument rather than illustrating it.",
       "None of the three transcribed decks prints a page number on any page, so slide labels in raw/slides/03-architectures.md, 04-attention-alternatives.md and 05-gpus-tpus.md are PDF page numbers, and all three files say so in their front matter. For lecture 3 a page-number scan reported one printed number; that glyph is the numerator of the MQA arithmetic-intensity fraction on page 61, not a folio. For lecture 4 the scan reported none and all 60 pages were checked by eye. For lecture 5 the scan reported none, a corner-position text-layer scan returned only mid-page body text, and the three readers who split the deck each confirmed the absence independently over their own range. On lecture 5 the numbering was derived in the parent BEFORE any page was read and handed to the readers as a conclusion, so no reader made a numbering judgement of its own.",
@@ -150,7 +153,13 @@
       "Lecture 12 (Evaluation) is an executable lecture that computes NOTHING - no @inspect values, no benchmarks, no sympy, no asserts. It is 220 text() calls, 50 link() calls and 43 image() calls, and runs in well under a second. So unlike lectures 2, 6, 7 and 10 there are no machine-dependent numbers to withhold and nothing to recompute: EVERY number in raw/slides/12-evaluation.md is a claim the lecture makes about a published benchmark or paper, not a measurement. Several are leaderboard standings read off a screenshot during the lecture (SWE-bench Verified ~93%, GPQA 94, MMLU-Pro ~88, HLE 64.7, CyBench essentially solved) and are therefore dated to Spring 2026.",
       "Lecture 12's 33 figure descriptions were written by a Sonnet reader working from the images themselves, with the surrounding source text supplied only as context for what each figure was meant to support. The audit findings are recorded in the 'Figure audit' section at the foot of raw/slides/12-evaluation.md rather than here.",
       "Lecture 12's transcript was copy-edited by Sonnet and adjudicated in the parent. All three checks pass: 102 timestamps identical and in order, nothing lost from the number inventory, and 101 of 102 paragraphs inside the 0.72-1.10 word-ratio band at 88.3% retention (the outlier, [48:32] at 0.70, was read and confirmed as pure filler removal). TWO PARENT CORRECTIONS were needed and both are worth knowing as failure modes: (1) a sentence had MOVED ACROSS A TIMESTAMP BOUNDARY - the draft completed a split sentence by pulling it back into [55:30] and carried the next whole sentence with it, which the word-ratio check caught at 1.10/0.61 and the number check caught independently via a stray '2024'; (2) a possible benchmark name ('Gia' at [1:13:22]) had been DELETED as noise rather than flagged, and is now marked [Ed: unclear]. Of 35 restorations, 32 appear verbatim in the lecture's own material; the three that do not are called out in the transcript header - Hendrycks (verified against the arXiv id the lecture itself cites), Tatsu's group (the deck links tatsu-lab.github.io twice), and GPT-3.5 Turbo, which is an editorial expansion of spoken shorthand rather than an attested string.",
-      "All 34 quotations across lecture 12's nine wiki pages were checked against the finished transcript and slide file, and 19 initially failed - the same failure this KB records from runs 8, 9 and 11. Eleven were real quotations with drifted wording (case, a dropped article, a sentence-initial capital) and are now corrected to the published wording; eight were the compiler's OWN paraphrases set in quotation marks, and are now italics. One phrase, 'ushered in a new paradigm', straddles the [9:19] marker in the captions and so cannot be a contiguous quotation; it is given without quotation marks and the page says why."
+      "All 34 quotations across lecture 12's nine wiki pages were checked against the finished transcript and slide file, and 19 initially failed - the same failure this KB records from runs 8, 9 and 11. Eleven were real quotations with drifted wording (case, a dropped article, a sentence-initial capital) and are now corrected to the published wording; eight were the compiler's OWN paraphrases set in quotation marks, and are now italics. One phrase, 'ushered in a new paradigm', straddles the [9:19] marker in the captions and so cannot be a contiguous quotation; it is given without quotation marks and the page says why.",
+      "Lecture 13 (Data I: Sources and Datasets) is an executable lecture that, like lecture 12, computes NOTHING - no @inspect values, no sympy, no asserts. It is 399 text(), 54 link() and 18 image() calls. Every number in raw/slides/13-data-sources-datasets.md is therefore a claim the lecture makes about a published dataset, not a measurement. It also imports alpaca_2023 from references.py and never uses it, which is recorded in the file's front matter so the absence is not read as a transcription gap.",
+      "Lecture 13 is the FIRST OF TWO data lectures. Lecture 14 - filtering, deduplication, mixing and synthetic data in depth, plus post-training data - is NOT in this KB. Anything here about data filtering or synthetic data is lecture 13's survey-level treatment, and the wiki's data-filtering and synthetic-data pages say so. Do not cite this KB as covering the course's data unit in full.",
+      "A FIGURE IN LECTURE 13 DOES NOT SHOW WHAT THE LECTURE TEXT IMPLIES, confirmed by direct inspection in the parent. The source introduces images/decline-consent.png as examining restrictions 'for URLs in common datasets (C4, RefinedWeb, Dolma)' - that is the paper's scope, but the figure breaks out NOTHING by dataset. Its three panels are robots.txt composition over time, ToS composition over time, and restriction rate by crawler ORGANIZATION, and its third panel uses a LOGARITHMIC y-axis. No C4, RefinedWeb or Dolma series exists in it. Both the slide file and the wiki carry this warning next to the figure.",
+      "Lecture 13's 14 figure descriptions were written by a Sonnet reader working from the images themselves. TWO were re-checked in the parent, chosen as the highest-stakes claims rather than the most chart-heavy: decline-consent.png (confirmed, including the mismatch above and all nine legend percentages) and comma-results.png (structure and per-group values confirmed - five series in legend order, eleven benchmarks, six gold stars falling exactly where Comma leads the three 1T-token baselines - but ONE SUMMARISING SENTENCE WAS WRONG and is corrected in place: Qwen3 is not the tallest bar in all eleven groups). The other twelve rest on a single careful reading. Values quoted from comma-results.png are visual estimates from bar heights; that chart prints no data labels.",
+      "Lecture 13's transcript was copy-edited by Sonnet and adjudicated in the parent. All three checks pass: 107 timestamps identical and in order (29 of them [H:MM:SS], which a narrow regex would silently skip), nothing substantive lost across ten adjudicated numeral differences, and 84.6% word retention with three outliers read and confirmed as filler removal. TWO PARENT CORRECTIONS were applied: a substantive sentence had been DROPPED at 44:40 (the lecturer's answer on why a published book is easier to protect than a website), and the word 'settled' had been INSERTED at 25:29 into 'not necessarily a fact'. The drafting agent's header had asserted that all three checks passed, with invented supporting detail; it was replaced with the parent's actual results.",
+      "All 148 quotations across lecture 13's nine wiki pages were checked against the finished transcript and material, and ten initially failed - the same pattern as runs 8, 9, 12 and 13, which makes it the most persistent defect in this build. SIX were the parent's own paraphrases set in quotation marks (now italics), THREE were genuine misquotations ('will probably' for the spoken \"they'll probably\"; 'not just how to generate code' for 'not just LEARNING how to generate code'), and one was an unmarked elision. A further SEVEN quotations legitimately span a paragraph break, where the captions split contiguous speech; those are cited as a span (e.g. 43:54-44:40) rather than dropped."
     ]
   },
   "entryPoint": "INDEX.md",

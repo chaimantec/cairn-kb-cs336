@@ -252,7 +252,12 @@ predictions.
 > a lecture page and eight topic pages. What follows is Lecture 1's *preview* of it,
 > which is worth reading first because it makes a distinction the later lecture
 > assumes — internal versus external evaluation — and then reframes as one of the
-> four *purposes* of evaluation. The data half (Lectures 13–14) is still a preview.
+> four *purposes* of evaluation. The data half is now **half covered**:
+> [Lecture 13 — Data I](13-data-sources-datasets.md) is in this knowledge base
+> with a transcript, a lecture page and eight topic pages, covering where data
+> comes from, copyright, the raw sources and the dataset chronology. Lecture 14 —
+> filtering, deduplication, mixing and synthetic data in depth, plus post-training
+> data — is still a preview.
 
 **Evaluation** serves two distinct purposes that Percy warns are often conflated
 ([54:45]):

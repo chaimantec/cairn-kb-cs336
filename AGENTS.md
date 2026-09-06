@@ -5,7 +5,7 @@ Stanford, Spring 2026 — Percy Liang and Tatsunori Hashimoto**. It is read by
 Cairn's in-extension AI chat, which fetches files over `raw.githubusercontent.com`
 and follows relative markdown links.
 
-**Coverage: Lectures 1–7 of 18.** See [`kb.json`](kb.json) and the banner
+**Coverage: Lectures 1–13 of 18.** See [`kb.json`](kb.json) and the banner
 at the top of [`INDEX.md`](INDEX.md). Any page describing later material is
 repeating Lecture 1's syllabus preview and says so in a blockquote at the top.
 
@@ -229,7 +229,7 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 
 ## Images
 
-Every lecture 1-12 has images. They are committed, not hotlinked, and they are the only
+Every lecture 1-13 has images. They are committed, not hotlinked, and they are the only
 part of this KB that redistributes course material rather than pointing at it.
 
 | Lecture | Files | Where they came from |
@@ -246,8 +246,17 @@ part of this KB that redistributes course material rather than pointing at it.
 | 10 Inference | 22 | the course's own `images/*.png` |
 | 11 Scaling Laws in the Wild | 32 of 58 pages | rendered from `lecture_11.pdf` |
 | 12 Evaluation | 33 | the course's own `images/*.png` |
+| 13 Data I: Sources, Datasets | 14 | the course's own `images/*.png` |
 
-Lectures 13-18 are not in this KB at all, so they have no images.
+Lectures 14-18 are not in this KB at all, so they have no images.
+
+**Lecture 13 hot-links four further images that are NOT redistributed here**, and
+they are recorded as URLs only, at the point they appear in
+`raw/slides/13-data-sources-datasets.md`: the Wikimedia web-crawler architecture
+diagram, two figures served from the Stanford CS324 (Winter 2022) course site (the
+C4 domain breakdown and the Pile composition), and a Dolma composition figure on a
+Medium CDN. If you are asked about those figures, give the URL — do not describe
+them, because nobody here has looked at them.
 
 **Lecture 12 is the image-dense one**, and unlike every other executable lecture its
 figures are not illustrations of the argument — they *are* the argument. The program is

@@ -1782,7 +1782,15 @@ transcript and the wiki immediately, images after, then ONE figure audit pass.
       passing. data-mixture-selection/data-scaling-laws/data-repetition are about
       mixture PROPORTIONS from the scaling lectures, a different question from
       SOURCES, and should be cross-linked rather than extended.
-- [ ] Extend existing pages — course-map (unit 4), SEE_ALSO if warranted
+- [x] Extend existing pages — course-map: unit 4's data half was marked "still a
+      preview" and is now marked HALF COVERED, naming what lecture 14 still holds.
+- [x] SEE_ALSO — DELIBERATELY UNCHANGED, recorded as a decision rather than an
+      omission. Checked rather than assumed: the CS224N KB's 109 pages were listed
+      and its only data-adjacent ones (09-pretraining, pretraining-and-finetuning,
+      preference-data) are about pretraining OBJECTIVES and finetuning, not data
+      provenance. Nothing in either sibling KB bears on sources, crawling,
+      copyright or filtering, so adding an entry would have been padding an
+      editorial file.
 - [x] INDEX.md — banner now 1-13 (and the "no wiki pages for data" note replaced
       with "data is now half covered"), a Start-here entry, a Lecture 13 wiki
       section with 9 annotated entries, and the transcripts list
@@ -1844,12 +1852,27 @@ skim of the captions and worth carrying into the wiki:
 - [x] Record the 4 third-party hot-links as URLs only, not redistributed
 
 ### Housekeeping found this run
-- [ ] sources.md — the banner still said "covers Lectures 1-9 of 18" (stale since
-      run 10); AGENTS.md still said "Coverage: Lectures 1-7 of 18" (stale since
-      run 8). Both are the exact failure mode the skill warns about — the chat
-      reads them and trusts them. Corrected to 1-13.
+- [x] sources.md — the banner said "covers Lectures 1-9 of 18", STALE SINCE RUN 10;
+      AGENTS.md said "Coverage: Lectures 1-7 of 18", STALE SINCE RUN 8. Both are the
+      exact failure mode the skill warns about — the chat reads them and trusts
+      them — and both had survived several runs because each run updated INDEX and
+      kb.json and stopped there. All four coverage statements now read 1-13 and were
+      verified consistent by grep. sources.md's image count was stale the same way
+      (259 images / 28 MB, now 360 / 47 MB).
+      THE LESSON FOR NEXT RUN: coverage lives in FOUR places — INDEX.md, sources.md,
+      AGENTS.md and kb.json — and a run that updates only the first and last leaves
+      two lying. Grep all four before publishing.
 - [x] sources.md — mark the lecture 13 row transcribed
 
 ### Publish
-- [ ] kb.json — coverage 13/18, images, caveats
+- [x] kb.json — coverage 13/18, 105 topic pages, 360 images / 47 MB across 13
+      lectures, byLecture["13"]="source-text", executableLectures.transcribed 6->7,
+      six new caveats, and a thirdPartyNotRedistributed key naming lecture 13's four
+      hot-linked images. ONE STALE ENTRY FIXED, found by grepping rather than
+      assuming: caveat 0 still said "covers lectures 1-12 of 18 ... Lectures 13-18
+      have no transcripts and no wiki pages". It now says 14-18 and states
+      explicitly that data is HALF covered.
+- [x] AGENTS.md — image coverage table extended to lecture 13, and a note that its
+      four hot-linked images must be given as URLs and never described, since
+      nobody here has looked at them.
 - [ ] Commit and push (kbUrl already set; no re-link)

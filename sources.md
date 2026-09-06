@@ -8,12 +8,12 @@ its canonical URL, because this knowledge base is read by an agent that navigate
 markdown — a PDF blob in the repo would be unreadable to it — and the current
 lecture decks alone total roughly 50 MB.
 
-The one exception is pictures. `raw/images/` holds 259 rendered slide images and
-course figures (28 MB), so that an answer can *show* a figure instead of only
+The one exception is pictures. `raw/images/` holds 360 rendered slide images and
+course figures (47 MB), so that an answer can *show* a figure instead of only
 describing it. See the Images section of `AGENTS.md` for what was rendered, what
 was not, and the attribution.
 
-**This KB currently covers Lectures 1–9 of 18.** The inventory below spans the
+**This KB currently covers Lectures 1–13 of 18.** The inventory below spans the
 whole course (and its two earlier offerings) so that provenance is recorded once.
 See `kb.json`.
 
