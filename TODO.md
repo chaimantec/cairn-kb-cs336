@@ -2294,9 +2294,12 @@ slide N, settled before any page was read and handed to the readers as a
 conclusion. `--verify` therefore degenerates to a heading-sequence check.
 
 ### Course material
-- [ ] raw/slides/16-post-training-rlvr.md — 61 pages, four Sonnet readers in two
-      waves of two (1-15, 16-31, 32-46, 47-61)
-- [ ] Heading-sequence check — exactly 61 headings 1..61 in order
+- [x] raw/slides/16-post-training-rlvr.md — 61 pages, four Sonnet readers in two
+      waves of two (1-15, 16-31, 32-46, 47-61). 1,648 lines, 17,400 words.
+      All four reported no printed folio anywhere, confirming the 1..61 map.
+- [x] Heading-sequence check — PASS, exactly 61 headings 1..61 in order. Also
+      checked: no LaTeX trapped inside a code fence (the fences hold the two
+      Python screenshots on slides 19-20 and the PPO implementation, correctly).
 - n/a Figure audit — SKIPPED at the user's instruction, as in run 16 (lecture 15).
       Compensating checks instead: heading sequence, and rendered images read
       back against their descriptions.
