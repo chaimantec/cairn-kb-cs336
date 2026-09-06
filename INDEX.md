@@ -182,8 +182,8 @@ usually the faster route than the lecture pages.
 - **[Lecture 14 — Data II: filtering, deduplication, mixing, post-training
   data](wiki/14-data-filtering-dedup-mixing.md)** — the lecture page: the whole
   pre-training pipeline in the order data moves through it, then post-training
-  data. Carries all 13 of the lecture's own figures, and links to the six topic
-  pages below. Read it first if you want the shape of the lecture rather than one
+  data. Carries 7 of the lecture's 13 figures — the ones its own argument needs —
+  and links to the six topic pages below, which carry all 13 between them. Read it first if you want the shape of the lecture rather than one
   answer.
 - **[HTML-to-text extraction](wiki/html-to-text-extraction.md)** — the stage before
   everything else. Why linearizing HTML is *inherently* lossy rather than badly

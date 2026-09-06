@@ -2005,7 +2005,8 @@ transcript and the wiki immediately, images after, then ONE figure audit pass.
       as what was said rather than as fact.
 
 ### Wiki
-- [x] wiki/14-data-filtering-dedup-mixing.md (331 lines, all 13 figures embedded)
+- [x] wiki/14-data-filtering-dedup-mixing.md (331 lines, 7 of the 13 figures
+      embedded — the ones the lecture page's own argument needs)
 - [x] Topic pages (6 new) — html-to-text-extraction (the transformation stage, the
       DCLM extractor table, the PDF/OCR path), quality-classifiers (the T/R
       framework, KenLM vs fastText, five worked recipes, and "there is no optimal
@@ -2069,10 +2070,14 @@ transcript and the wiki immediately, images after, then ONE figure audit pass.
 - [x] Fetch the 13 course PNGs into raw/images/14-data-filtering-dedup-mixing/ (2.3 MB)
 - [x] Embed into raw/slides/ by script — 13 @@IMG@@ tokens expanded. The script
       refuses to run if any token lacks a description or any file is missing.
-- [x] Embed into the wiki — all 13 appear in wiki/14-data-filtering-dedup-mixing.md,
-      and 11 of them also on the topic page whose argument needs them, placed as
-      each page was composed rather than inserted afterwards. Verified: 0 missing
-      image files across the repo (373 referenced, 373 present).
+- [x] Embed into the wiki — COUNTED RATHER THAN ASSUMED, and the first count I
+      wrote was wrong in both directions. The lecture page carries 7 of the 13; the
+      six topic pages carry all 13 between them; the material file carries all 13.
+      That is the split the skill predicts and says not to fight — the lecture page
+      takes the figures its own argument needs, and the topic pages take the rest.
+      Verified: 0 missing image files across the repo (373 referenced, 373 present).
+      All images were placed as each page was composed rather than inserted
+      afterwards, which sidesteps the list-splitting and caption-nesting failures.
 - [x] Record the 5 third-party hot-links as URLs only, not redistributed — now also
       in kb.json under materials.thirdPartyNotRedistributed, which did not exist
       before this run and now covers lectures 13 and 14.
