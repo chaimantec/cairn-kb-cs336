@@ -2,12 +2,15 @@
 
 > **Coverage note.** This page is the syllabus as Percy Liang presents it in
 > [Lecture 1](01-overview-tokenization.md) ([27:04]–[1:03:57]). It is a map of the
-> whole course, but **this knowledge base currently covers Lectures 1–14 of 18**.
+> whole course, but **this knowledge base currently covers Lectures 1–15 of 18**.
 > Covered in full: tokenization (Lecture 1), model architecture (Lectures 3 and 4),
 > the whole Systems unit including inference (Lectures 2, 5, 6, 7, 8 and 10), both
-> scaling-laws lectures (9 and 11), and **the entire Data unit** (Lectures 12, 13
-> and 14). Still a preview rather than a treatment: the whole Alignment unit
-> (Lectures 15–17) and the guest lecture (18). See [`kb.json`](../kb.json) for
+> scaling-laws lectures (9 and 11), **the entire Data unit** (Lectures 12, 13
+> and 14), and the **first lecture of the Alignment unit** (Lecture 15 —
+> mid/post-training, SFT and RLHF). Still a preview rather than a treatment: RLVR
+> and multimodality (Lectures 16–17) and the guest lecture (18). Note that
+> lecture 15 repeatedly defers topics — RLVR, GRPO, reasoning models — to
+> lecture 16, so the KB stops where it stops. See [`kb.json`](../kb.json) for
 > exact coverage.
 
 CS336 is five units, each paired with an assignment. The unifying question, stated

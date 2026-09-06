@@ -926,11 +926,13 @@ PDF deck `lecture_09.pdf`, 57 pages — the most figure-dense deck in the build:
 
 ## Not done (future runs)
 - [x] Lecture 10 (Inference) — DONE in run 11.
-- [ ] Lectures 14–18 — transcripts and wiki pages. **Lecture 14 (Data II) is the
-      natural next one**: it is the second half of the pair lecture 13 opens, and
-      the wiki's data-filtering, deduplication and synthetic-data pages were written
-      to be extended by it — each already says which parts lecture 14 still holds.
-      It is a Percy executable lecture (`lecture_14.py`), so source-text.
+- [ ] Lectures 16–18 — transcripts and wiki pages. (Lecture 14 done in run 15,
+      lecture 15 in run 16.) **Lecture 16 (Post-Training — RLVR) is the natural
+      next one**: lecture 15 defers RLVR, GRPO and reasoning models to it by name,
+      and rlhf.md, ppo.md, dpo.md, reward-overoptimization.md and
+      mode-collapse-and-calibration.md were all written to be extended by it —
+      each already says which part lecture 16 still holds. It is a PDF deck
+      (`lecture_16.pdf`, 6.8 MB), so page-images.
       *(Superseded note, kept for the record.)* Lecture 11 (advanced scaling
       laws) was the natural next one at the time: it closes the scaling-laws pair that lecture 9
       opened and lecture 10 interrupts, and the wiki already has eight topic pages
@@ -1060,10 +1062,12 @@ Agents now append findings per page, per the run-9 lesson.
       46, 47 (joint scaling, Chinchilla methods 1-2). A pass over these was killed by
       a rate limit. WHEN RE-RUNNING, tell the agent to append findings to a file per
       page — the pass that failed reported at the end and lost everything.
-- [ ] Transcribe the 2 remaining PDF decks (lectures 15, 16) — these need
-      page-images, not source-text, and two figure-audit passes each if they are as
-      chart-dense as lecture 9. (Lecture 11's deck was done in run 12.)
-- [ ] Transcribe the 2 remaining executable lectures (14, 17). Check each for a
+- [ ] Transcribe the 1 remaining PDF deck (lecture 16) — page-images, not
+      source-text, and a figure-audit pass if it is as chart-dense as lecture 9.
+      (Lecture 11's deck was done in run 12, lecture 15's in run 16 — the latter
+      WITHOUT an audit, at the user's instruction, which is recorded in its front
+      matter and in kb.json and should not become the default.)
+- [ ] Transcribe the 1 remaining executable lecture (17). Check each for a
       published `var/traces/lecture_NN_stdout.txt` in the lectures repo before
       writing off its runtime values as machine-dependent — lecture 7 had one.
       (Lectures 12 and 13 were done in runs 13 and 14; neither computes anything,
@@ -2186,10 +2190,49 @@ Sonnet (the skill default), and NO figure audit pass.**
       calibrated (hallucination-and-knowledge-extraction, ~23:55) against GPT-4's
       finding that RLHF DESTROYS calibration (mode-collapse-and-calibration,
       ~1:17:54). Both pages now state the tension and say it is unresolved.
-- [ ] INDEX.md table of contents
-- [ ] Link sweep — against `git ls-files`, not the filesystem (run 15's lesson)
-- [ ] Citation and quote check — quote from the EDITED transcript, not the
-      captions (run 15's lesson: ~40 corrections came from quoting captions)
+- [x] Extend existing pages — post-training-data (a "Where lecture 15 takes this"
+      section separating lecture 14's data-side treatment from lecture 15's
+      procedural one), synthetic-data (the Zephyr experiment as the evidence
+      behind its "almost all post-training data is synthetic" claim),
+      chat-benchmarks (pointer to the training-side view of style bias),
+      safety-evaluation (pointer to safety-tuning).
+- [x] INDEX.md — banner now 1-15, a lecture-15 summary entry, a 16-entry annotated
+      wiki section, the transcript list, and the PDF-deck list (now seven decks,
+      with lecture 15 flagged as the unaudited one).
+- [x] Link sweep — AGAINST `git ls-files`, as run 15 said to. 3,313 links, 0 real
+      breaks; 411 images referenced, 0 untracked; all 140 wiki pages appear in
+      INDEX; 0 LaTeX blocks inside code fences.
+      THE SWEEP FOUND TWO PRE-EXISTING BROKEN ANCHORS, one of them real: run 15's
+      lecture-14 transcript pointed at
+      `slides/14-...md#there-is-no-optimal-threshold`, a heading that lives in
+      wiki/quality-classifiers.md and has never existed in the slide file. Fixed
+      to `#filtering`, the section that actually contains the N=100 WARCs chart.
+      312 anchors now check clean.
+- [x] Citation and quote check — 209 timestamp citations, all matching a real
+      marker. 250 quotations checked, 19 CORRECTED.
+      A NEW FAILURE CLASS THIS RUN, and it is mine rather than the captions':
+      I WRITE BRITISH SPELLING AND THE LECTURER SPEAKS AMERICAN, so "behaviors"
+      and "defense" had been silently anglicised INSIDE quotation marks in six
+      places. The KB's prose convention is British (17 "behaviour" against 1
+      "behavior" across the pre-existing pages), so the prose stays and only the
+      quotations were corrected. Also fixed: five quotes that began mid-sentence
+      with a substituted word ("is very trial-and-error" for "are very
+      trial-and-error"; "is not representative" for "it's not representative"),
+      two unmarked elisions, and ONE PARAPHRASE OF MINE IN QUOTATION MARKS
+      ("SFT on good, negative SFT on bad"), converted to italics — the failure
+      that recurred in runs 8, 9, 12, 13 and 14 and did not recur in 15.
+      Run 15's structural fix WORKED: the wiki was drafted from the EDITED
+      transcript this time, not the captions, and the caption-drift class that
+      produced ~40 corrections last run produced ZERO this run.
+      THREE CHECKER BUGS, bringing the build's total to seventeen. (1) The
+      quote extractor paired quotation marks by regex rather than by position,
+      so it read the prose BETWEEN two quotes as a quotation. (2) It compared
+      against the transcript with `**[MM:SS]**` markers still in place — and
+      those markers split sentences mid-flow, so every quote spanning a
+      paragraph boundary read as a misquote. This one alone accounted for 26 of
+      the 59 initial failures. (3) The anchor checker stripped underscores when
+      slugging, which GitHub does not, so `#async_op-and-overlapping` was
+      reported broken when it was correct.
 
 ### Images (Step 1c)
 - [x] Render figure slides into raw/images/15-mid-post-training/ — 38 images,
@@ -2204,9 +2247,34 @@ Sonnet (the skill default), and NO figure audit pass.**
       than a picture of one.
 - [x] Embed into raw/slides/ — 38 images placed by script under their headings;
       --verify still passes and all 38 files resolve.
-- [ ] Embed into wiki/
+- [x] Embed into wiki/ — 17 of the 38 in the lecture page, the rest distributed
+      across the topic pages by the passage each belongs to. Placed as each page
+      was composed rather than inserted afterwards, which sidesteps the
+      list-splitting and caption-nesting failures.
 
 ### Publish
-- [ ] Coverage in SIX places: INDEX.md, sources.md, AGENTS.md, kb.json,
-      wiki/course-map.md, and the AGENTS.md image-coverage table
-- [ ] Commit and push
+- [x] Coverage in SIX places, all verified consistent by grep: INDEX.md,
+      sources.md, AGENTS.md, kb.json, wiki/course-map.md, and the AGENTS.md
+      image-coverage table (extended to lecture 15, and the "lectures 15-18 have
+      no images" line corrected to 16-18).
+- [x] kb.json — coverage 15/18, 125 topic pages, 411 images / 52.6 MB across 15
+      lectures, byLecture["15"]="page-images", slideDecks.transcribed 6->7.
+      figuresAudited CHANGED FROM A BOOLEAN TO A PER-LECTURE MAP, because a bare
+      `true` would now be a lie: a new `figuresAuditedByLecture` records that
+      decks 3, 4, 5, 8, 9 and 11 were audited and 15 was not. Two new caveats
+      state the missing audit and the three defects in the deck itself.
+- [x] Commit and push
+
+### Lessons for run 17
+- WAIT FOR THE EDITED TRANSCRIPT BEFORE QUOTING. Run 15 identified this and it
+  worked: zero caption-drift corrections this run, against ~40 last run.
+- CHECK YOUR OWN SPELLING CONVENTION AGAINST THE SPEAKER'S before quoting. The
+  KB's prose is British; both lecturers are American. Quotations must follow the
+  speaker, prose follows the KB.
+- The quote checker is now correct in this run's script. Reuse it rather than
+  rewriting it: pair quotes by position, strip `**[MM:SS]**` markers from the
+  source, tolerate trailing punctuation, and preserve underscores when slugging
+  anchors.
+- If another deck is transcribed without an audit, repeat this run's
+  compensating checks: verify the heading sequence, read back four rendered
+  images against their descriptions, and require a Known gaps table.

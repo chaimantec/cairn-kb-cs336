@@ -89,6 +89,19 @@ the naive picture of distillation:
 - **Answer filtering did not help.** The obvious quality-control step on synthetic
   responses failed to pay off in that study.
 
+[Lecture 15](15-mid-post-training.md) supplies the evidence behind that framing,
+and it is stronger than an assertion. Hugging Face set out to build **Zephyr**
+with no distillation at all, went to the same annotation vendors the frontier labs
+use, and found the human data "extremely time-consuming, costly, and the results
+they were getting were not actually better than using model-based annotations"
+(≈1:01:39). They switched to AI feedback. UltraChat and UltraFeedback are now
+standard, and Tulu 3 uses model-based annotation throughout its pipeline.
+
+The limit is equally sharp: this is a **catch-up** technology. "If you want to
+push the frontier out, you don't necessarily get to play these games" (≈1:02:27),
+and world knowledge from lawyers or scientists still has to come from lawyers or
+scientists. See [model-based annotation](model-based-annotation.md).
+
 See [post-training data](post-training-data.md) and
 [agent trajectory data](agent-trajectory-data.md).
 

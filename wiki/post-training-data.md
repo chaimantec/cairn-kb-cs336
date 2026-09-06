@@ -109,6 +109,25 @@ much as anywhere (≈1:24:05):
 The source's summary says the same thing in one bullet: "A lot of data work is
 domain-specific, looking at examples, etc."
 
+## Where lecture 15 takes this
+
+This page is lecture 14's **data-side** treatment: what post-training data is, and
+how it is sourced. [Lecture 15](15-mid-post-training.md) is the procedural
+treatment of the same material — what you actually do with it — and goes
+considerably deeper:
+
+- [Supervised fine-tuning](supervised-fine-tuning.md) and
+  [instruction-tuning datasets](instruction-tuning-datasets.md) — six generations
+  of open SFT data, from FLAN to Nemotron, and why the datasets got *smaller*.
+- [RLHF](rlhf.md), [preference data](preference-data.md) and
+  [human annotation](human-annotation.md) — the second phase, and the fifteen
+  minutes lecture 15 spends on who the annotators are.
+- [Model-based annotation](model-based-annotation.md) — the direct continuation of
+  this page's "almost all post-training data is synthetic" claim, with the Zephyr
+  experiment as the case that settled it.
+- [Midtraining](midtraining.md) — why the boundary between pre-training data and
+  post-training data has largely dissolved.
+
 ## See also
 
 - [Agent trajectory data](agent-trajectory-data.md) — the four SWE papers, which

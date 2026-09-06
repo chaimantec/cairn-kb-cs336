@@ -175,6 +175,12 @@ under-specified question you asked the judge.
   tests, which is the one clean escape from this whole problem.
 - [Construct validity](construct-validity.md) — the "how do you evaluate a metric?"
   question in its general form.
+- [Style and length bias](style-and-length-bias.md) — lecture 15's training-side
+  view of the same effect: style is a deliberate data-collection decision, model
+  judges share the human bias, and you can "RLHF on length alone and do quite well
+  on many of these benchmarks."
+- [RLHF](rlhf.md) — what optimizes against these preferences, and
+  [reward models](reward-models.md), which inherit the bias.
 
 ## Sources
 

@@ -8,7 +8,7 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1–14 of 18
+> ## ⚠️ This knowledge base covers Lectures 1–15 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
@@ -16,13 +16,15 @@ compute and data?
 > Triton), Lecture 7 (Parallelism), Lecture 8 (Parallelism, Part 2), Lecture 9
 > (Scaling Laws — Basics), Lecture 10 (Inference), Lecture 11 (Scaling Laws in
 > the Wild), Lecture 12 (Evaluation), Lecture 13 (Data I — Sources and
-> Datasets) and Lecture 14 (Data II — Filtering, Deduplication, Mixing,
-> Post-Training Data) are covered in depth.**
-> Nothing else is. **The Data unit is now complete** — all three of its lectures
-> are here, which makes it the only unit of the course covered in full from its
-> own lectures. There are still no transcripts and no wiki pages for
-> mid/post-training, RLVR or multimodality (Lectures 15–17) or the guest lecture
-> (18).
+> Datasets), Lecture 14 (Data II — Filtering, Deduplication, Mixing,
+> Post-Training Data) and Lecture 15 (Mid/Post-Training — SFT and RLHF) are
+> covered in depth.**
+> Nothing else is. **The Data unit is complete**, and the post-training unit is
+> now open: Lecture 15 takes the course from a base model to something close to
+> ChatGPT, via supervised fine-tuning and RLHF. There are still no transcripts and
+> no wiki pages for RLVR or multimodality (Lectures 16–17) or the guest lecture
+> (18) — so where lecture 15 defers a topic to "next lecture," as it repeatedly
+> does for RLVR, GRPO and reasoning models, this KB stops there too.
 >
 > **A note specific to evaluation:** [Lecture 12](wiki/12-evaluation.md) is the
 > hinge of the course — the point where model-building stops and the question
@@ -172,10 +174,87 @@ compute and data?
   filtering threshold and no best mixture in the abstract, only one relative to how
   long you will train.
 
+- **[Lecture 15 — Mid/Post-Training](wiki/15-mid-post-training.md)** — the lecture
+  that gets you from GPT-3 to ChatGPT, and the first of the course's post-training
+  unit. Two halves: supervised fine-tuning, which is "basically exactly the same as
+  pre-training" so that everything interesting is in the data; and RLHF, which is a
+  different game entirely — SFT fits a distribution, RLHF maximizes a reward, and
+  that single distinction is what makes mode collapse a permitted outcome rather
+  than a bug. Along the way: six generations of open SFT data and why they got
+  *smaller*, the argument that **training on facts the model does not know teaches
+  it to hallucinate**, midtraining dissolving the pre-training/post-training
+  boundary, fifteen minutes on who the annotators are and why that changes what the
+  model believes, and the DPO derivation in full. It ends by naming
+  **overoptimization** as RLHF's big open problem, which is the door to lecture 16.
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 15 — mid/post-training: SFT and RLHF
+
+- **[Lecture 15 — Mid/Post-Training](wiki/15-mid-post-training.md)** — the lecture
+  page: the whole arc from base model to chat model, in the order the lecture
+  builds it. Carries 17 of the lecture's 38 figures; the topic pages below carry
+  the rest. Read it first if you want the shape of the lecture rather than one
+  answer.
+- **[Supervised fine-tuning](wiki/supervised-fine-tuning.md)** — why the method is
+  deliberately boring and the data is everything. SFT as *extraction* rather than
+  instruction: 500 examples measurably steer a model, adding correct data can make
+  it worse, and you mostly cannot tell what pre-training already contains.
+- **[Instruction-tuning datasets](wiki/instruction-tuning-datasets.md)** — FLAN,
+  Self-Instruct, Alpaca, Vicuna, Open Assistant, WizardLM, Tulu 3, Nemotron. Why
+  FLAN's reconstituted-benchmark examples read so strangely, why Open Assistant's
+  volunteer effort stalled, and why the newest SFT data is tool calls rather than
+  chat.
+- **[Midtraining](wiki/midtraining.md)** — instruction data mixed into the *decay
+  phase* of pre-training rather than applied after it. Why "base model" has stopped
+  meaning what it meant, and why the decay phase is where mixture ablations
+  actually get run.
+- **[RLHF](wiki/rlhf.md)** — the pipeline and the conceptual shift from fitting a
+  distribution to maximizing a reward. Also the two arguments for optimizing at
+  all: the generation–verification gap, and verification being easier than
+  generation.
+- **[Preference data](wiki/preference-data.md)** — the comparison judgments
+  themselves, and the only two public sets of annotation guidelines that exist:
+  InstructGPT's helpful/truthful/harmless, and Google Bard's, which leaked.
+- **[Human annotation](wiki/human-annotation.md)** — the longest section of the
+  lecture. The workforce moved upmarket and pay bifurcated; annotator demographics
+  measurably shift what opinions a model expresses; expertise decides which errors
+  get caught; and inter-annotator agreement cannot tell consensus from everyone
+  quietly using the same chatbot.
+- **[Model-based annotation](wiki/model-based-annotation.md)** — the Zephyr
+  experiment, where a well-resourced attempt to avoid distillation gave up and
+  switched to AI feedback. Where model annotation works, and the two places it
+  cannot: past the frontier, and for world knowledge only professionals have.
+- **[Reward models](wiki/reward-models.md)** — the Bradley–Terry pairwise loss, why
+  it is identified only up to a per-prompt shift, and why that same invariance is
+  what makes DPO possible.
+- **[PPO](wiki/ppo.md)** — policy gradients → off-policy/TRPO → clipped surrogate,
+  as three fixes to three problems. Includes the distinction between the two
+  different KL terms that are easy to confuse.
+- **[DPO](wiki/dpo.md)** — the full derivation in three moves, the annotated
+  gradient (raise the winner, lower the loser, step size set by how wrong the
+  implied reward was), the variants that "don't seem to matter very much," and the
+  unresolved DPO-versus-PPO dispute.
+- **[Reward overoptimization](wiki/reward-overoptimization.md)** — the lecture's
+  nominated big problem. Goodhart's law with a training curve, and the observation
+  that a *better* optimizer makes it worse.
+- **[Mode collapse and calibration](wiki/mode-collapse-and-calibration.md)** — why
+  a reward objective permits collapse, and GPT-4's still-unsolved post-RLHF
+  miscalibration. Notes the tension with the hallucination page's argument that RL
+  is what *produces* calibration.
+- **[Style and length bias](wiki/style-and-length-bias.md)** — style is a
+  deliberate data-collection decision; raters and model judges both reward it; and
+  you can RLHF on length alone and score well. The rule: control style separately
+  from capability.
+- **[Hallucination and knowledge extraction](wiki/hallucination-and-knowledge-extraction.md)**
+  — the subtlest argument in the lecture. One Open Assistant example teaches both a
+  citation and the habit of citing, and only the second generalizes.
+- **[Safety tuning](wiki/safety-tuning.md)** — the violation-rate versus
+  false-refusal trade-off, Tulu 3's WildChat-mined pipeline, and the finding that
+  ~500 examples is enough to move refusal behaviour across four benchmarks.
 
 ### Lecture 14 — data: filtering, deduplication, mixing, post-training
 
@@ -813,7 +892,8 @@ usually the faster route than the lecture pages.
   [Lecture 11](raw/transcripts/11-scaling-laws-in-the-wild.md),
   [Lecture 12](raw/transcripts/12-evaluation.md),
   [Lecture 13](raw/transcripts/13-data-sources-datasets.md),
-  [Lecture 14](raw/transcripts/14-data-filtering-dedup-mixing.md).
+  [Lecture 14](raw/transcripts/14-data-filtering-dedup-mixing.md),
+  [Lecture 15](raw/transcripts/15-mid-post-training.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
@@ -867,12 +947,21 @@ usually the faster route than the lecture pages.
     [`lecture_05.pdf`](raw/slides/05-gpus-tpus.md) (55 pages),
     [`lecture_08.pdf`](raw/slides/08-parallelism-2.md) (73 pages) and
     [`lecture_09.pdf`](raw/slides/09-scaling-laws.md) (57 pages) and
-    [`lecture_11.pdf`](raw/slides/11-scaling-laws-in-the-wild.md) (58 pages) are
+    [`lecture_11.pdf`](raw/slides/11-scaling-laws-in-the-wild.md) (58 pages) and
+    [`lecture_15.pdf`](raw/slides/15-mid-post-training.md) (65 pages) are
     Tatsunori
     Hashimoto's slide decks, transcribed from the rendered page images, with every
     figure described in prose and every table transcribed cell by cell. Slide
-    numbers in all six are **PDF page numbers**, because none of the decks prints
-    any of its own. **Lecture 11's deck is the odd one out**: it is the only deck read
+    numbers in all seven are **PDF page numbers**, because none of the decks prints
+    any of its own.
+    **Lecture 15's deck is the one to read with the most caution**: at the user's
+    instruction it was transcribed by five Sonnet readers with **no independent
+    figure audit**, the only page-image deck in this KB without one. Its front
+    matter says so, and it carries a *Known gaps* table listing all seventeen
+    passages a reader marked illegible — plus three defects in the deck itself,
+    including a heading printed "RLFH" for RLHF, reproduced rather than corrected.
+    Four of its rendered images were read back against their descriptions and
+    matched exactly. **Lecture 11's deck is the odd one out**: it is the only deck read
     at Opus rather than Sonnet — a choice made because at 33 words of native text per page
     it is the most figure-dependent deck in the course. It has since had **two figure
     audit passes over 15 of its 58 pages** — 3 clean, 12 dirty, 31 corrections applied —

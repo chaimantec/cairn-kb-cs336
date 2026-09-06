@@ -119,6 +119,9 @@ making a judgement about intent that the benchmark cannot observe.
   example of an abstract construct with no agreed concrete metric.
 - [Realism](construct-validity.md#realism-and-ecological-validity) — the contextual
   problem again, from the other direction.
+- [Safety tuning](safety-tuning.md) — lecture 15's training-side counterpart: the
+  violation-rate/false-refusal trade-off, Tulu 3's WildChat-mined pipeline, and the
+  finding that ~500 examples measurably move refusal behaviour.
 
 ## Sources
 

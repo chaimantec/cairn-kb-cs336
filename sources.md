@@ -8,12 +8,12 @@ its canonical URL, because this knowledge base is read by an agent that navigate
 markdown — a PDF blob in the repo would be unreadable to it — and the current
 lecture decks alone total roughly 50 MB.
 
-The one exception is pictures. `raw/images/` holds 373 rendered slide images and
-course figures (49 MB), so that an answer can *show* a figure instead of only
+The one exception is pictures. `raw/images/` holds 411 rendered slide images and
+course figures (52.6 MB), so that an answer can *show* a figure instead of only
 describing it. See the Images section of `AGENTS.md` for what was rendered, what
 was not, and the attribution.
 
-**This KB currently covers Lectures 1–14 of 18.** The inventory below spans the
+**This KB currently covers Lectures 1–15 of 18.** The inventory below spans the
 whole course (and its two earlier offerings) so that provenance is recorded once.
 See `kb.json`.
 
@@ -123,7 +123,7 @@ timings, measured FLOP/s, MFU, peak-memory readings) are marked
 | 8 | Parallelism (Part 2) | [`lecture_08.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf) — **transcribed**, all 73 pages, at [`raw/slides/08-parallelism-2.md`](raw/slides/08-parallelism-2.md) |
 | 9 | Scaling laws (basics) | [`lecture_09.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf) — **transcribed**, all 57 pages, at [`raw/slides/09-scaling-laws.md`](raw/slides/09-scaling-laws.md) |
 | 11 | Scaling laws (in the wild) | [`lecture_11.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_11.pdf) — **transcribed**, all 58 pages, at [`raw/slides/11-scaling-laws-in-the-wild.md`](raw/slides/11-scaling-laws-in-the-wild.md). |
-| 15 | Mid/post-training (SFT/RLHF) | [`lecture_15.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_15.pdf) |
+| 15 | Mid/post-training (SFT/RLHF) | [`lecture_15.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_15.pdf) — **transcribed**, all 65 pages, at [`raw/slides/15-mid-post-training.md`](raw/slides/15-mid-post-training.md). **No figure audit was run on this deck** — see its front matter. |
 | 16 | Post-training — RLVR | [`lecture_16.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_16.pdf) |
 
 **`lecture_03.pdf`, `lecture_04.pdf`, `lecture_05.pdf`, `lecture_08.pdf`, `lecture_09.pdf` and `lecture_11.pdf` have been transcribed.** All were read as

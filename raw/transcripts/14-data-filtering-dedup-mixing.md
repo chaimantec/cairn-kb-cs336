@@ -164,7 +164,7 @@ timestamp, number-inventory and word-ratio checks against the verbatim captions.
    marked as unresolved rather than guess a unit. It resolves exactly: the chart
    being described prints its own title, "Method comparison at d512 (157M),
    **N=100 WARCs** vs tokens (all-epoch markers)", recorded in
-   [the material file's figure description](../slides/14-data-filtering-dedup-mixing.md#there-is-no-optimal-threshold).
+   [the material file's figure description](../slides/14-data-filtering-dedup-mixing.md#filtering).
    A WARC is Common Crawl's raw archive file format, which also makes "a tiny
    fraction of Common Crawl" in the same sentence exact rather than vague.
    Restored to "100 WARCs".
