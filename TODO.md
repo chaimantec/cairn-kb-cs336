@@ -1669,9 +1669,34 @@ transcript and the wiki immediately, images after, then ONE figure audit pass.
       published dataset.
       NOTED: `alpaca_2023` is imported from references.py and never used. Recorded
       in the front matter so nobody later reads its absence as a transcription gap.
-- [ ] Image descriptions for the 14 course-repo PNGs (delegated to Sonnet,
-      appending per image)
-- [ ] Spot-check two descriptions against the images here
+- [x] Image descriptions for the 14 course-repo PNGs (delegated to Sonnet,
+      appending per image). ALL 14 RETURNED, and the agent DID append per image —
+      polled throughout and the file grew 4 -> 7 -> 9 -> 14 blocks. That is the
+      opposite of run 13's agent, which wrote nothing for 56 minutes and then
+      falsely reported incremental writing. Same instruction, different outcome:
+      the instruction is worth keeping but the polling is what establishes it.
+- [x] Spot-check two descriptions against the images here — DONE, and the two
+      were chosen as the highest-stakes claims rather than the most chart-heavy.
+      RESULT: one confirmed, one corrected.
+      decline-consent.png CONFIRMED, including the claimed MISMATCH: the lecture
+      says the figure examines restrictions "for URLs in common datasets (C4,
+      RefinedWeb, Dolma)" and the figure breaks out NOTHING by dataset — it is
+      robots.txt composition, ToS composition, and a LOG-SCALE rate chart by
+      crawler ORGANIZATION. All nine legend percentages matched verbatim. The
+      log axis matters: the post-ChatGPT rise is steeper than a linear read.
+      comma-results.png: structure and values CONFIRMED — five series in legend
+      order, eleven benchmarks, and the six gold stars fall exactly where Comma
+      leads the three 1T baselines (an inference, recorded as one). But ONE
+      SUMMARISING SENTENCE WAS WRONG and is corrected in place: Qwen3 is NOT
+      tallest in all eleven groups — level with or below MPT on HSwag and LLaMA
+      on OBQA. Run 12's finding recurs exactly: the measured values held, the
+      interpretive sentence over them did not.
+- [x] Figure audit section written into the slide file, plus a figure_audit key
+      in the front matter. Records the mismatch, the correction, eight unprompted
+      reader flags (dclm-quality and nemotron-results are TABLES not charts;
+      comma-results is a CHART not a table; dclm-filter is a Sankey whose
+      percentages are by DOCUMENT COUNT, 1.4% surviving; tulu's 23.3M total is
+      94% one row; the stackv2 colour inconsistency) and the audit boundary.
 
 ### Transcript
 - [x] 13 — verbatim captions fetched, video -qm0ln33G24 (107 paragraphs, ~12,300
@@ -1688,21 +1713,52 @@ transcript and the wiki immediately, images after, then ONE figure audit pass.
 
 ### Wiki
 - [ ] wiki/13-data-sources-datasets.md
-- [ ] Topic pages
-- [ ] INDEX.md
+- [ ] Topic pages (8 planned, grouped by kind as the user chose in run 13) —
+      pretraining-datasets (the chronological hub, BooksCorpus 2015 -> CommonPile
+      2025), web-crawling (Common Crawl, WARC/WET, HTML->text, robots.txt and the
+      politeness/selection/re-visit policies), data-filtering (the central
+      disagreement: rule-based C4/Gopher vs model-based CCNet/GPT-3/DCLM, and
+      Nemotron-CC's objection that everyone over-filters), deduplication (MinHash,
+      Jaccard, Bloom filters, the 51B->5B GitHub figure), copyright-and-fair-use
+      (the four factors, the lawsuits, "copying is the violation"), data-licensing-
+      and-consent (robots.txt/ToS decline, shadow libraries, CommonPile's three
+      subtleties), code-data (GitHub, Software Heritage, Stack v1/v2, the LLVM
+      bridge), synthetic-data (Nemotron-CC rephrasing; the first real treatment in
+      this KB).
+      CHECKED FOR OVERLAP FIRST: no existing page covers crawling, dedup,
+      filtering, copyright or synthetic data — only course-map mentions them in
+      passing. data-mixture-selection/data-scaling-laws/data-repetition are about
+      mixture PROPORTIONS from the scaling lectures, a different question from
+      SOURCES, and should be cross-linked rather than extended.
+- [ ] Extend existing pages — course-map (unit 4), scaling-laws/data-scaling-laws
+      cross-links, tokenization (data provenance), SEE_ALSO if warranted
+- [ ] INDEX.md — banner, Start-here entry, lecture 13 section, transcripts list
 - [ ] Link sweep, citation and quote check
+
+Material the LECTURER adds that the program does not have, found in a structural
+skim of the captions and worth carrying into the wiki:
+  - a student question on voice cloning / ElevenLabs and personality rights (~30:51)
+  - a student question on pirated books vs website content, and how the two differ
+    in an author's expectation of compensation (~43:54)
+  - the NYT complaint's own evidence — prompting ChatGPT to reproduce an article
+    almost verbatim (~27:47)
+  - an explicit "I am not a lawyer" disclaimer (~31:37) which the wiki should carry
+  - a closing preview of lecture 14 (~1:21:47)
 
 ### Images (Step 1c)
 - [x] Fetch the 14 course PNGs into raw/images/13-data-sources-datasets/ (2.3 MB)
-- [ ] Embed by script into raw/slides/ and the wiki
-- [ ] Record the 4 third-party hot-links as URLs only, not redistributed
+- [x] Embed into raw/slides/ by script — 18 @@IMG@@ tokens expanded, 14 local
+      figure blocks and 4 external URL-only notes. The script refuses to run if
+      any token lacks a description or any file is missing.
+- [ ] Embed into the wiki (after the wiki pages exist)
+- [x] Record the 4 third-party hot-links as URLs only, not redistributed
 
 ### Housekeeping found this run
 - [ ] sources.md — the banner still said "covers Lectures 1-9 of 18" (stale since
       run 10); AGENTS.md still said "Coverage: Lectures 1-7 of 18" (stale since
       run 8). Both are the exact failure mode the skill warns about — the chat
       reads them and trusts them. Corrected to 1-13.
-- [ ] sources.md — mark the lecture 13 row transcribed
+- [x] sources.md — mark the lecture 13 row transcribed
 
 ### Publish
 - [ ] kb.json — coverage 13/18, images, caveats
