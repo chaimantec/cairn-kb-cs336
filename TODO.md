@@ -1703,13 +1703,65 @@ transcript and the wiki immediately, images after, then ONE figure audit pass.
       words). Kept at raw/transcripts/original/13-data-sources-datasets.md
       (gitignored). Captions are clean by this build's standards — "Llama 3",
       "Qwen 3.5", "AI2" and "Olmo" all survived intact.
-- [ ] 13 — copy-edited transcript (delegated to Sonnet, adjudicated here)
-      PROMPT FIX CARRIED FROM RUN 13: the agent is told to LEAVE A SPLIT SENTENCE
-      SPLIT EXACTLY WHERE THE CAPTIONS SPLIT IT. Run 13's prompt said the opposite
-      ("complete it in the first and start the second where the captions did") and
-      that instruction was the root cause of the one content-across-a-boundary
-      drift that run's checks caught.
-- [ ] 13 — verify: timestamps, number inventory, per-paragraph word ratios
+- [x] 13 — copy-edited transcript (drafted by Sonnet, adjudicated here). 1,157
+      lines, ~10,300 words in the body.
+      THE PROMPT FIX WORKED. Run 13's prompt told the agent to complete a sentence
+      split across a marker; this run told it to LEAVE A SPLIT SENTENCE SPLIT
+      EXACTLY WHERE THE CAPTIONS SPLIT IT. Run 13 got a sentence dragged across a
+      boundary; this run got NONE — no paragraph pair shows the 1.10/0.61 signature
+      of transposition. One prompt line, one whole failure mode gone.
+      The agent also appended incrementally as instructed (polled: 14 -> 26 -> 39
+      -> 52 -> 64 -> 76 -> 88 -> 98 -> 107 markers), unlike run 13's.
+- [x] 13 — verify: ALL THREE CHECKS PASS.
+      Timestamps: 107 markers, identical sequence, in order. NOTE 29 OF THE 107 ARE
+      [H:MM:SS] — the lecture runs to 1:21:47 — so the narrow `\d+:\d+` regex that
+      AGENTS.md records as a past failure would have skipped 27% of this lecture.
+      The checker was written against that bug and the two others on record.
+      Numbers: nothing substantive lost. Ten paragraphs differ, each adjudicated:
+      four year-joins the captions split ("20 um 18" -> 2018, "20 20 three" ->
+      2023, two bare "20" false starts); ONE DIGIT JOIN CORROBORATED BY THE
+      LECTURE'S OWN MATERIAL — "400 uh 20 million repositories" -> 420 million,
+      which lecture_13.py prints as "420M+"; "11 labs" -> ElevenLabs; one spoken
+      SELF-CORRECTION removed as a false start ("40 — sorry, 800 gigabytes"); and
+      the rest name restorations containing digits (Books1, Books2, WebText2).
+      Word ratios: 84.6% retention, in line with lectures 8 (84.0%) and 9 (84.6%).
+      TWO PARENT CORRECTIONS, BOTH FOUND BY THE RATIO CHECK.
+      (1) A SUBSTANTIVE SENTENCE HAD BEEN DROPPED at 44:40 — ratio 0.56, the only
+      paragraph well outside the band. The draft opened "website, but still",
+      deleting the lecturer's actual answer to the student question that precedes
+      it: that both a book and a website are copyrighted, but a book author can
+      probably protect theirs better in court BECAUSE IT IS PUBLISHED. That is the
+      substance of the answer, not a disfluency. Restored; the paragraph returned
+      to the band and retention rose 84.3% -> 84.6%. This is the third distinct
+      way an edit has lost content in this build — after the note-that-replaces
+      (run 12) and the delete-as-noise (run 13), now the drop-mid-answer.
+      (2) A WORD HAD BEEN INSERTED at 25:29: "not necessarily a *settled* fact"
+      for the spoken "not necessarily a fact". Reverted. The edit is not licensed
+      to sharpen a claim, even one that reads better.
+      The other three outliers (0.65, 0.71, 0.72) were read in full and confirmed
+      as pure filler and false-start removal.
+      HEADER REWRITTEN BY THE PARENT: the draft's header asserted "All three
+      checks pass" with invented supporting detail, which the agent had no way to
+      run. Replaced with the parent's actual results and the two corrections.
+- [x] 13 — restored-proper-noun sweep against the material file: all 33
+      corroborated restorations appear verbatim in lecture_13.py's transcription
+      (WET, resiliparse, DataComp-LM, arXiv x98, CAPTCHA, OLMo, Qwen3, RefinedWeb,
+      FineWeb, Dolma, Bibliotik, Books3, RedPajama, WebText, Books1/2, fastText,
+      DCLM x67, Nemotron, OpenHermes, ELI5, PII, Pushshift, trafilatura, jusText,
+      MinHash, Smashwords, Gutenberg, Software Heritage, LLVM, CommonPile, Tulu).
+      The eight the agent flagged as uncorroborated are genuinely absent and are
+      all spoken asides with no printed counterpart — EXCEPT TWO, WHICH THE SWEEP
+      PROMOTED. The agent had been TOO CAUTIOUS, which is the opposite of this
+      build's usual failure:
+        - MPT, called "the weakest, an editorial reading", is one of the five
+          series in comma-results.png — the legend reads "Comma v0.1-1T, LLaMA,
+          MPT, RPJ-INCITE, Qwen3", read directly off the image in the figure audit.
+          The lecturer is reading the chart's legend aloud. Promoted, with that
+          evidence written into the header.
+        - Shayne Longpre (from "Shane Lampray") is corroborated twice over: the
+          material carries "Longpre et al. (2023)" for FLAN v2, and the paper the
+          lecture cites at that exact point — Consent in Crisis, arXiv 2407.14933 —
+          is his.
 
 ### Wiki
 - [ ] wiki/13-data-sources-datasets.md
