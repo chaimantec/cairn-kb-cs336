@@ -1,6 +1,6 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after run 11: **Lectures 1–10.** The
+Coverage after run 14: **Lectures 1–13.** The
 course has 18 recorded lectures. See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
@@ -926,8 +926,13 @@ PDF deck `lecture_09.pdf`, 57 pages — the most figure-dense deck in the build:
 
 ## Not done (future runs)
 - [x] Lecture 10 (Inference) — DONE in run 11.
-- [ ] Lectures 11–18 — transcripts and wiki pages. Lecture 11 (advanced scaling
-      laws) is the natural next one: it closes the scaling-laws pair that lecture 9
+- [ ] Lectures 14–18 — transcripts and wiki pages. **Lecture 14 (Data II) is the
+      natural next one**: it is the second half of the pair lecture 13 opens, and
+      the wiki's data-filtering, deduplication and synthetic-data pages were written
+      to be extended by it — each already says which parts lecture 14 still holds.
+      It is a Percy executable lecture (`lecture_14.py`), so source-text.
+      *(Superseded note, kept for the record.)* Lecture 11 (advanced scaling
+      laws) was the natural next one at the time: it closes the scaling-laws pair that lecture 9
       opened and lecture 10 interrupts, and the wiki already has eight topic pages
       waiting to be extended by it. It is a Hashimoto PDF deck, so page-images plus
       figure audits.
@@ -1055,12 +1060,14 @@ Agents now append findings per page, per the run-9 lesson.
       46, 47 (joint scaling, Chinchilla methods 1-2). A pass over these was killed by
       a rate limit. WHEN RE-RUNNING, tell the agent to append findings to a file per
       page — the pass that failed reported at the end and lost everything.
-- [ ] Transcribe the 3 remaining PDF decks (lectures 11, 15, 16) — these need
+- [ ] Transcribe the 2 remaining PDF decks (lectures 15, 16) — these need
       page-images, not source-text, and two figure-audit passes each if they are as
-      chart-dense as lecture 9
-- [ ] Transcribe the 4 remaining executable lectures (12, 13, 14, 17). Check each
-      for a published `var/traces/lecture_NN_stdout.txt` in the lectures repo before
+      chart-dense as lecture 9. (Lecture 11's deck was done in run 12.)
+- [ ] Transcribe the 2 remaining executable lectures (14, 17). Check each for a
+      published `var/traces/lecture_NN_stdout.txt` in the lectures repo before
       writing off its runtime values as machine-dependent — lecture 7 had one.
+      (Lectures 12 and 13 were done in runs 13 and 14; neither computes anything,
+      so neither had runtime values to recover.)
       Lecture 10, done in run 11, needed neither: it computes symbolically, so every
       value is reproducible from the source with sympy and nothing is
       machine-dependent. Check for that shape first — it is much the cheapest case.
@@ -1506,9 +1513,10 @@ The rule for the next lecture:
       against audit passes afterwards.
 
 ### Images (Step 1c)
-- [ ] Selection: raster test INTERSECTED with the slide file's own prose, minus
-      title cards and dividers; adjudicated by hand
-- [ ] Render, embed, check
+- [x] SUPERSEDED — these two boxes were left unticked when run 12 was interrupted,
+      but the work was done: lecture 11 has had 32 images since that run (see
+      kb.json's images.byLecture). Ticked in run 14 after checking the artifacts
+      rather than the boxes.
 
 ## Run 13 — Lecture 12: Evaluation
 
@@ -1848,7 +1856,10 @@ skim of the captions and worth carrying into the wiki:
 - [x] Embed into raw/slides/ by script — 18 @@IMG@@ tokens expanded, 14 local
       figure blocks and 4 external URL-only notes. The script refuses to run if
       any token lacks a description or any file is missing.
-- [ ] Embed into the wiki (after the wiki pages exist)
+- [x] Embed into the wiki — all 14 are in wiki/13-data-sources-datasets.md, placed
+      as the page was composed rather than inserted afterwards, which sidesteps the
+      list-splitting and caption-nesting failures the skill warns about. Verified: 0
+      missing image files across the repo.
 - [x] Record the 4 third-party hot-links as URLs only, not redistributed
 
 ### Housekeeping found this run
@@ -1875,4 +1886,7 @@ skim of the captions and worth carrying into the wiki:
 - [x] AGENTS.md — image coverage table extended to lecture 13, and a note that its
       four hot-linked images must be given as URLs and never described, since
       nobody here has looked at them.
-- [ ] Commit and push (kbUrl already set; no re-link)
+- [x] Commit and push — pushed to chaimantec/cairn-kb-cs336 (2a304b4..992c596).
+      kbUrl was already set on catalog 94d9c003-2193-43e7-96e3-c1cb4ed0aba8 and was
+      re-verified, so no link_kb.sh run. Live raw fetches confirmed 200 for INDEX.md,
+      the lecture 13 wiki page, the transcript, kb.json and a lecture 13 image.
