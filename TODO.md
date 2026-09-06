@@ -2119,3 +2119,61 @@ transcript and the wiki immediately, images after, then ONE figure audit pass.
       `#anchors` and directory links or it reports ~200 false positives. Current
       result with that fix: 0 tracked .md files link to a path outside the
       published repo.
+
+## Run 16 — Lecture 15: Mid/Post-Training
+
+Video 2oH6PWPrYFo (80 min). PDF deck (`lecture_15.pdf`, 65 pages) — page-images,
+the seventh deck in this build and the first since lecture 11. Instructor
+Tatsunori Hashimoto. **User instructions for this run: slides transcribed by
+Sonnet (the skill default), and NO figure audit pass.**
+
+### Course material
+- [x] raw/slides/15-mid-post-training.md — transcribe all 65 pages (five Sonnet
+      readers, 13 contiguous pages each, appending as they went; 24.2k words)
+- [x] Verify heading sequence 1..65 — --verify passes, 65 headings, exact match.
+      NO FIGURE AUDIT THIS RUN (user instruction). Recorded in the slide file's
+      `provenance` block and in kb.json as figuresAudited false for lecture 15.
+      Compensating check: four rendered images read back against their
+      descriptions (slides 6, 26, 44 and the deck's structure) — slide 44's 36
+      heatmap cells, slide 26's seven-series legend order and bar values, and
+      slide 6's three-panel InstructGPT pipeline all matched. One hedge
+      ("llama/alpaca-like figure") neutralized to what is actually legible.
+      A "Known gaps" table was added listing all 17 things the readers marked
+      illegible, plus three defects that are properties of the DECK itself:
+      slide 38's screenshot is cut off mid-word in the source, slide 43's table
+      title is cropped by its own screenshot border, and slide 45's heading is
+      printed "RLFH" with the letters transposed — reproduced verbatim, not
+      silently corrected.
+
+### Transcript
+- [x] 15 — verbatim captions fetched (104 paragraphs, ~15.9k words, 2420 segments)
+- [ ] 15 — copy-edited transcript (Sonnet draft, adjudicated here)
+- [ ] 15 — verify: timestamps, number inventory, per-paragraph word ratios
+
+### Wiki
+- [ ] wiki/15-mid-post-training.md
+- [ ] Topic pages (check for overlap with existing 110 first)
+- [ ] INDEX.md table of contents
+- [ ] Link sweep — against `git ls-files`, not the filesystem (run 15's lesson)
+- [ ] Citation and quote check — quote from the EDITED transcript, not the
+      captions (run 15's lesson: ~40 corrections came from quoting captions)
+
+### Images (Step 1c)
+- [x] Render figure slides into raw/images/15-mid-post-training/ — 38 images,
+      4.4 MB. THE TWO SIGNALS AGREED EXACTLY: the raster test flagged 46 pages
+      and the slide file's prose describes a figure on exactly those same 46,
+      with zero disagreement in either direction (the skill warns the raster
+      test over-reports on decks that paste equations as images; this deck does
+      that only on the eight pages below). Of the 46, eight were skipped per the
+      skip list: slide 1 (title) and slides 51, 52, 53, 56, 57, 58 and 60, whose
+      content is pure equations and paper-text screenshots that the slide file
+      already reproduces exactly in LaTeX — a transcribed equation is better
+      than a picture of one.
+- [x] Embed into raw/slides/ — 38 images placed by script under their headings;
+      --verify still passes and all 38 files resolve.
+- [ ] Embed into wiki/
+
+### Publish
+- [ ] Coverage in SIX places: INDEX.md, sources.md, AGENTS.md, kb.json,
+      wiki/course-map.md, and the AGENTS.md image-coverage table
+- [ ] Commit and push
