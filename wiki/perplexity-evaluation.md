@@ -59,8 +59,10 @@ section later: nobody knows how carefully that comparison was decontaminated
 
 *GPT-2's own results table. Bold marks where GPT-2 beats the prior state of the art — note that nothing in the 1BW column ever is, which is the whole of the claim above.*
 
-That paper "ushered in a new paradigm": train on a large corpus, evaluate on
-standard benchmarks. Now standard, then a novelty (≈[9:19]).
+That paper ushered in a new paradigm, in Percy's phrase: train on a large corpus,
+evaluate on standard benchmarks. Now standard, then a novelty (≈[8:33]–[9:19];
+the phrase itself straddles the [9:19] marker in the captions, so it is given
+here without quotation marks).
 
 ## "Perplexity is all you need" — more faith than science
 
@@ -179,7 +181,8 @@ Two connections elsewhere in this knowledge base sharpen the caution:
 
 - [Upstream vs downstream](upstream-vs-downstream.md) is lecture 9's evidence that
   a clean perplexity trend can reorder completely when you measure task accuracy.
-  That is the empirical version of "perplexity is more than you need".
+  That is the empirical version of *perplexity is maybe more than
+you need*.
 - [Private evaluations](benchmark-contamination.md#route-4-private-evals) are
   easiest to run with perplexity, because a private eval needs only text and no
   answer key.

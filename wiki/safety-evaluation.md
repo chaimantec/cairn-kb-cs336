@@ -109,7 +109,7 @@ whether it is a safety risk or a benefit "a double-edged sword" (≈[1:04:51]).
 Note what this does to the measurement. The capability CyBench scores well on and
 the capability a safety evaluation worries about are **the same capability**. There
 is no measurement that separates them, because they are not different things — only
-different uses. Any evaluation that claims to score "safe capability" is quietly
+different uses. Any evaluation that claims to score *safe capability* is quietly
 making a judgement about intent that the benchmark cannot observe.
 
 ## Related

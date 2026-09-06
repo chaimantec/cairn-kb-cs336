@@ -66,13 +66,13 @@ The lecture's list is deliberately two-sided (≈[35:26]–[37:44]).
 
 **Against:**
 
-- **Who are these people?** "Random person on the internet who comes to LMArena" is
+- **Who are these people?** "random person on the internet who comes to LMArena" is
   an unknown distribution. The paper reports demographics; demographics do not tell
   the whole story (≈[35:26]).
 - **Biases and gaming.** Spammers; people who submitted a model and want it to look
   good. Percy's phrase is that it is "a little bit of a wild west" (≈[36:12]).
 - **Binary preference conflates style and correctness.** ELO makes sense for chess
-  because the only thing that matters is who won. "Which response is better" is far
+  because the only thing that matters is who won. *which response is better* is far
   less clear-cut (≈[36:12]).
 - **The rater often cannot judge correctness.** The person asked the question
   *because they did not know the answer* — so how are they to judge which of two
@@ -135,7 +135,7 @@ over a year, so what it shows is a snapshot of its time (≈[40:49]).
 - **GPT-4 Turbo as a judge**, with a generated, task-specific **checklist**.
 - Well correlated with Chatbot Arena, which has become the de facto sanity check.
 
-**The checklist is the contribution.** Asking a model "is this response good?" is an
+**The checklist is the contribution.** Asking a model *is this response good?* is an
 ill-defined task — good depends on what you care about. Generating a checklist or
 rubric *for that particular prompt* scopes the judgement and makes the evaluation
 task well defined (≈[42:23]). Percy's analogy is to chain of thought, but for
@@ -147,7 +147,7 @@ judging.
 
 He also names the circularity out loud: WildBench validates itself by correlating
 with Chatbot Arena, which raises the question of whether Arena is really ground
-truth. "At least we're all in the same boat together" (≈[42:23]).
+truth. "at least we're all in the same boat together" (≈[42:23]).
 
 ## What the section concludes
 

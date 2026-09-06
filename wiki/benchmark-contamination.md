@@ -1,6 +1,6 @@
 # Benchmark contamination
 
-"Machine learning 101: don't train on your test set." [Lecture 12](12-evaluation.md)
+"Machine learning 101: don't train on your test set" [Lecture 12](12-evaluation.md)
 argues that foundation models destroyed the mechanism that used to guarantee this,
 and then walks through four attempts to rebuild it (≈[1:08:43]).
 
@@ -114,7 +114,7 @@ public. That is the honest state of the problem.
 
 The practical advice from the lecture is to treat benchmark scores as claims with an
 unstated dependency, and to be explicit about which route (if any) backs them. When a
-student asked, Percy's answer was to take the numbers "with a little bit of a grain of
+student asked, Percy's answer was to take the numbers "with a little bit of grain of
 salt", and *"it's always good to be skeptical"* (≈[26:14], ≈[27:00]).
 
 This is also why [saturated benchmarks](exam-benchmarks.md) are worth less than their
@@ -123,8 +123,8 @@ enter training data.
 
 ## Related
 
-- [Construct validity](construct-validity.md) — the other half of "is this evaluation
-  valid?", concerning the benchmark itself rather than the model's exposure to it.
+- [Construct validity](construct-validity.md) — the other half of *is this evaluation
+  valid?*, concerning the benchmark itself rather than the model's exposure to it.
 - [Exam benchmarks](exam-benchmarks.md) — where the student question arises.
 - [Perplexity evaluation](perplexity-evaluation.md) — why private evals and perplexity
   fit together.

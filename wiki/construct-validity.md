@@ -38,8 +38,8 @@ with a site that embodies it (≈[2:23]–[4:42]). They are alternatives, not st
 
 *Answer two: the same index against cost. Correlated, as expected, and not aligned — which is why the chart needs a most-attractive quadrant drawn on it.*
 
-The fourth is "more of an economic lens: I don't know what good is, but if people are
-paying for it, it must be good" (≈[4:42]) — and Percy immediately flags that OpenRouter
+The fourth is "more of an economic lens" — "if people are paying for it, it must be
+good" (≈[4:42]) — and Percy immediately flags that OpenRouter
 traffic is not representative of all model usage.
 
 ![OpenRouter rankings of models by usage share](../raw/images/12-evaluation/openrouter.png)
@@ -73,7 +73,7 @@ than an individual query (≈[1:05:37]).
 
 **Sampling by share of GDP is the notable move.** It makes the task distribution a
 claim about economic significance rather than about what happens to be convenient to
-collect — a principled answer to "which real-world tasks?" that none of the other
+collect — a principled answer to *which real-world tasks?* that none of the other
 benchmarks in the lecture attempt.
 
 ![Grid of nine GDPVal example task cards with prompts and human deliverables](../raw/images/12-evaluation/gdpval.png)
@@ -177,7 +177,7 @@ correlation is only better if you are trying to mimic the other metric, and the
 correlation holds only over the set of models it was measured on (≈[40:02], ≈[40:49]).
 
 WildBench validates the same way, and Percy names the circularity out loud: if
-everything correlates with Chatbot Arena, is Chatbot Arena ground truth? *"At least
+everything correlates with Chatbot Arena, is Chatbot Arena ground truth? *"at least
 we're all in the same boat together"* (≈[42:23]).
 
 ## What's the point of evaluation?

@@ -123,7 +123,7 @@ and finds **94** (≈[25:27]).
 
 ## Humanity's Last Exam (2025)
 
-[arXiv 2501.14249](https://arxiv.org/abs/2501.14249). "Something ominously called
+[arXiv 2501.14249](https://arxiv.org/abs/2501.14249). "something ominously called
 Humanity's Last Exam" (≈[27:00]) — the response to models getting good enough that
 the previous three all saturated.
 
@@ -149,8 +149,8 @@ top score is **64.7** (≈[28:32]).
 
 *How HLE guarantees an unsaturated benchmark: questions frontier models already answer are filtered out before human review begins.*
 
-**The methodological hazard is the filter.** A benchmark defined as "questions
-today's frontier models get wrong" is defined *relative to today's models*. It
+**The methodological hazard is the filter.** A benchmark defined as *questions
+today's frontier models get wrong* is defined *relative to today's models*. It
 guarantees an unsaturated benchmark at release and makes the question set a moving
 target rather than a fixed standard.
 

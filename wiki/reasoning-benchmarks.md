@@ -5,8 +5,8 @@ linguistic and world knowledge. This section asks whether reasoning can be
 **isolated** from knowledge, on the argument that reasoning is a more pure form of
 intelligence — not just memorised facts (≈[53:56]).
 
-The lecture's own label is careful: *"I call them pure reasoning for lack of, I
-think, a better term."*
+The lecture's own label is careful: he labels them pure reasoning
+"for lack of, I think, a better term".
 
 ## ARC-AGI
 
@@ -19,7 +19,7 @@ Two design properties, and together they are the whole claim:
   problems should not help (≈[54:43]).
 
 Take those seriously and see what each one buys. A human solve rate of 100%
-eliminates *"the questions are simply too hard"* as an explanation for a low model
+eliminates *the questions are simply too hard* as an explanation for a low model
 score. Per-task uniqueness eliminates memorisation as a route to a high one. What
 is left is meant to be reasoning.
 

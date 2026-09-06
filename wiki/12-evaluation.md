@@ -51,8 +51,7 @@ none of them:
    cost. Correlated, but not exactly aligned (≈[3:09]).
 3. **People prefer its responses** — [Arena AI](https://arena.ai/leaderboard).
 4. **People choose to use and pay for it** — [OpenRouter](https://openrouter.ai/rankings)
-   usage statistics. *"I don't know what good is, but if people are paying for it, it
-   must be good"* — with the immediate caveat that OpenRouter's traffic is not
+   usage statistics. *"if people are paying for it, it must be good"* — with the immediate caveat that OpenRouter's traffic is not
    representative of all usage (≈[4:42]).
 
 ![Artificial Analysis leaderboard ranking models by an intelligence index](../raw/images/12-evaluation/artificial-analysis.png)
@@ -160,7 +159,7 @@ exact match to check and no ground truth, so every benchmark here substitutes a 
 The section's best question is *how do you evaluate a metric?* The only available
 sanity check is correlation with a metric you already trust — AlpacaEval against
 Chatbot Arena at **0.98** — and Percy names the circularity out loud: if everything
-validates against Arena, is Arena ground truth? *"At least we're all in the same boat
+validates against Arena, is Arena ground truth? *"at least we're all in the same boat
 together"* (≈[40:02], ≈[42:23]).
 
 ## Agentic: the answer key comes back, executable
