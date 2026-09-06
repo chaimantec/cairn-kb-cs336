@@ -1644,4 +1644,66 @@ transcript and the wiki immediately, images after.
       still claimed lecture 11's deck had had no figure audit; it has had two passes.
 - [x] AGENTS.md — image coverage table, the lecture-12 note, and the dating caveat
       that leaderboard screenshots are Spring 2026 snapshots
+- [x] Commit and push (kbUrl already set; no re-link)
+
+## Run 14 — Lecture 13: Data I (Sources, Datasets)
+
+Video -qm0ln33G24 (82 min). Percy Liang. **Executable lecture** — `lecture_13.py`,
+622 lines, so `source-text`, no deck and no slide numbers. 399 `text()`, 54
+`link()` and 18 `image()` calls (14 course-repo PNGs, 4 hot-linked to third
+parties). Much less image-driven than lecture 12: here the figures illustrate the
+argument rather than being it.
+
+Run order is the one the user set after run 12: course material first, then the
+transcript and the wiki immediately, images after, then ONE figure audit pass.
+
+### Course material
+- [x] raw/slides/13-data-sources-datasets.md — transcribe lecture_13.py. Written
+      here rather than delegated, as for lecture 12: at 622 lines of
+      `text()`/`link()`/`image()` the source is cheap to read and the parent has
+      to read it anyway to write the wiki. Records a section→source-line table
+      (26 functions) and a 25-row table of every named dataset with the size the
+      lecture states and its citation. Like lecture 12 this program COMPUTES
+      NOTHING — no @inspect, no sympy, no asserts — so nothing was machine
+      dependent and nothing needed recomputing; every number is a claim about a
+      published dataset.
+      NOTED: `alpaca_2023` is imported from references.py and never used. Recorded
+      in the front matter so nobody later reads its absence as a transcription gap.
+- [ ] Image descriptions for the 14 course-repo PNGs (delegated to Sonnet,
+      appending per image)
+- [ ] Spot-check two descriptions against the images here
+
+### Transcript
+- [x] 13 — verbatim captions fetched, video -qm0ln33G24 (107 paragraphs, ~12,300
+      words). Kept at raw/transcripts/original/13-data-sources-datasets.md
+      (gitignored). Captions are clean by this build's standards — "Llama 3",
+      "Qwen 3.5", "AI2" and "Olmo" all survived intact.
+- [ ] 13 — copy-edited transcript (delegated to Sonnet, adjudicated here)
+      PROMPT FIX CARRIED FROM RUN 13: the agent is told to LEAVE A SPLIT SENTENCE
+      SPLIT EXACTLY WHERE THE CAPTIONS SPLIT IT. Run 13's prompt said the opposite
+      ("complete it in the first and start the second where the captions did") and
+      that instruction was the root cause of the one content-across-a-boundary
+      drift that run's checks caught.
+- [ ] 13 — verify: timestamps, number inventory, per-paragraph word ratios
+
+### Wiki
+- [ ] wiki/13-data-sources-datasets.md
+- [ ] Topic pages
+- [ ] INDEX.md
+- [ ] Link sweep, citation and quote check
+
+### Images (Step 1c)
+- [x] Fetch the 14 course PNGs into raw/images/13-data-sources-datasets/ (2.3 MB)
+- [ ] Embed by script into raw/slides/ and the wiki
+- [ ] Record the 4 third-party hot-links as URLs only, not redistributed
+
+### Housekeeping found this run
+- [ ] sources.md — the banner still said "covers Lectures 1-9 of 18" (stale since
+      run 10); AGENTS.md still said "Coverage: Lectures 1-7 of 18" (stale since
+      run 8). Both are the exact failure mode the skill warns about — the chat
+      reads them and trusts them. Corrected to 1-13.
+- [ ] sources.md — mark the lecture 13 row transcribed
+
+### Publish
+- [ ] kb.json — coverage 13/18, images, caveats
 - [ ] Commit and push (kbUrl already set; no re-link)
