@@ -2171,8 +2171,21 @@ Sonnet (the skill default), and NO figure audit pass.**
       — run 15's post-publish defect did not recur.
 
 ### Wiki
-- [ ] wiki/15-mid-post-training.md
-- [ ] Topic pages (check for overlap with existing 110 first)
+- [x] wiki/15-mid-post-training.md (~430 lines, 17 of the 38 figures embedded)
+- [x] Topic pages — 15 NEW. The overlap check came back almost empty this time,
+      which is itself the finding: RLHF, DPO and PPO appeared in NONE of the
+      existing 124 pages except passing mentions in lectures 1 and 13 and the
+      course map, so this lecture opens a genuinely new area rather than
+      extending one. New: rlhf, reward-models, ppo, dpo, supervised-fine-tuning,
+      instruction-tuning-datasets, midtraining, preference-data,
+      human-annotation, model-based-annotation, reward-overoptimization,
+      mode-collapse-and-calibration, style-and-length-bias,
+      hallucination-and-knowledge-extraction, safety-tuning.
+      Two pages carry a tension the lecture leaves implicit and neither page
+      previously acknowledged: Schulman's argument that RL is what MAKES a model
+      calibrated (hallucination-and-knowledge-extraction, ~23:55) against GPT-4's
+      finding that RLHF DESTROYS calibration (mode-collapse-and-calibration,
+      ~1:17:54). Both pages now state the tension and say it is unresolved.
 - [ ] INDEX.md table of contents
 - [ ] Link sweep — against `git ls-files`, not the filesystem (run 15's lesson)
 - [ ] Citation and quote check — quote from the EDITED transcript, not the
