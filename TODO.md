@@ -1764,8 +1764,8 @@ transcript and the wiki immediately, images after, then ONE figure audit pass.
           is his.
 
 ### Wiki
-- [ ] wiki/13-data-sources-datasets.md
-- [ ] Topic pages (8 planned, grouped by kind as the user chose in run 13) —
+- [x] wiki/13-data-sources-datasets.md (476 lines, all 14 figures embedded)
+- [x] Topic pages (8, grouped by kind as the user chose in run 13) —
       pretraining-datasets (the chronological hub, BooksCorpus 2015 -> CommonPile
       2025), web-crawling (Common Crawl, WARC/WET, HTML->text, robots.txt and the
       politeness/selection/re-visit policies), data-filtering (the central
@@ -1782,10 +1782,48 @@ transcript and the wiki immediately, images after, then ONE figure audit pass.
       passing. data-mixture-selection/data-scaling-laws/data-repetition are about
       mixture PROPORTIONS from the scaling lectures, a different question from
       SOURCES, and should be cross-linked rather than extended.
-- [ ] Extend existing pages — course-map (unit 4), scaling-laws/data-scaling-laws
-      cross-links, tokenization (data provenance), SEE_ALSO if warranted
-- [ ] INDEX.md — banner, Start-here entry, lecture 13 section, transcripts list
-- [ ] Link sweep, citation and quote check
+- [ ] Extend existing pages — course-map (unit 4), SEE_ALSO if warranted
+- [x] INDEX.md — banner now 1-13 (and the "no wiki pages for data" note replaced
+      with "data is now half covered"), a Start-here entry, a Lecture 13 wiki
+      section with 9 annotated entries, and the transcripts list
+- [x] Link sweep — 2,798 relative links, 0 broken; all 118 wiki pages appear in
+      INDEX; 0 missing images; no LaTeX inside code fences.
+      NOTE TWO CHECKER BUGS, the ninth and tenth in this build, BOTH MINE AND BOTH
+      IN THE SWEEP ITSELF. (1) It reported 17 broken anchors that were all correct.
+      GitHub replaces EACH space with a hyphen and does not collapse runs, so a
+      heading like "Collective operations — setup" slugs to "...operations--setup"
+      with TWO hyphens; my collapse of `\s+` produced one. (2) It parsed
+      `add_kernel[grid](x, y, ...)` out of a Triton CODE FENCE as a markdown link.
+      THE LINKS WERE RIGHT AND THE CHECK WAS WRONG, both times. Anyone rebuilding
+      this must replace spaces one-for-one and strip fenced/inline code first.
+- [x] Citation and quote check — 198 timestamp citations across the nine pages all
+      match a real marker.
+      THE QUOTE CHECK FOUND REAL WORK for the fourth consecutive run: 148 quotations
+      compared against the finished transcript and material.
+      SIX WERE THE PARENT'S OWN PARAPHRASES SET IN QUOTATION MARKS — "looks like an
+      encyclopedia" / "looks like a helpful answer" (twice, on two pages) and "keep
+      only MIT and Apache" / "keep only permissively licensed web pages". All
+      converted to italics. This is the SAME failure AGENTS.md records from runs 8,
+      9, 12 and 13; it is now the most persistent single defect in this build.
+      THREE WERE GENUINE MISQUOTATIONS: "will probably be able to protect that
+      better" for the spoken "they'll probably..." (on two pages), and "not just how
+      to generate code" for "not just LEARNING how to generate code" (on two pages).
+      Corrected to the published wording.
+      ONE WAS AN UNMARKED ELISION — Nemotron-CC "probably one of the main datasets"
+      silently dropped the lecturer's "I don't know if it's the first, but probably
+      not". Now marked with an ellipsis.
+      SEVEN QUOTATIONS SPAN A PARAGRAPH BREAK and are legitimate: the captions split
+      contiguous speech, so the quotation is faithful even though no single [MM:SS]
+      paragraph contains it. These are cited as a SPAN (e.g. 43:54-44:40) rather
+      than dropped. Run 13 handled its one such case by removing the quotation
+      marks; citing the span is better, because the speech really was contiguous and
+      the paragraph boundary is an artifact of caption grouping, not of the lecture.
+      A THIRD CHECKER BUG, also mine: the first quote regex excluded newlines, so
+      every quotation wrapped across two lines went unchecked — which is most of
+      them. It reported 42 exact of 59; the corrected version checks 148. The fix is
+      to collapse whitespace BEFORE extracting quotes, strip apostrophes on both
+      sides (so 'copyright' matches "copyright"), and compare against a
+      marker-stripped body so boundary spans resolve.
 
 Material the LECTURER adds that the program does not have, found in a structural
 skim of the captions and worth carrying into the wiki:

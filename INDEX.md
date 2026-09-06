@@ -8,16 +8,19 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1–12 of 18
+> ## ⚠️ This knowledge base covers Lectures 1–13 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
 > Mixtures of Experts), Lecture 5 (GPUs and TPUs), Lecture 6 (Kernels and
 > Triton), Lecture 7 (Parallelism), Lecture 8 (Parallelism, Part 2), Lecture 9
 > (Scaling Laws — Basics), Lecture 10 (Inference), Lecture 11 (Scaling Laws in
-> the Wild) and Lecture 12 (Evaluation) are covered in depth.**
-> Nothing else is. There are no transcripts and no wiki pages for data,
-> mid/post-training, RLVR or multimodality.
+> the Wild), Lecture 12 (Evaluation) and Lecture 13 (Data I — Sources and
+> Datasets) are covered in depth.**
+> Nothing else is. **Data is now half covered**: lecture 13 is the first of two
+> data lectures, and lecture 14 — filtering, deduplication, mixing and synthetic
+> data in depth, plus post-training data — is not yet here. There are no
+> transcripts and no wiki pages for mid/post-training, RLVR or multimodality.
 >
 > **A note specific to evaluation:** [Lecture 12](wiki/12-evaluation.md) is the
 > hinge of the course — the point where model-building stops and the question
@@ -143,10 +146,66 @@ compute and data?
   Then contamination, dataset quality, and the methods-versus-models distinction
   that explains what this course's own assignments are actually measuring.
 
+- **[Lecture 13 — Data I: Sources and Datasets](wiki/13-data-sources-datasets.md)** —
+  where training data actually comes from, and what you are allowed to do with it.
+  A history and a survey rather than a derivation: why "trained on the entire
+  internet" is wrong four times over, what copyright and fair use permit, the four
+  raw sources everything is built from, and then a chronological tour of fifteen
+  named corpora from BooksCorpus (2015) to CommonPile (2025). The through-line is
+  that **the sources barely change after 2019 — almost every advance is a filtering
+  decision**, which is why the lecture ends by calling filtering the highest-leverage
+  step and the whole process "a lot just based on vibes."
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 13 — data: sources and datasets
+
+- **[Lecture 13 — Data I: sources and datasets](wiki/13-data-sources-datasets.md)** —
+  the lecture page: why data is the thing model developers will not disclose, the
+  four reasons a crawler cannot get the web, copyright in enough depth to read the
+  lawsuits, the raw sources, the dataset chronology, and CommonPile's test of
+  whether permissive licensing is enough. Carries all 14 of the lecture's own
+  figures.
+- **[Pre-training datasets](wiki/pretraining-datasets.md)** — the chronology in one
+  place, with a table of every named corpus, what it was built from and the size
+  the lecture gives it. Also the books lineage (BooksCorpus → Gutenberg → Books3)
+  and the web lineage (WebText → C4 → GPT-3 → The Pile → LLaMA → RefinedWeb →
+  Dolma → DCLM). Three of these datasets no longer exist, each for a different
+  legal reason.
+- **[Data filtering](wiki/data-filtering.md)** — the central technical argument:
+  rules versus models, held as a real disagreement from 2019 until DCLM produced
+  numbers in 2024. Retention rates run from C4's ~11% to DCLM's 1.4%, and
+  Nemotron-CC's whole position is that the field pushed that too low. Includes C4's
+  curly-brace rule, which silently deleted code from the web before anyone wanted
+  code models.
+- **[Web crawling](wiki/web-crawling.md)** — live servers to corpus. Dynamic
+  content, walled gardens, `robots.txt` as a convention rather than a law, the
+  three crawler policies, Common Crawl's scale, and why WARC-vs-WET is a modelling
+  decision rather than a file-format detail.
+- **[Deduplication](wiki/deduplication.md)** — MinHash, Bloom filters and Jaccard
+  similarity, and why ~90% of GitHub by file count is duplicate. Also the point
+  where a data pipeline's deduplication and an evaluation's contamination check
+  turn out to be the same operation.
+- **[Copyright and fair use](wiki/copyright-and-fair-use.md)** — everything is
+  copyrighted, so there are exactly two ways to use a work. The four fair-use
+  factors, why copyright is "about semantics, not n-gram overlap", and what the
+  Anthropic and Meta judgments actually held — training was fair use, acquisition
+  by piracy was not, and it was the acquisition that cost $1.5B.
+- **[Data licensing and consent](wiki/data-licensing-and-consent.md)** — the four
+  independent layers of permission, the sharp post-2023 decline in what sites allow,
+  shadow libraries, and the three ways "permissively licensed" fails to mean what it
+  says — including why you cannot trust a Hugging Face dataset's license field.
+- **[Code data](wiki/code-data.md)** — GitHub, Software Heritage, The Stack and
+  Stack v2. The LLVM bridge that transfers from data-rich to data-poor programming
+  languages, and how a pull request gets linearized into tokens so a model learns
+  the development process rather than only the syntax.
+- **[Synthetic data](wiki/synthetic-data.md)** — rewriting data instead of
+  discarding it, as Nemotron-CC does; and the unresolved licensing question, where
+  the likely legal answer ("probably fine") and the consistent one (CommonPile
+  refused it as laundering) point in opposite directions.
 
 ### Lecture 12 — evaluation
 
@@ -690,7 +749,8 @@ usually the faster route than the lecture pages.
   [Lecture 9](raw/transcripts/09-scaling-laws.md),
   [Lecture 10](raw/transcripts/10-inference.md),
   [Lecture 11](raw/transcripts/11-scaling-laws-in-the-wild.md),
-  [Lecture 12](raw/transcripts/12-evaluation.md).
+  [Lecture 12](raw/transcripts/12-evaluation.md),
+  [Lecture 13](raw/transcripts/13-data-sources-datasets.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
