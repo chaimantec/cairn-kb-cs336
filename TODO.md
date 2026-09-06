@@ -2147,8 +2147,28 @@ Sonnet (the skill default), and NO figure audit pass.**
 
 ### Transcript
 - [x] 15 — verbatim captions fetched (104 paragraphs, ~15.9k words, 2420 segments)
-- [ ] 15 — copy-edited transcript (Sonnet draft, adjudicated here)
-- [ ] 15 — verify: timestamps, number inventory, per-paragraph word ratios
+- [x] 15 — copy-edited transcript (Sonnet draft, adjudicated here). 104
+      paragraphs, 15,837 -> 13,613 words (86.0% retention), 18 questions from
+      the floor marked.
+- [x] 15 — verify: ALL THREE CHECKS PASS, run in the parent against the verbatim
+      body (sliced from the first marker, so the header's own restoration list
+      cannot produce phantom differences).
+      Timestamps: 104 markers, sequence identical.
+      Numbers: exactly two differences, both accounted for — "GPT-01" -> "o1"
+      (a documented restoration) and "10" -> "ten" (spelling out, the same
+      harmless class seen in earlier runs). Nothing lost.
+      Ratios: ZERO paragraphs outside the 0.72-1.10 band, so no content moved
+      across a marker boundary.
+      PROPER-NOUN GREP: 15 of 15 restorations claimed as confirmed appear in the
+      deck — 14 verbatim, and "Hugging Face" as the deck's one-word
+      "HuggingFace". The three restored from context ALONE (o1, XSum, Bluebook)
+      are genuinely absent from the deck, exactly as the agent labelled them,
+      and are flagged as such in the transcript header for readers.
+      Two [Ed: unclear] marks left rather than guessed: SimPO's dictated
+      length-normalizer notation (1:14:49) and an unparseable student question
+      (39:19).
+      The transcript does NOT link into the gitignored raw/transcripts/original/
+      — run 15's post-publish defect did not recur.
 
 ### Wiki
 - [ ] wiki/15-mid-post-training.md
