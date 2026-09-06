@@ -99,6 +99,12 @@ particular are explicitly about duplication" (≈34:42). That is where
 
 ## WARC vs WET, and why HTML-to-text is a modelling decision
 
+> **Lecture 14 measures this.** DCLM's comparison puts Common Crawl's own WET text
+> behind both dedicated extractors on both evals — 20.7/12.2 against resiliparse's
+> 24.1/13.4 and trafilatura's 24.5/12.5. Taking WET costs more than the choice
+> between extractors does. See
+> [HTML-to-text extraction](html-to-text-extraction.md).
+
 Common Crawl publishes each crawl in two formats (≈34:42):
 
 - **WARC** — the raw HTTP response, i.e. the HTML as served.
@@ -153,6 +159,9 @@ surface — see the Wikipedia poisoning result in
 precisely *because* dumps happen on a predictable cadence.
 
 ## See also
+
+- [HTML-to-text extraction](html-to-text-extraction.md) — what happens to the bytes
+  once a crawler has them, including the PDF and OCR path
 
 - [Pre-training datasets](pretraining-datasets.md) — what gets built from crawls
 - [Data filtering](data-filtering.md) — what happens to the text afterwards

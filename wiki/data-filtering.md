@@ -1,5 +1,10 @@
 # Data filtering
 
+**This page is the history and the argument.** For how a filter is actually built —
+the target/raw framework, KenLM versus fastText, and the five worked recipes from
+[lecture 14](14-data-filtering-dedup-mixing.md) — see
+[quality classifiers](quality-classifiers.md).
+
 The central technical argument of [lecture 13](13-data-sources-datasets.md), and
 by the lecture's own assessment the highest-leverage step in the whole data
 pipeline: **"how do you go from 200 trillion tokens to less than 3 trillion
@@ -186,6 +191,24 @@ motivation is clear.
   at least, is a lot just based on vibes. You define this classifier, you define
   this rule, you set some threshold" (≈1:21:01).
 
+## The argument as of lecture 14
+
+[Lecture 14](14-data-filtering-dedup-mixing.md) treats the rules-versus-models split
+recorded above as settled, and gives an economic reason rather than a scientific
+one: "these days I think basically everyone does some amount of model-based filtering, because unless you are compute-plentiful — in which case you probably don't need to do as much filtering, you can just train on everything — **most people are compute-poor**"
+(≈11:01).
+
+It also adds the qualification that makes any single filtering setting unquotable
+out of context: **there is no optimal threshold**, because the right aggressiveness
+depends on how many tokens you will train for. Train longer and you want more,
+lower-quality data; train shorter and you want less, higher-quality data
+(≈17:12). See
+[quality classifiers](quality-classifiers.md#there-is-no-optimal-threshold) for the
+experiment that shows a heavily filtered pool overtaken by an unfiltered one once
+the token budget grows, and
+[data mixture selection](data-mixture-selection.md#the-scale-dependent-effect-and-simulated-epoching)
+for the same effect one stage later.
+
 ## See also
 
 - [Pre-training datasets](pretraining-datasets.md) — the corpora these produce
@@ -193,4 +216,6 @@ motivation is clear.
 - [Synthetic data](synthetic-data.md) — the alternative to discarding
 - [Web crawling](web-crawling.md) — where the input comes from
 - [Data mixture selection](data-mixture-selection.md) — proportions, not quality
+- [Quality classifiers](quality-classifiers.md) — how a filter is built, from
+  [lecture 14](14-data-filtering-dedup-mixing.md)
 - [Lecture 13](13-data-sources-datasets.md)

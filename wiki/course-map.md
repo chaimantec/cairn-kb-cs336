@@ -2,12 +2,12 @@
 
 > **Coverage note.** This page is the syllabus as Percy Liang presents it in
 > [Lecture 1](01-overview-tokenization.md) ([27:04]–[1:03:57]). It is a map of the
-> whole course, but **this knowledge base currently covers Lectures 1–12 of 18**.
+> whole course, but **this knowledge base currently covers Lectures 1–14 of 18**.
 > Covered in full: tokenization (Lecture 1), model architecture (Lectures 3 and 4),
 > the whole Systems unit including inference (Lectures 2, 5, 6, 7, 8 and 10), both
-> scaling-laws lectures (9 and 11), and the **evaluation** half of the Data unit
-> (Lecture 12). Still previews rather than treatments: the rest of the Data unit
-> (Lectures 13–14) and the whole Alignment unit. See [`kb.json`](../kb.json) for
+> scaling-laws lectures (9 and 11), and **the entire Data unit** (Lectures 12, 13
+> and 14). Still a preview rather than a treatment: the whole Alignment unit
+> (Lectures 15–17) and the guest lecture (18). See [`kb.json`](../kb.json) for
 > exact coverage.
 
 CS336 is five units, each paired with an assignment. The unifying question, stated
@@ -19,7 +19,7 @@ a fixed set of resources — data, compute, memory, communication bandwidth?
 | [Basics](#unit-1--basics) | 1 | 1–4 | Lectures 1–4 |
 | [Systems](#unit-2--systems) | 2 | 5–8, 10 | Lectures 2, 5, 6, 7, 8 and [10](10-inference.md) |
 | [Scaling laws](#unit-3--scaling-laws) | 3 | 9, 11 | [Lecture 9](09-scaling-laws.md) and [Lecture 11](11-scaling-laws-in-the-wild.md) |
-| [Data](#unit-4--data) | 4 | 12–14 | [Lecture 12](12-evaluation.md) (evaluation) covered; 13–14 (data) not |
+| [Data](#unit-4--data) | 4 | 12–14 | All three: [12](12-evaluation.md), [13](13-data-sources-datasets.md), [14](14-data-filtering-dedup-mixing.md) |
 | [Alignment](#unit-5--alignment) | 5 | 15–17 | No |
 
 ## Unit 1 — Basics
@@ -252,12 +252,14 @@ predictions.
 > a lecture page and eight topic pages. What follows is Lecture 1's *preview* of it,
 > which is worth reading first because it makes a distinction the later lecture
 > assumes — internal versus external evaluation — and then reframes as one of the
-> four *purposes* of evaluation. The data half is now **half covered**:
-> [Lecture 13 — Data I](13-data-sources-datasets.md) is in this knowledge base
-> with a transcript, a lecture page and eight topic pages, covering where data
-> comes from, copyright, the raw sources and the dataset chronology. Lecture 14 —
-> filtering, deduplication, mixing and synthetic data in depth, plus post-training
-> data — is still a preview.
+> four *purposes* of evaluation. **The data half is now covered in full too:**
+> [Lecture 13 — Data I](13-data-sources-datasets.md) covers where data comes from,
+> copyright, the raw sources and the dataset chronology, and
+> [Lecture 14 — Data II](14-data-filtering-dedup-mixing.md) covers the processing
+> pipeline (HTML-to-text extraction, quality classifiers, MinHash/LSH
+> deduplication, mixture selection) and post-training data. **This unit is
+> therefore the only one in the course that this knowledge base covers completely
+> from its own lectures rather than from Lecture 1's preview.**
 
 **Evaluation** serves two distinct purposes that Percy warns are often conflated
 ([54:45]):

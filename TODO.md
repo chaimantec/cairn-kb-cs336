@@ -1953,3 +1953,148 @@ transcript and the wiki immediately, images after, then ONE figure audit pass.
       R). Audit boundary stated: one pass, per the user's rule — the sample came
       back one exact and one with two corrections, which is the expected rate and
       not run 12's dirty-sample signature.
+
+### Transcript
+- [x] 14 — verbatim captions fetched, video 5sxHosTLPF8 (109 paragraphs, ~12,850
+      words). Kept at raw/transcripts/original/14-data-filtering-dedup-mixing.md
+      (gitignored). NOTE 32 OF THE 109 MARKERS ARE [H:MM:SS] — the lecture runs to
+      1:24:05 — so the narrow `\d+:\d+` regex AGENTS.md records as a past failure
+      would have skipped 29% of this lecture. The checker handles both forms.
+- [x] 14 — copy-edited transcript (drafted by Sonnet, adjudicated here). ~11,100
+      words in the body, ~55 distinct restorations logged in its header.
+      THE AGENT WROTE NOTHING FOR ~30 MINUTES. Polling caught it; ONE status message
+      asking it to flush to disk and it appended steadily from then on (35 -> 47 ->
+      60 -> 71 -> 93 -> 109 markers). Run 13's agent had the same silent-start
+      signature and lost everything; run 14's appended from the start. THE LESSON IS
+      THAT POLLING PLUS ONE NUDGE IS ENOUGH — do not wait passively, and do not
+      assume a silent agent is dead.
+      The split-sentence rule held for the second consecutive run: no paragraph pair
+      shows the transposition signature.
+- [x] 14 — verify: ALL THREE CHECKS PASS.
+      Timestamps: 109 markers, identical sequence, in order, 32 in [H:MM:SS] form.
+      Numbers: 10 tokens differ, every one adjudicated — five decimal restorations
+      the captions had dropped ("08"->0.08, "64"->0.64, "72"->0.72), a permutation
+      "4 3152" split into "4, 3, 1, 5, 2", "51 from Microsoft"->phi-1, "01"->o1,
+      "30 version"->SWE-Zero version, and one stuttered "50" removed as a false
+      start.
+      Word ratios: THE CLEANEST RESULT IN THIS BUILD — 87.5% retention and ZERO
+      paragraphs outside the 0.72-1.10 band (range 0.77-0.97), against 84.0-84.6%
+      and several outliers in lectures 8, 9 and 13.
+      THREE PARENT CORRECTIONS, recorded in the transcript header itself.
+      (1) A DIGIT JOIN REVERTED. The agent's own restoration table correctly said
+      "1.2 two million" -> 1.2 million, but its body wrote "1.22 million" three
+      times. 1.2M is what the material states AND what the pipeline arithmetic
+      gives (75k questions x 16 answers). Body corrected to match the agent's own
+      declared intent.
+      (2) A RESTORATION PROMOTED — the agent was TOO CAUTIOUS, as in run 14. It left
+      "100 uh you know works" (18:00) marked unclear rather than guess. It resolves
+      exactly: the chart's own printed title is "Method comparison at d512 (157M),
+      N=100 WARCs vs tokens", recorded in the figure description. Restored to "100
+      WARCs", which also makes "a tiny fraction of Common Crawl" in the same
+      sentence exact rather than vague.
+      (3) A DIGIT RESTORATION ACCEPTED AND RECORDED rather than reverted: "120 of
+      them didn't execute" -> 120,000, corroborated by the material's "32K
+      executable + 120K nonexecutable" and by the "32,000" in the same sentence.
+- [x] 14 — restored-proper-noun sweep: all but three restorations appear verbatim in
+      a course material file. FOUR RESOLVE AGAINST LECTURE 13'S MATERIAL rather than
+      lecture 14's, because the lecturer refers back — One Billion Word Benchmark,
+      Nemotron, OLMo, and Reddit karma (which is what confirms "star Reddit posts"
+      -> high-karma). THREE ARE SPOKEN-ONLY and are now flagged in the transcript
+      header and in kb.json: Michael Ryan, WebOrganizer, and o1. A fourth spoken-only
+      claim, the lecture's attribution of SWE-Zero to NVIDIA, is recorded in the wiki
+      as what was said rather than as fact.
+
+### Wiki
+- [x] wiki/14-data-filtering-dedup-mixing.md (331 lines, all 13 figures embedded)
+- [x] Topic pages (6 new) — html-to-text-extraction (the transformation stage, the
+      DCLM extractor table, the PDF/OCR path), quality-classifiers (the T/R
+      framework, KenLM vs fastText, five worked recipes, and "there is no optimal
+      threshold"), minhash-and-lsh (the full algorithm with every computed value —
+      the flagship page of this run), post-training-data (the recipe, the taxonomy,
+      OpenThoughts), agent-trajectory-data (the four SWE papers and the
+      environment problem), plus a heavy extension of data-mixture-selection.
+      CHECKED FOR OVERLAP FIRST, and the check changed the shape of the run: three
+      of the obvious page names were already taken by lecture 13's work
+      (data-filtering, deduplication, synthetic-data), so those were EXTENDED and
+      cross-linked rather than duplicated, with a pointer at the top of each saying
+      which page is the history and which is the how-to.
+      THE MOST INTERESTING RESULT IS A DISAGREEMENT. data-mixture-selection now
+      carries both lectures and says so: lecture 9 argues a small-scale mixture
+      bake-off is sound BECAUSE composition moves intercepts and not slopes, and
+      lecture 14 exhibits a mechanism (epoching on a scarce source) by which the
+      ranking genuinely fails to transfer. Neither page previously acknowledged the
+      other's position.
+- [x] Extend existing pages — data-filtering (the argument as of lecture 14),
+      deduplication (the three-part design space, the 61,036-times example,
+      cross-dataset dedup), synthetic-data (post-training as the default, and the
+      two counterintuitive OpenThoughts findings), web-crawling (DCLM's measured
+      WET result), course-map (unit 4 now complete).
+- [x] INDEX.md — banner now 1-14, a Start-here entry, a Lecture 14 wiki section
+      with 7 annotated entries, and the transcript list.
+      FOUND A STALE ENTRY THE OTHER FOUR PLACES HID: INDEX's raw-materials list of
+      executable lectures still ended at lecture_12 — LECTURE 13 WAS NEVER ADDED in
+      run 14, which updated the wiki sections and the transcript list and stopped.
+      Both 13 and 14 are now listed.
+- [x] Link sweep — 3,171 relative links, 0 broken; 373 images, 0 missing; all 124
+      wiki pages appear in INDEX; no LaTeX inside code fences; 305 anchors checked
+      with the one-hyphen-per-space slugging run 14 established, 1 broken and fixed.
+- [x] Citation and quote check — 210 timestamp citations across the new and extended
+      pages all match a real marker.
+      THE QUOTE CHECK FOUND REAL WORK FOR THE FIFTH CONSECUTIVE RUN, and this time
+      the largest haul yet: 201 quotations checked, and ~40 CORRECTED. None was a
+      fabrication and none was a paraphrase-in-quotation-marks (the failure that
+      recurred in runs 8, 9, 12, 13 and 14 did NOT recur here — one instance,
+      deduplication's "3-sentence spans / exact match / remove all but one", was
+      converted to italics). They were all SMALL WORD-LEVEL DRIFT from quoting the
+      captions rather than the finished transcript: "just only get the target data"
+      for "just get the target data back"; "compute poor" for "compute-poor"; "if
+      you want to define quality to be math" for "if you define quality to be math";
+      "there's more chances" for "there are more chances"; "20 times as much data
+      which were not filtered" for "which was not filtered"; "doing the lifting
+      here" for "doing the lifting". THE CAUSE IS STRUCTURAL AND WORTH FIXING NEXT
+      RUN: the wiki was drafted from the VERBATIM CAPTIONS while the copy-edit agent
+      was still running, so every quotation was taken from text that was about to
+      change. Either wait for the edited transcript before quoting, or budget the
+      correction pass.
+      FOUR CHECKER BUGS THIS RUN, all mine, bringing the build's total to fourteen.
+      (1) The citation checker used lecture 14's markers against pages that cite
+      lecture 13 and 9, reporting 46 false failures. (2) The quote extractor matched
+      only curly quotes, so it found ZERO of the 225 straight-quoted passages.
+      (3) Its normalizer kept hyphens, so every hyphenation difference read as a
+      misquote. (4) It had no ellipsis handling, so legitimately marked elisions
+      failed. The corrected version checks 201 and passes 200, the one remaining
+      being run 14's deliberately marked Nemotron-CC elision.
+
+### Images (Step 1c)
+- [x] Fetch the 13 course PNGs into raw/images/14-data-filtering-dedup-mixing/ (2.3 MB)
+- [x] Embed into raw/slides/ by script — 13 @@IMG@@ tokens expanded. The script
+      refuses to run if any token lacks a description or any file is missing.
+- [x] Embed into the wiki — all 13 appear in wiki/14-data-filtering-dedup-mixing.md,
+      and 11 of them also on the topic page whose argument needs them, placed as
+      each page was composed rather than inserted afterwards. Verified: 0 missing
+      image files across the repo (373 referenced, 373 present).
+- [x] Record the 5 third-party hot-links as URLs only, not redistributed — now also
+      in kb.json under materials.thirdPartyNotRedistributed, which did not exist
+      before this run and now covers lectures 13 and 14.
+
+### Housekeeping found this run
+- [x] COVERAGE LIVES IN FIVE PLACES, NOT FOUR. Run 14's lesson named INDEX.md,
+      sources.md, AGENTS.md and kb.json. It missed wiki/course-map.md, whose header
+      still said "covers Lectures 1–12 of 18" — STALE SINCE RUN 13 — even though run
+      14 updated that same file's unit-4 note. All five now read 1–14 and were
+      verified consistent by grep. Add course-map.md to the list next run.
+- [x] INDEX.md's executable-lecture list was missing lecture 13 (see the Wiki
+      section above). Both 13 and 14 added.
+- [x] sources.md — lecture 14 row marked transcribed, the executable-lecture map
+      extended, image count 360 -> 373 and 47 -> 49 MB.
+- [x] AGENTS.md — image coverage table extended to lecture 14, the "lectures 14-18
+      have no images" line corrected to 15-18, and a note that lecture 14's five
+      hot-linked images must be given as URLs and never described.
+
+### Publish
+- [x] kb.json — coverage 14/18, 110 topic pages, 373 images / 49 MB across 14
+      lectures, byLecture["14"]="source-text", executableLectures.transcribed 7->8,
+      four new caveats and a new thirdPartyNotRedistributed key. Caveat 0 rewritten:
+      it now says the DATA UNIT IS COMPLETE rather than half covered, and names
+      15-18 as the gap.
+- [x] Commit and push

@@ -5,7 +5,7 @@ Stanford, Spring 2026 — Percy Liang and Tatsunori Hashimoto**. It is read by
 Cairn's in-extension AI chat, which fetches files over `raw.githubusercontent.com`
 and follows relative markdown links.
 
-**Coverage: Lectures 1–13 of 18.** See [`kb.json`](kb.json) and the banner
+**Coverage: Lectures 1–14 of 18.** See [`kb.json`](kb.json) and the banner
 at the top of [`INDEX.md`](INDEX.md). Any page describing later material is
 repeating Lecture 1's syllabus preview and says so in a blockquote at the top.
 
@@ -229,7 +229,7 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 
 ## Images
 
-Every lecture 1-13 has images. They are committed, not hotlinked, and they are the only
+Every lecture 1-14 has images. They are committed, not hotlinked, and they are the only
 part of this KB that redistributes course material rather than pointing at it.
 
 | Lecture | Files | Where they came from |
@@ -247,8 +247,17 @@ part of this KB that redistributes course material rather than pointing at it.
 | 11 Scaling Laws in the Wild | 32 of 58 pages | rendered from `lecture_11.pdf` |
 | 12 Evaluation | 33 | the course's own `images/*.png` |
 | 13 Data I: Sources, Datasets | 14 | the course's own `images/*.png` |
+| 14 Data II: Filtering, Dedup, Mixing | 13 | the course's own `images/*.png` |
 
-Lectures 14-18 are not in this KB at all, so they have no images.
+Lectures 15-18 are not in this KB at all, so they have no images.
+
+**Lecture 14 hot-links five further images that are NOT redistributed here**, recorded
+as URLs only at the point they appear in
+`raw/slides/14-data-filtering-dedup-mixing.md`: a FinePDFs blog figure served from a
+Hugging Face Space, a Semantic Scholar-hosted table image illustrating formulaic
+near-duplicate writing, two Sanity CDN images of LSH threshold curves, and the Pile
+composition chart on the Stanford CS324 site. Same rule as lecture 13's four: give the
+URL, never a description, because nobody here has looked at them.
 
 **Lecture 13 hot-links four further images that are NOT redistributed here**, and
 they are recorded as URLs only, at the point they appear in

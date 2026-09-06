@@ -1,5 +1,10 @@
 # Deduplication
 
+**This page is the why and the where.** For the algorithms —
+hashing, Jaccard similarity, MinHash and locality-sensitive hashing, with the
+lecture's own computed values — see [MinHash and LSH](minhash-and-lsh.md), which
+covers [lecture 14](14-data-filtering-dedup-mixing.md)'s twenty-minute treatment.
+
 The web is enormously redundant, and every serious pre-training corpus removes
 duplicates. From [lecture 13](13-data-sources-datasets.md), where deduplication is
 one of the three named stages of turning raw data into processed data.
@@ -79,6 +84,30 @@ though a naive count makes them look comparable. See
 [data repetition](data-repetition.md), which treats what repeated data does to
 training.
 
+## What lecture 14 adds
+
+[Lecture 14](14-data-filtering-dedup-mixing.md) turns the pipeline stage described
+above into an algorithm (≈22:39–48:34). Three things from it belong here rather
+than on the algorithms page.
+
+**The design space is three independent choices**, and naming them makes different
+schemes comparable (≈27:18): what is an *item* (sentence, paragraph, document); how
+you *match* (exact, a common sub-item, a fraction of common sub-items); and what
+*action* you take (remove all, or remove all but one). C4, for instance, is
+*3-sentence spans / exact match / remove all but one* — and the lecture flags that
+cutting a shared span out of the middle of a document "breaks the coherence" of what
+remains (≈31:10).
+
+**The memorable example.** An audit of C4 found a single product description
+repeated **61,036 times** — template-generated wedding-decoration copy, attached to
+an Amazon listing for a gas mask. "The web is weird" (≈25:43). Other near-duplicate
+families the lecture names: pasted licences (the MIT licence in particular), shared
+headers and footers, LM1B articles differing by one comma, and templates where an
+entity has been swapped ("templatized it, replacing 'Canada' with 'USA'").
+
+**Deduplicate across datasets, not only within them.** "you actually have to do deduplication across your entire dataset, because often datasets can be redundant with each other. Sometimes that's not done, but it should be" (≈48:34). Two separately-deduplicated
+corpora combined into one mixture are not a deduplicated corpus.
+
 ## See also
 
 - [Data filtering](data-filtering.md) — the other half of processing
@@ -87,4 +116,6 @@ training.
 - [Data repetition](data-repetition.md) — the scaling-side treatment of repeats
 - [Benchmark contamination](benchmark-contamination.md) — the same problem, seen
   from evaluation
-- [Lecture 13](13-data-sources-datasets.md)
+- [MinHash and LSH](minhash-and-lsh.md) — the algorithms, from
+  [lecture 14](14-data-filtering-dedup-mixing.md)
+- [Lecture 13](13-data-sources-datasets.md) · [Lecture 14](14-data-filtering-dedup-mixing.md)

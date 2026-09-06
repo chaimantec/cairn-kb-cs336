@@ -8,19 +8,21 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1–13 of 18
+> ## ⚠️ This knowledge base covers Lectures 1–14 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
 > Mixtures of Experts), Lecture 5 (GPUs and TPUs), Lecture 6 (Kernels and
 > Triton), Lecture 7 (Parallelism), Lecture 8 (Parallelism, Part 2), Lecture 9
 > (Scaling Laws — Basics), Lecture 10 (Inference), Lecture 11 (Scaling Laws in
-> the Wild), Lecture 12 (Evaluation) and Lecture 13 (Data I — Sources and
-> Datasets) are covered in depth.**
-> Nothing else is. **Data is now half covered**: lecture 13 is the first of two
-> data lectures, and lecture 14 — filtering, deduplication, mixing and synthetic
-> data in depth, plus post-training data — is not yet here. There are no
-> transcripts and no wiki pages for mid/post-training, RLVR or multimodality.
+> the Wild), Lecture 12 (Evaluation), Lecture 13 (Data I — Sources and
+> Datasets) and Lecture 14 (Data II — Filtering, Deduplication, Mixing,
+> Post-Training Data) are covered in depth.**
+> Nothing else is. **The Data unit is now complete** — all three of its lectures
+> are here, which makes it the only unit of the course covered in full from its
+> own lectures. There are still no transcripts and no wiki pages for
+> mid/post-training, RLVR or multimodality (Lectures 15–17) or the guest lecture
+> (18).
 >
 > **A note specific to evaluation:** [Lecture 12](wiki/12-evaluation.md) is the
 > hinge of the course — the point where model-building stops and the question
@@ -156,10 +158,70 @@ compute and data?
   decision**, which is why the lecture ends by calling filtering the highest-leverage
   step and the whole process "a lot just based on vibes."
 
+- **[Lecture 14 — Data II: Filtering, Deduplication, Mixing, Post-Training
+  Data](wiki/14-data-filtering-dedup-mixing.md)** — what you *do* to data once you
+  have it, and the only lecture in the course that is mostly algorithms with
+  running code. Filtering is one problem stated once — given target data T and raw
+  data R, find the subset of R that resembles T — and language identification,
+  quality filtering and toxicity filtering are that same problem with a different
+  T. Deduplication is the linear-time construction that gets you from Jaccard
+  similarity to MinHash to locality-sensitive hashing. Mixing is a regression
+  problem with a trap in it: a plain 50/50 mixture over a 10T-token source and a
+  10B-token source silently runs **50 epochs** on the small one. The recurring
+  lesson is that **every stage has a scale-dependent optimum** — there is no best
+  filtering threshold and no best mixture in the abstract, only one relative to how
+  long you will train.
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 14 — data: filtering, deduplication, mixing, post-training
+
+- **[Lecture 14 — Data II: filtering, deduplication, mixing, post-training
+  data](wiki/14-data-filtering-dedup-mixing.md)** — the lecture page: the whole
+  pre-training pipeline in the order data moves through it, then post-training
+  data. Carries all 13 of the lecture's own figures, and links to the six topic
+  pages below. Read it first if you want the shape of the lecture rather than one
+  answer.
+- **[HTML-to-text extraction](wiki/html-to-text-extraction.md)** — the stage before
+  everything else. Why linearizing HTML is *inherently* lossy rather than badly
+  tooled, why the extractors are all rule-based, and DCLM's measured comparison:
+  trafilatura and resiliparse are close to each other and **Common Crawl's own WET
+  text is worse than both**. Also the PDF path — truncation, re-crawling, OCR — and
+  why PDFs are worth it.
+- **[Quality classifiers](wiki/quality-classifiers.md)** — how a filter is actually
+  built. The target/raw framework, KenLM (a generative model of the target) versus
+  fastText (a classifier), stochastic keeping, and five worked recipes: fastText
+  language ID, OpenMathText's three-mechanism math pipeline, GPT-3's Pareto keep
+  rule, LLaMA's use of pages *referenced by* Wikipedia, and phi-1's
+  GPT-4-labels-then-random-forest. Ends with the argument that **there is no
+  optimal threshold**.
+- **[MinHash and LSH](wiki/minhash-and-lsh.md)** — the algorithms, worked through
+  with the lecture's own computed values. Why deduplication is quadratic and must
+  not be, the characteristic-matrix proof that a MinHash collides with probability
+  exactly the Jaccard similarity, and how $b$ bands of $r$ hashes sharpen that into
+  a phase transition. Includes the collision-probability table at three (b, r)
+  settings, and why the real-world setting n=9000, b=20, r=450 is hunting for
+  documents **99.3%** similar.
+- **[Post-training data](wiki/post-training-data.md)** — environments, tasks, and
+  responses from a teacher. OpenThoughts' three counterintuitive findings — a
+  better model is not necessarily a better teacher, sixteen samples per prompt
+  beats more sources, answer filtering did not help — and why its headline 1.2M
+  examples is really **75,000 questions**.
+- **[Agent trajectory data](wiki/agent-trajectory-data.md)** — the four SWE
+  datasets, and the infrastructural problem behind all of them: most GitHub repos
+  do not run. SWE-smith generates bugs into working code; SWE-Zero observes that
+  strong models solve many tasks with no execution at all and builds 300K
+  trajectories on that basis; SWE-rebench has a model write the install scripts;
+  SWE-ZERO-12M scales it to 12M with a 1.7B generator.
+- **[Data mixture selection](wiki/data-mixture-selection.md)** — extended this run,
+  and now the page where lectures 9 and 14 **disagree**. Lecture 9 argues a
+  small-scale bake-off is sound because composition moves intercepts and not slopes;
+  lecture 14 exhibits an effect that genuinely fails to transfer, and fixes it by
+  simulated epoching. Also the three baselines (including "vibes"), the epoching
+  trap, UniMax's cap, and RegMix.
 
 ### Lecture 13 — data: sources and datasets
 
@@ -750,7 +812,8 @@ usually the faster route than the lecture pages.
   [Lecture 10](raw/transcripts/10-inference.md),
   [Lecture 11](raw/transcripts/11-scaling-laws-in-the-wild.md),
   [Lecture 12](raw/transcripts/12-evaluation.md),
-  [Lecture 13](raw/transcripts/13-data-sources-datasets.md).
+  [Lecture 13](raw/transcripts/13-data-sources-datasets.md),
+  [Lecture 14](raw/transcripts/14-data-filtering-dedup-mixing.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
@@ -768,8 +831,10 @@ usually the faster route than the lecture pages.
     [`lecture_02.py`](raw/slides/02-pytorch-resource-accounting.md),
     [`lecture_06.py`](raw/slides/06-kernels-triton.md),
     [`lecture_07.py`](raw/slides/07-parallelism.md),
-    [`lecture_10.py`](raw/slides/10-inference.md) and
-    [`lecture_12.py`](raw/slides/12-evaluation.md) are Percy
+    [`lecture_10.py`](raw/slides/10-inference.md),
+    [`lecture_12.py`](raw/slides/12-evaluation.md),
+    [`lecture_13.py`](raw/slides/13-data-sources-datasets.md) and
+    [`lecture_14.py`](raw/slides/14-data-filtering-dedup-mixing.md) are Percy
     Liang's *executable lectures* — Python programs, transcribed from source text,
     each with a section-to-source-line table and the code verbatim. There are no
     slide numbers to cite. Where such a lecture computes a number at runtime, a
@@ -789,6 +854,14 @@ usually the faster route than the lecture pages.
     asserts — so every number in it is a claim about a published benchmark rather
     than a measurement. What it has instead is figures: 43 of them, the most in the
     course, and they carry the argument rather than illustrating it.
+    **Lecture 13 is the same kind** — it computes nothing either, and every number
+    in it is a claim about a published dataset. **Lecture 14 goes back the other
+    way, and is the cleanest case in the course**: it has 22 inspected values —
+    MurmurHash, exact deduplication, Jaccard, a 100-seed MinHash simulation, LSH
+    collision probabilities and the data-mixing epoch arithmetic — and *none* of
+    them touches a GPU, a clock or a benchmark, so unlike lectures 2, 6, 7 and 10
+    there was nothing machine-dependent to withhold. Every one is reproduced, and
+    they reproduce on any machine.
   - [`lecture_03.pdf`](raw/slides/03-architectures.md) (67 pages),
     [`lecture_04.pdf`](raw/slides/04-attention-alternatives.md) (60 pages),
     [`lecture_05.pdf`](raw/slides/05-gpus-tpus.md) (55 pages),

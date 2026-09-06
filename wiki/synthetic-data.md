@@ -74,6 +74,24 @@ The lecture does not resolve this. It reports the permissive reading as the like
 legal answer and CommonPile's refusal as the consistent-if-you-mean-it answer, and
 leaves both standing.
 
+## 4. In post-training, where it is now the default
+
+[Lecture 14](14-data-filtering-dedup-mixing.md) extends this to the other side of
+training, and the framing is stronger than anything in lecture 13: "implicitly, at least in the open community, **almost all the post-training data — most of it — is synthetically generated**" (≈1:14:03). A human teacher is possible but "slow and costs a lot of
+money", and even at the frontier the practice is now hybrid human-AI.
+
+Two findings there are worth carrying back to this page, because they complicate
+the naive picture of distillation:
+
+- **A better model is not necessarily a better teacher.** OpenThoughts found
+  QwQ-32B — "a very old and small model" — outperformed DeepSeek-R1 as a teacher
+  (≈1:16:20).
+- **Answer filtering did not help.** The obvious quality-control step on synthetic
+  responses failed to pay off in that study.
+
+See [post-training data](post-training-data.md) and
+[agent trajectory data](agent-trajectory-data.md).
+
 ## What is not covered here
 
 This lecture is about pre-training data, so it treats synthetic data only as a
@@ -91,6 +109,11 @@ Two related questions this lecture raises but does not answer:
   inflate them (≈1:09:20). See [data repetition](data-repetition.md).
 
 ## See also
+
+- [Post-training data](post-training-data.md) — synthetic data as the default on the
+  post-training side
+- [Agent trajectory data](agent-trajectory-data.md) — model-generated software
+  engineering tasks and trajectories
 
 - [Data filtering](data-filtering.md) — the alternative to rewriting is discarding
 - [Pre-training datasets](pretraining-datasets.md) — Nemotron-CC in context
