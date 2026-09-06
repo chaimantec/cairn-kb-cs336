@@ -13,8 +13,8 @@ Open Assistant is high-quality, human-written SFT data. One of its responses
 answers a question about executive pay and includes an academic citation —
 Bivens, J., and Mishel, L., *The Pay of Corporate Executives*.
 
-![Slide 19 — References, complex knowledge, and factuality](../raw/images/15-mid-post-training/slide-22.jpg)
-*Slide 22 — safety and factuality framed as a data problem, one of several places the lecture returns to what SFT data implicitly teaches.*
+![Slide 20 — Knowledge extraction and alignment](../raw/images/15-mid-post-training/slide-20.jpg)
+*Slide 20 — Schulman's "Hallucination and Behavior Cloning" argument on the left; on the right, Gekhman et al.'s two panels showing that examples the model does not already know are fitted far more slowly, and that dev accuracy peaks and then decays once overfitting starts.*
 
 Now SFT on it. The lecturer's point is that you have taught the model **two
 different things at once**:

@@ -2278,3 +2278,50 @@ Sonnet (the skill default), and NO figure audit pass.**
 - If another deck is transcribed without an audit, repeat this run's
   compensating checks: verify the heading sequence, read back four rendered
   images against their descriptions, and require a Known gaps table.
+
+## Run 17 — Lecture 16: Post-Training — RLVR
+
+Video dIFAi87Ws4E (76 min). Tatsunori Hashimoto. PDF deck `lecture_16.pdf`,
+61 pages, so `page-images`. User instructions for this run: transcribe the deck
+with Sonnet, **run no figure audit**, and keep at most two subagents alive at a
+time.
+
+Numbering: the deck prints **no page number on any page** — the eighth CS336
+deck in a row to do so (3, 4, 5, 8, 9, 11, 15 are the others). `slide_number_map.py`
+scanned both bottom corners of all 61 pages, for a bare number and for one
+ending a running footer, and found nothing. Mapping is a plain 1..61, page N =
+slide N, settled before any page was read and handed to the readers as a
+conclusion. `--verify` therefore degenerates to a heading-sequence check.
+
+### Course material
+- [ ] raw/slides/16-post-training-rlvr.md — 61 pages, four Sonnet readers in two
+      waves of two (1-15, 16-31, 32-46, 47-61)
+- [ ] Heading-sequence check — exactly 61 headings 1..61 in order
+- n/a Figure audit — SKIPPED at the user's instruction, as in run 16 (lecture 15).
+      Compensating checks instead: heading sequence, and rendered images read
+      back against their descriptions.
+
+### Transcript
+- [x] 16 — verbatim captions fetched (99 paragraphs, ~14.8k words)
+- [ ] 16 — copy-edited transcript (Sonnet draft, adjudicated here)
+- [ ] 16 — verify: timestamps, number inventory, per-paragraph word ratios,
+      proper-noun grep against the deck
+
+### Wiki
+- [ ] wiki/16-post-training-rlvr.md
+- [ ] Topic pages — new and extended
+- [ ] INDEX.md
+- [ ] Link sweep against `git ls-files`
+- [ ] Citation and quote check (reuse run 16's corrected checker)
+
+### Images (Step 1c)
+- [ ] Render figure slides into raw/images/16-post-training-rlvr/
+      (raster test: 55 of 61 pages carry a raster >4%; the 6 that do not are
+      17, 35, 51, 56, 57, 61)
+- [ ] Embed into raw/slides/ and wiki/
+
+### Publish
+- [ ] Coverage in all six places: INDEX.md, sources.md, AGENTS.md, kb.json,
+      wiki/course-map.md, AGENTS.md image-coverage table
+- [ ] kb.json — coverage 16/18, figuresAuditedByLecture["16"]=false
+- [ ] Commit and push

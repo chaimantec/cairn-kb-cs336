@@ -150,7 +150,7 @@ lecture 12.
 This is the subtlest argument in the lecture, and it starts from a single
 Open Assistant example that contains an academic reference (slide 19).
 
-![Slide 19 — References, complex knowledge, and factuality](../raw/images/15-mid-post-training/slide-20.jpg)
+![Slide 20 — Knowledge extraction and alignment](../raw/images/15-mid-post-training/slide-20.jpg)
 *Slide 20 — Schulman's "Hallucination and Behavior Cloning" framing, the argument that behaviour cloning on unknown facts is what produces confident fabrication.*
 
 SFT'ing on that example teaches two things at once: the *content* of the Bivens
@@ -237,7 +237,7 @@ totally collapse my distribution onto a single point for every input... and that
 would be okay, as long as it got a good reward." Mode collapse is not a failure
 of the objective; it is permitted by it.
 
-![Slide 32 — From imitation to optimization](../raw/images/15-mid-post-training/slide-31.jpg)
+![Slide 31 — The second part of RLHF](../raw/images/15-mid-post-training/slide-31.jpg)
 *Slide 31 — the InstructGPT pipeline again, now with steps 2 and 3 in focus.*
 
 ### Why optimize rather than collect more demonstrations?
