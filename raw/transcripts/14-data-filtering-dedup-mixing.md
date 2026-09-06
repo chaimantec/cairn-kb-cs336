@@ -3,7 +3,8 @@ title: Data II — Filtering, Deduplication, Mixing, Post-Training Data
 lecture: 14
 video: https://www.youtube.com/watch?v=5sxHosTLPF8
 source: YouTube auto-captions, copy-edited
-original: original/14-data-filtering-dedup-mixing.md
+verbatim_original: not committed - regenerate from the video (see below)
+material: ../slides/14-data-filtering-dedup-mixing.md
 ---
 
 # Lecture 14 — Data II (transcript)
@@ -13,8 +14,14 @@ data — filtering, deduplication, mixing, and post-training data. The
 auto-generated YouTube captions have been repunctuated, segmented into
 sentences, stripped of filler ("um," "uh," "you know," "sort of" when vacuous)
 and false starts, and had mis-heard technical terms and names restored, checked
-against the lecture's source program. The verbatim captions are kept alongside,
-in [`original/14-data-filtering-dedup-mixing.md`](original/14-data-filtering-dedup-mixing.md).
+against the lecture's source program.
+
+The verbatim captions are **not committed to this repo** — they are a complete
+reproduction of the lecture and none of that text is this KB's own work. They stay
+reproducible on demand: the `cairn-kb` skill's `fetch_transcript.py` run on the
+video id in this file's front matter, piped through `transcript_to_md.py`,
+reproduces them exactly, so the checks recorded below can be re-run by anyone who
+wants to verify this edit.
 
 ## Editorial notes
 

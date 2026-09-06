@@ -2103,3 +2103,19 @@ transcript and the wiki immediately, images after, then ONE figure audit pass.
       it now says the DATA UNIT IS COMPLETE rather than half covered, and names
       15-18 as the gap.
 - [x] Commit and push
+
+### Found after publishing run 15 — a link class the sweep could not see
+- [x] raw/transcripts/14-...md linked `original/14-...md` in its front matter and
+      header. `raw/transcripts/original/` IS GITIGNORED, so that link 404s for the
+      chat — exactly the silent failure the skill warns about. Rewritten to lecture
+      12's established convention: a `verbatim_original: not committed` front-matter
+      key plus the paragraph saying how to regenerate the captions with
+      fetch_transcript.py. The copy-edit agent invented the link; the other 13
+      transcripts do not have it.
+      THE SWEEP COULD NOT HAVE CAUGHT IT. Every link check in this build tests
+      `os.path.exists()` against the LOCAL filesystem, where gitignored files are
+      present. The published repo is the git index, not the working tree.
+      NEXT RUN: sweep against `git ls-files`, not the filesystem. Skip bare
+      `#anchors` and directory links or it reports ~200 false positives. Current
+      result with that fix: 0 tracked .md files link to a path outside the
+      published repo.
