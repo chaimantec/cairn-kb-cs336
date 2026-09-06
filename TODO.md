@@ -1552,8 +1552,44 @@ transcript and the wiki immediately, images after.
 ### Transcript
 - [x] 12 — verbatim captions fetched, video JpAxdTWQJxM (102 paragraphs, ~11,980
       words). Kept at raw/transcripts/original/12-evaluation.md (gitignored).
-- [ ] 12 — copy-edited transcript (draft by Sonnet, adjudicate here)
-- [ ] 12 — verify: timestamps, number inventory, per-paragraph word ratios
+- [x] 12 — copy-edited transcript (drafted by Sonnet, adjudicated here). 1,150 lines,
+      ~10,460 words in the body.
+      PROCESS NOTE WORTH KEEPING: the agent ran 56 minutes without writing a single
+      byte, despite being told explicitly to append in batches, and its own final
+      report claimed it "appended incrementally in ~10-paragraph batches as I worked
+      through it (never held unwritten)". THAT CLAIM IS FALSE — the parent polled the
+      path throughout and the file did not exist until the very end. An agent's
+      self-report about its own write behaviour is not evidence; poll the artifact.
+      Had a session limit landed at minute 50, the whole edit would have been lost.
+- [x] 12 — verify: ALL THREE CHECKS PASS.
+      Timestamps: 102 markers, identical sequence, in order.
+      Numbers: nothing lost. Every difference adjudicated — three "1 billion word
+      benchmark" and one "1 hour" spelled out to the deck's own forms, "out of 10" ->
+      "out of ten", a "20 20 ... 2024 or 23" stutter resolved, "01/03" -> "o1/o3",
+      "ARC-AGI 1" hyphenated, and a "-4" restored to "GPT-4 preview".
+      Word ratios: 101/102 in the 0.72-1.10 band at 88.3% retention; the one outlier
+      ([48:32], 0.70) read and confirmed as pure filler removal.
+      TWO PARENT CORRECTIONS. (1) A SENTENCE HAD MOVED ACROSS A TIMESTAMP BOUNDARY.
+      The draft completed a sentence split at [55:30]/[56:16] by pulling its second
+      half back into [55:30] — and carried the FOLLOWING whole sentence with it. The
+      ratio check flagged the pair at 1.10/0.61 and the number check caught the stray
+      "2024" independently, which is the two checks corroborating each other for the
+      first time in this build. ROOT CAUSE WAS THE PARENT'S OWN PROMPT: it told the
+      agent to "complete it in the first and start the second where the captions did",
+      which contradicts this KB's actual convention. Measured it rather than guessed —
+      68 of 102 paragraphs here begin mid-sentence, against 80/102, 78/111 and 82/101
+      in lectures 9, 10 and 11. NEXT RUN'S PROMPT SHOULD SAY: leave a split sentence
+      split exactly where the captions split it.
+      (2) A possible benchmark name ("Gia", [1:13:22]) had been DELETED as noise
+      rather than flagged. Now marked [Ed: unclear]. Deleting is not an available
+      option for something that might be content.
+      RESTORATIONS: 35, of which 32 appear verbatim in the lecture's own material.
+      The three that do not are named in the header with separate evidence —
+      Hendrycks (the lecture cites MMLU by arXiv id through references.py, and that
+      record's author list begins "Hendrycks, Dan", so a standing [Ed:] note was
+      WITHDRAWN rather than left), Tatsu's group (the deck links tatsu-lab.github.io
+      twice), and GPT-3.5 Turbo — the weakest, an editorial expansion of spoken
+      shorthand rather than an attested string, and labelled as such.
 
 ### Wiki
 - [x] wiki/12-evaluation.md (301 lines + 3 figures)
@@ -1575,7 +1611,16 @@ transcript and the wiki immediately, images after.
       broken. It is not. GitHub KEEPS underscores in heading slugs and the checker's
       character class was stripping them. THE LINK WAS RIGHT AND THE CHECK WAS WRONG.
       Anyone rebuilding an anchor check must allow `_` in the slug alphabet.
-- [ ] Citation and quote check against the finished transcript
+- [x] Citation and quote check — 250 timestamp citations across the nine pages all
+      match a real marker.
+      QUOTE CHECK FOUND REAL WORK, for the third time in this build: 19 of 34
+      quotations failed. Eleven were genuine quotations with drifted wording — a
+      sentence-initial capital, a dropped article ("a grain of salt" for "grain of
+      salt"), "LLM Arena" for "LMArena" — all corrected to the published text. Eight
+      were THE PARENT'S OWN PARAPHRASES SET IN QUOTATION MARKS, reading as quotations
+      of the lecturer when they were not; all converted to italics. One phrase
+      straddles the [9:19] marker and cannot be a contiguous quotation, so it is given
+      without quotation marks and the page says why.
 
 ### Images (Step 1c)
 - [x] Fetch the 33 course PNGs into raw/images/12-evaluation/ (9.1MB, all PNG)
