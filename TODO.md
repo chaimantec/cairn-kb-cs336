@@ -1890,3 +1890,66 @@ skim of the captions and worth carrying into the wiki:
       kbUrl was already set on catalog 94d9c003-2193-43e7-96e3-c1cb4ed0aba8 and was
       re-verified, so no link_kb.sh run. Live raw fetches confirmed 200 for INDEX.md,
       the lecture 13 wiki page, the transcript, kb.json and a lecture 13 image.
+
+## Run 15 — Lecture 14: Data II (Filtering, Deduplication, Mixing, Post-Training)
+
+Video 5sxHosTLPF8 (85 min). Percy Liang. **Executable lecture** — `lecture_14.py`,
+464 lines, so `source-text`, no deck and no slide numbers. 248 `text()`, 31
+`link()` and 18 `image()` calls (13 course-repo PNGs, 5 hot-linked to third
+parties).
+
+UNLIKE lectures 12 and 13, **THIS ONE COMPUTES**: 22 `@inspect`/`assert` lines
+covering MurmurHash, exact dedup, Jaccard, a 100-seed MinHash simulation, LSH
+collision probabilities at three (b, r) settings, and the data-mixing epoch
+arithmetic. All of it is deterministic and machine-independent — no GPU, no
+timing, no benchmark — so every value was recomputed here and is reproduced in
+full, which is the first time in this build that has been possible for a
+computing lecture (lectures 2, 6, 7 and 10 all had machine-dependent values to
+withhold).
+
+Run order is the one the user set after run 12: course material first, then the
+transcript and the wiki immediately, images after, then ONE figure audit pass.
+
+### Course material
+- [x] raw/slides/14-data-filtering-dedup-mixing.md — transcribe lecture_14.py.
+      Written here rather than delegated, as for lectures 12 and 13. Records a
+      section→source-line table (11 functions), a 30-row table of every paper,
+      dataset and tool cited, and a full "Every computed value in this lecture"
+      table giving all 22 inspected values recomputed by running the lecture's
+      own code (mmh3 at default seed 0, so they reproduce anywhere).
+      NOTED: two unused imports — `download_file` from edtrace.file_util, and
+      `the_pile` (the SECTION FUNCTION from lecture_13, not the reference).
+      Recorded in the front matter so nobody later reads their absence as a
+      transcription gap. Also noted: `keep_document` (GPT-3's Pareto keep rule)
+      is defined and never called, which is why nothing in the file is random.
+- [x] Image descriptions for the 13 course-repo PNGs (delegated to Sonnet,
+      appending per image). ALL 13 RETURNED and the agent DID append per image —
+      polled and the file was already at 9 blocks partway through. Second
+      consecutive run where the incremental instruction held.
+- [x] Spot-check two descriptions against the images here — DONE, chosen as the
+      two highest-stakes claims rather than the most chart-heavy.
+      swezero-results.png CONFIRMED EXACTLY: all 29 labelled points (23 blue
+      baselines + 6 purple SWE-Zero/SWE-Hero) match cell for cell, all three arrow
+      deltas (+5.9 / +6.3 / +4.7) are right, and the reader's own "before citing"
+      caveat — that the deltas measure SWE-Hero against SWE-Zero and not against
+      the field — checks out.
+      data-filtering-scale.png: structure and values held, TWO CORRECTIONS made.
+      (1) AN INTERPRETIVE SENTENCE WAS WRONG — dclm was called "briefly the lowest
+      of all series" at ~450M tokens; cropping and upscaling that region shows it
+      third of five, above high_quality and med_quality. THIS IS THE FIFTH
+      CONSECUTIVE RUN in which the measured values held and a summarising sentence
+      over them did not. (2) A COUNT WAS WRONG — "four" 1-epoch reference lines
+      followed by a list of five; the legend carries one for each of the nine
+      methods, and all nine token counts are now listed.
+- [x] Figure audit section written into the slide file, plus a figure_audit key in
+      the front matter. Records both corrections and SIX READER FLAGS, again the
+      higher-yield output: openthoughts-sources.png lists ELEVEN code-domain
+      sources, not the 27 the lecture text beside it claims; four of
+      data-filtering-scale.png's nine legend entries have NO plotted curve;
+      marin-token-viewer.png prints no data labels at all (all 30 values are ±30-50B
+      estimates); swe-rebench.png contains exactly one number and NOT the lecture's
+      3.4K-repo or 450K-PR figures; data-mixing-methods.png's pink shading has no
+      legend; raw-target-schema.png is NOT a Venn diagram (T is drawn disjoint from
+      R). Audit boundary stated: one pass, per the user's rule — the sample came
+      back one exact and one with two corrections, which is the expected rate and
+      not run 12's dirty-sample signature.
