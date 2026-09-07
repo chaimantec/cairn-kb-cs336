@@ -2350,7 +2350,27 @@ conclusion. `--verify` therefore degenerates to a heading-sequence check.
       of better reasoning; (2) "verifiable" is much weaker than it sounds —
       Kimi checks math with a reward model, and the Lean compiler turned out
       not to be adversarially robust.
-- [ ] Extend existing pages that now link a second lecture
+- [x] Extend existing pages — ALL NINE forward references to lecture 16 closed.
+      They were found by grepping for "next lecture" and for raw YouTube links
+      before writing anything, which is what made this systematic rather than
+      incidental. ppo.md gained a "What lecture 16 adds" section (it had
+      literally quoted the lecturer promising "a more extended treatment next
+      lecture"); reward-overoptimization.md's "Where it goes next" now says
+      what RLVR does and does NOT solve; rlhf.md, reward-models.md, dpo.md and
+      course-map.md gained pointers; and 15-mid-post-training.md's three raw
+      YouTube links to lecture 16 became relative links to the new page.
+- [x] Link sweep — 3,952 relative links, 0 broken, 0 bad anchors, checked
+      against `git ls-files`. THE FIRST RUN REPORTED 70 PROBLEMS AND ALL WERE
+      CHECKER BUGS, bringing the build's total to twenty. (1) GitHub's slugger
+      removes punctuation WITHOUT collapsing the whitespace it leaves, so
+      "Unit 1 — Basics" slugs to `unit-1--basics`; collapsing gave a false
+      failure on every em-dash heading. (2) Triton kernel launches inside code
+      fences — `kernel[grid](x, y, BLOCK_SIZE=...)` — parse as markdown links.
+      (3) A link to a directory is valid, but `git ls-files` lists no
+      directories.
+- [x] Citation and quote check — 215 timestamp citations across the 19 new
+      pages, all matching a real marker; no nonexistent slide numbers; 0
+      failing quotations after six corrections.
 - [ ] INDEX.md
 - [ ] Link sweep against `git ls-files`
 - [ ] Citation and quote check (reuse run 16's corrected checker)

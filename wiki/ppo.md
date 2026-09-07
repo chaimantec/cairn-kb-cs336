@@ -6,7 +6,9 @@ most early [RLHF](rlhf.md) pipelines use to optimize a policy against a
 
 CS336's lecture 15 gives it deliberately brief treatment — "I'm only going to
 briefly talk about PPO, both in the interest of time and because I'll do a more
-extended treatment next lecture" (≈1:05:34) — and presents it as the third of
+extended treatment next lecture" (≈1:05:34) — and [lecture 16](16-post-training-rlvr.md)
+delivers that treatment, which is where this page's "In practice" section comes
+from. Lecture 15 presents it as the third of
 three attempts, each fixing a problem with the previous one. That framing is the
 useful thing to carry away, because each step has a clear motivation.
 
@@ -86,16 +88,60 @@ for moving too far in the harmful one.
   [DPO](dpo.md).
 - **GRPO is the simpler variant CS336's assignment uses.** "Thankfully, we also
   have a simpler variant called GRPO that works pretty well — that's what you'll
-  do in your assignments" (≈1:18:41). Lecture 16 covers it.
+  do in your assignments" (≈1:18:41). See [GRPO](grpo.md).
 - **Whether PPO beats DPO is genuinely unsettled**, and lecture 15 uses the
   dispute as a lesson in how fragile these comparisons are: AI2 published a result
   favouring PPO and a Tulu 2 result favouring well-executed DPO (≈1:15:36).
+
+## What lecture 16 adds: implementing it is the hard part
+
+[Lecture 16](16-post-training-rlvr.md) returns to PPO at length, and its
+argument is that the algorithm's difficulty is not conceptual but practical.
+Read from OpenAI's Spinning Up pseudocode, "you look at this and you say, this
+is not that bad, this is actually pretty easy, I could implement this in one
+go" (≈6:13). The rebuttal is a blog-post title:
+
+> Because if you see a blog post that says "The 37 Implementation Details of
+> PPO," you know that this is an algorithm that is very sensitive to your
+> implementation decisions. (≈6:59)
+
+Worse than sensitivity: "there are papers saying that the baselines some people
+use in PPO aren't even baselines at all, that they fundamentally change the
+optimization problem." See
+[advantage estimation and baselines](advantage-estimation-and-baselines.md).
+
+Three specifics from that lecture worth carrying:
+
+- **It is not really a bandit problem.** The KL term "actually operate[s] token
+  by token. So it's not actually just a bandit problem, it's like a whole
+  multi-step RL problem" (≈7:47), which is where much of the machinery comes
+  from.
+- **A real implementation contains a defensible-looking hack.** In the
+  implementation the lecture walks through, the KL penalty is clipped at zero,
+  "which, of course, if you know anything about KL divergences, totally ruins
+  the point of a KL divergence — you have both positive and negative values
+  being summed. If you remove this, it blows up immediately" (≈9:20).
+- **GAE is often inert.** The generalized advantage estimator is designed around
+  a per-token value function, but "people often just use gamma equals lambda
+  equals one, which is just a degenerate setting that turns this back into a
+  bandit problem. So you've kind of thrown away a lot of the structure that you
+  get from PPO" (≈10:06).
+
+The lecture is careful not to overstate: PPO works, and "many of the labs have
+very turnkey solutions for getting PPOs to work at scale. So this is not
+impossible, but for people like researchers who are implementing this from
+scratch, PPO can just be really finicky and complicated" (≈11:37).
+
+That is the case for [GRPO](grpo.md), which removes the value model entirely.
 
 ## See also
 
 - [RLHF](rlhf.md) — the pipeline
 - [Reward models](reward-models.md) — what PPO optimizes against
 - [DPO](dpo.md) — the attempt to remove PPO entirely
+- [GRPO](grpo.md) — PPO with the value function removed
+- [Advantage estimation and baselines](advantage-estimation-and-baselines.md)
+- [RL infrastructure](rl-infrastructure.md) — the systems cost of the rollout loop
 - [Inference](inference.md) — why sampling is the expensive half
-- [Lecture 15](15-mid-post-training.md)
+- [Lecture 15](15-mid-post-training.md), [Lecture 16](16-post-training-rlvr.md)
 - [Course material for lecture 15](../raw/slides/15-mid-post-training.md)

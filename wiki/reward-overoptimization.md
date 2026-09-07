@@ -78,10 +78,26 @@ The lecture's closing move is to pose lecture 16 as the response (≈1:19:29):
 > keeps monotonically getting better? And that's one of the reasons why what people
 > call RLVR has been so impactful.
 
-RLVR replaces the learned proxy with a *program* — a unit test, a proof checker, a
-numeric answer key. A verifier that cannot be argued with is a verifier that
-cannot be Goodharted in the same way. Whether that fully escapes the problem is
-lecture 16's subject.
+[RLVR](rlvr.md) replaces the learned proxy with a *program* — a unit test, a
+proof checker, a numeric answer key. A verifier that cannot be argued with is a
+verifier that cannot be Goodharted in the same way.
+
+**[Lecture 16](16-post-training-rlvr.md) answers the "whether that fully
+escapes the problem" question, and the answer is no — it narrows it.** Two
+findings there bound the escape. Mathematics does not stay program-checkable in
+practice: [Kimi](kimi-k1-5.md) verifies answer equivalence with a reward model,
+because "in math you can write equivalent things in many ways" (≈50:05). And a
+genuine program verifier can still be attacked — "the Lean compiler is not
+adversarially robust. There are strings that you can put in it that will allow
+you to verify proofs that are not meant to be verified" (≈1:07:52).
+
+So the scaling argument for RLVR rests on an assumption rather than a
+guarantee: "the reason why we can put more and more compute into RL is because
+we believe that our reward models are unhackable, or difficult to hack. If that
+assumption breaks down, your RL method will find increasingly obscure ways of
+cheating you out of your performance" (≈1:06:19). See
+[verifiable rewards](verifiable-rewards.md) and
+[reward hacking](reward-hacking.md).
 
 ## See also
 
@@ -89,5 +105,7 @@ lecture 16's subject.
 - [Reward models](reward-models.md) — the proxy in question
 - [PPO](ppo.md) — the optimizer whose strength is the hazard
 - [Mode collapse and calibration](mode-collapse-and-calibration.md) — the other closing warning
+- [RLVR](rlvr.md) — the response, and its limits
+- [Verifiable rewards](verifiable-rewards.md), [reward hacking](reward-hacking.md)
 - [Construct validity](construct-validity.md) · [Upstream vs downstream](upstream-vs-downstream.md)
-- [Lecture 15](15-mid-post-training.md)
+- [Lecture 15](15-mid-post-training.md), [Lecture 16](16-post-training-rlvr.md)

@@ -91,9 +91,21 @@ whole classes of problem, checking an answer is structurally cheaper than
 producing one. "Math... is a prime example of this — verifying a proof is
 probably much easier than generating the proof" (≈45:27).
 
-Lecture 15 deliberately stops here and hands this to lecture 16, because once the
-verifier is a *program* rather than a person you are no longer doing RLHF at all
-— you are doing RLVR, and the failure modes change.
+Lecture 15 deliberately stops here and hands this to
+[lecture 16](16-post-training-rlvr.md), because once the verifier is a *program*
+rather than a person you are no longer doing RLHF at all — you are doing
+[RLVR](rlvr.md), and the failure modes change.
+
+Lecture 16's own summary of the relationship is worth keeping, because it is
+narrower than "a new method": RLHF and RLVR "arguably they're very similar
+problems, but with the difference being really just that we want more unhackable
+rewards, so that we can actually put in much more compute and get these systems
+to be much better" (≈1:09:25). Same algorithms, different reward, much higher
+compute ceiling.
+
+Note also that RLHF does not disappear from the pipeline. In all three recipes
+lecture 16 reads, RLVR handles the verifiable tasks and RLHF is still run at the
+end for everything else — it is "the most user-facing part" (≈31:37).
 
 ## Where RLHF is weak
 
@@ -120,7 +132,8 @@ model. Treat every specific number on these pages as historical.
 
 ## See also
 
-- [Lecture 15](15-mid-post-training.md) — the source lecture
+- [RLVR](rlvr.md) — the same machinery with a verifier instead of a preference model
+- [Lecture 15](15-mid-post-training.md), [Lecture 16](16-post-training-rlvr.md) — the source lecture
 - [Supervised fine-tuning](supervised-fine-tuning.md) — the phase before this one
 - [Reward models](reward-models.md) · [PPO](ppo.md) · [DPO](dpo.md)
 - [Preference data](preference-data.md) · [Human annotation](human-annotation.md) · [Model-based annotation](model-based-annotation.md)

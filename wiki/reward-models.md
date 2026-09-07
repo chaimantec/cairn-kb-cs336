@@ -62,8 +62,13 @@ reward model is a learned verifier.
 
 The limit of that argument is the whole of lecture 15's closing section. A
 learned verifier is only a proxy for the thing you care about, and unlike a
-*program* verifier (lecture 16's RLVR) it can be gamed by the policy it is
-supervising.
+*program* verifier ([lecture 16](16-post-training-rlvr.md)'s [RLVR](rlvr.md))
+it can be gamed by the policy it is supervising.
+
+That contrast is real but softer than it looks. Lecture 16 shows reward models
+reappearing *inside* RLVR — [Kimi](kimi-k1-5.md) checks mathematical answer
+equivalence with one — and shows program verifiers being gamed too. See
+[verifiable rewards](verifiable-rewards.md).
 
 ## What the reward model inherits
 
@@ -86,4 +91,6 @@ why lecture 15 spends far longer on annotation than on algorithms:
 - [DPO](dpo.md) — what removes it
 - [Preference data](preference-data.md) — what it is trained on
 - [Reward overoptimization](reward-overoptimization.md) — what happens when you trust it too far
+- [Verifiable rewards](verifiable-rewards.md) — the program-verifier alternative, and its limits
+- [Lecture 16](16-post-training-rlvr.md) — where reward models reappear inside RLVR
 - [Course material for lecture 15](../raw/slides/15-mid-post-training.md)

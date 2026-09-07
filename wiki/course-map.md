@@ -2,15 +2,16 @@
 
 > **Coverage note.** This page is the syllabus as Percy Liang presents it in
 > [Lecture 1](01-overview-tokenization.md) ([27:04]–[1:03:57]). It is a map of the
-> whole course, but **this knowledge base currently covers Lectures 1–15 of 18**.
+> whole course, but **this knowledge base currently covers Lectures 1–16 of 18**.
 > Covered in full: tokenization (Lecture 1), model architecture (Lectures 3 and 4),
 > the whole Systems unit including inference (Lectures 2, 5, 6, 7, 8 and 10), both
 > scaling-laws lectures (9 and 11), **the entire Data unit** (Lectures 12, 13
-> and 14), and the **first lecture of the Alignment unit** (Lecture 15 —
-> mid/post-training, SFT and RLHF). Still a preview rather than a treatment: RLVR
-> and multimodality (Lectures 16–17) and the guest lecture (18). Note that
-> lecture 15 repeatedly defers topics — RLVR, GRPO, reasoning models — to
-> lecture 16, so the KB stops where it stops. See [`kb.json`](../kb.json) for
+> and 14), and the **first two lectures of the Alignment unit** (Lecture 15 —
+> mid/post-training, SFT and RLHF; Lecture 16 — post-training and
+> [RLVR](16-post-training-rlvr.md)). Still a preview rather than a treatment:
+> alignment and multimodality (Lecture 17) and the guest lecture (18). The
+> topics lecture 15 deferred — RLVR, GRPO, reasoning models — are now covered,
+> since lecture 16 is where it deferred them to. See [`kb.json`](../kb.json) for
 > exact coverage.
 
 CS336 is five units, each paired with an assignment. The unifying question, stated
@@ -23,7 +24,7 @@ a fixed set of resources — data, compute, memory, communication bandwidth?
 | [Systems](#unit-2--systems) | 2 | 5–8, 10 | Lectures 2, 5, 6, 7, 8 and [10](10-inference.md) |
 | [Scaling laws](#unit-3--scaling-laws) | 3 | 9, 11 | [Lecture 9](09-scaling-laws.md) and [Lecture 11](11-scaling-laws-in-the-wild.md) |
 | [Data](#unit-4--data) | 4 | 12–14 | All three: [12](12-evaluation.md), [13](13-data-sources-datasets.md), [14](14-data-filtering-dedup-mixing.md) |
-| [Alignment](#unit-5--alignment) | 5 | 15–17 | No |
+| [Alignment](#unit-5--alignment) | 5 | 15–17 | [Lecture 15](15-mid-post-training.md) and [Lecture 16](16-post-training-rlvr.md); 17 not yet |
 
 ## Unit 1 — Basics
 
@@ -320,8 +321,12 @@ The basic template ([1:00:53]):
 2. Score them with a human, a verifier, or an LM judge.
 3. Update the model to prefer better responses.
 
-Algorithms: **PPO** (from RL), **DPO** (simpler, for preference data), and **GRPO**
-(removes the value function).
+Algorithms: **[PPO](ppo.md)** (from RL), **[DPO](dpo.md)** (simpler, for
+preference data), and **[GRPO](grpo.md)** (removes the value function). All three
+are now covered in depth — PPO and DPO in
+[lecture 15](15-mid-post-training.md), GRPO in
+[lecture 16](16-post-training-rlvr.md), which also derives why GRPO's advantage
+is not a valid policy gradient.
 
 > **A naming note.** The lecture source writes these as "Direct Policy
 > Optimization" and "Group Relative Preference Optimization." The papers call them
@@ -336,6 +341,12 @@ possible. At scale it becomes a systems problem: an inference server and a
 training server, rollouts against environments that may execute code, and workers
 that lag behind and drag you off-policy. The constant trade is on-policyness
 against throughput. "It's a big wonderful mess."
+
+This preview is accurate, and lecture 16 delivers each piece of it: the
+instability is PPO's [37 implementation details](ppo.md), the two-server problem
+and the on-policy trade are [RL infrastructure](rl-infrastructure.md), and
+"environments that may execute code" become
+[automatically constructed SWE-bench-style environments](agentic-rl.md).
 
 **Assignment 5:** implement DPO and GRPO. (At lecture time the staff were still
 deciding the final shape.)

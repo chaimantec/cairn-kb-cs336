@@ -5,7 +5,8 @@ to here builds a base model: an architecture, a training loop, a data pipeline,
 a scaling law. Lecture 15 argues that a base model, however good, is of limited
 use — and that the process which turns it into something a person can actually
 instruct has two parts, *supervised fine-tuning* on demonstrations and
-*reinforcement learning from human feedback* on preferences. Lecture 16 then
+*reinforcement learning from human feedback* on preferences.
+[Lecture 16](16-post-training-rlvr.md) then
 takes ChatGPT to o1.
 
 Two framings run through the whole lecture and are worth holding onto:
@@ -40,7 +41,7 @@ vendors want to release any information about their post-training processes"
 The organizing picture is InstructGPT's three-step diagram, which the deck
 returns to three times (slides 6, 31, 35). Step 1 is SFT; steps 2 and 3 are the
 reward model and the RL against it. This lecture does step 1 first and steps
-2–3 second, and [lecture 16](https://www.youtube.com/watch?v=dIFAi87Ws4E)
+2–3 second, and [lecture 16](16-post-training-rlvr.md)
 replaces the human preference signal with a verifiable one.
 
 ![Slide 6 — Where today's lecture fits in](../raw/images/15-mid-post-training/slide-6.jpg)
@@ -256,7 +257,7 @@ they endorse is a reason to collect ratings rather than demonstrations.
 
 **Verification is often easier than generation.** Checking a proof is easier than
 finding one — which is the door to
-[lecture 16's RLVR](https://www.youtube.com/watch?v=dIFAi87Ws4E), explicitly
+[lecture 16's RLVR](16-post-training-rlvr.md), explicitly
 deferred here (≈45:27).
 
 Full treatment: [RLHF](rlhf.md).
@@ -368,7 +369,9 @@ be the main defence against
 [overoptimization](reward-overoptimization.md).
 
 The route to PPO is three steps (≈1:07:06), and the lecture is explicit that a
-fuller treatment comes next lecture:
+fuller treatment comes next lecture — it is in
+[lecture 16](16-post-training-rlvr.md), and the practical half of it is on
+[the PPO page](ppo.md):
 
 1. **Policy gradients** — differentiate the expected reward, and you get
    log-probability gradients weighted by reward. "This really just looks like SFT,
@@ -448,8 +451,11 @@ solved that yet" (≈1:17:54).
 ![Slide 64 — Things to watch out for - mode collapse](../raw/images/15-mid-post-training/slide-64.jpg)
 *Slide 64 — the entropy histogram: RLHF'd models concentrate their probability mass.*
 
-Both matter more next lecture, "where the entropy and exploration is actually
-quite critical for the model to explore all the possible solutions" (≈1:18:41).
+Both matter more in [lecture 16](16-post-training-rlvr.md), "where the entropy
+and exploration is actually quite critical for the model to explore all the
+possible solutions" (≈1:18:41). That lecture's data-side answer is difficulty
+filtering — keeping problems the model solves sometimes but not always, so there
+is something to explore toward. See [Kimi K1.5](kimi-k1-5.md).
 
 See [reward overoptimization](reward-overoptimization.md) and
 [mode collapse and calibration](mode-collapse-and-calibration.md).

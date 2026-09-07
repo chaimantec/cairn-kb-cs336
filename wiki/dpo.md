@@ -144,5 +144,7 @@ enough for Llama, it's good enough for me" (≈1:14:02).
 - [PPO](ppo.md) — what it replaces
 - [Reward models](reward-models.md) — why the $\log Z(x)$ term cancels
 - [Style and length bias](style-and-length-bias.md) — what length-normalized variants are defending against
-- [Lecture 15](15-mid-post-training.md)
+- [GRPO](grpo.md) — the other escape from PPO, for verifiable rather than pairwise rewards
+- [Kimi K1.5](kimi-k1-5.md) — a DPO-style derivation that lands on GRPO
+- [Lecture 15](15-mid-post-training.md), [Lecture 16](16-post-training-rlvr.md)
 - [Course material for lecture 15](../raw/slides/15-mid-post-training.md)
