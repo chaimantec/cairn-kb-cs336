@@ -2828,3 +2828,80 @@ discrepancy, do not absorb it silently.
       AI-generated slides; the restorations that no deck could confirm; and the
       corporate claims the KB reports without vouching for.
 - [x] Commit and push
+
+### Lessons from run 19 — and the build is finished
+
+- **THE KB IS COMPLETE: 18 of 18 lectures.** 192 wiki pages, 18 transcripts, 17
+  slide files, 490 images across 17 lectures. No further lecture work exists
+  unless the course re-syncs its playlist. If it does, the "Updating an existing
+  KB" section of the skill applies, and the FIRST thing to re-read is the
+  coverage prose, not the coverage numbers.
+- **WRITE THE CHECKERS AS SAVED SCRIPTS.** This is the biggest process lesson of
+  the whole build. Runs 1-18 rewrote them ad hoc every time and threw them away,
+  which is precisely why the notes record 23 rediscovered checker bugs. Writing
+  them once found TEN MORE (#24-#33) and then earned it immediately. They now
+  live at `../kb-checkers/` with every bug documented; the session scratchpad
+  would have deleted them. TOTAL CHECKER BUGS ACROSS THE BUILD: 33.
+- **THE QUOTE CHECKER IS THE ONE THAT PAYS.** The link sweep found 5 dangling
+  links and the transcript checks found nothing wrong at all — but the quote
+  checker found NINE REAL DEFECTS in 309 quotations, in prose that read
+  perfectly. The worst was substituting LaTeX for the words actually spoken
+  INSIDE quotation marks ("$t$" for "t", "$2^{16}$" for "2 to the 16th"), done
+  three times without noticing. Run 19's warning about the reworded blockquote
+  was not a one-off; it is the standing failure mode of writing a wiki from a
+  transcript you have just read closely, because you remember the MEANING and
+  reconstruct the words.
+- **A CHECKER THAT REPORTS 90 FAILURES IS BROKEN; A CHECKER THAT REPORTS 9 IS
+  WORKING.** The first run reported 90 of 146 quotations unmatched. Triaging
+  those by hand would have taken longer than the wiki did. What made it usable
+  was a LONGEST-COMMON-PREFIX diagnostic: for each failure, print how many
+  characters matched and what the transcript says at the divergence point. That
+  turns "not found" into "you dropped the word 'there's' here" and separates the
+  six artifact classes from the real defects in one pass. Write that diagnostic
+  FIRST next time; it is twenty lines.
+- **TERMINAL PUNCTUATION IS THE LINE.** The rule that made the quote checker
+  signal-bearing rather than noisy: the WORDS must be verbatim, the final
+  comma/period need not be. Encode the editorial convention rather than
+  demanding byte-identity, or the real defects drown.
+- **"NO MATERIAL EXISTS" IS A FINDING THAT MUST BE RECORDED WITH ITS SEARCH.**
+  The run-19 warning was to apply CS224N's "list the directory" rule before
+  concluding a deck is missing, and it was worth doing: the schedule turned out
+  to list TWO guest lectures, so the catalog's "18" is the course's session 19.
+  But the more useful output is the RECORD — sources.md now says exactly where
+  the search looked (schedule rows, a 425-path repo tree, both sibling-year
+  archives, the site repo) and on what date, so nobody repeats it.
+- **A LECTURE WITH NO SLIDES LOSES ONE CHECK, SO REPLACE IT.** The proper-noun
+  grep against the deck is impossible with no deck. The substitute that worked
+  was adjudicating the riskiest restorations against the talk's OWN internal
+  repetition: "micro kernels" is sound because the speaker's next clause says
+  "mega kernels"; "life of a kernel" is sound because "lifetime of a token"
+  appears verbatim twice earlier; "Grock" is Groq not Grok because the same
+  sentence says "the LPU". Each took one grep. Insisting the agent tag every
+  restoration as confirmed-vs-inferred is what made that possible.
+- **PARTIAL IMAGE COVERAGE IS THE STATE THAT MISLEADS.** 17 of 18 lectures have
+  images, so the pattern holds everywhere a reader looks — until lecture 18.
+  AGENTS.md previously said "Lecture 18 is not in this KB at all, so it has no
+  images", a sentence whose first half this run made false while the second
+  stayed true. That is the exact shape that gets a URL invented. It now states
+  that lecture 18 IS here, has no images, never will, and why.
+- **THE COVERAGE SWEEP FOUND STALE PROSE FROM SEVEN RUNS AGO.** INDEX.md still
+  claimed "All twelve covered lectures have them", named six decks and six
+  programs (there are eight and nine), and reported 31 MB of images against an
+  actual 75 MB. Both AGENTS.md and course-map.md still called the Systems unit
+  "still a preview" when lectures 5-8 and 10 had been covered for months. Run
+  17's lesson has now been re-learned three times running: A ROW-ONLY UPDATE
+  LEAVES THE SURROUNDING SENTENCES ASSERTING THE OPPOSITE OF THE TRUTH. The only
+  reliable method is to grep for the CLAIM WORDS ("twelve", "preview", "does not
+  yet cover", "31 MB"), not for the lecture numbers.
+- **NEW PAGES ARRIVE AS AN ISLAND.** All 14 new pages linked each other and
+  nothing else; not one of the 178 established pages pointed into them, so the
+  chat would only reach them from the index. Inbound links from the pages a
+  reader is actually on (10-inference, kv-cache, flash-attention, …) are a
+  separate step from writing the pages, and easy to skip because every automated
+  check passes without them. Add it to the wiki checklist.
+- **DELEGATION SHAPE THAT WORKED.** One Sonnet agent for the copy-edit, nothing
+  else — the wiki prose stayed in the parent, per the skill. The agent handled
+  ~14k words, wrote incrementally, was not killed, and its three checks passed
+  first time. Giving it the list of garbles already adjudicated in the parent
+  (KP cache, GPD2, cloud code, Sabbonova…) plus an explicit DO-NOT-RESOLVE list
+  is what kept it from guessing.
