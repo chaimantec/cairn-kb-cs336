@@ -2416,4 +2416,39 @@ conclusion. `--verify` therefore degenerates to a heading-sequence check.
       defects, the transcript's rate-limit handover and two reverted
       restorations, and the KB-wide image check that found run 16's three
       mismatched embeds.
-- [ ] Commit and push
+- [x] Commit and push
+- n/a kbUrl already set on the catalog entry from run 1; no re-link needed
+
+### Lessons for run 18
+- INCREMENTAL WRITES SAVED THIS RUN. The transcript agent was killed by a
+  session rate limit at paragraph 80 of 99 and lost NOTHING, because the prompt
+  required it to append each batch. The parent finished the last 19 paragraphs
+  in about ten minutes; waiting for the limit to reset would have cost 3.5
+  hours. Keep that instruction in every agent prompt.
+- A KILLED AGENT'S HEADER MAY STILL BE COMPLETE. This one ran its terminology
+  research over the WHOLE transcript before writing, so its header documented
+  restorations for paragraphs it never reached — which is exactly what the
+  parent needed to finish the tail consistently. Read the partial artifact
+  before assuming what is missing.
+- THE COVERAGE SWEEP MUST RE-READ SENTENCES, NOT JUST ADD ROWS. Six stale
+  claims were found in AGENTS.md, kb.json and INDEX.md, most of them from
+  earlier runs that had added a table row and left the surrounding prose
+  asserting the old count.
+- NEVER CONSTRUCT AN IMAGE PATH. Three were constructed this run and all three
+  were caught by the new check: slide-31 is a .png not a .jpg, and slides 43
+  and 56 have no image at all because they were deliberately skipped. Run the
+  image check after every batch of wiki writing, not once at the end.
+- THE NEW CHECK TO KEEP: imgcheck compares alt text, italic caption and
+  filename for every embedded image and verifies the file exists. It found
+  three real defects from run 16 on its first run over the existing KB.
+- CHECKER BUGS NOW TOTAL TWENTY. Three more this run, all in the link sweep:
+  GitHub's slugger does not collapse whitespace left by removed punctuation
+  ("Unit 1 — Basics" is `unit-1--basics`), Triton kernel launches inside code
+  fences parse as markdown links, and directory links are valid though
+  `git ls-files` lists none. The first sweep reported 70 problems and every one
+  was the checker's fault.
+- QUOTE FROM THE EDITED TRANSCRIPT, AND WATCH THE SPELLING. Six quotation
+  errors this run, two of them recurrences of classes earlier runs recorded: a
+  British "centre" inside a quotation where the slide prints "center", and one
+  quote taken from the raw captions ("this LIKE kind of emergent jump") rather
+  than the edited text.
