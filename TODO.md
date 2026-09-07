@@ -2334,8 +2334,23 @@ conclusion. `--verify` therefore degenerates to a heading-sequence check.
       One [Ed: unclear] left rather than guessed: "SFT prels you" at 1:11:45.
 
 ### Wiki
-- [ ] wiki/16-post-training-rlvr.md
-- [ ] Topic pages — new and extended
+- [x] wiki/16-post-training-rlvr.md (~525 lines, 21 of the 47 figures embedded)
+- [x] Topic pages — 18 NEW. The overlap check found that run 16 had created
+      rlhf, ppo, dpo, reward-models and reward-overoptimization but nothing on
+      RLVR, GRPO, reasoning models or agents, so this lecture opens a new area
+      rather than extending one. New: rlvr, grpo, verifiable-rewards,
+      reward-hacking, advantage-estimation-and-baselines, length-bias-in-rl,
+      deepseek-r1, kimi-k1-5, qwen3, agentic-rl,
+      process-vs-outcome-supervision, expert-iteration, rl-infrastructure,
+      reasoning-models, long-chain-of-thought, test-time-scaling,
+      thinking-mode-fusion, reasoning-distillation.
+      Two threads run across several pages and are stated explicitly rather
+      than left implicit: (1) GRPO's length normalizer is an ARTIFACT that
+      explains R1's famous growing-CoT plot, so length growth is not evidence
+      of better reasoning; (2) "verifiable" is much weaker than it sounds —
+      Kimi checks math with a reward model, and the Lean compiler turned out
+      not to be adversarially robust.
+- [ ] Extend existing pages that now link a second lecture
 - [ ] INDEX.md
 - [ ] Link sweep against `git ls-files`
 - [ ] Citation and quote check (reuse run 16's corrected checker)

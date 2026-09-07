@@ -345,7 +345,7 @@ $$\mathrm{len\_reward}(i) = \begin{cases} \lambda & \text{if } r(x,y_i,y^*) = 1 
 
 The slide reads it off in three lines: $\lambda$ ranges over $[0.5, -0.5]$, with
 longer sequences in a group being negative; **correct answers are incentivized to
-be short**; and **incorrect answers are incentivized to be shorter than the centre
+be short**; and **incorrect answers are incentivized to be shorter than the center
 of the range of rollouts** — not to be as short as possible, which is exactly the
 geometry collapse above. The $\min(0,\lambda)$ on the incorrect branch is what
 enforces that asymmetry. Two further notes: Kimi does not normalize by sequence
