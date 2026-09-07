@@ -2306,9 +2306,32 @@ conclusion. `--verify` therefore degenerates to a heading-sequence check.
 
 ### Transcript
 - [x] 16 — verbatim captions fetched (99 paragraphs, ~14.8k words)
-- [ ] 16 — copy-edited transcript (Sonnet draft, adjudicated here)
-- [ ] 16 — verify: timestamps, number inventory, per-paragraph word ratios,
-      proper-noun grep against the deck
+- [x] 16 — copy-edited transcript. THE SONNET AGENT WAS KILLED MID-TASK BY A
+      SESSION RATE LIMIT after paragraph 80. Because it had been appending each
+      batch to disk as instructed, NOTHING WAS LOST — the skill's rule 6 paid
+      off exactly as written. Paragraphs 81-99 were written by the parent,
+      applying the restorations the draft's own header had already researched
+      for that range (it had done its terminology pass over the whole
+      transcript before writing, so the header covered paragraphs it never
+      reached). Sonnet was rate-limited until 8am, so waiting would have cost
+      3.5 hours for 19 paragraphs.
+- [x] 16 — verify: all four checks pass.
+      Timestamps: 99 markers, identical sequence, none moved.
+      Numbers: every difference adjudicated. TWO DRAFT CHANGES REVERTED AS
+      UNSAFE, both on the same model name: it renumbered the spoken "Quen 3.5
+      Next Coder" to "Qwen3-Coder-Next" (dropping a version number the
+      lecturer says twice, on the authority of slide 55's title card), and it
+      rendered the garble "clen coder next" as "Qwen3-Coder-Next", ADDING a
+      "3" that is not spoken. His spoken forms are restored with an [Ed:] note
+      giving the deck's printed name. The rest are the documented restorations
+      plus four benign spell-outs in both directions.
+      Ratios: ZERO of 99 paragraphs outside the 0.72-1.10 band (0.74-1.00), so
+      no content moved across a marker boundary.
+      PROPER-NOUN GREP: all 23 restorations claimed as confirmed appear in the
+      deck. Of seven claimed as context-only, six are genuinely absent as
+      labelled; the seventh, "z-score", IS printed in the deck and was
+      reclassified as confirmed — a strengthening, not an error.
+      One [Ed: unclear] left rather than guessed: "SFT prels you" at 1:11:45.
 
 ### Wiki
 - [ ] wiki/16-post-training-rlvr.md
