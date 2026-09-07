@@ -2547,7 +2547,14 @@ KB can copy, look at and describe.
       mobile paper" (probably Molmo, but flagged, not substituted).
 
 ### Wiki
-- [ ] wiki/17-multimodality.md
+- [x] wiki/17-multimodality.md — 568 lines, 15 of the 32 figures embedded in the
+      passages that need them. Includes a "Questions from the floor" section:
+      five exchanges carry material found nowhere in the program (why text
+      rather than augmentation as the training signal, caption noise, data
+      loading as the real systems cost, and why vision encoders stay small).
+      Records one attribution the KB does NOT vouch for: the lecturer calls
+      DeepStack "a paper from the DeepSeek team" and no course material
+      corroborates it, so the page says so rather than repeating or correcting.
 - [ ] Topic pages — this lecture opens a NEW area; the 143 existing topic pages
       contain nothing on vision encoders, VLMs or discrete image tokens
 - [ ] Close the 2 forward references (INDEX.md:30, wiki/course-map.md:12)
