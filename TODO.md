@@ -2644,3 +2644,58 @@ KB can copy, look at and describe.
       source's own 1.32M-vs-1.6M inconsistency, and the transcript's
       student-question handling.
 - [x] Commit and push
+
+### Lessons for run 19
+- ONLY LECTURE 18 REMAINS — the Dan Fu guest lecture (video 9EEm4iMAF5s, 72 min).
+  It is a GUEST lecture, so check first whether any course material exists for it
+  at all: it is neither a Percy `.py` nor a Hashimoto `.pdf`, and the lectures
+  repo publishes NOTHING for lecture 18. Before recording it as transcript-only,
+  apply the skill's "list the directory" rule — CS224N run 12 found two guest
+  decks filed under SPEAKER NAMES in a different quarter's archive, and a
+  filename-pattern search missed both. Try the course site's own schedule page
+  and search for "Dan Fu" rather than "lecture_18".
+- A CHEAP LECTURE IS STILL A FULL RUN. Lecture 17 was the easiest possible shape
+  — 302 source lines, computes nothing, all 32 figures in the course repo — and
+  it still needed the full pipeline. The saving showed up as no runtime-value
+  recovery and no numbering derivation, not as fewer checks.
+- THE ONLY ERROR IN 32 FIGURE DESCRIPTIONS WAS A CHART AXIS. Again. That is now
+  the dominant error class across the whole build (seven in lecture 9's deck).
+  Two large tables came back exact — including a 512-cell benchmark table — which
+  matches every prior run: tables are reliable, charts are not. TARGET CHART
+  AXES SPECIFICALLY when the spot-check budget is small, and verify a claimed
+  log axis by measuring whether equal ratios occupy equal pixel spans.
+- INTERNAL CONSISTENCY IS STILL THE BEST FREE CHECK. Two donut charts were
+  corroborated WITHOUT OPENING THEM, by summing their own itemized dataset lists
+  against their printed percentages — every category landed within ~1 point. The
+  same check surfaced a real defect in the SOURCE (items summing to 1.32M against
+  a printed 1.6M). Do this before spending a page-image read.
+- AN AGENT'S OWN INFERENCE CAN BE VERIFIED THE SAME WAY. The reader of the
+  Qwen3-VL table INFERRED the bold/underline convention because the page prints no
+  legend, and flagged it as an inference. That it holds on all 64 rows — including
+  two inverted lower-is-better rows and a tie — is stronger evidence than a legend
+  would have been. Reward agents that flag inferences; they are checkable.
+- WRITE THE QUOTE CHECKER AGAINST BOTH SOURCES, AND EXPECT THREE REWRITES. The
+  first version reported 101 problems and essentially all were artifacts: it
+  cross-paired quotation marks across intervening prose, could not handle an
+  ellipsis marking an elision, and searched only the transcript when many
+  quotations come from the PROGRAM. Fixes that matter: search transcript AND
+  slide file, split each quote on its ellipses and check the fragments, strip
+  `[MM:SS]` markers from the haystack (a quoted sentence can span a paragraph
+  boundary), and join multi-line blockquotes before checking. It still found two
+  real misquotes, including a blockquote that had been REWORDED rather than
+  quoted — the most dangerous kind, because it reads perfectly.
+- CHECKER BUGS NOW TOTAL TWENTY-THREE. Three more this run, all in the quote
+  checker, listed above. The link sweep reported ZERO false positives because it
+  re-encoded run 17's three bugs from the start — that is the payoff for writing
+  them down.
+- THE COVERAGE SWEEP CAUGHT FOUR PROSE CLAIMS, NOT FOUR NUMBERS. Run 17's lesson
+  held exactly: AGENTS.md said eight of nine executable lectures were transcribed
+  and that "Lectures 17 and 18 are not in this KB at all"; INDEX.md's banner
+  asserted there were "still no transcripts and no wiki pages" for lecture 17;
+  course-map.md listed it as a preview. A row-only update leaves the surrounding
+  sentences asserting the opposite of the truth.
+- TRUST THE LECTURE OVER THE SYLLABUS. The catalog, the course site and this KB's
+  own sources.md all called lecture 17 "Alignment, multimodality". The program's
+  first line calls it "multimodal models" and there is no alignment content in its
+  302 lines. Settling that BEFORE writing (rather than after) is what kept the
+  slug, the wiki page, the index entry and kb.json consistent.
