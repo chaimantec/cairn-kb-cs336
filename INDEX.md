@@ -267,7 +267,9 @@ usually the faster route than the lecture pages.
 - **[Lecture 17 — Multimodality](wiki/17-multimodality.md)** — the lecture page:
   why every modality has to become tokens, then CLIP → SigLIP → LLaVA →
   LLaVA-OneVision → Qwen-VL/2-VL/3-VL → Chameleon as successive answers. Carries
-  15 of the lecture's 32 figures; the topic pages below carry the rest. Note the
+  15 of the lecture's 32 figures; the other 17 are in
+  [`raw/slides/17-multimodality.md`](raw/slides/17-multimodality.md) only, beside the
+  slide each shows — no topic page below carries one. Note the
   syllabus calls this lecture "Alignment, multimodality" — it contains no
   alignment content.
 - **[Multimodal models](wiki/multimodal-models.md)** — the framing: why
@@ -329,8 +331,10 @@ usually the faster route than the lecture pages.
 - **[Lecture 16 — Post-training: RLVR](wiki/16-post-training-rlvr.md)** — the
   lecture page: why RLHF has a compute ceiling and a verifier removes it, PPO's
   implementation reality, GRPO and its two flaws, then DeepSeek-R1, Kimi K1.5,
-  Qwen 3 and agentic RL read side by side. Carries 21 of the lecture's 47
-  figures; the topic pages below carry the rest.
+  Qwen 3 and agentic RL read side by side. Carries 20 of the lecture's 47
+  figures; the topic pages below re-show 15 of those 20 in context, and the other 27
+  are in [`raw/slides/16-post-training-rlvr.md`](raw/slides/16-post-training-rlvr.md)
+  only, beside the slide each shows.
 - **[RLVR](wiki/rlvr.md)** — reinforcement learning from verifiable rewards: the
   idea, why it lifts RLHF's ceiling, and the two ways "verifiable" turns out to
   be weaker than it sounds.
@@ -387,9 +391,10 @@ usually the faster route than the lecture pages.
 
 - **[Lecture 15 — Mid/Post-Training](wiki/15-mid-post-training.md)** — the lecture
   page: the whole arc from base model to chat model, in the order the lecture
-  builds it. Carries 17 of the lecture's 38 figures; the topic pages below carry
-  the rest. Read it first if you want the shape of the lecture rather than one
-  answer.
+  builds it. Carries 17 of the lecture's 38 figures, and the topic pages below
+  carry 17 more; the remaining 4 are in
+  [`raw/slides/15-mid-post-training.md`](raw/slides/15-mid-post-training.md) only.
+  Read it first if you want the shape of the lecture rather than one answer.
 - **[Supervised fine-tuning](wiki/supervised-fine-tuning.md)** — why the method is
   deliberately boring and the data is everything. SFT as *extraction* rather than
   instruction: 500 examples measurably steer a model, adding correct data can make
@@ -1200,8 +1205,9 @@ usually the faster route than the lecture pages.
   no course material exists for it. **Lecture 12 is the richest of the programs,
   with 33** — it is the most image-dense lecture in the course, and its figures
   (leaderboard screenshots, benchmark example questions, results charts) *are* its
-  content rather than a supplement to it. Lecture 10 is next with 22, mostly
-  reproduced tables and charts from the papers it discusses. Nine further images in
+  content rather than a supplement to it. Lecture 17 is next with 32, then
+  lecture 10 with 22, whose figures are mostly reproduced tables and charts from
+  the papers it discusses. Nine further images in
   lecture 12 are hot-linked by the course to third-party sites and are **not** copied
   here; the slide file records their URLs at the point they appear. Each image sits beside the slide it shows in
   `raw/slides/`, and in `wiki/` wherever a page cites that slide. About a third of every

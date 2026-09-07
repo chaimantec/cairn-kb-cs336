@@ -47,6 +47,12 @@
       "18": "none"
     },
     "figuresAudited": false,
+    "figureAudit": {
+      "decksAudited": 6,
+      "decksTotal": 8,
+      "unaudited": [15, 16],
+      "note": "false means NOT ALL decks were audited, not that none were. Six of the eight page-image decks (3, 4, 5, 8, 9, 11) had an independent figure audit against the PDF, and each records in its front matter which pages were checked and what was found; lecture 8's is the most heavily audited and lecture 11 had two passes over 15 of its 58 pages, leaving 43 pages whose chart values nobody re-checked. Lectures 15 and 16 were transcribed with no independent audit, at the user's instruction, to save cost; both front matters say so and carry a Known gaps section. Treat their chart values as less certain than the other six decks'. The nine executable lectures are not in this count: their figures are the course's own image files, not transcriptions of rendered pages, so there is nothing to audit."
+    },
     "sourceRepo": "https://github.com/stanford-cs336/lectures",
     "images": {
       "lecturesWithImages": 17,

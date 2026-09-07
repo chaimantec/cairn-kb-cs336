@@ -318,9 +318,10 @@ Lecture 11 was a partial entry for one run — deck and images but no transcript
 and is now complete, with [a transcript](raw/transcripts/11-scaling-laws-in-the-wild.md)
 and [a lecture page](wiki/11-scaling-laws-in-the-wild.md) alongside its 32 images.
 
-Lecture 10 is by far the richest of the executable lectures — 22 against 4-9 for the
-others — because it is an unusually illustrated program: most of its figures are
-reproduced tables and charts from the papers it discusses. It also hotlinks **6** further
+Lecture 10 has 22 — third among the executable lectures, behind lecture 12's 33 and
+lecture 17's 32 and clear of the 4-14 the rest carry — because it is an unusually
+illustrated program: most of its figures are reproduced tables and charts from the
+papers it discusses. It also hotlinks **6** further
 images to third parties (four from the JAX scaling book, one from Baseten, one from
 Anyscale). Those were **not** copied. They appear in `raw/slides/10-inference.md` as bare
 URLs with no description, because they were not looked at and are not ours to
@@ -342,9 +343,18 @@ read the path and use the URL that comes back; do not write an absolute
 into the page and a fork or rename breaks every figure.
 
 To list a lecture's images without reading the whole page:
-`grep -o 'raw/images/[^)]*' wiki/09-scaling-laws.md`. Lecture 11's images live only in its
-slide file, since its wiki page cites slides rather than embedding figures:
-`grep -o '\.\./images/[^)]*' raw/slides/11-scaling-laws-in-the-wild.md`.
+`grep -o 'raw/images/[^)]*' wiki/09-scaling-laws.md`.
+
+**`wiki/` carries a subset; `raw/slides/` carries all 490.** Every image sits under its
+`## Slide N` heading in the slide file, and a wiki page embeds one only where it cites
+that slide — so a lecture's wiki page showing few images, or none, is never evidence that
+the images are missing. **Lectures 10 and 11 are the two whose images live only in their
+slide files**, since both wiki pages cite slides rather than embedding figures; grepping
+`wiki/10-inference.md` or `wiki/11-scaling-laws-in-the-wild.md` returns nothing at all.
+Others are partial to varying degrees: lecture 1 shows 2 of its 9, lecture 9 shows 17 of
+40, lecture 16 shows 20 of 47 and lecture 17 shows 15 of 32. For any of them, list the
+images from the slide file instead:
+`grep -o '\.\./images/[^)]*' raw/slides/10-inference.md`.
 
 Three further conventions:
 
