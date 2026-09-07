@@ -2371,7 +2371,10 @@ conclusion. `--verify` therefore degenerates to a heading-sequence check.
 - [x] Citation and quote check — 215 timestamp citations across the 19 new
       pages, all matching a real marker; no nonexistent slide numbers; 0
       failing quotations after six corrections.
-- [ ] INDEX.md
+- [x] INDEX.md — banner now 1-16, a 19-entry annotated lecture-16 section at the
+      top of the wiki table of contents, the transcript list, and the deck list
+      (now eight decks, with 15 AND 16 flagged as the unaudited pair). All 159
+      wiki pages verified present in the index.
 - [ ] Link sweep against `git ls-files`
 - [ ] Citation and quote check (reuse run 16's corrected checker)
 
@@ -2394,7 +2397,23 @@ conclusion. `--verify` therefore degenerates to a heading-sequence check.
 - [ ] Embed into wiki/
 
 ### Publish
-- [ ] Coverage in all six places: INDEX.md, sources.md, AGENTS.md, kb.json,
-      wiki/course-map.md, AGENTS.md image-coverage table
-- [ ] kb.json — coverage 16/18, figuresAuditedByLecture["16"]=false
+- [x] Coverage in all six places, verified consistent by grep: INDEX.md,
+      sources.md, AGENTS.md, kb.json, wiki/course-map.md, and the AGENTS.md
+      image-coverage table.
+      SIX PRE-EXISTING STALE CLAIMS FOUND AND FIXED, most predating this run:
+      AGENTS.md still said figures were described "for Lectures 3, 4 and 5" (a
+      claim last true five runs ago), that the slide renders covered six decks
+      and "none of the six decks prints a folio", that "lectures 16-18 are not
+      in this KB at all", that "every lecture 1-15 has images", and that five of
+      the executable lectures were transcribed when it is now eight; kb.json
+      said "the six deck lectures" and "none of the three transcribed decks".
+      The lesson: the coverage sweep has to re-read these sentences, not just
+      append a row to the table.
+- [x] kb.json — coverage 16/18, 143 topic pages, 458 images / 60.5 MB across 16
+      lectures, byLecture["16"]="page-images",
+      figuresAuditedByLecture["16"]=false, slideDecks 8/8. Four new caveats:
+      the missing audit and what was checked instead, the deck's seven own
+      defects, the transcript's rate-limit handover and two reverted
+      restorations, and the KB-wide image check that found run 16's three
+      mismatched embeds.
 - [ ] Commit and push

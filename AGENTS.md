@@ -5,7 +5,7 @@ Stanford, Spring 2026 — Percy Liang and Tatsunori Hashimoto**. It is read by
 Cairn's in-extension AI chat, which fetches files over `raw.githubusercontent.com`
 and follows relative markdown links.
 
-**Coverage: Lectures 1–15 of 18.** See [`kb.json`](kb.json) and the banner
+**Coverage: Lectures 1–16 of 18.** See [`kb.json`](kb.json) and the banner
 at the top of [`INDEX.md`](INDEX.md). Any page describing later material is
 repeating Lecture 1's syllabus preview and says so in a blockquote at the top.
 
@@ -34,8 +34,8 @@ partially covered while the rest of that unit is still a preview.
 ## What is special about CS336
 
 **Half the lectures are Python programs, not slide decks.** Percy Liang's lectures
-(1, 2, 6, 7, 10, 12, 13, 14, 17) — five of which, 1, 2, 6, 7 and 10, are transcribed
-here — are *executable lectures* — programs whose
+(1, 2, 6, 7, 10, 12, 13, 14, 17) — eight of which, 1, 2, 6, 7, 10, 12, 13 and 14,
+are transcribed here — are *executable lectures* — programs whose
 execution delivers the content, rendered by a trace viewer. Tatsunori Hashimoto's
 (3, 4, 5, 8, 9, 11, 15, 16) are conventional PDFs.
 
@@ -53,7 +53,7 @@ Three consequences for anyone extending this KB:
 - **A website crawl misses the executable lectures entirely**, since the `.py`
   files are not linked as documents. `sources.md` lists them by hand.
 
-For decks (lectures 3, 4, 5, 8, 9, 11, 15, 16 — of which 3, 4, 5, 8 and 9 are done),
+For decks (lectures 3, 4, 5, 8, 9, 11, 15 and 16 — all eight now done),
 the normal rules apply: read the pages visually, transcribe per slide, and audit the
 figure descriptions. The precedents below come from lectures 3, 4 and 5; the later
 runs' additions are in the **Run 8** and **Run 9 precedents** sections at the end of
@@ -195,12 +195,14 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 - **Never invent course content.** If the transcript is unclear, say so on the
   page. Do not fill the gap from outside knowledge — the chat presents these pages
   as authoritative material from this course.
-- **Figures are described for Lectures 3, 4 and 5, and not for Lectures 1, 2, 6 or 7.**
-  Those three decks were read as page images, so `raw/slides/03-architectures.md`,
-  `raw/slides/04-attention-alternatives.md` and `raw/slides/05-gpus-tpus.md`
-  describe every figure in prose and wiki pages may cite them. Lectures 1, 2, 6 and 7 were transcribed from source text, so their
-  `image()` targets are recorded **by path only, with no description**, and no wiki
-  claim may rest on one. Check which kind of lecture you are citing before quoting a
+- **Figures are described for the eight deck lectures — 3, 4, 5, 8, 9, 11, 15
+  and 16 — and not for the executable ones.** Those eight decks were read as page
+  images, so their `raw/slides/*.md` files describe every figure in prose and wiki
+  pages may cite them. Lectures 1, 2, 6, 7, 10, 12, 13 and 14 were transcribed
+  from source text, so their `image()` targets are recorded **by path only, with
+  no description**, and no wiki claim may rest on one — except lectures 10, 12,
+  13 and 14, whose course-repo images *were* opened and described, and whose
+  slide files say so. Check which kind of lecture you are citing before quoting a
   figure.
 
   One exception is recorded explicitly: the FlashAttention-2 value at 1k on lecture
@@ -229,7 +231,7 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 
 ## Images
 
-Every lecture 1-15 has images. They are committed, not hotlinked, and they are the only
+Every lecture 1-16 has images. They are committed, not hotlinked, and they are the only
 part of this KB that redistributes course material rather than pointing at it.
 
 | Lecture | Files | Where they came from |
@@ -249,12 +251,22 @@ part of this KB that redistributes course material rather than pointing at it.
 | 13 Data I: Sources, Datasets | 14 | the course's own `images/*.png` |
 | 14 Data II: Filtering, Dedup, Mixing | 13 | the course's own `images/*.png` |
 | 15 Mid/Post-Training | 38 of 65 pages | rendered from `lecture_15.pdf` |
+| 16 Post-Training: RLVR | 47 of 61 pages | rendered from `lecture_16.pdf` |
 
-Lectures 16-18 are not in this KB at all, so they have no images.
+Lectures 17 and 18 are not in this KB at all, so they have no images.
 
-**Lecture 15's slide file had no independent figure audit** (the only page-image
-deck here without one), so treat its chart values as less certain than the other
-decks'. Its front matter says so and carries a *Known gaps* table.
+**Lectures 15 and 16 had no independent figure audit** — they are the only two
+page-image decks here without one, skipped at the user's instruction to save
+cost. Treat their chart values as less certain than the other six decks'. Both
+front matters say so and carry a *Known gaps* section.
+
+For lecture 16 the compensating checks were: a verified 1..61 heading sequence,
+a check that no LaTeX is trapped in a code fence, and two rendered images read
+back against their descriptions (slide 21's four-series chart, correct; slide
+57's diagram, correct apart from calling its text labels "boxes", now fixed).
+Two of its four readers also went past looking — slide 40's five series were
+disambiguated by RGB-sampling the legend swatches and bars rather than by eye,
+and slide 60's cropped y-axis range was recovered from an adjacent crop.
 
 **Lecture 14 hot-links five further images that are NOT redistributed here**, recorded
 as URLs only at the point they appear in
@@ -396,9 +408,10 @@ Hashimoto, from the course's own lecture repository at
 <https://github.com/stanford-cs336/lectures>:
 
 - **Slide renders** are whole pages of `lecture_03.pdf`, `lecture_04.pdf`, `lecture_05.pdf`,
-  `lecture_08.pdf`, `lecture_09.pdf` and `lecture_11.pdf`, at 1400px wide, JPEG q85 or PNG
+  `lecture_08.pdf`, `lecture_09.pdf`, `lecture_11.pdf`, `lecture_15.pdf` and
+  `lecture_16.pdf`, at 1400px wide, JPEG q85 or PNG
   whichever came out smaller. Each is named by its PDF page number, which is what this KB
-  cites as a slide number — none of the six decks prints a folio.
+  cites as a slide number — none of the eight decks prints a folio.
 - **The course's own figures** for lectures 1, 2, 6 and 7 are the files those executable
   lectures pass to `image()`, fetched unmodified from `images/` in the same repository.
   Figures those lectures display by *external* URL — NVIDIA documentation, arXiv, Wikimedia,

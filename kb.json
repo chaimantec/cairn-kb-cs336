@@ -9,11 +9,11 @@
     "courseUrl": "https://cs336.stanford.edu"
   },
   "coverage": {
-    "lecturesCovered": 15,
+    "lecturesCovered": 16,
     "lecturesTotal": 18,
-    "transcripts": 15,
-    "wikiLecturePages": 15,
-    "wikiTopicPages": 125
+    "transcripts": 16,
+    "wikiLecturePages": 16,
+    "wikiTopicPages": 143
   },
   "materials": {
     "primary": "mixed",
@@ -23,7 +23,7 @@
     },
     "slideDecks": {
       "available": 8,
-      "transcribed": 7
+      "transcribed": 8
     },
     "method": "mixed",
     "byLecture": {
@@ -41,16 +41,17 @@
       "12": "source-text",
       "13": "source-text",
       "14": "source-text",
-      "15": "page-images"
+      "15": "page-images",
+      "16": "page-images"
     },
     "figuresAudited": false,
     "sourceRepo": "https://github.com/stanford-cs336/lectures",
     "images": {
-      "lecturesWithImages": 15,
+      "lecturesWithImages": 16,
       "lecturesTotal": 18,
-      "files": 411,
-      "megabytes": 52.6,
-      "format": "For the seven PDF decks: whole slides rendered at 1400px, JPEG q85 or PNG whichever is smaller, named by PDF page number. For the eight executable lectures: the course's own images/*.png, fetched unmodified from the lectures repo.",
+      "files": 458,
+      "megabytes": 60.5,
+      "format": "For the eight PDF decks: whole slides rendered at 1400px, JPEG q85 or PNG whichever is smaller, named by PDF page number. For the eight executable lectures: the course's own images/*.png, fetched unmodified from the lectures repo.",
       "discovery": "inline in wiki/ and raw/slides/; no index file",
       "byLecture": {
         "1": 9,
@@ -67,7 +68,8 @@
         "12": 33,
         "13": 14,
         "14": 13,
-        "15": 38
+        "15": 38,
+        "16": 47
       },
       "note": "Coverage is every figure-bearing page of each deck (46 of 67, 48 of 60, 51 of 55, 51 of 73, 40 of 57, 32 of 58), and the course's own figures for the executable lectures, which have no deck. Roughly a third of each deck was deliberately NOT rendered - title cards, outlines, section dividers, pure-text bullets, and the pasted tables and equation blocks that raw/slides already reproduces cell by cell. So an image path must be read from a file, never constructed: slide-31.jpg existing says nothing about slide-32.jpg. LECTURE 12 IS THE IMAGE-DENSE ONE AND THE ONE TO READ CAREFULLY: 33 images, the most of any executable lecture, and its figures ARE its argument rather than illustrations of it - leaderboard screenshots, benchmark example questions and results charts, with the program's text lines mostly serving as one-line captions on them. Every ranking in those screenshots is a snapshot from when the lecture was prepared (Spring 2026) and has since moved, so cite them as 'as of the lecture', never as current. Nine further lecture-12 images are hot-linked by the course to third parties and were NOT copied; they appear in raw/slides/12-evaluation.md as bare URLs with no description, like lecture 10's six and lecture 13's four. LECTURE 13 IS THE OPPOSITE CASE TO LECTURE 12: only 14 images, and its argument is carried by the text rather than the figures, so a reader who reads only the text loses much less there. One of its figures, decline-consent.png, does NOT show what the lecture text implies - see the caveat about it. LECTURE 14 SITS BETWEEN THE TWO: 13 images, with the first half of the lecture (transformation, filtering, deduplication) carrying its argument in text and running code while the post-training half is essentially a tour of four papers through their figures. Five further lecture-14 images are hot-linked by the course to third parties and were NOT copied - a FinePDFs blog figure, a Semantic Scholar table image, two Sanity CDN LSH threshold curves and the Pile composition chart - so they appear as bare URLs with no description, like lecture 10's six, lecture 12's nine and lecture 13's four. Six of lecture 14's thirteen descriptions carry a 'before citing this figure' flag; read the Figure audit section of raw/slides/14-data-filtering-dedup-mixing.md before quoting any of them.",
       "thirdPartyNotRedistributed": "Lecture 13 hot-links four images that are NOT copied into this repo and are recorded as URLs only in raw/slides/13-data-sources-datasets.md: the Wikimedia web-crawler architecture diagram, the C4 domain breakdown and the Pile composition (both served from the Stanford CS324 Winter 2022 site), and a Dolma composition figure on a Medium CDN. Lecture 12 hot-links nine more on the same basis. No description of these exists here because nobody looked at them."
@@ -94,7 +96,8 @@
       "8": true,
       "9": true,
       "11": true,
-      "15": false
+      "15": false,
+      "16": false
     }
   },
   "license": {
@@ -120,10 +123,10 @@
       "claude-sonnet-5"
     ],
     "caveats": [
-      "PARTIAL: covers lectures 1-15 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 16-18 - RLVR, alignment/multimodality and the Dan Fu guest lecture - have no transcripts and no wiki pages. THE DATA UNIT IS COMPLETE (lectures 12, 13, 14) and the ALIGNMENT UNIT IS NOW OPEN: lecture 15 (mid/post-training - SFT and RLHF) is covered in full. Because lecture 15 repeatedly defers topics to lecture 16 - RLVR, GRPO, reasoning models - the KB stops at those handoffs too. Note that CS336 splits scaling laws across two lectures with inference in between: lecture 9 (basics), lecture 10 (inference) and lecture 11 (advanced) are all covered in full.",
+      "PARTIAL: covers lectures 1-16 of 18. Do not cite this KB as covering CS336 as a whole. Lectures 17 and 18 - alignment/multimodality and the Dan Fu guest lecture - have no transcripts and no wiki pages. THE DATA UNIT IS COMPLETE (lectures 12, 13, 14) and the ALIGNMENT UNIT IS NOW TWO LECTURES DEEP: lecture 15 (mid/post-training - SFT and RLHF) and lecture 16 (post-training - RLVR) are both covered in full, so the topics lecture 15 deferred to lecture 16 - RLVR, GRPO, reasoning models - are now covered rather than being handoff gaps. Note that CS336 splits scaling laws across two lectures with inference in between: lecture 9 (basics), lecture 10 (inference) and lecture 11 (advanced) are all covered in full.",
       "materials.method is 'mixed' and the split matters. Lectures 1, 2, 6, 7, 10, 12, 13 and 14 are executable Python programs (lecture_01.py, lecture_02.py, lecture_06.py, lecture_07.py, lecture_10.py, lecture_12.py, lecture_13.py, lecture_14.py), transcribed exactly from source text; that is not a lower grade than page-images, because there are no slides to have looked at. Lectures 3, 4, 5, 8, 9 and 11 are PDF decks (67, 60, 55, 73, 57 and 58 pages) read as page images, so their figures, charts and tables ARE captured. See materials.byLecture.",
-      "Figures: fully described for the six deck lectures (3, 4, 5, 8, 9, 11), where a reader looked at every page. For the six executable lectures (1, 2, 6, 7, 10, 12) raw/slides records each image() call at the point it appears; the 78 figures the course serves from its own repo are committed under raw/images/ and each carries a written description, but the figures those lectures display by EXTERNAL URL (NVIDIA documentation, arXiv, Wikimedia, Springer, the JAX scaling book, Baseten, Anyscale, X/Twitter, ARC Prize, Stanford CRFM's HELM asset host, the alpaca_eval repository, philschmid.de) are recorded as links only, with no description of their contents. No wiki claim rests on one of those. This matters most for lectures 4 and 5, whose decks are 102 images across 60 pages and 83 across 55 with most pages carrying under 40 words of native text, and for LECTURE 12, which is the most image-dense lecture in the course at 43 figures and whose leaderboards, example questions and results charts carry its argument rather than illustrating it.",
-      "None of the three transcribed decks prints a page number on any page, so slide labels in raw/slides/03-architectures.md, 04-attention-alternatives.md and 05-gpus-tpus.md are PDF page numbers, and all three files say so in their front matter. For lecture 3 a page-number scan reported one printed number; that glyph is the numerator of the MQA arithmetic-intensity fraction on page 61, not a folio. For lecture 4 the scan reported none and all 60 pages were checked by eye. For lecture 5 the scan reported none, a corner-position text-layer scan returned only mid-page body text, and the three readers who split the deck each confirmed the absence independently over their own range. On lecture 5 the numbering was derived in the parent BEFORE any page was read and handed to the readers as a conclusion, so no reader made a numbering judgement of its own.",
+      "Figures: fully described for the eight deck lectures (3, 4, 5, 8, 9, 11, 15, 16), where a reader looked at every page. For the executable lectures the course's own images were opened and described for 10, 12, 13 and 14, and recorded by path only - with NO description and no wiki claim resting on them - for 1, 2, 6 and 7.",
+      "None of the EIGHT transcribed decks prints a page number on any page, so slide labels in every raw/slides/ file for lectures 3, 4, 5, 8, 9, 11, 15 and 16 are PDF PAGE NUMBERS, settled before any page was read and handed to the readers as a conclusion. slide_number_map.py's --verify therefore degenerates to a heading-sequence check on all eight.",
       "Lecture 3's figure descriptions were audited against the PDF at 600-1200 dpi on 8 figure- and table-heavy pages (11, 12, 46, 50, 52, 55, 63, 67). Six were clean and both large numeric tables were exact cell for cell. Three errors were found and fixed: two sparse columns on slide 67 asserted to be uniformly empty (MoE is checked on GPT4 and Mixtral; Parametrization carries MuP on the Phi3 row), and one self-contradiction on slide 55 about whether an annotation was covered. Separately, the four views of the model database on slides 7, 29, 51 and 67 were cross-checked against each other: 296 overlapping cells, zero disagreements.",
       "Lecture 4's figure descriptions were audited against the PDF at 600-2200 dpi on 8 chart- and table-heavy pages (6, 11, 16, 20, 33, 35, 43, 52). Five were clean and 9 corrections were applied across pages 6, 11 and 43. Every one of the 9 was a chart value read slightly off, not a structural error: nothing was fabricated, no series was transposed, and all four audited tables (page 20's Llama 4 screenshot, page 35's 12-row native routing table, page 52's MiniCPM Table 6, page 6's ablation table) were exact cell for cell. The largest error was a systematic ~0.13 offset across one OLMoE validation-loss panel on page 43, from reading a linear x-axis as though it were spaced otherwise. Every claim the transcribers had themselves flagged as uncertain proved correct on audit.",
       "Lecture 4's deck contradicts itself in three places, and the transcription records each as printed rather than reconciling it: slide 47's printed expert-index vector '1 2 0 2 1 2' disagrees with its own stage labels (experts 0 and 2 swapped); slide 56's heading says 'Shared (1)' for DeepSeek v3 while its diagram shows two shared experts, and its bold line reads 'V2 (671B - 37 active)' under a v3 title; slide 39's code screenshot applies a jitter drawn around 1 with '+=' rather than '*='. Separately, slides 16 and 17 both plot Switch-Base runs but use different colour assignments and different series counts, so they must not be cross-quoted by colour, and slide 20's Llama 4 table screenshot is cropped mid-row below GPQA Diamond in the source image.",
@@ -192,8 +195,12 @@
       "LECTURE 14 FIGURE AUDIT, one pass: 2 of the 13 course-repo image descriptions were re-checked in the parent against the images. swezero-results.png was confirmed exactly - all 29 labelled points and all three arrow deltas. data-filtering-scale.png held structurally but needed two corrections, one of them an interpretive sentence over correct measured values (the fifth consecutive run in this build with that same failure). The remaining 11 descriptions carry the reader's own flags and were NOT independently re-checked: treat their values as good but unaudited.",
       "SIX FLAGS BOUND WHAT MAY BE QUOTED FROM LECTURE 14'S FIGURES, all recorded in raw/slides/14-data-filtering-dedup-mixing.md's Figure audit section. The sharpest: openthoughts-sources.png lists ELEVEN code-domain sources, not the 27 the lecture text beside it claims; four of data-filtering-scale.png's nine legend entries have NO plotted curve, so no loss value may be quoted for llm_curated, llm_curated_dclm_filtered, nemotron_full or nemotron_qhigh; marin-token-viewer.png prints no data labels at all, so all 30 of its bar values are visual estimates good to about +/-30-50B; and swe-rebench.png contains exactly one number and NOT the lecture's 3.4K-repo or 450K-PR figures.",
       "THREE NAMES IN LECTURE 14'S TRANSCRIPT ARE SPOKEN-ONLY, with no printed counterpart in any course material: Michael Ryan (credited with the preliminary filtering-scale experiment at 18:00), WebOrganizer (AI2's corpus-grouping tool, 1:11:44), and o1 (1:14:48). They rest on the captions plus context. The lecture also attributes the SWE-Zero paper to NVIDIA (1:18:41), which the source program does not state; wiki/agent-trajectory-data.md records that as what was said rather than as established fact.",
-      "LECTURE 15's SLIDE DECK HAD NO INDEPENDENT FIGURE AUDIT. It is the only page-image deck in this KB without one; the pass was skipped at the user's instruction to save cost. Its 65 pages were transcribed by five Sonnet readers and checked three ways instead: the heading sequence verifies exactly against the PDF, four rendered images were read back against their descriptions and matched (including all 36 cells of slide 44's heatmap and slide 26's seven-series legend), and the file carries a Known gaps table listing all 17 passages a reader marked illegible. Treat its chart values as less certain than the other six decks'. The known failure mode at this model is transposed legend colours and, rarely, a figure described that is not on the page.",
-      "Lecture 15's deck contains three defects of its own that are reproduced rather than silently corrected: slide 45's heading is printed 'RLFH' with the letters of RLHF transposed, slide 38's reproduced screenshot is cut off mid-word in the source image, and slide 43's table title is cropped by its own screenshot border."
+      "LECTURE 15's SLIDE DECK HAD NO INDEPENDENT FIGURE AUDIT. It and lecture 16's are the only two page-image decks in this KB without one; the pass was skipped at the user's instruction to save cost. Its 65 pages were transcribed by five Sonnet readers and checked three ways instead: the heading sequence verifies exactly against the PDF, four rendered images were read back against their descriptions and matched (including all 36 cells of slide 44's heatmap and slide 26's seven-series legend), and the file carries a Known gaps table listing all 17 passages a reader marked illegible. Treat its chart values as less certain than the other six decks'. The known failure mode at this model is transposed legend colours and, rarely, a figure described that is not on the page.",
+      "Lecture 15's deck contains three defects of its own that are reproduced rather than silently corrected: slide 45's heading is printed 'RLFH' with the letters of RLHF transposed, slide 38's reproduced screenshot is cut off mid-word in the source image, and slide 43's table title is cropped by its own screenshot border.",
+      "LECTURE 16's SLIDE DECK ALSO HAD NO INDEPENDENT FIGURE AUDIT, skipped at the user's instruction as for lecture 15. Four Sonnet readers took contiguous 15-16 page ranges of the 61-page deck. Compensating checks that WERE run: a verified 1..61 heading sequence; a check that no LaTeX sits inside a code fence; and two rendered images read back against their descriptions (slide 21's four-series DeepSeekMath chart, correct in series identity, legend order, axis ranges and endpoints; slide 57's distillation diagram, correct except that it called the diagram's plain text labels 'boxes', now fixed). Two readers also went beyond looking: slide 40's five series were disambiguated by RGB-sampling the legend swatches and the bars, and slide 60's cropped y-axis range was recovered from an adjacent crop. Treat its chart values as less certain than the six audited decks'.",
+      "Lecture 16's deck has seven defects of its own, reproduced rather than silently corrected and listed in its slide file's Known gaps section: a hidden text-layer string behind slide 8's caption that never renders (NOT transcribed as slide content); quote boxes on slides 34, 38 and 52 cropped mid-word by the slide's own edges; slide 54's ThinkFollow* row printing one merged value across two sub-columns; and typos printed on slides 43 ('traning') and 45 ('promt').",
+      "Lecture 16's transcript was drafted by Sonnet up to paragraph 80 of 99, when the agent was killed by a session rate limit; because it wrote incrementally nothing was lost, and paragraphs 81-99 were written by the Opus parent. All four checks pass: 99 timestamps identical and in order, zero paragraphs outside the 0.72-1.10 word-ratio band, all 23 deck-confirmed restorations found verbatim in the deck, and every number difference adjudicated. TWO DRAFT CHANGES WERE REVERTED AS UNSAFE, both on one model name: the draft renumbered the spoken 'Quen 3.5 Next Coder' to match slide 55's printed 'Qwen3-Coder-Next', dropping a version number the lecturer says twice, and rendered the garble 'clen coder next' as 'Qwen3-Coder-Next', adding a '3' spoken nowhere. His spoken forms are kept with an [Ed:] note giving the deck's printed name. One [Ed: unclear] remains at 1:11:45.",
+      "A KB-WIDE IMAGE CONSISTENCY CHECK was added in this run and found three defects from the previous one: wiki embeds whose alt text named a slide different from the image file shown. Slides 19 and 32 of lecture_15.pdf carry no raster and were correctly never rendered, so those embeds had been pointed at a neighbouring file - the exact failure AGENTS.md warns about. In one case the Safety flowchart (slide 22) was sitting in a passage about hallucination. All fixed; all images across the KB now agree on alt text, italic caption and filename."
     ]
   },
   "entryPoint": "INDEX.md",

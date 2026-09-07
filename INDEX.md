@@ -8,7 +8,7 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1–15 of 18
+> ## ⚠️ This knowledge base covers Lectures 1–16 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
@@ -17,14 +17,17 @@ compute and data?
 > (Scaling Laws — Basics), Lecture 10 (Inference), Lecture 11 (Scaling Laws in
 > the Wild), Lecture 12 (Evaluation), Lecture 13 (Data I — Sources and
 > Datasets), Lecture 14 (Data II — Filtering, Deduplication, Mixing,
-> Post-Training Data) and Lecture 15 (Mid/Post-Training — SFT and RLHF) are
-> covered in depth.**
+> Post-Training Data), Lecture 15 (Mid/Post-Training — SFT and RLHF) and
+> Lecture 16 (Post-Training — RLVR) are covered in depth.**
 > Nothing else is. **The Data unit is complete**, and the post-training unit is
-> now open: Lecture 15 takes the course from a base model to something close to
-> ChatGPT, via supervised fine-tuning and RLHF. There are still no transcripts and
-> no wiki pages for RLVR or multimodality (Lectures 16–17) or the guest lecture
-> (18) — so where lecture 15 defers a topic to "next lecture," as it repeatedly
-> does for RLVR, GRPO and reasoning models, this KB stops there too.
+> now two lectures deep: Lecture 15 takes the course from a base model to
+> something close to ChatGPT via supervised fine-tuning and RLHF, and
+> **Lecture 16 goes from there to o1- and R1-class reasoning models** via
+> reinforcement learning from verifiable rewards — PPO, GRPO, and the three open
+> recipes (DeepSeek-R1, Kimi K1.5, Qwen 3) read side by side. The topics lecture
+> 15 kept deferring to "next lecture" — RLVR, GRPO, reasoning models — are now
+> covered. There are still no transcripts and no wiki pages for alignment and
+> multimodality (Lecture 17) or the guest lecture (18).
 >
 > **A note specific to evaluation:** [Lecture 12](wiki/12-evaluation.md) is the
 > hinge of the course — the point where model-building stops and the question
@@ -191,6 +194,65 @@ If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 16 — post-training: RLVR
+
+- **[Lecture 16 — Post-training: RLVR](wiki/16-post-training-rlvr.md)** — the
+  lecture page: why RLHF has a compute ceiling and a verifier removes it, PPO's
+  implementation reality, GRPO and its two flaws, then DeepSeek-R1, Kimi K1.5,
+  Qwen 3 and agentic RL read side by side. Carries 21 of the lecture's 47
+  figures; the topic pages below carry the rest.
+- **[RLVR](wiki/rlvr.md)** — reinforcement learning from verifiable rewards: the
+  idea, why it lifts RLHF's ceiling, and the two ways "verifiable" turns out to
+  be weaker than it sounds.
+- **[GRPO](wiki/grpo.md)** — PPO with the value function deleted and the
+  baseline taken from sibling rollouts. The z-score advantage, why on-policy
+  running makes the clipping vanish, and why it is not a valid policy gradient.
+- **[Advantage estimation and baselines](wiki/advantage-estimation-and-baselines.md)**
+  — what the policy-gradient theorem actually licenses you to subtract, the
+  three ways to get a baseline, and why GAE is usually inert in language-model
+  PPO.
+- **[Length bias in RL](wiki/length-bias-in-rl.md)** — GRPO's length normalizer
+  rewards long *wrong* answers. Read this before believing that R1's growing
+  chain-of-thought plot shows the model thinking harder.
+- **[Verifiable rewards](wiki/verifiable-rewards.md)** — how much a checker
+  really buys. Kimi verifies mathematics with a reward model; the Lean compiler
+  turned out not to be adversarially robust.
+- **[Reward hacking](wiki/reward-hacking.md)** — reading the answer out of a
+  repository's future commits, why that looks like emergence in a training
+  curve, and why blocklisting `git log` does not close it.
+- **[DeepSeek-R1](wiki/deepseek-r1.md)** — the case study: R1-Zero as a
+  controlled experiment, and why both of its famous phenomena — growing CoT
+  length and the "aha moment" — are overstated.
+- **[Kimi K1.5](wiki/kimi-k1-5.md)** — the same destination by a different
+  derivation, plus length as a cost, best-of-$k$ difficulty filtering, and the
+  RL-infrastructure section.
+- **[Qwen 3](wiki/qwen3.md)** — the consolidated playbook, RL on roughly 4,000
+  examples, and thinking-mode fusion (which the field has since partly
+  reversed).
+- **[Agentic RL](wiki/agentic-rl.md)** — there is no agentic algorithm, only
+  data: midtraining sources, four expert models distilled back into one, and
+  SWE-bench-style environments generated from GitHub.
+- **[Process versus outcome supervision](wiki/process-vs-outcome-supervision.md)**
+  — why process reward models lost, and it was scalability of the supervision
+  rather than accuracy.
+- **[Expert iteration](wiki/expert-iteration.md)** — training on your own
+  correct answers, and Kimi's ablation showing RL consistently beats it.
+- **[RL infrastructure](wiki/rl-infrastructure.md)** — the straggler problem,
+  moving weights between a training and an inference system, and why chasing
+  utilization by reusing rollouts destabilizes training.
+- **[Reasoning models](wiki/reasoning-models.md)** — what defines one, and the
+  open question of whether RL is needed at all.
+- **[Long chain-of-thought](wiki/long-chain-of-thought.md)** — held three ways:
+  a capability, an inference cost, and an artifact of the objective.
+- **[Test-time scaling](wiki/test-time-scaling.md)** — accuracy degrades
+  gracefully as the thinking budget shrinks, even when the chain is truncated
+  mid-thought.
+- **[Thinking-mode fusion](wiki/thinking-mode-fusion.md)** — one model, two
+  behaviours, switched by a prompt tag; and why later releases went back on it.
+- **[Reasoning distillation](wiki/reasoning-distillation.md)** — SFT on someone
+  else's chains of thought recovers much of the capability, which reframes RL as
+  a source of supervision rather than an optimizer.
 
 ### Lecture 15 — mid/post-training: SFT and RLHF
 
@@ -893,7 +955,8 @@ usually the faster route than the lecture pages.
   [Lecture 12](raw/transcripts/12-evaluation.md),
   [Lecture 13](raw/transcripts/13-data-sources-datasets.md),
   [Lecture 14](raw/transcripts/14-data-filtering-dedup-mixing.md),
-  [Lecture 15](raw/transcripts/15-mid-post-training.md).
+  [Lecture 15](raw/transcripts/15-mid-post-training.md),
+  [Lecture 16](raw/transcripts/16-post-training-rlvr.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
@@ -948,20 +1011,29 @@ usually the faster route than the lecture pages.
     [`lecture_08.pdf`](raw/slides/08-parallelism-2.md) (73 pages) and
     [`lecture_09.pdf`](raw/slides/09-scaling-laws.md) (57 pages) and
     [`lecture_11.pdf`](raw/slides/11-scaling-laws-in-the-wild.md) (58 pages) and
-    [`lecture_15.pdf`](raw/slides/15-mid-post-training.md) (65 pages) are
+    [`lecture_15.pdf`](raw/slides/15-mid-post-training.md) (65 pages) and
+    [`lecture_16.pdf`](raw/slides/16-post-training-rlvr.md) (61 pages) are
     Tatsunori
     Hashimoto's slide decks, transcribed from the rendered page images, with every
     figure described in prose and every table transcribed cell by cell. Slide
-    numbers in all seven are **PDF page numbers**, because none of the decks prints
+    numbers in all eight are **PDF page numbers**, because none of the decks prints
     any of its own.
-    **Lecture 15's deck is the one to read with the most caution**: at the user's
-    instruction it was transcribed by five Sonnet readers with **no independent
-    figure audit**, the only page-image deck in this KB without one. Its front
-    matter says so, and it carries a *Known gaps* table listing all seventeen
-    passages a reader marked illegible — plus three defects in the deck itself,
-    including a heading printed "RLFH" for RLHF, reproduced rather than corrected.
-    Four of its rendered images were read back against their descriptions and
-    matched exactly. **Lecture 11's deck is the odd one out**: it is the only deck read
+    **Lectures 15 and 16 are the two decks to read with the most caution**: at
+    the user's instruction both were transcribed by Sonnet readers with **no
+    independent figure audit**, and they are the only two page-image decks in
+    this KB without one. Both front matters say so and both carry a *Known gaps*
+    section. Lecture 15's lists all seventeen passages a reader marked illegible,
+    plus three defects in the deck itself including a heading printed "RLFH" for
+    RLHF, reproduced rather than corrected; four of its rendered images were read
+    back against their descriptions and matched exactly. Lecture 16's readers
+    needed no illegibility marks — every dense page resolved after re-rendering
+    at 400-500 dpi — and its seven known gaps are all properties of the deck: a
+    hidden text-layer string behind slide 8's caption that never renders, three
+    quote boxes cropped mid-word by the slide's own edges, one merged table cell,
+    and two typos printed on the slides. Two of its rendered images were read
+    back and matched, and two of its readers went past looking — RGB-sampling a
+    legend's swatches to pin down slide 40's five series, and recovering slide
+    60's cropped axis range from an adjacent crop. **Lecture 11's deck is the odd one out**: it is the only deck read
     at Opus rather than Sonnet — a choice made because at 33 words of native text per page
     it is the most figure-dependent deck in the course. It has since had **two figure
     audit passes over 15 of its 58 pages** — 3 clean, 12 dirty, 31 corrections applied —

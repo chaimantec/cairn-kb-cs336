@@ -13,7 +13,7 @@ course figures (52.6 MB), so that an answer can *show* a figure instead of only
 describing it. See the Images section of `AGENTS.md` for what was rendered, what
 was not, and the attribution.
 
-**This KB currently covers Lectures 1–15 of 18.** The inventory below spans the
+**This KB currently covers Lectures 1–16 of 18.** The inventory below spans the
 whole course (and its two earlier offerings) so that provenance is recorded once.
 See `kb.json`.
 
@@ -124,7 +124,7 @@ timings, measured FLOP/s, MFU, peak-memory readings) are marked
 | 9 | Scaling laws (basics) | [`lecture_09.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_09.pdf) — **transcribed**, all 57 pages, at [`raw/slides/09-scaling-laws.md`](raw/slides/09-scaling-laws.md) |
 | 11 | Scaling laws (in the wild) | [`lecture_11.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_11.pdf) — **transcribed**, all 58 pages, at [`raw/slides/11-scaling-laws-in-the-wild.md`](raw/slides/11-scaling-laws-in-the-wild.md). |
 | 15 | Mid/post-training (SFT/RLHF) | [`lecture_15.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_15.pdf) — **transcribed**, all 65 pages, at [`raw/slides/15-mid-post-training.md`](raw/slides/15-mid-post-training.md). **No figure audit was run on this deck** — see its front matter. |
-| 16 | Post-training — RLVR | [`lecture_16.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_16.pdf) |
+| 16 | Post-training — RLVR | [`lecture_16.pdf`](https://github.com/stanford-cs336/lectures/blob/main/lecture_16.pdf) — **transcribed**, all 61 pages, at [`raw/slides/16-post-training-rlvr.md`](raw/slides/16-post-training-rlvr.md). **No figure audit was run on this deck** — see its front matter. |
 
 **`lecture_03.pdf`, `lecture_04.pdf`, `lecture_05.pdf`, `lecture_08.pdf`, `lecture_09.pdf` and `lecture_11.pdf` have been transcribed.** All were read as
 page images — every figure described in prose, every table transcribed cell by cell
