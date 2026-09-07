@@ -394,7 +394,7 @@ vision encoder being a black box that just outputs a sequence of vectors"
 > before repeating the attribution.
 
 Pre-training is a **context-length curriculum** — train the adapter, then everything
-at 8K, 32K and 256K, with "most of the tokens in stages two and three" (≈57:50) —
+at 8K, 32K and 256K, with "most of the tokens are in stages two and three" (≈57:50) —
 and post-training is [lecture 16](16-post-training-rlvr.md) applied to a
 multimodal model: long chain-of-thought SFT, distillation, then RL.
 

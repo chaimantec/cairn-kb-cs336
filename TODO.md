@@ -2375,8 +2375,23 @@ conclusion. `--verify` therefore degenerates to a heading-sequence check.
       top of the wiki table of contents, the transcript list, and the deck list
       (now eight decks, with 15 AND 16 flagged as the unaudited pair). All 159
       wiki pages verified present in the index.
-- [ ] Link sweep against `git ls-files`
-- [ ] Citation and quote check (reuse run 16's corrected checker)
+- [x] Link sweep — 3,372 relative links across 218 tracked markdown files, 0
+      broken, 0 bad anchors. The checker re-encodes all three run-17 bugs
+      (GitHub's slugger leaves double hyphens where punctuation was removed;
+      code fences parse as links; directory links are valid though
+      `git ls-files` lists none), so it reported zero false positives.
+- [x] Citation and quote check — 179 timestamp citations across the 19 new
+      pages, ALL matching a real marker. TWO REAL MISQUOTES found and fixed:
+      "most of the tokens in stages two and three" had dropped the verb ("are"),
+      and multimodal-rope.md's blockquote had been REWORDED rather than quoted
+      ("If you remember RoPE, each component represents..." for the actual "The
+      problem, if you remember RoPE, is that each component represents...").
+      The checker needed two rewrites to be usable: the first version reported
+      101 problems, essentially all artifacts — it cross-paired quotation marks
+      across intervening prose, could not handle an ellipsis marking an elision,
+      and searched only the transcript when many quotations come from the
+      PROGRAM. Checking against transcript AND slide file, splitting on
+      ellipses, and stripping timestamp markers from the haystack took it to 13. (reuse run 16's corrected checker)
 
 ### Images (Step 1c)
 - [x] Render figure slides into raw/images/16-post-training-rlvr/ — 47 images,
@@ -2555,11 +2570,42 @@ KB can copy, look at and describe.
       Records one attribution the KB does NOT vouch for: the lecturer calls
       DeepStack "a paper from the DeepSeek team" and no course material
       corroborates it, so the page says so rather than repeating or correcting.
-- [ ] Topic pages — this lecture opens a NEW area; the 143 existing topic pages
-      contain nothing on vision encoders, VLMs or discrete image tokens
+- [x] Topic pages — 18 NEW, taking the KB to 178 wiki pages. The overlap check
+      confirmed this lecture opens a NEW area rather than extending one: grepping
+      all 143 existing topic pages found nothing on vision encoders, VLMs,
+      image tokenization or cross-modal transfer, and only TWO forward
+      references to close.
+      New: multimodal-models, clip, siglip,
+      contrastive-image-text-pretraining, vision-transformers,
+      vision-language-models, llava, llava-onevision, modality-projectors,
+      qwen-vl-series, image-resolution-and-tokens, multimodal-rope,
+      visual-instruction-tuning, discrete-image-tokens, chameleon,
+      modality-balancing, cross-modal-transfer, video-understanding.
+      Two threads are stated explicitly rather than left implicit: (1) the
+      336x336 CENTER CROP is the decision the next four designs exist to undo,
+      so resolution/token-budget history is one page rather than scattered; and
+      (2) the continuous and discrete branches TRADE AGAINST EACH OTHER on
+      exactly one axis (fine detail vs generability), which is what makes the
+      lecture's closing "comprehension and generation might demand different
+      things" a synthesis rather than a platitude.
 - [ ] Close the 2 forward references (INDEX.md:30, wiki/course-map.md:12)
-- [ ] Link sweep against `git ls-files`
-- [ ] Citation and quote check
+- [x] Link sweep — 3,372 relative links across 218 tracked markdown files, 0
+      broken, 0 bad anchors. The checker re-encodes all three run-17 bugs
+      (GitHub's slugger leaves double hyphens where punctuation was removed;
+      code fences parse as links; directory links are valid though
+      `git ls-files` lists none), so it reported zero false positives.
+- [x] Citation and quote check — 179 timestamp citations across the 19 new
+      pages, ALL matching a real marker. TWO REAL MISQUOTES found and fixed:
+      "most of the tokens in stages two and three" had dropped the verb ("are"),
+      and multimodal-rope.md's blockquote had been REWORDED rather than quoted
+      ("If you remember RoPE, each component represents..." for the actual "The
+      problem, if you remember RoPE, is that each component represents...").
+      The checker needed two rewrites to be usable: the first version reported
+      101 problems, essentially all artifacts — it cross-paired quotation marks
+      across intervening prose, could not handle an ellipsis marking an elision,
+      and searched only the transcript when many quotations come from the
+      PROGRAM. Checking against transcript AND slide file, splitting on
+      ellipses, and stripping timestamp markers from the haystack took it to 13.
 - [ ] INDEX.md
 
 ### Images (Step 1c)
