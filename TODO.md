@@ -2480,9 +2480,38 @@ undescribed third-party layer in this lecture: every figure it shows is one the
 KB can copy, look at and describe.
 
 ### Course material
-- [ ] raw/slides/17-multimodality.md — transcribe lecture_17.py
-- [ ] Image descriptions for the 32 course-repo PNGs (delegated, appending per image)
-- [ ] Spot-check descriptions against the images here
+- [x] raw/slides/17-multimodality.md — 1,809 lines, 23,200 words. Written here
+      rather than delegated, as for lectures 12-14: 302 lines of
+      text()/link()/image() is cheap to read and the parent must read it anyway
+      to write the wiki. Records a section->source-line table (9 functions), all
+      20 citations in source order, and the three `main` comment lines that mark
+      the lecture's three parts and are not printed by the trace.
+      TWO SOURCE DEFECTS transcribed as printed and flagged, not corrected:
+      the deck writes Qwen-VL's encoder as "ViT-bigC" where the cited paper's own
+      name is ViT-bigG; and the Qwen2-VL patch arithmetic gives 64 tokens where
+      the lecture prints 66 (the file says the two extra are MOST LIKELY the
+      image-delimiter special tokens and explicitly declines to assert it).
+- [x] Image descriptions for the 32 course-repo PNGs — two Sonnet readers, 16
+      each, both appending per image (polled throughout: A grew 7->9->16,
+      B 8->12->16, so the incremental instruction held for both).
+- [x] Spot-check — 5 of 32 checked, chosen as the highest-stakes claims rather
+      than a random sample. ONE ERROR FOUND AND CORRECTED.
+      llava-onevision-training.png: EXACT, 13x4 cells verified individually.
+      qwen3-vl-results.png: EXACT — 64 rows x 8 columns, 512 cells, the largest
+      table in this KB, plus the `*`/`+` markers and both lower-is-better rows.
+      Its reader INFERRED the bold/underline convention (the page prints no
+      legend) and the inference is CONFIRMED: it holds on all 64 rows including
+      the inverted rows and a tie, which is itself evidence the values were read
+      carefully.
+      clip-efficiency.png: DIRTY — x-axis called logarithmic when it is LINEAR
+      (33M->67M is a doubling spanning ~82px, 134M->268M a doubling spanning
+      ~345px; equal on a log axis). Corrected. Values and both efficiency
+      annotations were right. AXIS MISLABELS REMAIN THIS BUILD'S MOST REPEATED
+      ERROR CLASS and it was again the only error found.
+      The two donut charts were corroborated ARITHMETICALLY without opening them
+      — every category's itemized datasets sum to within ~1 point of its printed
+      share. That check also found a real source defect: data-2's items total
+      ~1.32M against a printed 1.6M.
 
 ### Transcript
 - [x] 17 — verbatim captions fetched (100 paragraphs, ~11.4k words), saved to
