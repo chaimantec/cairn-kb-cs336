@@ -2753,10 +2753,42 @@ discrepancy, do not absorb it silently.
       CS224N run-12 failure this run was warned about).
 
 ### Wiki
-- [ ] wiki/18-serving-megakernels-recurrence.md
-- [ ] Topic pages
-- [ ] Link sweep, citation and quote check
-- [ ] INDEX.md
+- [x] wiki/18-serving-megakernels-recurrence.md — 520 lines. No figures (none
+      exist). Carries the numbering discrepancy, the no-material note, and the
+      AI-generated-slides caveat as blockquotes at the top.
+- [x] Topic pages — 13 NEW, taking the KB to 192 wiki pages. The overlap check
+      confirmed this lecture opens NEW territory despite lecture 10 already
+      covering inference: grepping all 178 existing pages found ZERO on
+      megakernels, KV-cache eviction/LRU, cache-aware routing, looped
+      transformers or spectral radius. The split is clean — lecture 10 DERIVES
+      inference, lecture 18 OPERATES it.
+      New: inference-request-lifecycle, inference-workloads,
+      prefill-decode-disaggregation, cache-aware-routing, kv-cache-offloading,
+      serving-at-scale-failures, decode-specialized-hardware,
+      kernel-launch-overhead, megakernels, looped-transformers, parse,
+      spectral-radius, recurrence-scaling-laws.
+- [x] Link sweep — 4580 relative links across 233 tracked files, 0 broken,
+      0 bad anchors. Five dangling links caught and repointed at the pages that
+      actually exist (mixed-precision -> precision-and-data-types,
+      evaluation-benchmarks -> reasoning-benchmarks, chinchilla -> scaling-laws,
+      layer-normalization -> rmsnorm, compute-optimal-training ->
+      compute-optimal-scaling, memory-bandwidth -> gpu-architecture).
+- [x] Citation and quote check — 338 timestamp citations, ALL matching a real
+      marker. 309 quotations, and NINE REAL DEFECTS found and fixed:
+      (1) LaTeX substituted for spoken words INSIDE quotations in three places
+      ("$t$" for "t", "$2^{16}$" for "2 to the 16th") — the reworded-blockquote
+      class run 19 warned about, now committed twice in one run;
+      (2) a dropped "there's" in "tons of parameters, [there's] all sorts of
+      nonlinearities";
+      (3) "you know" silently deleted from inside a quotation about reading
+      scaling plots;
+      (4) two elisions made without an ellipsis, one of which swallowed an
+      [Ed: unclear] marker and so hid a gap in the recording;
+      (5) a quote that began mid-phrase with an altered word ("is a very strong
+      signal" for "that's a very strong signal");
+      (6) bracketed alterations ("only see[s]") replaced with verbatim wording.
+      Two scare-quote paraphrases were rewritten as italics so that quotation
+      marks mean citation everywhere in this KB.
 
 ### Publish
 - [ ] Coverage in all six places — 18/18, but images stay 17/18
