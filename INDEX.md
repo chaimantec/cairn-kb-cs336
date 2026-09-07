@@ -1135,8 +1135,8 @@ usually the faster route than the lecture pages.
     perfect-overlap assumption, not benchmarks. **Lecture 12 is different again**:
     it computes *nothing at all* — no `@inspect` values, no benchmarks, no sympy, no
     asserts — so every number in it is a claim about a published benchmark rather
-    than a measurement. What it has instead is figures: 43 of them, the most in the
-    course, and they carry the argument rather than illustrating it.
+    than a measurement. What it has instead is figures — 43 `image()` calls — and
+    they carry the argument rather than illustrating it.
     **Lecture 13 is the same kind** — it computes nothing either, and every number
     in it is a claim about a published dataset. **Lecture 14 goes back the other
     way, and is the cleanest case in the course**: it has 22 inspected values —
@@ -1178,18 +1178,19 @@ usually the faster route than the lecture pages.
     and two typos printed on the slides. Two of its rendered images were read
     back and matched, and two of its readers went past looking — RGB-sampling a
     legend's swatches to pin down slide 40's five series, and recovering slide
-    60's cropped axis range from an adjacent crop. **Lecture 11's deck is the odd one out**: it is the only deck read
-    at Opus rather than Sonnet — a choice made because at 33 words of native text per page
-    it is the most figure-dependent deck in the course. It has since had **two figure
-    audit passes over 15 of its 58 pages** — 3 clean, 12 dirty, 31 corrections applied —
-    and a third was deliberately declined on cost, so its front matter states the
-    boundary that remains: 43 of 58 pages carry chart values nobody re-checked. Lectures 4, 5 and 8 are the figure-dependent ones — 102 images
-    across 60 pages, 83 across 55, and 86 across 73, most pages carrying only 30–40
-    words of their own text — so the figure descriptions there are not a supplement
-    to the content, they *are* the content. Each deck's front matter records which
-    pages were audited against the PDF and what the audit found, including the
-    places where a deck contradicts itself. Lecture 8's deck is the most heavily
-    audited: twelve pages checked across two passes, plus a sweep of every
+    60's cropped axis range from an adjacent crop. **Lecture 11's deck is the odd one
+    out**: it is the only deck read at Opus rather than Sonnet — a choice made because
+    at 33 words of native text per page the deck carries almost nothing a transcriber
+    could lean on but the figures. It has since had **two figure audit passes over 15 of
+    its 58 pages** — 3 clean, 12 dirty, 31 corrections applied — and a third was
+    deliberately declined on cost, so its front matter states the boundary that remains:
+    43 of 58 pages carry chart values nobody re-checked. Lectures 4, 5 and 8 are
+    figure-dependent too — 102 images across 60 pages, 83 across 55, and 86 across 73,
+    most pages carrying only 30–40 words of their own text — so the figure descriptions
+    there are not a supplement to the content, they *are* the content. Each deck's front
+    matter records which pages were audited against the PDF and what the audit found,
+    including the places where a deck contradicts itself. Lecture 8's deck is the most
+    heavily audited: twelve pages checked across two passes, plus a sweep of every
     cross-slide claim in the file.
 - **[`sources.md`](sources.md)** — every lecture, deck, assignment and linked
   document with its canonical URL, and the record of where the search for the
@@ -1202,12 +1203,13 @@ usually the faster route than the lecture pages.
   every figure-bearing page; and 4–33 each for
   the nine executable lectures (1, 2, 6, 7, 10, 12, 13, 14, 17), which have no deck, so these are the
   figures the course serves from its own repo. **Lecture 18 has none at all**, because
-  no course material exists for it. **Lecture 12 is the richest of the programs,
-  with 33** — it is the most image-dense lecture in the course, and its figures
-  (leaderboard screenshots, benchmark example questions, results charts) *are* its
-  content rather than a supplement to it. Lecture 17 is next with 32, then
-  lecture 10 with 22, whose figures are mostly reproduced tables and charts from
-  the papers it discusses. Nine further images in
+  no course material exists for it. **In lecture 12 the figures carry the
+  argument** — leaderboard screenshots, benchmark example questions and results
+  charts — so a reader who takes only that lecture's text gets materially less than
+  one who looks at them. Lecture 10's are mostly reproduced tables and charts from
+  the papers it discusses. Per-lecture counts are in the table in `AGENTS.md` and in
+  `kb.json`; they are not repeated here, because a count in prose goes stale and a
+  ranking between lectures answers no question a reader has. Nine further images in
   lecture 12 are hot-linked by the course to third-party sites and are **not** copied
   here; the slide file records their URLs at the point they appear. Each image sits beside the slide it shows in
   `raw/slides/`, and in `wiki/` wherever a page cites that slide. About a third of every

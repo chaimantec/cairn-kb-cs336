@@ -231,6 +231,15 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
   against the lecturer's screen.
 - **Transcripts stay spelled-out.** Captions render notation as speech ("n
   squared"); reconstructing it as $n^2$ belongs in `wiki/`, not `raw/transcripts/`.
+- **No rankings between lectures.** Do not write that a lecture has the most
+  figures, is the richest, densest or thinnest, or is "next with 22". A comparison
+  like that answers no question a reader has, duplicates the per-lecture table in
+  this file and `byLecture` in `kb.json`, and is false the moment coverage changes —
+  which is how this KB ended up asserting that two different decks were each "the
+  most figure-dependent deck in this KB". State the measurement for the lecture in
+  front of you and let the table hold the comparison. Superlatives that are
+  *actionable* and settled are fine — "the only lecture without images", "the only
+  two decks with no figure audit" — because they change what a reader does.
 
 ## Images
 
@@ -296,8 +305,8 @@ C4 domain breakdown and the Pile composition), and a Dolma composition figure on
 Medium CDN. If you are asked about those figures, give the URL — do not describe
 them, because nobody here has looked at them.
 
-**Lecture 12 is the image-dense one**, and unlike every other executable lecture its
-figures are not illustrations of the argument — they *are* the argument. The program is
+**Lecture 12's figures are not illustrations of the argument — they *are* the
+argument**, which is not true of the other executable lectures. The program is
 220 `text()` calls and 43 `image()` calls, and most of the text lines are one-line
 captions on a leaderboard screenshot, a benchmark example question or a results chart.
 A reader who takes only the text of that lecture gets materially less than one who
@@ -318,10 +327,8 @@ Lecture 11 was a partial entry for one run — deck and images but no transcript
 and is now complete, with [a transcript](raw/transcripts/11-scaling-laws-in-the-wild.md)
 and [a lecture page](wiki/11-scaling-laws-in-the-wild.md) alongside its 32 images.
 
-Lecture 10 has 22 — third among the executable lectures, behind lecture 12's 33 and
-lecture 17's 32 and clear of the 4-14 the rest carry — because it is an unusually
-illustrated program: most of its figures are reproduced tables and charts from the
-papers it discusses. It also hotlinks **6** further
+Lecture 10 is an unusually illustrated program for its length: most of its 22 figures
+are reproduced tables and charts from the papers it discusses. It also hotlinks **6** further
 images to third parties (four from the JAX scaling book, one from Baseten, one from
 Anyscale). Those were **not** copied. They appear in `raw/slides/10-inference.md` as bare
 URLs with no description, because they were not looked at and are not ours to
@@ -579,9 +586,9 @@ worse than none.
 
 ## Run 9 precedents (lecture 9, a 57-page deck and the dirtiest transcription yet)
 
-Lecture 9 is the most figure-dependent deck in this KB — 93 pasted images against
-2,063 words of native text, 36 words per page — and it produced more transcription
-errors than the previous four decks combined. What follows is what that cost and
+Lecture 9's deck is heavily figure-dependent — 93 pasted images against 2,063 words
+of native text, 36 words per page — and it produced more transcription errors than the
+previous four decks combined. What follows is what that cost and
 what it taught.
 
 - **Audit yield was 11 dirty pages out of 18, 36 errors.** Runs 8 and 9 of the
@@ -671,11 +678,12 @@ what it taught.
 
 ## Run 12 precedents (lecture 11, a 58-page deck, and the first read at Opus)
 
-Lecture 11 is the most figure-dependent deck in this KB — 81 pasted images against 1,917
-words of native text, 33 words per page, below even lecture 9's 36 — and it is the only one
-read at Opus rather than Sonnet. The choice was put to the user because the page profile
-matched lecture 9, whose Sonnet read produced 84 errors across 26 dirty pages. What that
-bought is worth stating precisely, because it is not what was expected.
+Lecture 11's deck is figure-dependent even by the standard of lecture 9, which set the
+previous precedent — 81 pasted images against 1,917 words of native text, 33 words per
+page against lecture 9's 36 — and it is the only one read at Opus rather than Sonnet.
+The choice was put to the user because the page profile matched lecture 9, whose
+Sonnet read produced 84 errors across 26 dirty pages. What that bought is worth
+stating precisely, because it is not what was expected.
 
 - **The model change moved the errors, it did not remove them.** Two audit passes over 15
   pages found 3 clean, 12 dirty, 31 corrections. The rate is better than lecture 9's, but
