@@ -2452,3 +2452,61 @@ conclusion. `--verify` therefore degenerates to a heading-sequence check.
   British "centre" inside a quotation where the slide prints "center", and one
   quote taken from the raw captions ("this LIKE kind of emergent jump") rather
   than the edited text.
+
+## Run 18 — Lecture 17: Multimodality
+
+Video 26FtD08ZpOU (78 min). Percy Liang. **Executable lecture** —
+`lecture_17.py`, 302 lines, so `source-text`, no deck and no slide numbers.
+178 `text()`, 19 `link()` + 1 `post_link()`, 32 `image()`. User instructions for
+this run: at most two subagents alive at a time.
+
+TITLE DISCREPANCY, settled before writing: the catalog and `sources.md` call this
+"Alignment, multimodality"; the program's own first line is
+`## Lecture 17: multimodal models` and it contains NO alignment content — the
+whole 302 lines are CLIP, SigLIP, LLaVA, LLaVA-OneVision, Qwen-VL/2-VL/3-VL and
+Chameleon. Alignment was covered in lectures 15 and 16. Slugged
+`17-multimodality` after the content, as `14-data-filtering-dedup-mixing` was.
+
+COMPUTES NOTHING: zero `@inspect`, zero `assert`, no sympy — the same shape as
+lectures 12 and 13, so no runtime values to recover and no
+`var/traces/lecture_17_stdout.txt` needed (the repo publishes a
+`lecture_17.json` trace but no stdout capture, and there is nothing for one to
+capture). Checked before writing off any value as machine-dependent, per the
+run-14 note.
+
+ALL 32 FIGURES ARE COURSE-REPO PNGs. Zero hot-linked to third parties — unlike
+lectures 13 and 14, which had 4 and 5 respectively. So there is no
+undescribed third-party layer in this lecture: every figure it shows is one the
+KB can copy, look at and describe.
+
+### Course material
+- [ ] raw/slides/17-multimodality.md — transcribe lecture_17.py
+- [ ] Image descriptions for the 32 course-repo PNGs (delegated, appending per image)
+- [ ] Spot-check descriptions against the images here
+
+### Transcript
+- [x] 17 — verbatim captions fetched (100 paragraphs, ~11.4k words), saved to
+      the gitignored raw/transcripts/original/ with its segment JSON
+- [ ] 17 — copy-edited transcript
+- [ ] 17 — verify: timestamps, numbers, ratios, proper-noun grep
+
+### Wiki
+- [ ] wiki/17-multimodality.md
+- [ ] Topic pages — this lecture opens a NEW area; the 143 existing topic pages
+      contain nothing on vision encoders, VLMs or discrete image tokens
+- [ ] Close the 2 forward references (INDEX.md:30, wiki/course-map.md:12)
+- [ ] Link sweep against `git ls-files`
+- [ ] Citation and quote check
+- [ ] INDEX.md
+
+### Images (Step 1c)
+- [x] Fetch the 32 PNGs into raw/images/17-multimodality/ — all 32 present,
+      17 MB, fetched unmodified from the lectures repo as for every other
+      executable lecture. Verified every `image()` path in the source resolves to
+      a file on disk and that no file on disk is unreferenced.
+- [ ] Embed into raw/slides/ and wiki/
+
+### Publish
+- [ ] Coverage in all six places
+- [ ] kb.json
+- [ ] Commit and push
