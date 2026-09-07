@@ -1468,7 +1468,7 @@ Below the box, in the lecturer's own words:
 
 ## Slide 65 — Yi
 
-![Slide 65 — Yi](../images/08-parallelism-2/slide-65.jpg)
+![Slide 65 — Yi: a pasted paper screenshot on the Yi models' performance and cost efficiency](../images/08-parallelism-2/slide-65.jpg)
 
 Heading, in blue: "Yi".
 

@@ -2588,7 +2588,8 @@ KB can copy, look at and describe.
       exactly one axis (fine detail vs generability), which is what makes the
       lecture's closing "comprehension and generation might demand different
       things" a synthesis rather than a platitude.
-- [ ] Close the 2 forward references (INDEX.md:30, wiki/course-map.md:12)
+- [x] Close the 2 forward references — both said lecture 17 was "still a preview
+      rather than a treatment". Both now point at the new page.
 - [x] Link sweep — 3,372 relative links across 218 tracked markdown files, 0
       broken, 0 bad anchors. The checker re-encodes all three run-17 bugs
       (GitHub's slugger leaves double hyphens where punctuation was removed;
@@ -2606,16 +2607,40 @@ KB can copy, look at and describe.
       and searched only the transcript when many quotations come from the
       PROGRAM. Checking against transcript AND slide file, splitting on
       ellipses, and stripping timestamp markers from the haystack took it to 13.
-- [ ] INDEX.md
+- [x] INDEX.md — banner now 1-17 ("only the guest lecture (18) is missing"), a
+      19-entry annotated lecture-17 section at the top of the wiki table of
+      contents, the transcript list, the executable-lecture list, and the
+      computes-nothing note (lecture 17 is the THIRD such lecture, with 12 and
+      13). All 178 wiki pages verified present in the index.
 
 ### Images (Step 1c)
 - [x] Fetch the 32 PNGs into raw/images/17-multimodality/ — all 32 present,
       17 MB, fetched unmodified from the lectures repo as for every other
       executable lecture. Verified every `image()` path in the source resolves to
       a file on disk and that no file on disk is unreferenced.
-- [ ] Embed into raw/slides/ and wiki/
+- [x] Embed into raw/slides/ (all 32, under the section where each appears) and
+      wiki/ (15 in the lecture page, placed in the passages that need them).
 
 ### Publish
-- [ ] Coverage in all six places
-- [ ] kb.json
-- [ ] Commit and push
+- [x] Coverage in all six places, verified consistent by grep: INDEX.md,
+      sources.md, AGENTS.md, kb.json, wiki/course-map.md, and the AGENTS.md
+      image-coverage table.
+      FOLLOWING RUN 17'S LESSON, the sweep re-read sentences rather than only
+      adding rows, and four claims needed prose rewrites rather than a number
+      bump: AGENTS.md said the executable lectures were "eight of which... are
+      transcribed here" (now all nine); it said "Lectures 17 and 18 are not in
+      this KB at all, so they have no images" (now lecture 18 alone); INDEX.md's
+      banner ended with a sentence asserting there were "still no transcripts and
+      no wiki pages for alignment and multimodality (Lecture 17)"; and
+      course-map.md listed lecture 17 among the previews. A row-only update would
+      have left all four asserting the opposite of the truth.
+      ALSO FIXED, pre-existing and unrelated: three thin alt texts from runs 16
+      and earlier ("Slide 65 - Yi", "Slide 6 - PPO") that described nothing.
+- [x] kb.json — coverage 17/18, 161 topic pages, 490 images / 74.5 MB across 17
+      lectures, byLecture["17"]="source-text", executableLectures 9/9,
+      figuresAuditedByLecture["17"]="partial". Five new caveats: the coverage
+      statement (only lecture 18 remains), the syllabus/content title
+      discrepancy, what the partial figure audit did and did not check, the
+      source's own 1.32M-vs-1.6M inconsistency, and the transcript's
+      student-question handling.
+- [x] Commit and push

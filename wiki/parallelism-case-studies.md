@@ -86,7 +86,7 @@ more efficient."
 **Yi-Lightning** (2025) makes the same swap, replacing tensor with expert
 parallelism (slide 65).
 
-![Slide 65 — Yi](../raw/images/08-parallelism-2/slide-65.jpg)
+![Slide 65 — Yi: a pasted paper screenshot on the Yi models' performance and cost efficiency](../raw/images/08-parallelism-2/slide-65.jpg)
 
 *Slide 65 — Yi. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_08.pdf)*
 

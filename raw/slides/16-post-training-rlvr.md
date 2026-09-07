@@ -192,7 +192,7 @@ $$L(s,a,\theta_k,\theta) = \min\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)}
 
 ## Slide 6 — PPO
 
-![Slide 6 — PPO](../images/16-post-training-rlvr/slide-6.jpg)
+![Slide 6 — PPO as a policy gradient method for optimizing rewards in actual RL tasks](../images/16-post-training-rlvr/slide-6.jpg)
 
 Text: "Policy gradient method for optimizing rewards in actual RL tasks.."
 

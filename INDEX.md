@@ -8,7 +8,7 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1–16 of 18
+> ## ⚠️ This knowledge base covers Lectures 1–17 of 18
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
@@ -18,16 +18,22 @@ compute and data?
 > the Wild), Lecture 12 (Evaluation), Lecture 13 (Data I — Sources and
 > Datasets), Lecture 14 (Data II — Filtering, Deduplication, Mixing,
 > Post-Training Data), Lecture 15 (Mid/Post-Training — SFT and RLHF) and
-> Lecture 16 (Post-Training — RLVR) are covered in depth.**
-> Nothing else is. **The Data unit is complete**, and the post-training unit is
-> now two lectures deep: Lecture 15 takes the course from a base model to
-> something close to ChatGPT via supervised fine-tuning and RLHF, and
+> Lecture 16 (Post-Training — RLVR) and Lecture 17 (Multimodality) are covered
+> in depth.** Nothing else is — **only the guest lecture (18) is missing.**
+> **The Data unit is complete**, and the post-training unit is now two lectures
+> deep: Lecture 15 takes the course from a base model to something close to
+> ChatGPT via supervised fine-tuning and RLHF, and
 > **Lecture 16 goes from there to o1- and R1-class reasoning models** via
 > reinforcement learning from verifiable rewards — PPO, GRPO, and the three open
 > recipes (DeepSeek-R1, Kimi K1.5, Qwen 3) read side by side. The topics lecture
 > 15 kept deferring to "next lecture" — RLVR, GRPO, reasoning models — are now
-> covered. There are still no transcripts and no wiki pages for alignment and
-> multimodality (Lecture 17) or the guest lecture (18).
+> covered.
+>
+> **Lecture 17 opens the one area the rest of the KB does not touch:**
+> multimodality — how an image becomes tokens a Transformer will accept, and
+> what changes if you want one back out. Note that the syllabus calls it
+> "Alignment, multimodality"; the lecture contains no alignment content, and
+> this KB follows the content.
 >
 > **A note specific to evaluation:** [Lecture 12](wiki/12-evaluation.md) is the
 > hinge of the course — the point where model-building stops and the question
@@ -194,6 +200,68 @@ If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 17 — multimodality
+
+- **[Lecture 17 — Multimodality](wiki/17-multimodality.md)** — the lecture page:
+  why every modality has to become tokens, then CLIP → SigLIP → LLaVA →
+  LLaVA-OneVision → Qwen-VL/2-VL/3-VL → Chameleon as successive answers. Carries
+  15 of the lecture's 32 figures; the topic pages below carry the rest. Note the
+  syllabus calls this lecture "Alignment, multimodality" — it contains no
+  alignment content.
+- **[Multimodal models](wiki/multimodal-models.md)** — the framing: why
+  "Transformers speak tokens" forces every design here, what an omni model would
+  be, and the two branches (continuous encoders vs discrete tokens) that trade
+  against each other on exactly one axis.
+- **[CLIP](wiki/clip.md)** — contrastive language-image pretraining: the
+  objective, the 400M-pair dataset and its bootstrapping loop, the 336×336
+  center crop that four later designs exist to undo, and the ablation showing
+  ranking beats captioning by 4×.
+- **[SigLIP](wiki/siglip.md)** — the same idea with a sigmoid instead of a
+  softmax: per-pair binary classification, the ring-structured parallel loss, and
+  why 5 days on 32 slower chips beat 10 days on 256.
+- **[Contrastive image-text pretraining](wiki/contrastive-image-text-pretraining.md)**
+  — the objective family: why text rather than data augmentation is the
+  supervision signal, why ranking beats generating, and what the family cannot
+  give you.
+- **[Vision Transformers](wiki/vision-transformers.md)** — patches as tokens,
+  attention pooling, how to read "ViT-L/14@336px", and why vision encoders stay
+  under a billion parameters when the language model has 72.
+- **[Vision-language models](wiki/vision-language-models.md)** — the template all
+  five VLMs share (encoder + projector + LM), the staged-training tables, and why
+  "frozen" tracks data quality.
+- **[Visual instruction tuning](wiki/visual-instruction-tuning.md)** — LLaVA's
+  bootstrap, in which GPT-4 generates multimodal training data **without ever
+  seeing the images**.
+- **[LLaVA](wiki/llava.md)** — the paper that showed a single linear matrix is
+  enough to join a vision encoder to a language model.
+- **[LLaVA-OneVision](wiki/llava-onevision.md)** — the same template with every
+  part upgraded, plus AnyRes, the three-way token budget, and the transfer
+  result.
+- **[Modality projectors](wiki/modality-projectors.md)** — the component that is
+  the actual architectural story: linear → MLP → cross-attention → DeepStack,
+  along two axes (how much an image may cost, how deeply it is mixed in).
+- **[The Qwen-VL series](wiki/qwen-vl-series.md)** — three models across three
+  years read as a time series: what changes, what does not, and the
+  context-length curriculum that ends at 256K.
+- **[Image resolution and token budgets](wiki/image-resolution-and-tokens.md)** —
+  the most-revised decision in the lecture, in four steps, all of them driven by
+  OCR.
+- **[Multimodal RoPE](wiki/multimodal-rope.md)** — position as a (time, height,
+  width) triple, and why Qwen3-VL had to interleave the axes rather than block
+  them.
+- **[Video understanding](wiki/video-understanding.md)** — frame sampling, what a
+  video costs in tokens, and why video is the reason long context matters here.
+- **[Cross-modal transfer](wiki/cross-modal-transfer.md)** — capabilities trained
+  in one input format appearing in another that was never trained for.
+- **[Discrete image tokens](wiki/discrete-image-tokens.md)** — VQ-VAE, codebooks,
+  and BPE run over image codes: what discreteness buys and what it costs.
+- **[Chameleon](wiki/chameleon.md)** — one Transformer, one vocabulary, text and
+  images interleaved; elegant, less performant, and unstable for a reason worth
+  knowing.
+- **[Modality balancing](wiki/modality-balancing.md)** — three fixes for two
+  problems: length (token budgets, √-normalized loss, mixture weights) and
+  entropy (QK norm, z-loss).
 
 ### Lecture 16 — post-training: RLVR
 
@@ -956,7 +1024,8 @@ usually the faster route than the lecture pages.
   [Lecture 13](raw/transcripts/13-data-sources-datasets.md),
   [Lecture 14](raw/transcripts/14-data-filtering-dedup-mixing.md),
   [Lecture 15](raw/transcripts/15-mid-post-training.md),
-  [Lecture 16](raw/transcripts/16-post-training-rlvr.md).
+  [Lecture 16](raw/transcripts/16-post-training-rlvr.md),
+  [Lecture 17](raw/transcripts/17-multimodality.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
   technical terms restored against the lecture material. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
@@ -976,8 +1045,9 @@ usually the faster route than the lecture pages.
     [`lecture_07.py`](raw/slides/07-parallelism.md),
     [`lecture_10.py`](raw/slides/10-inference.md),
     [`lecture_12.py`](raw/slides/12-evaluation.md),
-    [`lecture_13.py`](raw/slides/13-data-sources-datasets.md) and
-    [`lecture_14.py`](raw/slides/14-data-filtering-dedup-mixing.md) are Percy
+    [`lecture_13.py`](raw/slides/13-data-sources-datasets.md),
+    [`lecture_14.py`](raw/slides/14-data-filtering-dedup-mixing.md) and
+    [`lecture_17.py`](raw/slides/17-multimodality.md) are Percy
     Liang's *executable lectures* — Python programs, transcribed from source text,
     each with a section-to-source-line table and the code verbatim. There are no
     slide numbers to cite. Where such a lecture computes a number at runtime, a
@@ -1004,7 +1074,12 @@ usually the faster route than the lecture pages.
     collision probabilities and the data-mixing epoch arithmetic — and *none* of
     them touches a GPU, a clock or a benchmark, so unlike lectures 2, 6, 7 and 10
     there was nothing machine-dependent to withhold. Every one is reproduced, and
-    they reproduce on any machine.
+    they reproduce on any machine. **Lecture 17 is the third of the
+    computes-nothing kind**, with lectures 12 and 13 — zero `@inspect`, zero
+    `assert`, no sympy — so every number in it is a claim about a published model
+    or dataset. Like lecture 12, its figures carry the argument: 32 of them across
+    only 302 source lines, and **all 32 live in the course's own repository**, so
+    unlike lectures 13 and 14 it leaves no undescribed third-party layer.
   - [`lecture_03.pdf`](raw/slides/03-architectures.md) (67 pages),
     [`lecture_04.pdf`](raw/slides/04-attention-alternatives.md) (60 pages),
     [`lecture_05.pdf`](raw/slides/05-gpus-tpus.md) (55 pages),

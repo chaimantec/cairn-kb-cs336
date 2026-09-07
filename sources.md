@@ -13,7 +13,7 @@ course figures (52.6 MB), so that an answer can *show* a figure instead of only
 describing it. See the Images section of `AGENTS.md` for what was rendered, what
 was not, and the attribution.
 
-**This KB currently covers Lectures 1–16 of 18.** The inventory below spans the
+**This KB currently covers Lectures 1–17 of 18.** The inventory below spans the
 whole course (and its two earlier offerings) so that provenance is recorded once.
 See `kb.json`.
 
@@ -46,7 +46,7 @@ programs are not linked as documents. Both are listed below.
 | 12 | Evaluation | [`lecture_12.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_12.py) — **transcribed**, at [`raw/slides/12-evaluation.md`](raw/slides/12-evaluation.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_12) |
 | 13 | Data (sources, datasets) | [`lecture_13.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_13.py) — **transcribed**, at [`raw/slides/13-data-sources-datasets.md`](raw/slides/13-data-sources-datasets.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_13) |
 | 14 | Data (filtering, dedup, mixing, synthetic) | [`lecture_14.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_14.py) — **transcribed**, at [`raw/slides/14-data-filtering-dedup-mixing.md`](raw/slides/14-data-filtering-dedup-mixing.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_14) |
-| 17 | Alignment, multimodality | [`lecture_17.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_17.py) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_17) |
+| 17 | Multimodality (syllabus: "Alignment, multimodality") | [`lecture_17.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_17.py) — **transcribed**, at [`raw/slides/17-multimodality.md`](raw/slides/17-multimodality.md) | [trace](https://cs336.stanford.edu/lectures/?trace=lecture_17) |
 
 Supporting modules used by those programs: [`references.py`](https://github.com/stanford-cs336/lectures/blob/main/references.py)
 (every paper citation, as structured data), [`lecture_util.py`](https://github.com/stanford-cs336/lectures/blob/main/lecture_util.py),

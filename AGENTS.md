@@ -5,7 +5,7 @@ Stanford, Spring 2026 — Percy Liang and Tatsunori Hashimoto**. It is read by
 Cairn's in-extension AI chat, which fetches files over `raw.githubusercontent.com`
 and follows relative markdown links.
 
-**Coverage: Lectures 1–16 of 18.** See [`kb.json`](kb.json) and the banner
+**Coverage: Lectures 1–17 of 18.** See [`kb.json`](kb.json) and the banner
 at the top of [`INDEX.md`](INDEX.md). Any page describing later material is
 repeating Lecture 1's syllabus preview and says so in a blockquote at the top.
 
@@ -34,8 +34,7 @@ partially covered while the rest of that unit is still a preview.
 ## What is special about CS336
 
 **Half the lectures are Python programs, not slide decks.** Percy Liang's lectures
-(1, 2, 6, 7, 10, 12, 13, 14, 17) — eight of which, 1, 2, 6, 7, 10, 12, 13 and 14,
-are transcribed here — are *executable lectures* — programs whose
+(1, 2, 6, 7, 10, 12, 13, 14, 17) — **all nine of which are transcribed here** — are *executable lectures* — programs whose
 execution delivers the content, rendered by a trace viewer. Tatsunori Hashimoto's
 (3, 4, 5, 8, 9, 11, 15, 16) are conventional PDFs.
 
@@ -231,7 +230,7 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 
 ## Images
 
-Every lecture 1-16 has images. They are committed, not hotlinked, and they are the only
+Every lecture 1-17 has images. They are committed, not hotlinked, and they are the only
 part of this KB that redistributes course material rather than pointing at it.
 
 | Lecture | Files | Where they came from |
@@ -252,8 +251,10 @@ part of this KB that redistributes course material rather than pointing at it.
 | 14 Data II: Filtering, Dedup, Mixing | 13 | the course's own `images/*.png` |
 | 15 Mid/Post-Training | 38 of 65 pages | rendered from `lecture_15.pdf` |
 | 16 Post-Training: RLVR | 47 of 61 pages | rendered from `lecture_16.pdf` |
+| 17 Multimodality | 32 | the course's own `images/*.png` |
 
-Lectures 17 and 18 are not in this KB at all, so they have no images.
+**Lecture 18 (the guest lecture) is not in this KB at all, so it has no images.**
+It is the only lecture without them.
 
 **Lectures 15 and 16 had no independent figure audit** — they are the only two
 page-image decks here without one, skipped at the user's instruction to save
