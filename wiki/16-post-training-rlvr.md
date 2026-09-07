@@ -274,7 +274,7 @@ mid-CoT," which they found "very uninterpretable and slightly disturbing," so
 the reward exists "just for interpretability reasons", ≈32:24), and a final
 [SFT plus RLHF](15-mid-post-training.md) stage for the non-verifiable half.
 
-![Slide 31 — Pushing performance further: R1](../raw/images/16-post-training-rlvr/slide-31.jpg)
+![Slide 31 — Pushing performance further: R1](../raw/images/16-post-training-rlvr/slide-31.png)
 *Slide 31 — the four-box production pipeline: DeepSeek-V3 → reasoning SFT → RL (GRPO) → SFT/RLHF.*
 
 Two further findings survive into the rest of the field. **Process supervision
@@ -338,8 +338,21 @@ ability to recover in a domain it is weak at:
 So incorrect answers are incentivized to be "just a little bit shorter than the
 average," which bounds growth without collapsing the budget.
 
-![Slide 43 — Length control in Kimi](../raw/images/16-post-training-rlvr/slide-43.jpg)
-*Slide 43 — the length reward. Note that Kimi does not normalize by sequence length in the first place, so this is compression on top of an objective that never had GRPO's bias.*
+Slide 43 gives the reward itself. For rollout $i$ in a batch, with $r=1$ for a
+correct answer and $r=0$ for an incorrect one:
+
+$$\mathrm{len\_reward}(i) = \begin{cases} \lambda & \text{if } r(x,y_i,y^*) = 1 \\ \min(0,\lambda) & \text{if } r(x,y_i,y^*) = 0 \end{cases}, \quad \lambda = 0.5 - \frac{\mathrm{len}(i) - \mathrm{min\_len}}{\mathrm{max\_len} - \mathrm{min\_len}}$$
+
+The slide reads it off in three lines: $\lambda$ ranges over $[0.5, -0.5]$, with
+longer sequences in a group being negative; **correct answers are incentivized to
+be short**; and **incorrect answers are incentivized to be shorter than the centre
+of the range of rollouts** — not to be as short as possible, which is exactly the
+geometry collapse above. The $\min(0,\lambda)$ on the incorrect branch is what
+enforces that asymmetry. Two further notes: Kimi does not normalize by sequence
+length in its objective at all, so this is deliberate compression rather than a
+repair to a bias it already had, and the slide adds that they "only enable this
+later on in traning, due to its effects on perf" (the typo is printed on the
+slide).
 
 Kimi's **data curriculum** is the other contribution. Problems are filtered by a
 best-of-$k$ test — if the model already solves it within eight samples, it
