@@ -119,4 +119,8 @@ non-autoregressive way to generate ([1:04:11]).
 - [Prefill and generation](prefill-and-generation.md) — the two phases.
 - [Latency and throughput](latency-and-throughput.md) — the metrics and the model.
 - [Efficiency](efficiency.md) — the course-wide theme this is one face of.
+- [The inference request lifecycle](inference-request-lifecycle.md) — the same
+  pipeline seen from a production serving stack ([Lecture 18](18-serving-megakernels-recurrence.md)).
+- [Inference workloads](inference-workloads.md) — what real traffic looks like.
+- [Serving at scale — failure modes](serving-at-scale-failures.md) — how it breaks.
 - [Course map](course-map.md) — where this sits in CS336.

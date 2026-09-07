@@ -2791,6 +2791,40 @@ discrepancy, do not absorb it silently.
       marks mean citation everywhere in this KB.
 
 ### Publish
-- [ ] Coverage in all six places — 18/18, but images stay 17/18
-- [ ] kb.json
-- [ ] Commit and push
+- [x] Coverage in all six places, verified consistent by grep: INDEX.md,
+      sources.md, AGENTS.md, kb.json, wiki/course-map.md, and the AGENTS.md
+      image-coverage table.
+      FOLLOWING THE RUN 17-19 LESSON, the sweep re-read sentences rather than
+      bumping numbers, and it found STALE PROSE FROM RUNS BEFORE THIS ONE:
+      - INDEX.md still said "**All twelve covered lectures have them**", named
+        "the six PDF-deck lectures (3, 4, 5, 8, 9, 11)" and "the six executable
+        lectures (1, 2, 6, 7, 10, 12)", and reported raw/images/ as "31 MB".
+        True values: seventeen lectures, EIGHT decks, NINE programs, 75 MB.
+        That paragraph had been wrong since roughly run 12 and survived seven
+        runs of number-bumping because nobody re-read it.
+      - INDEX.md described sources.md as covering "the material for the 8
+        lectures this KB does not yet cover" — there are now none.
+      - sources.md said raw/images/ holds "411 rendered slide images (52.6 MB)";
+        it holds 490 and 75 MB.
+      - AGENTS.md and course-map.md BOTH said the Systems unit was "still a
+        preview" apart from lecture 2 — the whole unit (5-8, 10) is covered.
+      - course-map.md still called multimodality (Lecture 17) "still a preview
+        rather than a treatment" in a duplicated sentence stub left by run 18,
+        directly after run 18 gave it a full page.
+      THE LOAD-BEARING REWRITE: AGENTS.md said "Lecture 18 (the guest lecture)
+      is not in this KB at all, so it has no images." After this run the first
+      half is false and the second is still true — the exact shape that invites
+      a constructed URL. It now says lecture 18 IS here, has no images, never
+      will, and why, with the no-construct rule attached.
+- [x] Wire the new pages into the existing KB. They were an ISLAND: all 14 had
+      inbound links only from each other, so nothing among the 178 established
+      pages pointed into them. Added inbound links from 10-inference,
+      inference, kv-cache, continuous-batching, prefill-and-generation,
+      06-kernels-triton, gpu-execution-model and flash-attention.
+- [x] kb.json — coverage 18/18, 174 topic pages, byLecture["18"]="none",
+      images.lecturesWithoutImages=[18], figuresAuditedByLecture["18"]="n/a".
+      Five new caveats: coverage is now COMPLETE; the no-material finding with
+      the full record of where the search looked; the 18-vs-19 numbering; the
+      AI-generated slides; the restorations that no deck could confirm; and the
+      corporate claims the KB reports without vouching for.
+- [x] Commit and push

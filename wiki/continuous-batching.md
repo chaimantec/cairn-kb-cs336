@@ -68,4 +68,6 @@ is the weights, not the cache.
 - [Latency and throughput](latency-and-throughput.md) — what varying $B$ costs and buys.
 - [KV cache](kv-cache.md) — the per-sequence state that makes the batch ragged.
 - [Inference](inference.md) — the workload.
+- [The inference request lifecycle](inference-request-lifecycle.md) — the loop this
+  batching sits inside, and the memory contention that makes requests queue.
 - [Lecture 10 — Inference](10-inference.md)

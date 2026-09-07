@@ -122,4 +122,8 @@ state instead — are where the lecture says the large gains still are.
 - [Multi-head latent attention](multi-head-latent-attention.md) — the dimension cut.
 - [Cross-layer attention](cross-layer-attention.md) — the layer cut.
 - [PagedAttention](paged-attention.md) — how it is actually laid out in memory.
+- [KV cache offloading](kv-cache-offloading.md) — what happens when it outgrows
+  GPU memory: DRAM, SSD, and LRU eviction.
+- [Cache-aware routing](cache-aware-routing.md) — using the hit rate as a routing
+  signal rather than only as a saving.
 - [Lecture 10 — Inference](10-inference.md)

@@ -8,14 +8,28 @@ its canonical URL, because this knowledge base is read by an agent that navigate
 markdown — a PDF blob in the repo would be unreadable to it — and the current
 lecture decks alone total roughly 50 MB.
 
-The one exception is pictures. `raw/images/` holds 411 rendered slide images and
-course figures (52.6 MB), so that an answer can *show* a figure instead of only
+The one exception is pictures. `raw/images/` holds 490 rendered slide images and
+course figures (75 MB), so that an answer can *show* a figure instead of only
 describing it. See the Images section of `AGENTS.md` for what was rendered, what
 was not, and the attribution.
 
-**This KB currently covers Lectures 1–17 of 18.** The inventory below spans the
+**This KB covers all 18 recorded lectures.** The inventory below spans the
 whole course (and its two earlier offerings) so that provenance is recorded once.
 See `kb.json`.
+
+**Lecture 18 has no course material, and that is a finding rather than a gap.**
+The course schedule lists two guest lectures — session 18 (Daniel Selsam, never
+recorded) and session 19 (Dan Fu, which the catalog numbers 18) — and both rows
+publish nothing. Checked on 2026-09-07: the schedule's materials cells are empty;
+the `stanford-cs336/lectures` tree (425 paths) holds no `lecture_18` or
+`lecture_19` and nothing matching the speakers' names; the sibling archives
+`spring2025-lectures` and `spring2024-lectures` both file their decks under
+`nonexecutable/` and neither holds a speaker-named file; and
+`stanford-cs336.github.io` carries no documents. The speaker also says on the
+recording that his slides were AI-generated and that one of them hallucinated its
+content, so the unpublished deck would not have been a citable source either.
+Lecture 18 is therefore transcript-only, and the only lecture here with no
+images.
 
 ## How CS336 publishes its lectures
 

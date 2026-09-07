@@ -95,4 +95,6 @@ one.
 - [Latency and throughput](latency-and-throughput.md) — the metrics each phase governs.
 - [Continuous batching](continuous-batching.md) — the same split, from a systems angle.
 - [Speculative sampling](speculative-sampling.md) — trading generation steps for prefill steps.
+- [Prefill/decode disaggregation](prefill-decode-disaggregation.md) — running the
+  two phases on different machines, and eventually on different silicon.
 - [Lecture 10 — Inference](10-inference.md)

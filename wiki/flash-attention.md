@@ -210,3 +210,9 @@ pay the quadratic cost again". Cheap to recompute, quadratic to store.
 [Context parallelism / ring attention](context-parallelism.md) applies the same
 block-wise accumulation across *devices* rather than within one, so a sequence too
 long for any single accelerator can still be attended over ([1:01:12]).
+
+[Megakernels](megakernels.md) push the same fusion idea in the other direction —
+outward, to the whole layer. [Lecture 18](18-serving-megakernels-recurrence.md)
+describes them as "similar to the fusion that you see in flash attention, except
+done more aggressively, across a larger number of things."
+

@@ -8,7 +8,7 @@ organizing question, stated in the first lecture and returned to in every unit, 
 **efficiency**: what is the best model you can build from a fixed budget of
 compute and data?
 
-> ## ⚠️ This knowledge base covers Lectures 1–17 of 18
+> ## ✅ This knowledge base covers all 18 lectures
 >
 > **Lecture 1 (Overview and Tokenization), Lecture 2 (PyTorch and Resource
 > Accounting), Lecture 3 (Architectures), Lecture 4 (Attention Alternatives and
@@ -18,8 +18,20 @@ compute and data?
 > the Wild), Lecture 12 (Evaluation), Lecture 13 (Data I — Sources and
 > Datasets), Lecture 14 (Data II — Filtering, Deduplication, Mixing,
 > Post-Training Data), Lecture 15 (Mid/Post-Training — SFT and RLHF) and
-> Lecture 16 (Post-Training — RLVR) and Lecture 17 (Multimodality) are covered
-> in depth.** Nothing else is — **only the guest lecture (18) is missing.**
+> Lecture 16 (Post-Training — RLVR), Lecture 17 (Multimodality) and Lecture 18
+> (the guest lecture) are covered in depth.** **The course is complete in this
+> KB — every recorded lecture has a transcript and a wiki page.**
+>
+> **One caveat, and it is the only one about coverage.** Lecture 18 is the guest
+> lecture, and it is the single lecture for which **no course material exists** —
+> no program, no deck, no handout, anywhere. Its pages are built from the
+> transcript alone and cite timestamps rather than slides, and **it is the only
+> lecture with no images.** Do not construct an image URL for it.
+>
+> A numbering note: the course's own schedule calls this session **19**. Its
+> session 18 was a second guest lecture (Daniel Selsam) that was never recorded
+> and is not in the playlist, so the course ran 19 sessions and 18 videos exist.
+> This KB follows the catalog's numbering.
 > **The Data unit is complete**, and the post-training unit is now two lectures
 > deep: Lecture 15 takes the course from a base model to something close to
 > ChatGPT via supervised fine-tuning and RLHF, and
@@ -200,6 +212,55 @@ If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
 ## Wiki
+
+### Lecture 18 — guest lecture: serving, megakernels, looped recurrence
+
+- **[Lecture 18 — Guest Lecture (Dan Fu)](wiki/18-serving-megakernels-recurrence.md)** —
+  the lecture page: what happens to a model *after* it is trained. The lifetime of
+  a token through a serving stack, then two research threads — megakernels, and
+  PARSE's stabilized looped recurrence. **The only lecture with no course material
+  and no images**; every claim cites a timestamp. Note the course's own schedule
+  numbers this session 19.
+- **[The inference request lifecycle](wiki/inference-request-lifecycle.md)** — the
+  seven stages from arrival to sampled token, why the engine is a loop rather than
+  a pipeline, and how prefix sharing turns the KV cache into a cross-user asset.
+- **[Inference workloads](wiki/inference-workloads.md)** — what production traffic
+  actually looks like: it resembles neither the training distribution nor a
+  benchmark. Workload as a five-part *shape*, and why agentic traffic changes the
+  cadence rather than the volume. Nothing else in CS336 covers this.
+- **[Prefill/decode disaggregation](wiki/prefill-decode-disaggregation.md)** —
+  running the compute-bound and bandwidth-bound phases on different machines, and
+  why that asymmetry propagates all the way into which silicon you buy.
+- **[Cache-aware routing](wiki/cache-aware-routing.md)** — route by cache-hit rate
+  so cold, expensive prefills do not share GPUs with warm, cheap ones. "Two lines
+  of code in the routing layer," claimed at up to 40% faster serving.
+- **[KV cache offloading](wiki/kv-cache-offloading.md)** — spilling the cache to
+  DRAM and SSD, why the host CPU became a serving bottleneck, and the lecture's
+  argument that this is 1970s operating-system paging rediscovered.
+- **[Serving at scale — failure modes](wiki/serving-at-scale-failures.md)** — three
+  real incidents at 0.001%-and-below rates, including the model that answered in
+  Chinese because of an off-by-one error. A behavioural symptom does not imply a
+  behavioural cause.
+- **[Decode-specialized hardware](wiki/decode-specialized-hardware.md)** — why
+  decode invites non-GPU silicon, and how knowing the serving chip changes the
+  architecture: memory capacity first, then the vendor's numeric format.
+- **[Kernel launch overhead and tail effects](wiki/kernel-launch-overhead.md)** —
+  where the GPU's time goes when it is not computing: launch and teardown, tail
+  effects, and the gaps between kernels that "add up."
+- **[Megakernels](wiki/megakernels.md)** — fusing a whole layer into one kernel and
+  treating the GPU as a distributed system. 30–70% on attention alone, 72% of
+  achievable bandwidth on an H100 — and a cost paid in engineer-years.
+- **[Looped transformers](wiki/looped-transformers.md)** — running a block
+  repeatedly instead of adding layers: a dial for FLOPs that is not a dial for
+  parameters, and why they refused to train.
+- **[PARSE](wiki/parse.md)** — the stabilization: model the *residual* rather than
+  the block, and constrain the two matrices that survive so the dynamics cannot
+  explode. Also why norms alone were not enough.
+- **[Spectral radius](wiki/spectral-radius.md)** — the criterion behind it, and why
+  a per-iteration factor barely above one is fatal once compounded.
+- **[Scaling laws for recurrence](wiki/recurrence-scaling-laws.md)** — recurrence
+  as a third axis beside parameters and data, and the observation that every
+  frontier model sits at recurrence = 1 on an axis that appears to have a gradient.
 
 ### Lecture 17 — multimodality
 
@@ -1025,9 +1086,13 @@ usually the faster route than the lecture pages.
   [Lecture 14](raw/transcripts/14-data-filtering-dedup-mixing.md),
   [Lecture 15](raw/transcripts/15-mid-post-training.md),
   [Lecture 16](raw/transcripts/16-post-training-rlvr.md),
-  [Lecture 17](raw/transcripts/17-multimodality.md).
+  [Lecture 17](raw/transcripts/17-multimodality.md),
+  [Lecture 18](raw/transcripts/18-serving-megakernels-recurrence.md).
   Copy-edited from the auto-captions: repunctuated, filler removed, mis-heard
-  technical terms restored against the lecture material. Every `[MM:SS]` marker is
+  technical terms restored against the lecture material — except for
+  **Lecture 18, where no course material exists**, so its restorations rest on the
+  transcript's own internal repetition and its header separates the confirmed ones
+  from the merely inferred. Every `[MM:SS]` marker is
   preserved in its original position, so timestamps quoted from them are citable.
   Each header lists every restoration made and every place left marked unclear.
 - **`raw/transcripts/original/`** — *not in this repo.* The verbatim auto-captions
@@ -1122,17 +1187,18 @@ usually the faster route than the lecture pages.
     audited: twelve pages checked across two passes, plus a sweep of every
     cross-slide claim in the file.
 - **[`sources.md`](sources.md)** — every lecture, deck, assignment and linked
-  document with its canonical URL, including the material for the 8 lectures this
-  KB does not yet cover. Explains how CS336 splits between executable lectures and
-  PDF decks.
+  document with its canonical URL, and the record of where the search for the
+  guest lecture's material looked and found nothing. Explains how CS336 splits
+  between executable lectures and PDF decks.
 
 - **`raw/images/NN-<slug>/`** — pictures, so an answer can *show* a figure rather than
-  only describe it. **All twelve covered lectures have them**: 32–51
-  images each for the six PDF-deck lectures (3, 4, 5, 8, 9, 11), one for every
-  figure-bearing page; and 4–33 each for
-  the six executable lectures (1, 2, 6, 7, 10, 12), which have no deck, so these are the
-  figures the course serves from its own repo. **Lecture 12 is the richest of those
-  six, with 33** — it is the most image-dense lecture in the course, and its figures
+  only describe it. **Seventeen of the eighteen lectures have them**: 32–51
+  images each for the eight PDF-deck lectures (3, 4, 5, 8, 9, 11, 15, 16), one for
+  every figure-bearing page; and 4–33 each for
+  the nine executable lectures (1, 2, 6, 7, 10, 12, 13, 14, 17), which have no deck, so these are the
+  figures the course serves from its own repo. **Lecture 18 has none at all**, because
+  no course material exists for it. **Lecture 12 is the richest of the programs,
+  with 33** — it is the most image-dense lecture in the course, and its figures
   (leaderboard screenshots, benchmark example questions, results charts) *are* its
   content rather than a supplement to it. Lecture 10 is next with 22, mostly
   reproduced tables and charts from the papers it discusses. Nine further images in
@@ -1147,7 +1213,7 @@ usually the faster route than the lecture pages.
 
 `raw/pdfs/` is empty by design — no binaries are committed. The course's decks are
 5–7 MB each and live at the URLs in `sources.md`. The rendered slide images in
-`raw/images/` (31 MB) are the one exception to "no binaries": they are committed, because
+`raw/images/` (75 MB) are the one exception to "no binaries": they are committed, because
 a picture is the thing a prose description cannot replace.
 
 ## Also

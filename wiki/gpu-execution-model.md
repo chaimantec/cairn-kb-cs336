@@ -138,5 +138,7 @@ you don't really have control over. So it's a lot messier than the programming m
 - [Tiling](tiling.md) — the technique built on the block/shared-memory guarantee.
 - [Memory coalescing](memory-coalescing.md) — why a warp's 32 addresses should land
   in one burst.
+- [Kernel launch overhead and tail effects](kernel-launch-overhead.md) — the idle
+  time between kernels, and why decode makes it acute.
 - [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md).
 - [Transcript](../raw/transcripts/05-gpus-tpus.md), [slide deck](../raw/slides/05-gpus-tpus.md).

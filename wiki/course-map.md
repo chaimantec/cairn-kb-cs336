@@ -2,15 +2,16 @@
 
 > **Coverage note.** This page is the syllabus as Percy Liang presents it in
 > [Lecture 1](01-overview-tokenization.md) ([27:04]–[1:03:57]). It is a map of the
-> whole course, but **this knowledge base currently covers Lectures 1–17 of 18**.
+> whole course, and **this knowledge base now covers all 18 recorded lectures**.
 > Covered in full: tokenization (Lecture 1), model architecture (Lectures 3 and 4),
 > the whole Systems unit including inference (Lectures 2, 5, 6, 7, 8 and 10), both
 > scaling-laws lectures (9 and 11), **the entire Data unit** (Lectures 12, 13
 > and 14), and the **first two lectures of the Alignment unit** (Lecture 15 —
 > mid/post-training, SFT and RLHF; Lecture 16 — post-training and
-> [RLVR](16-post-training-rlvr.md)). Still a preview rather than a treatment:
-> **[multimodality (Lecture 17)](17-multimodality.md)**. Still a preview rather
-> than a treatment: only the guest lecture (18). The
+> [RLVR](16-post-training-rlvr.md)),
+> **[multimodality (Lecture 17)](17-multimodality.md)**, and the closing
+> **[guest lecture (18)](18-serving-megakernels-recurrence.md)** on serving,
+> megakernels and looped recurrence. Nothing is left as a preview. The
 > topics lecture 15 deferred — RLVR, GRPO, reasoning models — are now covered,
 > since lecture 16 is where it deferred them to. Note that the syllabus titles
 > lecture 17 "Alignment, multimodality" but it contains no alignment content. See [`kb.json`](../kb.json) for
@@ -93,7 +94,7 @@ B200.
 > [Lecture 2](02-pytorch-resource-accounting.md), because Assignment 1 needs it.
 > Percy opens that lecture by saying the day's subject is resource accounting and
 > that it is "more on the systems side of things." So the Lecture 2 material below
-> is **covered in this KB**, while the rest of the unit is still a preview. See
+> is **covered in this KB**, as is the rest of the unit. See
 > [resource accounting](resource-accounting.md),
 > [arithmetic intensity](arithmetic-intensity.md) and
 > [training FLOPs](training-flops.md) for the treatment.

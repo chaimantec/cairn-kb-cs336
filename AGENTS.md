@@ -5,14 +5,18 @@ Stanford, Spring 2026 — Percy Liang and Tatsunori Hashimoto**. It is read by
 Cairn's in-extension AI chat, which fetches files over `raw.githubusercontent.com`
 and follows relative markdown links.
 
-**Coverage: Lectures 1–17 of 18.** See [`kb.json`](kb.json) and the banner
-at the top of [`INDEX.md`](INDEX.md). Any page describing later material is
-repeating Lecture 1's syllabus preview and says so in a blockquote at the top.
+**Coverage: all 18 recorded lectures.** See [`kb.json`](kb.json) and the banner
+at the top of [`INDEX.md`](INDEX.md). The course is complete here: every lecture
+has a copy-edited transcript and a wiki page. **Lecture 18 is the exception worth
+knowing about** — it is the guest lecture, no course material exists for it
+anywhere, so its pages rest on the transcript alone, cite timestamps rather than
+slides, and carry no images.
 
 One numbering quirk to know: Lecture 2 teaches **resource accounting**, which
 belongs to the Systems unit (Lectures 5–8, 10) even though the lecture itself sits
-in the Basics block. So [`wiki/course-map.md`](wiki/course-map.md) marks Unit 2 as
-partially covered while the rest of that unit is still a preview.
+in the Basics block. So [`wiki/course-map.md`](wiki/course-map.md) records
+resource accounting under Systems even though the lecture sits earlier; the whole
+of that unit (Lectures 5–8 and 10) is covered here.
 
 ## Layout
 
@@ -230,8 +234,9 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
 
 ## Images
 
-Every lecture 1-17 has images. They are committed, not hotlinked, and they are the only
-part of this KB that redistributes course material rather than pointing at it.
+Every lecture 1-17 has images — **lecture 18 has none.** They are committed, not
+hotlinked, and they are the only part of this KB that redistributes course
+material rather than pointing at it.
 
 | Lecture | Files | Where they came from |
 | --- | --- | --- |
@@ -253,8 +258,14 @@ part of this KB that redistributes course material rather than pointing at it.
 | 16 Post-Training: RLVR | 47 of 61 pages | rendered from `lecture_16.pdf` |
 | 17 Multimodality | 32 | the course's own `images/*.png` |
 
-**Lecture 18 (the guest lecture) is not in this KB at all, so it has no images.**
-It is the only lecture without them.
+**Lecture 18 (the guest lecture) IS in this KB — transcript, lecture page and 13
+topic pages — but it has no images, and never will.** No course material exists
+for it: no program, no deck, no handout, in the course repo, either sibling-year
+archive, or the site repo (the search is recorded in
+[`sources.md`](sources.md)). It is the only lecture without images, so this is
+exactly the case the rule above exists for: **do not construct an image URL for
+lecture 18 from the pattern of the other seventeen.** There is nothing to find,
+and a guessed path puts a broken image in front of a learner.
 
 **Lectures 15 and 16 had no independent figure audit** — they are the only two
 page-image decks here without one, skipped at the user's instruction to save

@@ -208,5 +208,8 @@ Next lecture: more than one GPU.
 - [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md) — the hardware picture this builds on.
 - [Lecture 2 — PyTorch and resource accounting](02-pytorch-resource-accounting.md) —
   where arithmetic intensity was introduced, and referred back to here at [1:14:10].
+- [Megakernels](megakernels.md) — fusion pushed to a whole layer, from
+  [Lecture 18](18-serving-megakernels-recurrence.md); and
+  [kernel launch overhead](kernel-launch-overhead.md), the cost it removes.
 - [Transcript](../raw/transcripts/06-kernels-triton.md),
   [lecture source](../raw/slides/06-kernels-triton.md).

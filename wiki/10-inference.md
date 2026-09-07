@@ -282,3 +282,7 @@ not, this could maybe unlock a lot" ([1:24:51]) — which points at
 - [Lecture 5 — GPUs and TPUs](05-gpus-tpus.md) — where the 295 comes from.
 - [Lecture 9 — Scaling laws](09-scaling-laws.md) — the lecture before, which this one interrupts.
 - [Attention variants](attention-variants.md) — MQA, GQA and sliding windows in one place.
+- **[Lecture 18 — Guest lecture (Dan Fu)](18-serving-megakernels-recurrence.md) — the
+  operational counterpart to this one.** Where this lecture *derives* inference, that
+  one *runs* it: production traffic shapes, prefill/decode disaggregation, cache
+  offloading, and what breaks at a trillion tokens a day. Almost nothing overlaps.
