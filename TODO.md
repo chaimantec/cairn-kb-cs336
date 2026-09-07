@@ -2516,8 +2516,35 @@ KB can copy, look at and describe.
 ### Transcript
 - [x] 17 — verbatim captions fetched (100 paragraphs, ~11.4k words), saved to
       the gitignored raw/transcripts/original/ with its segment JSON
-- [ ] 17 — copy-edited transcript
-- [ ] 17 — verify: timestamps, numbers, ratios, proper-noun grep
+- [x] 17 — copy-edited transcript (Sonnet, 100 paragraphs, ~9.6k words from
+      ~11.4k of captions). Appended in batches of ~10 throughout; not killed.
+- [x] 17 — verify: ALL FOUR CHECKS PASS.
+      Timestamps: 100 markers, sequence identical, none moved.
+      Numbers: 12 differences, EVERY ONE adjudicated as a legitimate restoration
+      and none reverted — the captions split "20 21" into two tokens (-> 2021),
+      garbled "a,024" (-> 1,024, confirmed by the deck's "1024 tokens"), split
+      "2 56 k" (-> 256K), dropped a digit in "336 x36" (-> 336-by-336), heard
+      "14x4" for the deck's printed "14x14", and spelled three model names as
+      words ("Lava 1 vision" -> LLaVA-OneVision, "quen 2/3" -> Qwen2/Qwen3).
+      Ratios: 5 of 100 outside the 0.72-1.10 band, ALL FIVE EXPLAINED. Two are
+      student-question handling ([10:58] garble replaced by an inaudible marker,
+      0.61; [59:28] a one-line gloss added, 1.22) — the run-12 lesson that an
+      editorial insertion is a legitimate outlier, here in both directions. The
+      other three (0.70-0.71) are plain filler removal, read in full and
+      confirmed to lose no substantive statement; this lecturer is unusually
+      "um"/"you know"-dense, so the band's lower edge is slightly tight for him.
+      PROPER-NOUN GREP: all 44 terms claimed as confirmed appear in the deck —
+      ZERO FABRICATIONS. Two claimed as context-only (GPT-5, Claude Opus 4.1)
+      are in fact printed, as column headers of the qwen3-vl-results table whose
+      description was merged AFTER the edit ran; reclassified as confirmed, a
+      strengthening rather than an error (cf. run 17's "z-score").
+      TWO HEADER CORRECTIONS made in the parent: the header claimed "no content
+      has been added, removed or reordered", which the [10:58] question handling
+      contradicts — it now states that exception precisely and says why nothing
+      is lost (the lecturer restates every question, and the restatement is
+      kept verbatim).
+      Two [Ed: unclear] left rather than guessed, including "the AI2 has a
+      mobile paper" (probably Molmo, but flagged, not substituted).
 
 ### Wiki
 - [ ] wiki/17-multimodality.md
