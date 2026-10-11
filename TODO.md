@@ -1,7 +1,7 @@
 # KB build — CS336 (Language Modeling from Scratch, Stanford, Spring 2026)
 
-Coverage after run 15: **Lectures 1–14.** The
-course has 18 recorded lectures. See `kb.json` for machine-readable coverage.
+Coverage: **all 18 lectures** (the build closed at run 19), plus a page for
+**Assignment 1** (run 20). See `kb.json` for machine-readable coverage.
 
 ## Run 1 — Lecture 1 (complete)
 
@@ -2905,3 +2905,42 @@ discrepancy, do not absorb it silently.
   first time. Giving it the list of garbles already adjudicated in the parent
   (KP cache, GPD2, cloud code, Sabbonova…) plus an explicit DO-NOT-RESOLVE list
   is what kept it from guessing.
+
+## Run 20 — Assignment 1 page
+
+Source: the Spring 2026 handout, version 26.0.3 (47 pages, 2026-04-07), and the
+starter repo at commit `a158843` (MIT). Read from the PDF text layer; the RMSNorm
+denominator and AdamW pseudocode were checked against rendered crops (ε is inside
+the square root; weight decay uses α, not α_t, and precedes the moment updates).
+
+- [x] wiki/assignment-1-basics.md — all 38 problems (109 points, 17 B200-hours,
+      both computed), each component's specification, experiments, low-resource
+      path, lecture map, AI-assistant rules, and eight source disagreements
+- [x] Quote check — 40 quotations against handout, repo files and transcripts;
+      the one miss is a text-layer line break ("teraFLOP/ s")
+- [x] Inbound links from 12 pages (01, 02, 03, byte-pair-encoding, tokenization,
+      rope, gated-activations, rmsnorm, memory-accounting-for-training,
+      training-flops, course-map, INDEX)
+- [x] INDEX.md — Start-here bullet, an Assignments section, and a third citation kind
+- [x] Fix: raw/slides/01's caption called transformer-architecture.png "the model
+      built in assignment 1"; it has absolute position embeddings and dropout, which
+      the 2026 handout's model does not. Lecture 3 slide 4 is the matching diagram.
+- [x] Fix: course-map.md said lecture 17 was "not yet" covered, and that optimizer,
+      init and schedule material was "not in this knowledge base" (Lecture 11 covers it)
+- [x] Fix: wiki/02 said Assignment 1 asks for Adam; the handout specifies AdamW
+- [x] sources.md, kb.json (175 topic pages, materials.assignments, one caveat), AGENTS.md
+- [x] verify_kb.py clean
+- [x] check_math.mjs: new page clean (146 formulas); the repo's 22 chat errors all predate this run
+- [x] Commit
+- [ ] Push (awaiting the user's go-ahead)
+
+Lessons:
+
+- **A lecture figure can belong to an older offering.** Lecture 1 shows a
+  Transformer diagram the build had captioned as the assignment's model; it is a
+  previous year's (absolute positions, dropout). Check a figure's claimed
+  provenance against the current handout before captioning it.
+- **Do not compute an assignment's answers, even trivial ones.** The base model's
+  parameter count would have taken one line, and it is a near neighbour of
+  `transformer_accounting`. The page records the handout's two inconsistent
+  descriptions ("17M total" vs "17M non-embedding") and stops there.

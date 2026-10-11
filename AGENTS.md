@@ -23,7 +23,7 @@ of that unit (Lectures 5–8 and 10) is covered here.
 | Path | Contents |
 | --- | --- |
 | `INDEX.md` | Entry point. Course summary + annotated table of contents. |
-| `wiki/` | Durable pages: one per lecture, plus cross-lecture topics. |
+| `wiki/` | Durable pages: one per lecture, plus cross-lecture topics, plus one assignment page (`assignment-1-basics.md`). |
 | `raw/slides/` | The written course material, transcribed. See the note below — CS336 has no slide numbers for half its lectures, and none of the five decks transcribed so far prints one either. |
 | `raw/transcripts/` | Copy-edited lecture transcripts with `[MM:SS]` paragraph marks. **These are the ones to read.** |
 | `raw/transcripts/original/` | **Gitignored, not in the repo.** The verbatim auto-captions are a complete reproduction of the lecture with none of this KB's own work in them, so they are kept locally and not published. Regenerate with `fetch_transcript.py <video_id>` piped through `transcript_to_md.py`; the video id is in each transcript's front matter. |
@@ -224,6 +224,15 @@ while Lectures 3–5 are `page-images`; the per-lecture breakdown is in
   number for those, and do not substitute a plausible one.
 - **Prose over fragments.** The chat quotes these pages to learners; bullet
   fragments quote badly.
+- **Assignment pages describe, never solve.** `wiki/assignment-1-basics.md` is
+  built from the handout and starter repo, not a recording. It cites handout
+  **section numbers and problem names**, pins the handout version and repo commit
+  (handouts change mid-quarter), and gives no answer to any problem: the course's
+  AI policy and the repo's `AGENTS.md` forbid AI from implementing any part, and
+  the chat is an AI tool. Never compute a problem's answer, even one that looks
+  like plain arithmetic (a parameter count, a FLOP total). Read the handout from
+  its text layer, and check any equation the layout flattens against a rendered
+  crop.
 - **Math in LaTeX**: `$...$` inline, `$$...$$` displayed. Renders both in Cairn's
   chat and on github.com. Never inside a code fence — that shows the source instead
   of the formula. Define each symbol on first use, and follow the course's own

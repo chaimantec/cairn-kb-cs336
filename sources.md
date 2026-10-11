@@ -209,6 +209,16 @@ Lecture 1 links the Assignment 1 handout as
 path is `cs336_assignment1_basics.pdf`. Both are linked above — use the repo link
 if one 404s.
 
+**Assignment 1 has a wiki page**, [`wiki/assignment-1-basics.md`](wiki/assignment-1-basics.md),
+built on 2026-10-11 from handout **version 26.0.3** (47 pages, dated 2026-04-07) at
+repository commit
+[`a158843`](https://github.com/stanford-cs336/assignment1-basics/tree/a158843), together
+with that commit's `README.md`, `CHANGELOG.md`, `AGENTS.md`, `tests/adapters.py` and
+`make_submission.sh`. The repository is MIT-licensed. At that commit the tree holds
+only `cs336_assignment1_basics.pdf`; the `cs336_spring2025_assignment1_basics.pdf`
+listed in the crawl inventory below was seen on 2026-08-27 and is no longer there.
+Assignments 2–5 have no wiki page.
+
 ## Other course links referenced in Lecture 1
 
 | What | URL |

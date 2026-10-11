@@ -455,9 +455,9 @@ Starting point: the original Transformer
 
 *Figure: `images/transformer-architecture.png` (width 500).*
 
-![The assignment-1 Transformer: full stack, and one pre-norm block expanded](../images/01-overview-tokenization/transformer-architecture.png)
+![A pre-norm Transformer with absolute position embeddings and dropout: full stack, and one block expanded](../images/01-overview-tokenization/transformer-architecture.png)
 
-*Two views of the model built in assignment 1. Left, the whole stack: token and absolute position embeddings, add and dropout, a run of Transformer blocks, a final norm, then the output linear and softmax. Right, one block expanded - norm, causal multi-head self-attention, dropout, add; then norm, position-wise feedforward, dropout, add - a pre-norm block, with both residual additions drawn as arrows bypassing the sublayer. Source: [`images/transformer-architecture.png`](https://github.com/stanford-cs336/lectures/blob/main/images/transformer-architecture.png) in the lectures repo.*
+*Two views of a pre-norm Transformer. **This is not the model the Spring 2026 Assignment 1 handout specifies**: that model has no absolute position embeddings (it uses RoPE inside attention) and no dropout — Lecture 3's slide 4 is the diagram that matches it; see [the Assignment 1 page](../../wiki/assignment-1-basics.md). Left, the whole stack: token and absolute position embeddings, add and dropout, a run of Transformer blocks, a final norm, then the output linear and softmax. Right, one block expanded - norm, causal multi-head self-attention, dropout, add; then norm, position-wise feedforward, dropout, add - a pre-norm block, with both residual additions drawn as arrows bypassing the sublayer. Source: [`images/transformer-architecture.png`](https://github.com/stanford-cs336/lectures/blob/main/images/transformer-architecture.png) in the lectures repo.*
 
 Refinements:
 

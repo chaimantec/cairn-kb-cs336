@@ -90,7 +90,7 @@ parameter matmuls, and $6ND$ is close. As context grows they stop being small, a
 $6ND$ under-counts.
 
 Two further things $6ND$ does not include: it counts only training compute, and it
-counts a *dense* model — the parameters used per token. Assignment 1 asks you to do
+counts a *dense* model — the parameters used per token. [Assignment 1](assignment-1-basics.md) asks you to do
 the full Transformer accounting properly rather than rely on the shortcut.
 
 ## Using it

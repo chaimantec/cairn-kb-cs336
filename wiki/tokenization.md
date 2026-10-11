@@ -212,8 +212,8 @@ of the model.
 
 ## In this course
 
-Assignment 1 has you implement a BPE tokenizer, with the practical extensions
-Lecture 1's toy version omits — see
+[Assignment 1](assignment-1-basics.md) has you implement a BPE tokenizer, with the
+practical extensions Lecture 1's toy version omits — see
 [byte-pair encoding](byte-pair-encoding.md#what-assignment-1-adds).
 
 ## Sources

@@ -1,6 +1,6 @@
 # Byte-Pair Encoding (BPE)
 
-BPE is the tokenizer CS336 teaches and the one Assignment 1 asks you to build. It
+BPE is the tokenizer CS336 teaches and the one [Assignment 1](assignment-1-basics.md) asks you to build. It
 resolves the dilemma laid out in [tokenization](tokenization.md) — character,
 byte and word tokenizers each fail on either vocabulary size or compression ratio
 — by **training the vocabulary on data** instead of fixing it in advance.
@@ -167,6 +167,10 @@ that it is "extremely slow." Assignment 1 asks for four improvements ([1:16:20]�
 - **Make it fast.** And at some point, he notes, you may find that Python is simply
   not fast enough — "if you want to implement it in, say, your favourite language,
   Rust or C or something, then go for it."
+
+That is the lecture's account. The handout's own specification — the tie-breaking
+rule, special tokens as hard boundaries, the time and memory budgets, and the
+`Tokenizer` interface — is summarized on [Assignment 1](assignment-1-basics.md).
 
 ## Sources
 

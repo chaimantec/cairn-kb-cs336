@@ -5,7 +5,7 @@ that appears to buy real quality rather than just speed. Hashimoto's summary at
 [21:31]: "almost all credible modern language models use a gated linear unit of
 some kind."
 
-This is also the change you implement in assignment 1, which asks for SwiGLU rather
+This is also the change you implement in [assignment 1](assignment-1-basics.md), which asks for SwiGLU rather
 than ReLU (slide 4).
 
 ![Slide 4 — What you implemented – simple, modern variant](../raw/images/03-architectures/slide-4.jpg)

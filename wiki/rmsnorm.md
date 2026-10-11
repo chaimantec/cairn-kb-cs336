@@ -137,7 +137,7 @@ arithmetically intense, but fairly memory-intensive," and that while they can al
 cause stability problems, "the primary reason these are dropped is just to simplify
 things from the systems perspective."
 
-This is also why the assignment-1 model has no bias terms in its linear layers or
+This is also why the [assignment-1](assignment-1-basics.md) model has no bias terms in its linear layers or
 its norms (slide 4).
 
 ![Slide 4 — What you implemented – simple, modern variant](../raw/images/03-architectures/slide-4.jpg)

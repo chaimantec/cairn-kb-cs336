@@ -13,7 +13,7 @@
     "lecturesTotal": 18,
     "transcripts": 18,
     "wikiLecturePages": 18,
-    "wikiTopicPages": 174
+    "wikiTopicPages": 175
   },
   "materials": {
     "primary": "mixed",
@@ -112,6 +112,23 @@
       "16": false,
       "17": "partial",
       "18": "n/a - no course material, no figures"
+    },
+    "assignments": {
+      "available": 5,
+      "withWikiPage": [1],
+      "pages": {
+        "1": "wiki/assignment-1-basics.md"
+      },
+      "1": {
+        "handoutVersion": "26.0.3",
+        "handoutDate": "2026-04-07",
+        "handoutPages": 47,
+        "repoCommit": "a158843",
+        "repoLicense": "MIT",
+        "method": "text-layer, with the two equations whose layout extraction loses (RMSNorm's denominator, the AdamW pseudocode) checked against rendered crops",
+        "transcribed": false,
+        "note": "The wiki page summarizes the handout and cites it by section number and problem name; there is no raw/ transcription of the handout, and no handout figure was rendered or redistributed. The page describes the assignment and deliberately gives no solutions, per the course's AI policy and the repository's AGENTS.md."
+      }
     }
   },
   "license": {
@@ -223,9 +240,10 @@
       "LECTURE 16's SLIDE DECK ALSO HAD NO INDEPENDENT FIGURE AUDIT, skipped at the user's instruction as for lecture 15. Four Sonnet readers took contiguous 15-16 page ranges of the 61-page deck. Compensating checks that WERE run: a verified 1..61 heading sequence; a check that no LaTeX sits inside a code fence; and two rendered images read back against their descriptions (slide 21's four-series DeepSeekMath chart, correct in series identity, legend order, axis ranges and endpoints; slide 57's distillation diagram, correct except that it called the diagram's plain text labels 'boxes', now fixed). Two readers also went beyond looking: slide 40's five series were disambiguated by RGB-sampling the legend swatches and the bars, and slide 60's cropped y-axis range was recovered from an adjacent crop. Treat its chart values as less certain than the six audited decks'.",
       "Lecture 16's deck has seven defects of its own, reproduced rather than silently corrected and listed in its slide file's Known gaps section: a hidden text-layer string behind slide 8's caption that never renders (NOT transcribed as slide content); quote boxes on slides 34, 38 and 52 cropped mid-word by the slide's own edges; slide 54's ThinkFollow* row printing one merged value across two sub-columns; and typos printed on slides 43 ('traning') and 45 ('promt').",
       "Lecture 16's transcript was drafted by Sonnet up to paragraph 80 of 99, when the agent was killed by a session rate limit; because it wrote incrementally nothing was lost, and paragraphs 81-99 were written by the Opus parent. All four checks pass: 99 timestamps identical and in order, zero paragraphs outside the 0.72-1.10 word-ratio band, all 23 deck-confirmed restorations found verbatim in the deck, and every number difference adjudicated. TWO DRAFT CHANGES WERE REVERTED AS UNSAFE, both on one model name: the draft renumbered the spoken 'Quen 3.5 Next Coder' to match slide 55's printed 'Qwen3-Coder-Next', dropping a version number the lecturer says twice, and rendered the garble 'clen coder next' as 'Qwen3-Coder-Next', adding a '3' spoken nowhere. His spoken forms are kept with an [Ed:] note giving the deck's printed name. One [Ed: unclear] remains at 1:11:45.",
-      "A KB-WIDE IMAGE CONSISTENCY CHECK was added in this run and found three defects from the previous one: wiki embeds whose alt text named a slide different from the image file shown. Slides 19 and 32 of lecture_15.pdf carry no raster and were correctly never rendered, so those embeds had been pointed at a neighbouring file - the exact failure AGENTS.md warns about. In one case the Safety flowchart (slide 22) was sitting in a passage about hallucination. All fixed; all images across the KB now agree on alt text, italic caption and filename."
+      "A KB-WIDE IMAGE CONSISTENCY CHECK was added in this run and found three defects from the previous one: wiki embeds whose alt text named a slide different from the image file shown. Slides 19 and 32 of lecture_15.pdf carry no raster and were correctly never rendered, so those embeds had been pointed at a neighbouring file - the exact failure AGENTS.md warns about. In one case the Safety flowchart (slide 22) was sitting in a passage about hallucination. All fixed; all images across the KB now agree on alt text, italic caption and filename.",
+      "wiki/assignment-1-basics.md is built from the Assignment 1 handout (version 26.0.3, repo commit a158843) and starter repo, not from a lecture. The handout's text was read from the PDF text layer rather than as page images; only its RMSNorm and AdamW equations were checked visually. The handout is revised during the quarter, so a reader holding a different version should trust their copy. Assignments 2-5 have no wiki page."
     ]
   },
   "entryPoint": "INDEX.md",
-  "updated": "2026-09-07"
+  "updated": "2026-10-11"
 }

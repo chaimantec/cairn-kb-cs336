@@ -313,7 +313,9 @@ Full treatment: [training FLOPs and the 6ND rule](training-flops.md).
 ## Optimizer state and the memory bill
 
 AdaGrad is used rather than Adam, deliberately, "so that I'm not just giving you
-what's in assignment 1" ([1:06:54]) — Assignment 1 asks you to implement Adam. The
+what's in assignment 1" ([1:06:54]). Percy says Assignment 1 has you implement Adam
+([1:07:41]); the handout's §4.3 specifies AdamW — see
+[Assignment 1](assignment-1-basics.md). The
 family in one line: momentum is the first moment of the gradient, AdaGrad the
 second, Adam both.
 
@@ -409,7 +411,7 @@ parallelism is the same principle across devices, and inference is organized
 entirely around the matrix–vector result above. See [course
 map](course-map.md#unit-2--systems).
 
-Assignment 1 asks you to redo this accounting properly for a Transformer, where it
+[Assignment 1](assignment-1-basics.md) asks you to redo this accounting properly for a Transformer, where it
 is "a bit more complicated, but you're going to do that in assignment 1, and do it
 more carefully" ([1:11:36]).
 

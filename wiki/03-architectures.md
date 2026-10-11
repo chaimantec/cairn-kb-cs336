@@ -4,7 +4,7 @@
 Tatsunori Hashimoto's own title for the lecture (slide 1), and a fair warning about
 its method.
 
-This is the lecture that answers the questions assignment 1 raises but does not
+This is the lecture that answers the questions [assignment 1](assignment-1-basics.md) raises but does not
 justify: why the layer norm moved to the front of the block, why you are asked to
 implement RoPE instead of sinusoids, why SwiGLU instead of ReLU, and why the linear
 layers have no bias terms. The answer in each case turns out to be neither a

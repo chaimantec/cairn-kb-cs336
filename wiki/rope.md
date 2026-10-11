@@ -2,7 +2,7 @@
 
 How modern language models tell the difference between "we know" and "know we".
 RoPE is the position embedding used by essentially every model after 2024, and it
-is what assignment 1 asks you to implement (slide 4).
+is what [assignment 1](assignment-1-basics.md) asks you to implement (slide 4).
 
 ![Slide 4 — What you implemented – simple, modern variant](../raw/images/03-architectures/slide-4.jpg)
 

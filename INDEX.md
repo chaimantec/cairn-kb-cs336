@@ -208,6 +208,13 @@ compute and data?
   model believes, and the DPO derivation in full. It ends by naming
   **overoptimization** as RLHF's big open problem, which is the door to lecture 16.
 
+- **[Assignment 1 — Basics](wiki/assignment-1-basics.md)** — if you are *doing*
+  the first assignment rather than watching the lectures, start here. What the
+  Spring 2026 handout (version 26.0.3) asks you to build — a BPE tokenizer, a
+  pre-norm Transformer with RMSNorm, SwiGLU and RoPE, cross-entropy, AdamW, a cosine
+  schedule, a training loop and a sampler — with every problem's points, and which
+  lecture teaches each part. It describes the assignment and does not solve it.
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
@@ -1044,6 +1051,23 @@ usually the faster route than the lecture pages.
   four things Assignment 1 adds to the toy version. Read this for "how does BPE
   actually work?"
 
+### Assignments
+
+- **[Assignment 1 — Basics: building a Transformer LM](wiki/assignment-1-basics.md)** —
+  the only assignment with its own page, built from the Spring 2026 handout
+  (version 26.0.3) and the starter repository rather than from a recording. A table
+  of all 38 problems with points, test names and GPU budgets; the specification of
+  each component as the handout writes it (BPE training rules and budgets,
+  RMSNorm, SwiGLU, RoPE, the attention mask convention, AdamW's Algorithm 1, the
+  cosine schedule, gradient clipping, the data loader); the TinyStories and
+  OpenWebText experiments, the ablations and the leaderboard rules; the
+  low-resource path for a laptop; a table mapping each handout section to the
+  lecture that teaches it; the course's rules for AI assistants; and eight places
+  where the handout, the repository and the lectures disagree — among them that
+  **Lecture 1's architecture diagram is not the assignment's model**. Read this for
+  "what does Assignment 1 actually ask?" It gives no answers. Assignments 2–5 have
+  no page; their handouts are linked from [`sources.md`](sources.md).
+
 ### Across the course
 
 - **[Efficiency](wiki/efficiency.md)** — the course's organizing principle.
@@ -1255,6 +1279,11 @@ For Lectures 3 and 4, "slide N" means PDF page N of `lecture_03.pdf` or
 `lecture_04.pdf`. Neither deck prints page numbers, so there is no printed numbering
 to disagree with the page count — but say "page" rather than "printed slide" if the
 distinction could matter to a reader opening the file.
+
+A third kind applies only to [Assignment 1](wiki/assignment-1-basics.md): **a handout
+section or problem name** — `§3.4.1`, `rmsnorm` — cites the Assignment 1 handout,
+version 26.0.3. It resolves against the PDF linked from that page, not against
+anything in `raw/`, because this KB holds no transcription of the handout.
 
 There are **no slide numbers** in this course's Percy-taught lectures. If a source
 appears to cite one, it is wrong — see

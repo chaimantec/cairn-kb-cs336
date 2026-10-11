@@ -142,7 +142,7 @@ lives on [the course map](course-map.md).
 
 | Unit | Assignment | Covers |
 | --- | --- | --- |
-| Basics | 1 | Tokenization, architecture, training loop |
+| Basics | [1](assignment-1-basics.md) | Tokenization, architecture, training loop |
 | Systems | 2 | Kernels (Triton), parallelism, inference |
 | Scaling laws | 3 | Scaling recipes, extrapolation |
 | Data | 4 | Evaluation, curation, filtering, dedup, mixing |
@@ -159,7 +159,9 @@ Today, the course assumes compute is the binding constraint.
 A remark on logistics that is genuinely load-bearing for a self-study reader: at
 [20:12] Percy quotes a course evaluation saying the *first* assignment was
 comparable to all five CS224N assignments plus the final project, then adds he's
-been told this is exaggerated. Budget accordingly.
+been told this is exaggerated. Budget accordingly. What the first assignment actually
+asks for — every problem, its points and its GPU budget — is on
+[Assignment 1](assignment-1-basics.md).
 
 ## Tokenization
 

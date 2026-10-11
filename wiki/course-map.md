@@ -27,7 +27,7 @@ a fixed set of resources — data, compute, memory, communication bandwidth?
 | [Systems](#unit-2--systems) | 2 | 5–8, 10 | Lectures 2, 5, 6, 7, 8 and [10](10-inference.md) |
 | [Scaling laws](#unit-3--scaling-laws) | 3 | 9, 11 | [Lecture 9](09-scaling-laws.md) and [Lecture 11](11-scaling-laws-in-the-wild.md) |
 | [Data](#unit-4--data) | 4 | 12–14 | All three: [12](12-evaluation.md), [13](13-data-sources-datasets.md), [14](14-data-filtering-dedup-mixing.md) |
-| [Alignment](#unit-5--alignment) | 5 | 15–17 | [Lecture 15](15-mid-post-training.md) and [Lecture 16](16-post-training-rlvr.md); 17 not yet |
+| [Alignment](#unit-5--alignment) | 5 | 15–17 | [Lecture 15](15-mid-post-training.md), [Lecture 16](16-post-training-rlvr.md) and [Lecture 17](17-multimodality.md) |
 
 ## Unit 1 — Basics
 
@@ -71,7 +71,13 @@ Three components:
   Two items here are **covered by [Lecture 4](04-attention-alternatives.md)**:
   [multi-token prediction](multi-token-prediction.md) and
   [MoE load balancing](load-balancing-losses.md). The optimizer, initialization and
-  schedule material is not in this knowledge base.
+  schedule items come back in [Lecture 11](11-scaling-laws-in-the-wild.md) — see
+  [optimizer scaling](optimizer-scaling.md),
+  [maximal update parametrization](maximal-update-parametrization.md) and
+  [WSD schedules](wsd-schedules.md). The versions you actually implement —
+  truncated-normal initialization, AdamW, and cosine annealing with warm-up — are
+  specified by Assignment 1's handout and summarized on
+  [the assignment page](assignment-1-basics.md).
 
 Percy's remark at [33:15] is worth carrying forward: this list *looks* like a pile
 of hyperparameters you could sweep, but setting them in a principled way is the
@@ -83,7 +89,9 @@ See [efficiency](efficiency.md#the-three-way-balance).
 **Assignment 1:** implement the BPE tokenizer, the Transformer, cross-entropy,
 AdamW and the training loop; do resource accounting; train on TinyStories and
 OpenWebText. Leaderboard: minimize OpenWebText perplexity given 45 minutes on a
-B200.
+B200. **[Assignment 1](assignment-1-basics.md) has its own page**, built from the
+Spring 2026 handout: every problem with its points, the specification of each
+component, the experiments, and where each lecture teaches the part it needs.
 
 ## Unit 2 — Systems
 

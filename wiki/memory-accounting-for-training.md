@@ -179,7 +179,7 @@ accounting](resource-accounting.md).
 ## Transformers
 
 The accounting for a Transformer is more complicated but follows the same idea,
-and **Assignment 1 asks you to do it**. The lecture points at one blog post for
+and **[Assignment 1](assignment-1-basics.md) asks you to do it**. The lecture points at one blog post for
 each half:
 
 - Memory: [erees.dev/transformer-memory](https://erees.dev/transformer-memory/)
