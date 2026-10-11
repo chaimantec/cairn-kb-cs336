@@ -2997,9 +2997,9 @@ commit `14e1225`), and the starter repo at commit `ca8bc81` (2026-05-01, code-on
 - [x] Figures 1-3 read against rendered crops by the parent: Figure 1 had completed two
       truncated labels ("BAR…" -> "BAR1"), fixed; all its millisecond labels were right.
       Figure 2 wording clarified. Figure 3 clean
-- [x] Math: 511 formulas, 0 errors in KaTeX and on github.com. Fixes: \{ \} -> \lbrace
-      \rbrace; space after `_` following a non-letter; \text{batch\_size} -> \verb|...|;
-      {\boldsymbol{x^{(i)}}}^\top for MathJax's double-exponent error; braces around two
+- [x] Math: 511 formulas, 0 errors in KaTeX and on github.com. Fixes: `\{ \}` -> `\lbrace
+      \rbrace`; space after `_` following a non-letter; `\text{batch\_size}` -> `\verb|...|`;
+      `{\boldsymbol{x^{(i)}}}^\top` for MathJax's double-exponent error; braces around two
       inline formulas that end in ")" right before a literal ")", which GitHub will not
       open as math
 - [x] wiki/assignment-2-systems.md — all 27 problems (137 points, computed) with test
@@ -3021,8 +3021,10 @@ commit `14e1225`), and the starter repo at commit `ca8bc81` (2026-05-01, code-on
 - [x] verify_kb.py: fixed a checker bug in the skill's script — fenced code inside a
       blockquote or list item was not stripped, so `(...arguments...)` inside a problem
       box's code fence read as a link
-- [ ] verify_kb.py clean
-- [ ] Commit and push
+- [x] verify_kb.py clean (hard checks; its repo-wide math pass returned no JSON on the
+      re-run, so check_math was run directly on all 22 changed files: every finding is
+      on a line from an earlier run, apart from raw TeX in this TODO entry, now in backticks)
+- [x] Push (2026-10-12)
 
 Lessons:
 
