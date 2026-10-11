@@ -2932,7 +2932,7 @@ the square root; weight decay uses α, not α_t, and precedes the moment updates
 - [x] verify_kb.py clean
 - [x] check_math.mjs: new page clean (146 formulas); the repo's 22 chat errors all predate this run
 - [x] Commit
-- [ ] Push (awaiting the user's go-ahead; carried into run 21)
+- [x] Push (with run 21, 2026-10-12)
 
 Lessons:
 
@@ -2971,4 +2971,4 @@ problem wording. Output: `raw/handouts/assignment1-basics.md` (47 pages, ~22k wo
 - [x] Linked from the wiki page, INDEX (start-here, Assignments, citing, raw
       material), sources.md, LICENSE.md (MIT exception), AGENTS.md, kb.json
 - [x] verify_kb.py clean
-- [ ] Push (awaiting the user's go-ahead)
+- [x] Push (2026-10-12)
