@@ -1276,9 +1276,10 @@ usually the faster route than the lecture pages.
   `raw/slides/`, and in `wiki/` wherever a page cites that slide. About a third of every
   deck was deliberately *not* rendered — title cards, outlines, dividers, and the tables
   and equations `raw/slides/` already reproduces cell by cell — so **read an image path
-  out of a file rather than constructing one**. `AGENTS.md` has the conventions and the
-  attribution; [`LICENSE.md`](LICENSE.md) has the copyright position, which is not the
-  same for these as for the rest of the repo.
+  out of a file rather than constructing one**. `AGENTS.md` has the conventions,
+  [`BUILD_LOG.md`](BUILD_LOG.md) what was rendered for each lecture and why, and
+  [`LICENSE.md`](LICENSE.md) the attribution and the copyright position, which is not
+  the same for these as for the rest of the repo.
 
 `raw/pdfs/` is empty by design — no binaries are committed. The course's decks are
 5–7 MB each and live at the URLs in `sources.md`. The rendered slide images in
@@ -1298,6 +1299,8 @@ a picture is the thing a prose description cannot replace.
   and the paper figures reproduced inside the decks are not mine to license, and are
   included for study under fair use. That reliance does not transfer to you.
 - **[`AGENTS.md`](AGENTS.md)** — how this wiki is organized, for future maintainers.
+- **[`BUILD_LOG.md`](BUILD_LOG.md)** — the per-lecture build record: what each run
+  found, decided and got wrong. For future maintainers; not needed to answer a question.
 - **[`TODO.md`](TODO.md)** — build tracker. Unchecked boxes are outstanding work.
 
 ## Citing this material

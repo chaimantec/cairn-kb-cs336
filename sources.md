@@ -10,8 +10,9 @@ lecture decks alone total roughly 50 MB.
 
 The one exception is pictures. `raw/images/` holds 490 rendered slide images and
 course figures (75 MB), so that an answer can *show* a figure instead of only
-describing it. See the Images section of `AGENTS.md` for what was rendered, what
-was not, and the attribution.
+describing it. See the Images section of `AGENTS.md` for the conventions,
+[`BUILD_LOG.md`](BUILD_LOG.md) for what was rendered and what was not, and
+[`LICENSE.md`](LICENSE.md) for the attribution.
 
 **This KB covers all 18 recorded lectures.** The inventory below spans the
 whole course (and its two earlier offerings) so that provenance is recorded once.

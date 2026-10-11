@@ -20,7 +20,7 @@ commercially, with attribution.
 
 This covers only the material that is original to this compilation:
 
-- `INDEX.md`, `AGENTS.md`, `SEE_ALSO.md`, `TODO.md`, `kb.json`, `sources.md`, this file
+- `INDEX.md`, `AGENTS.md`, `BUILD_LOG.md`, `SEE_ALSO.md`, `TODO.md`, `kb.json`, `sources.md`, this file
 - the original explanatory prose in `wiki/` — the topic explanations, the connective
   argument, the organisation of the material into pages, and the editorial judgements
   about what is worth recording
@@ -121,8 +121,8 @@ one; only 3 of the 32 appear on more than three pages, and most appear once or t
 handful of figures from any one paper, presented inside original explanatory commentary
 and credited to the source, is the same order of use the lectures themselves make.
 
-`AGENTS.md` names these sources; the slide files carry the credit line printed on each
-slide. Cite the original paper, not this repository, when you use one.
+[`BUILD_LOG.md`](BUILD_LOG.md) names these sources; the slide files carry the credit line
+printed on each slide. Cite the original paper, not this repository, when you use one.
 
 ---
 

@@ -3039,3 +3039,28 @@ Lessons:
   of an assignment against the current handout before repeating it.
 - **Decide code formatting from font names.** Listing every DejaVuSansMono span per page
   for the readers removed the by-eye judgment A1 relied on for two thirds of its pages.
+
+## Run 23 — Move the per-lecture record out of AGENTS.md
+
+Requested after run 22, when `verify_kb.py` flagged AGENTS.md at 54 KB against its 40 KB
+review threshold. AGENTS.md is loaded into every step of every build agent; the record of
+what each lecture's run found belongs in BUILD_LOG.md, read only for precedent.
+
+- [x] BUILD_LOG.md created. Moved verbatim, by text anchor rather than line number: the deck
+      precedents for lectures 3-7, the Run 8, 9 and 12 precedent sections, the per-lecture
+      image notes (lectures 10-18), which pages embed which images, the per-slide render
+      decisions, the image provenance record, and lecture 4's FlashAttention-2 1k exception.
+      Checked by script: every line of the old AGENTS.md is in one of the two files, the only
+      differences being three lines re-wrapped where a cut fell mid-line
+- [x] AGENTS.md (54.3 KB -> 27 KB) keeps the layout, conventions, image table, transcript
+      checks, rebuild notes and run order, and gains "Lessons from earlier runs": each lesson
+      from the moved sections in general form, grouped as deck reading, figure auditing,
+      executable lectures, and transcripts and quotations
+- [x] Two stale facts fixed on the way: the layout table said "none of the five decks" prints
+      a page number (there are eight), and the figures convention left lecture 17 out of the
+      executable lectures whose images were opened and described
+- [x] References repointed: INDEX.md (image conventions sentence; a BUILD_LOG.md entry beside
+      AGENTS.md), sources.md, LICENSE.md (editorial-files list; "names these sources"),
+      kb.json (attribution and takedown now cited to LICENSE.md)
+- [x] verify_kb.py clean (its 40 KB AGENTS.md review note is gone)
+- [x] Commit and push (2026-10-12)
