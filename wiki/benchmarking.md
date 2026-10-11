@@ -144,7 +144,7 @@ out what the bottlenecks are before you start writing kernels" ([22:22]). Lectur
 made the complementary argument — that you can predict much of this with [resource
 accounting](resource-accounting.md) before running anything at all.
 
-Assignment 2 requires both this and profiling, which Percy notes leaves you no
+[Assignment 2](assignment-2-systems.md) requires both this and profiling, which Percy notes leaves you no
 choice ([30:02]).
 
 ## Related

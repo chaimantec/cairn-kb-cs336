@@ -212,6 +212,8 @@ and this wiki use the correct spelling; see the
 ## See also
 
 - [Data parallelism](data-parallelism.md) — what ZeRO is an optimisation of.
+- [Assignment 2](assignment-2-systems.md) — where you implement a simplified
+  optimizer-state sharding (§6) and an FSDP wrapper (§7).
 - [Collective operations](collective-operations.md) — the all-reduce identity that
   makes stages 1 and 2 free.
 - [Activation memory](activation-memory.md) — the memory ZeRO cannot reach.

@@ -199,7 +199,7 @@ only.
 | # | Assignment | Repo | Handout |
 | --- | --- | --- | --- |
 | 1 | Basics (tokenizer, Transformer, optimizer, training) | [repo](https://github.com/stanford-cs336/assignment1-basics/tree/main) | [PDF](https://github.com/stanford-cs336/assignment1-basics/blob/main/cs336_assignment1_basics.pdf) |
-| 2 | Systems (Triton kernels, DDP, optimizer sharding) | [repo](https://github.com/stanford-cs336/assignment2-systems/tree/main) | [PDF](https://github.com/stanford-cs336/assignment2-systems/blob/main/cs336_assignment2_systems.pdf) |
+| 2 | Systems (profiling, FlashAttention-2 in Triton, DDP, optimizer state sharding, FSDP) | [repo](https://github.com/stanford-cs336/assignment2-systems/tree/main) | [PDF](https://github.com/stanford-cs336/assignment2-systems/blob/main/cs336_assignment2_systems.pdf) |
 | 3 | Scaling laws | [repo](https://github.com/stanford-cs336/assignment3-scaling/tree/main) | [PDF](https://github.com/stanford-cs336/assignment3-scaling/blob/main/cs336_assignment3_scaling.pdf) |
 | 4 | Data (Common Crawl → text, filtering, MinHash dedup) | [repo](https://github.com/stanford-cs336/assignment4-data/tree/main) | [PDF](https://github.com/stanford-cs336/assignment4-data/blob/main/cs336_assignment4_data.pdf) |
 | 5 | Alignment (DPO, GRPO) | [repo](https://github.com/stanford-cs336/assignment5-alignment/tree/main) | [PDF](https://github.com/stanford-cs336/assignment5-alignment/blob/main/cs336_spring2026_assignment5_alignment.pdf) |
@@ -219,7 +219,19 @@ with that commit's `README.md`, `CHANGELOG.md`, `AGENTS.md`, `tests/adapters.py`
 `make_submission.sh`. The repository is MIT-licensed. At that commit the tree holds
 only `cs336_assignment1_basics.pdf`; the `cs336_spring2025_assignment1_basics.pdf`
 listed in the crawl inventory below was seen on 2026-08-27 and is no longer there.
-Assignments 2–5 have no wiki page and no transcription.
+**Assignment 2 has a wiki page**, [`wiki/assignment-2-systems.md`](wiki/assignment-2-systems.md),
+and its handout is **transcribed in full** at
+[`raw/handouts/assignment2-systems.md`](raw/handouts/assignment2-systems.md) (2026-10-12).
+Both were built from handout **version 26.1.3** (48 pages, dated 2026-04-28), which the
+repository last changed at commit `14e1225`, read at commit
+[`ca8bc81`](https://github.com/stanford-cs336/assignment2-systems/tree/ca8bc81) (2026-05-01,
+which adds the code-only 26.1.4), together with that commit's `README.md`, `CHANGELOG.md`,
+`AGENTS.md`, `pyproject.toml`, `tests/`, `test_and_make_submission.sh` and `cs336-basics/`.
+The repository is MIT-licensed. At that commit the tree holds only
+`cs336_assignment2_systems.pdf`; the `cs336_spring2025_assignment2_systems.pdf` listed in the
+crawl inventory below is no longer there. Lecture 1's program links the Spring 2025 handout
+on a `spring2025` branch instead, and describes that older assignment.
+Assignments 3–5 have no wiki page and no transcription.
 
 ## Other course links referenced in Lecture 1
 

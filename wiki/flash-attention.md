@@ -148,7 +148,9 @@ accumulator in shared memory. What Lecture 5 supplies on top is the online-softm
 reformulation that makes the reduction work in one pass — the piece no compiler
 derived on its own.
 
-The kernels are written in [Triton](triton.md), which is what Assignment 2 asks for.
+The kernels are written in [Triton](triton.md), which is what
+[Assignment 2](assignment-2-systems.md) asks for: a FlashAttention-2 forward pass as a
+Triton kernel, with the backward pass in compiled PyTorch.
 
 ## Why it is assumed in the inference accounting
 

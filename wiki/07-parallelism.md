@@ -208,8 +208,8 @@ the bare-bones implementations for the real thing:
 - **Overlapping communication and computation.** Missing from all three
   implementations, and "especially crucial in pipeline parallelism." Even data
   parallelism can do it — rather than waiting for the whole backward pass, "as
-  soon as the gradients are done, you can start sending that." This is assignment 2
-  material.
+  soon as the gradients are done, you can start sending that." This is
+  [Assignment 2](assignment-2-systems.md) material.
 - **Real models.** MLPs only; attention and the rest "just require a lot more
   bookkeeping, so it's harder to see the core algorithms."
 - **The backward pass** for tensor and pipeline parallelism — homework exercises.

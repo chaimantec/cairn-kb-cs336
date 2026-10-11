@@ -143,7 +143,7 @@ The lecture keeps everything synchronous on purpose — async "would screw up al
 these print statements. So, I'm trying to put more barriers than I normally would"
 ([41:50]) — but flags overlap as
 [the main thing its implementations are missing](07-parallelism.md#what-the-lecture-deliberately-leaves-out),
-and as assignment 2 material.
+and as [Assignment 2](assignment-2-systems.md) material.
 
 For point-to-point work, [pipeline parallelism](pipeline-parallelism.md) uses
 `dist.send` and `dist.recv` instead of collectives.

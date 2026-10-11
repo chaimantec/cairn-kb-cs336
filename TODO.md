@@ -3002,8 +3002,38 @@ commit `14e1225`), and the starter repo at commit `ca8bc81` (2026-05-01, code-on
       {\boldsymbol{x^{(i)}}}^\top for MathJax's double-exponent error; braces around two
       inline formulas that end in ")" right before a literal ")", which GitHub will not
       open as math
-- [ ] wiki/assignment-2-systems.md
-- [ ] Fix stale Assignment 2 claims elsewhere (course-map, memory-accounting-for-training)
-- [ ] Inbound links, INDEX.md, sources.md, LICENSE.md, AGENTS.md, kb.json
-- [ ] verify_kb.py clean; check_math on changed pages; quote check on the new page
+- [x] wiki/assignment-2-systems.md — all 27 problems (137 points, computed) with test
+      targets, each part's specification as the handout writes it, the hardware it
+      assumes, a lecture map, the repo's AI rules (the handout has none), and ten source
+      disagreements. Quote check: 45 quotations against handout, repo files and
+      transcripts, one curly-apostrophe slip fixed. Math: 60 formulas, clean in both renderers
+- [x] Fix: course-map.md described Assignment 2 from Lecture 1's program (a fused RMSNorm
+      kernel), which links the Spring 2025 handout; now says what the 2026 handout asks
+- [x] Fix: memory-accounting-for-training.md called optimizer-state sharding "one of the
+      first things" Assignment 2 asks for; it is §6 of 9
+- [x] Inbound links from 15 pages (01, 05, 06, 07, 08, assignment-1-basics, benchmarking,
+      course-map, data-parallelism, flash-attention, memory-accounting-for-training,
+      profiling, torch-distributed, triton, zero-and-fsdp) and INDEX (start-here,
+      Assignments, raw material, citing)
+- [x] sources.md, LICENSE.md (MIT exception extended; Figure 3 credited to Lightning),
+      AGENTS.md (two general lessons), kb.json (176 topic pages, materials.assignments."2",
+      one new caveat)
+- [x] verify_kb.py: fixed a checker bug in the skill's script — fenced code inside a
+      blockquote or list item was not stripped, so `(...arguments...)` inside a problem
+      box's code fence read as a link
+- [ ] verify_kb.py clean
 - [ ] Commit and push
+
+Lessons:
+
+- **A handout can disagree with its own tests.** The handout names
+  `get_flash_autograd_function_triton`; the adapter is
+  `get_flashattention_autograd_function_triton`. It calls `ddp_on_after_backward`
+  optional; the test calls it every step. And `fsdp` names one adapter while the test
+  calls three. Only reading the tests, not just `adapters.py`, finds these.
+- **Lecture 1 describes an older Assignment 2.** Its program lists a fused RMSNorm
+  Triton kernel and links the Spring 2025 handout; the changelog dates the RMSNorm
+  problem to 2024. Same class as run 20's stale diagram: check a lecture's description
+  of an assignment against the current handout before repeating it.
+- **Decide code formatting from font names.** Listing every DejaVuSansMono span per page
+  for the readers removed the by-eye judgment A1 relied on for two thirds of its pages.

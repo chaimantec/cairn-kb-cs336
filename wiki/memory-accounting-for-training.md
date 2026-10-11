@@ -40,7 +40,7 @@ total_memory = 432
 Note what dominates even in a toy: **optimizer state is the single largest line
 item** at 192 of 432 bytes, larger than the parameters themselves. That is the
 usual surprise in memory accounting, and it is why optimizer-state sharding is one
-of the first things Assignment 2 asks you to implement.
+of the things [Assignment 2](assignment-2-systems.md) asks you to implement (§6).
 
 ## Why optimizer state costs what it does
 

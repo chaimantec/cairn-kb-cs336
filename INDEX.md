@@ -216,6 +216,15 @@ compute and data?
   lecture teaches each part. It describes the assignment and does not solve it. The
   handout itself is transcribed in full in [`raw/handouts/`](raw/handouts/assignment1-basics.md).
 
+- **[Assignment 2 — Systems and Parallelism](wiki/assignment-2-systems.md)** — the same
+  for the second assignment. What the Spring 2026 handout (version 26.1.3) asks you to
+  build — a benchmarking and Nsight profiling harness, activation checkpointing, a
+  FlashAttention-2 Triton kernel, DDP, optimizer state sharding and FSDP — plus its
+  written parallelism calculations and its training-step leaderboard, with every
+  problem's points and which lecture teaches each part. It describes the assignment and
+  does not solve it. The handout is transcribed in full in
+  [`raw/handouts/`](raw/handouts/assignment2-systems.md).
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
@@ -1055,7 +1064,7 @@ usually the faster route than the lecture pages.
 ### Assignments
 
 - **[Assignment 1 — Basics: building a Transformer LM](wiki/assignment-1-basics.md)** —
-  the only assignment with its own page, built from the Spring 2026 handout
+  built from the Spring 2026 handout
   (version 26.0.3) and the starter repository rather than from a recording. A table
   of all 38 problems with points, test names and GPU budgets; the specification of
   each component as the handout writes it (BPE training rules and budgets,
@@ -1068,7 +1077,23 @@ usually the faster route than the lecture pages.
   **Lecture 1's architecture diagram is not the assignment's model**. Read this for
   "what does Assignment 1 actually ask?" It gives no answers. For the exact wording of
   any problem, read the [full transcription of the handout](raw/handouts/assignment1-basics.md).
-  Assignments 2–5 have no page; their handouts are linked from [`sources.md`](sources.md).
+- **[Assignment 2 — Systems and Parallelism](wiki/assignment-2-systems.md)** — built
+  from the Spring 2026 handout (version 26.1.3) and the starter repository. A table of
+  all 27 problems with points and test names; the model sizes; the benchmarking,
+  Nsight Systems and memory-profiling setup; what autograd saves and how fusion and
+  activation checkpointing cut it; the Triton weighted-sum tutorial and its block
+  pointers, which no lecture teaches; FlashAttention-2's forward and backward passes
+  and what each part of `flash_forward` requires; naive, flattened and overlapped DDP;
+  optimizer state sharding; FSDP's design rules; the §8 communication model for DP,
+  FSDP, TP and their combination; the leaderboard's rules and the handout's own
+  ideas; a table mapping each section to the lecture that teaches it; the repository's
+  rules for AI assistants (this handout has none of its own); and ten places where the
+  handout, the repository and the lectures disagree — among them that **Lecture 1
+  describes an older version of this assignment**, and that the FSDP test calls two
+  adapters the handout never names. Read this for "what does Assignment 2 actually
+  ask?" It gives no answers. For the exact wording of any problem, read the
+  [full transcription of the handout](raw/handouts/assignment2-systems.md).
+  Assignments 3–5 have no page; their handouts are linked from [`sources.md`](sources.md).
 
 ### Across the course
 
@@ -1218,12 +1243,14 @@ usually the faster route than the lecture pages.
     including the places where a deck contradicts itself. Lecture 8's deck is the most
     heavily audited: twelve pages checked across two passes, plus a sweep of every
     cross-slide claim in the file.
-- **[`raw/handouts/`](raw/handouts/assignment1-basics.md)** — the **Assignment 1
-  handout** (version 26.0.3, 47 pages), transcribed in full. Prose and code are copied
+- **[`raw/handouts/`](raw/handouts/assignment1-basics.md)** — the
+  **[Assignment 1 handout](raw/handouts/assignment1-basics.md)** (version 26.0.3, 47
+  pages) and the **[Assignment 2 handout](raw/handouts/assignment2-systems.md)**
+  (version 26.1.3, 48 pages), each transcribed in full. Prose and code are copied
   verbatim from the PDF; equations are LaTeX with the handout's own numbers; the three
   figures are described in prose; and every page starts at a **[p. N]** marker. Read it
-  for the exact wording of a problem, an interface or a deliverable. It is the only
-  handout transcribed, and the only file in this repo that is MIT-licensed course
+  for the exact wording of a problem, an interface or a deliverable. These are the only
+  handouts transcribed, and the only files in this repo that are MIT-licensed course
   material rather than material reproduced under fair use; see
   [`LICENSE.md`](LICENSE.md).
 - **[`sources.md`](sources.md)** — every lecture, deck, assignment and linked
@@ -1290,11 +1317,16 @@ For Lectures 3 and 4, "slide N" means PDF page N of `lecture_03.pdf` or
 to disagree with the page count — but say "page" rather than "printed slide" if the
 distinction could matter to a reader opening the file.
 
-A third kind applies only to [Assignment 1](wiki/assignment-1-basics.md): **a handout
-section or problem name** — `§3.4.1`, `rmsnorm` — cites the Assignment 1 handout,
-version 26.0.3. It resolves against
-[`raw/handouts/assignment1-basics.md`](raw/handouts/assignment1-basics.md), the
-handout's full text, whose page markers (**[p. 20]**) also allow a page citation.
+A third kind applies only to the assignment pages: **a handout section or problem
+name**. On [Assignment 1](wiki/assignment-1-basics.md) — `§3.4.1`, `rmsnorm` — it cites
+the Assignment 1 handout, version 26.0.3, and resolves against
+[`raw/handouts/assignment1-basics.md`](raw/handouts/assignment1-basics.md). On
+[Assignment 2](wiki/assignment-2-systems.md) — `§4.2.2`, `flash_forward` — it cites the
+Assignment 2 handout, version 26.1.3, and resolves against
+[`raw/handouts/assignment2-systems.md`](raw/handouts/assignment2-systems.md). Both are
+the handout's full text, whose page markers (**[p. 20]**) also allow a page citation.
+The two handouts number their sections independently, so say which assignment a
+section number belongs to.
 
 There are **no slide numbers** in this course's Percy-taught lectures. If a source
 appears to cite one, it is wrong — see

@@ -199,6 +199,8 @@ Next lecture: more than one GPU.
 ## Related
 
 - [Triton](triton.md), [PTX](ptx.md) — the two languages this lecture writes in.
+- [Assignment 2](assignment-2-systems.md) — benchmarking, Nsight profiling and a
+  FlashAttention-2 kernel in Triton.
 - [Benchmarking](benchmarking.md), [profiling](profiling.md) — the measurement half.
 - [Warp occupancy](warp-occupancy.md), [bank conflicts](bank-conflicts.md),
   [memory coalescing](memory-coalescing.md), [wave quantization](wave-quantization.md),

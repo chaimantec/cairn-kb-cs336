@@ -246,6 +246,8 @@ Next lecture: [scaling laws](scaling-laws.md) ([1:19:41]).
 
 ## See also
 
+- [Assignment 2](assignment-2-systems.md) — the FSDP wrapper and the parallelism
+  calculations this lecture sets up.
 - [Lecture 7 — Parallelism](07-parallelism.md) — the primitives this builds on.
 - [Lecture 5 — GPUs, TPUs](05-gpus-tpus.md) — the hardware one level down.
 - [Lecture 4 — Attention alternatives and MoE](04-attention-alternatives.md) — where MoE is introduced.

@@ -143,6 +143,8 @@ different characteristics" ([1:24:54]).
 ## Related
 
 - [Lecture 6 — Kernels and Triton](06-kernels-triton.md) — the four worked kernels.
+- [Assignment 2](assignment-2-systems.md) — the FlashAttention-2 kernel you write, and
+  the handout's block-pointer tutorial (`tl.make_block_ptr`), which no lecture covers.
 - [PTX](ptx.md) — what this compiles to.
 - [torch.compile](torch-compile.md) — which emits Triton on your behalf.
 - [Fused softmax](fused-softmax.md), [tiling](tiling.md) — the reduction and

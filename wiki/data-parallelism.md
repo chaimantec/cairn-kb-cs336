@@ -124,7 +124,8 @@ instead. See [sharding vs. replication](sharding-vs-replication.md).
 The implementation waits for the whole backward pass and then all-reduces
 everything. It need not: "if you're clever, then, on the backward pass, as soon as
 the gradients are done, you can start sending that. And that's something you'll be
-exploring in assignment two" ([1:14:18]). Gradients for the last layer are
+exploring in assignment two" ([1:14:18]); it is
+`ddp_overlap_individual_parameters` in [Assignment 2](assignment-2-systems.md). Gradients for the last layer are
 finished long before the first layer's, so most of the communication can hide
 under the remaining computation.
 

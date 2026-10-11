@@ -198,8 +198,15 @@ quantization, distillation); speculative decoding (a draft model proposes severa
 tokens, the full model scores them in parallel, and the decoding stays exact); and
 systems work like fused kernels and continuous batching.
 
-**Assignment 2:** a fused RMSNorm kernel in Triton, distributed data-parallel
-training, optimizer state sharding, and benchmarking/profiling. Recommended
+**Assignment 2:** Lecture 1's program lists a fused RMSNorm kernel in Triton,
+distributed data-parallel training, optimizer state sharding, and
+benchmarking/profiling, and links the Spring 2025 handout. The **Spring 2026**
+handout differs: its Triton kernel is FlashAttention-2, and it adds activation
+checkpointing, FSDP, a written section on when each parallelism strategy becomes
+communication-bound, and a leaderboard that times a full training step.
+**[Assignment 2](assignment-2-systems.md) has its own page**, built from that
+handout: every problem with its points, what each part asks, and where each
+lecture teaches it. Recommended
 reading: [*How to Scale Your Model*](https://jax-ml.github.io/scaling-book/) —
 Google, so TPU-focused, but the concepts carry.
 

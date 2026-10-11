@@ -77,7 +77,7 @@ At US universities copyright in teaching materials commonly rests with the facul
 rather than the institution, so the people able to grant permission here are most likely
 the instructors themselves.
 
-### The exception: the Assignment 1 handout is MIT-licensed
+### The exception: the Assignment 1 and 2 handouts are MIT-licensed
 
 [`raw/handouts/assignment1-basics.md`](raw/handouts/assignment1-basics.md) transcribes the
 Assignment 1 handout (version 26.0.3). Unlike the lectures, the handout is distributed in a
@@ -91,6 +91,14 @@ matter. Reading the handout PDF as one of the repository's "associated documenta
 is this compilation's interpretation of the licence's wording; the repository states nothing
 narrower. The MIT terms apply to the transcription as they do to the handout, and they pass
 to you.
+
+[`raw/handouts/assignment2-systems.md`](raw/handouts/assignment2-systems.md) transcribes the
+Assignment 2 handout (version 26.1.3) on exactly the same basis:
+[stanford-cs336/assignment2-systems](https://github.com/stanford-cs336/assignment2-systems),
+at commit `ca8bc81`, carries the same MIT licence with the same "Copyright 2025 Stanford
+University" notice, and the transcription reproduces it in full. One part of that handout is
+not Stanford's: its Figure 3 is credited by the handout to the Lightning documentation
+(lightning.ai). The transcription describes that figure in prose and does not reproduce it.
 
 ---
 

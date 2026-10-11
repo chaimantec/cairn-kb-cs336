@@ -10,7 +10,7 @@ nothing to do with speed:
 > can just be good to understand what's actually going on." ([26:10])
 
 CS336 uses PyTorch's built-in profiler in the lecture and **nsight** in the
-assignment, "which gives you more details" ([26:57]).
+[assignment](assignment-2-systems.md#nsight-systems-214), "which gives you more details" ([26:57]).
 
 ## What it reveals: PyTorch is not what you wrote
 

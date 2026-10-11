@@ -757,5 +757,7 @@ recorded here as printed rather than reconciled.
   [Lecture 2](02-pytorch-resource-accounting.md) ([transcript](../raw/transcripts/02-pytorch-resource-accounting.md)),
   [Lecture 3](03-architectures.md) ([slides](../raw/slides/03-architectures.md)),
   [Lecture 6](06-kernels-triton.md), [Lecture 11](11-scaling-laws-in-the-wild.md)
+- [Assignment 2](assignment-2-systems.md) — the next assignment, which profiles,
+  speeds up and parallelizes this model
 - [Course map](course-map.md#unit-1--basics) — where Assignment 1 sits among the five
   units

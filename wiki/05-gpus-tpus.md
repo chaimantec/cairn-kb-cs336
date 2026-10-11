@@ -178,6 +178,8 @@ His own summary, at [1:17:30]:
 ## Related
 
 - [Course map](course-map.md) — where this lecture sits in the syllabus.
+- [Assignment 2](assignment-2-systems.md) — where you implement FlashAttention-2 in
+  Triton.
 - [Arithmetic intensity](arithmetic-intensity.md) and
   [resource accounting](resource-accounting.md) — the accounting this lecture assumes.
 - [Attention variants](attention-variants.md) — the architectural approach to
