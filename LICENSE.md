@@ -77,6 +77,21 @@ At US universities copyright in teaching materials commonly rests with the facul
 rather than the institution, so the people able to grant permission here are most likely
 the instructors themselves.
 
+### The exception: the Assignment 1 handout is MIT-licensed
+
+[`raw/handouts/assignment1-basics.md`](raw/handouts/assignment1-basics.md) transcribes the
+Assignment 1 handout (version 26.0.3). Unlike the lectures, the handout is distributed in a
+repository that **does** carry a licence:
+[stanford-cs336/assignment1-basics](https://github.com/stanford-cs336/assignment1-basics),
+at commit `a158843`, is under the MIT licence, "Copyright 2025 Stanford University". That
+licence grants the right to copy and distribute "this software and associated documentation
+files" on condition that its copyright and permission notice accompany every copy or
+substantial portion. The transcription reproduces the notice in full, in its own front
+matter. Reading the handout PDF as one of the repository's "associated documentation files"
+is this compilation's interpretation of the licence's wording; the repository states nothing
+narrower. The MIT terms apply to the transcription as they do to the handout, and they pass
+to you.
+
 ---
 
 ## Layer 3 — third-party figures reproduced inside the decks

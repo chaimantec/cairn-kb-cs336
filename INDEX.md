@@ -213,7 +213,8 @@ compute and data?
   Spring 2026 handout (version 26.0.3) asks you to build — a BPE tokenizer, a
   pre-norm Transformer with RMSNorm, SwiGLU and RoPE, cross-entropy, AdamW, a cosine
   schedule, a training loop and a sampler — with every problem's points, and which
-  lecture teaches each part. It describes the assignment and does not solve it.
+  lecture teaches each part. It describes the assignment and does not solve it. The
+  handout itself is transcribed in full in [`raw/handouts/`](raw/handouts/assignment1-basics.md).
 
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
@@ -1065,8 +1066,9 @@ usually the faster route than the lecture pages.
   lecture that teaches it; the course's rules for AI assistants; and eight places
   where the handout, the repository and the lectures disagree — among them that
   **Lecture 1's architecture diagram is not the assignment's model**. Read this for
-  "what does Assignment 1 actually ask?" It gives no answers. Assignments 2–5 have
-  no page; their handouts are linked from [`sources.md`](sources.md).
+  "what does Assignment 1 actually ask?" It gives no answers. For the exact wording of
+  any problem, read the [full transcription of the handout](raw/handouts/assignment1-basics.md).
+  Assignments 2–5 have no page; their handouts are linked from [`sources.md`](sources.md).
 
 ### Across the course
 
@@ -1216,6 +1218,14 @@ usually the faster route than the lecture pages.
     including the places where a deck contradicts itself. Lecture 8's deck is the most
     heavily audited: twelve pages checked across two passes, plus a sweep of every
     cross-slide claim in the file.
+- **[`raw/handouts/`](raw/handouts/assignment1-basics.md)** — the **Assignment 1
+  handout** (version 26.0.3, 47 pages), transcribed in full. Prose and code are copied
+  verbatim from the PDF; equations are LaTeX with the handout's own numbers; the three
+  figures are described in prose; and every page starts at a **[p. N]** marker. Read it
+  for the exact wording of a problem, an interface or a deliverable. It is the only
+  handout transcribed, and the only file in this repo that is MIT-licensed course
+  material rather than material reproduced under fair use; see
+  [`LICENSE.md`](LICENSE.md).
 - **[`sources.md`](sources.md)** — every lecture, deck, assignment and linked
   document with its canonical URL, and the record of where the search for the
   guest lecture's material looked and found nothing. Explains how CS336 splits
@@ -1282,8 +1292,9 @@ distinction could matter to a reader opening the file.
 
 A third kind applies only to [Assignment 1](wiki/assignment-1-basics.md): **a handout
 section or problem name** — `§3.4.1`, `rmsnorm` — cites the Assignment 1 handout,
-version 26.0.3. It resolves against the PDF linked from that page, not against
-anything in `raw/`, because this KB holds no transcription of the handout.
+version 26.0.3. It resolves against
+[`raw/handouts/assignment1-basics.md`](raw/handouts/assignment1-basics.md), the
+handout's full text, whose page markers (**[p. 20]**) also allow a page citation.
 
 There are **no slide numbers** in this course's Percy-taught lectures. If a source
 appears to cite one, it is wrong — see

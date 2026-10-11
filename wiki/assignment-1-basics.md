@@ -16,9 +16,10 @@ be able to walk away and build a language model from scratch."
 > `AGENTS.md`. Nothing here comes from a recording, except where a lecture is
 > cited by timestamp. Handout claims cite the handout's own **section numbers**
 > (§2.4) and **problem names** (`train_bpe`), which is how the handout refers to
-> them. The text was read from the PDF's text layer, and the two equations whose
-> layout that loses (the RMSNorm denominator and the AdamW pseudocode) were checked
-> against the rendered page.
+> them. **The handout's full text is transcribed in this KB** at
+> [`raw/handouts/assignment1-basics.md`](../raw/handouts/assignment1-basics.md), with
+> page markers, so any section or problem named here can be read in the handout's own
+> words.
 >
 > **The handout changes during the quarter.** Its changelog lists four versions
 > between 2026-03-30 and 2026-04-07. If your copy prints a different version number,
@@ -32,6 +33,7 @@ be able to walk away and build a language model from scratch."
 Handout: [`cs336_assignment1_basics.pdf`](https://github.com/stanford-cs336/assignment1-basics/blob/main/cs336_assignment1_basics.pdf)
 (the version this page was built from is pinned at
 [commit `a158843`](https://github.com/stanford-cs336/assignment1-basics/blob/a158843/cs336_assignment1_basics.pdf)).
+Full text in this KB: [`raw/handouts/assignment1-basics.md`](../raw/handouts/assignment1-basics.md).
 Code: [stanford-cs336/assignment1-basics](https://github.com/stanford-cs336/assignment1-basics).
 Changes: [`CHANGELOG.md`](https://github.com/stanford-cs336/assignment1-basics/blob/main/CHANGELOG.md).
 
@@ -745,7 +747,8 @@ recorded here as printed rather than reconciled.
 - Handout: *CS336 Assignment 1 (basics): Building a Transformer LM*, version 26.0.3,
   Spring 2026, 47 pages —
   [current](https://github.com/stanford-cs336/assignment1-basics/blob/main/cs336_assignment1_basics.pdf),
-  [as read, at commit `a158843`](https://github.com/stanford-cs336/assignment1-basics/blob/a158843/cs336_assignment1_basics.pdf)
+  [as read, at commit `a158843`](https://github.com/stanford-cs336/assignment1-basics/blob/a158843/cs336_assignment1_basics.pdf);
+  transcribed in full at [`raw/handouts/assignment1-basics.md`](../raw/handouts/assignment1-basics.md)
 - Starter repository: [stanford-cs336/assignment1-basics](https://github.com/stanford-cs336/assignment1-basics)
   — `README.md`, `CHANGELOG.md`, `AGENTS.md`, `tests/adapters.py`, `make_submission.sh`
   (MIT licence)

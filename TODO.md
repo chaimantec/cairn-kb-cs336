@@ -2932,7 +2932,7 @@ the square root; weight decay uses α, not α_t, and precedes the moment updates
 - [x] verify_kb.py clean
 - [x] check_math.mjs: new page clean (146 formulas); the repo's 22 chat errors all predate this run
 - [x] Commit
-- [ ] Push (awaiting the user's go-ahead)
+- [ ] Push (awaiting the user's go-ahead; carried into run 21)
 
 Lessons:
 
@@ -2944,3 +2944,31 @@ Lessons:
   parameter count would have taken one line, and it is a near neighbour of
   `transformer_accounting`. The page records the handout's two inconsistent
   descriptions ("17M total" vs "17M non-embedding") and stops there.
+
+## Run 21 — Assignment 1 handout transcription
+
+Requested after run 20, when the summary page was judged too thin for exact
+problem wording. Output: `raw/handouts/assignment1-basics.md` (47 pages, ~22k words).
+
+- [x] Inputs prepared in the parent: per-page text layer, the PDF's 26 link targets,
+      the outline, and a written spec (two sources, two jobs: prose and code verbatim
+      from the text layer; math, figures and layout from page images)
+- [x] Three Sonnet readers, pages 1-16 / 17-31 / 32-47, each appending per page.
+      None was killed; none raised an [Ed:] note
+- [x] Assembly: five boxes split by page markers in part 1 rejoined (one marker sat
+      inside a code fence); adapter-reference spacing and math-mode comma spacing
+      normalized across parts
+- [x] Verified by script: 47 page markers; prose aligned against 18,101 text-layer
+      words, every >=3-word difference read and all relocations; 38 problems, 8
+      examples, 8 tips; every number; every code line verbatim; 26 links; 29 tags
+- [x] Math: 289 formulas, 0 errors in KaTeX and on github.com (GitHub API + MathJax).
+      Fixes: `\text{vocab\_size}` -> `\verb|vocab_size|` (GitHub strips `\_`, and
+      `\textunderscore` fails in MathJax text mode); footnotes converted from `[^N]`
+      because GitHub does not render math inside footnote definitions; one formula
+      that GitHub would not parse inside literal parentheses
+- [x] Equations, Algorithm 1 and figure labels read against the text layer by the
+      parent: no errors (one apparent error was the parent's own misreading)
+- [x] Linked from the wiki page, INDEX (start-here, Assignments, citing, raw
+      material), sources.md, LICENSE.md (MIT exception), AGENTS.md, kb.json
+- [x] verify_kb.py clean
+- [ ] Push (awaiting the user's go-ahead)

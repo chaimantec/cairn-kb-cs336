@@ -125,10 +125,14 @@
         "handoutPages": 47,
         "repoCommit": "a158843",
         "repoLicense": "MIT",
-        "method": "text-layer, with the two equations whose layout extraction loses (RMSNorm's denominator, the AdamW pseudocode) checked against rendered crops",
-        "transcribed": false,
-        "note": "The wiki page summarizes the handout and cites it by section number and problem name; there is no raw/ transcription of the handout, and no handout figure was rendered or redistributed. The page describes the assignment and deliberately gives no solutions, per the course's AI policy and the repository's AGENTS.md."
-      }
+        "method": "prose and code verbatim from the PDF text layer; math, figures and layout from page images (three Sonnet readers); fidelity checked by aligning non-math words against the text layer, plus page, problem, number, code-line and link inventories; all 289 formulas render in KaTeX and on github.com",
+        "transcribed": true,
+        "note": "The handout is transcribed in full at raw/handouts/assignment1-basics.md, with [p. N] page markers, LaTeX equations carrying the handout's own numbers, and prose descriptions in place of its three figures. The wiki page summarizes it and deliberately gives no solutions, per the course's AI policy and the repository's AGENTS.md. The repository, and so the handout, is MIT-licensed; the notice is reproduced in the transcription.",
+        "transcription": "raw/handouts/assignment1-basics.md"
+      },
+      "transcribed": [
+        1
+      ]
     }
   },
   "license": {
@@ -146,7 +150,8 @@
       "note": "Reproduced inside the decks with a credit line, and not licensable by Stanford or by this compilation. 32 distinct cited sources across the 236 rendered pages; heaviest is Kaplan et al. at 8 pages over three lectures, then Fedus et al. at 8 in one; only 3 of 32 appear on more than three pages.",
       "arxivLicensesChecked": "2026-09-03: 9 of the 10 most-reproduced sources are arXiv nonexclusive-distrib/1.0, which grants arXiv distribution rights and third parties none. The exception is Wei et al., Emergent Abilities (arXiv:2206.07682), which is CC BY 4.0."
     },
-    "takedown": "Open a GitHub issue or contact the repository owner; the file and every reference to it are deleted and the removal noted here."
+    "takedown": "Open a GitHub issue or contact the repository owner; the file and every reference to it are deleted and the removal noted here.",
+    "assignmentHandout": "raw/handouts/assignment1-basics.md transcribes the Assignment 1 handout from stanford-cs336/assignment1-basics, which is MIT-licensed (Copyright 2025 Stanford University). The MIT notice is reproduced in the file, and its terms, not fair use, govern that file."
   },
   "provenance": {
     "builtBy": [
@@ -241,9 +246,9 @@
       "Lecture 16's deck has seven defects of its own, reproduced rather than silently corrected and listed in its slide file's Known gaps section: a hidden text-layer string behind slide 8's caption that never renders (NOT transcribed as slide content); quote boxes on slides 34, 38 and 52 cropped mid-word by the slide's own edges; slide 54's ThinkFollow* row printing one merged value across two sub-columns; and typos printed on slides 43 ('traning') and 45 ('promt').",
       "Lecture 16's transcript was drafted by Sonnet up to paragraph 80 of 99, when the agent was killed by a session rate limit; because it wrote incrementally nothing was lost, and paragraphs 81-99 were written by the Opus parent. All four checks pass: 99 timestamps identical and in order, zero paragraphs outside the 0.72-1.10 word-ratio band, all 23 deck-confirmed restorations found verbatim in the deck, and every number difference adjudicated. TWO DRAFT CHANGES WERE REVERTED AS UNSAFE, both on one model name: the draft renumbered the spoken 'Quen 3.5 Next Coder' to match slide 55's printed 'Qwen3-Coder-Next', dropping a version number the lecturer says twice, and rendered the garble 'clen coder next' as 'Qwen3-Coder-Next', adding a '3' spoken nowhere. His spoken forms are kept with an [Ed:] note giving the deck's printed name. One [Ed: unclear] remains at 1:11:45.",
       "A KB-WIDE IMAGE CONSISTENCY CHECK was added in this run and found three defects from the previous one: wiki embeds whose alt text named a slide different from the image file shown. Slides 19 and 32 of lecture_15.pdf carry no raster and were correctly never rendered, so those embeds had been pointed at a neighbouring file - the exact failure AGENTS.md warns about. In one case the Safety flowchart (slide 22) was sitting in a passage about hallucination. All fixed; all images across the KB now agree on alt text, italic caption and filename.",
-      "wiki/assignment-1-basics.md is built from the Assignment 1 handout (version 26.0.3, repo commit a158843) and starter repo, not from a lecture. The handout's text was read from the PDF text layer rather than as page images; only its RMSNorm and AdamW equations were checked visually. The handout is revised during the quarter, so a reader holding a different version should trust their copy. Assignments 2-5 have no wiki page."
+      "The Assignment 1 handout (version 26.0.3, repo commit a158843) is transcribed at raw/handouts/assignment1-basics.md and summarized at wiki/assignment-1-basics.md. Prose and code were copied from the PDF text layer and checked against it by script; equations and figures were read from page images by Sonnet, and only the RMSNorm denominator and the AdamW pseudocode were also compared with rendered crops by the parent. The handout is revised during the quarter, so a reader holding a different version should trust their copy. Assignments 2-5 have no page and no transcription."
     ]
   },
   "entryPoint": "INDEX.md",
-  "updated": "2026-10-11"
+  "updated": "2026-10-12"
 }
