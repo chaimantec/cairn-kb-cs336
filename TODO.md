@@ -2972,3 +2972,38 @@ problem wording. Output: `raw/handouts/assignment1-basics.md` (47 pages, ~22k wo
       material), sources.md, LICENSE.md (MIT exception), AGENTS.md, kb.json
 - [x] verify_kb.py clean
 - [x] Push (2026-10-12)
+
+## Run 22 — Assignment 2: handout transcription and page
+
+Source: the Spring 2026 handout, *CS336 Assignment 2 (systems): Systems and
+Parallelism*, version 26.1.3 (48 pages, PDF dated 2026-04-28, last changed at repo
+commit `14e1225`), and the starter repo at commit `ca8bc81` (2026-05-01, code-only
+26.1.4 on top; MIT). Both done in one run, transcription first, following runs 20-21.
+
+- [x] Inputs prepared in the parent: per-page text layer, per-page monospace spans from
+      the PDF's font names (DejaVuSansMono) so code formatting is decided by script rather
+      than by eye, the 20 link targets, the outline, and a written spec
+- [x] Three Sonnet readers, pages 1-16 / 17-32 / 33-48, each appending per page. None was
+      killed; none raised an [Ed:] note; each reported its boundary handling, and the
+      three boundaries joined cleanly
+- [x] Assembly: normalized part 1's box titles and "Deliverable" labels to the A1 form;
+      stripped outline numbers (4.2.1.1 ...) that the spec wrongly asked for and the page
+      does not print
+- [x] Verified by script: 48 page markers; prose aligned against 18,938 text-layer words
+      (ratio 0.986), every >=3-word difference read and all relocations; 27 problems in
+      order; every number (one flattening artifact, 10242 = 1024^2); all 455 code lines
+      verbatim; 20 links; 59 equation tags
+- [x] Equations (1)-(59) and Algorithms 1-2 read against the text layer by the parent: clean
+- [x] Figures 1-3 read against rendered crops by the parent: Figure 1 had completed two
+      truncated labels ("BAR…" -> "BAR1"), fixed; all its millisecond labels were right.
+      Figure 2 wording clarified. Figure 3 clean
+- [x] Math: 511 formulas, 0 errors in KaTeX and on github.com. Fixes: \{ \} -> \lbrace
+      \rbrace; space after `_` following a non-letter; \text{batch\_size} -> \verb|...|;
+      {\boldsymbol{x^{(i)}}}^\top for MathJax's double-exponent error; braces around two
+      inline formulas that end in ")" right before a literal ")", which GitHub will not
+      open as math
+- [ ] wiki/assignment-2-systems.md
+- [ ] Fix stale Assignment 2 claims elsewhere (course-map, memory-accounting-for-training)
+- [ ] Inbound links, INDEX.md, sources.md, LICENSE.md, AGENTS.md, kb.json
+- [ ] verify_kb.py clean; check_math on changed pages; quote check on the new page
+- [ ] Commit and push
