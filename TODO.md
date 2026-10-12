@@ -31,5 +31,27 @@ box anywhere in the repo means work left to do, and the lines below that start w
       wiki/scaling-laws.md 1. Most are `\,` `\;` `\|` that GitHub's markdown strips (use
       `\thinspace`, `\mskip{5mu}`, `\Vert`), and formulas GitHub shows as raw text. Run
       `check_math.mjs` over the whole repo first; run 20 counted 22 chat errors repo-wide.
-- [ ] **Assignments 4 and 5** — no page and no transcription. Not scheduled; when asked,
-      follow runs 21-22 and 24 (transcription first, then the page).
+- [ ] **Assignment 5** — no page and no transcription. Not scheduled; when asked,
+      follow runs 22, 24 and 26 (transcription first, then the page).
+
+## Run 26 — Assignment 4: handout transcription and page
+
+Source: the Spring 2026 handout, *CS336 Assignment 4 (data): Filtering Language Modeling
+Data*, version 26.0.1 (16 pages, Typst 0.14.2, PDF dated 2026-05-07), and the starter repo
+at commit `0555bea` (2026-05-07; MIT). Same shape as run 24: no reader, the parent
+transcribes from the marked-up text layer.
+
+- [x] Ticks the old "Assignments 4 and 5" line for its A4 half; A5 carried above
+- [x] Inputs: per-page text layer, monospace spans, 15 link targets, outline, rows with
+      box/code flags; both 2026 PDF versions diffed (only the version number differs);
+      the Spring 2025 PDF diffed for what changed
+- [x] raw/handouts/assignment4-data.md — 16 page markers, 13 problems, 80 code lines,
+      15 links, 47 formulas read against seven crops (no errors); math clean in both renderers
+- [ ] wiki/assignment-4-data.md
+- [ ] Quote check of the new page
+- [ ] Inbound links (data topic pages, 13, 14, course-map, 01, assignment pages) and INDEX
+- [ ] Fix: wiki/13 says lecture 14 is "not yet covered"
+- [ ] sources.md, LICENSE.md, AGENTS.md, kb.json
+- [ ] verify_kb.py clean, review section read
+- [ ] Commit and push
+- [ ] Move this section to BUILD_LOG.md
