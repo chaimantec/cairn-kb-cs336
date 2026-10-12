@@ -23,9 +23,9 @@ of that unit (Lectures 5–8 and 10) is covered here.
 | Path | Contents |
 | --- | --- |
 | `INDEX.md` | Entry point. Course summary + annotated table of contents. |
-| `wiki/` | Durable pages: one per lecture, plus cross-lecture topics, plus one page per covered assignment (`assignment-1-basics.md`, `assignment-2-systems.md`, `assignment-3-scaling.md`). |
+| `wiki/` | Durable pages: one per lecture, plus cross-lecture topics, plus one page per covered assignment (`assignment-1-basics.md` to `assignment-4-data.md`). |
 | `raw/slides/` | The written course material, transcribed. See the note below — CS336 has no slide numbers for half its lectures, and none of the eight decks prints one either. |
-| `raw/handouts/` | The Assignment 1, 2 and 3 handouts, transcribed in full (prose and code verbatim from the PDF text layer, math and figures from page images; Assignment 3's math from span data checked against crops). MIT-licensed, unlike the rest of `raw/`. |
+| `raw/handouts/` | The Assignment 1, 2, 3 and 4 handouts, transcribed in full (prose and code verbatim from the PDF text layer, math and figures from page images; Assignments 3 and 4 from span data, with math checked against crops). MIT-licensed, unlike the rest of `raw/`. |
 | `raw/transcripts/` | Copy-edited lecture transcripts with `[MM:SS]` paragraph marks. **These are the ones to read.** |
 | `raw/transcripts/original/` | **Gitignored, not in the repo.** The verbatim auto-captions are a complete reproduction of the lecture with none of this KB's own work in them, so they are kept locally and not published. Regenerate with `fetch_transcript.py <video_id>` piped through `transcript_to_md.py`; the video id is in each transcript's front matter. |
 | `raw/images/NN-<slug>/` | Rendered slide images and the course's own figures. See **Images** below for what is and is not here. |
@@ -114,6 +114,10 @@ the per-lecture record behind it is in [`BUILD_LOG.md`](BUILD_LOG.md).
   3's handout allows grouped-query attention that its config schema rejects. To learn
   which changelog entries touched the handout, diff the text of every PDF version in the
   repo's history; a code change can leave the handout describing the old behaviour.
+  Check what the handout tells students to fetch, and what it says a fixed config is,
+  against the repo: Assignment 4's two download addresses return 404 while its download
+  script fetches a different file, and its "GPT-2 small-shaped" model has the dimensions
+  Assignment 1's handout gives for GPT-2 medium.
 - **Transcribing a handout: two sources, two jobs.** For a text-native PDF (the
   Assignment 1 handout is Typst output), copy prose and code **verbatim from the
   text layer** and read only math, figures and layout from page images. A reader
@@ -128,10 +132,14 @@ the per-lecture record behind it is in [`BUILD_LOG.md`](BUILD_LOG.md).
   are code (every span in the monospace font, by font name), and which headings are
   numbered — the PDF outline numbers run-in headings (4.2.1.1) that the page prints
   without a number, and the transcription follows the page.
-  A short handout with no figures needs no reader: font names give code, bold and
+  A handout with no figures needs no reader: font names give code, bold and
   italic; span size and baseline give sub- and superscripts; the gap between lines gives
-  paragraphs. Still check each formula against a crop of its line. On Assignment 3 that
-  caught a subscript's extent misread from span data that had recorded it correctly.
+  paragraphs, and blank lines inside code; the PDF's drawn rectangles give problem boxes
+  and code blocks. At 16 pages (Assignment 4) a script turned that into the draft, and
+  only math and structure were fixed by hand. Still check each formula against a crop of
+  its line. On Assignment 3 that caught a subscript's extent misread from span data that
+  had recorded it correctly. Compare each printed URL with its link target too: Typst
+  sets `~` as a non-breaking space, so Assignment 4 prints `edu/ ullman` for `~ullman`.
 - **Math in LaTeX**: `$...$` inline, `$$...$$` displayed. Renders both in Cairn's
   chat and on github.com. Never inside a code fence — that shows the source instead
   of the formula. Define each symbol on first use, and follow the course's own

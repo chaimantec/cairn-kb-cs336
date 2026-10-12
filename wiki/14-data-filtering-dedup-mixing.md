@@ -298,6 +298,8 @@ the whole corpus.
 
 ## See also
 
+- [Assignment 4](assignment-4-data.md) — where you implement this lecture's filtering and
+  deduplication, and build a training set with them
 - [Lecture 13](13-data-sources-datasets.md) — the first half: sources, copyright,
   and the dataset tour
 - [HTML-to-text extraction](html-to-text-extraction.md) ·

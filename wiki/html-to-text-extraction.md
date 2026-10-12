@@ -120,6 +120,8 @@ just becomes training data.
 
 ## See also
 
+- [Assignment 4](assignment-4-data.md) — `extract_text` has you extract text with
+  resiliparse and compare it with Common Crawl's WET file
 - [Lecture 14](14-data-filtering-dedup-mixing.md) — the lecture this comes from
 - [Web crawling](web-crawling.md) — WARC vs WET, and how the bytes were obtained
 - [Quality classifiers](quality-classifiers.md) — the next stage

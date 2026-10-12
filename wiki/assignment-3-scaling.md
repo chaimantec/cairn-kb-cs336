@@ -411,4 +411,5 @@ here as printed rather than reconciled.
   [Lecture 9](09-scaling-laws.md) ([transcript](../raw/transcripts/09-scaling-laws.md)),
   [Lecture 11](11-scaling-laws-in-the-wild.md) ([transcript](../raw/transcripts/11-scaling-laws-in-the-wild.md))
 - [Assignment 1](assignment-1-basics.md) — the model this assignment's API trains, nearly
+- [Assignment 4](assignment-4-data.md) — the next assignment, which holds the model fixed and makes the data the variable
 - [Course map](course-map.md#unit-3--scaling-laws) — where Assignment 3 sits among the five units

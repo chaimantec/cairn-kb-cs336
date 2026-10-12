@@ -110,6 +110,8 @@ corpora combined into one mixture are not a deduplicated corpus.
 
 ## See also
 
+- [Assignment 4](assignment-4-data.md) — where you implement exact line deduplication and
+  MinHash with LSH
 - [Data filtering](data-filtering.md) — the other half of processing
 - [Web crawling](web-crawling.md) — where the duplication comes from
 - [Pre-training datasets](pretraining-datasets.md) · [Code data](code-data.md)

@@ -160,6 +160,8 @@ precisely *because* dumps happen on a predictable cadence.
 
 ## See also
 
+- [Assignment 4](assignment-4-data.md) — where you read WARC and WET files yourself and
+  filter a pool of English WET files
 - [HTML-to-text extraction](html-to-text-extraction.md) — what happens to the bytes
   once a crawler has them, including the PDF and OCR path
 

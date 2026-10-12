@@ -238,6 +238,8 @@ The second is phi-1's recipe, and it is now the standard one.
 
 ## See also
 
+- [Assignment 4](assignment-4-data.md) — where you use fastText's language ID and Dolma's
+  Jigsaw classifiers, and train a quality classifier of your own
 - [Data filtering](data-filtering.md) — the history, and the rules-versus-models
   debate from [lecture 13](13-data-sources-datasets.md)
 - [Lecture 14](14-data-filtering-dedup-mixing.md) — the lecture this comes from

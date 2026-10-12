@@ -77,7 +77,7 @@ At US universities copyright in teaching materials commonly rests with the facul
 rather than the institution, so the people able to grant permission here are most likely
 the instructors themselves.
 
-### The exception: the Assignment 1, 2 and 3 handouts are MIT-licensed
+### The exception: the Assignment 1, 2, 3 and 4 handouts are MIT-licensed
 
 [`raw/handouts/assignment1-basics.md`](raw/handouts/assignment1-basics.md) transcribes the
 Assignment 1 handout (version 26.0.3). Unlike the lectures, the handout is distributed in a
@@ -105,6 +105,13 @@ Assignment 3 handout (version 26.0.5) on the same basis:
 [stanford-cs336/assignment3-scaling](https://github.com/stanford-cs336/assignment3-scaling),
 at commit `03e9372`, carries the MIT licence with the notice "Copyright 2026 Stanford
 University", and the transcription reproduces it in full. That handout has no figures.
+
+[`raw/handouts/assignment4-data.md`](raw/handouts/assignment4-data.md) transcribes the
+Assignment 4 handout (version 26.0.1) on the same basis:
+[stanford-cs336/assignment4-data](https://github.com/stanford-cs336/assignment4-data),
+at commit `0555bea`, carries the MIT licence with the notice "Copyright 2026 Stanford
+University", and the transcription reproduces it in full. That handout has no figures
+either.
 
 ---
 

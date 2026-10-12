@@ -235,6 +235,17 @@ compute and data?
   older, cached one.** The handout is transcribed in full in
   [`raw/handouts/`](raw/handouts/assignment3-scaling.md).
 
+- **[Assignment 4 — Data](wiki/assignment-4-data.md)** — the same for the fourth. The
+  Spring 2026 handout (version 26.0.1) has you build the parts of a pretraining data
+  pipeline, from HTML-to-text extraction through language identification, PII masking,
+  harmful-content and quality classifiers, Gopher's rules, and exact and MinHash
+  deduplication. You then filter English Common Crawl text into a training set for a
+  fixed model scored on Paloma's C4 100 domains. The page covers all 13 problems, what
+  the tests check that the handout does not say, the fixed training run, and which
+  lecture teaches each part. It describes the assignment and does not solve it. The
+  handout is transcribed in full in
+  [`raw/handouts/`](raw/handouts/assignment4-data.md).
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
@@ -1119,7 +1130,22 @@ usually the faster route than the lecture pages.
   the 2026 assignment replaced.** Read this for "what does Assignment 3 actually ask?"
   It gives no answers. For the exact wording, read the
   [full transcription of the handout](raw/handouts/assignment3-scaling.md).
-  Assignments 4 and 5 have no page; their handouts are linked from [`sources.md`](sources.md).
+- **[Assignment 4 — Data](wiki/assignment-4-data.md)** — built from the Spring 2026
+  handout (version 26.0.1) and the starter repository. All 13 problems with their points
+  (71 in total, computed); the data you are given and where it lives; each primitive as
+  the handout specifies it (Resiliparse extraction, fastText language ID, PII masks,
+  Dolma's NSFW and toxicity classifiers, four Gopher rules, a quality classifier
+  trained from Wikipedia-linked pages, exact line deduplication, and MinHash with LSH
+  banding), with what each test checks; the English WET pool and the Paloma target;
+  the fixed training run and its configuration; a table mapping each section to the
+  lecture that teaches it; the repository's rules for AI assistants (this handout has
+  none of its own); and the places where the handout, the tests and the lectures
+  disagree. Among them: **the tests expect label strings the handout never names, the
+  handout's example-file addresses return 404, and the "GPT-2 small-shaped" model has
+  GPT-2 medium's dimensions.** Read this for "what does Assignment 4 actually ask?" It
+  gives no answers. For the exact wording, read the
+  [full transcription of the handout](raw/handouts/assignment4-data.md).
+  Assignment 5 has no page; its handout is linked from [`sources.md`](sources.md).
 
 ### Across the course
 
@@ -1272,8 +1298,9 @@ usually the faster route than the lecture pages.
 - **[`raw/handouts/`](raw/handouts/assignment1-basics.md)** — the
   **[Assignment 1 handout](raw/handouts/assignment1-basics.md)** (version 26.0.3, 47
   pages), the **[Assignment 2 handout](raw/handouts/assignment2-systems.md)**
-  (version 26.1.3, 48 pages) and the **[Assignment 3 handout](raw/handouts/assignment3-scaling.md)**
-  (version 26.0.5, 8 pages), each transcribed in full. Prose and code are copied
+  (version 26.1.3, 48 pages), the **[Assignment 3 handout](raw/handouts/assignment3-scaling.md)**
+  (version 26.0.5, 8 pages) and the **[Assignment 4 handout](raw/handouts/assignment4-data.md)**
+  (version 26.0.1, 16 pages), each transcribed in full. Prose and code are copied
   verbatim from the PDF; equations are LaTeX with the handout's own numbers; every
   figure is described in prose; and every page starts at a **[p. N]** marker. Read it
   for the exact wording of a problem, an interface or a deliverable. These are the only
@@ -1357,7 +1384,10 @@ Assignment 2 handout, version 26.1.3, and resolves against
 [`raw/handouts/assignment2-systems.md`](raw/handouts/assignment2-systems.md). On
 [Assignment 3](wiki/assignment-3-scaling.md) — `§3.1`, `scaling_laws` — it cites the
 Assignment 3 handout, version 26.0.5, and resolves against
-[`raw/handouts/assignment3-scaling.md`](raw/handouts/assignment3-scaling.md). Each is
+[`raw/handouts/assignment3-scaling.md`](raw/handouts/assignment3-scaling.md). On
+[Assignment 4](wiki/assignment-4-data.md) — `§3.2`, `minhash_deduplication` — it cites
+the Assignment 4 handout, version 26.0.1, and resolves against
+[`raw/handouts/assignment4-data.md`](raw/handouts/assignment4-data.md). Each is
 the handout's full text, whose page markers (**[p. 20]**) also allow a page citation.
 The handouts number their sections independently, so say which assignment a section
 number belongs to.

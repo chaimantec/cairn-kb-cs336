@@ -145,7 +145,7 @@ lives on [the course map](course-map.md).
 | Basics | [1](assignment-1-basics.md) | Tokenization, architecture, training loop |
 | Systems | [2](assignment-2-systems.md) | Kernels (Triton), parallelism, inference |
 | Scaling laws | [3](assignment-3-scaling.md) | Scaling recipes, extrapolation |
-| Data | 4 | Evaluation, curation, filtering, dedup, mixing |
+| Data | [4](assignment-4-data.md) | Evaluation, curation, filtering, dedup, mixing |
 | Alignment | 5 | SFT, RLHF, DPO, GRPO |
 
 At [1:02:23] he closes the loop by showing that each unit is the efficiency

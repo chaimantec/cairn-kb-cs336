@@ -264,6 +264,8 @@ deduplicated corpus.
 
 ## See also
 
+- [Assignment 4](assignment-4-data.md) — `exact_deduplication` and `minhash_deduplication`
+  have you implement both halves of this page
 - [Deduplication](deduplication.md) — why it matters and where it sits in the
   pipeline, from [lecture 13](13-data-sources-datasets.md)
 - [Lecture 14](14-data-filtering-dedup-mixing.md) — the lecture this comes from

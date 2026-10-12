@@ -451,12 +451,11 @@ The lecture's own summary (≈1:19:29–1:21:01):
 - And the honest assessment: "unlike some of the other parts of this class, where
   things are maybe more based on first principles, data processing right now, at
   least, is a lot just based on vibes. You define this classifier, you define this
-  rule, you set some threshold." He points students at assignment 4 and calls it a
-  research direction (≈1:21:01).
+  rule, you set some threshold." He points students at
+  [assignment 4](assignment-4-data.md) and calls it a research direction (≈1:21:01).
 
-Lecture 14 continues with post-training data and more on filtering (≈1:21:47);
-it is not yet covered in this knowledge base — see [`sources.md`](../sources.md)
-for its source program.
+[Lecture 14](14-data-filtering-dedup-mixing.md) continues with post-training data and
+more on filtering (≈1:21:47).
 
 ## See also
 

@@ -761,5 +761,7 @@ recorded here as printed rather than reconciled.
   [Lecture 6](06-kernels-triton.md), [Lecture 11](11-scaling-laws-in-the-wild.md)
 - [Assignment 2](assignment-2-systems.md) — the next assignment, which profiles,
   speeds up and parallelizes this model
+- [Assignment 4](assignment-4-data.md) — which trains the staff's own version of this model
+  on data you filter
 - [Course map](course-map.md#unit-1--basics) — where Assignment 1 sits among the five
   units

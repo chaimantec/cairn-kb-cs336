@@ -284,9 +284,7 @@ each lecture teaches the ideas.
 > copyright, the raw sources and the dataset chronology, and
 > [Lecture 14 — Data II](14-data-filtering-dedup-mixing.md) covers the processing
 > pipeline (HTML-to-text extraction, quality classifiers, MinHash/LSH
-> deduplication, mixture selection) and post-training data. **This unit is
-> therefore the only one in the course that this knowledge base covers completely
-> from its own lectures rather than from Lecture 1's preview.**
+> deduplication, mixture selection) and post-training data.
 
 **Evaluation** serves two distinct purposes that Percy warns are often conflated
 ([54:45]):
@@ -328,6 +326,10 @@ post-training (conversations, agentic traces with tool calling).
 
 **Assignment 4:** Common Crawl HTML to text, quality and harm classifiers, MinHash
 deduplication. Percy calls it "dirty work" and says that is the point.
+**[Assignment 4](assignment-4-data.md) has its own page**, built from the Spring 2026
+handout: thirteen problems that build the filtering and deduplication primitives, then
+use them to filter English Common Crawl text for a fixed model scored on Paloma's C4
+100 domains. Lecture 1's program also lists a leaderboard; the 2026 handout has none.
 
 ## Unit 5 — Alignment
 

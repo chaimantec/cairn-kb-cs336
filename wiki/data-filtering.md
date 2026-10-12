@@ -211,6 +211,8 @@ for the same effect one stage later.
 
 ## See also
 
+- [Assignment 4](assignment-4-data.md) — where you build language identification, Gopher's rules
+  and a quality classifier, and filter a Common Crawl pool yourself
 - [Pre-training datasets](pretraining-datasets.md) — the corpora these produce
 - [Deduplication](deduplication.md) — the other processing step
 - [Synthetic data](synthetic-data.md) — the alternative to discarding

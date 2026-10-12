@@ -246,7 +246,21 @@ now 404s; that file survives at commit
 [`74ee390`](https://github.com/stanford-cs336/assignment3-scaling/blob/74ee390/cs336_spring2025_assignment3_scaling.pdf).
 Lecture 1's program links it on a `master` branch the repository no longer has, and
 describes that older, cached-API assignment.
-Assignments 4 and 5 have no wiki page and no transcription.
+**Assignment 4 has a wiki page**, [`wiki/assignment-4-data.md`](wiki/assignment-4-data.md),
+and its handout is **transcribed in full** at
+[`raw/handouts/assignment4-data.md`](raw/handouts/assignment4-data.md) (2026-10-12).
+Both were built from handout **version 26.0.1** (16 pages, dated 2026-05-07), read at
+commit [`0555bea`](https://github.com/stanford-cs336/assignment4-data/tree/0555bea)
+(2026-05-07), the commit that last changed the PDF, together with that commit's
+`README.md`, `CHANGELOG.md`, `AGENTS.md`, `test_and_make_submission.sh`, `tests/`,
+`cs336_data/`, `scripts/` and `cs336_basics/train_config.py`. The repository is
+MIT-licensed. Version 26.0.0 (2026-05-06) deleted `cs336_spring2025_assignment4_data.pdf`
+from `main`, so the link to it in the crawl inventory below now 404s; that file survives
+under the repository's `spring2025` tag, which is where Lecture 1's program links it, and
+at commit [`4d364a0`](https://github.com/stanford-cs336/assignment4-data/blob/4d364a0/cs336_spring2025_assignment4_data.pdf).
+The handout's own `wget` addresses for its two example Common Crawl files returned 404 when
+checked on 2026-10-12; the course's copies come from `scripts/download_data.py`.
+Assignment 5 has no wiki page and no transcription.
 
 ## Other course links referenced in Lecture 1
 
