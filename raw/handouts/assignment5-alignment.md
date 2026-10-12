@@ -246,8 +246,10 @@ otherwise.
   $E_{y \sim \pi_{\theta(y \mid x)}}$, with the policy's argument inside its subscript, where
   the PDF prints $E_{y \sim \pi_\theta(y \mid x)}$; a subscript $x_{(i)}$ in Algorithm 1
   where the PDF prints $x^{(i)}$; and the upper limit of equation (55), printed as a
-  stacked $\frac{L}{2}$. The readers' reported slips were each read against a crop by the
-  parent, and Algorithm 1 against a render of its page.
+  stacked $\frac{L}{2}$. Of the five printed slips the readers reported, two were their own misreadings
+  (the eleven expectations and Algorithm 1's subscript); the three real ones are listed
+  under *Conventions*. Four were read against a crop by the parent and one confirmed by
+  span sizes, and Algorithm 1 was read against a render of its page.
 - **Rendering.** All 349 formulas render in the chat's KaTeX and on github.com, the
   latter checked against GitHub's own markdown renderer and MathJax.
 
