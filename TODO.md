@@ -3073,12 +3073,18 @@ changelog (8 pages, Typst 0.14.2, PDF dated 2026-05-08, last changed at repo com
 assignment is an online training API, not the offline one Spring 2025 used. Same shape
 as run 22, at one reader since the handout is 8 pages.
 
-- [ ] Inputs prepared in the parent: per-page text layer, per-page monospace spans, link
-      targets, outline, spec
-- [ ] One Sonnet reader, pages 1-8, appending per page
-- [ ] Verified by script: page markers, prose alignment, problems, numbers, code lines, links
-- [ ] Equations and figures read against the text layer / crops by the parent
-- [ ] Math: KaTeX and github.com clean
+- [x] Inputs prepared in the parent: per-page text layer, monospace spans, link targets,
+      outline, and a marked-up rendering of each page from the font and position data
+      (code, bold, italic, math sub/superscripts by baseline; paragraphs by line gap)
+- [x] Changed from the plan: no reader. At 8 pages, ~3.2k words, 2 problems and no figures,
+      the parent transcribed from the marked-up text layer, so no page image was read whole
+- [x] Verified by script: 8 page markers; prose aligned against the text layer (every
+      difference a formula word, code, or one line-break hyphen); 2 problems; every number
+      (bar 1023/1024/218, the flattened powers); 73 code lines verbatim; 4 links
+- [x] All 39 body formulas read against rendered crops of their lines (five crops, no whole
+      page). One error, the parent's own: N_opt(C_i) where the page subscripts all of
+      `opt(C_i)`. Fixed and recorded as printed. No figures in this handout
+- [x] Math: 48 formulas, 0 errors in KaTeX and on github.com
 - [ ] wiki/assignment-3-scaling.md — describe, never solve; quote check; math check
 - [ ] Inbound links (lectures 9 and 11, scaling-law topic pages, course-map, assignment pages) and INDEX
 - [ ] sources.md, LICENSE.md, AGENTS.md, kb.json
