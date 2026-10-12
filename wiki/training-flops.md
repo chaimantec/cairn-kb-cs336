@@ -13,8 +13,8 @@ the derivation and its limits.
 
 The six splits into a forward pass and a backward pass:
 
-- **Forward pass**: $2ND$ FLOPs — 2 × (# data points) × (# parameters)
-- **Backward pass**: $4ND$ FLOPs — 4 × (# data points) × (# parameters)
+- **Forward pass**: $2ND$ FLOPs — twice the number of data points times the number of parameters
+- **Backward pass**: $4ND$ FLOPs — four times the number of data points times the number of parameters
 - **Total**: $6ND$ FLOPs
 
 The forward half is just the [matmul count](flops-and-mfu.md#counting-the-flops-in-a-matmul)
@@ -24,7 +24,7 @@ multiply and an add, giving 2 FLOPs per parameter per token.
 The interesting claim is the other one: **the backward pass costs twice the
 forward pass.** That is not obvious, and it is not a fudge factor.
 
-## Why backward is 2×
+## Why backward is $2\times$
 
 Take a two-layer linear network and focus on the second layer, $h_2 = h_1 w_2$,
 with batch size $B$ and dimension $D$:

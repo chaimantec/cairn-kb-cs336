@@ -20,13 +20,13 @@ compresses what is stored and expands it back per head.
 
 ## The construction
 
-Rather than projecting the hidden state $\mathbf{h}_t$ straight to keys and values, project
-it first to a latent $\mathbf{c}^{KV}_t$ of much lower dimension, then up from there
+Rather than projecting the hidden state $\mathbf{h}_ t$ straight to keys and values, project
+it first to a latent $\mathbf{c}^{KV}_ t$ of much lower dimension, then up from there
 (slide 58):
 
-$$\mathbf{c}^{KV}_t = W^{DKV}\mathbf{h}_t$$
-$$\mathbf{k}^{C}_t = W^{UK}\mathbf{c}^{KV}_t$$
-$$\mathbf{v}^{C}_t = W^{UV}\mathbf{c}^{KV}_t$$
+$$\mathbf{c}^{KV}_ t = W^{DKV}\mathbf{h}_ t$$
+$$\mathbf{k}^{C}_ t = W^{UK}\mathbf{c}^{KV}_ t$$
+$$\mathbf{v}^{C}_ t = W^{UV}\mathbf{c}^{KV}_ t$$
 
 $W^{DKV}$ is a down-projection; $W^{UK}$ and $W^{UV}$ are up-projections to the per-head
 keys and values.
@@ -39,14 +39,14 @@ of that" ([1:23:55]).
 Queries get the same treatment, though for a different reason — training memory rather than
 cache size:
 
-$$\mathbf{c}^{Q}_t = W^{DQ}\mathbf{h}_t, \qquad \mathbf{q}^{C}_t = W^{UQ}\mathbf{c}^{Q}_t$$
+$$\mathbf{c}^{Q}_ t = W^{DQ}\mathbf{h}_ t, \qquad \mathbf{q}^{C}_ t = W^{UQ}\mathbf{c}^{Q}_ t$$
 
 Slide 58 notes the query compression is "for memory savings during training."
 
 ## Why it saves anything
 
 **Only the latent is cached.** Slide 57's diagram marks the cached tensors with hatching,
-and exactly two things are hatched: $\mathbf{c}^{KV}_t$ and a single rotary key
+and exactly two things are hatched: $\mathbf{c}^{KV}_ t$ and a single rotary key
 $\mathbf{k}^R_t$. The full per-head keys and values are never stored — they are recomputed
 from the latent whenever needed.
 
@@ -55,10 +55,10 @@ from the latent whenever needed.
 > these Cs, which are latent, are the KV-cache quantities you need to save. ([1:23:55])
 
 **And the up-projection is free at attention time.** This is the part that makes MLA cheap
-rather than merely small. Slide 58 states it as "$W^{UK}$ can be merged into the Q
+rather than merely small. Slide 58 states it as $W^{UK}$ "can be merged into the Q
 projection," which the attention inner product makes concrete:
 
-$$\langle Q, K \rangle = \left\langle hW^{Q},\; W^{UK}\mathbf{c}^{KV}_t \right\rangle = \left\langle h\,W^{Q}W^{UK},\; \mathbf{c}^{KV}_t \right\rangle$$
+$$\langle Q, K \rangle = \left\langle hW^{Q},\mskip{5mu} W^{UK}\mathbf{c}^{KV}_ t \right\rangle = \left\langle h\thinspace W^{Q}W^{UK},\mskip{5mu} \mathbf{c}^{KV}_ t \right\rangle$$
 
 Associativity again — the same move that powers [linear attention](linear-attention.md).
 $W^{Q}W^{UK}$ is a product of two fixed weight matrices, so it can be precomputed once into
@@ -72,7 +72,7 @@ The complication, and the reason MLA is not simply a strict improvement.
 [RoPE](rope.md) applies a position-dependent rotation to queries and keys. Insert those
 rotations into the inner product and the merging above breaks:
 
-$$\langle QR_q,\; R_k K \rangle = \left\langle hW^{Q}R_q,\; R_k W^{UK} \mathbf{c}^{KV}_t \right\rangle = \left\langle h\,W^{Q}R_q R_k W^{UK},\; \mathbf{c}^{KV}_t \right\rangle$$
+$$\langle QR_q,\mskip{5mu} R_k K \rangle = \left\langle hW^{Q}R_q,\mskip{5mu} R_k W^{UK} \mathbf{c}^{KV}_ t \right\rangle = \left\langle h\thinspace W^{Q}R_q R_k W^{UK},\mskip{5mu} \mathbf{c}^{KV}_ t \right\rangle$$
 
 The merged factor is now $W^{Q}R_q R_k W^{UK}$, which contains $R_q R_k$ and therefore
 depends on the *relative position* of the query and key. It is a different matrix for every
@@ -87,7 +87,7 @@ Slide 58 puts the same solution in one line: "Have a few non-latent key dimensio
 be rotated." So the key is split — most dimensions come from the latent and carry no
 rotation, keeping the merge valid, while a small number of dimensions bypass the latent path
 and receive RoPE normally. Slide 57's diagram shows exactly this: $\mathbf{k}^R_t$ is a
-single hatched cell fed from $\mathbf{h}_t$ through an "apply RoPE" step, concatenated with
+single hatched cell fed from $\mathbf{h}_ t$ through an "apply RoPE" step, concatenated with
 the latent-derived $\mathbf{k}^C_{t,i}$ per head. The query side is concatenated the same
 way, from $\mathbf{q}^C_{t,i}$ and $\mathbf{q}^R_{t,i}$.
 

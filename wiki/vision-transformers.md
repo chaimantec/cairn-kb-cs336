@@ -10,8 +10,8 @@ the ViT version" (≈12:30).
 ## The construction
 
 1. **Patch.** Split the image into a grid of non-overlapping patches. The original
-   ViT paper used 16×16 pixels; CLIP uses 14×14 (≈12:30).
-2. **Flatten and project.** Each patch is a small tensor of pixels — 14×14×3 for
+   ViT paper used $16\times 16$ pixels; CLIP uses $14\times 14$ (≈12:30).
+2. **Flatten and project.** Each patch is a small tensor of pixels — $14\times 14\times 3$ for
    RGB — flattened and linearly projected to the model dimension. "You have these
    little patches, which are basically vectors. So each patch is, in some sense, a
    token for this Vision Transformer" (≈13:18).
@@ -22,7 +22,7 @@ the ViT version" (≈12:30).
    [pre-norm blocks, attention and MLPs](03-architectures.md) as a text model.
 
 The patch count follows from resolution and patch size, and is the number that
-matters downstream. At CLIP's 336×336 with 14×14 patches the image tiles 24×24,
+matters downstream. At CLIP's $336\times 336$ with $14\times 14$ patches the image tiles $24\times 24$,
 so **one image becomes 576 patch tokens**.
 
 ## Pooling to a single vector
@@ -43,7 +43,7 @@ vector. Two options appear in the lecture:
 
 The naming convention recurs constantly, so it is worth decoding once.
 
-**ViT-L/14@336px** = **L**arge, **14×14** pixel patches, trained at **336×336**
+**ViT-L/14@336px** = **L**arge, **$14\times 14$** pixel patches, trained at **$336\times 336$**
 resolution. Other sizes seen in the lecture: **ViT-bigC** (as the deck prints it —
 the cited OpenCLIP paper's own name is ViT-bigG) for [Qwen-VL](qwen-vl-series.md),
 and a 675M-parameter ViT for Qwen2-VL.

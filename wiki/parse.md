@@ -101,7 +101,7 @@ Constrain the two matrices so the dynamics cannot diverge (≈50:59, ≈51:45):
 - **$B$ gets a simple linear norm.** Safe to treat differently because "the $B$
   matrix actually only gets applied once, so it doesn't really blow up."
 
-The result is $\rho(A) < 1$ — "it's now actually going to be a stable system."
+The result is $\rho(A) \lt 1$ — "it's now actually going to be a stable system."
 Trained, the payoff is exactly what the diagnosis predicts: "even with the 6e-4
 learning rate that was so bad for the other models, you actually got a stable
 model at the end," and the unconstrained baseline by contrast "blows up, goes to

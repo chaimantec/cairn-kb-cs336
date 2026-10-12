@@ -156,6 +156,18 @@ the per-lecture record behind it is in [`BUILD_LOG.md`](BUILD_LOG.md).
   of the formula. Define each symbol on first use, and follow the course's own
   notation rather than a tidier one, since the learner is comparing the page
   against the lecturer's screen.
+
+  **github.com is the stricter renderer; run `check_math.mjs --github` before pushing.**
+  Beyond the escapes, `*` and `_` rules the skill lists, it opens inline math only after an
+  ASCII space, a tab, `(` or an HTML tag, never after a quote mark, dash, `/`, `~`, `'` or
+  `&nbsp;`. So a quoted formula loses its quotes (`labelled $F_0$`), a range is one formula
+  (`$10^5\text{–}10^6$`, `$\text{top-}k$`), and an author's affiliation mark is a Unicode
+  superscript (`Hu¹`). It also refuses inline math that contains `\begin{…}` (use `\atop`),
+  that ends in `)` right before a `)` (wrap the TeX in braces), that contains "Select"
+  (`Sel{}ect`), that sits in link text, or that wraps across a line. `\_` has no rewrite both
+  renderers accept but `\verb|…|` (`\verb+…+` in a table row). A literal dollar sign is `\$`
+  (`L1\$`, `\$12`), or two of them pair into a formula. A `$$` block indented inside a list
+  item renders inline.
 - **Transcripts stay spelled-out.** Captions render notation as speech ("n
   squared"); reconstructing it as $n^2$ belongs in `wiki/`, not `raw/transcripts/`.
 - **No rankings between lectures.** Do not write that a lecture has the most

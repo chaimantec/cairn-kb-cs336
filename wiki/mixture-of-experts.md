@@ -161,7 +161,7 @@ turns out that very simple things work well, even at scale" ([1:25:27]).
 
 ## Related pages
 
-- [MoE routing](moe-routing.md) — routers, top-$k$, shared and fine-grained experts.
+- [MoE routing](moe-routing.md) — routers, $\text{top-}k$, shared and fine-grained experts.
 - [Load balancing losses](load-balancing-losses.md) — how these are actually trained.
 - [Expert parallelism](expert-parallelism.md) — the systems side, including the
   [all-to-all](collective-operations.md#the-general-one) primitive that dynamic

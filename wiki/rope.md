@@ -66,7 +66,7 @@ position of any words."
 
 None of the three earlier schemes satisfies it:
 
-- **Sine** does not, because expanding $\langle v_x + PE_i,\; v_y + PE_j \rangle$
+- **Sine** does not, because expanding $\langle v_x + PE_i,\mskip{5mu} v_y + PE_j \rangle$
   leaves cross terms like $\langle PE_i, v_y \rangle$ that carry absolute position.
   He returns to this at [42:13]: "even sine and cosine embeddings are not pure
   relative position embeddings," because "you can back out what the absolute
@@ -126,12 +126,12 @@ from Su et al. 2021 — a block-diagonal matrix of $2\times2$ rotation blocks:
 
 *Slide 34 — The actual RoPE math. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
-$$f_{\{q,k\}}(\boldsymbol{x}_m, m) = \boldsymbol{R}^d_{\Theta,m} \boldsymbol{W}_{\{q,k\}} \boldsymbol{x}_m$$
+$$f_{\lbrace q,k\rbrace}(\boldsymbol{x}_ m, m) = \boldsymbol{R}^d_{\Theta,m} \boldsymbol{W}_ {\lbrace q,k\rbrace} \boldsymbol{x}_ m$$
 
 $$\boldsymbol{R}^d_{\Theta,m} = \begin{pmatrix}
-\cos m\theta_1 & -\sin m\theta_1 & \cdots & 0 \\
-\sin m\theta_1 & \cos m\theta_1 & \cdots & 0 \\
-\vdots & \vdots & \ddots & \vdots \\
+\cos m\theta_1 & -\sin m\theta_1 & \cdots & 0 \cr
+\sin m\theta_1 & \cos m\theta_1 & \cdots & 0 \cr
+\vdots & \vdots & \ddots & \vdots \cr
 0 & 0 & \cdots & \cos m\theta_{d/2}
 \end{pmatrix}$$
 

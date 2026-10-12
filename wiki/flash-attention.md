@@ -65,7 +65,7 @@ single loop:
 
 $$m_j \leftarrow \max(m_{j-1}, x_j)$$
 
-$$d_j \leftarrow d_{j-1}\, e^{m_{j-1}-m_j} + e^{x_j - m_j}$$
+$$d_j \leftarrow d_{j-1}\thinspace e^{m_{j-1}-m_j} + e^{x_j - m_j}$$
 
 The second term is the whole idea. Whenever the running maximum changes, every
 contribution accumulated so far was shifted by the *old* maximum, so the
@@ -91,9 +91,9 @@ from what is **computed in SRAM and never materialized in HBM**. For tiles 1 and
 
 *Slide 54 — Putting it all together – the forward pass of flash attention. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
-$$S^{(1)} = Q (K^{(1)})^\top, \qquad A^{(1)} = \exp(S^{(1)}), \qquad l^{(1)} = \sum_i \exp(S^{(1)})_i$$
+$$S^{(1)} = Q (K^{(1)})^\top, \qquad A^{(1)} = \exp(S^{(1)}), \qquad l^{(1)} = \sum_i \exp(S^{(1)})_ i$$
 
-$$l^{(2)} = l^{(1)} + \sum_i \exp(S^{(2)})_i$$
+$$l^{(2)} = l^{(1)} + \sum_i \exp(S^{(2)})_ i$$
 
 $$O^{(1)} = \frac{A^{(1)}}{l^{(1)}} \cdot V^{(1)}, \qquad O^{(2)} = \frac{l^{(1)}}{l^{(2)}} O^{(1)} + \frac{A^{(2)}}{l^{(2)}} \cdot V^{(2)}$$
 

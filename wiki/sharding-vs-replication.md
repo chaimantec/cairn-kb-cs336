@@ -18,7 +18,7 @@ one of them:
 
 The third option is what multi-GPU training adds, and the reason it is worth
 having is that a neighbouring GPU's HBM can be closer, in time, than recomputing
-something expensive — [NVLink](gpu-interconnect.md) is only about 4× slower than
+something expensive — [NVLink](gpu-interconnect.md) is only about $4\times$ slower than
 local HBM ([24:01]).
 
 ## Replication is a choice, not a default

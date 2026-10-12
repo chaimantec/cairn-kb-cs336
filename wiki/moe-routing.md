@@ -43,7 +43,7 @@ Slides 29–30 survey what has been tried.
 
 *Slide 30 — Other routing methods. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
-**Top-$k$ by inner product** — by far the most common. Each expert owns a vector; the
+**$\text{Top-}k$ by inner product** — by far the most common. Each expert owns a vector; the
 router takes the inner product with the token's hidden state and keeps the top $k$.
 "This is by far the most common router — it's used in the classic Switch Transformer, and
 GShard; those two are the early Google papers. It's used in Grok, Mixtral, Qwen, DBRX,
@@ -52,7 +52,7 @@ DeepSeek, and others" ([50:11]). The value of $k$ varies by paper.
 **Hashing** — no learning at all: hash the token and send it to the corresponding FFN.
 Hashimoto finds this genuinely odd and says so: "One thing that's always been a little
 mysterious to me is that many, many papers have shown that you don't actually need any
-sort of learned routing" ([50:11]). It sometimes gives gains, not as much as top-$k$, and
+sort of learned routing" ([50:11]). It sometimes gives gains, not as much as $\text{top-}k$, and
 survives as a baseline rather than in deployment ([50:56]).
 
 **Reinforcement learning** — treat the router as a policy and learn it with RL. This is
@@ -79,7 +79,7 @@ set of heuristics — these recipes you can apply to this very simple, classic t
 scheme — that basically just get it working. So there's no reason to do something much
 more complicated" ([51:42]).
 
-## Top-$k$ routing in detail
+## $\text{Top-}k$ routing in detail
 
 Slide 31 gives the DeepSeekMoE router, which is the canonical form:
 
@@ -87,13 +87,13 @@ Slide 31 gives the DeepSeekMoE router, which is the canonical form:
 
 *Slide 31 — Top-K routing in detail. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
-$$\mathbf{h}^l_t = \sum_{i=1}^{N} \left( g_{i,t}\, \mathrm{FFN}_i\!\left(\mathbf{u}^l_t\right) \right) + \mathbf{u}^l_t$$
+$$\mathbf{h}^l_t = \sum_{i=1}^{N} \left( g_{i,t}\thinspace \mathrm{FFN}_ i\negthinspace\left(\mathbf{u}^l_t\right) \right) + \mathbf{u}^l_t$$
 
-$$g_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} \in \mathrm{Topk}\!\left(\{s_{j,t} \mid 1 \leqslant j \leqslant N\}, K\right) \\ 0, & \text{otherwise} \end{cases}$$
+$$g_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} \in \mathrm{Topk}\negthinspace\left(\lbrace s_{j,t} \mid 1 \leqslant j \leqslant N\rbrace, K\right) \cr 0, & \text{otherwise} \end{cases}$$
 
-$$s_{i,t} = \mathrm{Softmax}_i\!\left(\mathbf{u}^{l\,\top}_t \mathbf{e}^l_i\right)$$
+$$s_{i,t} = \mathrm{Softmax}_ i\negthinspace\left(\mathbf{u}^{l\thinspace\top}_ t \mathbf{e}^l_i\right)$$
 
-where $\mathbf{u}^l_t$ is the layer-$l$ hidden state for token $t$, $\mathbf{e}^l_i$ is
+where $\mathbf{u}^l_t$ is the $\text{layer-}l$ hidden state for token $t$, $\mathbf{e}^l_i$ is
 expert $i$'s centroid vector, $s_{i,t}$ is the router score, $g_{i,t}$ the resulting gate,
 $N$ the number of experts and $K$ how many are kept.
 
@@ -106,8 +106,8 @@ have — very, very lightweight. There's nothing complicated about the way I sel
 gates" ([54:01]).
 
 **One variation worth noting**: where the softmax goes. As written above the softmax
-precedes the top-$k$, so the surviving gates do not sum to one. Slide 31's margin notes
-that Mixtral, DBRX and DeepSeek v3 instead softmax *after* the top-$k$.
+precedes the $\text{top-}k$, so the surviving gates do not sum to one. Slide 31's margin notes
+that Mixtral, DBRX and DeepSeek v3 instead softmax *after* the $\text{top-}k$.
 
 This router is structurally the same primitive as [DSA's](sparse-attention.md) indexer,
 and Hashimoto points that out: "if you were paying attention in the DSA slide, this looks
@@ -197,6 +197,6 @@ reduced comms cost" ([57:51]).
 
 - [Mixture of experts](mixture-of-experts.md) — the parent topic.
 - [Load balancing losses](load-balancing-losses.md) — what stops routing from collapsing.
-- [Sparse attention](sparse-attention.md) — the same top-$k$ primitive selecting tokens
+- [Sparse attention](sparse-attention.md) — the same $\text{top-}k$ primitive selecting tokens
   rather than experts.
 - [Lecture 4](04-attention-alternatives.md).

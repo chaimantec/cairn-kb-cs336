@@ -34,7 +34,7 @@ with parameters and gradients equal in size ([15:23]).
 Under naive DDP every rank holds all of it. Memory consumption is therefore
 *linear in the number of accelerators* while buying you no memory headroom at all
 ([15:23]). Slide 18's own worked example runs the total from **120 GB down to
-1.9 GB** across the three stages, for $\Psi = 7.5$B parameters, $K = 12$ bytes of
+1.9 GB** across the three stages, for $\Psi = 7.5\text{B}$ parameters, $K = 12$ bytes of
 optimizer state per parameter and $N_d = 64$ ranks ([16:09]).
 
 The general per-rank memory expression on that slide is
@@ -88,7 +88,7 @@ new algorithm ([19:12]):
 And once a gradient is no longer needed by the backward pass, free it ([19:59]).
 Doing the reduction incrementally rather than all at once "is the same thing — it
 doesn't really make a difference," so stage 2 is also free. Slide 21's comparison
-table records the communication cost as $2 \times \#\text{params}$ in **both**
+table records the communication cost as $2 \times \verb|#|\text{params}$ in **both**
 columns, naive DDP and ZeRO stage 1 alike.
 
 ## Stage 3 (FSDP) — shard the parameters too

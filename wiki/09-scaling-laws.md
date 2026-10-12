@@ -72,7 +72,7 @@ seeing these large language models" ([10:01]).
 
 Fix the training procedure, keep the model much larger than the dataset, grow the
 dataset, and plot log test loss against log data. The points fall on a line
-([14:35]). "Much larger" is quantified later: roughly 10× is enough to stay in the
+([14:35]). "Much larger" is quantified later: roughly $10\times$ is enough to stay in the
 power-law regime rather than the irreducible-error regime ([20:46]).
 
 A line on a log-log plot means the error decays **polynomially**, and it also means
@@ -85,12 +85,12 @@ The derivation is deliberately elementary ([16:09]). Estimate the mean of
 $x_1,\dots,x_n \sim N(\mu,\sigma^2)$ by the empirical mean. The expected squared
 error is
 
-$$\mathbb{E}\,\|\hat\mu - \mu\|^2 = \frac{\sigma^2}{n}$$
+$$\mathbb{E}\thinspace\Vert\hat\mu - \mu\Vert^2 = \frac{\sigma^2}{n}$$
 
 Take logs and you have a line against $\log n$. The general statement: anything of
 the form
 
-$$\text{error} \;\approx\; \frac{1}{n^{\alpha}} + c$$
+$$\text{error} \mskip{5mu}\approx\mskip{5mu} \frac{1}{n^{\alpha}} + c$$
 
 gives a scaling law once you subtract the constant ([16:09]). Parametric estimation
 gives $\alpha = 1$, so classical models should show **slope $-1$** ([16:54]).
@@ -105,7 +105,7 @@ Where would such a rate come from? Non-parametric estimation ([18:28]). To estim
 an arbitrary smooth function on the unit cube, chop the space into boxes; in $D$
 dimensions the error goes as
 
-$$\text{error} \;\approx\; n^{-1/D}$$
+$$\text{error} \mskip{5mu}\approx\mskip{5mu} n^{-1/D}$$
 
 giving slope $-1/D$. So a fitted exponent near $-0.1$ says the network is learning
 about as fast as **a non-parametric estimator in roughly 10 dimensions** ([19:16]).

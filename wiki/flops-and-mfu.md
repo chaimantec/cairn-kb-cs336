@@ -35,7 +35,7 @@ And one for what hardware supplies. An H100 has a peak of **1979 teraFLOP/s with
 sparsity, 50% of that without**
 ([spec](https://resources.nvidia.com/en-us-tensor-core/nvidia-tensor-core-gpu-datasheet)):
 
-$$\text{h100\_flop\_per\_sec} = \frac{1979 \times 10^{12}}{2} = 9.895 \times 10^{14} \text{ FLOP/s}$$
+$$\verb|h100_flop_per_sec| = \frac{1979 \times 10^{12}}{2} = 9.895 \times 10^{14} \text{ FLOP/s}$$
 
 **Always halve the datasheet number.** The headline figure assumes structured
 sparsity that ordinary dense training does not have. This is the most common
@@ -113,7 +113,7 @@ is one number per (GPU, dtype) pair, and the spread is large. From
 | H100 | 67.5e12 | 989.5e12 (= 1979e12 / 2) |
 | B200 | 75e12 | 2.25e15 (= 4.5e15 / 2) |
 
-Two things to read off this table. Within a row, **bf16 is worth roughly 15–30×
+Two things to read off this table. Within a row, **bf16 is worth roughly $15\text{–}30\times$
 fp32** — which is a much larger effect than the memory saving, and the real reason
 mixed precision is universal. Across rows, note that fp32 barely improves from
 H100 to B200 (67.5 → 75) while bf16 more than doubles (989.5 → 2250): the hardware

@@ -371,23 +371,23 @@ at the bottom to $x_{l+1}$ at the top.
 **Right — figure: a two-column equation box, also from Xiong 2020**, headed
 "Post-LN Transformer" and "Pre-LN Transformer". The post-LN column reads:
 
-$$x^{post,1}_{l,i} = \mathrm{MultiHeadAtt}(x^{post}_{l,i}, [x^{post}_{l,1},\cdots,x^{post}_{l,n}])$$
-$$x^{post,2}_{l,i} = x^{post}_{l,i} + x^{post,1}_{l,i}$$
-$$x^{post,3}_{l,i} = \mathrm{LayerNorm}(x^{post,2}_{l,i})$$
-$$x^{post,4}_{l,i} = \mathrm{ReLU}(x^{post,3}_{l,i}W^{1,l} + b^{1,l})W^{2,l} + b^{2,l}$$
-$$x^{post,5}_{l,i} = x^{post,3}_{l,i} + x^{post,4}_{l,i}$$
-$$x^{post}_{l+1,i} = \mathrm{LayerNorm}(x^{post,5}_{l,i})$$
+$$x^{post,1}_ {l,i} = \mathrm{MultiHeadAtt}(x^{post}_ {l,i}, [x^{post}_ {l,1},\cdots,x^{post}_ {l,n}])$$
+$$x^{post,2}_ {l,i} = x^{post}_ {l,i} + x^{post,1}_ {l,i}$$
+$$x^{post,3}_ {l,i} = \mathrm{LayerNorm}(x^{post,2}_ {l,i})$$
+$$x^{post,4}_ {l,i} = \mathrm{ReLU}(x^{post,3}_ {l,i}W^{1,l} + b^{1,l})W^{2,l} + b^{2,l}$$
+$$x^{post,5}_ {l,i} = x^{post,3}_ {l,i} + x^{post,4}_ {l,i}$$
+$$x^{post}_ {l+1,i} = \mathrm{LayerNorm}(x^{post,5}_ {l,i})$$
 
 The pre-LN column reads:
 
-$$x^{pre,1}_{l,i} = \mathrm{LayerNorm}(x^{pre}_{l,i})$$
-$$x^{pre,2}_{l,i} = \mathrm{MultiHeadAtt}(x^{pre,1}_{l,i}, [x^{pre,1}_{l,1},\cdots,x^{pre,1}_{l,n}])$$
-$$x^{pre,3}_{l,i} = x^{pre}_{l,i} + x^{pre,2}_{l,i}$$
-$$x^{pre,4}_{l,i} = \mathrm{LayerNorm}(x^{pre,3}_{l,i})$$
-$$x^{pre,5}_{l,i} = \mathrm{ReLU}(x^{pre,4}_{l,i}W^{1,l} + b^{1,l})W^{2,l} + b^{2,l}$$
-$$x^{pre}_{l+1,i} = x^{pre,3}_{l,i} + x^{pre,5}_{l,i}$$
+$$x^{pre,1}_ {l,i} = \mathrm{LayerNorm}(x^{pre}_ {l,i})$$
+$$x^{pre,2}_ {l,i} = \mathrm{MultiHeadAtt}(x^{pre,1}_ {l,i}, [x^{pre,1}_ {l,1},\cdots,x^{pre,1}_ {l,n}])$$
+$$x^{pre,3}_ {l,i} = x^{pre}_ {l,i} + x^{pre,2}_ {l,i}$$
+$$x^{pre,4}_ {l,i} = \mathrm{LayerNorm}(x^{pre,3}_ {l,i})$$
+$$x^{pre,5}_ {l,i} = \mathrm{ReLU}(x^{pre,4}_ {l,i}W^{1,l} + b^{1,l})W^{2,l} + b^{2,l}$$
+$$x^{pre}_ {l+1,i} = x^{pre,3}_ {l,i} + x^{pre,5}_ {l,i}$$
 
-with a final line spanning the box: "Final LayerNorm: $x^{pre}_{Final,i} \leftarrow \mathrm{LayerNorm}(x^{pre}_{L+1,i})$".
+with a final line spanning the box: "Final LayerNorm: $x^{pre}_ {Final,i} \leftarrow \mathrm{LayerNorm}(x^{pre}_ {L+1,i})$".
 
 Slide text under the right figure: "Set up LayerNorm so that it doesn't affect the
 main residual signal path (on the left)".
@@ -543,13 +543,13 @@ each on the right.
 Top: "Original transformer: **LayerNorm** – normalizes the mean and variance across
 $d_{model}$"
 
-$$y = \frac{x - \mathrm{E}[x]}{\sqrt{\mathrm{Var}[x] + \epsilon}} * \gamma + \beta$$
+$$y = \frac{x - \mathrm{E}[x]}{\sqrt{\mathrm{Var}[x] + \epsilon}} \ast \gamma + \beta$$
 
 **Notable models:** GPT3/2/1, OPT, GPT-J, BLOOM
 
 Bottom: "Many modern LMs: **RMSNorm** – does not subtract mean or add a bias term"
 
-$$y = \frac{x}{\sqrt{\left\lVert x \right\rVert_2^2 + \varepsilon}} * \gamma$$
+$$y = \frac{x}{\sqrt{\left\lVert x \right\rVert_2^2 + \varepsilon}} \ast \gamma$$
 
 **Notable models:** LLaMA-family, PaLM, Chinchilla, T5
 
@@ -566,7 +566,7 @@ The only image on the page is the blue header band; there is no figure.
 
 The LayerNorm formula is repeated on the right of those bullets:
 
-$$y = \frac{x - \mathrm{E}[x]}{\sqrt{\mathrm{Var}[x] + \epsilon}} * \gamma + \beta$$
+$$y = \frac{x - \mathrm{E}[x]}{\sqrt{\mathrm{Var}[x] + \epsilon}} \ast \gamma + \beta$$
 
 **Does this explanation make sense?**
 
@@ -699,11 +699,11 @@ Three rows: activation name and formula on the left, a small plot in the middle
 
 **ReLU**
 
-$$FF(x) = \max(0, xW_1)\,W_2$$
+$$FF(x) = \max(0, xW_1)\thinspace W_2$$
 
 *Figure 1 (middle of the ReLU row) — a matplotlib line plot titled "ReLU()".*
-x-axis "Input", ticked $-6, -4, -2, 0, 2, 4, 6$; y-axis "Output", ticked $-6, -4,
--2, 0, 2, 4, 6$. **One** blue series: flat at exactly 0 for all inputs below 0,
+x-axis "Input", ticked $-6, -4, -2, 0, 2, 4, 6$; y-axis "Output", ticked
+$-6, -4, -2, 0, 2, 4, 6$. **One** blue series: flat at exactly 0 for all inputs below 0,
 then rising as a straight line of slope 1 through the origin, reaching about 7 at
 input 7.
 
@@ -712,7 +712,7 @@ input 7.
 **GeLU**
 
 $$FF(x) = \mathrm{GELU}(xW_1)W_2$$
-$$GELU(x) \coloneqq x\,\Phi(x)$$
+$$GELU(x) \coloneqq x\thinspace\Phi(x)$$
 
 *Figure 2 (middle of the GeLU row) — a matplotlib line plot titled
 "GELU(approximate='none')".* Same axes and ranges as the ReLU plot ("Input" on x,
@@ -735,7 +735,7 @@ mark what changes.
 
 GLUs modify the 'first part' of a FF layer
 
-$$FF(x) = \color{red}{\max(0, xW_1)}\,W_2$$
+$$FF(x) = \color{red}{\max(0, xW_1)}\thinspace W_2$$
 
 Instead of a linear + ReLU, augment the above with an (entrywise) linear term
 
@@ -743,7 +743,7 @@ $$\color{red}{\max(0, xW_1)} \rightarrow \max(0, xW_1) \otimes (xV)$$
 
 This gives the gated variant (ReGLU) – note that we have an extra parameter (V)
 
-$$\mathrm{FF}_{\mathrm{ReGLU}}(x) = (\max(0, xW_1) \otimes xV)\,W_2$$
+$$\mathrm{FF}_ {\mathrm{ReGLU}}(x) = (\max(0, xW_1) \otimes xV)\thinspace W_2$$
 
 ## Slide 23 — Gated variants of standard FF layers
 
@@ -751,13 +751,13 @@ Two definitions on the left with "Notable models:" lists opposite. No figure.
 
 **GeGLU**
 
-$$\mathrm{FFN}_{\mathrm{GEGLU}}(x, W, V, W_2) = (\mathrm{GELU}(xW) \otimes xV)W_2$$
+$$\mathrm{FFN}_ {\mathrm{GEGLU}}(x, W, V, W_2) = (\mathrm{GELU}(xW) \otimes xV)W_2$$
 
 **Notable models:** T5 v1.1, mT5, LaMDA, Phi3, Gemma 2, Gemma 3, Gemma 4
 
-**SwiGLU** (swish is $x * \mathrm{sigmoid}(x)$)
+**SwiGLU** (swish is ${x \ast \mathrm{sigmoid}(x)}$)
 
-$$\mathrm{FFN}_{\mathrm{SwiGLU}}(x, W, V, W_2) = (\mathrm{Swish}_1(xW) \otimes xV)W_2$$
+$$\mathrm{FFN}_ {\mathrm{SwiGLU}}(x, W, V, W_2) = (\mathrm{Swish}_ 1(xW) \otimes xV)W_2$$
 
 **Notable models:** LLaMa 1/2/3, PaLM, Mistral, OlMo, *most models post 2023*
 
@@ -1004,10 +1004,14 @@ That is, the attention function *only* gets to depend on the relative position
 (i-j). How do existing embeddings not fulfill this goal?
 
 - **Sine:** Has various cross-terms that are not relative
+
   $$\langle Embed(x, i), Embed(y, i) \rangle = \langle v_x, v_y \rangle + \langle PE_i, v_y \rangle \ldots$$
+
 - **Absolute:** obviously not relative
 - **Relative embeddings:** *(the same pasted equation image as slide 30)*
+
   $$e_{ij} = \frac{x_i W^Q (x_j W^K + a^K_{ij})^T}{\sqrt{d_z}}$$
+
   "is not an inner product"
 
 The only image on this page is that pasted relative-attention equation.
@@ -1053,25 +1057,25 @@ A separate margin note at the far right reads "Gemma 4 alternative: just first 2
 
 **Figure 1 (top left, inside a grey dashed border labelled "d=2") — the
 two-dimensional case.** On the left, a two-cell green box labelled
-"$(x_1, x_2)$" with the caption "Query / Key"; above it, a green
-"$\boldsymbol{\theta}_1$" labelled "Constant", and below it a red "$\mathbf{m}$"
+$(x_1, x_2)$ with the caption "Query / Key"; above it, a green
+$\boldsymbol{\theta}_ 1$ labelled "Constant", and below it a red $\mathbf{m}$
 labelled "Position", both connected to the box by curved grey arrows. A grey
 arrow leads right to a set of 2-D axes: a pale-green arrow from the origin to the
 point $(x_1, x_2)$ (dashed guide lines mark $x_1$ on the horizontal axis and
 $x_2$ on the vertical), and a second pale-green dashed arrow to the rotated point
-$(x'_1, x'_2)$, with a black curved arrow between them labelled in red
-"$\mathbf{m\theta_1}$". A further grey arrow leads right to a two-cell box shaded
-green at the top and red at the bottom, labelled "$(x'_1, x'_2)$" with the caption
+$(x'_ 1, x'_ 2)$, with a black curved arrow between them labelled in red
+$\mathbf{m\theta_1}$. A further grey arrow leads right to a two-cell box shaded
+green at the top and red at the bottom, labelled $(x'_ 1, x'_ 2)$ with the caption
 "Position Encoded Query / Key".
 
 **Figure 2 (bottom, inside a solid black border) — the general $d$-dimensional
 case.** Six rows, one per token of the sentence "Enhanced / Transformer / with /
 Rotary / Position / Embedding" (the words label the rows down the left). Each row
 shows, under the heading "Query / Key", a strip of coloured cells: two green cells
-under the label "$\boldsymbol{\theta}_1$", two pink cells under
-"$\boldsymbol{\theta}_2$", an ellipsis, then two peach cells under
-"$\boldsymbol{\theta}_{d/2-1}$" and two blue cells under
-"$\boldsymbol{\theta}_{d/2}$". The middle column, headed "Position", gives each
+under the label $\boldsymbol{\theta}_ 1$, two pink cells under
+$\boldsymbol{\theta}_ 2$, an ellipsis, then two peach cells under
+$\boldsymbol{\theta}_ {d/2-1}$ and two blue cells under
+$\boldsymbol{\theta}_ {d/2}$. The middle column, headed "Position", gives each
 row an index in a different colour: **1** (red), **2** (olive), **3** (green),
 **4** (teal), **5** (cyan), **6** (dark blue). A large black arrow points right to
 the third column, headed "Position Encoded Query / Key", where the same cell
@@ -1084,8 +1088,8 @@ indicating that the top figure is a zoom on one coordinate pair of one token.
 **Figure 3 (right margin) — a separate two-panel graphic on partial rotation.**
 Top panel: an eight-cell greyscale strip labelled on its left "the / m = 5" and on
 its right "**original** query"; under the strip, four brackets group the cells in
-pairs, labelled $\boldsymbol{\theta}_1$, $\boldsymbol{\theta}_2$,
-$\boldsymbol{\theta}_3$, $\boldsymbol{\theta}_4$. Middle: a small pair of axes
+pairs, labelled $\boldsymbol{\theta}_ 1$, $\boldsymbol{\theta}_ 2$,
+$\boldsymbol{\theta}_ 3$, $\boldsymbol{\theta}_ 4$. Middle: a small pair of axes
 with a black arrow rotated anticlockwise into a purple arrow, annotated "only
 rotate high frequency pairs". Bottom panel: the same eight-cell strip, labelled
 "the / (rotated)" on the left and "**partially rotated** query" on the right, where
@@ -1102,17 +1106,17 @@ Text: "Multiply with sines and cosines".
 **Figure — a pasted page fragment from Su et al 2021** carrying two numbered
 equations. Equation (14):
 
-$$f_{\{q,k\}}(\boldsymbol{x}_m, m) = \boldsymbol{R}^d_{\Theta,m} \boldsymbol{W}_{\{q,k\}} \boldsymbol{x}_m$$
+$$f_{\lbrace q,k\rbrace}(\boldsymbol{x}_ m, m) = \boldsymbol{R}^d_{\Theta,m} \boldsymbol{W}_ {\lbrace q,k\rbrace} \boldsymbol{x}_ m$$
 
 Equation (15) defines the block-diagonal rotation matrix:
 
 $$\boldsymbol{R}^d_{\Theta,m} = \begin{pmatrix}
-\cos m\theta_1 & -\sin m\theta_1 & 0 & 0 & \cdots & 0 & 0 \\
-\sin m\theta_1 & \cos m\theta_1 & 0 & 0 & \cdots & 0 & 0 \\
-0 & 0 & \cos m\theta_2 & -\sin m\theta_2 & \cdots & 0 & 0 \\
-0 & 0 & \sin m\theta_2 & \cos m\theta_2 & \cdots & 0 & 0 \\
-\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
-0 & 0 & 0 & 0 & \cdots & \cos m\theta_{d/2} & -\sin m\theta_{d/2} \\
+\cos m\theta_1 & -\sin m\theta_1 & 0 & 0 & \cdots & 0 & 0 \cr
+\sin m\theta_1 & \cos m\theta_1 & 0 & 0 & \cdots & 0 & 0 \cr
+0 & 0 & \cos m\theta_2 & -\sin m\theta_2 & \cdots & 0 & 0 \cr
+0 & 0 & \sin m\theta_2 & \cos m\theta_2 & \cdots & 0 & 0 \cr
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \cr
+0 & 0 & 0 & 0 & \cdots & \cos m\theta_{d/2} & -\sin m\theta_{d/2} \cr
 0 & 0 & 0 & 0 & \cdots & \sin m\theta_{d/2} & \cos m\theta_{d/2}
 \end{pmatrix}$$
 
@@ -1187,7 +1191,7 @@ model dim ($d_{model}$). What should their relationship be?"
 
 Centred in bold:
 
-$$\boldsymbol{d_{ff} = 4\,d_{model}}$$
+$$\boldsymbol{d_{ff} = 4\thinspace d_{model}}$$
 
 "This is *almost always* true. There's just a few exceptions."
 
@@ -1254,11 +1258,11 @@ The y-axis is **"Loss Increase"**, ticked 0%, 2%, 4%, 6%, 8%, 10%. There are
 **two** series, and they lie almost exactly on top of each other over most of the
 range:
 
-- *Orange line with round markers*, "$d_{\mathrm{model}}/n_{\mathrm{head}} = 64$":
+- *Orange line with round markers*, $d_{\mathrm{model}}/n_{\mathrm{head}} = 64$:
   about 0.75% at a ratio of roughly 0.5, dropping to 0% at ratio 1, ~0.05% at
   ratio 2, ~0.3% at ratio 4, ~1.8% at ratio 8, ~4.8% at ratio ~25, and ~8.4% at
   the rightmost point (ratio ~50).
-- *Blue line with × markers*, "$n_{\mathrm{head}} = 8$": only plotted over the
+- *Blue line with × markers*, $n_{\mathrm{head}} = 8$: only plotted over the
   upper part of the range — ~1.5% at ratio 8, ~4.9% at ratio ~25, and ~7.8% at the
   rightmost point.
 
@@ -1514,9 +1518,9 @@ x-axis "Training loss", ticked 3.3, 3.4, 3.5, 3.6, 3.7, 3.8; y-axis "Validation
 loss", ticked 3.3, 3.4, 3.5, 3.6, 3.7, 3.8. **Three** series of dots, distinguished
 only by colour:
 
-- *Red*, "$\lambda_{WD} = 0.0$"
-- *Green*, "$\lambda_{WD} = 0.1$"
-- *Blue*, "$\lambda_{WD} = 0.3$"
+- *Red*, $\lambda_{WD} = 0.0$
+- *Green*, $\lambda_{WD} = 0.1$
+- *Blue*, $\lambda_{WD} = 0.3$
 
 All three colours lie interleaved along a single tight diagonal band running from
 about (3.26, 3.26) to (3.8, 3.8). No colour sits systematically above or below the
@@ -1527,18 +1531,18 @@ x-axis "Iteration", ticked 10000, 20000, 30000, 40000, 50000, 60000; y-axis
 "Training loss", ticked 3.2 to 3.7 in steps of 0.1. **Six** series, three solid and
 three dashed:
 
-- *Red solid*, "$\lambda_{WD} = 0.0$, $w_t$": ~3.66 at 10k, ~3.50 at 20k, ~3.44 at
+- *Red solid* ($\lambda_{WD} = 0.0$, $w_t$): ~3.66 at 10k, ~3.50 at 20k, ~3.44 at
   30k, ~3.35 at 40k, ~3.31 at 50k, ~3.30 at 60k.
-- *Green solid*, "$\lambda_{WD} = 0.1$, $w_t$": ~3.68 at 10k, ~3.55 at 20k, ~3.48
+- *Green solid* ($\lambda_{WD} = 0.1$, $w_t$): ~3.68 at 10k, ~3.55 at 20k, ~3.48
   at 30k, ~3.37 at 40k, ~3.31 at 50k, ~3.28 at 60k.
-- *Blue solid*, "$\lambda_{WD} = 0.3$, $w_t$": ~3.72 at 10k, ~3.63 at 20k, ~3.56 at
+- *Blue solid* ($\lambda_{WD} = 0.3$, $w_t$): ~3.72 at 10k, ~3.63 at 20k, ~3.56 at
   30k, ~3.43 at 40k, ~3.32 at 50k, ~3.28 at 60k — the highest of the solid curves
   for most of the run, converging with the others by the end.
-- *Red dashed*, "$\lambda_{WD} = 0.0$, $w_t \rightarrow$ tiny LR": branches below
+- *Red dashed* ($\lambda_{WD} = 0.0$, $w_t \rightarrow$ tiny LR): branches below
   the solid curves early, ~3.50 at 15k, ~3.38 at 25k, ~3.33 at 40k, ending ~3.27.
-- *Green dashed*, "$\lambda_{WD} = 0.1$, $w_t \rightarrow$ tiny LR": similar path,
+- *Green dashed* ($\lambda_{WD} = 0.1$, $w_t \rightarrow$ tiny LR): similar path,
   ending ~3.24.
-- *Blue dashed*, "$\lambda_{WD} = 0.3$, $w_t \rightarrow$ tiny LR": similar path,
+- *Blue dashed* ($\lambda_{WD} = 0.3$, $w_t \rightarrow$ tiny LR): similar path,
   ending lowest at ~3.23.
 
 **Figure 3 (right) — the same six series, titled "Constant LR".** Same axes and
@@ -1687,7 +1691,7 @@ Devlin 2014]".
 
 $$\log(P(x)) = \log\left(\frac{e^{U_r(x)}}{Z(x)}\right)$$
 $$= U_r(x) - \log(Z(x))$$
-$$Z(x) = \Sigma^{|V|}_{r'=1} e^{U_{r'}(x)}$$
+$$Z(x) = \Sigma^{|V|}_ {r'=1} e^{U_{r'}(x)}$$
 
 **Figure 2 (right) — a second pasted equation box:**
 
@@ -1698,7 +1702,7 @@ Text: "This is useful for stability! PaLM used this 'z loss' trick."
 
 **Figure 3 — a pasted quotation from the PaLM paper**, in a thin border:
 
-> We additionally use an auxiliary loss of $z\_loss = 10^{-4} \cdot \log^2 Z$ to
+> We additionally use an auxiliary loss of $\verb|z_loss| = 10^{-4} \cdot \log^2 Z$ to
 > encourage the softmax normalizer $\log(Z)$ to be close to 0, which we found
 > increases the stability of training.
 
@@ -1749,10 +1753,10 @@ border:
 
 > **Logit soft-capping.** We cap logits (Bello et al., 2016) in each attention
 > layer and the final layer such that the value of the logits stays between
-> $-$soft_cap and $+$soft_cap. More specifically, we cap the logits with the
+> −soft_cap and +soft_cap. More specifically, we cap the logits with the
 > following function:
 >
-> $$\mathrm{logits} \leftarrow \mathrm{soft\_cap} * \tanh(\mathrm{logits}/\mathrm{soft\_cap}).$$
+> $$\mathrm{logits} \leftarrow \verb|soft_cap| \ast \tanh(\mathrm{logits}/\verb|soft_cap|).$$
 >
 > We set the soft_cap parameter to 50.0 for the self-attention layers and to 30.0
 > for the final layer.
@@ -1794,10 +1798,10 @@ Text: "**Let's think about the compute involved for attention**"
 coloured slab shapes. Top row: three vertical pink slabs labelled $XQ$, times a
 stack of three horizontal orange slabs labelled $K^\top X^\top$, equals a stack of
 three grey squares labelled $XQK^\top X^\top$, annotated
-"$\in \mathbb{R}^{3 \times n \times n}$" and, in teal, "3 sets of all pairs of
+$\in \mathbb{R}^{3 \times n \times n}$ and, in teal, "3 sets of all pairs of
 attention scores!". A curved arrow carries that stack down to the second row.
-Second row: $\mathrm{softmax}\big(\,$ the stack of grey squares labelled
-$XQK^\top X^\top\,\big)$ times three vertical teal slabs labelled $XV$, equals a
+Second row: $\mathrm{softmax}\big(\thinspace$ the stack of grey squares labelled
+$XQK^\top X^\top\thinspace\big)$ times three vertical teal slabs labelled $XV$, equals a
 stack of three narrow grey slabs, then times a small grey square labelled $P$
 (annotated "mix"), equals one grey slab annotated
 "output $\in \mathbb{R}^{n \times d}$".
@@ -1834,7 +1838,7 @@ via the 'KV cache'".
 **Figure — a pasted frame of a KV-caching animation**, headed "**Step 1**". It is
 split into two horizontal bands by a dashed line, labelled down the left in blue
 "Without cache" (upper) and "With cache" (lower). Each band shows the same
-left-to-right computation with column headings **Q**, **K$^\top$**, **QK$^\top$**,
+left-to-right computation with column headings **Q**, **$K^\top$**, **$QK^\top$**,
 **V**, **Attention**:
 
 - a yellow box "Query Token 1" (shape annotated `(1, emb_size)`),
@@ -2000,7 +2004,7 @@ cells in mid blue on a grey background). The three panels are captioned:
 
 ![Slide 65 — Current standard trick – interleave 'full' and 'LR' attention](../images/03-architectures/slide-65.jpg)
 
-Text: "From Cohere Command A – Every 4$^{th}$ layer is a full attention"
+Text: "From Cohere Command A – Every 4th layer is a full attention"
 
 **Figure — a pasted architecture diagram of Cohere's Command A.** On the left, a
 grey panel headed "**Command A**" stacks, top to bottom: a "**Tokenizer**" box

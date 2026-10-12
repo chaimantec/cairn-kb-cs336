@@ -25,7 +25,7 @@ The implementation is four lines. Normalize both embeddings, take the scaled dot
 product with a learned temperature $t$ **and a learned bias $b$**, build a label
 matrix that is $+1$ on the diagonal and $-1$ off it, and apply a log-sigmoid:
 
-$$\mathcal{L} = -\frac{1}{N}\sum_{i}\sum_{j} \log \sigma\!\big(z_{ij}\,(\mathbf{x}_i \cdot \mathbf{y}_j \, t + b)\big), \qquad z_{ij} = \begin{cases} +1 & i = j \\ -1 & i \neq j\end{cases}$$
+$$\mathcal{L} = -\frac{1}{N}\sum_{i}\sum_{j} \log \sigma\negthinspace\big(z_{ij}\thinspace(\mathbf{x}_ i \cdot \mathbf{y}_ j \thinspace t + b)\big), \qquad z_{ij} = \begin{cases} +1 & i = j \cr -1 & i \neq j\end{cases}$$
 
 ## Why that dissolves a systems problem
 

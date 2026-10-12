@@ -36,7 +36,7 @@ is what the whole section is about.
 
 **Scoring.** Pairwise votes are turned into ELO ratings under the standard model:
 
-$$p(A \text{ beats } B) = \frac{1}{1 + 10^{(\text{ELO}_B - \text{ELO}_A)/400}}$$
+$$p(A \text{ beats } B) = \frac{1}{1 + 10^{(\text{ELO}_ B - \text{ELO}_ A)/400}}$$
 
 The ratings are the parameters, and they are fit to maximise the probability of the
 observed pairwise comparisons (≈[33:53], ≈[34:39]).

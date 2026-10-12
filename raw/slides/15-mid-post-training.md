@@ -368,9 +368,9 @@ Below the box: "How do these factors affect the model?"
 
 Heading: "Style variations in data and models". Body text: "Models vary *a lot* in response length.."
 
-**Figure — a reproduced table image, "Table 1: Instruction datasets investigated in this work."** Caption printed above the table: "CoT and FLAN V2 are sampled to 100K to match the sizes of other datasets. We report the average number of conservation turns ($\bar{N}_{rounds}$), average length of prompts ($\bar{L}_{prompt}$), average length of completion ($\bar{L}_{completion}$)."
+**Figure — a reproduced table image, "Table 1: Instruction datasets investigated in this work."** Caption printed above the table: "CoT and FLAN V2 are sampled to 100K to match the sizes of other datasets. We report the average number of conservation turns ($\bar{N}_ {rounds}$), average length of prompts ($\bar{L}_ {prompt}$), average length of completion ($\bar{L}_ {completion}$)."
 
-| Datasets | Sourced from | # Instances | $\bar{N}_{rounds}$ | $\bar{L}_{prompt}$ | $\bar{L}_{completion}$ |
+| Datasets | Sourced from | # Instances | $\bar{N}_ {rounds}$ | $\bar{L}_ {prompt}$ | $\bar{L}_ {completion}$ |
 | --- | --- | --- | --- | --- | --- |
 | SuperNI [48] | NLP datasets + Human-written Instructions | 96,913 | 1.0 | 291.1 | 38.7 |
 | CoT [50] | NLP datasets + Human-written CoTs | 100,000 | 1.0 | 266.0 | 53.2 |
@@ -556,15 +556,15 @@ Heading: "Pipeline with most details". Below it, in large magenta/pink text, the
 
 **Author list (screenshot, reproduced beneath the title):**
 
-Nathan Lambert$^{♥1,*}$  Jacob Morrison$^{♥1}$  Valentina Pyatkin$^{♥1,2}$  Shengyi Huang$^{♥1}$  Hamish Ivison$^{♥1,2}$
-Faeze Brahman$^{♥1}$  Lester James V. Miranda$^{1}$
+Nathan Lambert♥¹,\*  Jacob Morrison♥¹  Valentina Pyatkin♥¹,²  Shengyi Huang♥¹  Hamish Ivison♥¹,²
+Faeze Brahman♥¹  Lester James V. Miranda¹
 
-Alisa Liu$^{2}$  Nouha Dziri$^{1}$  Xinxi Lyu$^{1}$  Yuling Gu$^{1}$  Saumya Malik$^{1}$  Victoria Graf$^{2}$  Jena D. Hwang$^{1}$
-Jiangjiang Yang$^{1}$  Ronan Le Bras$^{1}$  Oyvind Tafjord$^{1}$  Chris Wilhelm$^{1}$
+Alisa Liu²  Nouha Dziri¹  Xinxi Lyu¹  Yuling Gu¹  Saumya Malik¹  Victoria Graf²  Jena D. Hwang¹
+Jiangjiang Yang¹  Ronan Le Bras¹  Oyvind Tafjord¹  Chris Wilhelm¹
 
-Luca Soldaini$^{1}$  Noah A. Smith$^{1,2}$  Yizhong Wang$^{1,2}$  Pradeep Dasigi$^{1}$  Hannaneh Hajishirzi$^{1,2}$
+Luca Soldaini¹  Noah A. Smith¹,²  Yizhong Wang¹,²  Pradeep Dasigi¹  Hannaneh Hajishirzi¹,²
 
-$^{1}$Allen Institute for AI, $^{2}$University of Washington
+¹Allen Institute for AI, ²University of Washington
 
 (Note: at this image resolution, one name in the third line is not fully certain — it is transcribed above as "Jiangjiang Yang" but the small print leaves some ambiguity.)
 
@@ -573,8 +573,8 @@ $^{1}$Allen Institute for AI, $^{2}$University of Washington
 | Category | Dataset | Col. 1 | Col. 2 | Col. 3 | Source |
 | --- | --- | --- | --- | --- | --- |
 | Safety & Non-Compliance | Tülu 3 CoCoNot | 10,983 | 10,983 | 10,983 | Brahman et al. (2024) |
-| | Tülu 3 WildJailbreak$^{\alpha,1}$ | 50,000 | 50,000 | 26,356 | Jiang et al. (2024) |
-| | Tülu 3 WildGuardMix$^{\alpha,1}$ | 50,000 | 50,000 | 26,356 | Han et al. (2024) |
+| | Tülu 3 WildJailbreak $^{\alpha,1}$ | 50,000 | 50,000 | 26,356 | Jiang et al. (2024) |
+| | Tülu 3 WildGuardMix $^{\alpha,1}$ | 50,000 | 50,000 | 26,356 | Han et al. (2024) |
 
 ## Slide 25 — Main safety approach – extract scenarios from users
 
@@ -584,8 +584,8 @@ Heading: "Main safety approach – extract scenarios from users"
 
 **Reproduced paper header (screenshot):** Title in small-caps: "WILDCHAT: 1M CHATGPT INTERACTION LOGS IN THE WILD". Below it, an orange/red warning line: "WARNING: THE APPENDIX OF THIS PAPER CONTAINS EXAMPLES OF USER INPUTS REGARDING POTENTIALLY UPSETTING TOPICS, INCLUDING VIOLENCE, SEX, ETC. READER DISCRETION IS ADVISED."
 
-Author list: "Wenting Zhao$^{1*}$ Xiang Ren$^{2,3}$ Jack Hessel$^{2}$ Claire Cardie$^{1}$ Yejin Choi$^{2,4}$ Yuntian Deng$^{2*}$"
-Affiliations: "$^{1}$Cornell University   $^{2}$Allen Institute for Artificial Intelligence   $^{3}$University of Southern California   $^{4}$University of Washington"
+Author list: "Wenting Zhao¹\* Xiang Ren²,³ Jack Hessel² Claire Cardie¹ Yejin Choi²,⁴ Yuntian Deng²\*"
+Affiliations: "¹Cornell University   ²Allen Institute for Artificial Intelligence   ³University of Southern California   ⁴University of Washington"
 Emails: "{wz346,cardie}@cs.cornell.edu, {xiangr,jackh,yejinc,yuntiand}@allenai.org"
 "*Equal Contribution"
 
@@ -757,7 +757,7 @@ Heading: "The second part of RLHF". Body text: "Standard approach – imitation 
 - A grey arrow points down to a box labeled "PPO" above a network icon: caption "The policy generates an output."
 - A grey arrow points down to a plain box containing the text "Once upon a time…" (the policy's generated output).
 - A grey arrow points down to a box labeled "RM" above a network icon: caption "The reward model calculates a reward for the output."
-- A grey arrow points down to a box containing "$r_k$": caption "The reward is used to update the policy using PPO." A blue curved arrow loops from this "$r_k$" box back up to the "PPO" box, closing the reinforcement-learning update loop.
+- A grey arrow points down to a box containing $r_k$: caption "The reward is used to update the policy using PPO." A blue curved arrow loops from this $r_k$ box back up to the "PPO" box, closing the reinforcement-learning update loop.
 
 ## Slide 32 — From imitation to optimization
 
@@ -765,7 +765,7 @@ Heading: "From imitation to optimization". Plain text/equation slide contrasting
 
 **Imitation (SFT)**
 
-$$\hat{p}(y|x) \approx p^*(y|x) \text{ for some reference distribution } p^*(y|x)$$
+$$\hat{p}(y|x) \approx p^{\ast}(y|x) \text{ for some reference distribution } p^{\ast}(y|x)$$
 
 - Pure generative modeling perspective
 - Requires samples from reference policy
@@ -1161,7 +1161,7 @@ Heading is printed on the slide itself as "RLFH and data - LM-generated" (letter
 
 Two charts side by side, each with its own caption in a light-blue box beneath it.
 
-**Figure 1 (left) — a scatter plot with a linear regression fit, captioned "Near-perfect rank correlation at the system level."** X-axis "Simulated Win-rate", linear, ticks at 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8. Y-axis "Human Win-rate", linear, ticks at 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8. In-plot annotation text: "Spearman Correlation: 0.98" and "$R^2 = 0.87$". One data series (blue dots, ~13 points) plus one fitted trend line (solid blue) with a light-blue shaded confidence band around it. The line runs from about (0.1, 0.18) up to about (0.8, 0.75), i.e. roughly the identity line shifted slightly, and the confidence band is narrow in the middle of the range (around x=0.4–0.5) and widens noticeably at both ends (below x≈0.2 and above x≈0.7). Points hug the line closely apart from the point at far lower-left (Simulated ≈0.11, Human ≈0.065, below the line) and the point at far upper-right (Simulated ≈0.79, Human ≈0.70).
+**Figure 1 (left) — a scatter plot with a linear regression fit, captioned "Near-perfect rank correlation at the system level."** X-axis "Simulated Win-rate", linear, ticks at 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8. Y-axis "Human Win-rate", linear, ticks at 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8. In-plot annotation text: "Spearman Correlation: 0.98" and $R^2 = 0.87$. One data series (blue dots, ~13 points) plus one fitted trend line (solid blue) with a light-blue shaded confidence band around it. The line runs from about (0.1, 0.18) up to about (0.8, 0.75), i.e. roughly the identity line shifted slightly, and the confidence band is narrow in the middle of the range (around x=0.4–0.5) and widens noticeably at both ends (below x≈0.2 and above x≈0.7). Points hug the line closely apart from the point at far lower-left (Simulated ≈0.11, Human ≈0.065, below the line) and the point at far upper-right (Simulated ≈0.79, Human ≈0.70).
 
 **Figure 2 (right) — a scatter plot captioned "Agreement near human inter-annotator levels."** X-axis "$/1000 examples", **log** scale, ticks at $10^0$, $10^1$, $10^2$. Y-axis "Human mode agreement", linear, ticks at 0.57, 0.60, 0.63, 0.66. The plot combines a color code (which annotator produced the preference labels) with a shape code (which model's outputs were being judged), stated in a two-row legend at the bottom:
 - Annotator colors: Human $p_{ref}$ = blue, Trainer $p_{sim}^{ann}$ = orange/gold, Evaluator $p_{sim}^{eval}$ = teal/green, GPT4 $p_{sim}^{GPT4}$ = red-orange.
@@ -1173,7 +1173,7 @@ Highlighted (colored, outlined) points, four in total:
 - Teal/green diamond ("Evaluator $p_{sim}^{eval}$"): middle, at roughly (12, 0.645).
 - Red-orange circle ("GPT4 $p_{sim}^{GPT4}$"): middle, at roughly (15, 0.648), just right of and overlapping the teal diamond.
 
-Besides these four highlighted points there are roughly a dozen unlabeled gray points (mixed circles, triangles, and pentagons per the "Model" shape legend) scattered between about $10^0$ and $5\times10^1$ on the x-axis and between 0.57 and 0.68 on the y-axis, showing the spread of individual human-annotator/model combinations; the highest gray points (circles, i.e. GPT4-judged) reach about 0.665–0.67 near x≈10–15. The slide's point is that the GPT4-feedback and Evaluator-feedback conditions land close in agreement to the Human $p_{ref}$ square (~0.65 vs ~0.66) at far lower cost (~$12-15 per 1000 examples vs. ~$260).
+Besides these four highlighted points there are roughly a dozen unlabeled gray points (mixed circles, triangles, and pentagons per the "Model" shape legend) scattered between about $10^0$ and $5\times10^1$ on the x-axis and between 0.57 and 0.68 on the y-axis, showing the spread of individual human-annotator/model combinations; the highest gray points (circles, i.e. GPT4-judged) reach about 0.665–0.67 near x≈10–15. The slide's point is that the GPT4-feedback and Evaluator-feedback conditions land close in agreement to the Human $p_{ref}$ square (~0.65 vs ~0.66) at far lower cost (~\$12-15 per 1000 examples vs. ~\$260).
 
 ## Slide 46 — RLHF and data - LM-generated
 
@@ -1273,7 +1273,7 @@ Heading: "From imitation to optimization". The slide contrasts two framings, "Im
 
 **Imitation (SFT)** (grayed out)
 
-Fit $\hat p(y\mid x) \approx p^*(y\mid x)$ for some reference distribution $p^*(y\mid x)$
+Fit $\hat p(y\mid x) \approx p^{\ast}(y\mid x)$ for some reference distribution $p^{\ast}(y\mid x)$
 
 - Pure generative modeling perspective
 - Requires samples from reference policy
@@ -1305,13 +1305,13 @@ Heading: "More details and background from Stiennon". Body text: "From \"Learnin
 
 **Figure — a screenshot of two body-text paragraphs and two display equations from the "Learning to Summarize from Human Feedback" paper (Stiennon et al.), reproduced verbatim below.**
 
-"**Reward models.** To train our reward models, we start from a supervised baseline, as described above, then add a randomly initialized linear head that outputs a scalar value. We train this model to predict which summary $y \in \{y_0, y_1\}$ is better as judged by a human, given a post $x$. If the summary preferred by the human is $y_i$, we can write the RM loss as:"
+"**Reward models.** To train our reward models, we start from a supervised baseline, as described above, then add a randomly initialized linear head that outputs a scalar value. We train this model to predict which summary $y \in \lbrace y_0, y_1\rbrace$ is better as judged by a human, given a post $x$. If the summary preferred by the human is $y_i$, we can write the RM loss as:"
 
 $$\mathrm{loss}(r_\theta) = -E_{(x,y_0,y_1,i)\sim D}\big[\log\big(\sigma\big(r_\theta(x,y_i) - r_\theta(x,y_{1-i})\big)\big)\big]$$
 
 "where $r_\theta(x,y)$ is the scalar output of the reward model for post $x$ and summary $y$ with parameters $\theta$, and $D$ is the dataset of human judgments. At the end of training, we normalize the reward model outputs such that the reference summaries from our dataset achieve a mean score of 0.
 
-**Human feedback policies.** We want to use the reward model trained above to train a policy that generates higher-quality outputs as judged by humans. We primarily do this using reinforcement learning, by treating the output of the reward model as a reward for the entire summary that we maximize with the PPO algorithm [58], where each time step is a BPE token.$^8$ We initialize our policy to be the model fine-tuned on Reddit TL;DR. Importantly, we include a term in the reward that penalizes the KL divergence between the learned RL policy $\pi_\phi^{RL}$ with parameters $\phi$ and this original supervised model $\pi^{SFT}$, as previously done in [25]. The full reward $R$ can be written as:"
+**Human feedback policies.** We want to use the reward model trained above to train a policy that generates higher-quality outputs as judged by humans. We primarily do this using reinforcement learning, by treating the output of the reward model as a reward for the entire summary that we maximize with the PPO algorithm [58], where each time step is a BPE token.⁸ We initialize our policy to be the model fine-tuned on Reddit TL;DR. Importantly, we include a term in the reward that penalizes the KL divergence between the learned RL policy $\pi_\phi^{RL}$ with parameters $\phi$ and this original supervised model $\pi^{SFT}$, as previously done in [25]. The full reward $R$ can be written as:"
 
 $$R(x,y) = r_\theta(x,y) - \beta \log\big[\pi_\phi^{RL}(y\mid x)/\pi^{SFT}(y\mid x)\big]$$
 
@@ -1324,12 +1324,12 @@ Heading: "PPO – at a conceptual level". Body text: "A brief (and high level) i
 
 **Attempt 1: Policy gradients (variances are too high)**
 
-$$\nabla_\theta E_{p_\theta}[R(z)] = E_{p_\theta}[R(z)\nabla_\theta \log p_\theta\,(z)]$$
+$$\nabla_\theta E_{p_\theta}[R(z)] = E_{p_\theta}[R(z)\nabla_\theta \log p_\theta\thinspace(z)]$$
 
 **Attempt 2: TRPO (Linearize the problem around the current policy)**
 
-$$\underset{\theta}{\text{maximize}} \quad \hat{\mathbb{E}}_t\left[\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\theta_{\text{old}}}(a_t \mid s_t)}\hat{A}_t\right]$$
-$$\text{subject to} \quad \hat{\mathbb{E}}_t[\mathrm{KL}[\pi_{\theta_{\text{old}}}(\cdot \mid s_t), \pi_\theta(\cdot \mid s_t)]] \le \delta.$$
+$$\underset{\theta}{\text{maximize}} \quad \hat{\mathbb{E}}_ t\left[\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\theta_{\text{old}}}(a_t \mid s_t)}\hat{A}_ t\right]$$
+$$\text{subject to} \quad \hat{\mathbb{E}}_ t[\mathrm{KL}[\pi_{\theta_{\text{old}}}(\cdot \mid s_t), \pi_\theta(\cdot \mid s_t)]] \le \delta.$$
 
 **Attempt 3: PPO (Clip the ratios at some eps)**
 
@@ -1385,7 +1385,7 @@ The figure visually contrasts RLHF's two-stage pipeline (reward model, then an R
 
 Heading: "DPO – derivation from the RLHF formula". Body text: "Our goal is to optimize"
 
-$$\max_{\pi_\theta} \mathbb{E}_{x\sim\mathcal{D}, y\sim\pi_\theta(y|x)}\left[r_\phi(x,y)\right] - \beta \mathbb{D}_{\text{KL}}\left[\pi_\theta(y \mid x) \,\|\, \pi_{\text{ref}}(y \mid x)\right]$$
+$$\max_{\pi_\theta} \mathbb{E}_ {x\sim\mathcal{D}, y\sim\pi_\theta(y|x)}\left[r_\phi(x,y)\right] - \beta \mathbb{D}_ {\text{KL}}\left[\pi_\theta(y \mid x) \thinspace\Vert\thinspace \pi_{\text{ref}}(y \mid x)\right]$$
 
 "Assume that the policy $\pi$ is the set of all policies (nonparametric assumption). The maximizer is then,"
 
@@ -1407,7 +1407,7 @@ $$\text{loss}(r_\theta) = -E_{(x,y_0,y_1,i)\sim D}[\log(\sigma(r_\theta(x,y_i) -
 
 "This gives the DPO objective,"
 
-$$\mathcal{L}_{\text{DPO}}(\pi_\theta; \pi_{\text{ref}}) = -\mathbb{E}_{(x,y_w,y_l)\sim\mathcal{D}}\left[\log \sigma\left(\beta \log \frac{\pi_\theta(y_w \mid x)}{\pi_{\text{ref}}(y_w \mid x)} - \beta \log \frac{\pi_\theta(y_l \mid x)}{\pi_{\text{ref}}(y_l \mid x)}\right)\right].$$
+$$\mathcal{L}_ {\text{DPO}}(\pi_\theta; \pi_{\text{ref}}) = -\mathbb{E}_ {(x,y_w,y_l)\sim\mathcal{D}}\left[\log \sigma\left(\beta \log \frac{\pi_\theta(y_w \mid x)}{\pi_{\text{ref}}(y_w \mid x)} - \beta \log \frac{\pi_\theta(y_l \mid x)}{\pi_{\text{ref}}(y_l \mid x)}\right)\right].$$
 
 **The key steps?**
 1. Make a nonparametric assumption (links $\pi_\theta$ and r in closed form)
@@ -1416,7 +1416,7 @@ $$\mathcal{L}_{\text{DPO}}(\pi_\theta; \pi_{\text{ref}}) = -\mathbb{E}_{(x,y_w,y
 
 Bottom margin note (smaller font, centered): "Conceptually.. This is MLE on the pairwise rewards, under nonparametric assumption + alternative parametrization"
 
-This is a plain text/equation slide with no figures. It continues the derivation from Slide 56: the Bradley-Terry-style pairwise loss ("the Stiennon objective," referring to Stiennon et al.'s "Learning to Summarize from Human Feedback" reward-model loss) is combined with the implied-reward expression from the previous slide to substitute $\pi_\theta$ directly in place of a separate reward model, yielding the final DPO loss $\mathcal{L}_{\text{DPO}}$, expressed as a sigmoid of the difference between the $\beta$-scaled log-ratios of the policy to the reference policy for the winning ($y_w$) and losing ($y_l$) responses. The three "key steps" bullets summarize the derivation logic just carried out.
+This is a plain text/equation slide with no figures. It continues the derivation from Slide 56: the Bradley-Terry-style pairwise loss ("the Stiennon objective," referring to Stiennon et al.'s "Learning to Summarize from Human Feedback" reward-model loss) is combined with the implied-reward expression from the previous slide to substitute $\pi_\theta$ directly in place of a separate reward model, yielding the final DPO loss $\mathcal{L}_ {\text{DPO}}$, expressed as a sigmoid of the difference between the $\beta$-scaled log-ratios of the policy to the reference policy for the winning ($y_w$) and losing ($y_l$) responses. The three "key steps" bullets summarize the derivation logic just carried out.
 
 ## Slide 58 — DPO updates and components
 
@@ -1424,9 +1424,9 @@ Heading: "DPO updates and components". Body text: "In some sense, reduces to 'po
 
 **Figure — a boxed callout (a screenshot/reproduction of a passage from the DPO paper) explaining the gradient of the DPO loss.**
 
-Boxed text reads: "**What does the DPO update do?** For a mechanistic understanding of DPO, it is useful to analyze the gradient of the loss function $\mathcal{L}_{\text{DPO}}$. The gradient with respect to the parameters $\theta$ can be written as:"
+Boxed text reads: "**What does the DPO update do?** For a mechanistic understanding of DPO, it is useful to analyze the gradient of the loss function $\mathcal{L}_ {\text{DPO}}$. The gradient with respect to the parameters $\theta$ can be written as:"
 
-$$\nabla_\theta \mathcal{L}_{\text{DPO}}(\pi_\theta; \pi_{\text{ref}}) = -\beta \mathbb{E}_{(x,y_w,y_l)\sim\mathcal{D}}\Bigg[\underbrace{\sigma(\hat{r}_\theta(x,y_l) - \hat{r}_\theta(x,y_w))}_{\text{higher weight when reward estimate is wrong}}\Big[\underbrace{\nabla_\theta \log \pi(y_w \mid x)}_{\text{increase likelihood of } y_w} - \underbrace{\nabla_\theta \log \pi(y_l \mid x)}_{\text{decrease likelihood of } y_l}\Big]\Bigg],$$
+$$\nabla_\theta \mathcal{L}_ {\text{DPO}}(\pi_\theta; \pi_{\text{ref}}) = -\beta \mathbb{E}_ {(x,y_w,y_l)\sim\mathcal{D}}\Bigg[\underbrace{\sigma(\hat{r}_ \theta(x,y_l) - \hat{r}_ \theta(x,y_w))}_ {\text{higher weight when reward estimate is wrong}}\Big[\underbrace{\nabla_\theta \log \pi(y_w \mid x)}_ {\text{increase likelihood of } y_w} - \underbrace{\nabla_\theta \log \pi(y_l \mid x)}_ {\text{decrease likelihood of } y_l}\Big]\Bigg],$$
 
 The equation has two labeled underbraces, as transcribed above: the sigmoid weighting term is annotated "higher weight when reward estimate is wrong," and the bracketed gradient-difference term has its two pieces separately annotated "increase likelihood of $y_w$" and "decrease likelihood of $y_l$."
 
@@ -1463,16 +1463,18 @@ Heading: "Variants". Body text: "Lots of variants (too many variants), but maybe
 **SimPO (no ref)** — two boxed equations, stacked:
 
 Box 1 (rose/pink outline), the DPO loss for reference:
-$$\mathcal{L}_{\text{DPO}}(\pi_\theta;\pi_{\text{ref}}) = -\mathbb{E}\left[\log\sigma\left(\beta\log\frac{\pi_\theta(y_w \mid x)}{\pi_{\text{ref}}(y_w \mid x)} - \beta\log\frac{\pi_\theta(y_l \mid x)}{\pi_{\text{ref}}(y_l \mid x)}\right)\right]$$
+
+$$\mathcal{L}_ {\text{DPO}}(\pi_\theta;\pi_{\text{ref}}) = -\mathbb{E}\left[\log\sigma\left(\beta\log\frac{\pi_\theta(y_w \mid x)}{\pi_{\text{ref}}(y_w \mid x)} - \beta\log\frac{\pi_\theta(y_l \mid x)}{\pi_{\text{ref}}(y_l \mid x)}\right)\right]$$
 
 Box 2 (blue outline), the SimPO loss:
-$$\mathcal{L}_{\text{SimPO}}(\pi_\theta) = -\mathbb{E}\left[\log\sigma\left(\frac{\beta}{|y_w|}\log\pi_\theta(y_w \mid x) - \frac{\beta}{|y_l|}\log\pi_\theta(y_l \mid x) - \gamma\right)\right]$$
+
+$$\mathcal{L}_ {\text{SimPO}}(\pi_\theta) = -\mathbb{E}\left[\log\sigma\left(\frac{\beta}{|y_w|}\log\pi_\theta(y_w \mid x) - \frac{\beta}{|y_l|}\log\pi_\theta(y_l \mid x) - \gamma\right)\right]$$
 
 In each boxed equation certain terms are highlighted in shaded rounded rectangles inside the box (the $\beta\log\frac{\pi_\theta(y_w|x)}{\pi_{\text{ref}}(y_w|x)}$ and $\beta\log\frac{\pi_\theta(y_l|x)}{\pi_{\text{ref}}(y_l|x)}$ terms in Box 1; the $\frac{\beta}{|y_w|}\log\pi_\theta(y_w|x)$ and $\frac{\beta}{|y_l|}\log\pi_\theta(y_l|x)$ terms in Box 2), visually emphasizing that SimPO replaces the reference-normalized log-ratio with a length-normalized log-probability of the policy alone (removing $\pi_{\text{ref}}$ entirely) and adds a margin term $\gamma$.
 
 **Length normalized DPO**
 
-$$\max_{\pi_\theta}\mathbb{E}_{y_c,y_r\sim\mathcal{D}}\left[\log\sigma\left(\frac{\beta}{|y_c|}\log\frac{\pi_\theta(y_c|x)}{\pi_{\text{ref}}(y_c|x)} - \frac{\beta}{|y_r|}\log\frac{\pi_\theta(y_r|x)}{\pi_{\text{ref}}(y_r|x)}\right)\right].$$
+$$\max_{\pi_\theta}\mathbb{E}_ {y_c,y_r\sim\mathcal{D}}\left[\log\sigma\left(\frac{\beta}{|y_c|}\log\frac{\pi_\theta(y_c|x)}{\pi_{\text{ref}}(y_c|x)} - \frac{\beta}{|y_r|}\log\frac{\pi_\theta(y_r|x)}{\pi_{\text{ref}}(y_r|x)}\right)\right].$$
 
 This variant keeps the reference-model log-ratio (unlike SimPO) but divides each side by the response length ($|y_c|$ for the chosen response, $|y_r|$ for the rejected one) before applying the $\beta$ scaling factor. There is no chart or diagram on this page — it is entirely equations and labels.
 

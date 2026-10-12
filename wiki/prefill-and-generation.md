@@ -24,18 +24,18 @@ generated or scored this step. Prefill is the case $T = S$; generation is the ca
 $T = 1$. The [arithmetic intensity](arithmetic-intensity.md) of each layer type,
 derived in full in [`raw/slides/10-inference.md`](../raw/slides/10-inference.md):
 
-$$\text{MLP intensity} \;=\; \frac{6BTDF}{4BTD + 4BTF + 6DF} \;\xrightarrow[\;D, F \gg BT\;]{}\; BT$$
+$$\text{MLP intensity} \mskip{5mu}=\mskip{5mu} \frac{6BTDF}{4BTD + 4BTF + 6DF} \mskip{5mu}\xrightarrow[\mskip{5mu}D, F \gg BT\mskip{5mu}]{}\mskip{5mu} BT$$
 
-$$\text{attention intensity} \;=\; \frac{4BSTD}{4BSD + 4BTD} \;=\; \frac{ST}{S+T}$$
+$$\text{attention intensity} \mskip{5mu}=\mskip{5mu} \frac{4BSTD}{4BSD + 4BTD} \mskip{5mu}=\mskip{5mu} \frac{ST}{S+T}$$
 
 Substituting the two cases gives the table the whole lecture turns on ([33:17]):
 
 | | MLP | Attention |
 | --- | --- | --- |
 | **Prefill** ($T = S$) | $BS$ — large, compute-bound | $S/2$ — "not as good, but workable" |
-| **Generation** ($T = 1$) | $B$ — workable if requests are concurrent | $S/(S+1) < 1$ — **the bottleneck** |
+| **Generation** ($T = 1$) | $B$ — workable if requests are concurrent | $S/(S+1) \lt 1$ — **the bottleneck** |
 
-An H100's own ratio is 295 FLOPs per byte, so an intensity below 1 is roughly 300×
+An H100's own ratio is 295 FLOPs per byte, so an intensity below 1 is roughly $300\times$
 short of saturating the machine. "Arithmetic intensity — remember, one is bad. We
 want it to be something like 295 for an H100 to saturate the compute" ([31:00]).
 

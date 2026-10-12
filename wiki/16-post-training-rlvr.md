@@ -341,7 +341,7 @@ average," which bounds growth without collapsing the budget.
 Slide 43 gives the reward itself. For rollout $i$ in a batch, with $r=1$ for a
 correct answer and $r=0$ for an incorrect one:
 
-$$\mathrm{len\_reward}(i) = \begin{cases} \lambda & \text{if } r(x,y_i,y^*) = 1 \\ \min(0,\lambda) & \text{if } r(x,y_i,y^*) = 0 \end{cases}, \quad \lambda = 0.5 - \frac{\mathrm{len}(i) - \mathrm{min\_len}}{\mathrm{max\_len} - \mathrm{min\_len}}$$
+$$\verb|len_reward|(i) = \begin{cases} \lambda & \text{if } r(x,y_i,y^{\ast}) = 1 \cr \min(0,\lambda) & \text{if } r(x,y_i,y^{\ast}) = 0 \end{cases}, \quad \lambda = 0.5 - \frac{\mathrm{len}(i) - \verb|min_len|}{\verb|max_len| - \verb|min_len|}$$
 
 The slide reads it off in three lines: $\lambda$ ranges over $[0.5, -0.5]$, with
 longer sequences in a group being negative; **correct answers are incentivized to
@@ -355,7 +355,7 @@ later on in traning, due to its effects on perf" (the typo is printed on the
 slide).
 
 Kimi's **data curriculum** is the other contribution. Problems are filtered by a
-best-of-$k$ test — if the model already solves it within eight samples, it
+$\text{best-of-}k$ test — if the model already solves it within eight samples, it
 teaches nothing — and problems the model has mastered are removed from the pool
 as training proceeds (≈42:25–49:19). "I think the general consensus in the
 research community is that doing this kind of medium-range difficulty filtering

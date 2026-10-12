@@ -11,7 +11,7 @@ everything around it does.
 ## Qwen-VL (2023)
 
 - **Vision encoder:** OpenCLIP's ViT-bigC (as the deck prints it; the cited paper
-  names it ViT-bigG), 14×14 patches.
+  names it ViT-bigG), $14\times 14$ patches.
 - **Adapter:** one layer of cross-attention with 2D positional embeddings, mapping
   to a **fixed length of 256** tokens. → [Modality projectors](modality-projectors.md)
 - **Special tokens:** `<img>`, `<box>` for bounding boxes, `<ref>` for description
@@ -37,13 +37,13 @@ whole mixture from 5B to 1.4B.
 ## Qwen2-VL (2024)
 
 The headline is **dynamic resolution**, which repudiates two earlier decisions at
-once: [CLIP](clip.md)'s fixed 336×336 crop and Qwen-VL's own fixed 256 tokens.
+once: [CLIP](clip.md)'s fixed $336\times 336$ crop and Qwen-VL's own fixed 256 tokens.
 
 > Let's say you have this picture here that might be mapped to 11,000 tokens. This
 > tiny picture of an equation might only be mapped to eight tokens. (≈49:16)
 
-An image now costs what it is worth. The mechanism is AnyRes-like: each 224×224
-region is encoded with a ViT/14, and every 2×2 block of adjacent patches is merged
+An image now costs what it is worth. The mechanism is AnyRes-like: each $224\times 224$
+region is encoded with a ViT/14, and every $2\times 2$ block of adjacent patches is merged
 into one token to control context length.
 
 *(The arithmetic gives 64 tokens per region; the lecture prints **66**. The

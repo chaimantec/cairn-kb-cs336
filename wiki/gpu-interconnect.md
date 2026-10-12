@@ -14,9 +14,9 @@ slower, so the whole art is arranging for most traffic to stay near ([2:26]).
 | Pod to pod | Ethernet | ~200 MB/s |
 
 The single most useful calibration: NVLink is "about four x" slower than HBM
-([24:01]). Crossing between *devices* costs about what a 4× slowdown on local
+([24:01]). Crossing between *devices* costs about what a $4\times$ slowdown on local
 memory would — which is far better than the jump to InfiniBand, roughly another
-36× down.
+$36\times$ down.
 
 ## The classic picture, and the modern one
 

@@ -48,11 +48,11 @@ concrete constants — `scale_emb = 12, scale_depth = 1.4, init_std = 0.1, lr = 
 [8](../raw/slides/11-scaling-laws-in-the-wild.md)) — and the recipe as a sentence: "use muP
 for initialization, fix the aspect ratio, scale up the overall model size" (slide
 [9](../raw/slides/11-scaling-laws-in-the-wild.md)). The fixed aspect ratio is visible in
-their configuration table: $d_{ff} = 2.5\,d_m$ and head dimension 64 in every row of the
+their configuration table: $d_{ff} = 2.5\thinspace d_m$ and head dimension 64 in every row of the
 sweep.
 
 Two caveats the lecture raises rather than glosses. The scaling ladder's largest model is
-about **5× smaller** than the model actually released ([6:56]), so the recipe is an
+about **$5\times$ smaller** than the model actually released ([6:56]), so the recipe is an
 extrapolation. And per-parameter learning rates are unfamiliar enough to be a genuine
 implementation hazard ([6:10]).
 
@@ -118,7 +118,7 @@ mark the optimum with a star, and repeat across scales ([17:37]); then fit a lin
 stars to predict the optimum at the scale you care about ([16:51], [18:25]). The published
 fits are
 
-$$\eta_{\mathrm{opt}} = 0.3118\, C^{-0.1250} \qquad B_{\mathrm{opt}} = 0.2920\, C^{0.3271}$$
+$$\eta_{\mathrm{opt}} = 0.3118\thinspace C^{-0.1250} \qquad B_{\mathrm{opt}} = 0.2920\thinspace C^{0.3271}$$
 
 **The lecture does not accept the learning-rate half.** "This is the one drawback of the
 learning rate approach" ([19:11]), and the slide's own comment is that the fit "looks a bit
@@ -217,7 +217,7 @@ a small-scale experiment, we have something that's scale-dependent" ([43:02]).
 
 **Problem 1 — the hyperparameters are usually wrong** (slide
 [39](../raw/slides/11-scaling-laws-in-the-wild.md)). The sharpest evidence compares AdamW
-*with itself*: at 130M, AdamW at $8\times10^{-3}$ reaches a given loss in **2.25× fewer
+*with itself*: at 130M, AdamW at $8\times10^{-3}$ reaches a given loss in **$2.25\times$ fewer
 steps** than AdamW at $6\times10^{-4}$. Same optimizer, same model — only the learning rate
 differs. And optimizers want different hyperparameters: Lion's optimal weight decay is ~0.6
 against AdamW's 0.1, six times smaller, and picking the wrong one gives "a much worse result"
@@ -225,7 +225,7 @@ against AdamW's 0.1, six times smaller, and picking the wrong one gives "a much 
 
 **Problem 2 — the advantage shrinks with scale** (slide
 [40](../raw/slides/11-scaling-laws-in-the-wild.md)). Every non-AdamW optimizer falls from a
-1.18–1.41× speedup at 130M to 1.09–1.10× at 1.2B. The general instruction is stated as a rule:
+$1.18\text{–}1.41\times$ speedup at 130M to $1.09\text{–}1.10\times$ at 1.2B. The general instruction is stated as a rule:
 **always** check scaling against compute *and* the Chinchilla ratio, because these "are often
 major confounders" ([46:08], [46:56]).
 

@@ -14,7 +14,7 @@ that idea to start with is the associativity of multiplication" ([5:26]).
 Write standard attention compactly, with $n$ the sequence length, $d_k$ the key
 dimension and $d_v$ the value dimension:
 
-$$\mathrm{Attn}(Q, K, V) = \rho\!\left(QK^\top\right)V, \qquad Q \in \mathbb{R}^{n \times d_k},\ K \in \mathbb{R}^{n \times d_k},\ V \in \mathbb{R}^{n \times d_v}$$
+$$\mathrm{Attn}(Q, K, V) = \rho\negthinspace\left(QK^\top\right)V, \qquad Q \in \mathbb{R}^{n \times d_k},\ K \in \mathbb{R}^{n \times d_k},\ V \in \mathbb{R}^{n \times d_v}$$
 
 Here $\rho$ is the softmax applied row-wise. The cost is dominated by $QK^\top$, which
 forms an $n \times n$ matrix at a cost of $n^2 d_k$, and then multiplying it by $V$ at

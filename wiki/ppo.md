@@ -14,7 +14,7 @@ useful thing to carry away, because each step has a clear motivation.
 
 ## The objective being optimized
 
-$$\max_{\pi_\theta} \mathbb{E}_{x\sim\mathcal{D},\, y\sim\pi_\theta(y|x)}\left[r_\phi(x,y)\right] - \beta\, \mathbb{D}_{\text{KL}}\left[\pi_\theta(y\mid x)\,\|\,\pi_{\text{ref}}(y\mid x)\right]$$
+$$\max_{\pi_\theta} \mathbb{E}_ {x\sim\mathcal{D},\thinspace y\sim\pi_\theta(y|x)}\left[r_\phi(x,y)\right] - \beta\thinspace \mathbb{D}_ {\text{KL}}\left[\pi_\theta(y\mid x)\thinspace\Vert\thinspace\pi_{\text{ref}}(y\mid x)\right]$$
 
 Maximize the reward model's score on your own samples, minus $\beta$ times the KL
 divergence from the reference (post-SFT) policy. The KL term is there because "I
@@ -55,11 +55,11 @@ not go too far, because if I go too far, my estimates of my local rewards kind o
 blow up." TRPO enforces this as a hard constraint — maximize the
 importance-weighted advantage subject to a KL trust region:
 
-$$\underset{\theta}{\text{maximize}} \quad \hat{\mathbb{E}}_t\left[\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\theta_{\text{old}}}(a_t \mid s_t)}\hat{A}_t\right]$$
+$$\underset{\theta}{\text{maximize}} \quad \hat{\mathbb{E}}_ t\left[\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\theta_{\text{old}}}(a_t \mid s_t)}\hat{A}_ t\right]$$
 
-$$\text{subject to} \quad \hat{\mathbb{E}}_t\big[\mathrm{KL}[\pi_{\theta_{\text{old}}}(\cdot \mid s_t),\, \pi_\theta(\cdot \mid s_t)]\big] \le \delta$$
+$$\text{subject to} \quad \hat{\mathbb{E}}_ t\big[\mathrm{KL}[\pi_{\theta_{\text{old}}}(\cdot \mid s_t),\thinspace \pi_\theta(\cdot \mid s_t)]\big] \le \delta$$
 
-where $\hat{A}_t$ is the estimated advantage and $\delta$ is the trust-region
+where $\hat{A}_ t$ is the estimated advantage and $\delta$ is the trust-region
 radius.
 
 Note that this KL is a *different* KL from the one in the RLHF objective above.
@@ -73,7 +73,7 @@ The constrained problem is awkward to solve. PPO replaces the constraint with a
 clipped surrogate — "a heuristic clipping thing that discourages the RL algorithm
 from going to places where I'm too far from the original policy" (≈1:08:38):
 
-$$L(s,a,\theta_k,\theta) = \min\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)}A^{\pi_{\theta_k}}(s,a),\ \ \mathrm{clip}\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)},\, 1-\epsilon,\, 1+\epsilon\right)A^{\pi_{\theta_k}}(s,a)\right)$$
+$$L(s,a,\theta_k,\theta) = \min\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)}A^{\pi_{\theta_k}}(s,a),\ \ \mathrm{clip}\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)},\thinspace 1-\epsilon,\thinspace 1+\epsilon\right)A^{\pi_{\theta_k}}(s,a)\right)$$
 
 Taking the *minimum* of the clipped and unclipped terms is what makes this a
 pessimistic bound: the objective stops rewarding you for moving the probability

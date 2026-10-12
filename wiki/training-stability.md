@@ -93,7 +93,7 @@ With $\log Z \approx 0$, we have $Z \approx 1$ and the whole expression is
 numerically well-behaved. This is the **z-loss**.
 
 PaLM's own description, quoted on slide 54: "We additionally use an auxiliary loss
-of $z\_loss = 10^{-4} \cdot \log^2 Z$ to encourage the softmax normalizer $\log(Z)$
+of $\verb|z_loss| = 10^{-4} \cdot \log^2 Z$ to encourage the softmax normalizer $\log(Z)$
 to be close to 0, which we found increases the stability of training."
 
 The idea is old — Hashimoto credits Jacob Devlin's 2014 paper, correcting himself
@@ -155,7 +155,7 @@ range (slide 56):
 
 *Slide 56 — Logit soft-capping. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
-$$\mathrm{logits} \leftarrow \mathrm{soft\_cap} \cdot \tanh(\mathrm{logits}/\mathrm{soft\_cap})$$
+$$\mathrm{logits} \leftarrow \verb|soft_cap| \cdot \tanh(\mathrm{logits}/\verb|soft_cap|)$$
 
 Gemma 2 sets `soft_cap` to **50.0 for the self-attention layers and 30.0 for the
 final layer**. Hashimoto notes it is "more of a Google-specific trick" ([1:12:14])

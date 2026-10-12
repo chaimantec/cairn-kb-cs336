@@ -32,14 +32,14 @@ calls it "rather old" and describes it in three steps (≈1:09:36):
 3. **Decode** the codes back to pixels, and train by minimizing
    **reconstruction loss**.
 
-$$\mathcal{L} = \mathcal{L}_{\text{recon}} + \mathcal{L}_{\text{vq}}$$
+$$\mathcal{L} = \mathcal{L}_ {\text{recon}} + \mathcal{L}_ {\text{vq}}$$
 
 The second term exists because rounding is not differentiable — "there are some
 other terms that you add, because this is not differentiable, which I won't have
 time to get into" (≈1:10:22). It covers the codebook and commitment losses that
 keep encoder outputs near their assigned codes.
 
-In Chameleon the numbers are: a **512×512 image → 1,024 tokens**, from a codebook
+In Chameleon the numbers are: a **$512\times 512$ image → 1,024 tokens**, from a codebook
 of **8,192**.
 
 ## The supervision is completely different from CLIP's
@@ -56,7 +56,7 @@ This is the distinction that explains the whole trade-off.
 
 A contrastive encoder is *allowed* to throw detail away, and that is what makes it
 cheap and semantic. A reconstruction encoder is not — but it is bottlenecked by
-the codebook, and 1,024 codes is a hard ceiling on what a 512×512 image can carry.
+the codebook, and 1,024 codes is a hard ceiling on what a $512\times 512$ image can carry.
 
 ## BPE over image codes
 

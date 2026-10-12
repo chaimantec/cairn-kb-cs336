@@ -11,7 +11,7 @@ It is also the only part of the lecture that leaves
 
 ## The mechanism
 
-Setup: 128 × 1024 data, four layers, **world size 2** (not 4, as in the other two
+Setup: $128\times 1024$ data, four layers, **world size 2** (not 4, as in the other two
 sections), four micro-batches ([1:09:41]).
 
 **1. Split the layers.** `local_num_layers = num_layers / world_size` = 2. "Each

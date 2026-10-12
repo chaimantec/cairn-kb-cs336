@@ -26,7 +26,7 @@ there's just a language model now" (≈1:11:09).
 
 ## How it works
 
-- **Tokenizer:** [VQ-VAE](discrete-image-tokens.md) maps a 512×512 image to 1,024
+- **Tokenizer:** [VQ-VAE](discrete-image-tokens.md) maps a $512\times 512$ image to 1,024
   tokens from a codebook of 8,192, then a fresh [BPE](byte-pair-encoding.md)
   tokenizer is trained over the combined text-and-image data.
 - **Model:** one Transformer over one interleaved sequence, with `Start Image` and

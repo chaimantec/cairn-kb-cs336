@@ -50,7 +50,7 @@ The key move, at [46:16], is to stop thinking about a single model and start
 thinking about a **scaling recipe**: a mapping from a FLOP budget to a set of
 hyperparameters — effectively a function that emits a config file.
 
-$$\text{scaling recipe}: \quad C \;\longmapsto\; \text{hyperparameters}$$
+$$\text{scaling recipe}: \quad C \mskip{5mu}\longmapsto\mskip{5mu} \text{hyperparameters}$$
 
 Given a recipe, the procedure is:
 
@@ -94,7 +94,7 @@ The lecture cites [muP](https://arxiv.org/abs/2203.03466) as the technique here.
 The resulting shift in values, stated at [48:32]: **predictability is at least as
 important as optimality.** The instinct is to tune for the best possible number.
 But a slightly worse configuration whose behaviour you can extrapolate is more
-valuable than a slightly better one that surprises you at 100× the budget.
+valuable than a slightly better one that surprises you at $100\times$ the budget.
 
 Percy makes the same point about the *fit* at [50:05]: when you plot optimal
 parameter count against FLOP budget, if you are lucky the points lie roughly on a

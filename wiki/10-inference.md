@@ -84,15 +84,15 @@ tension is the subject of a whole section.
 The full accounting is on [arithmetic intensity](arithmetic-intensity.md) and
 [prefill and generation](prefill-and-generation.md); the shape of it is this.
 
-**The warm-up** ([13:53]–[17:48]). For one matrix multiply $X\,(B \times D)$ times
-$W\,(D \times F)$ in bf16, the FLOPs are $2BDF$ and the bytes are
+**The warm-up** ([13:53]–[17:48]). For one matrix multiply $X\thinspace(B \times D)$ times
+$W\thinspace(D \times F)$ in bf16, the FLOPs are $2BDF$ and the bytes are
 $2BD + 2DF + 2BF$, so
 
-$$\text{intensity} = \frac{BDF}{BD + BF + DF} \;\xrightarrow[\;D, F \gg B\;]{}\; B$$
+$$\text{intensity} = \frac{BDF}{BD + BF + DF} \mskip{5mu}\xrightarrow[\mskip{5mu}D, F \gg B\mskip{5mu}]{}\mskip{5mu} B$$
 
 **The arithmetic intensity of a matrix multiply is the batch size.** An H100's own
 ratio is $989 \times 10^{12} / 3.35 \times 10^{12} = 295$, so you are compute-bound
-only when $B > 295$ ([17:48]). At $B = 1$ — a matrix-vector product — the intensity
+only when $B \gt 295$ ([17:48]). At $B = 1$ — a matrix-vector product — the intensity
 is 1, "basically kind of the workload that you'll see in inference. You don't
 get these full matrices — you get these very thin matrices, or tensors" ([18:35]).
 
@@ -109,7 +109,7 @@ you store the [KV cache](kv-cache.md) and reuse it.
 | | MLP intensity | Attention intensity |
 | --- | --- | --- |
 | **Prefill** ($T = S$) | $BS$ — compute-bound, "easy to make large" | $S/2$ — "not as good, but workable" |
-| **Generation** ($T = 1$) | $B$ — workable *if* you have concurrent requests | $S/(S+1) < 1$ — **the bottleneck** |
+| **Generation** ($T = 1$) | $B$ — workable *if* you have concurrent requests | $S/(S+1) \lt 1$ — **the bottleneck** |
 
 And the reason attention cannot be rescued by batching is structural: "in MLP
 layers, every sequence hits the same MLP weights… in attention layers, every
@@ -190,7 +190,7 @@ weights adapt, but "requires expensive large-scale training") or *after*
 push each layer's quantization error into the weights not yet quantized). **AWQ**
 is the idea worth keeping: some activation channels are large, the weights they hit
 matter more, so keep 0.1–1% of weights in high precision and quantize the rest to
-int3 — 4× less memory and a 3.2× speedup.
+int3 — $4\times$ less memory and a $3.2\times$ speedup.
 
 [Pruning with distillation](pruning-and-distillation.md) ([1:07:17]–[1:09:36]) is
 cruder: "you just take a large model, rip out pieces of it, and fix it up." NVIDIA's recipe scores importance on a 1,024-sample calibration set, removes

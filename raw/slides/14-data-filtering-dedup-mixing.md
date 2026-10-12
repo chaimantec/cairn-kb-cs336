@@ -678,7 +678,7 @@ jaccard = compute_jaccard(A, B)  # @inspect jaccard
 
 **Computed:** `intersection = 3`, `union = 5`, `jaccard = 0.6`.
 
-(The union is 5, not 4: $A \cup B = \{1,2,3,4,5\}$. Getting this wrong is the
+(The union is 5, not 4: $A \cup B = \lbrace1,2,3,4,5\rbrace$. Getting this wrong is the
 easiest arithmetic slip in the lecture, and the MinHash check below depends on it.)
 
 > Definition: two documents are **near duplicates** if their Jaccard similarity >= threshold
@@ -804,7 +804,7 @@ def get_prob_collision(sim, b, r):  # @inspect sim @inspect b @inspect r
     return prob_collision
 ```
 
-$$\Pr[\text{collide}] = 1 - \left(1 - s^{\,r}\right)^{b}$$
+$$\Pr[\text{collide}] = 1 - \left(1 - s^{\thinspace r}\right)^{b}$$
 
 where $s = \text{Jaccard}(A, B)$. The inner $s^r$ is the "and" (all $r$ hashes in
 one band agree, each with probability $s$); the outer $1 - (1 - \cdot)^b$ is the
@@ -902,8 +902,8 @@ prob_match = (1 / b)  # @inspect prob_match
 prob_collision = 1 - (1 - 1 / b) ** b  # @inspect prob_collision
 ```
 
-**Computed:** `prob_collision = 0.6415140775914581`, against $1 - 1/e =
-0.6321205588285577$. The threshold is *defined* as the similarity at which each
+**Computed:** `prob_collision = 0.6415140775914581`, against
+$1 - 1/e = 0.6321205588285577$. The threshold is *defined* as the similarity at which each
 band matches with probability exactly $1/b$; at that point the chance that some
 band matches is $1 - (1 - 1/b)^b$, which tends to $1 - 1/e \approx 0.632$ as $b$
 grows and is 0.6415 at $b = 20$. So a pair sitting exactly on the threshold is
@@ -997,7 +997,7 @@ the same tokens, repeated.
 > - Idea: sample sources uniformly but with a hard **cap** C on number of epochs for any source
 > - Specifically, p(s) * num_training_tokens ≤ C for all sources s
 
-The interpolation the previous work used is $p(s) \propto \text{num\_tokens}(s)^{\alpha}$
+The interpolation the previous work used is $p(s) \propto \verb|num_tokens|(s)^{\alpha}$
 — at $\alpha = 0$ this is uniform sampling, at $\alpha = 1$ it is proportional
 mixing, and the family in between is the usual knob. UniMax replaces the knob with
 a **constraint**: sample uniformly, but never let any source exceed $C$ epochs.

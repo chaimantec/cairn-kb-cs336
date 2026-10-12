@@ -66,7 +66,7 @@ units against an H100's ~132 and 528) and, above the chip, in networking. See
 
 **The one hardware fact that shapes architecture design**: since the V100, matmuls
 run on dedicated circuits and everything else does not, leaving a gap of **more than
-10×** in throughput ([25:23]). That is why "any near-future machine learning
+$10\times$** in throughput ([25:23]). That is why "any near-future machine learning
 architecture that scales with compute is going to have a matrix multiply in it"
 ([24:37]). See [tensor cores](tensor-cores.md).
 
@@ -104,7 +104,7 @@ A few things worth pulling out of the individual pages:
   Modern formats are stranger than they look: MXFP8 attaches a separate E8M0 scale
   factor to every 32 elements, which makes a transpose expensive enough that training
   keeps **two quantized copies of every matrix** ([40:47]). The realized gain is
-  20–30% on the matmuls, not 2×, because quantization has overhead ([42:18]).
+  20–30% on the matmuls, not $2\times$, because quantization has overhead ([42:18]).
 - **Recomputation** is presented as pure systems arithmetic. Three stacked sigmoids
   cost 8 memory accesses if you store activations and 5 if you throw them away and
   recompute in the backward pass — "5/8 of the total memory accesses" for the same

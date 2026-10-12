@@ -72,8 +72,8 @@ The similarity measure for sets:
 $$\text{Jaccard}(A, B) = \frac{|A \cap B|}{|A \cup B|}$$
 
 It runs from 0 (disjoint) to 1 (identical). On the lecture's worked example
-$A = \{1,2,3,4\}$ and $B = \{1,2,3,5\}$, the intersection is $\{1,2,3\}$ and the
-union is $\{1,2,3,4,5\}$, so **Jaccard = 3/5 = 0.6** (≈31:58). Getting the union
+$A = \lbrace1,2,3,4\rbrace$ and $B = \lbrace1,2,3,5\rbrace$, the intersection is $\lbrace1,2,3\rbrace$ and the
+union is $\lbrace1,2,3,4,5\rbrace$, so **Jaccard = 3/5 = 0.6** (≈31:58). Getting the union
 right matters — it is 5, not 4 — because the MinHash argument below counts rows of
 exactly that union.
 
@@ -181,7 +181,7 @@ $s = \text{Jaccard}(A,B)$ — "generally quite low; it's exponential in $r$". Th
 pair collides if *some* band matches, which is one minus the probability that all
 $b$ bands fail:
 
-$$\Pr[\text{collide}] = 1 - \left(1 - s^{\,r}\right)^{b}$$
+$$\Pr[\text{collide}] = 1 - \left(1 - s^{\thinspace r}\right)^{b}$$
 
 At $s = 0.8$, $b = 5$, $r = 10$ this evaluates to **0.4333** — two documents that
 are 80% similar collide less than half the time under those parameters.

@@ -14,7 +14,7 @@ resolution.
 | Model | Sampling | Per-frame cost | Cap |
 | --- | --- | --- | --- |
 | [LLaVA-OneVision](llava-onevision.md) | up to 32 frames | 196 tokens | $32 \times 196 = 6272$ |
-| [Qwen2-VL](qwen-vl-series.md) | 2 frames/second | ~66 tokens per 224×224 region | 16,384 tokens |
+| [Qwen2-VL](qwen-vl-series.md) | 2 frames/second | ~66 tokens per $224\times 224$ region | 16,384 tokens |
 
 LLaVA-OneVision's rule is explicitly comparative — "for video, we're going to use
 even lower resolution, or fewer tokens, to represent each frame, because the idea

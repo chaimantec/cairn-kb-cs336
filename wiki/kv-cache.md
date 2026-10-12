@@ -29,7 +29,7 @@ bytes, with one key and one value per position and 2 bytes per bf16 number:
 
 $$\text{KV cache per sequence} = S \cdot (K H) \cdot L \cdot 2 \cdot 2$$
 
-$$\text{total memory} = B \cdot S \cdot K H \cdot L \cdot 4 \;+\; 2 \cdot (\text{number of parameters})$$
+$$\text{total memory} = B \cdot S \cdot K H \cdot L \cdot 4 \mskip{5mu}+\mskip{5mu} 2 \cdot (\text{number of parameters})$$
 
 For **Llama 2 13B** at $S = 1024$ — $K = 40$ key/value heads, $H = 128$, $L = 40$
 layers — that is **838,860,800 bytes, about 0.84 GB, for a single request**,
@@ -65,9 +65,9 @@ acronyms into one idea:
 
 | Axis | Method | What it does | Factor |
 | --- | --- | --- | --- |
-| $K$ — heads | [GQA](attention-variants.md) | $N$ query heads share $K$ key/value heads | $N/K$ (e.g. 5×) |
+| $K$ — heads | [GQA](attention-variants.md) | $N$ query heads share $K$ key/value heads | $N/K$ (e.g. $5\times$) |
 | $H$ — dimension | [MLA](multi-head-latent-attention.md) | store a $C$-dimensional latent, project up on demand | $16384 \to 576$ in DeepSeek v2 |
-| $L$ — layers | [CLA](cross-layer-attention.md) | a layer reuses the layer below's keys and values | 2× at CLA2 |
+| $L$ — layers | [CLA](cross-layer-attention.md) | a layer reuses the layer below's keys and values | $2\times$ at CLA2 |
 | $S$ — sequence | [local attention](attention-variants.md) | attend only to the last $w$ tokens | $O(S) \to O(1)$ |
 
 $B$ is missing from that table on purpose: it is the number of concurrent
@@ -87,7 +87,7 @@ Because latency is memory over bandwidth, cutting the cache converts directly in
 speed — and, unusually, it improves latency *and* throughput at once. Percy makes
 the point explicitly: "it's not that latency and throughput are always at odds — if you reduce the amount of memory, it improves both. It's mainly the batch dimension that is the point of tension" ([49:35]).
 
-Cutting Llama 2 13B's cache by 5× with GQA ($K: 40 \to 8$), all computed from the
+Cutting Llama 2 13B's cache by $5\times$ with GQA ($K: 40 \to 8$), all computed from the
 lecture's model:
 
 | | KV cache/seq | Memory at $B=64$ | Latency | Throughput |

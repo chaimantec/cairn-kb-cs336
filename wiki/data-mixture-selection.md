@@ -107,7 +107,7 @@ come from.
   fairly vibes-based, and even more recent papers, you just look at it, maybe you
   use some method, and then you just tweak things" (≈50:53).
 - **Uniform sampling** — $p(s) \propto 1$.
-- **Proportional mixing** — $p(s) \propto \text{num\_tokens}(s)$. "Generally a
+- **Proportional mixing** — $p(s) \propto \verb|num_tokens|(s)$. "Generally a
   rational thing to do, but you might worry that if you have a huge low-quality
   dataset, that's going to eat up a lot of your tokens" (≈52:26).
 
@@ -133,11 +133,11 @@ intuition (≈53:11–55:28). Take two sources:
 "Generally high quality sources are smaller." Now take an innocuous 50/50 mixture
 and train for **1T tokens**:
 
-$$\text{epochs} = \frac{p(s) \cdot \text{train\_tokens}}{\text{num\_tokens}(s)}$$
+$$\text{epochs} = \frac{p(s) \cdot \verb|train_tokens|}{\verb|num_tokens|(s)}$$
 
-- low quality: $(0.5 \times 10^{12}) / 10^{13} = $ **0.05** — you never even see
+- low quality: $(0.5 \times 10^{12}) / 10^{13} =$ **0.05** — you never even see
   95% of it.
-- high quality: $(0.5 \times 10^{12}) / 10^{10} = $ **50** — every token is
+- high quality: $(0.5 \times 10^{12}) / 10^{10} =$ **50** — every token is
   repeated **fifty times**.
 
 The source's comment is "50x epochs on high quality data...can lead to
@@ -161,12 +161,12 @@ which is also what keeps the variance down (≈57:00).
 "it was very clear that some languages were very low-resource" (≈58:34).
 
 Earlier work interpolated between the two baselines with
-$p(s) \propto \text{num\_tokens}(s)^{\alpha}$ for $\alpha \in [0,1]$ — uniform at
+$p(s) \propto \verb|num_tokens|(s)^{\alpha}$ for $\alpha \in [0,1]$ — uniform at
 0, proportional at 1 — "to kind of flatten out the distribution". UniMax replaces
 that knob with a **constraint**: sample uniformly, but impose a hard cap $C$ on the
 number of epochs for any source, so that
 
-$$p(s) \cdot \text{num\_training\_tokens} \leq C \quad \text{for all } s$$
+$$p(s) \cdot \verb|num_training_tokens| \leq C \quad \text{for all } s$$
 
 "I'm only going to take 20 epochs over a particular data source. If you've done
 that, then too bad — you don't get any more tokens, you move on to the next thing."

@@ -165,8 +165,8 @@ the remaining 10**, which is LayerNorm, dropout and the residual inputs ([48:10]
 [Sequence parallelism](sequence-parallelism.md) removes exactly that penalty by
 splitting those pointwise ops along the **sequence** axis instead of the hidden one
 ([49:43]), giving fully linear scaling. Add
-[selective recomputation](activation-checkpointing.md) and you reach $sbh \cdot
-34/t$, "the lower bound of what you can reasonably achieve for normal training"
+[selective recomputation](activation-checkpointing.md) and you reach
+$sbh \cdot 34/t$, "the lower bound of what you can reasonably achieve for normal training"
 ([51:16]) — the number to use when working out by hand whether a model will fit.
 
 ### Expert parallelism

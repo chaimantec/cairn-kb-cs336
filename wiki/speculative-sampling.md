@@ -29,15 +29,17 @@ From Algorithm 2 of the speculative-sampling paper, reproduced in
 [`raw/slides/10-inference.md`](../raw/slides/10-inference.md):
 
 1. **Draft.** Sample $K$ tokens autoregressively from $p$:
-   $\tilde{x}_t \sim p(x \mid x_1, \ldots, x_n, \tilde{x}_1, \ldots, \tilde{x}_{t-1})$.
+   $\tilde{x}_ t \sim p(x \mid x_1, \ldots, x_n, \tilde{x}_ 1, \ldots, \tilde{x}_ {t-1})$.
 2. **Score in parallel.** Compute $K+1$ sets of logits from $q$ — one for the
    prompt and one for each prefix of the draft — in a single forward pass.
 3. **Accept or reject, left to right.** For each drafted token, draw
    $r \sim U[0,1]$ and accept if
-   $$r < \min\!\left(1, \frac{q(x \mid x_{1:n+t-1})}{p(x \mid x_{1:n+t-1})}\right)$$
+
+   $$r \lt \min\negthinspace\left(1, \frac{q(x \mid x_{1:n+t-1})}{p(x \mid x_{1:n+t-1})}\right)$$
+
    "the larger $q$ is, the more likely we are to accept it" ([1:14:09]).
    On the first rejection, sample the replacement token from the clipped residual
-   $(q - p)_+$ and stop accepting the rest of this round.
+   $(q - p)_ +$ and stop accepting the rest of this round.
 4. **Bonus token.** If all $K$ drafts are accepted, sample one extra token from $q$
    for free — the parallel pass already computed that distribution.
 
@@ -50,8 +52,8 @@ This is modified rejection sampling with proposal $p$ and target $q$. The
 modification, stated in the source: "always generate at least one candidate", since
 plain rejection sampling can loop producing nothing.
 
-The lecture gives the proof by example, on a two-token vocabulary $\{A, B\}$ where
-the draft oversamples $A$, so $p(A) > q(A)$ and therefore $p(B) < q(B)$. The
+The lecture gives the proof by example, on a two-token vocabulary $\lbrace A, B\rbrace$ where
+the draft oversamples $A$, so $p(A) \gt q(A)$ and therefore $p(B) \lt q(B)$. The
 residual $\max(q - p, 0)$ is then $[0, 1]$ — all of its mass on $B$. Summing the
 ways each token can be emitted:
 
@@ -72,8 +74,8 @@ acceptance rate.
 ## How much it buys
 
 From the paper's Table 1, reproduced in the slide file: Chinchilla at batch size 1
-with $K = 4$ gets **1.92×** on XSum with nucleus sampling, **2.01×** with greedy
-sampling, and **2.46×** on HumanEval — with benchmark scores unchanged or slightly
+with $K = 4$ gets **$1.92\times$** on XSum with nucleus sampling, **$2.01\times$** with greedy
+sampling, and **$2.46\times$** on HumanEval — with benchmark scores unchanged or slightly
 better (XSum ROUGE-2 0.112 → 0.114; HumanEval 45.1% → 47.0%). Mean token time
 falls from 14.1 ms to 5.73–7.52 ms.
 

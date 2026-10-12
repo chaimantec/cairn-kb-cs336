@@ -15,7 +15,7 @@ slow, and a naive matrix multiply reads from it far more often than it needs to.
 Multiply two $N \times N$ matrices the obvious way and every input element is read
 $N$ times from global memory — once for each output element whose computation it
 participates in. Hashimoto states it at [58:22]: "each entry gets read $N$ times in
-an $N$-by-$N$ matrix multiply, naively."
+an $N\text{-by-}N$ matrix multiply, naively."
 
 Those reads are redundant. The same value is fetched over the slow path again and
 again, when it could have been fetched once into fast memory and reused there.
@@ -182,9 +182,9 @@ Two mechanical details carry the kernel.
 
 **Strides.** A tensor is multi-dimensional but memory is flat, and "the strides of a
 tensor tell you how to map from a multi-dimensional index — such as a row, comma,
-column — into an actual index", by $\text{row} \times \text{stride}_{\text{row}}
-+ \text{col} \times \text{stride}_{\text{col}}$ ([1:18:46]). For the lecture's
-2×4 example the strides are $(4, 1)$: "every time you advance to the next row, you
+column — into an actual index", by
+$\text{row} \times \text{stride}_ {\text{row}} + \text{col} \times \text{stride}_ {\text{col}}$ ([1:18:46]). For the lecture's
+$2\times 4$ example the strides are $(4, 1)$: "every time you advance to the next row, you
 go four positions in memory, and every time you advance a column, you go one. If it
 were a transpose, it would be flipped" ([1:19:31]). Every pointer expression in the
 kernel is built from these, which is why the launcher passes six of them.

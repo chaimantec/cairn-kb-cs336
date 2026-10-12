@@ -513,7 +513,7 @@ check_equal_1d(naive_gelu, compiled_gelu)  # Check it works (compilation shouldn
 ```
 
 All three return the same value on $x = 1$ — the tanh approximation gives
-$0.5 \cdot 1 \cdot \left(1 + \tanh\!\left(0.79788456 \cdot (1 + 0.044715)\right)\right) \approx 0.84119199$
+$0.5 \cdot 1 \cdot \left(1 + \tanh\negthinspace\left(0.79788456 \cdot (1 + 0.044715)\right)\right) \approx 0.84119199$
 (computed by evaluating `naive_gelu`'s own expression in double precision; the
 program evaluates it in float32, so the last digits it displays may differ) — which is the point:
 compilation and fusion change the speed, not the semantics. `check_equal_1d`
@@ -863,8 +863,8 @@ def row_sum_kernel(x_ptr, out_ptr, N, BLOCK_SIZE: tl.constexpr):
 ```
 
 The two-stage structure is the whole point, and the comment in the source draws
-it: thread $T_i$ visits column $i$, then column $i + \texttt{BLOCK\_SIZE}$, then
-$i + 2\,\texttt{BLOCK\_SIZE}$, accumulating into its own register; only at the end
+it: thread $T_i$ visits column $i$, then column $i + \verb|BLOCK_SIZE|$, then
+$i + 2\thinspace\verb|BLOCK_SIZE|$, accumulating into its own register; only at the end
 does `tl.sum` collapse the `BLOCK_SIZE`-wide accumulator vector down to one
 scalar. Padding is `0.0` here rather than `-inf`, because the reduction is a sum.
 Note also that the accumulator is `float32` regardless of the input dtype.
@@ -928,7 +928,7 @@ tile in C. For each pair of (row tile of A, column tile of B):
 
 Write output tile to HBM.
 
-Arithmetic intensity: $O(\text{tile\_size})$.
+Arithmetic intensity: $O(\verb|tile_size|)$.
 
 Bonus:
 

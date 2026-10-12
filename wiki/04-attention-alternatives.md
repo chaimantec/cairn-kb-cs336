@@ -78,7 +78,7 @@ parentheses can move:
 $$(QK^\top)V = Q(K^\top V)$$
 
 and the cost changes from $n^2 d_k + n^2 d_v$ to $2 n d_v d_k$. The quadratic term is
-gone. As Hashimoto puts it, "these $n$s are very big, they're millions — that's the
+gone. As Hashimoto puts it, "these $n\text{s}$ are very big, they're millions — that's the
 context length," whereas $d_k$ and $d_v$ "are usually on the order of thousands, tens
 of thousands. No one has a million coordinates in their hidden dimension" ([6:58]).
 
@@ -207,7 +207,7 @@ neutralized by duality, but the information bottleneck has not ([33:07]).
 
 A different answer to the same problem, and one that is explicitly **not** linear time.
 DeepSeek Sparse Attention (slides 12–13) puts a lightweight **indexer** in front of
-attention: it scores every preceding token, keeps the top-$k$, and runs full attention
+attention: it scores every preceding token, keeps the $\text{top-}k$, and runs full attention
 on that subset only.
 
 ![Slide 12 — Alternative to hybrids: sparse adaptation](../raw/images/04-attention-alternatives/slide-12.jpg)
@@ -218,16 +218,16 @@ on that subset only.
 
 *Slide 13 — DSA – Deepseek Sparse Attention (v3.2, GLM5). [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
-$$I_{t,s} = \sum_{j=1}^{H^I} w^I_{t,j} \cdot \mathrm{ReLU}\!\left(\mathbf{q}^I_{t,j} \cdot \mathbf{k}^I_s\right)$$
+$$I_{t,s} = \sum_{j=1}^{H^I} w^I_{t,j} \cdot \mathrm{ReLU}\negthinspace\left(\mathbf{q}^I_{t,j} \cdot \mathbf{k}^I_s\right)$$
 
-$$\mathbf{u}_t = \mathrm{Attn}\!\left(\mathbf{h}_t, \{\mathbf{c}_s \mid I_{t,s} \in \text{Top-}k(I_{t,:})\}\right)$$
+$$\mathbf{u}_ t = \mathrm{Attn}\negthinspace\left(\mathbf{h}_ t, \lbrace\mathbf{c}_ s \mid I_{t,s} \in \text{Top-}k(I_{t,:})\rbrace\right)$$
 
 Hashimoto is explicit that the complexity is unchanged. Asked directly, he answers
 "It's quadratic… because, in order to know what to select, it does have to look at
 everything" ([26:58]), and there is "no clever state-transition trick happening here —
 it's really brute-force inner products" ([27:44]). What changes is the constant: the
 indexer runs at low precision and low dimension, and the expensive full attention runs
-on a bounded top-$k$ subset. "It's quadratic on a shorter context length, because it's
+on a bounded $\text{top-}k$ subset. "It's quadratic on a shorter context length, because it's
 top-k, we can control k. So now it's — this is expensive, but small" ([27:44]).
 
 Two things make it practical. It can be **bolted on after pretraining** — you train a
@@ -237,7 +237,7 @@ frontier models of its moment, and GLM-5's ablations show "if you do full DSA tr
 you don't lose very much performance relative to full attention, even on long-context
 retrieval tasks that are fairly difficult for RNN-style architectures" ([26:12]).
 
-The top-$k$ selection is deliberate foreshadowing: "it turns out that this idea of
+The $\text{top-}k$ selection is deliberate foreshadowing: "it turns out that this idea of
 top-k selection is going to be core to the next part of this lecture" ([26:58]).
 
 Full treatment: [sparse attention](sparse-attention.md).
@@ -284,16 +284,16 @@ Full treatment: [mixture of experts](mixture-of-experts.md).
 
 ### Routing
 
-Almost universally **token-choice top-$k$**: each token picks its $k$ experts, by inner
+Almost universally **token-choice $\text{top-}k$**: each token picks its $k$ experts, by inner
 product against a per-expert vector. The DeepSeekMoE router (slide 31):
 
 ![Slide 31 — Top-K routing in detail.](../raw/images/04-attention-alternatives/slide-31.jpg)
 
 *Slide 31 — Top-K routing in detail. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
-$$\mathbf{h}^l_t = \sum_{i=1}^{N} g_{i,t}\,\mathrm{FFN}_i\!\left(\mathbf{u}^l_t\right) + \mathbf{u}^l_t$$
+$$\mathbf{h}^l_t = \sum_{i=1}^{N} g_{i,t}\thinspace\mathrm{FFN}_ i\negthinspace\left(\mathbf{u}^l_t\right) + \mathbf{u}^l_t$$
 
-$$g_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} \in \mathrm{Topk}(\{s_{j,t}\}, K) \\ 0, & \text{otherwise} \end{cases} \qquad s_{i,t} = \mathrm{Softmax}_i\!\left(\mathbf{u}^{l\top}_t \mathbf{e}^l_i\right)$$
+$$g_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} \in \mathrm{Topk}(\lbrace s_{j,t}\rbrace, K) \cr 0, & \text{otherwise} \end{cases} \qquad s_{i,t} = \mathrm{Softmax}_ i\negthinspace\left(\mathbf{u}^{l\top}_ t \mathbf{e}^l_i\right)$$
 
 Routers are deliberately trivial — "a single matrix multiply between your input and
 your whatever" ([43:12]). And they are not semantic. Asked whether experts are really
@@ -453,7 +453,7 @@ iteration was going to be nothing but a DeepSeek paper walkthrough ([43:59]).
 *Slide 59 — What else do you need to make DeepSeek MoE v3? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 - **V1** is already "the prototypical, Platonic ideal of an MoE model": shared and
-  fine-grained experts, top-$k$ routing, auxiliary-loss balancing ([1:22:22]).
+  fine-grained experts, $\text{top-}k$ routing, auxiliary-loss balancing ([1:22:22]).
 - **V2** scales it and adds systems-motivated losses — device routing and communication
   balancing. His comment on this is the section's real point: "successful language-model
   training isn't just about deep learning, it's also about really respecting your
@@ -469,7 +469,7 @@ iteration was going to be nothing but a DeepSeek paper walkthrough ([43:59]).
 *Slide 42 — DeepSeek v3 variation – per-expert biases. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 Two bonus mechanisms get a slide each. **Multi-head latent attention** (slides 57–58)
-projects to a low-dimensional latent $\mathbf{c}^{KV}_t$ and reconstructs keys and
+projects to a low-dimensional latent $\mathbf{c}^{KV}_ t$ and reconstructs keys and
 values from it, so only the latent needs caching — with the wrinkle that RoPE breaks the
 matrix pre-merging that makes it cheap, solved by keeping a few unrotated dimensions.
 **Multi-token prediction** (slide 59) predicts several future tokens, which both

@@ -91,7 +91,7 @@ Lecture 13 recorded a genuine split between the rules camp and the models camp.
 Lecture 14 declares it settled, on economic grounds: "these days I think basically everyone does some amount of model-based filtering... **most people are compute-poor**, and you have to be very smart about how you're filtering, otherwise you're just wasting flops on low-quality content" (≈11:01).
 
 The five worked recipes — fastText language ID across 176 languages; OpenMathText's
-three-mechanism math pipeline (**14.7B tokens beating models trained on 20× the
+three-mechanism math pipeline (**14.7B tokens beating models trained on $20\times$ the
 data**); GPT-3's Pareto-distributed stochastic keep; LLaMA's use of pages
 *referenced by* Wikipedia; phi-1's GPT-4-labels-then-random-forest recipe
 (**17.68% on HumanEval after 36K steps against 12.19% after 96K**) — are all in

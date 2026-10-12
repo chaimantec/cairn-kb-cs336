@@ -1266,7 +1266,7 @@ Sonnet. Page 72's overview table is read at Sonnet and audited at Opus.
       loss") — exactly the two the draft itself labelled outside-knowledge, so
       its evidence claims held up, unlike run 7's.
 - [x] 08 — adjudication: FOUR changes made here.
-      (1) "$W_0$" reverted to "that W naught". LaTeX must not enter a transcript;
+      (1) `$W_0$` reverted to "that W naught". LaTeX must not enter a transcript;
       raw/transcripts/ is a verbatim record and the wiki is where notation gets
       reconstructed. This is the first time a drafting agent has broken that rule
       in this build.
@@ -3364,7 +3364,7 @@ discrepancy, do not absorb it silently.
 - [x] Citation and quote check — 338 timestamp citations, ALL matching a real
       marker. 309 quotations, and NINE REAL DEFECTS found and fixed:
       (1) LaTeX substituted for spoken words INSIDE quotations in three places
-      ("$t$" for "t", "$2^{16}$" for "2 to the 16th") — the reworded-blockquote
+      (`$t$` for "t", `$2^{16}$` for "2 to the 16th") — the reworded-blockquote
       class run 19 warned about, now committed twice in one run;
       (2) a dropped "there's" in "tons of parameters, [there's] all sorts of
       nonlinearities";
@@ -3434,7 +3434,7 @@ discrepancy, do not absorb it silently.
   links and the transcript checks found nothing wrong at all — but the quote
   checker found NINE REAL DEFECTS in 309 quotations, in prose that read
   perfectly. The worst was substituting LaTeX for the words actually spoken
-  INSIDE quotation marks ("$t$" for "t", "$2^{16}$" for "2 to the 16th"), done
+  INSIDE quotation marks (`$t$` for "t", `$2^{16}$` for "2 to the 16th"), done
   three times without noticing. Run 19's warning about the reworded blockquote
   was not a one-off; it is the standing failure mode of writing a wiki from a
   transcript you have just read closely, because you remember the MEANING and

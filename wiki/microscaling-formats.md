@@ -28,7 +28,7 @@ might have very different magnitudes — one part of my sequence might have much
 bigger activations than another" ([39:15]).
 
 So: use many. **MXFP8 assigns one scale factor per small block of elements.** Slide
-27's diagram shows a 4×8 grid of data cells divided into eight colour groups of
+27's diagram shows a $4\times 8$ grid of data cells divided into eight colour groups of
 four, each group paired with its own scale-factor swatch.
 
 ![Slide 27 — Frontiers in low precision](../raw/images/05-gpus-tpus/slide-27.png)
@@ -78,7 +78,7 @@ going to quantize certain layers you think are safe to quantize" ([42:18]).
 *Slide 28 — MXFP8 training in practice. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
 The payoff is real but not the factor you might expect: **20 to 30% savings on the
-matrix multiplies, maybe more depending on matrix size** ([42:18]). Not a 2×
+matrix multiplies, maybe more depending on matrix size** ([42:18]). Not a $2\times$
 speedup, "because you have to do all these quantization operations — there's a big
 overhead, so it's not free."
 

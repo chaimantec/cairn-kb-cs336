@@ -45,7 +45,7 @@ The concrete muP-related constants are printed on slide
 init_std = 0.1, lr = 0.01`.
 
 Two caveats the slides themselves raise. The gap between the largest model in the scaling
-sweep and the model actually trained is about **5×**, so the recipe is an extrapolation.
+sweep and the model actually trained is about **$5\times$**, so the recipe is an extrapolation.
 And optimal batch, LR and token-to-size ratios are "directly fitted via scaling analysis"
 even here.
 

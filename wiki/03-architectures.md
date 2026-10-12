@@ -115,7 +115,7 @@ The feedforward nonlinearity, and the one change here that appears to buy real
 quality rather than just speed. A **gated linear unit** multiplies the activated
 projection entrywise by a second linear projection of the same input:
 
-$$\mathrm{FF}_{\mathrm{ReGLU}}(x) = \big(\max(0, xW_1) \otimes xV\big)\,W_2$$
+$$\mathrm{FF}_ {\mathrm{ReGLU}}(x) = \big(\max(0, xW_1) \otimes xV\big)\thinspace W_2$$
 
 Name the base activation, append GLU: ReGLU, GeGLU, SwiGLU. Two independent
 parameter-matched studies (Shazeer 2020 on slide 24, Narang et al. 2020 on slide 25)
@@ -202,9 +202,9 @@ The middle third of the lecture, and its most quotable finding: most of these ar
 **forgiving**, everyone has converged on similar values, and what decides the choice
 is usually a systems argument ([53:45]).
 
-- **Feedforward ratio** $d_{ff} = 4\,d_{model}$, or $\tfrac{8}{3}d_{model}$ for gated
+- **Feedforward ratio** $d_{ff} = 4\thinspace d_{model}$, or $\tfrac{8}{3}d_{model}$ for gated
   models. Kaplan et al.'s sweep (slide 40) shows a flat basin from ratio 1 to about
-  4 and a steep climb beyond. T5's 64× multiplier is the spectacular exception —
+  4 and a steep climb beyond. T5's $64\times$ multiplier is the spectacular exception —
   and T5 v1.1 quietly went back to 2.5.
 - **Head dimension** $n_{head} \times d_{head} = d_{model}$, standard but, in the
   deck's own words, with "low to no validation."

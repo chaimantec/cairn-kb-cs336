@@ -291,11 +291,11 @@ dashed blocks form the model body, each drawn around a vertical residual arrow.
   each selected expert's output passes through a $\otimes$ (multiplied by the
   router weight, shown as orange dashed arrows from the router) and the two
   selected paths meet at a $\oplus$ producing "Output Hidden". A small bar-chart
-  icon beside the router is annotated "$K = 2$".
+  icon beside the router is annotated $K = 2$.
 - The **Lightning Attention** panel (pink) shows the input fanning out to four
   branches labelled **Q**, **K**, **V**, **G**, each through an activation box —
-  SiLU for Q, K and V, and Sigmoid for G. Q and K meet at a $*$ node; that result
-  and V meet at a second $*$; the result passes through an orange "RMSNorm", then
+  SiLU for Q, K and V, and Sigmoid for G. Q and K meet at a $\ast$ node; that result
+  and V meet at a second $\ast$; the result passes through an orange "RMSNorm", then
   a $\odot$ node where it is combined with the sigmoid gate G, and finally a
   purple "Linear" projection produces the output.
 
@@ -446,7 +446,7 @@ the repeating body, each drawn around a residual stream with $\oplus$ junctions.
   $\sigma$ (annotated "Sigmoid" in the panel's key) to form an "Output Gate".
   $q$, $k$, $v$ enter "**Scaled Dot Product Attention**"; its output meets the
   gate at a $\otimes$, then a final "Linear".
-  The **Gated DeltaNet** panel: linear projections at the bottom; the $q$/$k$
+  The **Gated DeltaNet** panel: linear projections at the bottom; the $q/k$
   branch goes "Linear" → "Conv" → $\sigma$ → "L2" (normalization) producing $q$
   and $k$; the $v$ branch goes "Linear" → "Conv" → $\sigma$; two further small
   linear projections produce $\alpha$ and $\beta$; and a separate "Linear" →
@@ -516,15 +516,15 @@ bracketed numbers are the paper's own reference citations.
 | Model | Update rule ($S_t$) | Read-out ($o_t$) |
 | --- | --- | --- |
 | HGRN[4] | $h_t = \alpha_t \odot h_{t-1} + (1 - \alpha_t) \odot v_t$ | $o_t = h_t \odot q_t$ |
-| Hawk (RG-LRU)[33] | $h_t = r_t\, h_{t-1} + i_t \odot x_t$ | $o_t = h_t \odot q_t$ |
+| Hawk (RG-LRU)[33] | $h_t = r_t\thinspace h_{t-1} + i_t \odot x_t$ | $o_t = h_t \odot q_t$ |
 
 *Section "Matrix-valued state via outer products":*
 
 | Model | Update rule ($S_t$) | Read-out ($o_t$) |
 | --- | --- | --- |
-| RetNet/Lightning [11, 17] | $S_t = \gamma\, S_{t-1} + v_t k_t^\top$ | $o_t = S_t q_t$ |
+| RetNet/Lightning [11, 17] | $S_t = \gamma\thinspace S_{t-1} + v_t k_t^\top$ | $o_t = S_t q_t$ |
 | GLA[34] | $S_t = S_{t-1} \odot (1 \alpha_t^\top) + v_t k_t^\top$ | $o_t = S_t q_t$ |
-| Mamba-2[35] | $S_t = \gamma_t\, S_{t-1} + v_t k_t^\top$ | $o_t = S_t q_t$ |
+| Mamba-2[35] | $S_t = \gamma_t\thinspace S_{t-1} + v_t k_t^\top$ | $o_t = S_t q_t$ |
 | RWKV-6[36] | $S_t = S_{t-1}\mathrm{Diag}(\alpha_t) + v_t k_t^\top$ | $o_t = (S_{t-1} + (d \odot v_t) k_t^\top) q_t$ |
 | HGRN-2/MetaLA[4, 37] | $S_t = S_{t-1}\mathrm{Diag}(\alpha_t) + v_t (1 - \alpha_t)^\top$ | $o_t = S_t q_t$ |
 
@@ -533,7 +533,7 @@ bracketed numbers are the paper's own reference citations.
 | Model | Update rule ($S_t$) | Read-out ($o_t$) |
 | --- | --- | --- |
 | DeltaNet[5] | $S_t = S_{t-1}(I - \beta_t k_t k_t^\top) + \beta_t v_t k_t^\top$ | $o_t = S_t q_t$ |
-| Gated DeltaNet[19] | $S_t = \alpha_t\, S_{t-1}(I - \beta_t k_t k_t^\top) + \beta_t v_t k_t^\top$ | $o_t = S_t q_t$ |
+| Gated DeltaNet[19] | $S_t = \alpha_t\thinspace S_{t-1}(I - \beta_t k_t k_t^\top) + \beta_t v_t k_t^\top$ | $o_t = S_t q_t$ |
 
 **Figure 3 (bottom left) — four line charts in a 2×2 grid**, titled "Single-Key
 (avg)", "Multi-Key (avg)", "QA (avg)" and "CWE & FWE (avg)". Every panel has
@@ -593,26 +593,26 @@ DeepSeek Sparse Attention description). It reads:
 a lightning indexer and a fine-grained token selection mechanism.
 
 The **lightning indexer** computes the index score $I_{t,s}$ between the query
-token $\mathbf{h}_t \in \mathbb{R}^d$ and a preceding token $\mathbf{h}_s \in
-\mathbb{R}^d$, determining which tokens to be selected by the query token:
+token $\mathbf{h}_ t \in \mathbb{R}^d$ and a preceding token
+$\mathbf{h}_ s \in \mathbb{R}^d$, determining which tokens to be selected by the query token:
 
 $$I_{t,s} = \sum_{j=1}^{H^I} w^I_{t,j} \cdot \mathrm{ReLU}\left(\mathbf{q}^I_{t,j} \cdot \mathbf{k}^I_s\right), \qquad (1)$$
 
-where $H^I$ denotes the number of indexer heads; $\mathbf{q}^I_{t,j} \in
-\mathbb{R}^{d^I}$ and $w^I_{t,j} \in \mathbb{R}$ are derived from the query token
-$\mathbf{h}_t$; and $\mathbf{k}^I_s \in \mathbb{R}^{d^I}$ is derived from the
-preceding token $\mathbf{h}_s$. We choose ReLU as the activation function for
+where $H^I$ denotes the number of indexer heads;
+$\mathbf{q}^I_{t,j} \in \mathbb{R}^{d^I}$ and $w^I_{t,j} \in \mathbb{R}$ are derived from the query token
+$\mathbf{h}_ t$; and $\mathbf{k}^I_s \in \mathbb{R}^{d^I}$ is derived from the
+preceding token $\mathbf{h}_ s$. We choose ReLU as the activation function for
 throughput consideration. Given that the lightning indexer has a small number of
 heads and can be implemented in FP8, its computational efficiency is remarkable.
 
-Given the index scores $\{I_{t,s}\}$ for each query token $\mathbf{h}_t$, our
+Given the index scores $\lbrace I_{t,s}\rbrace$ for each query token $\mathbf{h}_ t$, our
 **fine-grained token selection mechanism** retrieves only the key-value entries
-$\{\mathbf{c}_s\}$ corresponding to the top-k index scores. Then, the attention
-output $\mathbf{u}_t$ is computed by applying the attention mechanism between the
-query token $\mathbf{h}_t$ and the sparsely selected key-value entries
-$\{\mathbf{c}_s\}$:
+$\lbrace\mathbf{c}_ s\rbrace$ corresponding to the top-k index scores. Then, the attention
+output $\mathbf{u}_ t$ is computed by applying the attention mechanism between the
+query token $\mathbf{h}_ t$ and the sparsely selected key-value entries
+$\lbrace\mathbf{c}_ s\rbrace$:"
 
-$$\mathbf{u}_t = \mathrm{Attn}\left(\mathbf{h}_t, \{\mathbf{c}_s \mid I_{t,s} \in \mathrm{Top\text{-}k}(I_{t,:})\}\right). \qquad (2)$$"
+$$\mathbf{u}_ t = \mathrm{Attn}\left(\mathbf{h}_ t, \lbrace\mathbf{c}_ s \mid I_{t,s} \in \mathrm{Top\text{-}k}(I_{t,:})\rbrace\right). \qquad (2)$$
 
 ## Slide 13 — DSA – Deepseek Sparse Attention (v3.2, GLM5)
 
@@ -657,7 +657,7 @@ Tokens", and both show **two** series:
 - *Orange*, "DeepSeek-V3.2".
 
 In *(a) Prefilling*, x is ticked 0K, 32K, 64K, 96K, 128K and y from \$0 to
-\$0.7\$ in steps of \$0.1. The blue line rises linearly from about \$0.05 at 0K
+\$0.7 in steps of \$0.1. The blue line rises linearly from about \$0.05 at 0K
 to \$0.19 at 32K, \$0.36 at 64K, \$0.51 at 96K and \$0.66 at 128K. The orange
 line jumps to about \$0.10 immediately and then rises very slowly — \$0.115 at
 32K, \$0.138 at 64K, \$0.16 at 96K, \$0.185 at 128K. The two cross at roughly 8K.
@@ -1314,13 +1314,13 @@ first line with a blue arrow pointing down at the factor $g_{i,t}$; a blue arrow
 points up at $s_{i,t}$ in the third line from the blue caption "**Gates selected by
 a logistic regressor**" printed at the bottom left.
 
-$$\mathbf{h}^l_t = \sum_{i=1}^{N} \left( g_{i,t}\, \mathrm{FFN}_i\left(\mathbf{u}^l_t\right) \right) + \mathbf{u}^l_t,$$
+$$\mathbf{h}^l_t = \sum_{i=1}^{N} \left( g_{i,t}\thinspace \mathrm{FFN}_ i\left(\mathbf{u}^l_t\right) \right) + \mathbf{u}^l_t,$$
 
-$$g_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} \in \mathrm{Topk}(\{s_{j,t} \mid 1 \leqslant j \leqslant N\}, K), \\ 0, & \text{otherwise,} \end{cases}$$
+$$g_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} \in \mathrm{Topk}(\lbrace s_{j,t} \mid 1 \leqslant j \leqslant N\rbrace, K), \cr 0, & \text{otherwise,} \end{cases}$$
 
-$$s_{i,t} = \mathrm{Softmax}_i\left(\mathbf{u}^{l\,T}_t \mathbf{e}^l_i\right),$$
+$$s_{i,t} = \mathrm{Softmax}_ i\left(\mathbf{u}^{l\thinspace T}_ t \mathbf{e}^l_i\right),$$
 
-Here $\mathbf{u}^l_t$ is the layer-$l$ hidden state for token $t$, $\mathbf{e}^l_i$
+Here $\mathbf{u}^l_t$ is the $\text{layer-}l$ hidden state for token $t$, $\mathbf{e}^l_i$
 is the centroid (embedding) of expert $i$, $s_{i,t}$ is the router score, $g_{i,t}$
 the gate, $N$ the number of experts and $K$ the number kept.
 
@@ -1537,9 +1537,9 @@ The slide is a boxed three-equation display (the noisy top-k gating of Shazeer e
 
 $$G(x) = Softmax(KeepTopK(H(x), k))$$
 
-$$H(x)_i = (x \cdot W_g)_i + StandardNormal() \cdot Softplus((x \cdot W_{noise})_i)$$
+$$H(x)_ i = (x \cdot W_g)_ i + StandardNormal() \cdot Softplus((x \cdot W_{noise})_ i)$$
 
-$$KeepTopK(v, k)_i = \begin{cases} v_i & \text{if } v_i \text{ is in the top } k \text{ elements of } v. \\ -\infty & \text{otherwise.} \end{cases}$$
+$$KeepTopK(v, k)_ i = \begin{cases} v_i & \text{if } v_i \text{ is in the top } k \text{ elements of } v. \cr -\infty & \text{otherwise.} \end{cases}$$
 
 Beneath the box: "From Shazeer et al 2017 – routing decisions are *stochastic* with
 gaussian perturbations." Then two numbered points:
@@ -1575,8 +1575,8 @@ Slide text beneath it: "Stochastic jitter in Fedus et al 2022. This does a unifo
 multiplicative perturbation for the same goal of getting less brittle experts. This
 was later removed in Zoph et al 2022".
 
-Note the mismatch the code itself shows: the noise is drawn on $[1-\epsilon,
-1+\epsilon]$ (a multiplicative jitter) but is applied with `+=`.
+Note the mismatch the code itself shows: the noise is drawn on
+$[1-\epsilon, 1+\epsilon]$ (a multiplicative jitter) but is applied with `+=`.
 
 **Figure 2 (bottom) — a small pasted three-row table** (from Zoph et al 2022),
 comparing stability and quality. The "Quality" column is marked with an up arrow
@@ -1611,16 +1611,16 @@ $$\mathrm{loss} = \alpha \cdot N \cdot \sum_{i=1}^{N} f_i \cdot P_i \qquad (4)$$
 
 "where $f_i$ is the fraction of tokens dispatched to expert $i$,"
 
-$$f_i = \frac{1}{T} \sum_{x \in \mathcal{B}} \mathbb{1}\{\arg\max p(x) = i\} \qquad (5)$$
+$$f_i = \frac{1}{T} \sum_{x \in \mathcal{B}} \mathbb{1}\lbrace\arg\max p(x) = i\rbrace \qquad (5)$$
 
-"and $P_i$ is the fraction of the router probability allocated for expert $i$, $^2$"
+"and $P_i$ is the fraction of the router probability allocated for expert $i$, ²"
 
 $$P_i = \frac{1}{T} \sum_{x \in \mathcal{B}} p_i(x). \qquad (6)$$
 
 Slide text centred beneath, in the deck's own font (this is Hashimoto's addition, not
 part of the pasted figure):
 
-"The derivative with respect to $p_i(x)$ is $\frac{\alpha N}{T^2} \sum \mathbb{1}_{arg\,max\ p(x)=i}$, so more frequent use = stronger downweighting"
+"The derivative with respect to $p_i(x)$ is $\frac{\alpha N}{T^2} \sum \mathbb{1}_ {arg\thinspace max\ p(x)=i}$, so more frequent use = stronger downweighting"
 ## Slide 41 — Example from deepseek (v1-2)
 
 Two headed sections, each followed by a grey-bordered box holding a numbered
@@ -1629,7 +1629,7 @@ this page.
 
 **"Per-expert balancing** – same as the switch transformer".
 
-$$\mathcal{L}_{\mathrm{ExpBal}} = \alpha_1 \sum_{i=1}^{N'} f_i P_i, \qquad (12)$$
+$$\mathcal{L}_ {\mathrm{ExpBal}} = \alpha_1 \sum_{i=1}^{N'} f_i P_i, \qquad (12)$$
 
 $$f_i = \frac{N'}{K'T} \sum_{t=1}^{T} \mathbb{1}(\text{Token } t \text{ selects Expert } i), \qquad (13)$$
 
@@ -1637,15 +1637,15 @@ $$P_i = \frac{1}{T} \sum_{t=1}^{T} s_{i,t}, \qquad (14)$$
 
 **"Per-device balancing** – the objective above, but aggregated by device."
 
-$$\mathcal{L}_{\mathrm{DevBal}} = \alpha_2 \sum_{i=1}^{D} f'_i P'_i, \qquad (15)$$
+$$\mathcal{L}_ {\mathrm{DevBal}} = \alpha_2 \sum_{i=1}^{D} f'_ i P'_ i, \qquad (15)$$
 
-$$f'_i = \frac{1}{|\mathcal{E}_i|} \sum_{j \in \mathcal{E}_i} f_j, \qquad (16)$$
+$$f'_ i = \frac{1}{|\mathcal{E}_ i|} \sum_{j \in \mathcal{E}_ i} f_j, \qquad (16)$$
 
-$$P'_i = \sum_{j \in \mathcal{E}_i} P_j, \qquad (17)$$
+$$P'_ i = \sum_{j \in \mathcal{E}_ i} P_j, \qquad (17)$$
 
 Here $N'$ is the number of routed experts, $K'$ the number selected per token, $T$
 the number of tokens, $s_{i,t}$ the routing score of expert $i$ on token $t$, $D$
-the number of devices and $\mathcal{E}_i$ the set of experts placed on device $i$;
+the number of devices and $\mathcal{E}_ i$ the set of experts placed on device $i$;
 $\alpha_1$ and $\alpha_2$ are the two loss weights.
 
 ## Slide 42 — DeepSeek v3 variation – per-expert biases
@@ -1655,7 +1655,7 @@ $\alpha_1$ and $\alpha_2$ are the two loss weights.
 Text: "Set up a per-expert bias (making it more likely to get tokens) and use
 online learning", followed by the gate definition:
 
-$$g'_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} + b_i \in \mathrm{Topk}(\{s_{j,t} + b_j \mid 1 \leqslant j \leqslant N_r\},\, K_r), \\[4pt] 0, & \text{otherwise.} \end{cases}$$
+$$g'_ {i,t} = \begin{cases} s_{i,t}, & s_{i,t} + b_i \in \mathrm{Topk}(\lbrace s_{j,t} + b_j \mid 1 \leqslant j \leqslant N_r\rbrace,\thinspace K_r), \cr[4pt] 0, & \text{otherwise.} \end{cases}$$
 
 Then: "They call this '**auxiliary loss free balancing**'".
 
@@ -1666,13 +1666,13 @@ load balance, to prevent extreme imbalance within any single sequence, we also
 employ a complementary sequence-wise balance loss:". Beneath it, four numbered
 equations:
 
-$$\mathcal{L}_{\mathrm{Bal}} = \alpha \sum_{i=1}^{N_r} f_i P_i, \qquad (17)$$
+$$\mathcal{L}_ {\mathrm{Bal}} = \alpha \sum_{i=1}^{N_r} f_i P_i, \qquad (17)$$
 
-$$f_i = \frac{N_r}{K_r T} \sum_{t=1}^{T} \mathbb{1}\left(s_{i,t} \in \mathrm{Topk}(\{s_{j,t} \mid 1 \leqslant j \leqslant N_r\},\, K_r)\right), \qquad (18)$$
+$$f_i = \frac{N_r}{K_r T} \sum_{t=1}^{T} \mathbb{1}\left(s_{i,t} \in \mathrm{Topk}(\lbrace s_{j,t} \mid 1 \leqslant j \leqslant N_r\rbrace,\thinspace K_r)\right), \qquad (18)$$
 
-$$s'_{i,t} = \frac{s_{i,t}}{\sum_{j=1}^{N_r} s_{j,t}}, \qquad (19)$$
+$$s'_ {i,t} = \frac{s_{i,t}}{\sum_{j=1}^{N_r} s_{j,t}}, \qquad (19)$$
 
-$$P_i = \frac{1}{T} \sum_{t=1}^{T} s'_{i,t}, \qquad (20)$$
+$$P_i = \frac{1}{T} \sum_{t=1}^{T} s'_ {i,t}, \qquad (20)$$
 
 At the foot of the page: "(but the approach is not fully aux loss free..)".
 
@@ -2188,8 +2188,8 @@ running up the left side. Two dashed blue lines expand the Feed-Forward Network
 into the larger dashed-blue panel on the right, labelled "**DeepSeekMoE**".
 
 Inside that panel, bottom to top: a row of circles labelled "**Input Hidden**
-$\mathbf{u}_t$"; arrows fan out from it to every expert and to a yellow **Router**
-box. Beside the Router sits a small yellow bar histogram annotated "Top-$K_r$".
+$\mathbf{u}_ t$"; arrows fan out from it to every expert and to a yellow **Router**
+box. Beside the Router sits a small yellow bar histogram annotated $\text{Top-}K_r$.
 The expert row consists of two green boxes labelled **1** and $N_s$ (legend:
 "Shared Expert"), separated by an ellipsis, followed by six blue boxes labelled
 **1**, **2**, **3**, **4**, ellipsis, $N_r$-**1**, $N_r$ (legend: "Routed
@@ -2197,22 +2197,22 @@ Expert"). Dashed yellow arrows run from the Router's histogram to three circled
 **⊗** gates that sit above the selected routed experts (2, one of the middle ones,
 and $N_r$); each ⊗ multiplies that expert's output by its gate weight. The shared
 experts' outputs and the ⊗ outputs all feed a single ⊕, whose output is the row of
-circles labelled "**Output Hidden** $\mathbf{h}'_t$". A legend at the top right
+circles labelled "**Output Hidden** $\mathbf{h}'_ t$". A legend at the top right
 gives the two colours: light blue = **Routed Expert**, green = **Shared Expert**.
 
 Beneath the figure, two labelled equation blocks.
 
 **"Standard, top-k routing"** (left):
 
-$$\mathbf{h}'_t = \mathbf{u}_t + \sum_{i=1}^{N_s} \mathrm{FFN}^{(s)}_i(\mathbf{u}_t) + \sum_{i=1}^{N_r} g_{i,t}\,\mathrm{FFN}^{(r)}_i(\mathbf{u}_t),$$
+$$\mathbf{h}'_ t = \mathbf{u}_ t + \sum_{i=1}^{N_s} \mathrm{FFN}^{(s)}_ i(\mathbf{u}_ t) + \sum_{i=1}^{N_r} g_{i,t}\thinspace\mathrm{FFN}^{(r)}_ i(\mathbf{u}_ t),$$
 
-$$g_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} \in \mathrm{Topk}(\{s_{j,t} \mid 1 \leqslant j \leqslant N_r\},\, K_r), \\[4pt] 0, & \text{otherwise,} \end{cases}$$
+$$g_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} \in \mathrm{Topk}(\lbrace s_{j,t} \mid 1 \leqslant j \leqslant N_r\rbrace,\thinspace K_r), \cr[4pt] 0, & \text{otherwise,} \end{cases}$$
 
-$$s_{i,t} = \mathrm{Softmax}_i\!\left(\mathbf{u}_t^{T} \mathbf{e}_i\right),$$
+$$s_{i,t} = \mathrm{Softmax}_ i\negthinspace\left(\mathbf{u}_ t^{T} \mathbf{e}_ i\right),$$
 
 **"Standard Aux-loss balancing** (Expert + Device)" (right):
 
-$$\mathcal{L}_{\mathrm{ExpBal}} = \alpha_1 \sum_{i=1}^{N_r} f_i P_i,$$
+$$\mathcal{L}_ {\mathrm{ExpBal}} = \alpha_1 \sum_{i=1}^{N_r} f_i P_i,$$
 
 $$f_i = \frac{N_r}{K_r T} \sum_{t=1}^{T} \mathbb{1}(\text{Token } t \text{ selects Expert } i),$$
 
@@ -2229,11 +2229,11 @@ Bold text: "**V2 (236B – 21 active):**". Centred above the figure, in bold:
 **Figure 1 (top) — the same DeepSeekMoE layer diagram as slide 54**, pixel for
 pixel: the dashed "Transformer Block $\times L$" box with **RMS Norm** and
 **Feed-Forward Network** on a residual stream, expanded into the "DeepSeekMoE"
-panel with **Input Hidden** $\mathbf{u}_t$ at the bottom, the yellow **Router**
-with its "Top-$K_r$" histogram, the green shared experts **1** … $N_s$, the blue
+panel with **Input Hidden** $\mathbf{u}_ t$ at the bottom, the yellow **Router**
+with its $\text{Top-}K_r$ histogram, the green shared experts **1** … $N_s$, the blue
 routed experts **1**, **2**, **3**, **4**, …, $N_r$-**1**, $N_r$, the dashed
 yellow gate arrows into three **⊗** nodes, the summing ⊕, and **Output Hidden**
-$\mathbf{h}'_t$ at the top, with the "Routed Expert" / "Shared Expert" legend.
+$\mathbf{h}'_ t$ at the top, with the "Routed Expert" / "Shared Expert" legend.
 
 **Left half — heading "Top-M device routing", then a pasted paragraph** in a
 grey-bordered box:
@@ -2250,11 +2250,11 @@ aligned with the unrestricted top-K routing."
 communication in *and* out", then a pasted equation block and paragraph** in a
 grey-bordered box:
 
-$$\mathcal{L}_{\mathrm{CommBal}} = \alpha_3 \sum_{i=1}^{D} f''_i P''_i, \qquad (29)$$
+$$\mathcal{L}_ {\mathrm{CommBal}} = \alpha_3 \sum_{i=1}^{D} f''_ i P''_ i, \qquad (29)$$
 
-$$f''_i = \frac{D}{MT} \sum_{t=1}^{T} \mathbb{1}(\text{Token } t \text{ is sent to Device } i), \qquad (30)$$
+$$f''_ i = \frac{D}{MT} \sum_{t=1}^{T} \mathbb{1}(\text{Token } t \text{ is sent to Device } i), \qquad (30)$$
 
-$$P''_i = \sum_{j \in \mathcal{E}_i} P_j, \qquad (31)$$
+$$P''_ i = \sum_{j \in \mathcal{E}_ i} P_j, \qquad (31)$$
 
 "where $\alpha_3$ is a hyper-parameter called communication balance factor. The
 device-limited routing mechanism operates on the principle of ensuring that each
@@ -2275,28 +2275,28 @@ the title says v3). Centred above the figure, in bold: "Shared (1) + Fine-graine
 **Figure 1 (top) — the same DeepSeekMoE layer diagram as slides 54 and 55**,
 unchanged: "Transformer Block $\times L$" with **RMS Norm** and **Feed-Forward
 Network**, expanded into the "DeepSeekMoE" panel — **Input Hidden**
-$\mathbf{u}_t$, the yellow **Router** with its "Top-$K_r$" histogram, green shared
+$\mathbf{u}_ t$, the yellow **Router** with its $\text{Top-}K_r$ histogram, green shared
 experts **1** … $N_s$, blue routed experts **1**, **2**, **3**, **4**, …,
 $N_r$-**1**, $N_r$, dashed yellow gate arrows into three **⊗** nodes, the summing
-⊕, **Output Hidden** $\mathbf{h}'_t$, and the "Routed Expert" / "Shared Expert"
+⊕, **Output Hidden** $\mathbf{h}'_ t$, and the "Routed Expert" / "Shared Expert"
 legend. (The diagram still shows two green shared experts even though the slide's
 own heading says the v3 configuration has one.)
 
 **Left half — heading "Sigmoid+Softmax topK + topM", then a grey-bordered equation
 box:**
 
-$$\mathbf{h}'_t = \mathbf{u}_t + \sum_{i=1}^{N_s} \mathrm{FFN}^{(s)}_i(\mathbf{u}_t) + \sum_{i=1}^{N_r} g_{i,t}\,\mathrm{FFN}^{(r)}_i(\mathbf{u}_t),$$
+$$\mathbf{h}'_ t = \mathbf{u}_ t + \sum_{i=1}^{N_s} \mathrm{FFN}^{(s)}_ i(\mathbf{u}_ t) + \sum_{i=1}^{N_r} g_{i,t}\thinspace\mathrm{FFN}^{(r)}_ i(\mathbf{u}_ t),$$
 
-$$g_{i,t} = \frac{g'_{i,t}}{\sum_{j=1}^{N_r} g'_{j,t}},$$
+$$g_{i,t} = \frac{g'_ {i,t}}{\sum_{j=1}^{N_r} g'_ {j,t}},$$
 
-$$g'_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} \in \mathrm{Topk}(\{s_{j,t} \mid 1 \leqslant j \leqslant N_r\},\, K_r), \\[4pt] 0, & \text{otherwise,} \end{cases}$$
+$$g'_ {i,t} = \begin{cases} s_{i,t}, & s_{i,t} \in \mathrm{Topk}(\lbrace s_{j,t} \mid 1 \leqslant j \leqslant N_r\rbrace,\thinspace K_r), \cr[4pt] 0, & \text{otherwise,} \end{cases}$$
 
-$$s_{i,t} = \mathrm{Sigmoid}\!\left(\mathbf{u}_t^{T} \mathbf{e}_i\right),$$
+$$s_{i,t} = \mathrm{Sigmoid}\negthinspace\left(\mathbf{u}_ t^{T} \mathbf{e}_ i\right),$$
 
 **Right half — heading "Aux-loss-free + seq-wise aux", then a grey-bordered
 equation box** holding the biased-gate rule already seen on slide 42:
 
-$$g'_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} + b_i \in \mathrm{Topk}(\{s_{j,t} + b_j \mid 1 \leqslant j \leqslant N_r\},\, K_r), \\[4pt] 0, & \text{otherwise.} \end{cases}$$
+$$g'_ {i,t} = \begin{cases} s_{i,t}, & s_{i,t} + b_i \in \mathrm{Topk}(\lbrace s_{j,t} + b_j \mid 1 \leqslant j \leqslant N_r\rbrace,\thinspace K_r), \cr[4pt] 0, & \text{otherwise.} \end{cases}$$
 
 ## Slide 57 — Bonus: What else do you need to make DeepSeek MoE v3?
 
@@ -2317,25 +2317,25 @@ cached.
 
 Reading the MLA panel from the bottom up:
 
-- **Input Hidden** $\mathbf{h}_t$, a row of plain (unhatched) circles.
-- From $\mathbf{h}_t$, three paths leave. Left: down into a box of plain circles
+- **Input Hidden** $\mathbf{h}_ t$, a row of plain (unhatched) circles.
+- From $\mathbf{h}_ t$, three paths leave. Left: down into a box of plain circles
   labelled "**Latent** $\mathbf{c}^Q_t$". Right: into a box of *hatched* circles
-  labelled "**Latent** $\mathbf{c}^{KV}_t$" — the cached KV latent. Middle: a
+  labelled "**Latent** $\mathbf{c}^{KV}_ t$" — the cached KV latent. Middle: a
   vertical line straight up, annotated "*apply RoPE*", into a single hatched cell
   labelled $\mathbf{k}^R_t$ — the one rotary key that is also cached.
-- From $\mathbf{c}^Q_t$: two stacked-card groups, $\{\mathbf{q}^C_{t,i}\}$ (left)
-  and $\{\mathbf{q}^R_{t,i}\}$ (right); the arrow into the second is annotated
+- From $\mathbf{c}^Q_t$: two stacked-card groups, $\lbrace\mathbf{q}^C_{t,i}\rbrace$ (left)
+  and $\lbrace\mathbf{q}^R_{t,i}\rbrace$ (right); the arrow into the second is annotated
   "*apply RoPE*". Both feed a **concatenate** step producing the stacked group
-  $\{[\mathbf{q}^C_{t,i}; \mathbf{q}^R_{t,i}]\}$.
-- From $\mathbf{c}^{KV}_t$: two stacked-card groups, $\{\mathbf{k}^C_{t,i}\}$ and
-  $\{\mathbf{v}^C_{t,i}\}$. The $\{\mathbf{k}^C_{t,i}\}$ group and the single
+  $\lbrace[\mathbf{q}^C_{t,i}; \mathbf{q}^R_{t,i}]\rbrace$.
+- From $\mathbf{c}^{KV}_ t$: two stacked-card groups, $\lbrace\mathbf{k}^C_{t,i}\rbrace$ and
+  $\lbrace\mathbf{v}^C_{t,i}\rbrace$. The $\lbrace\mathbf{k}^C_{t,i}\rbrace$ group and the single
   $\mathbf{k}^R_t$ cell feed a second **concatenate** producing
-  $\{[\mathbf{k}^C_{t,i}; \mathbf{k}^R_t]\}$.
+  $\lbrace[\mathbf{k}^C_{t,i}; \mathbf{k}^R_t]\rbrace$.
 - The query group, the key group and the value group
-  $\{\mathbf{v}^C_{t,i}\}$ all feed the wide yellow **Multi-Head Attention** bar,
-  whose output is the row of circles labelled **Output Hidden** $\mathbf{u}_t$.
+  $\lbrace\mathbf{v}^C_{t,i}\rbrace$ all feed the wide yellow **Multi-Head Attention** bar,
+  whose output is the row of circles labelled **Output Hidden** $\mathbf{u}_ t$.
 
-The hatching makes the point of the slide visible: only $\mathbf{c}^{KV}_t$ and
+The hatching makes the point of the slide visible: only $\mathbf{c}^{KV}_ t$ and
 $\mathbf{k}^R_t$ are cached, not the full per-head keys and values.
 
 ## Slide 58 — What else do you need to make DeepSeek MoE v3?
@@ -2345,39 +2345,41 @@ $\mathbf{k}^R_t$ are cached, not the full per-head keys and values.
 Restates at the top: "**Basic idea:** express the Q, K, V as functions of a
 lower-dim, 'latent' activation", followed by the three defining equations:
 
-$$\mathbf{c}^{KV}_t = W^{DKV}\mathbf{h}_t,$$
+$$\mathbf{c}^{KV}_ t = W^{DKV}\mathbf{h}_ t,$$
 
-$$\mathbf{k}^{C}_t = W^{UK}\mathbf{c}^{KV}_t,$$
+$$\mathbf{k}^{C}_ t = W^{UK}\mathbf{c}^{KV}_ t,$$
 
-$$\mathbf{v}^{C}_t = W^{UV}\mathbf{c}^{KV}_t,$$
+$$\mathbf{v}^{C}_ t = W^{UV}\mathbf{c}^{KV}_ t,$$
 
 **Figure (top right) — a cropped fragment of the MLA diagram from slide 57**,
-showing just the right-hand, key/value half: **Input Hidden** $\mathbf{h}_t$ at the
+showing just the right-hand, key/value half: **Input Hidden** $\mathbf{h}_ t$ at the
 bottom, a branch going up through "*apply RoPE*" into the hatched $\mathbf{k}^R_t$
-cell, and a branch going into the hatched "**Latent** $\mathbf{c}^{KV}_t$" row,
-which in turn feeds the two stacked-card groups $\{\mathbf{k}^C_{t,i}\}$ and
-$\{\mathbf{v}^C_{t,i}\}$.
+cell, and a branch going into the hatched "**Latent** $\mathbf{c}^{KV}_ t$" row,
+which in turn feeds the two stacked-card groups $\lbrace\mathbf{k}^C_{t,i}\rbrace$ and
+$\lbrace\mathbf{v}^C_{t,i}\rbrace$.
 
-**"Benefits:** when KV-caching, we only need to store $c^{KV}_t$, which can be much
+**"Benefits:** when KV-caching, we only need to store $c^{KV}_ t$, which can be much
 smaller. $W^{UK}$ can be merged into the Q projection". A parenthetical to the
 right reads "(they also compress queries, for memory savings during training)",
 next to the two query-side equations:
 
-$$\mathbf{c}^{Q}_t = W^{DQ}\mathbf{h}_t,$$
+$$\mathbf{c}^{Q}_ t = W^{DQ}\mathbf{h}_ t,$$
 
-$$\mathbf{q}^{C}_t = W^{UQ}\mathbf{c}^{Q}_t,$$
+$$\mathbf{q}^{C}_ t = W^{UQ}\mathbf{c}^{Q}_ t,$$
 
 **"Complexity:** rope conflicts with MLA-style caching." Two lines follow; in each,
 the final grouping is printed in **red** to show which product can be pre-merged
 into a single matrix and which cannot:
 
 Without RoPE –
-$$\langle Q, K \rangle = \left\langle hW^{Q},\, W^{UK}c^{KV}_t \right\rangle = \left\langle h\,W^{Q}W^{UK},\, c^{KV}_t \right\rangle$$
+
+$$\langle Q, K \rangle = \left\langle hW^{Q},\thinspace W^{UK}c^{KV}_ t \right\rangle = \left\langle h\thinspace W^{Q}W^{UK},\thinspace c^{KV}_ t \right\rangle$$
 
 (here $W^{Q}W^{UK}$ is the part printed in red)
 
 With RoPE -
-$$\langle QR_q,\, R_k K \rangle = \left\langle hW^{Q}R_q,\, R_k W^{UK} c^{KV}_t \right\rangle = \left\langle h\,W^{Q}R_q R_k W^{UK},\, c^{KV}_t \right\rangle$$
+
+$$\langle QR_q,\thinspace R_k K \rangle = \left\langle hW^{Q}R_q,\thinspace R_k W^{UK} c^{KV}_ t \right\rangle = \left\langle h\thinspace W^{Q}R_q R_k W^{UK},\thinspace c^{KV}_ t \right\rangle$$
 
 (here $W^{Q}R_q R_k W^{UK}$ is the part printed in red)
 
@@ -2405,7 +2407,7 @@ along the top; each panel is a dashed blue box.
   **Embedding Layer** → a stack of yellow cards labelled **Transformer Block**
   $\times L$ → a green **Output Head** → a yellow **Cross-Entropy Loss** box, which
   also receives target tokens $t_2, t_3, t_4, t_5$ from above and emits
-  $\mathcal{L}_{Main}$ to the right.
+  $\mathcal{L}_ {Main}$ to the right.
 - *MTP Module 1 (Next² Token Prediction)*: input tokens $t_2, t_3, t_4, t_5$ → green
   **Embedding Layer** → two side-by-side yellow **RMSNorm** boxes whose outputs meet
   at a step annotated "*concatenation*" → a yellow **Linear Projection** → a single
@@ -2448,11 +2450,11 @@ under the target and "Forward 1 / Forward 2 / Forward 3" bands under the draft.
 
 Beneath both figures, the DeepSeek MTP equations:
 
-$$\mathbf{h}'^{k}_i = M_k\left[\mathrm{RMSNorm}(\mathbf{h}^{k-1}_i);\, \mathrm{RMSNorm}(\mathrm{Emb}(t_{i+k}))\right],$$
+$$\mathbf{h}'^{k}_ i = M_k\left[\mathrm{RMSNorm}(\mathbf{h}^{k-1}_ i);\thinspace \mathrm{RMSNorm}(\mathrm{Emb}(t_{i+k}))\right],$$
 
-$$\mathbf{h}^{k}_{1:T-k} = \mathrm{TRM}_k\!\left(\mathbf{h}'^{k}_{1:T-k}\right),$$
+$$\mathbf{h}^{k}_ {1:T-k} = \mathrm{TRM}_ k\negthinspace\left(\mathbf{h}'^{k}_ {1:T-k}\right),$$
 
-$$P^{k}_{i+k+1} = \mathrm{OutHead}\!\left(\mathbf{h}^{k}_i\right).$$
+$$P^{k}_ {i+k+1} = \mathrm{OutHead}\negthinspace\left(\mathbf{h}^{k}_ i\right).$$
 
 ## Slide 60 — MoE summary
 

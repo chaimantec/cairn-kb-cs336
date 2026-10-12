@@ -25,10 +25,10 @@ diminishing returns"; and by about **40 epochs repeating is worthless**.
 The paper also supplies a modified functional form that predicts behaviour under
 repetition — an **effective data** count that saturates ([26:09], slide 24):
 
-$$D' = U_D + U_D R_D^{*}\left(1 - e^{-R_D/R_D^{*}}\right)$$
+$$D' = U_D + U_D R_D^{\ast}\left(1 - e^{-R_D/R_D^{\ast}}\right)$$
 
 where $U_D$ is the number of unique tokens, $R_D$ the number of repetitions and
-$R_D^{*}$ a fitted constant. As $R_D$ grows the exponential term saturates, so $D'$
+$R_D^{\ast}$ a fitted constant. As $R_D$ grows the exponential term saturates, so $D'$
 approaches a ceiling no matter how many more epochs you run — which is the four-to-
 forty story in closed form.
 

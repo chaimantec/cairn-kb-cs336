@@ -11,7 +11,7 @@ it is most of what separates one algorithm from another.
 Everything descends from the REINFORCE gradient. For a policy $p_\theta$ over
 completions $z$ with reward $R(z)$:
 
-$$\nabla_\theta \mathbb{E}_{p_\theta}[R(z)] = \mathbb{E}_{p_\theta}\left[R(z)\,\nabla_\theta \log p_\theta(z)\right]$$
+$$\nabla_\theta \mathbb{E}_ {p_\theta}[R(z)] = \mathbb{E}_ {p_\theta}\left[R(z)\thinspace\nabla_\theta \log p_\theta(z)\right]$$
 
 The lecture's gloss is the one to keep, because it makes the whole family
 intuitive: "What we are always going to be doing is gradient descent on our

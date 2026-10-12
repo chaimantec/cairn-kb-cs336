@@ -16,7 +16,7 @@ there is a broad basin of near-optimal values, everyone has converged on roughly
 same point inside it, and what actually decides the choice is usually a systems
 consideration rather than a modelling one.
 
-## Feedforward ratio: $d_{ff} = 4\,d_{model}$
+## Feedforward ratio: $d_{ff} = 4\thinspace d_{model}$
 
 The width of the feedforward hidden layer relative to the model dimension. Slide 37
 states the rule of thumb in the middle of the slide, in bold:
@@ -25,13 +25,13 @@ states the rule of thumb in the middle of the slide, in bold:
 
 *Slide 37 — Surprising (?) consensus hyperparameter 1. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
-$$d_{ff} = 4\,d_{model}$$
+$$d_{ff} = 4\thinspace d_{model}$$
 
 and calls it "*almost always* true. There's just a few exceptions."
 
 **Exception 1 — gated layers scale down by 2/3.** A GLU has a third matrix, so
 keeping the parameter count fixed means shrinking $d_{ff}$ by $2/3$, giving
-$d_{ff} = \tfrac{8}{3} d_{model} \approx 2.67\,d_{model}$. See
+$d_{ff} = \tfrac{8}{3} d_{model} \approx 2.67\thinspace d_{model}$. See
 [gated activations](gated-activations.md). Slide 38's table shows where models
 actually land:
 
@@ -239,7 +239,7 @@ overfitting."
 
 *Slide 50 — Why weight decay LLMs? [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_03.pdf)*
 
-The middle and right panels show what it *is* doing. Under a 10× cosine
+The middle and right panels show what it *is* doing. Under a $10\times$ cosine
 learning-rate decay, the stronger weight-decay runs start out worse — the blue
 $\lambda = 0.3$ curve is highest for most of the run — and then converge to a
 *lower* final loss (about 3.28 against 3.30 for $\lambda = 0.0$), with the dashed

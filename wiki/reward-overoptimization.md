@@ -33,7 +33,7 @@ rising and then falling, with the gap widening as optimization continues.
 
 ## The KL term is the defence
 
-The $\beta\,\mathbb{D}_{\text{KL}}[\pi_\theta \,\|\, \pi_{\text{ref}}]$ term in the
+The $\beta\thinspace\mathbb{D}_ {\text{KL}}[\pi_\theta \thinspace\Vert\thinspace \pi_{\text{ref}}]$ term in the
 RLHF objective is usually introduced as a stability detail. It is not:
 
 > So the KL regularizer I talked about is really critical, in a lot of cases, to

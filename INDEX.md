@@ -406,7 +406,7 @@ usually the faster route than the lecture pages.
   controlled experiment, and why both of its famous phenomena — growing CoT
   length and the "aha moment" — are overstated.
 - **[Kimi K1.5](wiki/kimi-k1-5.md)** — the same destination by a different
-  derivation, plus length as a cost, best-of-$k$ difficulty filtering, and the
+  derivation, plus length as a cost, $\text{best-of-}k$ difficulty filtering, and the
   RL-infrastructure section.
 - **[Qwen 3](wiki/qwen3.md)** — the consolidated playbook, RL on roughly 4,000
   examples, and thinking-mode fusion (which the field has since partly
@@ -680,7 +680,7 @@ usually the faster route than the lecture pages.
   which application each belongs to, the serving landscape (vLLM, SGLang,
   TensorRT-LLM, llama.cpp), and the three-way split of the techniques.
 - **[KV cache](wiki/kv-cache.md)** — the object everything in this lecture is
-  trying to shrink. Why it exists (naive generation is $O(T^3)$), its exact size
+  trying to shrink. Why it exists (naive generation is ${O(T^3)}$), its exact size
   formula, why one 1024-token request costs 0.84 GB against 26 GB of Llama 2 13B
   weights, and the **four axes** — heads, dimension, layers, sequence — that GQA,
   MLA, CLA and local attention each cut. **Start here if you want the one table
@@ -688,7 +688,7 @@ usually the faster route than the lecture pages.
 - **[Prefill and generation](wiki/prefill-and-generation.md)** — the two phases and
   their opposite bottlenecks, with the full intensity table: prefill is
   compute-bound at $BS$ and $S/2$, generation is memory-bound at $B$ and
-  $S/(S+1) < 1$ against hardware that wants 295. Also why batching rescues the MLP
+  $S/(S+1) \lt 1$ against hardware that wants 295. Also why batching rescues the MLP
   and cannot rescue attention, which is the structural fact the rest follows from.
 - **[Latency and throughput](wiki/latency-and-throughput.md)** — the tradeoff, and
   the symbolic performance model behind it. Llama 2 13B on an H100 at batch 1, 64
@@ -754,8 +754,8 @@ usually the faster route than the lecture pages.
 - **[Critical batch size](wiki/critical-batch-size.md)** — now carrying both
   lectures' treatments. Lecture 8's systems view (batch size as a consumable
   resource that caps data parallelism) plus Lecture 9's optimisation view: the
-  noise-limited and bias-limited regimes, the estimation recipe, $B_{crit} =
-  E_{min}/S_{min}$, and the power law by which it grows as your loss target falls.
+  noise-limited and bias-limited regimes, the estimation recipe,
+  $B_{crit} = E_{min}/S_{min}$, and the power law by which it grows as your loss target falls.
 - **[Learning rate scaling and muP](wiki/learning-rate-scaling-and-mup.md)** — the
   other hyperparameter you cannot inherit. Why the optimum shifts with width, the
   $1/\text{width}$ rule of thumb, and the two competing philosophies: predict where
@@ -934,11 +934,11 @@ usually the faster route than the lecture pages.
   and why "expert" is a misnomer — the routers are a single matrix multiply and there
   is no semantic specialization. Read this first for "what is an MoE and why?"
 - **[MoE routing](wiki/moe-routing.md)** — how tokens get assigned to experts. Token
-  choice versus expert choice, the four routing algorithms (top-$k$, hashing, RL,
-  linear assignment) and why top-$k$ won on cost rather than elegance, the
+  choice versus expert choice, the four routing algorithms ($\text{top-}k$, hashing, RL,
+  linear assignment) and why $\text{top-}k$ won on cost rather than elegance, the
   DeepSeekMoE router as equations, and fine-grained and shared experts — on which
   DeepSeek's and OLMoE's careful ablations *disagree*. Carries the table of what
-  twelve real MoEs use. Read this for "how does top-$k$ routing work?"
+  twelve real MoEs use. Read this for "how does $\text{top-}k$ routing work?"
 - **[Load balancing losses](wiki/load-balancing-losses.md)** — the heuristic that
   makes MoEs trainable at all. Expert collapse as a rich-get-richer dynamic, the
   Switch Transformer auxiliary loss and the trick of reading its *gradient* rather
@@ -965,7 +965,7 @@ usually the faster route than the lecture pages.
   deployed model is a hybrid with periodic full attention, and the state-size
   bottleneck that remains. Read this for "how does Mamba work?"
 - **[Sparse attention](wiki/sparse-attention.md)** — DeepSeek Sparse Attention: a
-  cheap indexer scores every token, top-$k$ survive, full attention runs on those.
+  cheap indexer scores every token, $\text{top-}k$ survive, full attention runs on those.
   Includes the correction the lecture makes explicitly — **this is not linear time**,
   it is quadratic with much better constants — and why it can be bolted on after
   pretraining. Read this for "what is DSA?"

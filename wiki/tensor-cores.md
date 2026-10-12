@@ -37,7 +37,7 @@ multiply" ([24:37]).
 
 *Slide 17 — New matmul hardware means matmuls are fast and special. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
-The size of it: **more than 10× faster than any other floating-point operation you
+The size of it: **more than $10\times$ faster than any other floating-point operation you
 can do on a GPU** ([25:23]).
 
 The chart on slide 17 plots matmul against non-matmul throughput across GPU

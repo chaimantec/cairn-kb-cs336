@@ -33,7 +33,7 @@ shaped by what people bother to write down.
 
 Both CLIP and SigLIP *rank* rather than *generate*. CLIP tested the alternative
 directly — predict the caption from the image — and found it much less
-compute-efficient at equal images processed: 4× worse for a bag-of-words
+compute-efficient at equal images processed: $4\times$ worse for a bag-of-words
 predictor, and worse again for a full Transformer language model.
 
 The explanation is about what each objective forces the model to model. Generating

@@ -5,7 +5,7 @@ it, routing collapses onto a handful of experts and the rest of the model's para
 nothing.
 
 This is the part of lecture 4 Hashimoto finds most surprising, and he says so twice — that
-a non-differentiable top-$k$ selection can be trained "as if you can just pump gradients
+a non-differentiable $\text{top-}k$ selection can be trained "as if you can just pump gradients
 through the system," provided you add this one loss ([1:09:20]).
 
 ## The problem: expert collapse
@@ -40,7 +40,7 @@ $$\mathrm{loss} = \alpha \cdot N \cdot \sum_{i=1}^{N} f_i \cdot P_i$$
 
 where $f_i$ is the **fraction of tokens dispatched** to expert $i$,
 
-$$f_i = \frac{1}{T} \sum_{x \in \mathcal{B}} \mathbb{1}\{\arg\max p(x) = i\}$$
+$$f_i = \frac{1}{T} \sum_{x \in \mathcal{B}} \mathbb{1}\lbrace\arg\max p(x) = i\rbrace$$
 
 and $P_i$ is the **fraction of router probability mass** allocated to expert $i$,
 
@@ -58,7 +58,7 @@ differentiate instead.
 
 $f_i$ involves an $\arg\max$ and passes no gradient. So the derivative with respect to
 the router probability $p_i(x)$ picks up only the $f_i$ factor — slide 40 gives it as
-$\frac{\alpha N}{T^2} \sum \mathbb{1}_{\arg\max p(x) = i}$. The gradient on each expert's
+$\frac{\alpha N}{T^2} \sum \mathbb{1}_ {\arg\max p(x) = i}$. The gradient on each expert's
 probability mass is therefore **proportional to how often that expert was actually
 chosen**:
 
@@ -77,16 +77,16 @@ popularity, which is exactly the counterweight to the rich-get-richer dynamic.
 
 Slide 41. DeepSeek uses the Switch loss essentially unchanged for per-expert balancing:
 
-$$\mathcal{L}_{\mathrm{ExpBal}} = \alpha_1 \sum_{i=1}^{N'} f_i P_i, \qquad f_i = \frac{N'}{K'T} \sum_{t=1}^{T} \mathbb{1}\!\left(\text{token } t \text{ selects expert } i\right), \qquad P_i = \frac{1}{T} \sum_{t=1}^{T} s_{i,t}$$
+$$\mathcal{L}_ {\mathrm{ExpBal}} = \alpha_1 \sum_{i=1}^{N'} f_i P_i, \qquad f_i = \frac{N'}{K'T} \sum_{t=1}^{T} \mathbb{1}\negthinspace\left(\text{token } t \text{ selects expert } i\right), \qquad P_i = \frac{1}{T} \sum_{t=1}^{T} s_{i,t}$$
 
 with $N'$ routed experts, $K'$ selected per token, $T$ tokens, and $s_{i,t}$ the routing
 score.
 
 Then it adds a **second, device-level** version of the same objective:
 
-$$\mathcal{L}_{\mathrm{DevBal}} = \alpha_2 \sum_{i=1}^{D} f'_i P'_i, \qquad f'_i = \frac{1}{|\mathcal{E}_i|} \sum_{j \in \mathcal{E}_i} f_j, \qquad P'_i = \sum_{j \in \mathcal{E}_i} P_j$$
+$$\mathcal{L}_ {\mathrm{DevBal}} = \alpha_2 \sum_{i=1}^{D} f'_ i P'_ i, \qquad f'_ i = \frac{1}{|\mathcal{E}_ i|} \sum_{j \in \mathcal{E}_ i} f_j, \qquad P'_ i = \sum_{j \in \mathcal{E}_ i} P_j$$
 
-where $D$ is the number of devices and $\mathcal{E}_i$ the experts placed on device $i$.
+where $D$ is the number of devices and $\mathcal{E}_ i$ the experts placed on device $i$.
 Structurally identical — "instead of experts, you're just operating on each device's
 fraction" ([1:07:02]) — but aggregated per device.
 
@@ -115,13 +115,13 @@ expert lives on is arbitrary.
 ## DeepSeek V3: per-expert biases
 
 Slide 42. Instead of an auxiliary loss, add a learned bias $b_i$ per expert that shifts
-its position in the top-$k$ competition — but is *not* applied to the gate value:
+its position in the $\text{top-}k$ competition — but is *not* applied to the gate value:
 
 ![Slide 42 — DeepSeek v3 variation – per-expert biases](../raw/images/04-attention-alternatives/slide-42.jpg)
 
 *Slide 42 — DeepSeek v3 variation – per-expert biases. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
-$$g'_{i,t} = \begin{cases} s_{i,t}, & s_{i,t} + b_i \in \mathrm{Topk}\!\left(\{s_{j,t} + b_j \mid 1 \leqslant j \leqslant N_r\},\, K_r\right) \\ 0, & \text{otherwise} \end{cases}$$
+$$g'_ {i,t} = \begin{cases} s_{i,t}, & s_{i,t} + b_i \in \mathrm{Topk}\negthinspace\left(\lbrace s_{j,t} + b_j \mid 1 \leqslant j \leqslant N_r\rbrace,\thinspace K_r\right) \cr 0, & \text{otherwise} \end{cases}$$
 
 The biases are updated online — raised for underused experts, lowered for overused ones.
 Note the asymmetry in the equation: the bias decides *selection*, the raw score $s_{i,t}$
@@ -169,7 +169,7 @@ baselines, and the gradient variance and overhead sink it ([1:00:08]).
 *Slide 37 — RL for MoEs. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_04.pdf)*
 
 **Stochastic perturbation** (slides 38–39). The original Shazeer MoE injects
-input-scaled noise into the router logits before the top-$k$, so near-tied experts get
+input-scaled noise into the router logits before the $\text{top-}k$, so near-tied experts get
 explored:
 
 ![Slide 39 — Stochastic approximations](../raw/images/04-attention-alternatives/slide-39.jpg)
@@ -204,7 +204,7 @@ Hashimoto's own explanation, and the best summary of the topic:
 
 Two opposing forces, roughly cancelling. That is the entire theory.
 
-He expects the pattern to generalize beyond MoEs — the same top-$k$-plus-auxiliary-loss
+He expects the pattern to generalize beyond MoEs — the same $\text{top-}k$-plus-auxiliary-loss
 combination appears in [DSA](sparse-attention.md) and in H-Net's attempt to remove
 tokenizers, and "will be an ingredient of future architecture design" ([1:10:05]).
 

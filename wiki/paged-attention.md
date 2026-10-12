@@ -60,7 +60,7 @@ to compute the KV cache for every request." Since
 [prefill is compute-bound](prefill-and-generation.md), this turns real compute into
 a table lookup.
 
-**Multiple samples from one prompt.** Program synthesis, best-of-$n$, and
+**Multiple samples from one prompt.** Program synthesis, $\text{best-of-}n$, and
 reinforcement-learning rollouts all sample many completions from one prompt. The
 prompt's blocks are shared and only the divergent continuations are private.
 

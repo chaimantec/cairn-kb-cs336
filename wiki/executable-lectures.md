@@ -132,8 +132,8 @@ exists. See [torch.distributed](torch-distributed.md#a-wrinkle-in-reading-the-le
 
 [Lecture 10](10-inference.md) is the executable format at its most unusual: almost
 none of its numbers are runtime measurements, because **it computes symbolically**.
-FLOPs and bytes are accumulated as sympy expressions in $B, S, T, D, F, N, K, H, L,
-V$, simplified, and only then substituted with a Llama 2 13B configuration — so
+FLOPs and bytes are accumulated as sympy expressions in
+$B, S, T, D, F, N, K, H, L, V$, simplified, and only then substituted with a Llama 2 13B configuration — so
 where lecture 6 had to withhold machine-dependent timings and lecture 7 could only
 quote them because the course published a stdout file, lecture 10 has nothing
 machine-dependent to withhold at all. Every `@inspect` value in

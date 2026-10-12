@@ -88,7 +88,7 @@ where efficiency is output over input and resources is the input. Efficiency
 matters *more* as scale grows, not less: at small scale a run that takes twice as
 long just means waiting; at frontier scale it can mean hundreds of millions of
 dollars, and even a 5% improvement is a big deal. He backs this with a 2020 OpenAI
-result showing 44× algorithmic efficiency improvement on ImageNet between 2012 and
+result showing $44\times$ algorithmic efficiency improvement on ImageNet between 2012 and
 2019 — a gain that compounds with hardware improvement rather than competing with
 it. See [efficiency as the organizing principle](efficiency.md).
 

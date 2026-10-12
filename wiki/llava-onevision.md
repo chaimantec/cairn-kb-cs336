@@ -20,7 +20,7 @@ same rough system" (≈36:45).
 ## AnyRes: adaptive resolution
 
 The motivation is OCR, which "needs to preserve very fine-grained information —
-otherwise a 'J' looks like an 'I,' and that's not good." And CLIP's 336×336
+otherwise a 'J' looks like an 'I,' and that's not good." And CLIP's $336\times 336$
 center crop destroys exactly that: "if you have a document and you crop to
 336-by-336, you can't read it" (≈37:32).
 

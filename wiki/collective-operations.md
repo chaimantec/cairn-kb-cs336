@@ -211,7 +211,7 @@ backward you're reduce-scattering" ([1:08:08]).
 Lecture 8 singles out one relation as "very important for one part of the talk"
 ([3:08]) and returns to it repeatedly:
 
-$$\text{all-reduce} \;=\; \text{reduce-scatter} \;+\; \text{all-gather}$$
+$$\text{all-reduce} \mskip{5mu}=\mskip{5mu} \text{reduce-scatter} \mskip{5mu}+\mskip{5mu} \text{all-gather}$$
 
 Slide 8 shows it as two steps, and the consequence is stated plainly: "the fact
 that these two have the same cost, in some sense, means that we can do the

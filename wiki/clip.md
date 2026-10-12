@@ -29,7 +29,7 @@ Take a batch of $N$ image-text pairs (the program says 32,768). Encode each imag
 to a vector $I_i$ and each text to $T_j$. Then require, for every $i$, that the
 aligned pair score higher than every misaligned one — in **both** directions:
 
-$$\mathcal{L} = \tfrac{1}{2}\left[\mathrm{CE}\big(I \cdot T^\top,\, y\big) + \mathrm{CE}\big((I \cdot T^\top)^\top,\, y\big)\right], \qquad y = (1, 2, \dots, N)$$
+$$\mathcal{L} = \tfrac{1}{2}\left[\mathrm{CE}\big(I \cdot T^\top,\thinspace y\big) + \mathrm{CE}\big((I \cdot T^\top)^\top,\thinspace y\big)\right], \qquad y = (1, 2, \dots, N)$$
 
 where $I$ and $T$ are the $\ell_2$-normalized embedding matrices and the logits
 are scaled by a learned temperature. "You can imagine there's basically two times
@@ -59,7 +59,7 @@ that they don't like things to be dynamic; they want things to be fixed size"
 (≈9:27). CLIP therefore:
 
 1. resizes so the **short side is 336** px (bicubic), then
-2. **center-crops** to 336×336, cutting the borders off.
+2. **center-crops** to $336\times 336$, cutting the borders off.
 
 The lecturer flags this as expedient at the time it is introduced, and excuses it
 by the target task: "the CLIP authors were thinking about ImageNet and
@@ -68,14 +68,14 @@ off some background, so it doesn't matter too much" (≈10:12).
 
 **It matters enormously for anything else.** This single decision is why
 [AnyRes](image-resolution-and-tokens.md) and Qwen2-VL's dynamic resolution exist.
-A document cropped to 336×336 cannot be read.
+A document cropped to $336\times 336$ cannot be read.
 
 ## Architecture
 
 **Vision:** ResNet-50 and ViTs were both tried; ViTs won, so "when people say
 CLIP, they usually mean the ViT version" (≈12:30). The best model is
-**ViT-L/14@336px** — Large, 14×14 pixel patches, trained at 336×336. At that
-resolution a 14-pixel patch tiles the image 24×24, giving 576 patches, a number
+**ViT-L/14@336px** — Large, $14\times 14$ pixel patches, trained at $336\times 336$. At that
+resolution a 14-pixel patch tiles the image $24\times 24$, giving 576 patches, a number
 that recurs as a token count throughout the lecture.
 
 Instead of averaging the patch vectors, CLIP uses **attention pooling**: run
@@ -110,8 +110,8 @@ Zero-shot classification works by embedding each candidate label in a template �
 CLIP also tried the obvious alternative: predict the caption from the image, as a
 bag of words or with a language model. Both are **much less compute-efficient**
 than ranking — contrastive CLIP reaches ~16% zero-shot accuracy at 33M images
-where bag-of-words prediction needs 134M (4×) and a full Transformer LM needs 400M
-(3× beyond that).
+where bag-of-words prediction needs 134M ($4\times$) and a full Transformer LM needs 400M
+($3\times$ beyond that).
 
 The reading matters: "actually modeling the exact token sequences of the caption
 isn't so important for getting a rough representation of the image" (≈21:12).

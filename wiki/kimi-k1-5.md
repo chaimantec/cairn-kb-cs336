@@ -16,7 +16,7 @@ disagreement is what tells you which components are essential:
 Kimi does not start from [PPO](ppo.md). It starts where everyone starts — maximize
 expected reward with a KL regularizer to the reference policy:
 
-$$\max_{\theta} \mathbb{E}_{(x,y^*)\sim \mathcal{D}} \Big[ \mathbb{E}_{(y,z)\sim \pi_\theta} \left[ r(x,y,y^*) \right] - \tau\, \mathrm{KL}\!\left(\pi_\theta(x) \,\|\, \pi_{\theta_i}(x)\right) \Big]$$
+$$\max_{\theta} \mathbb{E}_ {(x,y^{\ast})\sim \mathcal{D}} \Big[ \mathbb{E}_ {(y,z)\sim \pi_\theta} \left[ r(x,y,y^{\ast}) \right] - \tau\thinspace \mathrm{KL}\negthinspace\left(\pi_\theta(x) \thinspace\Vert\thinspace \pi_{\theta_i}(x)\right) \Big]$$
 
 — and then follows a [DPO](dpo.md)-style route: assume the objective can be
 maximized analytically, solve for the reward that corresponds to that maximizer,
@@ -69,7 +69,7 @@ The methods:
 
 - **Broad domain coverage**, excluding multiple choice on the grounds that it
   does not require long, deep thought.
-- **Best-of-$k$ filtering.** If the model already solves a problem within eight
+- **$\text{Best-of-}k$ filtering.** If the model already solves a problem within eight
   samples, it teaches little; filtering on both sides keeps problems that are
   neither too easy nor too hard. "I think the general consensus in the research
   community is that doing this kind of medium-range difficulty filtering is very

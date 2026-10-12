@@ -59,7 +59,7 @@ row-major matrices, threads reading **along** the major axis are *not* coalesced
 
 *Slide 39 — Coalescing for matrix multiplication. [Deck](https://github.com/stanford-cs336/lectures/blob/main/lecture_05.pdf)*
 
-Hashimoto's mnemonic, with the 4×4 example at [56:05]–[56:51]. The matrix is stored
+Hashimoto's mnemonic, with the $4\times 4$ example at [56:05]–[56:51]. The matrix is stored
 row-major, so consecutive memory addresses run along each row. Now have the threads
 read a *column* — one element from each row:
 

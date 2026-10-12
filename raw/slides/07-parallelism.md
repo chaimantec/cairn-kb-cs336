@@ -1079,7 +1079,7 @@ torch.random.manual_seed(0)  # For reproducibility
 return nn.Parameter(torch.randn(num_inputs, num_outputs, device=cuda_if_available(rank)) / math.sqrt(num_outputs))
 ```
 
-The $1/\sqrt{\text{num\_outputs}}$ scaling is the standard initialization from
+The $1/\sqrt{\verb|num_outputs|}$ scaling is the standard initialization from
 Lecture 2's discussion of variance; the shared seed is what makes all ranks start
 identically in data parallelism.
 

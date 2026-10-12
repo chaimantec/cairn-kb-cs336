@@ -18,13 +18,13 @@ V3.2 and adopted by GLM-5 (slides 12–13).
 ## The mechanism
 
 Two components. A **lightning indexer** scores every preceding token against the current
-query, and a **fine-grained token selection** step keeps only the top-$k$ of them for
+query, and a **fine-grained token selection** step keeps only the $\text{top-}k$ of them for
 the real attention computation.
 
-The indexer score between query token $\mathbf{h}_t$ and preceding token
-$\mathbf{h}_s$:
+The indexer score between query token $\mathbf{h}_ t$ and preceding token
+$\mathbf{h}_ s$:
 
-$$I_{t,s} = \sum_{j=1}^{H^I} w^I_{t,j} \cdot \mathrm{ReLU}\!\left(\mathbf{q}^I_{t,j} \cdot \mathbf{k}^I_s\right)$$
+$$I_{t,s} = \sum_{j=1}^{H^I} w^I_{t,j} \cdot \mathrm{ReLU}\negthinspace\left(\mathbf{q}^I_{t,j} \cdot \mathbf{k}^I_s\right)$$
 
 $H^I$ is the number of indexer heads, $\mathbf{q}^I_{t,j}$ and the scalar weight
 $w^I_{t,j}$ come from the query token, and $\mathbf{k}^I_s$ from the preceding token.
@@ -32,7 +32,7 @@ The paper's stated reason for ReLU rather than a softmax is throughput.
 
 Then attention runs over the surviving entries only:
 
-$$\mathbf{u}_t = \mathrm{Attn}\!\left(\mathbf{h}_t, \left\{\mathbf{c}_s \mid I_{t,s} \in \text{Top-}k\left(I_{t,:}\right)\right\}\right)$$
+$$\mathbf{u}_ t = \mathrm{Attn}\negthinspace\left(\mathbf{h}_ t, \left\lbrace\mathbf{c}_ s \mid I_{t,s} \in \text{Top-}k\left(I_{t,:}\right)\right\rbrace\right)$$
 
 Hashimoto's plain-language version: "you have your normal Qs and Ks, but then you pass
 this through the indexer… take the QK inner products, take a ReLU, and then it has these
@@ -114,7 +114,7 @@ over whatever it selects.
 
 ## The connection to mixture of experts
 
-The lecture plants this deliberately. The top-$k$ selection here is the same
+The lecture plants this deliberately. The $\text{top-}k$ selection here is the same
 non-differentiable primitive that MoE routing uses, and Hashimoto flags it twice — "it
 turns out that this idea of top-k selection is going to be core to the next part of this
 lecture" ([26:58]) and, on returning to it, that the same trick appears in DSA and in
@@ -158,7 +158,7 @@ the four axes in that page's table, applied to the sequence dimension.
 
 - [Linear attention](linear-attention.md) and [state space models](state-space-models.md)
   — the other half of the lecture's answer to context cost.
-- [MoE routing](moe-routing.md) — the same top-$k$ primitive, used to pick experts.
+- [MoE routing](moe-routing.md) — the same $\text{top-}k$ primitive, used to pick experts.
 - [Attention variants](attention-variants.md) — sliding-window and fixed-pattern sparsity
   from lecture 3, which is sparsity with a *static* pattern rather than a learned one.
 - [Lecture 4](04-attention-alternatives.md).

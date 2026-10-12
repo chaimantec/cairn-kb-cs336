@@ -39,7 +39,7 @@ hundreds of millions of dollars — so, as he puts it, even a **5% improvement m
 be a big deal**. The tolerance for waste falls as the bill rises.
 
 He backs this empirically with a
-[2020 OpenAI result](https://arxiv.org/abs/2005.04305): a **44× improvement in
+[2020 OpenAI result](https://arxiv.org/abs/2005.04305): a **$44\times$ improvement in
 algorithmic efficiency** on ImageNet between 2012 and 2019. Hardware also improved
 enormously over that period — the point is that the two multiply. Algorithmic
 efficiency and hardware improvement are not competing explanations for progress;
@@ -109,7 +109,7 @@ made. The concrete tools are:
 
 - [FLOPs and MFU](flops-and-mfu.md) — counting compute, and measuring what
   fraction of the hardware you are actually using
-- [Training FLOPs, $C = 6ND$](training-flops.md) — the whole cost of a training run
+- [Training FLOPs](training-flops.md), $C = 6ND$ — the whole cost of a training run
   in one formula
 - [Memory accounting](memory-accounting-for-training.md) — what fits, in bytes per
   parameter
@@ -154,7 +154,7 @@ is where the two are in tension.
 That lecture is also where the architecture row of the table above gets its
 justification. "A lot are driven by inference speed" is stated here as an aside; in
 lecture 10 it is the whole hour, with the shared KV caches and sliding windows in
-that row shown to be worth 2.4× in latency and 4.9× in throughput on a real model
+that row shown to be worth $2.4\times$ in latency and $4.9\times$ in throughput on a real model
 configuration.
 
 ## The honest caveat

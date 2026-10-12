@@ -18,10 +18,10 @@ aside the dynamics are dominated by $A^t$ (≈49:24):
 
 Then the behaviour of $A^t$ as $t$ grows is decided by $\rho(A)$:
 
-- $\rho(A) < 1$ — the repeated term decays toward zero. **Stable.**
+- $\rho(A) \lt 1$ — the repeated term decays toward zero. **Stable.**
 - $\rho(A) = 1$ — neither decays nor grows. **Marginally stable**, and fragile:
   nothing stops training from nudging it either way.
-- $\rho(A) > 1$ — the repeated term grows geometrically. **Unstable.**
+- $\rho(A) \gt 1$ — the repeated term grows geometrically. **Unstable.**
 
 The lecture's gloss is deliberately informal — "spectral radius is basically
 another word for norm" (≈50:11) — and its intuition is scalar:

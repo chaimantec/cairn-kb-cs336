@@ -11,7 +11,7 @@ transfer a lot more data".
 
 ## The mechanism
 
-Same setup: 128 × 1024 data, four layers, world size 4 ([1:03:31]).
+Same setup: $128\times 1024$ data, four layers, world size 4 ([1:03:31]).
 
 **1. Every rank gets all the data.** No slicing.
 
@@ -113,7 +113,7 @@ the MLP down-projections and the attention outputs. Small layers (LayerNorm,
 the nonlinearity, [MoE routers](moe-routing.md)) stay **fully replicated**, because
 "you don't really want to bother with the overhead of cutting those" ([42:05]).
 
-**The $f$/$g$ duality**, on slide 40 ([40:34]): in the forward pass $f$ is the
+**The $f/g$ duality**, on slide 40 ([40:34]): in the forward pass $f$ is the
 identity (just copy $X$ to both ranks) and $g$ is an all-reduce; in the backward
 pass they swap — $g$ becomes the identity and $f$ becomes the sum of partials.
 This is the same forward/backward collective swap that appears in

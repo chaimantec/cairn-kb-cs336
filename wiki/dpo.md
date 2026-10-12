@@ -39,7 +39,7 @@ explicitly so you don't rediscover them (≈1:09:24):
 
 Three moves. Start from the KL-regularized RLHF objective:
 
-$$\max_{\pi_\theta} \mathbb{E}_{x\sim\mathcal{D},\, y\sim\pi_\theta(y|x)}\left[r_\phi(x,y)\right] - \beta\, \mathbb{D}_{\text{KL}}\left[\pi_\theta(y \mid x) \,\|\, \pi_{\text{ref}}(y \mid x)\right]$$
+$$\max_{\pi_\theta} \mathbb{E}_ {x\sim\mathcal{D},\thinspace y\sim\pi_\theta(y|x)}\left[r_\phi(x,y)\right] - \beta\thinspace \mathbb{D}_ {\text{KL}}\left[\pi_\theta(y \mid x) \thinspace\Vert\thinspace \pi_{\text{ref}}(y \mid x)\right]$$
 
 **1. Assume the policy is nonparametric.** This is the one strong assumption, and
 the lecture flags it as such: assume $\pi$ is "not a neural network at all — it's
@@ -49,7 +49,7 @@ anything" (≈1:11:43).
 **2. Solve in closed form.** With that assumption the maximizer is the reference
 policy exponentially tilted by reward:
 
-$$\pi_r(y \mid x) = \frac{1}{Z(x)}\,\pi_{\text{ref}}(y \mid x)\exp\left(\frac{1}{\beta}r(x,y)\right)$$
+$$\pi_r(y \mid x) = \frac{1}{Z(x)}\thinspace\pi_{\text{ref}}(y \mid x)\exp\left(\frac{1}{\beta}r(x,y)\right)$$
 
 which the lecture reads out in words: "every response gets upweighted or
 downweighted with a weight of exp(1/β · r), based on how good the
@@ -65,7 +65,7 @@ been trained with. The partition function $\beta\log Z(x)$ is intractable — an
 it cancels, because the preference loss only ever sees reward *differences* for
 the same prompt. What survives is the DPO objective:
 
-$$\mathcal{L}_{\text{DPO}}(\pi_\theta; \pi_{\text{ref}}) = -\mathbb{E}_{(x,y_w,y_l)\sim\mathcal{D}}\left[\log \sigma\left(\beta \log \frac{\pi_\theta(y_w \mid x)}{\pi_{\text{ref}}(y_w \mid x)} - \beta \log \frac{\pi_\theta(y_l \mid x)}{\pi_{\text{ref}}(y_l \mid x)}\right)\right]$$
+$$\mathcal{L}_ {\text{DPO}}(\pi_\theta; \pi_{\text{ref}}) = -\mathbb{E}_ {(x,y_w,y_l)\sim\mathcal{D}}\left[\log \sigma\left(\beta \log \frac{\pi_\theta(y_w \mid x)}{\pi_{\text{ref}}(y_w \mid x)} - \beta \log \frac{\pi_\theta(y_l \mid x)}{\pi_{\text{ref}}(y_l \mid x)}\right)\right]$$
 
 where $y_w$ is the preferred ("winning") response and $y_l$ the dispreferred one,
 $\pi_{\text{ref}}$ is the frozen SFT policy, and $\beta$ controls how far the
@@ -76,13 +76,13 @@ policy may drift from it.
 The lecturer calls this "the most intuitive form of DPO, at least to me"
 (≈1:13:17). Slide 58 reproduces the DPO paper's annotated gradient:
 
-$$\nabla_\theta \mathcal{L}_{\text{DPO}}(\pi_\theta; \pi_{\text{ref}}) = -\beta\, \mathbb{E}_{(x,y_w,y_l)\sim\mathcal{D}}\Big[\sigma\big(\hat{r}_\theta(x,y_l) - \hat{r}_\theta(x,y_w)\big)\big[\nabla_\theta \log \pi(y_w \mid x) - \nabla_\theta \log \pi(y_l \mid x)\big]\Big]$$
+$$\nabla_\theta \mathcal{L}_ {\text{DPO}}(\pi_\theta; \pi_{\text{ref}}) = -\beta\thinspace \mathbb{E}_ {(x,y_w,y_l)\sim\mathcal{D}}\Big[\sigma\big(\hat{r}_ \theta(x,y_l) - \hat{r}_ \theta(x,y_w)\big)\big[\nabla_\theta \log \pi(y_w \mid x) - \nabla_\theta \log \pi(y_l \mid x)\big]\Big]$$
 
 The paper's own underbrace annotations name the three pieces:
 
 - $\nabla_\theta \log \pi(y_w \mid x)$ — **increase the likelihood of the winner**
 - $-\nabla_\theta \log \pi(y_l \mid x)$ — **decrease the likelihood of the loser**
-- $\sigma(\hat{r}_\theta(x,y_l) - \hat{r}_\theta(x,y_w))$ — **higher weight when
+- $\sigma(\hat{r}_ \theta(x,y_l) - \hat{r}_ \theta(x,y_w))$ — **higher weight when
   the reward estimate is wrong**
 
 That last factor is the adaptive step size, and it is what distinguishes DPO from
@@ -108,12 +108,12 @@ when we get into something like expert iteration" (≈35:26).
 *SimPO* drops the reference policy entirely and normalizes by length, adding a
 margin $\gamma$:
 
-$$\mathcal{L}_{\text{SimPO}}(\pi_\theta) = -\mathbb{E}\left[\log\sigma\left(\frac{\beta}{|y_w|}\log\pi_\theta(y_w \mid x) - \frac{\beta}{|y_l|}\log\pi_\theta(y_l \mid x) - \gamma\right)\right]$$
+$$\mathcal{L}_ {\text{SimPO}}(\pi_\theta) = -\mathbb{E}\left[\log\sigma\left(\frac{\beta}{|y_w|}\log\pi_\theta(y_w \mid x) - \frac{\beta}{|y_l|}\log\pi_\theta(y_l \mid x) - \gamma\right)\right]$$
 
 *Length-normalized DPO* keeps the reference log-ratio but divides each side by
 response length, to blunt length-hacking:
 
-$$\max_{\pi_\theta}\mathbb{E}_{y_c,y_r\sim\mathcal{D}}\left[\log\sigma\left(\frac{\beta}{|y_c|}\log\frac{\pi_\theta(y_c|x)}{\pi_{\text{ref}}(y_c|x)} - \frac{\beta}{|y_r|}\log\frac{\pi_\theta(y_r|x)}{\pi_{\text{ref}}(y_r|x)}\right)\right]$$
+$$\max_{\pi_\theta}\mathbb{E}_ {y_c,y_r\sim\mathcal{D}}\left[\log\sigma\left(\frac{\beta}{|y_c|}\log\frac{\pi_\theta(y_c|x)}{\pi_{\text{ref}}(y_c|x)} - \frac{\beta}{|y_r|}\log\frac{\pi_\theta(y_r|x)}{\pi_{\text{ref}}(y_r|x)}\right)\right]$$
 
 The lecturer's verdict: "there have been a lot of different variants of DPO...
 But really, none of these variants seem to matter very much" (≈1:14:49). What
@@ -123,7 +123,7 @@ implied reward model's error — "as long as you set the step sizes right"
 
 *(The transcript marks one phrase here as unclear: the lecturer's spoken
 description of SimPO's normalizer. Slide 60 settles it — SimPO replaces the
-reference log-ratio with a $\beta/|y|$ length-normalized log-probability.)*
+reference log-ratio with a* $\beta/|y|$ *length-normalized log-probability.)*
 
 ## DPO versus PPO
 

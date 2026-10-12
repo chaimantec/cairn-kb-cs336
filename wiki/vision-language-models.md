@@ -32,7 +32,7 @@ stitch it together, rather than training something from scratch" (≈29:01).
 | [LLaVA](llava.md) (2023) | CLIP ViT-L/14 | **linear** matrix $W$ | Vicuna |
 | [LLaVA-OneVision](llava-onevision.md) (2024) | SigLIP | **2-layer MLP** | Qwen-2 72B |
 | [Qwen-VL](qwen-vl-series.md) (2023) | OpenCLIP ViT-bigC | **1-layer cross-attention**, fixed 256 tokens | Qwen |
-| [Qwen2-VL](qwen-vl-series.md) (2024) | 675M ViT, dynamic res. | 2×2 patch merge | Qwen2 |
+| [Qwen2-VL](qwen-vl-series.md) (2024) | 675M ViT, dynamic res. | $2\times 2$ patch merge | Qwen2 |
 | [Qwen3-VL](qwen-vl-series.md) (2025) | SigLIP-2 | **DeepStack** — injects into many layers | Qwen3 (dense + MoE) |
 
 Read down the projector column and you have the entire architectural story of the

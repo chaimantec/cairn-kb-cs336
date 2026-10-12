@@ -45,7 +45,7 @@ own numbering note.
 | bare "zero" referring to the technique, e.g. "the different zero stages" (24:34), "zero bubble pipelining" is a separate, unrelated term and was **not** touched — see below | "ZeRO" | **Deck** — slides 18, 21, 27, 28. |
 | "zero stage two lets you cut up the parameter memory" (29:53) | **left as spoken**, with an `[Ed:]` note | **Deck** — slide 30 prints "Zero stages 1 and 2 don't let you scale memory" above "Zero stage 3 is nice in principle, but *does not reduce activation memory*", so stage 3 is meant. NOT rewritten: "two" and "three" are not acoustically confusable, so this is the speaker misspeaking while reading his own slide, not a caption error, and the body records what was said. |
 | "pipeline parallel or zero three" (1:06:37) | "pipeline-parallel, or use ZeRO-3" | **Deck** — slides 30 and 60 both write "ZeRO-3" (hyphenated, no "stage") in exactly this contracted form. |
-| "GELU" (39:49, x2) | "GeLU" | **Deck** — slide 40: "$Y=\text{GeLU}(XA)$." |
+| "GELU" (39:49, x2) | "GeLU" | **Deck** — slide 40: $Y=\text{GeLU}(XA)$. |
 | "MOE" / "MOEs" (throughout) | "MoE" / "MoEs" | **Deck** — slides 50, 51, 53 consistently use this casing. |
 | "Olmo" (1:12:44) | "OLMo" | **Deck** — slide 63: "OLMo-1B and -7B models," "OLMo-65B model." |
 | "Deep Seek" (two words, 55:50 x2, 57:23) | "DeepSeek" | **Deck** — slides 64, 69, 71, 72 all write it as one word; also **captions** — this transcript itself already spells it correctly, one word, at 1:12:44, 1:13:31 (x2), 1:17:23 (x2), 1:18:09. |
@@ -102,7 +102,7 @@ plainly, as instructed):
   it changes a stated digit.
 - *At 52:01*, the floor question "The 24 over key" — "key" does not clearly
   parse; it may be intended as "h" (the hidden-dimension symbol used in the
-  activation-memory formula on slide 47's "$24/t$" term), but this is not
+  activation-memory formula on slide 47's $24/t$ term), but this is not
   confirmable.
 - *At 1:17:23*, restoring "8x24 22B" to "8x22B" (see the restoration table
   above) is flagged inline as well, since it changes stated digits.

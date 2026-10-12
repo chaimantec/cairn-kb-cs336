@@ -29,7 +29,7 @@ The corresponding rule of thumb is to scale the learning rate by
 $1/\text{width}$ ([49:08]) — decrease it regularly as width grows.
 
 Slide 40's left panel shows the problem it solves. Under **standard practice**,
-each model width has its own loss-versus-$\log_2(\text{LR})$ curve, each descends
+each model width has its own $\text{loss-versus-}\log_2(\text{LR})$ curve, each descends
 to its own minimum and then blows up almost vertically past it, and — the point —
 **the minima are staggered**: the widest model's optimum sits furthest left, around
 $\log_2(\text{LR}) \approx -15$, with narrower models' optima progressively further

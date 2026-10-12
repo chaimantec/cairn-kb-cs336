@@ -10,7 +10,7 @@ The whole sequence is driven by one task: **OCR**. Reading text in a picture
 
 ## 1. Fixed square crop — [CLIP](clip.md)
 
-Resize so the short side is 336 px, then center-crop to 336×336. Chosen because
+Resize so the short side is 336 px, then center-crop to $336\times 336$. Chosen because
 "neural nets… don't like things to be dynamic; they want things to be fixed size"
 (≈9:27), and excused because CLIP targeted classification, where "usually the
 object is in the middle, and you're just trimming off some background" (≈10:12).
@@ -65,8 +65,8 @@ The token count becomes a function of the input's actual size: "this picture her
 might be mapped to 11,000 tokens. This tiny picture of an equation might only be
 mapped to eight tokens" (≈49:16).
 
-Each 224×224 region is encoded with a ViT/14 and every **2×2** block of adjacent
-patches is merged into one token — a 4× reduction in sequence length before the
+Each $224\times 224$ region is encoded with a ViT/14 and every **$2\times 2$** block of adjacent
+patches is merged into one token — a $4\times$ reduction in sequence length before the
 language model sees anything.
 
 This is the end state of the sequence: an image costs what it is worth, and

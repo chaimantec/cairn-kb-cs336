@@ -171,8 +171,8 @@ pass, sets the ceiling. Two of them are inferences that a later audit should set
   Law" line is Kaplan et al.'s $\eta = 0.003239 - 0.0001395\ln N$, which at $N=2.155\times10^9$
   gives $2.41\times10^{-4}$; its measured position reads $2.404\times10^{-4}$ if the tick is
   $10^{-3}$ — agreement to 0.3% — and $2.4\times10^{-5}$ if it were $10^{-4}$, off by exactly
-  the factor in question. (2) DeepSeek's own published laws $\eta=0.3118\,C^{-0.1250}$ and
-  $B=0.2920\,C^{0.3271}$ predict 1.15e-3 / 6.74e5 and 1.05e-3 / 8.58e5 for the left and
+  the factor in question. (2) DeepSeek's own published laws $\eta=0.3118\thinspace C^{-0.1250}$ and
+  $B=0.2920\thinspace C^{0.3271}$ predict 1.15e-3 / 6.74e5 and 1.05e-3 / 8.58e5 for the left and
   middle panels against measured 1.13e-3 / 6.9e5 and 1.04e-3 / 8.6e5 — and because the batch
   axis is independently labelled, this pins both axes jointly. (3) Slide 36 carries the same
   figure family at a resolution where the $10^{-3}$ tick is unambiguous. All 30 marker values
@@ -258,8 +258,8 @@ silently corrected. They are recorded here so a later reader does not "fix" them
   tokens. Its shape is consistent with an 80N cosine cycle followed by continued training
   at the 10%-of-peak learning-rate floor, the same floor measured on slides 13 and 14.
 - **Slides 48 and 49** — notational drift within the derivation: slide 48 writes
-  $\Delta W_l h_{l-1} = \|\Delta W_l\|_* \sqrt{n_{l-1}}$ with no norm bars on the left,
-  though the line above introduces the quantity as $\|\Delta W_l h_{l-1}\|_2$; and slide 49
+  $\Delta W_l h_{l-1} = \Vert\Delta W_l\Vert_{\ast} \sqrt{n_{l-1}}$ with no norm bars on the left,
+  though the line above introduces the quantity as $\Vert\Delta W_l h_{l-1}\Vert_2$; and slide 49
   writes $\eta$ with no layer subscript in the SGD line but $\eta_l$ two lines later.
 - **Slide 3** — the pasted MiniCPM author list contains a doubled comma
   ("Jie Cai^2, , Zhongwu Zhai^2").
@@ -317,10 +317,10 @@ Body text, at the left of the lower half: "What about more recently?"
 
 - **Top, centre — the 2022 reference.** DeepMind logo (blue swirl + "DeepMind"), horizontal rule, then the title "**Training Compute-Optimal Large Language Models**". Author list: "Jordan Hoffmann\*, Sebastian Borgeaud\*, Arthur Mensch\*, Elena Buchatskaya, Trevor Cai, Eliza Rutherford, Diego de Las Casas, Lisa Anne Hendricks, Johannes Welbl, Aidan Clark, Tom Hennigan, Eric Noland, Katie Millican, George van den Driessche, Bogdan Damoc, Aurelia Guy, Simon Osindero, Karen Simonyan, Erich Elsen, Jack W. Rae, Oriol Vinyals and Laurent Sifre\*", with the footnote "\*Equal contributions". The year "2022" for this one is in the slide's own body line above it, not typed beside the image.
 - **Middle row, left — "2024".** deepseek logo (blue whale + "deepseek"), horizontal rule, then "**DeepSeek LLM** / **Scaling Open-Source Language Models with Longtermism**".
-- **Middle row, centre — "2024".** "**MiniCPM: Unveiling the Potential of Small Language Models with Scalable Training Strategies**". Author list: "Shengding Hu$^1$, Yuge Tu$^2$, Xu Han$^1$; Chaoqun He$^1$, Ganqu Cui$^1$, Xiang Long$^2$, Zhi Zheng$^2$, Yewei Fang$^2$, Yuxiang Huang$^1$, Weilin Zhao$^1$, Xinrong Zhang$^1$, Zheng Leng Thai$^1$, Kaihuo Zhang$^2$, Chongyi Wang$^2$, Yuan Yao$^1$, Chenyang Zhao$^1$, Jie Zhou$^2$, Jie Cai$^2$, , Zhongwu Zhai$^2$, Ning Ding$^1$, Chao Jia$^2$, Guoyang Zeng$^2$, Dahai Li$^2$, Zhiyuan Liu$^{1*}$, Maosong Sun$^1$" (the doubled comma after "Jie Cai$^2$" is as printed). Affiliations: "$^1$Department of Computer Science and Technology, Tsinghua University." and "$^2$Modelbest Inc."; contact "shengdinghu@gmail.com".
-- **Middle row, right — "2024".** A grey rounded panel with the Meta logo ("∞ Meta"), the title "**The Llama 3 Herd of Models**", byline "Llama Team, AI @ Meta$^1$", and the footnote "$^1$A detailed contributor list can be found in the appendix of this paper."
+- **Middle row, centre — "2024".** "**MiniCPM: Unveiling the Potential of Small Language Models with Scalable Training Strategies**". Author list: "Shengding Hu¹, Yuge Tu², Xu Han¹; Chaoqun He¹, Ganqu Cui¹, Xiang Long², Zhi Zheng², Yewei Fang², Yuxiang Huang¹, Weilin Zhao¹, Xinrong Zhang¹, Zheng Leng Thai¹, Kaihuo Zhang², Chongyi Wang², Yuan Yao¹, Chenyang Zhao¹, Jie Zhou², Jie Cai², , Zhongwu Zhai², Ning Ding¹, Chao Jia², Guoyang Zeng², Dahai Li², Zhiyuan Liu¹\*, Maosong Sun¹" (the doubled comma after "Jie Cai²" is as printed). Affiliations: "¹Department of Computer Science and Technology, Tsinghua University." and "²Modelbest Inc."; contact "shengdinghu@gmail.com".
+- **Middle row, right — "2024".** A grey rounded panel with the Meta logo ("∞ Meta"), the title "**The Llama 3 Herd of Models**", byline "Llama Team, AI @ Meta¹", and the footnote "¹A detailed contributor list can be found in the appendix of this paper."
 - **Bottom row, left — "2024".** Thick rule, then "**Hunyuan-Large: An Open-Source MoE Model with 52 Billion Activated Parameters by Tencent**", rule, then the byline "Tencent Hunyuan Team".
-- **Bottom row, centre — "2025".** MINIMAX logo (pink waveform mark + "MINIMAX"), horizontal rule, then "**MiniMax-01: Scaling Foundation Models with Lightning Attention**", byline "MiniMax$^1$".
+- **Bottom row, centre — "2025".** MINIMAX logo (pink waveform mark + "MINIMAX"), horizontal rule, then "**MiniMax-01: Scaling Foundation Models with Lightning Attention**", byline "MiniMax¹".
 - **Bottom row, right — "2026".** Rule, then a small Kimi "K" icon and the small-caps title "**Kimi K2: Open Agentic Intelligence**", rule, then "Technical Report of Kimi K2" and the byline "Kimi Team".
 
 No chart or table on this page — all six pasted rasters are paper title blocks, not figures.
@@ -339,13 +339,13 @@ Two pasted raster images sit on this page: an upper one holding two panels side 
 
 Seven series — exactly the seven entries of the legend (a boxed legend at the lower right of this panel, whose swatches were masked out before the markers were traced): N=59M (blue), N=119M (orange), N=214M (green), N=268M (red), N=429M (purple), N=536M (brown), N=1B (pink). Each series is drawn as filled circular markers plus a dashed straight fit line of the same colour and a translucent band of the same colour around that line. Marker positions, recovered by classifying pixels against the legend swatch RGB and calibrating against the detected ticks:
 
-- **N=59M (blue)** — 3 markers: $(2.0\times10^9,\,3.3\times10^{-3})$, $(4.0\times10^9,\,3.9\times10^{-3})$, $(8.0\times10^9,\,4.2\times10^{-3})$. Highest series on the plot; its band and dashed line sit above all others and stop at about $D=8\times10^9$.
-- **N=119M (orange)** — 2 markers: $(2.0\times10^9,\,2.0\times10^{-3})$, $(8.0\times10^9,\,3.9\times10^{-3})$. Second-highest band, also ending at about $8\times10^9$.
-- **N=214M (green)** — 5 markers: $(2.0\times10^9,\,1.6\times10^{-3})$, $(4.0\times10^9,\,2.3\times10^{-3})$, $(1.1\times10^{10},\,3.3\times10^{-3})$, $(2.0\times10^{10},\,3.9\times10^{-3})$, $(1.0\times10^{11},\,4.1\times10^{-3})$.
-- **N=268M (red)** — 7 markers: $(2.0\times10^9,\,1.4\times10^{-3})$, $(5.0\times10^9,\,2.3\times10^{-3})$, $(8.0\times10^9,\,2.8\times10^{-3})$, $(2.0\times10^{10},\,3.4\times10^{-3})$, $(2.5\times10^{10},\,3.6\times10^{-3})$, $(8.0\times10^{10},\,3.9\times10^{-3})$, $(1.0\times10^{11},\,4.3\times10^{-3})$.
-- **N=429M (purple)** — 8 markers: $(2.0\times10^9,\,7.5\times10^{-4})$, $(4.0\times10^9,\,9.8\times10^{-4})$, $(8.0\times10^9,\,1.3\times10^{-3})$, $(2.0\times10^{10},\,2.1\times10^{-3})$, $(2.3\times10^{10},\,2.0\times10^{-3})$, $(4.0\times10^{10},\,2.3\times10^{-3})$, $(5.0\times10^{10},\,2.8\times10^{-3})$, $(1.0\times10^{11},\,2.5\times10^{-3})$.
-- **N=536M (brown)** — 6 markers: $(2.0\times10^9,\,5.6\times10^{-4})$, $(8.0\times10^9,\,1.2\times10^{-3})$, $(1.0\times10^{10},\,1.4\times10^{-3})$, $(2.0\times10^{10},\,1.5\times10^{-3})$, $(2.8\times10^{10},\,2.0\times10^{-3})$, $(5.0\times10^{10},\,2.0\times10^{-3})$.
-- **N=1B (pink)** — 4 markers: $(2.0\times10^9,\,4.4\times10^{-4})$, $(4.0\times10^9,\,5.8\times10^{-4})$, $(8.0\times10^9,\,6.9\times10^{-4})$, $(2.0\times10^{10},\,1.0\times10^{-3})$. Lowest series on the plot.
+- **N=59M (blue)** — 3 markers: $(2.0\times10^9,\thinspace3.3\times10^{-3})$, $(4.0\times10^9,\thinspace3.9\times10^{-3})$, $(8.0\times10^9,\thinspace4.2\times10^{-3})$. Highest series on the plot; its band and dashed line sit above all others and stop at about $D=8\times10^9$.
+- **N=119M (orange)** — 2 markers: $(2.0\times10^9,\thinspace2.0\times10^{-3})$, $(8.0\times10^9,\thinspace3.9\times10^{-3})$. Second-highest band, also ending at about $8\times10^9$.
+- **N=214M (green)** — 5 markers: $(2.0\times10^9,\thinspace1.6\times10^{-3})$, $(4.0\times10^9,\thinspace2.3\times10^{-3})$, $(1.1\times10^{10},\thinspace3.3\times10^{-3})$, $(2.0\times10^{10},\thinspace3.9\times10^{-3})$, $(1.0\times10^{11},\thinspace4.1\times10^{-3})$.
+- **N=268M (red)** — 7 markers: $(2.0\times10^9,\thinspace1.4\times10^{-3})$, $(5.0\times10^9,\thinspace2.3\times10^{-3})$, $(8.0\times10^9,\thinspace2.8\times10^{-3})$, $(2.0\times10^{10},\thinspace3.4\times10^{-3})$, $(2.5\times10^{10},\thinspace3.6\times10^{-3})$, $(8.0\times10^{10},\thinspace3.9\times10^{-3})$, $(1.0\times10^{11},\thinspace4.3\times10^{-3})$.
+- **N=429M (purple)** — 8 markers: $(2.0\times10^9,\thinspace7.5\times10^{-4})$, $(4.0\times10^9,\thinspace9.8\times10^{-4})$, $(8.0\times10^9,\thinspace1.3\times10^{-3})$, $(2.0\times10^{10},\thinspace2.1\times10^{-3})$, $(2.3\times10^{10},\thinspace2.0\times10^{-3})$, $(4.0\times10^{10},\thinspace2.3\times10^{-3})$, $(5.0\times10^{10},\thinspace2.8\times10^{-3})$, $(1.0\times10^{11},\thinspace2.5\times10^{-3})$.
+- **N=536M (brown)** — 6 markers: $(2.0\times10^9,\thinspace5.6\times10^{-4})$, $(8.0\times10^9,\thinspace1.2\times10^{-3})$, $(1.0\times10^{10},\thinspace1.4\times10^{-3})$, $(2.0\times10^{10},\thinspace1.5\times10^{-3})$, $(2.8\times10^{10},\thinspace2.0\times10^{-3})$, $(5.0\times10^{10},\thinspace2.0\times10^{-3})$.
+- **N=1B (pink)** — 4 markers: $(2.0\times10^9,\thinspace4.4\times10^{-4})$, $(4.0\times10^9,\thinspace5.8\times10^{-4})$, $(8.0\times10^9,\thinspace6.9\times10^{-4})$, $(2.0\times10^{10},\thinspace1.0\times10^{-3})$. Lowest series on the plot.
 
 Every band slopes upward left-to-right (optimal learning rate grows with $D$), and the seven bands are stacked in strict order of $N$: at a fixed $D\approx2\times10^9$ the LR values run from $3.3\times10^{-3}$ (59M) down to $4.4\times10^{-4}$ (1B), a spread of about 7.5x. Where series overlap at the right of the plot (green/red/purple/brown) some markers sit on top of one another and a few are only partly resolvable.
 
@@ -353,15 +353,15 @@ Every band slopes upward left-to-right (optimal learning rate grows with $D$), a
 
 The same seven series as Figure 1, with the same colours and the same legend list (N=59M, 119M, 214M, 268M, 429M, 536M, 1B) — here the legend box sits at the upper left of the panel and it conceals whatever data lies behind it. Measured marker positions (legend swatches masked; several markers are stacked and some are hidden behind others):
 
-- **N=59M (blue)** — 1 visible marker: $(8.0\times10^9,\,3.5\times10^5)$.
-- **N=119M (orange)** — 1 visible marker: $(8.0\times10^9,\,3.1\times10^5)$.
-- **N=214M (green)** — 3 visible: $(1.1\times10^{10},\,3.8\times10^5)$, $(2.0\times10^{10},\,4.9\times10^5)$, $(1.0\times10^{11},\,1.3\times10^6)$.
-- **N=268M (red)** — 5 visible: $(2.0\times10^9,\,1.3\times10^5)$, $(2.0\times10^{10},\,5.3\times10^5)$, $(2.5\times10^{10},\,6.4\times10^5)$, $(8.0\times10^{10},\,1.3\times10^6)$, $(1.0\times10^{11},\,1.7\times10^6)$ — the topmost point on the chart.
-- **N=429M (purple)** — 4 visible: $(2.0\times10^9,\,1.6\times10^5)$, $(8.0\times10^9,\,2.0\times10^5)$, $(4.0\times10^{10},\,5.7\times10^5)$, $(1.0\times10^{11},\,1.3\times10^6)$.
-- **N=536M (brown)** — 7 visible: $(2.0\times10^9,\,1.1\times10^5)$, $(4.0\times10^9,\,1.3\times10^5)$, $(8.0\times10^9,\,2.0\times10^5)$, $(1.0\times10^{10},\,2.7\times10^5)$, $(2.0\times10^{10},\,3.9\times10^5)$, $(2.9\times10^{10},\,4.6\times10^5)$, $(5.0\times10^{10},\,6.6\times10^5)$.
-- **N=1B (pink)** — 4 visible: $(2.0\times10^9,\,1.7\times10^5)$, $(8.0\times10^9,\,2.2\times10^5)$, $(2.0\times10^{10},\,3.6\times10^5)$, $(5.7\times10^{10},\,6.4\times10^5)$.
+- **N=59M (blue)** — 1 visible marker: $(8.0\times10^9,\thinspace3.5\times10^5)$.
+- **N=119M (orange)** — 1 visible marker: $(8.0\times10^9,\thinspace3.1\times10^5)$.
+- **N=214M (green)** — 3 visible: $(1.1\times10^{10},\thinspace3.8\times10^5)$, $(2.0\times10^{10},\thinspace4.9\times10^5)$, $(1.0\times10^{11},\thinspace1.3\times10^6)$.
+- **N=268M (red)** — 5 visible: $(2.0\times10^9,\thinspace1.3\times10^5)$, $(2.0\times10^{10},\thinspace5.3\times10^5)$, $(2.5\times10^{10},\thinspace6.4\times10^5)$, $(8.0\times10^{10},\thinspace1.3\times10^6)$, $(1.0\times10^{11},\thinspace1.7\times10^6)$ — the topmost point on the chart.
+- **N=429M (purple)** — 4 visible: $(2.0\times10^9,\thinspace1.6\times10^5)$, $(8.0\times10^9,\thinspace2.0\times10^5)$, $(4.0\times10^{10},\thinspace5.7\times10^5)$, $(1.0\times10^{11},\thinspace1.3\times10^6)$.
+- **N=536M (brown)** — 7 visible: $(2.0\times10^9,\thinspace1.1\times10^5)$, $(4.0\times10^9,\thinspace1.3\times10^5)$, $(8.0\times10^9,\thinspace2.0\times10^5)$, $(1.0\times10^{10},\thinspace2.7\times10^5)$, $(2.0\times10^{10},\thinspace3.9\times10^5)$, $(2.9\times10^{10},\thinspace4.6\times10^5)$, $(5.0\times10^{10},\thinspace6.6\times10^5)$.
+- **N=1B (pink)** — 4 visible: $(2.0\times10^9,\thinspace1.7\times10^5)$, $(8.0\times10^9,\thinspace2.2\times10^5)$, $(2.0\times10^{10},\thinspace3.6\times10^5)$, $(5.7\times10^{10},\thinspace6.4\times10^5)$.
 
-The seven dashed fit lines and their bands all lie essentially on top of one another here, forming one single dusty-mauve band running diagonally across the panel — unlike Figure 1, where the seven bands are cleanly separated by $N$. Measured at $D\approx2\times10^{10}$ the batch sizes span only about $3.6\times10^5$–$5.3\times10^5$ (roughly 1.5x) across the different $N$, against roughly a 4x spread in learning rate at the same $D$ in Figure 1.
+The seven dashed fit lines and their bands all lie essentially on top of one another here, forming one single dusty-mauve band running diagonally across the panel — unlike Figure 1, where the seven bands are cleanly separated by $N$. Measured at $D\approx2\times10^{10}$ the batch sizes span only about $3.6\times10^5\text{–}5.3\times10^5$ (roughly 1.5x) across the different $N$, against roughly a 4x spread in learning rate at the same $D$ in Figure 1.
 
 **Figure 3 (lower left) — "C4/EN Loss for 1.2B Model."** Y-axis: "Loss", **linear** (measured: 8 evenly spaced ticks, 33.5 px per 0.02), labelled 2.76, 2.78, 2.80, 2.82, 2.84, 2.86, 2.88, 2.90. X-axis: "Chinchilla Ratio", **linear** (measured: tick pixel gaps 53 / 107 / 213.5 for the intervals 1→2, 2→4, 4→8 — a ratio of 1 : 2 : 4, i.e. linear spacing, *not* a log axis), labelled ticks 1, 2, 4, 8. Dotted grey gridlines on both axes.
 
@@ -373,7 +373,7 @@ Four series, per the two-column legend at the top right (AdamW, NAdamW in the le
 
 All four fall monotonically; the whole spread between best and worst is about 0.012 at ratio 1 and about 0.004 at ratio 8.
 
-**Figure 4 (lower middle) — "$D_{AdamW}$ vs $D_{Optimizer}$ (Model Size: 1.2B)."** Y-axis: "Tokens Needed by AdamW / Chinchilla", **linear** (measured: ticks evenly spaced 51.4 px per 2 units), labelled 2, 4, 6, 8, 10. X-axis: "Tokens / Chinchilla", **linear** (measured: tick gaps 54.5 / 108 / 217 for 1→2, 2→4, 4→8, a 1 : 2 : 4 ratio), labelled ticks 1, 2, 4, 8.
+**Figure 4 (lower middle) — $D_{AdamW}$ vs $D_{Optimizer}$ (Model Size: 1.2B).** Y-axis: "Tokens Needed by AdamW / Chinchilla", **linear** (measured: ticks evenly spaced 51.4 px per 2 units), labelled 2, 4, 6, 8, 10. X-axis: "Tokens / Chinchilla", **linear** (measured: tick gaps 54.5 / 108 / 217 for 1→2, 2→4, 4→8, a 1 : 2 : 4 ratio), labelled ticks 1, 2, 4, 8.
 
 Two visible line series with circular markers, plus three shaded reference bands:
 - **Muon** (orange, solid, markers): (1, 1.13), (2, 2.24), (4, 4.53), (8, 8.79).
@@ -401,7 +401,7 @@ A numbered list:
 
 **Figure — two pasted paper headers (screenshots), one beside each list item.**
 
-- Beside item 1: a horizontal rule, then "**MiniCPM: Unveiling the Potential of Small Language Models with Scalable Training Strategies**", the same author block as on slide 3 ("Shengding Hu$^1$, Yuge Tu$^2$, Xu Han$^1$; Chaoqun He$^1$, Ganqu Cui$^1$, Xiang Long$^2$, Zhi Zheng$^2$, Yewei Fang$^2$, Yuxiang Huang$^1$, Weilin Zhao$^1$, Xinrong Zhang$^1$, Zheng Leng Thai$^1$, Kaihuo Zhang$^2$, Chongyi Wang$^2$, Yuan Yao$^1$, Chenyang Zhao$^1$, Jie Zhou$^2$, Jie Cai$^2$, , Zhongwu Zhai$^2$, Ning Ding$^1$, Chao Jia$^2$, Guoyang Zeng$^2$, Dahai Li$^2$, Zhiyuan Liu$^{1*}$, Maosong Sun$^1$"), the affiliations "$^1$Department of Computer Science and Technology, Tsinghua University." / "$^2$Modelbest Inc.", and "shengdinghu@gmail.com".
+- Beside item 1: a horizontal rule, then "**MiniCPM: Unveiling the Potential of Small Language Models with Scalable Training Strategies**", the same author block as on slide 3 ("Shengding Hu¹, Yuge Tu², Xu Han¹; Chaoqun He¹, Ganqu Cui¹, Xiang Long², Zhi Zheng², Yewei Fang², Yuxiang Huang¹, Weilin Zhao¹, Xinrong Zhang¹, Zheng Leng Thai¹, Kaihuo Zhang², Chongyi Wang², Yuan Yao¹, Chenyang Zhao¹, Jie Zhou², Jie Cai², , Zhongwu Zhai², Ning Ding¹, Chao Jia², Guoyang Zeng², Dahai Li², Zhiyuan Liu¹\*, Maosong Sun¹"), the affiliations "¹Department of Computer Science and Technology, Tsinghua University." / "²Modelbest Inc.", and "shengdinghu@gmail.com".
 - Beside item 2: the deepseek logo (blue whale + "deepseek"), a horizontal rule, then "**DeepSeek LLM** / **Scaling Open-Source Language Models with Longtermism**".
 
 No chart or table on this page.
@@ -412,7 +412,7 @@ Title (blue): "**MiniCPM**"
 
 Body text: "MiniCPM (2024) – small, high-perf LM from Tsinghua group."
 
-**Figure — pasted screenshot of the MiniCPM paper's title block**, in a thin grey-bordered frame in the middle of the slide: a horizontal rule, then "**MiniCPM: Unveiling the Potential of Small Language Models with Scalable Training Strategies**", then the author list "Shengding Hu$^1$, Yuge Tu$^2$, Xu Han$^1$; Chaoqun He$^1$, Ganqu Cui$^1$, Xiang Long$^2$, Zhi Zheng$^2$, Yewei Fang$^2$, Yuxiang Huang$^1$, Weilin Zhao$^1$, Xinrong Zhang$^1$, Zheng Leng Thai$^1$, Kaihuo Zhang$^2$, Chongyi Wang$^2$, Yuan Yao$^1$, Chenyang Zhao$^1$, Jie Zhou$^2$, Jie Cai$^2$, , Zhongwu Zhai$^2$, Ning Ding$^1$, Chao Jia$^2$, Guoyang Zeng$^2$, Dahai Li$^2$, Zhiyuan Liu$^{1*}$, Maosong Sun$^1$", the affiliations "$^1$Department of Computer Science and Technology, Tsinghua University." / "$^2$Modelbest Inc.", and "shengdinghu@gmail.com". (The same screenshot used on slides 3 and 5.)
+**Figure — pasted screenshot of the MiniCPM paper's title block**, in a thin grey-bordered frame in the middle of the slide: a horizontal rule, then "**MiniCPM: Unveiling the Potential of Small Language Models with Scalable Training Strategies**", then the author list "Shengding Hu¹, Yuge Tu², Xu Han¹; Chaoqun He¹, Ganqu Cui¹, Xiang Long², Zhi Zheng², Yewei Fang², Yuxiang Huang¹, Weilin Zhao¹, Xinrong Zhang¹, Zheng Leng Thai¹, Kaihuo Zhang², Chongyi Wang², Yuan Yao¹, Chenyang Zhao¹, Jie Zhou², Jie Cai², , Zhongwu Zhai², Ning Ding¹, Chao Jia², Guoyang Zeng², Dahai Li², Zhiyuan Liu¹\*, Maosong Sun¹", the affiliations "¹Department of Computer Science and Technology, Tsinghua University." / "²Modelbest Inc.", and "shengdinghu@gmail.com". (The same screenshot used on slides 3 and 5.)
 
 Two lines of body text below the frame:
 "Careful, extensive scaling computations + muP to stabilize and simplify scaling"
@@ -460,9 +460,9 @@ Body text: "Scale_emb = 12, scale_depth = 1.4, init_std = 0.1, lr =0.01"
 
 | Name | Specific Operation |
 | --- | --- |
-| Embedding Output Scaling | Multiply the output of the embedding by $scale\_emb$ |
-| Residual Connection Scaling | Scale the increment at each residual connection in each layer by $scale\_depth/\sqrt{\text{num\_layers}}$ |
-| Initialization of Tensors | Set the initialization standard deviation of each two-dimensional tensor parameter to $init\_std/\sqrt{d_m/d_{base}}$, and set other parameters' initialization to 0.1 |
+| Embedding Output Scaling | Multiply the output of the embedding by $\verb+scale_emb+$ |
+| Residual Connection Scaling | Scale the increment at each residual connection in each layer by $\verb+scale_depth+/\sqrt{\verb+num_layers+}$ |
+| Initialization of Tensors | Set the initialization standard deviation of each two-dimensional tensor parameter to $\verb+init_std+/\sqrt{d_m/d_{base}}$, and set other parameters' initialization to 0.1 |
 | Learning Rate Scaling of Tensors | Adjust the learning rate of each two-dimensional tensor parameter to $1/(d_m/d_{base})$ times the learning rate of other parts (or the overall learning rate) |
 | LM Head Scaling | Adjust the output logits to $1/(d_m/d_{base})$ times the original value |
 
@@ -537,7 +537,7 @@ Within each panel the markers form those six vertical columns (the slide's own t
 **The red line.** Exactly one series in each panel is red: a single connected polyline running from lower-left to upper-right, drawn on top of everything else. It is not a marker series and it has no legend entry — it is the slide's own annotation, described in the body text below the figure. Traced against the axes:
 - Panel 1: from batch $\approx3.07\times10^4$ at its bottom end up to a peak of $\approx9.3\times10^4$, then drifting back left to $\approx8.6\times10^4$ at the very top, with a small kink near the bottom.
 - Panel 2: from batch $\approx4.5\times10^4$ at the bottom to $\approx2.0\times10^5$ at the top, wobbling between about $1.5\times10^5$ and $2.0\times10^5$ over the top third.
-- Panel 3: from batch $\approx1.30\times10^5$ at the bottom to $\approx5.2$–$5.6\times10^5$ over the top third, again flattening out there.
+- Panel 3: from batch $\approx1.30\times10^5$ at the bottom to $\approx5.2\text{–}5.6\times10^5$ over the top third, again flattening out there.
 In all three panels the red line rises monotonically overall: the more tokens processed, the larger the loss-minimising batch.
 
 Two further lines of body text below the figure:
@@ -655,7 +655,7 @@ Caption printed beneath the figure (the paper's own): "Figure 15: Illustrative c
 
 **Figure 2 (right) — pasted two-paragraph excerpt from the MiniCPM paper.** Transcribed in full (blue text marks the paper's own hyperlinks):
 
-"In this section, we introduce the utilization of the WSD scheduler as an effective approach to explore the scaling law with linear cost ($O(mC)$). Since WSD scheduler has the advantage of arriving at the optimal loss of Cosine LRS after decaying from stable stage's checkpoints of any step, we are now able to precisely measure the optimal scaling properties without re-training the models from scratch to different amount of tokens, thus making the scaling law measurement much more efficient along the data axis."
+"In this section, we introduce the utilization of the WSD scheduler as an effective approach to explore the scaling law with linear cost (${O(mC)}$). Since WSD scheduler has the advantage of arriving at the optimal loss of Cosine LRS after decaying from stable stage's checkpoints of any step, we are now able to precisely measure the optimal scaling properties without re-training the models from scratch to different amount of tokens, thus making the scaling law measurement much more efficient along the data axis."
 
 "We measure the scaling law along the data and model axes by training SLMs of 6 sizes ranging from 0.04B to 2B, each with 6 decayed model starting from checkpoint of $10N$ to $60N$ data during the stable training stage. The final loss is evaluated on five held-out evaluation dataset. To potentially compare the loss when the model uses different tokenizer, we take the average of loss by number of bytes instead of number of tokens, following Achiam et al. (2023). The final loss of each pair of data size and model size is shown in the blue lines in Figure 17."
 
@@ -774,7 +774,7 @@ $$\frac{7.54\times10^{-2}}{N^{0.30}} + \frac{2.92\times10^{-1}}{D^{0.30}} + 0.25
 
 $$K^2 = 0.01 \qquad \eta = -0.00$$
 
-$$\left.\frac{D_{opt}}{N_{opt}}\right|_{C=10^{21}} = 95.60$$
+$$\left.\frac{D_{opt}}{N_{opt}}\right|_ {C=10^{21}} = 95.60$$
 
 So the joint fit gives both exponents equal to 0.30, an irreducible loss term of 0.25, and — at $C = 10^{21}$ FLOPs — an optimal data-to-parameter ratio of 95.60 tokens per parameter, which is the "very high data-model ratio" the slide's body text is pointing at (roughly $4.8\times$ Chinchilla's ~20:1). Note $\eta = -0.00$: the fitted exponent on compute in equation (3) of the previous slide is essentially zero, meaning this fit says the optimal ratio does not change with compute.
 
@@ -830,7 +830,7 @@ The minimum in panel (a) is 3.685, at batch $2^{17}$ / LR $2^{-8}$; the whole bl
 
 In panel (b) a **red five-pointed star marker** is drawn on the cell at batch $2^{20}$, LR $2^{-10}$ (value 2.474 — the star partly overlaps the printed digits), with the red italic annotation "*Optimal Hyperparameters Fitted*" written just below it, straddling the boundary between the $2^{20}$ and $2^{20.5}$ rows. That cell is tied for the minimum of the whole grid with $2^{20.5}$ / $2^{-9.75}$, also 2.474.
 
-Note the two panels do not share axes: going from 1e17 to 1e20 FLOPs, the batch-size grid shifts up by 16× ($2^{15}$–$2^{20}$ → $2^{19}$–$2^{23.5}$) and the learning-rate grid shifts down ($2^{-10.5}$–$2^{-7.75}$ → $2^{-11.25}$–$2^{-8.5}$) — i.e. bigger batch, smaller LR at larger compute, which is the relationship the slide says DeepSeek estimates directly instead of getting it from muP.
+Note the two panels do not share axes: going from 1e17 to 1e20 FLOPs, the batch-size grid shifts up by 16× ($2^{15}\text{–}2^{20}$ → $2^{19}\text{–}2^{23.5}$) and the learning-rate grid shifts down ($2^{-10.5}\text{–}2^{-7.75}$ → $2^{-11.25}\text{–}2^{-8.5}$) — i.e. bigger batch, smaller LR at larger compute, which is the relationship the slide says DeepSeek estimates directly instead of getting it from muP.
 
 ## Slide 21 — Scaling analysis of learning rates
 
@@ -850,13 +850,13 @@ with the equation number "(1)" at the right margin. (At the very top-left of the
 Each panel has a legend with **two star entries**: a small navy star "7B MHA 2T Token" and a larger navy star "67B GQA 2T Token". Counting properly, each panel carries **four things**: one series of grey circles, one grey shaded confidence band, one grey dashed fitted line, and the two navy star markers. (The two star glyphs inside each legend box sit within the plot's coordinate space — in panel (a) the legend is at top-left, in panel (b) at top-right — and are legend swatches, not data.)
 
 - **Panel (a), y-axis "Optimal Batch Size (Tokens)"**, logarithmic in powers of two, gridlines/ticks $2^{16}$, $2^{18}$, $2^{20}$, $2^{22}$, $2^{24}$, $2^{26}$ (measured 53.4 px per two doublings, evenly spaced).
-  - Grey circles (the "near optimal" small-scale runs): roughly 60–70 markers, spanning $x \approx 7.6\times10^{16}$ to $1.7\times10^{20}$ FLOPs. They lie on nine discrete batch-size levels, measured at $2^{17}$, $2^{17.5}$, $2^{18}$, $2^{18.5}$, $2^{19}$, $2^{19.5}$, $2^{20}$, $2^{20.5}$, $2^{21}$ — i.e. the rows of the grid search, not a continuum. The cloud rises left to right: at $\approx10^{17}$ the points sit at $2^{17}$–$2^{17.5}$; by $\approx10^{20}$ they reach $2^{20.5}$–$2^{21}$.
-  - Grey dashed line: the fit $B_{\mathrm{opt}} = 0.2920\,C^{0.3271}$, a straight line on these log axes running from about $(10^{16}, 2^{15.4})$ at the lower left to about $(3\times10^{24}, 2^{24.6})$ at the upper right.
+  - Grey circles (the "near optimal" small-scale runs): roughly 60–70 markers, spanning $x \approx 7.6\times10^{16}$ to $1.7\times10^{20}$ FLOPs. They lie on nine discrete batch-size levels, measured at $2^{17}$, $2^{17.5}$, $2^{18}$, $2^{18.5}$, $2^{19}$, $2^{19.5}$, $2^{20}$, $2^{20.5}$, $2^{21}$ — i.e. the rows of the grid search, not a continuum. The cloud rises left to right: at $\approx10^{17}$ the points sit at $2^{17}\text{–}2^{17.5}$; by $\approx10^{20}$ they reach $2^{20.5}\text{–}2^{21}$.
+  - Grey dashed line: the fit $B_{\mathrm{opt}} = 0.2920\thinspace C^{0.3271}$, a straight line on these log axes running from about $(10^{16}, 2^{15.4})$ at the lower left to about $(3\times10^{24}, 2^{24.6})$ at the upper right.
   - Grey shaded band: a confidence envelope of roughly constant width (about $\pm 1.3$ doublings) around the dashed line, spanning the full plot width.
   - Two navy stars, both far to the right of all the grey data: the small "7B MHA 2T Token" star at $C \approx 8.5\times10^{22}$, batch $2^{23.13}$, labelled "**9.2M**"; the large "67B GQA 2T Token" star at $C \approx 8.5\times10^{23}$, batch $2^{24.24}$, labelled "**19.7M**". Both sit essentially on the dashed line.
 - **Panel (b), y-axis "Optimal Learning Rate"**, logarithmic, ticked 1.25e-4, 2.5e-4, 5e-4, 1e-3, 2e-3, 4e-3, 8e-3 (each tick twice the one below; measured 53.5 px per doubling, evenly spaced).
   - Grey circles: about 40 markers, spanning only $x \approx 7\times10^{16}$ to $3\times10^{19}$ FLOPs — a much shorter x-range than panel (a)'s. They lie on just **four** discrete learning-rate levels, measured at $\approx2.8\times10^{-3}$, $2.0\times10^{-3}$, $1.4\times10^{-3}$ and $1.0\times10^{-3}$ (successive levels a factor of $\sqrt2$ apart, i.e. half-powers of two). Within that range the cloud drifts only weakly downward: the $2.8\times10^{-3}$ row stops around $10^{18.5}$ while the $1.0\times10^{-3}$ row extends to about $10^{19}$.
-  - Grey dashed line: the fit $\eta_{\mathrm{opt}} = 0.3118\,C^{-0.1250}$, straight and descending across the whole plot, from about $(10^{16}, 3.2\times10^{-3})$ down to about $(3\times10^{24}, 2.7\times10^{-4})$.
+  - Grey dashed line: the fit $\eta_{\mathrm{opt}} = 0.3118\thinspace C^{-0.1250}$, straight and descending across the whole plot, from about $(10^{16}, 3.2\times10^{-3})$ down to about $(3\times10^{24}, 2.7\times10^{-4})$.
   - Grey shaded band: a confidence envelope around it, again roughly constant width and full-width.
   - Two navy stars: the small "7B MHA 2T Token" star at $C \approx 8.7\times10^{22}$, LR $4.22\times10^{-4}$, labelled "**4.2e-04**"; the large "67B GQA 2T Token" star at $C \approx 8.7\times10^{23}$, LR $3.14\times10^{-4}$, labelled "**3.2e-04**". Both sit on the dashed line.
 
@@ -903,14 +903,14 @@ Measured minima of each isoFLOP curve — the point of the panel:
 
 | Budget (FLOPs) | Colour | Lowest bits-per-byte | at $M$ (FLOPs/token) |
 | --- | --- | --- | --- |
-| 1e17 | blue | ≈1.38 | ≈$1.4\times10^8$ |
-| 3e17 | orange | ≈1.29 | ≈$2.4\times10^8$ |
-| 1e18 | green | ≈1.20 | ≈$4.0\times10^8$ |
-| 3e18 | red | ≈1.13 | ≈$9.2\times10^8$ |
-| 1e19 | purple | ≈1.05 | ≈$1.5\times10^9$ |
-| 3e19 | brown | ≈0.99 | ≈$2.7$–$3.5\times10^9$ |
-| 1e20 | pink | ≈0.93 | ≈$5.1$–$5.7\times10^9$ |
-| 3e20 | grey | ≈0.885 | ≈$8.5\times10^9$ |
+| 1e17 | blue | ≈1.38 | $\approx 1.4\times10^8$ |
+| 3e17 | orange | ≈1.29 | $\approx 2.4\times10^8$ |
+| 1e18 | green | ≈1.20 | $\approx 4.0\times10^8$ |
+| 3e18 | red | ≈1.13 | $\approx 9.2\times10^8$ |
+| 1e19 | purple | ≈1.05 | $\approx 1.5\times10^9$ |
+| 3e19 | brown | ≈0.99 | $\approx 2.7\text{–}3.5\times10^9$ |
+| 1e20 | pink | ≈0.93 | $\approx 5.1\text{–}5.7\times10^9$ |
+| 3e20 | grey | ≈0.885 | $\approx 8.5\times10^9$ |
 
 Full spans of the individual curves, left to right on $M$: blue $1.0\times10^8 \to 5.3\times10^8$ (about 6 points, bpb 1.40 → 1.55); orange $1.4\times10^8 \to 1.2\times10^9$ (about 10 points, 1.31 → 1.51); green $2.4\times10^8 \to 2.2\times10^9$ (about 14 points, 1.23 → 1.37); red $4.0\times10^8 \to 3.7\times10^9$ (about 12 points, 1.15 → 1.27); purple $7.4\times10^8 \to 7.7\times10^9$ (about 16 points, 1.08 → 1.19); brown $1.2\times10^9 \to 1.2\times10^{10}$ (about 15 points, 1.02 → 1.07); pink $2.2\times10^9 \to 1.9\times10^{10}$ (about 15 points, 0.96 → 0.98); grey $4.4\times10^9 \to 3.0\times10^{10}$ (about 14 points, 0.90 → 0.92). Each successive budget sits lower on the loss axis and its minimum shifts to the right — the curves also get visibly flatter as compute grows.
 
@@ -950,7 +950,7 @@ A legend box sits inside the plot at the top right with **two star entries**: a 
   - "7B MHA 2T Token": $C \approx 8.5\times10^{22}$, bits-per-byte **0.716**.
   - "67B GQA 2T Token": $C \approx 8.7\times10^{23}$, bits-per-byte **0.633**.
 
-Both stars land essentially on the fitted line. Measured against the dashed curve at the same x, the 7B star sits about 0.018 bits-per-byte **above** the fit (very slightly worse than predicted) and the 67B star about 0.016 **below** it (very slightly better than predicted). That is the sense in which the caption's "well-predicted" holds — a fit built from runs at $10^{17}$–$3\times10^{20}$ FLOPs extrapolates roughly 3.5 orders of magnitude and lands within ~0.02 bits-per-byte at $10^{23}$–$10^{24}$.
+Both stars land essentially on the fitted line. Measured against the dashed curve at the same x, the 7B star sits about 0.018 bits-per-byte **above** the fit (very slightly worse than predicted) and the 67B star about 0.016 **below** it (very slightly better than predicted). That is the sense in which the caption's "well-predicted" holds — a fit built from runs at $10^{17}\text{–}3\times10^{20}$ FLOPs extrapolates roughly 3.5 orders of magnitude and lands within ~0.02 bits-per-byte at $10^{23}\text{–}10^{24}$.
 
 **Native-text caption below the figure**, reproduced in full: "Figure 5 | Performance scaling curve. The metric is the bits-per-byte on the validation set. The dotted line represents the power law fitting the smaller model (grey circles). The blue stars represent DeepSeek LLM 7B and 67B. Their performance is well-predicted by the scaling curve."
 
@@ -1025,23 +1025,23 @@ Every series is a smooth fitted parabola in $\log(\text{activated parameters})$ 
 
 | Budget | Colour | Minimum training loss | at activated parameters |
 | --- | --- | --- | --- |
-| 5.0e+18 | dark blue | ≈2.927 | ≈$5.4\times10^7$ |
-| 1.5e+19 | blue | ≈2.612 | ≈$9.1\times10^7$ |
-| 3.5e+19 | light blue | ≈2.519 | ≈$1.2\times10^8$ |
-| 4.5e+19 | pale blue | ≈2.464 | ≈$1.3\times10^8$ |
-| 5.5e+19 | pale grey | ≈2.423 | ≈$2.0\times10^8$ |
-| 6.5e+19 | pale salmon | ≈2.414 | ≈$1.8\times10^8$ |
-| 7.5e+19 | salmon | ≈2.393 | ≈$2.2\times10^8$ |
-| 8.5e+19 | orange-red | ≈2.379 | ≈$2.1\times10^8$ |
-| 9.5e+19 | dark red | ≈2.358 | ≈$2.4\times10^8$ |
+| 5.0e+18 | dark blue | ≈2.927 | $\approx 5.4\times10^7$ |
+| 1.5e+19 | blue | ≈2.612 | $\approx 9.1\times10^7$ |
+| 3.5e+19 | light blue | ≈2.519 | $\approx 1.2\times10^8$ |
+| 4.5e+19 | pale blue | ≈2.464 | $\approx 1.3\times10^8$ |
+| 5.5e+19 | pale grey | ≈2.423 | $\approx 2.0\times10^8$ |
+| 6.5e+19 | pale salmon | ≈2.414 | $\approx 1.8\times10^8$ |
+| 7.5e+19 | salmon | ≈2.393 | $\approx 2.2\times10^8$ |
+| 8.5e+19 | orange-red | ≈2.379 | $\approx 2.1\times10^8$ |
+| 9.5e+19 | dark red | ≈2.358 | $\approx 2.4\times10^8$ |
 
-The two smallest budgets are widely separated (2.93 and 2.61); the seven largest are bunched between 2.36 and 2.52, and their minima all sit in the $1.2$–$2.4\times10^8$ activated-parameter range. The minimum moves right as the budget grows.
+The two smallest budgets are widely separated (2.93 and 2.61); the seven largest are bunched between 2.36 and 2.52, and their minima all sit in the $1.2\text{–}2.4\times10^8$ activated-parameter range. The minimum moves right as the budget grows.
 
-**Panel 2 (right) — the fitted scaling law.** Y-axis "Activated Parameters", **logarithmic**, ticked $10^7$ through $10^{12}$ (measured 117.3 px per decade). X-axis "$FLOPs_{min}$", **logarithmic**, ticked $10^{18}$ through $10^{25}$ (measured 76.7 px per decade). Three things are drawn:
+**Panel 2 (right) — the fitted scaling law.** Y-axis "Activated Parameters", **logarithmic**, ticked $10^7$ through $10^{12}$ (measured 117.3 px per decade). X-axis $FLOPs_{min}$, **logarithmic**, ticked $10^{18}$ through $10^{25}$ (measured 76.7 px per decade). Three things are drawn:
 
 - **Black filled circles** — the per-budget optima. They occupy only the far lower-left of the plot: one at about $(10^{18.7}, 5.4\times10^7)$, one at about $(10^{19.16}, 8.9\times10^7)$, and then a dense, heavily overlapping cluster running from about $(10^{19.5}, 1.2\times10^8)$ to $(10^{20.0}, 2.9\times10^8)$. (The individual markers in the cluster merge; the cluster's extent is measurable, the exact count is not — roughly a dozen.)
-- **Red dashed line** — the fitted power law, spanning the full plot width from about $(10^{18}, 2.3\times10^7)$ to about $(10^{25}, 1.1\times10^{11})$; measured slope ≈0.53 in log-log, i.e. activated parameters $\propto \text{FLOPs}_{min}^{0.53}$. It passes through the black cluster.
-- **Dark green right-angle annotation** — a horizontal line at activated parameters $= 5.81\times10^{10}$, labelled "**58.1B**" in green at its left end, and a vertical line at $\text{FLOPs}_{min} \approx 2.6\times10^{24}$, meeting at their corner, which sits on the red dashed line. This is the extrapolated optimum: 58.1B activated parameters at about $2.6\times10^{24}$ FLOPs.
+- **Red dashed line** — the fitted power law, spanning the full plot width from about $(10^{18}, 2.3\times10^7)$ to about $(10^{25}, 1.1\times10^{11})$; measured slope ≈0.53 in log-log, i.e. activated parameters $\propto \text{FLOPs}_ {min}^{0.53}$. It passes through the black cluster.
+- **Dark green right-angle annotation** — a horizontal line at activated parameters $= 5.81\times10^{10}$, labelled "**58.1B**" in green at its left end, and a vertical line at $\text{FLOPs}_ {min} \approx 2.6\times10^{24}$, meeting at their corner, which sits on the red dashed line. This is the extrapolated optimum: 58.1B activated parameters at about $2.6\times10^{24}$ FLOPs.
 
 Caption below the two panels (native text): "Figure 3: Using quadratic polynomial fitting, we obtain the scaling law of the optimal number of activation parameters under different minimum compute budgets."
 
@@ -1085,7 +1085,7 @@ The minima march down and to the right: more compute buys both lower loss and mo
 
 **Figure 2 (right pair) — two panels, pasted as one raster with no caption of its own.**
 
-*Left panel — the scaling-law extrapolation.* Y-axis "Normalized NLL per Char.", **linear** (measured: the nine gridlines 1.400…1.200 in 0.025 steps sit 40.5, 41.0, 41.0, 40.0, 41.0, 40.5, 40.5, 41.0 px apart — flat, with no monotone trend; a log axis over that range would have given a monotone 38.0→43.5 px ramp). X-axis "Compute (FLOPs)", **log** (measured: the six tick labels $10^{20}$…$10^{25}$ sit 62.0, 62.0, 62.5, 62.5, 61.5 px apart — 62.1 px per decade). Three things are plotted, all identified against the right panel's legend swatch RGBs with the legend box masked:
+*Left panel — the scaling-law extrapolation.* Y-axis "Normalized NLL per Char.", **linear** (measured: the nine gridlines 1.400…1.200 in 0.025 steps sit 40.5, 41.0, 41.0, 40.0, 41.0, 40.5, 40.5, 41.0 px apart — flat, with no monotone trend; a log axis over that range would have given a monotone 38.0→43.5 px ramp). X-axis "Compute (FLOPs)", **log** (measured: the six tick labels $10^{20}\ldots10^{25}$ sit 62.0, 62.0, 62.5, 62.5, 61.5 px apart — 62.1 px per decade). Three things are plotted, all identified against the right panel's legend swatch RGBs with the legend box masked:
 - **Seven magenta diamonds** ("Scaling Law Models", RGB 181,61,140): $(6\times10^{19}, 1.392)$, $(1\times10^{20}, 1.380)$, $(3\times10^{20}, 1.368)$, $(6\times10^{20}, 1.358)$, $(1\times10^{21}, 1.349)$, $(3\times10^{21}, 1.328)$, $(1\times10^{22}, 1.318)$.
 - **One blue straight line** (RGB 43,101,224) running through the diamonds and on out to the right edge: 1.2825 at $10^{23}$, 1.2506 at $10^{24}$, 1.2187 at $10^{25}$ — i.e. a straight line on these linear-NLL / log-compute axes, slope ≈ $-0.032$ NLL per decade of compute (my measurement; no slope is printed).
 - **At $\approx3.8\times10^{25}$ FLOPs**, a steel-blue triangle ("Scaling Law Prediction") at NLL **1.200** and a blue square ("Llama 3 405B") just below it at NLL **1.190** — the actual model landing marginally better than the extrapolation.
@@ -1155,7 +1155,7 @@ At every parameter count the Softmax point sits furthest right, i.e. it needs th
 | $10^{2}$ | $2.8\times10^{11}$ | $3.84\times10^{11}$ | $3.24\times10^{11}$ |
 | $10^{2.5}$ | $4.9\times10^{11}$ | $6.60\times10^{11}$ | $5.58\times10^{11}$ |
 
-Measured slopes (mine, not printed): Softmax $D \propto C^{0.52}$, Lightning $C^{0.47}$, Hybrid-lightning $C^{0.47}$. The ordering is the mirror of panel 2 — Softmax wants the *fewest* tokens and (from panel 2) the *most* parameters at a given budget; the two linear-attention variants want more tokens and fewer parameters. The scatter itself sits well above the fitted lines at the low-compute end (dots at $3$–$5\times10^{10}$ tokens near $10^{-1}$ PFLOP/s-days against fitted values around $10^{10}$), and straddles them from $10^{0}$ rightward.
+Measured slopes (mine, not printed): Softmax $D \propto C^{0.52}$, Lightning $C^{0.47}$, Hybrid-lightning $C^{0.47}$. The ordering is the mirror of panel 2 — Softmax wants the *fewest* tokens and (from panel 2) the *most* parameters at a given budget; the two linear-attention variants want more tokens and fewer parameters. The scatter itself sits well above the fitted lines at the low-compute end (dots at $3\text{–}5\times10^{10}$ tokens near $10^{-1}$ PFLOP/s-days against fitted values around $10^{10}$), and straddles them from $10^{0}$ rightward.
 
 The slide's own framing — "Architecture scaling laws + Chinchilla method 1" — matches what is drawn: panel 1 is the Chinchilla approach-1 construction (fit the lower envelope of a family of training curves), and panels 2 and 3 read the optimal $N$ and $D$ off that envelope, done separately for each of three attention architectures.
 
@@ -1198,14 +1198,14 @@ Heading: "Optimizer scaling". Body line above the first figure: "Optimizers choi
   - N=429M (purple): about $8\times10^{-4}$ at $D\approx2\times10^{9}$ rising to about $2.7\times10^{-3}$ at $D\approx10^{11}$ (full width).
   - N=536M (brown): about $6\times10^{-4}$ at $D\approx2\times10^{9}$ rising to about $2.0\times10^{-3}$; stops at $D\approx5\times10^{10}$.
   - N=1B (pink), the lowest: about $4.5\times10^{-4}$ at $D\approx2\times10^{9}$ rising to about $1.3\times10^{-3}$; stops at $D\approx6\times10^{10}$.
-- **Right panel, y-axis "Batch Size", log scale** (measured: $10^{6}$ and $10^{5}$ sit 276.5 px apart with minor ticks at the $9,8,7,6,5,4,3,2\times$ log positions). Visible y-range roughly $8.9\times10^{4}$ to $1.9\times10^{6}$. Here the seven series **do not separate**: all the coloured scatter points and all seven fit bands lie on essentially one common line running from about $(2\times10^{9},\,1.2\times10^{5})$ to about $(10^{11},\,1.4\times10^{6})$, with the bands so overlapped that only a single mauve/pink composite band is visible. Individual extremes: red reaches $\approx1.7\times10^{6}$ at $D\approx10^{11}$ (the highest single point on the panel) and $\approx1.3\times10^{5}$ at the left; green runs $3.7\times10^{5}$ to $1.3\times10^{6}$; brown $1.1\times10^{5}$ to $6.7\times10^{5}$; pink $1.2\times10^{5}$ to $8.0\times10^{5}$; blue and orange contribute only a single point each at $D\approx8\times10^{9}$ ($3.4\times10^{5}$ and $3.1\times10^{5}$).
+- **Right panel, y-axis "Batch Size", log scale** (measured: $10^{6}$ and $10^{5}$ sit 276.5 px apart with minor ticks at the $9,8,7,6,5,4,3,2\times$ log positions). Visible y-range roughly $8.9\times10^{4}$ to $1.9\times10^{6}$. Here the seven series **do not separate**: all the coloured scatter points and all seven fit bands lie on essentially one common line running from about $(2\times10^{9},\thinspace1.2\times10^{5})$ to about $(10^{11},\thinspace1.4\times10^{6})$, with the bands so overlapped that only a single mauve/pink composite band is visible. Individual extremes: red reaches $\approx1.7\times10^{6}$ at $D\approx10^{11}$ (the highest single point on the panel) and $\approx1.3\times10^{5}$ at the left; green runs $3.7\times10^{5}$ to $1.3\times10^{6}$; brown $1.1\times10^{5}$ to $6.7\times10^{5}$; pink $1.2\times10^{5}$ to $8.0\times10^{5}$; blue and orange contribute only a single point each at $D\approx8\times10^{9}$ ($3.4\times10^{5}$ and $3.1\times10^{5}$).
 
 The contrast between the two panels is the point: optimal learning rate depends on **both** $N$ and $D$ (seven cleanly separated lines), while optimal batch size depends on $D$ essentially alone (seven lines collapsed into one).
 
 **Figure 2 — a three-panel optimizer-comparison figure (AdamW / NAdamW / Muon / Soap).** All three panels use **linear** axes (measured on the x-axes: the ticks 1, 2, 4, 8 sit at pixel gaps of 54.5, 106, 214.5 in the left panel and 55, 108.5, 217.5 in the middle — a 1:2:4 doubling of *distance* per doubling of *value*, which is linear, not log; the right panel's 1, 2, 4, 8, 16 gaps of 26, 49.5, 100.5, ≈200 are the same pattern).
 
 - **Left panel, titled "C4/EN Loss for 1.2B Model".** Y-axis "Loss", linear, ticked 2.76 to 2.90 in steps of 0.02. X-axis "Chinchilla Ratio", ticked 1, 2, 4, 8. **Four** series per the legend: AdamW (red dashed), NAdamW (purple dashed), Muon (orange solid), Soap (yellow-green solid). All four fall steeply from ratio 1 to 2 and then flatten. Values by x-position — at 1: AdamW ≈2.904, NAdamW ≈2.902, Soap ≈2.897, Muon ≈2.891; at 2: AdamW ≈2.836, NAdamW ≈2.834, Soap ≈2.830, Muon ≈2.827; at 4: AdamW ≈2.787, NAdamW ≈2.784, Soap ≈2.782, Muon ≈2.780; at 8: AdamW ≈2.753 and the other three converge at ≈2.748–2.749. AdamW is the worst (topmost) curve at every x; Muon is at or near the bottom throughout.
-- **Middle panel, titled "$D_{AdamW}$ vs $D_{Optimizer}$ (Model Size: 1.2B)".** Y-axis "Tokens Needed by AdamW / Chinchilla", linear, ticked 2, 4, 6, 8, 10. X-axis "Tokens / Chinchilla", linear, ticked 1, 2, 4, 8. **Three** entries in the upper legend — NAdamW (purple dashed with markers), Muon (orange solid with markers) and Soap (yellow-green) — but **only two curves are actually drawn**: a pixel sweep for Soap's olive over the whole panel, at tolerances 25, 40 and 60, returns matches *only* inside the legend box's own swatch. Not one olive pixel appears in the plotting area, so Soap has no visible curve at all and no value can be read for it. (Slide 4 reproduces this same figure and its entry records the same finding.) Alongside them is a second legend headed "Speedup" whose three entries are shaded *bands*, not curves: 1.0–1.2× (pale orange), 1.2–1.3× (pale blue), 1.3–1.4× (pale green), stacked from lowest to highest across the panel. Curve values, for the two traceable series only — Muon 1.116, 2.221, 4.525, 8.793 and NAdamW 0.943, 2.016, 4.178, ≈8.68 at ratios 1, 2, 4 and 8. Muon runs through the **middle** of the pale-orange 1.0–1.2× band rather than along its bottom — its fractional height within the band is 0.58, 0.55, 0.66 and 0.50 at the four ratios, i.e. speedups of 1.116×, 1.111×, 1.131× and 1.099×. Only NAdamW hugs or undercuts the band's lower edge, and at ratio 1 it sits **below** 1.0×, i.e. a slowdown.
+- **Middle panel, titled $D_{AdamW}$ vs $D_{Optimizer}$ (Model Size: 1.2B).** Y-axis "Tokens Needed by AdamW / Chinchilla", linear, ticked 2, 4, 6, 8, 10. X-axis "Tokens / Chinchilla", linear, ticked 1, 2, 4, 8. **Three** entries in the upper legend — NAdamW (purple dashed with markers), Muon (orange solid with markers) and Soap (yellow-green) — but **only two curves are actually drawn**: a pixel sweep for Soap's olive over the whole panel, at tolerances 25, 40 and 60, returns matches *only* inside the legend box's own swatch. Not one olive pixel appears in the plotting area, so Soap has no visible curve at all and no value can be read for it. (Slide 4 reproduces this same figure and its entry records the same finding.) Alongside them is a second legend headed "Speedup" whose three entries are shaded *bands*, not curves: 1.0–1.2× (pale orange), 1.2–1.3× (pale blue), 1.3–1.4× (pale green), stacked from lowest to highest across the panel. Curve values, for the two traceable series only — Muon 1.116, 2.221, 4.525, 8.793 and NAdamW 0.943, 2.016, 4.178, ≈8.68 at ratios 1, 2, 4 and 8. Muon runs through the **middle** of the pale-orange 1.0–1.2× band rather than along its bottom — its fractional height within the band is 0.58, 0.55, 0.66 and 0.50 at the four ratios, i.e. speedups of 1.116×, 1.111×, 1.131× and 1.099×. Only NAdamW hugs or undercuts the band's lower edge, and at ratio 1 it sits **below** 1.0×, i.e. a slowdown.
 - **Right panel, titled "C4/EN Loss for 300M Model".** Y-axis "Loss", linear, ticked 3.00 to 3.25 in steps of 0.05. X-axis "Chinchilla Ratio", linear, ticked 1, 2, 4, 8, 16. Same **four** series (legend order here is Muon, AdamW, NAdamW, Soap). Values — at 1: AdamW ≈3.262, NAdamW ≈3.250, Soap ≈3.232, Muon ≈3.225; at 2: AdamW ≈3.162, NAdamW ≈3.160, Soap/Muon ≈3.145; at 4: AdamW ≈3.093, NAdamW ≈3.088, Muon/Soap ≈3.079; at 8: AdamW ≈3.042, NAdamW ≈3.038, Muon/Soap ≈3.029; at 16: AdamW ≈3.001, NAdamW ≈2.999, Muon/Soap ≈2.990. Muon and Soap run together as the lower pair at every x; AdamW is the upper (worst) curve throughout.
 
 The spread between the best and worst optimizer is small in the 1.2B panel — 0.012 in loss at ratio 1 falling to 0.005 at ratio 8 — but **not** in the 300M panel, where AdamW's 3.2615 against Muon's 3.2226 at ratio 1 is a spread of 0.039, about forty thousandths rather than a few. The speedup sits in the **middle** of the 1.0–1.2× band, not at its bottom — which is the setup for the slide's question, "How should we pick different optimizers?"
@@ -1244,10 +1244,10 @@ Heading: "Core question – scaling rates on LR and batch". Body text above the 
 
 | Name | Data Recipe | Model Sparsity | Learning Rate | Batch Size | Relative Error |
 | --- | --- | --- | --- | --- | --- |
-| OpenAI Law [20] | ✘ | ✘ | $3.239 * 10^{-3} + -1.395 * 10^{-4} log(N)$ | $2e18\,\mathcal{L}^{-4.76190}$ | 9.51‰ |
+| OpenAI Law [20] | ✘ | ✘ | $3.239 \ast 10^{-3} + -1.395 \ast 10^{-4} log(N)$ | $2e18\thinspace\mathcal{L}^{-4.76190}$ | 9.51‰ |
 | Microsoft Law [2] | ✘ | ✘ | $1.3192 e^{-5} N^{-0.23} D^{-0.32}$ | - | 9.25‰ |
-| DeepSeek Law [6] | ✘ | ✘ | $0.3188\, C^{-0.1250}$ | $0.2920\, C^{0.3271}$ | 9.26‰ |
-| Porian Law [26] | ✘ | ✘ | $3.7 N^{-0.36}$ | $0.7576\, N^{0.703}$ | 3.71‰ |
+| DeepSeek Law [6] | ✘ | ✘ | $0.3188\thinspace C^{-0.1250}$ | $0.2920\thinspace C^{0.3271}$ | 9.26‰ |
+| Porian Law [26] | ✘ | ✘ | $3.7 N^{-0.36}$ | $0.7576\thinspace N^{0.703}$ | 3.71‰ |
 | MiniCPM Law [18] | ✘ | ✘ | - | $\dfrac{2e18}{L^{6.24}}$ | - |
 | MeiTuan Law [36] | ✘ | ✔ | $\lambda \mathcal{L}^{-\alpha}$ | $\lambda_B \mathcal{L}^{-\alpha_B^{-1}}$ | - |
 | **Ours (Step Law)** | ✔ | ✔ | $1.79 N^{-0.713} D^{0.307}$ | $0.58 D^{0.571}$ | **0.94‰** |
@@ -1311,7 +1311,7 @@ Both vertical lines sit about a factor of four below the optimal learning rate (
 | 17 | $5.37\times10^{8}$ | $5.00\times10^{10}$ | 1280 | 9048 | 10 | 13 |
 | 18 | $1.07\times10^{9}$ | $1.00\times10^{11}$ | 2048 | 8192 | 16 | 16 |
 
-(The table has no total or average row. Only five distinct architectures appear — $N$ = $2.15\times10^{8}$, $2.68\times10^{8}$, $4.29\times10^{8}$, $5.37\times10^{8}$, $1.07\times10^{9}$ — each reused at several dataset sizes $D$, so $d_{model}$/$d_{ff}$/$N_{head}$/$N_{layer}$ repeat with $N$.)
+(The table has no total or average row. Only five distinct architectures appear — $N$ = $2.15\times10^{8}$, $2.68\times10^{8}$, $4.29\times10^{8}$, $5.37\times10^{8}$, $1.07\times10^{9}$ — each reused at several dataset sizes $D$, so $d_{model}/d_{ff}/N_{head}/N_{layer}$ repeat with $N$.)
 
 ## Slide 35 — Observation 1: loss over batch/LR are convex
 
@@ -1331,13 +1331,13 @@ Heading: "Observation 1: loss over batch/LR are convex". Body text below the fig
 **Bottom row — four panels, each holding the batch size fixed and sweeping learning rate.** Every panel: y-axis "Smooth Loss", **linear**; x-axis "Learning Rate", **log**, with a single labelled tick $10^{-3}$ near the middle of each panel (measured: the twelve markers are evenly spaced at 15.2 px, and calibrating against the four learning-rate values printed as the top row's panel titles — 3.450e-04, 4.880e-04, 6.910e-04, 9.770e-04, a $\sqrt{2}$ ladder — puts the decade at 101 px). Twelve red filled circles joined by a red dashed line, each annotated with its own two-decimal value. The learning rates swept are the $\sqrt{2}$ ladder $1.22\times10^{-4}$, $1.73\times10^{-4}$, $2.44\times10^{-4}$, $3.45\times10^{-4}$, $4.88\times10^{-4}$, $6.91\times10^{-4}$, $9.77\times10^{-4}$, $1.38\times10^{-3}$, $1.95\times10^{-3}$, $2.76\times10^{-3}$, $3.91\times10^{-3}$, $5.53\times10^{-3}$. Again each curve is a clean U.
 
 - **"Batch Size = 262144"** (y ticked 2.09–2.17 in steps of 0.01). Losses: 2.126, 2.113, 2.102, 2.095, 2.093, **2.090**, 2.093, 2.101, 2.110, 2.123, 2.140, 2.172. Minimum at LR $\approx6.9\times10^{-4}$.
-- **"Batch Size = 524288"** (y ticked 2.08–2.13 in steps of 0.01). Losses: 2.135, 2.119, 2.106, 2.096, 2.090, 2.084, 2.080, **2.080**, 2.083, 2.092, 2.109, 2.124. Minimum at LR $\approx1.0$–$1.4\times10^{-3}$ (the 7th and 8th points are tied).
-- **"Batch Size = 786432"** (y ticked 2.08–2.14 in steps of 0.01). Losses: 2.143, 2.125, 2.112, 2.102, 2.093, 2.086, 2.081, 2.078, **2.078**, 2.084, 2.096, 2.120. Minimum at LR $\approx1.4$–$2.0\times10^{-3}$.
+- **"Batch Size = 524288"** (y ticked 2.08–2.13 in steps of 0.01). Losses: 2.135, 2.119, 2.106, 2.096, 2.090, 2.084, 2.080, **2.080**, 2.083, 2.092, 2.109, 2.124. Minimum at LR $\approx1.0\text{–}1.4\times10^{-3}$ (the 7th and 8th points are tied).
+- **"Batch Size = 786432"** (y ticked 2.08–2.14 in steps of 0.01). Losses: 2.143, 2.125, 2.112, 2.102, 2.093, 2.086, 2.081, 2.078, **2.078**, 2.084, 2.096, 2.120. Minimum at LR $\approx1.4\text{–}2.0\times10^{-3}$.
 - **"Batch Size = 1048576"** (y ticked 2.08–2.15 in steps of 0.01). Losses: 2.150, 2.132, 2.119, 2.106, 2.097, 2.088, 2.082, **2.076**, 2.077, 2.083, 2.090, 2.111. Minimum at LR $\approx1.4\times10^{-3}$ — the lowest loss anywhere in the eight panels.
 
 (The eight panels are consistent with one another: the **sixteen** cross-checks where a top-row and a bottom-row panel share a grid cell (each of the 4 top-row learning rates against each of the 4 bottom-row batch sizes) — e.g. LR $6.91\times10^{-4}$ with batch 1048576 — agree to within 0.0004 in loss across all sixteen.)
 
-**The two 3-D insets** (one at the right of each row) are the same rendering: a 3-D surface over x-axis "Learning Rate (log10)" and y-axis **"Batch Size (log10)"** — its ticks read 5.25, 5.50, 5.75, 6.00, 6.25, 6.50, 6.75, which is $\log_{10}$ of the $1.31\times10^{5}$–$8.39\times10^{6}$ batch range; $\log_2$ would print 17 through 23 — with a vertical axis and a colorbar both labelled "Smooth Loss (log)". The colorbar carries five evenly spaced tick labels, **0.82 at the top through 0.80, 0.78, 0.76 to 0.74 at the bottom**, and its gradient runs dark blue at the top, through white at about 0.78, to dark red at the bottom (measured pixel-by-pixel down the bar). The surface itself is a single smooth basin, and **its colour runs *with* height, not against it**: the basin floor — the loss minimum — is **dark red**, and the tall corner where the loss blows up is **blue**. (An earlier reading of this page had that inverted, and recorded it as an inconsistency in the source; it is not one. Four things settle it. Arithmetic: the eight panels' Smooth Loss values span 2.076–2.183, whose natural logs are 0.7304–0.7807 — exactly the colorbar's 0.74–0.82 — so the colorbar's 0.74 end is the minimum. Mechanism: the colorbar and the vertical axis carry the same label, "Smooth Loss (log)", so colour is a monotone increasing function of $z$. Local pixels: following one continuous slope down from its topmost sliver the colour runs pale blue (194,208,221) → (241,221,220) → (231,156,137) → saturated red (219,131,117), i.e. higher is bluer. Aggregate: over 6,484 strongly coloured surface pixels the correlation between screen-$y$ and recovered colorbar value is $-0.37$, and the darkest-blue pixels average 19 px higher on screen than the darkest-red ones.) The top inset has a translucent **blue** vertical plane standing in it, with a dark-blue arrow running left from that plane to the fourth top panel; the bottom inset has a translucent **red/pink** vertical plane, with a red arrow running left to the fourth bottom panel — i.e. each plane marks which slice the neighbouring line panel is.
+**The two 3-D insets** (one at the right of each row) are the same rendering: a 3-D surface over x-axis "Learning Rate (log10)" and y-axis **"Batch Size (log10)"** — its ticks read 5.25, 5.50, 5.75, 6.00, 6.25, 6.50, 6.75, which is $\log_{10}$ of the $1.31\times10^{5}\text{–}8.39\times10^{6}$ batch range; $\log_2$ would print 17 through 23 — with a vertical axis and a colorbar both labelled "Smooth Loss (log)". The colorbar carries five evenly spaced tick labels, **0.82 at the top through 0.80, 0.78, 0.76 to 0.74 at the bottom**, and its gradient runs dark blue at the top, through white at about 0.78, to dark red at the bottom (measured pixel-by-pixel down the bar). The surface itself is a single smooth basin, and **its colour runs *with* height, not against it**: the basin floor — the loss minimum — is **dark red**, and the tall corner where the loss blows up is **blue**. (An earlier reading of this page had that inverted, and recorded it as an inconsistency in the source; it is not one. Four things settle it. Arithmetic: the eight panels' Smooth Loss values span 2.076–2.183, whose natural logs are 0.7304–0.7807 — exactly the colorbar's 0.74–0.82 — so the colorbar's 0.74 end is the minimum. Mechanism: the colorbar and the vertical axis carry the same label, "Smooth Loss (log)", so colour is a monotone increasing function of $z$. Local pixels: following one continuous slope down from its topmost sliver the colour runs pale blue (194,208,221) → (241,221,220) → (231,156,137) → saturated red (219,131,117), i.e. higher is bluer. Aggregate: over 6,484 strongly coloured surface pixels the correlation between $\text{screen-}y$ and recovered colorbar value is $-0.37$, and the darkest-blue pixels average 19 px higher on screen than the darkest-red ones.) The top inset has a translucent **blue** vertical plane standing in it, with a dark-blue arrow running left from that plane to the fourth top panel; the bottom inset has a translucent **red/pink** vertical plane, with a red arrow running left to the fourth bottom panel — i.e. each plane marks which slice the neighbouring line panel is.
 
 Taken together, the slide's claim holds up against its own data: every one of the eight slices is single-minimum and U-shaped, so an optimum in learning rate and in batch size can be read straight off each curve.
 
@@ -1356,7 +1356,7 @@ Heading: "Observation 2: scaling trends". Body text below the figure:
 Both panels: x-axis "D", **log** scale (measured on this copy: the labelled major ticks $10^{10}$ and $10^{11}$ are 286.5 px apart in the left panel and 287 px apart in the right, and the minor ticks between them fall at $+86,+136,+172,+199,+222,+241,+258,+272$ px — the $\log_{10}2,\log_{10}3,\ldots$ spacing). Plotted x-range roughly $1.6\times10^{9}$ to $1.2\times10^{11}$. **Seven** series in each panel, per the legend, each drawn as scatter dots plus a dashed straight fit line plus a translucent band: N=59M (blue), N=119M (orange), N=214M (green), N=268M (red), N=429M (purple), N=536M (brown), N=1B (pink).
 
 - **Left panel, y-axis "Learning Rate", log scale** (measured: the one labelled tick $10^{-3}$ has minor ticks at +11.5, +24.5, +39, +55.5, +75.5, +99.5 px below it and −75.5, −119.5, −151, −175.5, −195, −212 px above — the $9,8,7,6,5,4\times$ and $2,3,4,5,6,7\times$ log positions, giving ≈251 px per decade). The seven fit lines are stacked in strict order of model size, **largest N lowest**, and every one slopes **upward** with $D$. Approximate values, read at $D\approx2\times10^{9}$ and at each line's right-hand end: N=59M $3.1\times10^{-3}\to4.2\times10^{-3}$ (stops at $D\approx8\times10^{9}$); N=119M $2.0\times10^{-3}\to3.9\times10^{-3}$ (stops at $D\approx8\times10^{9}$); N=214M $1.5\times10^{-3}\to4.0\times10^{-3}$ at $10^{11}$; N=268M $1.3\times10^{-3}\to4.2\times10^{-3}$ at $10^{11}$; N=429M $8\times10^{-4}\to2.7\times10^{-3}$ at $10^{11}$; N=536M $6\times10^{-4}\to2.0\times10^{-3}$ (stops at $D\approx5\times10^{10}$); N=1B $4.5\times10^{-4}\to1.3\times10^{-3}$ (stops at $D\approx6\times10^{10}$). The common log-log slope of the fits measures at roughly 0.25–0.31.
-- **Right panel, y-axis "Batch Size", log scale** (measured: $10^{6}$ and $10^{5}$ are 257.5 px apart with minor ticks at the intervening $9,8,7,6,5,4,3,2\times$ log positions). Here the seven series **collapse onto a single line**: all the coloured scatter and all seven bands overlap into one mauve composite running from about $(2\times10^{9},\,1.2\times10^{5})$ to about $(10^{11},\,1.4\times10^{6})$, a log-log slope of roughly 0.6. Blue (N=59M) and orange (N=119M) contribute a single point each, at $D\approx8\times10^{9}$.
+- **Right panel, y-axis "Batch Size", log scale** (measured: $10^{6}$ and $10^{5}$ are 257.5 px apart with minor ticks at the intervening $9,8,7,6,5,4,3,2\times$ log positions). Here the seven series **collapse onto a single line**: all the coloured scatter and all seven bands overlap into one mauve composite running from about $(2\times10^{9},\thinspace1.2\times10^{5})$ to about $(10^{11},\thinspace1.4\times10^{6})$, a log-log slope of roughly 0.6. Blue (N=59M) and orange (N=119M) contribute a single point each, at $D\approx8\times10^{9}$.
 
 The two panels are exactly the evidence the slide's text claims: batch size lies on one curve in $D$ regardless of $N$, while learning rate needs both $N$ and $D$ — and the learning-rate fits do slope *upward* with $D$, which is the "higher optimal LR with D (for fixed M)" the text then flags as fragile.
 
@@ -1624,7 +1624,7 @@ Heading: "A few slides on muon..". Body line: "**Muon:**". Two lines across the 
 > **Require:** Learning rate $\eta$, momentum $\mu$
 > 1: Initialize $B_0 \leftarrow 0$
 > 2: **for** $t = 1, \ldots$ **do**
-> 3:   Compute gradient $G_t \leftarrow \nabla_\theta \mathcal{L}_t(\theta_{t-1})$
+> 3:   Compute gradient $G_t \leftarrow \nabla_\theta \mathcal{L}_ t(\theta_{t-1})$
 > 4:   $B_t \leftarrow \mu B_{t-1} + G_t$
 > 5:   $O_t \leftarrow \text{NewtonSchulz5}(B_t)$
 > 6:   Update parameters $\theta_t \leftarrow \theta_{t-1} - \eta O_t$
@@ -1678,7 +1678,7 @@ Heading: "Maximum update parametrization – in depth". Body line: "Recall – t
 
 **Figure — two side-by-side panels, "Standard Practice" (left) and "Our Work" (right): training loss against learning rate, one curve per model width.** Both panels share the axes and the legend.
 
-Y-axis "Training Loss", **linear**, ticked 3.5 to 7.0 in 0.5 steps (measured: the eight tick labels sit 53, 53, 53, 52, 53, 53, 52 px apart — flat; a log axis over 7.0→3.5 would have ramped monotonically from 39 to 71 px). X-axis "$\log_2 LearningRate$", ticked −20, −18, −16, −14, −12, −10, evenly spaced at 40.45 px per unit of $\log_2$ (measured: 80.5, 81, 80, 82, 81 px per 2 units in the left panel and 81.5, 80, 80, 82, 81 in the right). Note the axis variable is already a logarithm, so an even axis here means learning rate itself is on a log scale.
+Y-axis "Training Loss", **linear**, ticked 3.5 to 7.0 in 0.5 steps (measured: the eight tick labels sit 53, 53, 53, 52, 53, 53, 52 px apart — flat; a log axis over 7.0→3.5 would have ramped monotonically from 39 to 71 px). X-axis $\log_2 LearningRate$, ticked −20, −18, −16, −14, −12, −10, evenly spaced at 40.45 px per unit of $\log_2$ (measured: 80.5, 81, 80, 82, 81 px per 2 units in the left panel and 81.5, 80, 80, 82, 81 in the right). Note the axis variable is already a logarithm, so an even axis here means learning rate itself is on a log scale.
 
 **Seven series**, exactly the seven legend entries under the legend header "Width", drawn as a pale-pink-to-near-black ramp: 128 (233,210,204), 256 (215,173,177), 512 (191,138,158), 1024 (161,108,141), 2048 (124,80,123), 4096 (83,55,96), 8192 (43,31,60). Each curve has a faint shaded band around it. **The legend box sits inside the left panel's plot area** (roughly $\log_2 LR$ −19.6 to −16.2, loss 6.1 to 3.5) and hides part of several curves there; it was masked before tracing. A **dotted horizontal reference line at loss ≈ 4.03** runs across both panels.
 
@@ -1694,7 +1694,7 @@ Y-axis "Training Loss", **linear**, ticked 3.5 to 7.0 in 0.5 steps (measured: th
 | 4096 | −15.1 | 4.08 |
 | 8192 | −16.3 | 4.11 |
 
-The optimum marches steadily left — about 0.9 in $\log_2$ per doubling of width, i.e. roughly $\eta^* \propto 1/\text{width}$ — over a total of 5.6 doublings of learning rate between width 128 and width 8192. And the best achievable loss stops improving: it bottoms out at 4.06 at width 2048 and gets *worse* at 4096 and 8192. Each curve also ends earlier than the last (width 128 is plotted out to $\log_2 LR = -9.3$, width 8192 only to $-12.2$) and the wide curves spike violently upward past their optimum.
+The optimum marches steadily left — about 0.9 in $\log_2$ per doubling of width, i.e. roughly $\eta^{\ast} \propto 1/\text{width}$ — over a total of 5.6 doublings of learning rate between width 128 and width 8192. And the best achievable loss stops improving: it bottoms out at 4.06 at width 2048 and gets *worse* at 4096 and 8192. Each curve also ends earlier than the last (width 128 is plotted out to $\log_2 LR = -9.3$, width 8192 only to $-12.2$) and the wide curves spike violently upward past their optimum.
 
 *Right panel, "Our Work"* — an in-plot annotation with a rightward arrow reads "**optimum stable**":
 
@@ -1712,7 +1712,7 @@ Here the optimum sits within a single $\log_2$ unit for every width (five of the
 
 **Table — "Table 2. μP function for a model $M'$ that is $r$ times the widths of M."** Pasted with its full caption:
 
-> *Table 2.* $\mu$P function for a model $M'$ that is $r$ times the widths of M. If a parameter tensor has 2 dimensions that goes infinite when the model width goes infinite, it is "matrix-like" (*e.g.,* a fully-connected hidden layer); if the number is 1 or 0, it belongs to the "others" class. Note that embedding layers are "others". "Output" means the layer that maps an infinite dimension to a finite dimension, which is the word decoding layer ($lm\_head$) in Transformers. A multiplier is a constant multiplied by a parameter tensor, which has a similar function to softmax temperature.
+> *Table 2.* $\mu\text{P}$ function for a model $M'$ that is $r$ times the widths of M. If a parameter tensor has 2 dimensions that goes infinite when the model width goes infinite, it is "matrix-like" (*e.g.,* a fully-connected hidden layer); if the number is 1 or 0, it belongs to the "others" class. Note that embedding layers are "others". "Output" means the layer that maps an infinite dimension to a finite dimension, which is the word decoding layer ($\verb|lm_head|$) in Transformers. A multiplier is a constant multiplied by a parameter tensor, which has a similar function to softmax temperature.
 
 The table has its own header row, so no column mapping is inferred:
 
@@ -1739,7 +1739,7 @@ Heading: "CerebrasGPT". Body line: "CerebrasGPT – 0.1 to 13B models trained wi
 
 - **Cerebras-GPT** (blue, solid line with round markers) — 7 points, each annotated with its parameter count: 111M at ($\approx 10^{18.4}$, loss ≈ 2.61), 256M at ($10^{19.1}$, ≈ 2.351 — its marker is hidden under the orange one and was recovered from the visible arc), 590M at ($10^{19.8}$, ≈ 2.185), 1.3B at ($10^{20.45}$, ≈ 2.00), 2.7B at ($10^{21.0}$, ≈ 1.83), 6.7B at ($10^{21.8}$, ≈ 1.70), 13B at ($10^{22.36}$, ≈ 1.57).
 - **Cerebras-GPT Scaling Law** (blue dotted line) — a straight fitted line running the full width of the panel, measured at ≈ 2.79 at the left edge (just left of $10^{18}$) falling to ≈ 1.48 at the right edge (just under $10^{23}$); it passes through the Cerebras-GPT points and is extrapolated beyond them at both ends.
-- **Cerebras-GPT $\mu$P** (orange, solid line with round markers) — 5 points only, stopping at 2.7B: ($10^{18.43}$, 2.587), ($10^{19.11}$, 2.360), ($10^{19.79}$, 2.155), ($10^{20.46}$, 1.984), ($10^{21.04}$, 1.847). It sits fractionally *below* the blue Cerebras-GPT line at three of the five shared points — 111M, 590M and 1.3B — but **above** it (i.e. worse) at **256M and 2.7B**. The right panel is exactly this quantity and agrees: baseline $-0.90$ against $\mu$P $-0.47$ at 256M, and $-0.86$ against $-0.23$ at 2.7B. This matters for the page's argument: the slide's own bottom line is that $\mu$P makes scaling more *stable* (spread 0.31 against 1.89 in the right panel), not uniformly better.
+- **Cerebras-GPT $\mu\text{P}$** (orange, solid line with round markers) — 5 points only, stopping at 2.7B: ($10^{18.43}$, 2.587), ($10^{19.11}$, 2.360), ($10^{19.79}$, 2.155), ($10^{20.46}$, 1.984), ($10^{21.04}$, 1.847). It sits fractionally *below* the blue Cerebras-GPT line at three of the five shared points — 111M, 590M and 1.3B — but **above** it (i.e. worse) at **256M and 2.7B**. The right panel is exactly this quantity and agrees: baseline $-0.90$ against $\mu\text{P}$ $-0.47$ at 256M, and $-0.86$ against $-0.23$ at 2.7B. This matters for the page's argument: the slide's own bottom line is that $\mu\text{P}$ makes scaling more *stable* (spread 0.31 against 1.89 in the right panel), not uniformly better.
 - **Pythia** (green, solid line with round markers) — 8 points, annotated: 70M ($10^{20.2}$, 2.503), 160M ($10^{20.61}$, 2.186), 410M ($10^{21.03}$, 1.971), 1B ($10^{21.36}$, 1.845), 1.4B ($10^{21.51}$, 1.793), 2.8B ($10^{21.79}$, 1.720), 6.9B ($10^{22.15}$, 1.627), 12B ($10^{22.38}$, 1.582). The Pythia line is well *above* (worse than) the Cerebras-GPT line at equal FLOPs for the small models and converges onto it around $10^{22}$.
 - **GPT-J 6B** (purple, single point) — ($10^{22.23}$, 1.613), labelled "6B".
 - **GPT-NeoX 20B** (red, single point) — ($10^{22.81}$, 1.522), labelled "20B", sitting just above the extrapolated dotted scaling law.
@@ -1747,8 +1747,8 @@ Heading: "CerebrasGPT". Body line: "CerebrasGPT – 0.1 to 13B models trained wi
 **Figure 2 (right) — "Figure 5: Percentage loss increase relative to Cerebras-GPT scaling law plotted against training FLOPs."** y-axis "% from Cerebras-GPT scaling law", **linear**, ticks -1.0, -0.5, 0.0, 0.5, 1.0 (measured spacings 186.5 and 183.5 px — equal). x-axis "Training FLOPs", **log**, decade gridlines $10^{19}$, $10^{20}$, $10^{21}$, $10^{22}$ (evenly spaced ~260 px apart). Legend, three entries:
 
 - **Cerebras-GPT** (blue, solid, round markers) — 7 points, each labelled: 111M ($10^{18.42}$, **+0.31**), 256M ($10^{19.10}$, **-0.90**), 590M ($10^{19.79}$, **+0.66**), 1.3B ($10^{20.45}$, **+0.35**), 2.7B ($10^{21.04}$, **-0.86**), 6.7B ($10^{21.80}$, **+0.99**), 13B ($10^{22.36}$, **-0.53**). The series zig-zags violently, swinging the full height of the panel between consecutive model sizes.
-- **Cerebras-GPT $\mu$P** (orange, solid, round markers) — 5 points, each labelled, all below zero and all within a narrow band: 111M ($10^{18.42}$, **-0.44**), 256M ($10^{19.10}$, **-0.47**), 590M ($10^{19.79}$, **-0.54**), 1.3B ($10^{20.45}$, **-0.31**), 2.7B ($10^{21.04}$, **-0.23**). Total spread ≈ 0.31, against ≈ 1.89 for the blue series.
-- **Projected Cerebras-GPT $\mu$P Trend** (orange dashed) — a flat horizontal line at **≈ -0.40**, drawn across the whole panel width.
+- **Cerebras-GPT $\mu\text{P}$** (orange, solid, round markers) — 5 points, each labelled, all below zero and all within a narrow band: 111M ($10^{18.42}$, **-0.44**), 256M ($10^{19.10}$, **-0.47**), 590M ($10^{19.79}$, **-0.54**), 1.3B ($10^{20.45}$, **-0.31**), 2.7B ($10^{21.04}$, **-0.23**). Total spread ≈ 0.31, against ≈ 1.89 for the blue series.
+- **Projected Cerebras-GPT $\mu\text{P}$ Trend** (orange dashed) — a flat horizontal line at **≈ -0.40**, drawn across the whole panel width.
 
 A grey/blue dotted horizontal reference line sits at exactly 0.0 (this is a reference line, not a fourth series).
 
@@ -1777,20 +1777,20 @@ Below the panel, centered: "Note: if individual activations are $\Theta(1)$, the
 
 Heading: "Deriving muP (condition A1)".
 
-Body: "Suppose that we have a simple, deep linear network ($h_l = W_l h_{l-1}$) and we init $W_l \sim N\left(0, \sigma^2 I_{n_l \times n_{l-1}}\right)$ then by basic matrix concentration $\|W_l\|_* \to \sigma(\sqrt{n_{l-1}} + \sqrt{n_l})$ and,"
+Body: "Suppose that we have a simple, deep linear network ($h_l = W_l h_{l-1}$) and we init $W_l \sim N\left(0, \sigma^2 I_{n_l \times n_{l-1}}\right)$ then by basic matrix concentration $\Vert W_l\Vert_{\ast} \to \sigma(\sqrt{n_{l-1}} + \sqrt{n_l})$ and,"
 
-$$\|h_l\|_2 \approx \|W_l\|_* \|h_{l-1}\|_2$$
+$$\Vert h_l\Vert_2 \approx \Vert W_l\Vert_{\ast} \Vert h_{l-1}\Vert_2$$
 
 "Now let's pick $\sigma = \dfrac{\sqrt{n_l}}{\sqrt{n_{l-1}}}\left(\sqrt{n_l} + \sqrt{n_{l-1}}\right)^{-1} = \Theta\left(\dfrac{1}{\sqrt{n_{l-1}}}\min\left(1, \sqrt{\dfrac{n_l}{n_{l-1}}}\right)\right)$. What happens?"
 
 Light-blue panel:
 
-- "**Inductive assumption**- $\|h_{l-1}\|_2 = \Theta\left(\sqrt{n_{l-1}}\right)$"
-- "**Inductive case** - $\|W_l\|_* \to \sigma\left(\sqrt{n_{l-1}} + \sqrt{n_l}\right) = \dfrac{\sqrt{n_l}}{\sqrt{n_{l-1}}}$"
+- "**Inductive assumption**- $\Vert h_{l-1}\Vert_2 = \Theta\left(\sqrt{n_{l-1}}\right)$"
+- "**Inductive case** - $\Vert W_l\Vert_{\ast} \to \sigma\left(\sqrt{n_{l-1}} + \sqrt{n_l}\right) = \dfrac{\sqrt{n_l}}{\sqrt{n_{l-1}}}$"
 
 and, centered below inside the same panel:
 
-$$\|h_l\|_2 = \sqrt{n_l} + o\left(\sqrt{n_l}\right)$$
+$$\Vert h_l\Vert_2 = \sqrt{n_l} + o\left(\sqrt{n_l}\right)$$
 
 Footer line (small, centered): "[Comments – this is a kind of 'worst case' derivation – the $\approx$ is an upper bound ]"
 
@@ -1804,15 +1804,15 @@ Body: "Now we need to deal with updates. Suppose we have the update $\Delta W_l$
 
 $$\Delta W_l = -\eta_l \nabla_{h_l}\ell\ h_{l-1}^{\top}$$
 
-"Thus, $\|\Delta W_l h_{l-1}\|_2 = \|\Delta W_l\|_* \|h_{l-1}\|_2$ . Now note that we have the update"
+"Thus, $\Vert\Delta W_l h_{l-1}\Vert_2 = \Vert\Delta W_l\Vert_{\ast} \Vert h_{l-1}\Vert_2$ . Now note that we have the update"
 
 $$\Delta h_l = W_l \Delta h_{l-1} + \Delta W_l (h_{l-1} + \Delta h_{l-1})$$
 
 Light-blue panel: "Assuming that the leading order terms don't cancel, we see that"
 
 - $W_l \Delta h_{l-1} = \Theta\left(\sqrt{n_l}\right)$ &nbsp;from induction assumption + condition A1 argument
-- $\Delta W_l h_{l-1} = \|\Delta W_l\|_* \sqrt{n_{l-1}}$ from above, thus $\|\boldsymbol{\Delta W_l}\|_* = \boldsymbol{\Theta}\left(\dfrac{\sqrt{n_l}}{\sqrt{n_{l-1}}}\right)$ (this last conclusion is set in bold on the slide)
-- $\Delta W_l \Delta h_{l-1} = O\left(\|\Delta W_l\|_* \sqrt{n_{l-1}}\right)$
+- $\Delta W_l h_{l-1} = \Vert\Delta W_l\Vert_{\ast} \sqrt{n_{l-1}}$ from above, thus $\Vert\boldsymbol{\Delta W_l}\Vert_{\ast} = \boldsymbol{\Theta}\left(\dfrac{\sqrt{n_l}}{\sqrt{n_{l-1}}}\right)$ (this last conclusion is set in bold on the slide)
+- $\Delta W_l \Delta h_{l-1} = O\left(\Vert\Delta W_l\Vert_{\ast} \sqrt{n_{l-1}}\right)$
 
 No chart or table on this page.
 
@@ -1820,15 +1820,15 @@ No chart or table on this page.
 
 Heading: "Deriving muP (condition A2) part 2".
 
-Body: "Recall –the key is to pick LR such that $\|\Delta W_l\|_* \sqrt{n_{l-1}} = \Theta\left(\sqrt{n_l}\right)$. How can we do that?"
+Body: "Recall –the key is to pick LR such that $\Vert\Delta W_l\Vert_{\ast} \sqrt{n_{l-1}} = \Theta\left(\sqrt{n_l}\right)$. How can we do that?"
 
 "Suppose that the loss update *also* scales O(1). Then we can write down.."
 
-$$\Delta\ell \approx \Theta\left(\left\langle \Delta W_l, \nabla_{W_l}\ell \right\rangle\right) = \Theta\left(\|\Delta W_l\|_F \left\|\nabla_{W_l}\ell\right\|_F\right) = \Theta\left(\|\Delta W_l\|_* \left\|\nabla_{W_l}\ell\right\|_*\right)$$
+$$\Delta\ell \approx \Theta\left(\left\langle \Delta W_l, \nabla_{W_l}\ell \right\rangle\right) = \Theta\left(\Vert\Delta W_l\Vert_F \left\Vert\nabla_{W_l}\ell\right\Vert_F\right) = \Theta\left(\Vert\Delta W_l\Vert_{\ast} \left\Vert\nabla_{W_l}\ell\right\Vert_{\ast}\right)$$
 
 "Where we use the fact that $\Delta W_l = -\eta \nabla_{W_l}\ell$ in standard SGD updates."
 
-"Now plug in $\Delta\ell = \mathrm{O}(1)$, $\|\Delta W_l\|_* = \Theta\left(\dfrac{\sqrt{n_l}}{\sqrt{n_{l-1}}}\right)$ to get that $\left\|\nabla_{W_l}\ell\right\|_* = \Theta\left(\dfrac{\sqrt{n_{l-1}}}{\sqrt{n_l}}\right)$"
+"Now plug in $\Delta\ell = \mathrm{O}(1)$, $\Vert\Delta W_l\Vert_{\ast} = \Theta\left(\dfrac{\sqrt{n_l}}{\sqrt{n_{l-1}}}\right)$ to get that $\left\Vert\nabla_{W_l}\ell\right\Vert_{\ast} = \Theta\left(\dfrac{\sqrt{n_{l-1}}}{\sqrt{n_l}}\right)$"
 
 "Finally, from the previous slide, recall that $\Delta W_l = -\eta_l \nabla_{h_l}\ell\ h_{l-1}^{\top}$ and thus"
 
@@ -1836,7 +1836,7 @@ Highlighted (light-blue) box, the result of the derivation:
 
 $$\eta_l = \Theta\left(\frac{n_l}{n_{l-1}}\right)$$
 
-Bottom-right footnote: "[with Adam, $\|\Delta W_l\|_* \sqrt{n_{l-1}} = \Theta\left(\sqrt{\eta_l}\right)$]"
+Bottom-right footnote: "[with Adam, $\Vert\Delta W_l\Vert_{\ast} \sqrt{n_{l-1}} = \Theta\left(\sqrt{\eta_l}\right)$]"
 
 No chart or table on this page.
 
@@ -1866,7 +1866,7 @@ Heading: "Deeper dive into muP". Top-right corner, a screenshot of a paper's hea
 
 Body: "Recall – muP is a scaling procedure for hyperparams (as a function of width)"
 
-**Table — "Table 2: $\mu$P scaling rules for transformers; a rule for attention scale is detailed in text below."** (pasted from the paper; the caption is printed beneath it)
+**Table — "Table 2: $\mu\text{P}$ scaling rules for transformers; a rule for attention scale is detailed in text below."** (pasted from the paper; the caption is printed beneath it)
 
 | Param | Init Variance ($\Theta$) | Adam LR ($\Theta$) | Init Variance (Exact) | Adam LR (Exact) |
 | --- | --- | --- | --- | --- |
@@ -1879,9 +1879,9 @@ Body: "Recall – muP is a scaling procedure for hyperparams (as a function of w
 | $\mathbf{W}^{FO}$ | $1/F$ | $1/F$ | $0.25/M$ | $\alpha P/M$ |
 | $\mathbf{W}^{U}$ | $1/M^2$ | $1/M$ | $1/M^2$ | $\alpha P/M$ |
 
-The lecturer has added his own labels down the right-hand margin, aligned with the table's four horizontal-rule-separated blocks: "Embedding" (against $\mathbf{W}^E$), "Attention params" (against $\mathbf{W}^{AQ}$–$\mathbf{W}^{AO}$), "Input/output MLP MM" (against $\mathbf{W}^{FI}$, $\mathbf{W}^{FO}$), "Softmax linear" (against $\mathbf{W}^U$).
+The lecturer has added his own labels down the right-hand margin, aligned with the table's four horizontal-rule-separated blocks: "Embedding" (against $\mathbf{W}^E$), "Attention params" (against $\mathbf{W}^{AQ}\text{–}\mathbf{W}^{AO}$), "Input/output MLP MM" (against $\mathbf{W}^{FI}$, $\mathbf{W}^{FO}$), "Softmax linear" (against $\mathbf{W}^U$).
 
-Boxed quotation from the same paper, beneath the table (transcribed in full): "In addition, $\mu$P uses an attention scale of $\tau^{-1} = \Theta(1/D)$ instead of the usual $\tau^{-1} = 1/\sqrt{D}$. For simplicity, we use $\tau^{-1} = 1/D$, since in preliminary experiments we observed only a small improvement from using smaller multiples of $1/D$. Note that for $D$ fixed across model widths $M$, any constant $\tau^{-1} \neq 0$ technically complies with $\mu$P (Yang et al., 2021) but in the experiments, $\tau^{-1}$ will be shown to have a major impact on performance and transfer."
+Boxed quotation from the same paper, beneath the table (transcribed in full): "In addition, $\mu\text{P}$ uses an attention scale of $\tau^{-1} = \Theta(1/D)$ instead of the usual $\tau^{-1} = 1/\sqrt{D}$. For simplicity, we use $\tau^{-1} = 1/D$, since in preliminary experiments we observed only a small improvement from using smaller multiples of $1/D$. Note that for $D$ fixed across model widths $M$, any constant $\tau^{-1} \neq 0$ technically complies with $\mu\text{P}$ (Yang et al., 2021) but in the experiments, $\tau^{-1}$ will be shown to have a major impact on performance and transfer."
 
 ## Slide 52 — Replicating muP
 
@@ -1891,16 +1891,16 @@ Heading: "Replicating muP". Body: "**Q1:** Does muP work as claimed? When we sca
 
 | Ablation | Width | $2^{-10}$ | $2^{-8}$ | $2^{-6}$ | $2^{-4}$ | $2^{-2}$ | Transfer |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Baseline $\mu$P | 128 | 3.846 | 3.743 | **3.695** | 3.884 | 4.143 | ✔ (one check mark, centred on the three-row block) |
-| Baseline $\mu$P | 512 | 3.114 | 2.993 | **2.953** | 3.221 | 3.506 | *(blank)* |
-| Baseline $\mu$P | 2048 | 2.711 | 2.553 | **2.511** | 2.563 | 3.244 | *(blank)* |
+| Baseline $\mu\text{P}$ | 128 | 3.846 | 3.743 | **3.695** | 3.884 | 4.143 | ✔ (one check mark, centred on the three-row block) |
+| Baseline $\mu\text{P}$ | 512 | 3.114 | 2.993 | **2.953** | 3.221 | 3.506 | *(blank)* |
+| Baseline $\mu\text{P}$ | 2048 | 2.711 | 2.553 | **2.511** | 2.563 | 3.244 | *(blank)* |
 | Projection Biases | 128 | 3.838 | 3.735 | **3.705** | 3.911 | 4.269 | ✔ (one check mark, centred on the three-row block) |
 | Projection Biases | 512 | 3.108 | 2.986 | **2.947** | 2.970 | 3.557 | *(blank)* |
 | Projection Biases | 2048 | 2.710 | 2.552 | **2.529** | 2.672 | 3.418 | *(blank)* |
 
-In every one of the six rows the bolded minimum falls in the same column, $2^{-6}$ — that is the slide's answer to Q1: **three widths (128, 512, 2048), a 16$\times$ span, and the optimal base LR does not move.**
+In every one of the six rows the bolded minimum falls in the same column, $2^{-6}$ — that is the slide's answer to Q1: **three widths (128, 512, 2048), a $16\times$ span, and the optimal base LR does not move.**
 
-Caption paragraph printed beneath the table (transcribed in full): "As shown in Table 1, the learning rates transfer reliably across model sizes under $\mu$P. Despite each model being 4x wider (and 16x larger) than the last, the smallest model's optimal base learning rate $\alpha$ directly predicts the optimum in our sweeps for the larger models."
+Caption paragraph printed beneath the table (transcribed in full): "As shown in Table 1, the learning rates transfer reliably across model sizes under $\mu\text{P}$. Despite each model being 4x wider (and 16x larger) than the last, the smallest model's optimal base learning rate $\alpha$ directly predicts the optimum in our sweeps for the larger models."
 
 ## Slide 53 — What is muP robust to?
 
@@ -1923,13 +1923,13 @@ No chart or table on this page.
 
 Heading: "What is muP not robust to? RMSnorm gain". Body: "In our arch – RMSNorm has learnable gains. This turns out to break muP"
 
-**Table — the same LR-sweep format as slide 52, now with two RMSNorm-gain ablations added.** Five swept "Base LR" columns $2^{-10}$ … $2^{-2}$, three widths (128, 512, 2048) per ablation block, cell values are final losses, per-row minimum in **bold**, and a "Transfer" verdict per block: blue ✔ for Baseline $\mu$P, red ✗ for both RMSNorm-gain blocks.
+**Table — the same LR-sweep format as slide 52, now with two RMSNorm-gain ablations added.** Five swept "Base LR" columns $2^{-10}$ … $2^{-2}$, three widths (128, 512, 2048) per ablation block, cell values are final losses, per-row minimum in **bold**, and a "Transfer" verdict per block: blue ✔ for Baseline $\mu\text{P}$, red ✗ for both RMSNorm-gain blocks.
 
 | Ablation | Width | $2^{-10}$ | $2^{-8}$ | $2^{-6}$ | $2^{-4}$ | $2^{-2}$ | Transfer |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Baseline $\mu$P | 128 | 3.846 | 3.743 | **3.695** | 3.884 | 4.143 | ✔ (blue check, centred on the block) |
-| Baseline $\mu$P | 512 | 3.114 | 2.993 | **2.953** | 3.221 | 3.506 | *(blank)* |
-| Baseline $\mu$P | 2048 | 2.711 | 2.553 | **2.511** | 2.563 | 3.244 | *(blank)* |
+| Baseline $\mu\text{P}$ | 128 | 3.846 | 3.743 | **3.695** | 3.884 | 4.143 | ✔ (blue check, centred on the block) |
+| Baseline $\mu\text{P}$ | 512 | 3.114 | 2.993 | **2.953** | 3.221 | 3.506 | *(blank)* |
+| Baseline $\mu\text{P}$ | 2048 | 2.711 | 2.553 | **2.511** | 2.563 | 3.244 | *(blank)* |
 | RMSNorm Gains (Vector) | 128 | 3.842 | 3.744 | 3.689 | **3.670** | 3.681 | ✗ (red cross, centred on the block) |
 | RMSNorm Gains (Vector) | 512 | 3.101 | 2.992 | 2.951 | **2.950** | 3.412 | *(blank)* |
 | RMSNorm Gains (Vector) | 2048 | 2.692 | **2.553** | 2.609 | 2.605 | 3.169 | *(blank)* |
@@ -1937,9 +1937,9 @@ Heading: "What is muP not robust to? RMSnorm gain". Body: "In our arch – RMSNo
 | RMSNorm Gains (Scalar) | 512 | 3.106 | 3.000 | 2.961 | **2.959** | 3.515 | *(blank)* |
 | RMSNorm Gains (Scalar) | 2048 | 2.704 | 2.570 | **2.525** | 2.542 | 3.334 | *(blank)* |
 
-The argument is in where the bolded minima sit. Baseline $\mu$P: $2^{-6}$ at all three widths — no drift. **RMSNorm Gains (Vector)**: $2^{-4}$, $2^{-4}$, then $2^{-8}$ at width 2048 — the optimum jumps four powers of two as width grows. **RMSNorm Gains (Scalar)**: $2^{-4}$, $2^{-4}$, then $2^{-6}$ — the optimum moves again, by two powers of two. Note also that at the transferred optimum ($2^{-6}$) the width-2048 loss is worse with gains than without: 2.609 (vector) and 2.525 (scalar) against 2.511 for baseline $\mu$P.
+The argument is in where the bolded minima sit. Baseline $\mu\text{P}$: $2^{-6}$ at all three widths — no drift. **RMSNorm Gains (Vector)**: $2^{-4}$, $2^{-4}$, then $2^{-8}$ at width 2048 — the optimum jumps four powers of two as width grows. **RMSNorm Gains (Scalar)**: $2^{-4}$, $2^{-4}$, then $2^{-6}$ — the optimum moves again, by two powers of two. Note also that at the transferred optimum ($2^{-6}$) the width-2048 loss is worse with gains than without: 2.609 (vector) and 2.525 (scalar) against 2.511 for baseline $\mu\text{P}$.
 
-Caption paragraph printed beneath the table (transcribed in full): "As shown in Table 1, optimal learning rates for these models *do not* reliably transfer when using $\Theta(1)$ learning rate scaling for the gains, despite the fact that the 'coordinate size' of the features before and after RMS Normalization is $\Theta(1)$ w.r.t. width by design. In addition to the lack of transfer in these experiments, we find trainable gains harm the quality of the largest $\mu$P models when the base learning rate $\alpha$ is optimal. In Section 4.5, we also find that standard transformers with trainable gains underperform $\mu$P transformers without them."
+Caption paragraph printed beneath the table (transcribed in full): "As shown in Table 1, optimal learning rates for these models *do not* reliably transfer when using $\Theta(1)$ learning rate scaling for the gains, despite the fact that the 'coordinate size' of the features before and after RMS Normalization is $\Theta(1)$ w.r.t. width by design. In addition to the lack of transfer in these experiments, we find trainable gains harm the quality of the largest $\mu\text{P}$ models when the base learning rate $\alpha$ is optimal. In Section 4.5, we also find that standard transformers with trainable gains underperform $\mu\text{P}$ transformers without them."
 
 Bottom line of the slide: "But these gains can be removed with little loss of perf.."
 
@@ -1958,10 +1958,10 @@ Heading: "What is muP not robust to? Exotic optimizers". Body: "There are other,
   - $m_t \leftarrow \beta_1 m_{t-1} + (1-\beta_1) g_t$
   - $v_t \leftarrow \beta_2 v_{t-1} + (1-\beta_2) g_t^2$
   - **bias correction**
-  - $\hat{m}_t \leftarrow m_t / (1 - \beta_1^t)$
-  - $\hat{v}_t \leftarrow v_t / (1 - \beta_2^t)$
+  - $\hat{m}_ t \leftarrow m_t / (1 - \beta_1^t)$
+  - $\hat{v}_ t \leftarrow v_t / (1 - \beta_2^t)$
   - **update model parameters**
-  - $\theta_t \leftarrow \theta_{t-1} - \eta_t\left(\hat{m}_t / (\sqrt{\hat{v}_t} + \epsilon) + \lambda \theta_{t-1}\right)$
+  - $\theta_t \leftarrow \theta_{t-1} - \eta_t\left(\hat{m}_ t / (\sqrt{\hat{v}_ t} + \epsilon) + \lambda \theta_{t-1}\right)$
 - **end while**
 - **return** $\theta_t$
 
@@ -2003,19 +2003,19 @@ Heading: "What is muP not robust to? – (strong) weight decay". Body: "What abo
 
 Three width settings (128, 512, 2048). The optimum sits at $2^{-8}$ for width 128 and at $2^{-6}$ for widths 512 and 2048 — a one-step drift, and the reason for the ✗. Note that the drift is small in loss terms at width 128 (3.679 at $2^{-8}$ vs 3.694 at $2^{-6}$, a gap of 0.015), which is why the slide calls this the "only significant muP failure" rather than a catastrophic one.
 
-**Figure — pseudocode box, "Algorithm 1 SGD with $\mathrm{L_2}$ regularization and SGD with decoupled weight decay (SGDW), both with momentum"** (pasted from the AdamW / decoupled-weight-decay paper). Two coloured highlights run through the box: the phrase "SGD with $\mathrm{L_2}$ regularization" and the term $+\lambda\boldsymbol{\theta}_{t-1}$ on line 6 are highlighted in **pink/magenta**; the phrase "SGD with decoupled weight decay (SGDW)" and the term $-\eta_t \lambda \boldsymbol{\theta}_{t-1}$ on line 9 are highlighted in **yellow-green**. The numbered lines:
+**Figure — pseudocode box, "Algorithm 1 SGD with $\mathrm{L_2}$ regularization and SGD with decoupled weight decay (SGDW), both with momentum"** (pasted from the AdamW / decoupled-weight-decay paper). Two coloured highlights run through the box: the phrase "SGD with $\mathrm{L_2}$ regularization" and the term $+\lambda\boldsymbol{\theta}_ {t-1}$ on line 6 are highlighted in **pink/magenta**; the phrase "SGD with decoupled weight decay (SGDW)" and the term $-\eta_t \lambda \boldsymbol{\theta}_ {t-1}$ on line 9 are highlighted in **yellow-green**. The numbered lines:
 
-1. **given** initial learning rate $\alpha \in \mathbb{R}$, momentum factor $\beta_1 \in \mathbb{R}$, weight decay/$\mathrm{L_2}$ regularization factor $\lambda \in \mathbb{R}$
-2. **initialize** time step $t \leftarrow 0$, parameter vector $\boldsymbol{\theta}_{t=0} \in \mathbb{R}^n$, first moment vector $\boldsymbol{m}_{t=0} \leftarrow \boldsymbol{0}$, schedule multiplier $\eta_{t=0} \in \mathbb{R}$
+1. **given** initial learning rate $\alpha \in \mathbb{R}$, momentum factor $\beta_1 \in \mathbb{R}$, weight decay/L₂ regularization factor $\lambda \in \mathbb{R}$
+2. **initialize** time step $t \leftarrow 0$, parameter vector $\boldsymbol{\theta}_ {t=0} \in \mathbb{R}^n$, first moment vector $\boldsymbol{m}_ {t=0} \leftarrow \boldsymbol{0}$, schedule multiplier $\eta_{t=0} \in \mathbb{R}$
 3. **repeat**
-4. &nbsp;&nbsp;$t \leftarrow t+1$
-5. &nbsp;&nbsp;$\nabla f_t(\boldsymbol{\theta}_{t-1}) \leftarrow \mathrm{SelectBatch}(\boldsymbol{\theta}_{t-1})$ &nbsp;&nbsp;▷ select batch and return the corresponding gradient
-6. &nbsp;&nbsp;$\boldsymbol{g}_t \leftarrow \nabla f_t(\boldsymbol{\theta}_{t-1})\ \boxed{+\lambda\boldsymbol{\theta}_{t-1}}$ *(the boxed term is the pink-highlighted $\mathrm{L_2}$ term)*
-7. &nbsp;&nbsp;$\eta_t \leftarrow \mathrm{SetScheduleMultiplier}(t)$ &nbsp;&nbsp;▷ can be fixed, decay, be used for warm restarts
-8. &nbsp;&nbsp;$\boldsymbol{m}_t \leftarrow \beta_1 \boldsymbol{m}_{t-1} + \eta_t \alpha \boldsymbol{g}_t$
-9. &nbsp;&nbsp;$\boldsymbol{\theta}_t \leftarrow \boldsymbol{\theta}_{t-1} - \boldsymbol{m}_t\ \boxed{-\eta_t \lambda \boldsymbol{\theta}_{t-1}}$ *(the boxed term is the green-highlighted decoupled weight-decay term)*
+4. &nbsp;&nbsp; $t \leftarrow t+1$
+5. &nbsp;&nbsp; $\nabla f_t(\boldsymbol{\theta}_ {t-1}) \leftarrow \mathrm{Sel{}ectBatch}(\boldsymbol{\theta}_ {t-1})$ &nbsp;&nbsp;▷ select batch and return the corresponding gradient
+6. &nbsp;&nbsp; $\boldsymbol{g}_ t \leftarrow \nabla f_t(\boldsymbol{\theta}_ {t-1})\ \boxed{+\lambda\boldsymbol{\theta}_ {t-1}}$ *(the boxed term is the pink-highlighted L₂ term)*
+7. &nbsp;&nbsp; $\eta_t \leftarrow \mathrm{SetScheduleMultiplier}(t)$ &nbsp;&nbsp;▷ can be fixed, decay, be used for warm restarts
+8. &nbsp;&nbsp; $\boldsymbol{m}_ t \leftarrow \beta_1 \boldsymbol{m}_ {t-1} + \eta_t \alpha \boldsymbol{g}_ t$
+9. &nbsp;&nbsp; $\boldsymbol{\theta}_ t \leftarrow \boldsymbol{\theta}_ {t-1} - \boldsymbol{m}_ t\ \boxed{-\eta_t \lambda \boldsymbol{\theta}_ {t-1}}$ *(the boxed term is the green-highlighted decoupled weight-decay term)*
 10. **until** *stopping criterion is met*
-11. **return** optimized parameters $\boldsymbol{\theta}_t$
+11. **return** optimized parameters $\boldsymbol{\theta}_ t$
 
 ## Slide 57 — Is muP useful? At least to some extent..
 
@@ -2040,7 +2040,7 @@ Under SP the optimum marches steadily left as width grows — $2^{-6}$ → $2^{-
 | 600M | 2048 | 2.513 | **2.459** | 2.466 |
 | 10B | 8192 | 2.238 | **2.167** | 2.169 |
 
-Four width settings here (128, 512, 2048, 8192 — a 64$\times$ span, 2M to 10B parameters), and the optimum stays at $2^{-6}$ in every row.
+Four width settings here (128, 512, 2048, 8192 — a $64\times$ span, 2M to 10B parameters), and the optimum stays at $2^{-6}$ in every row.
 
 Bottom line of the slide: "Current evidence suggests that muP parametrization / initialization may be easier to tune."
 

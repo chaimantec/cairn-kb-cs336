@@ -361,7 +361,7 @@ See [model-based annotation](model-based-annotation.md).
 The RLHF objective, which "appears almost exactly in the InstructGPT paper...
 equation two" (≈1:05:34):
 
-$$\max_{\pi_\theta} \mathbb{E}_{x\sim\mathcal{D},\, y\sim\pi_\theta(y|x)}\left[r_\phi(x,y)\right] - \beta\, \mathbb{D}_{\text{KL}}\left[\pi_\theta(y\mid x)\,\|\,\pi_{\text{ref}}(y\mid x)\right]$$
+$$\max_{\pi_\theta} \mathbb{E}_ {x\sim\mathcal{D},\thinspace y\sim\pi_\theta(y|x)}\left[r_\phi(x,y)\right] - \beta\thinspace \mathbb{D}_ {\text{KL}}\left[\pi_\theta(y\mid x)\thinspace\Vert\thinspace\pi_{\text{ref}}(y\mid x)\right]$$
 
 Maximize reward, stay near the reference policy. The KL term exists "because I
 don't want to go too far and become degenerate" (≈1:06:21) — and it turns out to
@@ -401,13 +401,13 @@ three moves (slides 56–57, ≈1:10:58):
    strong assumption.
 2. Then the KL-regularized objective has a closed-form maximizer: the reference
    policy exponentially tilted by reward,
-   $\pi_r(y\mid x) = \frac{1}{Z(x)}\pi_{\text{ref}}(y\mid x)\exp\!\left(\frac{1}{\beta}r(x,y)\right)$.
+   $\pi_r(y\mid x) = \frac{1}{Z(x)}\pi_{\text{ref}}(y\mid x)\exp\negthinspace\left(\frac{1}{\beta}r(x,y)\right)$.
 3. Invert it for the **implied reward**,
    $r(x,y) = \beta\log\frac{\pi_r(y\mid x)}{\pi_{\text{ref}}(y\mid x)} + \beta\log Z(x)$,
    and substitute that into the pairwise preference loss. The intractable $Z(x)$
    cancels, because the loss only ever sees reward *differences*.
 
-$$\mathcal{L}_{\text{DPO}}(\pi_\theta;\pi_{\text{ref}}) = -\mathbb{E}_{(x,y_w,y_l)\sim\mathcal{D}}\left[\log\sigma\!\left(\beta\log\frac{\pi_\theta(y_w\mid x)}{\pi_{\text{ref}}(y_w\mid x)} - \beta\log\frac{\pi_\theta(y_l\mid x)}{\pi_{\text{ref}}(y_l\mid x)}\right)\right]$$
+$$\mathcal{L}_ {\text{DPO}}(\pi_\theta;\pi_{\text{ref}}) = -\mathbb{E}_ {(x,y_w,y_l)\sim\mathcal{D}}\left[\log\sigma\negthinspace\left(\beta\log\frac{\pi_\theta(y_w\mid x)}{\pi_{\text{ref}}(y_w\mid x)} - \beta\log\frac{\pi_\theta(y_l\mid x)}{\pi_{\text{ref}}(y_l\mid x)}\right)\right]$$
 
 The gradient is the part the lecturer calls "the most intuitive form of DPO":
 raise the likelihood of the winner, lower the likelihood of the loser, and scale

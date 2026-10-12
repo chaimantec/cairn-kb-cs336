@@ -51,9 +51,9 @@ The configuration: $S=1024$, $D=5120$, $F=13824$, $N=K=40$ (no GQA), $H=128$,
 $L=40$, $V=32000$, bandwidth $3.35 \times 10^{12}$ bytes/s. Substituting
 everything but $B$ (all values recomputed from the lecture's own expressions):
 
-$$\text{memory} = 838{,}860{,}800\,B + 26{,}030{,}899{,}200 \text{ bytes}$$
-$$\text{latency} = 0.000250406\,B + 0.00777042 \text{ seconds/token}$$
-$$\text{throughput} = \frac{127792.36\,B}{32B + 993} \text{ tokens/second}$$
+$$\text{memory} = 838{,}860{,}800\thinspace B + 26{,}030{,}899{,}200 \text{ bytes}$$
+$$\text{latency} = 0.000250406\thinspace B + 0.00777042 \text{ seconds/token}$$
+$$\text{throughput} = \frac{127792.36\thinspace B}{32B + 993} \text{ tokens/second}$$
 
 Parameter count comes out at 13,015,449,600 — "good, that's a sanity check, since it's advertised as a
 13-billion-parameter model" ([39:33]).
@@ -70,8 +70,8 @@ Three things to read off it.
 by the parameters ([41:06]). Every extra concurrent request adds 0.84 GB that must
 be re-read on every step.
 
-**Throughput rises but asymptotes.** From $B=1$ to $B=64$ it improves 21.6×; from
-$B=64$ to $B=256$ only a further 1.32×. Batching amortizes the *parameter* read,
+**Throughput rises but asymptotes.** From $B=1$ to $B=64$ it improves $21.6\times$; from
+$B=64$ to $B=256$ only a further $1.32\times$. Batching amortizes the *parameter* read,
 and once that is amortized there is nothing left to amortize — "throughput can't
 possibly go to infinity" ([40:18]).
 

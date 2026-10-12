@@ -66,7 +66,7 @@ figure's own annotation reads **"40x cheaper / 9% bettter"** (the typo is in the
 source image). Minitron 4B sits near 58.5% at the same cost.
 
 For context, that puts a pruned 8B in the neighbourhood of Gemma 7B (~64.5%) and
-LLaMA-3 8B (~65%), both of which cost 30–150× more tokens to train.
+LLaMA-3 8B (~65%), both of which cost $30\text{–}150\times$ more tokens to train.
 
 The lecture's summary: "They were able to take a 15B model and reduce it to an 8B
 model, and it doesn't really hurt accuracy by too much, and the amount you use

@@ -78,7 +78,7 @@ only whatever survived the layers below.
 | Linear $W$ | input only | proportional to patches | shallow |
 | 2-layer MLP | input only | proportional to patches | shallow |
 | Cross-attention | input only | **fixed at 256** | shallow |
-| 2×2 patch merge (Qwen2-VL) | input only | **dynamic** | shallow |
+| $2\times 2$ patch merge (Qwen2-VL) | input only | **dynamic** | shallow |
 | DeepStack | **many layers** | dynamic | **deep** |
 
 Two independent axes are moving. One is *how much* the image is allowed to cost —

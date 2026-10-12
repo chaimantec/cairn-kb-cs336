@@ -96,7 +96,7 @@ measure.
 ## A question from the floor: what does the model actually see?
 
 A student asks whether ARC-AGI-3, being so visual, requires multimodal input. The
-answer: the grid is small — Percy believes around **64×64** — so it can be supplied
+answer: the grid is small — Percy believes around **$64\times 64$** — so it can be supplied
 either **as an image** or **as a textual representation such as ASCII art**. Either
 way there is a **spatial element the model has to reason about that is not English
 or natural language** (≈[59:20]).

@@ -17,15 +17,15 @@ cross-entropy loss.
 
 DeepSeek's formulation, from slide 59, for the $k$-th MTP module at position $i$:
 
-$$\mathbf{h}'^{k}_i = M_k\left[\mathrm{RMSNorm}\!\left(\mathbf{h}^{k-1}_i\right);\; \mathrm{RMSNorm}\!\left(\mathrm{Emb}(t_{i+k})\right)\right]$$
+$$\mathbf{h}'^{k}_ i = M_k\left[\mathrm{RMSNorm}\negthinspace\left(\mathbf{h}^{k-1}_ i\right);\mskip{5mu} \mathrm{RMSNorm}\negthinspace\left(\mathrm{Emb}(t_{i+k})\right)\right]$$
 
-$$\mathbf{h}^{k}_{1:T-k} = \mathrm{TRM}_k\!\left(\mathbf{h}'^{k}_{1:T-k}\right)$$
+$$\mathbf{h}^{k}_ {1:T-k} = \mathrm{TRM}_ k\negthinspace\left(\mathbf{h}'^{k}_ {1:T-k}\right)$$
 
-$$P^{k}_{i+k+1} = \mathrm{OutHead}\!\left(\mathbf{h}^{k}_i\right)$$
+$$P^{k}_ {i+k+1} = \mathrm{OutHead}\negthinspace\left(\mathbf{h}^{k}_ i\right)$$
 
 Read it as three steps. Concatenate the previous module's hidden state with the embedding of
 the token $k$ ahead, both normalized, and project with $M_k$. Run that through a single
-transformer block $\mathrm{TRM}_k$. Emit a distribution over the token $k+1$ ahead.
+transformer block $\mathrm{TRM}_ k$. Emit a distribution over the token $k+1$ ahead.
 
 The modules are chained: module 1 takes the main model's last hidden state, module 2 takes
 module 1's, and so on. Each is a **single** transformer block, not a copy of the model —

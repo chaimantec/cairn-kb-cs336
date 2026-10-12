@@ -23,7 +23,7 @@ throughout:
 | Memory bandwidth | `h100_bytes_per_sec` | $3.35 \times 10^{12}$ bytes/s |
 
 The FLOP/s figure is 1979 teraFLOP/s **halved**: the datasheet number is quoted
-with sparsity, and dense throughput is half of it. Getting this wrong by 2× is the
+with sparsity, and dense throughput is half of it. Getting this wrong by $2\times$ is the
 most common error in napkin math about H100s.
 
 Assume for the sake of the estimate that communication and computation overlap
@@ -53,8 +53,8 @@ $$I_{\text{arith}} = \frac{\text{FLOPs}}{\text{bytes}}$$
 
 And the criterion becomes a single comparison:
 
-- **Memory-bound**: $I_{\text{arith}} < I_{\text{accel}}$
-- **Compute-bound**: $I_{\text{arith}} > I_{\text{accel}}$
+- **Memory-bound**: $I_{\text{arith}} \lt I_{\text{accel}}$
+- **Compute-bound**: $I_{\text{arith}} \gt I_{\text{accel}}$
 
 The number to carry around is that **an H100 needs roughly 295 FLOPs of work for
 every byte you move** before it is even breaking even. That is a demanding
@@ -93,7 +93,7 @@ $1.25 \times 10^{-6}$ s against $1.06 \times 10^{-9}$ s of computation — the m
 system is busy for roughly **a thousand times longer** than the arithmetic units.
 The GPU spends essentially the entire operation waiting.
 
-### GeLU — 20× the work, still memory-bound
+### GeLU — $20\times$ the work, still memory-bound
 
 ```python
 y = F.gelu(x)   # GELU(x) = 0.5 x (1 + tanh(sqrt(2/pi) (x + 0.044715 x^3)))
@@ -168,8 +168,8 @@ Two consequences the lecture draws:
   training can approach peak and inference cannot.
 
 The $n/3$ form also tells you where the boundary is. The lecture does not do this
-step, but its two numbers determine it: solving $n/3 = 295.4$ gives $n \approx
-886$, so on an H100 in bf16, square matmuls smaller than roughly 900 on a side are
+step, but its two numbers determine it: solving $n/3 = 295.4$ gives
+$n \approx 886$, so on an H100 in bf16, square matmuls smaller than roughly 900 on a side are
 memory-bound. That is not a large matrix, which is the reassuring part — realistic
 Transformer layer widths sit safely on the compute-bound side of it.
 
@@ -287,14 +287,14 @@ algebra rather than measurements — see
 [`raw/slides/10-inference.md`](../raw/slides/10-inference.md) for the full
 accounting.
 
-**The warm-up.** For $X\,(B \times D)$ times $W\,(D \times F)$ in bf16, FLOPs are
+**The warm-up.** For $X\thinspace(B \times D)$ times $W\thinspace(D \times F)$ in bf16, FLOPs are
 $2BDF$ and bytes are $2BD + 2DF + 2BF$, so
 
-$$\text{intensity} = \frac{BDF}{BD + BF + DF} \;\xrightarrow[\;D, F \gg B\;]{}\; B$$
+$$\text{intensity} = \frac{BDF}{BD + BF + DF} \mskip{5mu}\xrightarrow[\mskip{5mu}D, F \gg B\mskip{5mu}]{}\mskip{5mu} B$$
 
 **The arithmetic intensity of a matrix multiply is the batch size** ([16:15]).
 Against an H100's own ratio of $989 \times 10^{12} / 3.35 \times 10^{12} = 295$,
-that means you are compute-bound only when $B > 295$ ([17:48]). This is the same
+that means you are compute-bound only when $B \gt 295$ ([17:48]). This is the same
 result as this page's matrix–matrix row, restated for non-square matrices — Percy
 makes the connection explicitly: it is "the analog where, instead of having one
 variable for dimension and square matrices, we have non-square matrices" ([17:02]).
@@ -305,9 +305,9 @@ produced or scored:
 | Layer | Intensity | Prefill ($T = S$) | Generation ($T = 1$) |
 | --- | --- | --- | --- |
 | MLP | $\to BT$ | $BS$ — compute-bound | $B$ — needs concurrent requests |
-| Attention | $\dfrac{ST}{S+T}$ | $S/2$ | $\dfrac{S}{S+1} < 1$ |
+| Attention | $\dfrac{ST}{S+T}$ | $S/2$ | $\dfrac{S}{S+1} \lt 1$ |
 
-The last cell is the finding: generation's attention is roughly 300× short of
+The last cell is the finding: generation's attention is roughly $300\times$ short of
 saturating an H100, and **no amount of batching fixes it**, because $B$ cancels out
 of the ratio. Every sequence hits the same MLP weights but carries its own
 [KV cache](kv-cache.md), so batching amortizes one and not the other ([31:46]).

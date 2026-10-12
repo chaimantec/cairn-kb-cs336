@@ -287,7 +287,7 @@ Three, and each fills a real gap:
   generated letter matches. Which pushes the question to how the answer is produced:
   sampled directly, or extracted from a chain of thought. Percy flags that **LM
   evaluations can be very sensitive to the extraction step** and does not go further.
-- **ARC-AGI-3's modality** (≈[59:20]) — the grid (he believes around 64×64) can be
+- **ARC-AGI-3's modality** (≈[59:20]) — the grid (he believes around $64\times 64$) can be
   given as an image *or* as ASCII art. Either way there is a spatial element to reason
   about that is not natural language.
 

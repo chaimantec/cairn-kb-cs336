@@ -19,10 +19,10 @@ even a function of**:
 
 | Name | Learning rate | Batch size | Relative error |
 | --- | --- | --- | --- |
-| OpenAI Law | $3.239\times10^{-3} + (-1.395\times10^{-4})\log(N)$ | $2\times10^{18}\,\mathcal{L}^{-4.76190}$ | 9.51‰ |
-| Microsoft Law | $1.3192\times10^{-5}\, N^{-0.23} D^{-0.32}$ | — | 9.25‰ |
-| DeepSeek Law | $0.3188\, C^{-0.1250}$ | $0.2920\, C^{0.3271}$ | 9.26‰ |
-| Porian Law | $3.7\, N^{-0.36}$ | $0.7576\, N^{0.703}$ | 3.71‰ |
+| OpenAI Law | $3.239\times10^{-3} + (-1.395\times10^{-4})\log(N)$ | $2\times10^{18}\thinspace\mathcal{L}^{-4.76190}$ | 9.51‰ |
+| Microsoft Law | $1.3192\times10^{-5}\thinspace N^{-0.23} D^{-0.32}$ | — | 9.25‰ |
+| DeepSeek Law | $0.3188\thinspace C^{-0.1250}$ | $0.2920\thinspace C^{0.3271}$ | 9.26‰ |
+| Porian Law | $3.7\thinspace N^{-0.36}$ | $0.7576\thinspace N^{0.703}$ | 3.71‰ |
 | MiniCPM Law | — | $2\times10^{18} / L^{6.24}$ | — |
 | MeiTuan Law | $\lambda \mathcal{L}^{-\alpha}$ | — | — |
 | **Step Law** | *(the paper's own)* | | **0.94‰** |

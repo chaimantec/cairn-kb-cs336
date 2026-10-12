@@ -44,7 +44,7 @@ assert get_memory_usage(x) == 4 * 8 * 4   # 128 bytes
 Memory is just the product of those two facts — **number of values × bytes per
 value** — and that is the whole of memory accounting for a single tensor:
 
-$$\text{bytes} = \text{numel} \times \text{element\_size}$$
+$$\text{bytes} = \text{numel} \times \verb|element_size|$$
 
 The lecture's example of why this is not an academic concern: one matrix in the
 feedforward layer of GPT-3 is $12288 \times 4$ by $12288$, which in fp32 is
@@ -201,7 +201,7 @@ step further than fp8. Two things it adds:
   [microscaling formats](microscaling-formats.md).
 
 Hashimoto also gives the realistic figure for what fp8 training buys once
-quantization overhead is paid: **20–30% on the matrix multiplies**, not a 2×
+quantization overhead is paid: **20–30% on the matrix multiplies**, not a $2\times$
 speedup ([42:18]).
 
 ## Quantization for inference

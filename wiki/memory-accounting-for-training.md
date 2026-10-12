@@ -94,7 +94,7 @@ class AdaGrad(torch.optim.Optimizer):
 
 The update rule is
 
-$$p \leftarrow p - \frac{\eta \, g}{\sqrt{\sum_{i<t} g_i^2 + \epsilon}}$$
+$$p \leftarrow p - \frac{\eta \thinspace g}{\sqrt{\sum_{i<t} g_i^2 + \epsilon}}$$
 
 with $\eta$ the learning rate and $\epsilon = 10^{-5}$ guarding the square root.
 The `g2` tensor is exactly the "4 bytes per parameter" in the table — it is the

@@ -44,14 +44,14 @@ Deliberately the simplest possible case ([16:09]). Draw
 $x_1,\dots,x_n \sim N(\mu, \sigma^2)$, estimate $\mu$ by the empirical mean
 $\hat\mu$. Then
 
-$$\mathbb{E}\,\|\hat\mu - \mu\|^2 = \frac{\sigma^2}{n}$$
+$$\mathbb{E}\thinspace\Vert\hat\mu - \mu\Vert^2 = \frac{\sigma^2}{n}$$
 
 Take logs: $\log(\text{error}) = \log \sigma^2 - \log n$. That is a scaling law
 with slope $-1$.
 
 The general form ([16:09]) — anything that looks like
 
-$$\text{error} \;\approx\; \frac{1}{n^{\alpha}} + c$$
+$$\text{error} \mskip{5mu}\approx\mskip{5mu} \frac{1}{n^{\alpha}} + c$$
 
 becomes a straight line once you subtract the constant $c$. So **polynomial decay
 in error is exactly what produces a scaling law**, and classical parametric
@@ -75,7 +75,7 @@ parameter. Cut the unit cube into boxes of side $n^{-1/4}$; in the 2-D case you 
 $\sqrt{n}$ boxes with $\sqrt{n}$ samples each and error around $n^{-1/2}$. In $D$
 dimensions the same argument gives
 
-$$\text{error} \;\approx\; n^{-1/D}$$
+$$\text{error} \mskip{5mu}\approx\mskip{5mu} n^{-1/D}$$
 
 so the log-log slope is $-1/D$ rather than $-1$. Read backwards, an exponent near
 $-0.1$ says the network learns at about the rate of **a non-parametric estimator in

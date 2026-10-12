@@ -41,7 +41,7 @@ thing with, in the lecture's phrase, your "generative-modelling brain."
 
 RLHF is not that. It is **reward maximization**:
 
-$$\max_{\pi_\theta} \mathbb{E}_{x\sim\mathcal{D},\, y\sim\pi_\theta(y|x)}\left[r(x,y)\right]$$
+$$\max_{\pi_\theta} \mathbb{E}_ {x\sim\mathcal{D},\thinspace y\sim\pi_\theta(y|x)}\left[r(x,y)\right]$$
 
 We still have a distribution, but it is now a *policy*, and nothing in the
 objective asks it to resemble any reference distribution. The consequence the
@@ -56,7 +56,7 @@ outcome* of RLHF rather than a bug in it, and it is why the objective is almost
 never used bare. The KL term against the reference policy is what puts the
 distributional pressure back in:
 
-$$\max_{\pi_\theta} \mathbb{E}_{x\sim\mathcal{D},\, y\sim\pi_\theta(y|x)}\left[r_\phi(x,y)\right] - \beta\, \mathbb{D}_{\text{KL}}\left[\pi_\theta(y\mid x)\,\|\,\pi_{\text{ref}}(y\mid x)\right]$$
+$$\max_{\pi_\theta} \mathbb{E}_ {x\sim\mathcal{D},\thinspace y\sim\pi_\theta(y|x)}\left[r_\phi(x,y)\right] - \beta\thinspace \mathbb{D}_ {\text{KL}}\left[\pi_\theta(y\mid x)\thinspace\Vert\thinspace\pi_{\text{ref}}(y\mid x)\right]$$
 
 The lecture notes this "appears almost exactly in the InstructGPT paper — if you
 open the paper up and go to equation two, you'll find exactly the kind of thing I

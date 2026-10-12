@@ -156,11 +156,11 @@ pointing up into the circled clusters.
 
 **Figure 2 (middle) — the FlashAttention tiling diagram.** A block diagram
 titled "FlashAttention" at the bottom. At the top, a row of green cells
-labelled "$K^T: d \times N$" with a red "Outer Loop" arrow above it pointing
+labelled $K^T: d \times N$ with a red "Outer Loop" arrow above it pointing
 right. An orange "Copy" box receives an arrow from this row labelled "Copy
-Block to SRAM". On the left, a column of green cells labelled "Q: $N \times
-d$" with a blue "Inner Loop" arrow pointing down beside it, feeding through an
-orange "Copy" box into a purple-dashed "$QK^T: N \times N$" region. A second
+Block to SRAM". On the left, a column of green cells labelled "Q:
+$N \times d$" with a blue "Inner Loop" arrow pointing down beside it, feeding through an
+orange "Copy" box into a purple-dashed $QK^T: N \times N$ region. A second
 red "Outer Loop" arrow points right above this dashed region, and a blue
 "Inner Loop" arrow points down its right edge. Purple dashed arrows converge
 from the K-copy box and the Q-copy box into a central orange square labelled
@@ -169,7 +169,7 @@ cells labelled "V: $N \times d$" with a red "Outer Loop" arrow pointing down
 beside it, feeding through an orange "Copy" box (arrow labelled "Copy") into
 the same dashed compute region. A black arrow runs down from the central
 orange compute square, labelled "Output to HBM", into a bottom row of green
-cells labelled "$sm(QK^T)V: N \times d$", under which a blue "Inner Loop"
+cells labelled $sm(QK^T)V: N \times d$, under which a blue "Inner Loop"
 arrow points right. In short: the figure shows Q, K, V held in slow memory
 (green blocks) being copied block-by-block into fast on-chip SRAM (orange
 boxes) to compute an attention block, with nested outer/inner loops (red and
@@ -253,17 +253,17 @@ plots roughly 15–20 individual training curves — one per fixed model size �
 each coloured by where its parameter count falls on that continuous scale, so
 "one bullet per series with a colour name" does not apply cleanly. Describing
 them by colour band instead:
-- The **dark purple** curves (smallest models, ~$10^5$–$10^6$ params) are
+- The **dark purple** curves (smallest models, $\sim 10^5\text{–}10^6$ params) are
   short, confined to the lowest-compute region (roughly $10^{-6}$ to
   $10^{-3}$ PetaFLOP/s-days), and plateau earliest, flattening out around
   validation loss 4–4.5 without continuing to fall.
-- The **teal/green** curves (mid-sized models, ~$10^7$–$10^9$ params) extend
-  further right, into the $10^{-2}$–$10^{0}$ range, reaching losses around
+- The **teal/green** curves (mid-sized models, $\sim 10^7\text{–}10^9$ params) extend
+  further right, into the $10^{-2}\text{–}10^{0}$ range, reaching losses around
   2.5–3.5 before flattening.
-- The single **yellow** curve (the largest model, ~$10^{11}$ params) extends
-  furthest right, out to about $10^{2}$–$10^{4}$ PetaFLOP/s-days, and reaches
+- The single **yellow** curve (the largest model, $\sim 10^{11}$ params) extends
+  furthest right, out to about $10^{2}\text{–}10^{4}$ PetaFLOP/s-days, and reaches
   the lowest loss on the plot, around 1.7.
-- A dashed grey reference line, labelled "$L = 2.57 \cdot C^{-0.048}$", is the
+- A dashed grey reference line, labelled $L = 2.57 \cdot C^{-0.048}$, is the
   fitted power-law envelope traced across the left edge of the family of
   curves — this is an annotation of the trend, not an additional data series.
 
@@ -284,11 +284,11 @@ shape:
 - **Orange triangles** — "Transistors (1000s)": rising from near 0 in 1970 to
   roughly $10^7$ (i.e. tens of billions of transistors) by 2020, the
   steepest and highest-reaching series throughout.
-- **Blue circles** — "Single-Thread Performance (SpecINT ×$10^3$)": near-flat
+- **Blue circles** — "Single-Thread Performance (SpecINT $\times 10^3$)": near-flat
   and low before ~1985, then rising steeply through the 1990s–2000s to about
-  $10^4$–$10^5$ by 2010, then flattening.
+  $10^4\text{–}10^5$ by 2010, then flattening.
 - **Green squares** — "Frequency (MHz)": rises through the 1980s–1990s to
-  roughly $10^3$–$10^4$ by the early 2000s, then goes essentially flat for the
+  roughly $10^3\text{–}10^4$ by the early 2000s, then goes essentially flat for the
   rest of the chart — this plateau is explicitly boxed with the label "End of
   Dennard Scaling".
 - **Red inverted triangles** — "Typical Power (Watts)": rises alongside
@@ -486,15 +486,15 @@ Miscellaneous" and "16x PCIe4.0 (64 GB/s Bidirectional)". No HBM sits on either
 side edge.
 The main die area is split into four large green quadrants, each labelled
 (top-left quadrant, as the fully legible example) "4x SM" with sub-text "SM =
-64 FP32 ALUs, 32 FP64 ALUs, 64 INT32 ALUs, 4 Tensor Units, 192KiB L1$/SMEM",
+64 FP32 ALUs, 32 FP64 ALUs, 64 INT32 ALUs, 4 Tensor Units, 192KiB L1\$/SMEM",
 plus "3x Streaming Multiprocessor" and three separate "3x SM" tiles stacked
 below it; the other three quadrants are each simply labelled "16x SM" (large
 green tiled blocks, two per die-half). Down the centre of each die-half runs a
-blue cross-shaped region labelled "24MiB L2$ Partition" (two of these, one per
+blue cross-shaped region labelled "24MiB L2\$ Partition" (two of these, one per
 half), and set into the arms of each blue cross are purple tiled blocks
-labelled "24x 0.5MiB = 12MiB L2$" (four of these overall). Only **one** of the
+labelled "24x 0.5MiB = 12MiB L2\$" (four of these overall). Only **one** of the
 four — the top arm of the left-hand cross, beside the "4x SM" callout — has its
-individual cells labelled "0.5MB L2$"; the other three carry the aggregate
+individual cells labelled "0.5MB L2\$"; the other three carry the aggregate
 label over unlabelled cells. A black text panel at the
 top right of the figure (outside this crop, seen in the unzoomed page) reads:
 "Nvidia GA100, 7nm TSMC" / "x8 GPC, x64 TPC, 128x SM" / "8192 FP32 'Units'" /
@@ -670,7 +670,7 @@ through the pipeline. To the left of the diagram, plain text labels this as
 
 **Figure 2 (bottom) — the same two-panel latency-vs-throughput scheduling
 diagram already described in Slide 8, Figure 2** (staggered "GPU – High
-Throughput Processor" staircase of $T_1$–$T_4$ timelines above a sequential
+Throughput Processor" staircase of $T_1\text{–}T_4$ timelines above a sequential
 "CPU core – Low Latency Processor" panel, with the "Processing / Waiting for
 data / Ready to be processed" colour legend at right) — reused here
 unchanged.
@@ -960,7 +960,7 @@ presenting this chart (a pasted image, not a native chart).
 
 ## Slide 25 — Low precision improves arithmetic intensity
 
-Text: "**Example:** elementwise ReLU ($x = \max(0, x)$) on a vector of size
+Text: "**Example:** elementwise ReLU (${x = \max(0, x)}$) on a vector of size
 $n$."
 
 (Float 32 case)
@@ -1220,18 +1220,18 @@ handwritten red annotations giving the mathematical meaning of each stage:
 - A root node `name=%x`, `op_code=placeholder`, `target=x`, `num_users=2`,
   splits into two branches.
 - Left branch: `name=%sin`, `op_code=call_function`, `target=torch.sin`,
-  `num_users=1` — annotated "$\sin(x)$" — feeding into `name=%pow_1`,
+  `num_users=1` — annotated $\sin(x)$ — feeding into `name=%pow_1`,
   `op_code=call_function`, `target=_operator.pow`, `args=(2,)`,
-  `num_users=1` — annotated "$\sin^2(x)$".
+  `num_users=1` — annotated $\sin^2(x)$.
 - Right branch (symmetric, not separately re-read at high resolution but
   matching the left branch's field structure): `name=%cos`,
   `op_code=call_function`, `target=torch.cos`, `num_users=1` — annotated
-  "$\cos(x)$" — feeding into `name=%pow_2`, `op_code=call_function`,
+  $\cos(x)$ — feeding into `name=%pow_2`, `op_code=call_function`,
   `target=_operator.pow`, `args=(2,)`, `num_users=1` — annotated
-  "$\cos^2(x)$".
+  $\cos^2(x)$.
 - Both `%pow_1` and `%pow_2` feed into `name=%add`, `op_code=call_function`,
   `target=operator.add` (partially legible), `num_users=1` — annotated
-  "$\sin^2(x) + \cos^2(x)$".
+  $\sin^2(x) + \cos^2(x)$.
 - `%add` feeds into a final `name=%output`, `op_code=output`, `target=output`,
   `num_users=0`.
 
@@ -1280,8 +1280,10 @@ depicting the whole cluster of ATen ops collapsing into the single
 
 ![Slide 34 — Trick 3: recomputation](../images/05-gpus-tpus/slide-34.jpg)
 
-Displayed equation at top: $$\text{Loss}(x, y, \mathbf{w}) = (\mathbf{w}
-\cdot \phi(x) - y)^2$$
+Displayed equation at top:
+
+$$\text{Loss}(x, y, \mathbf{w}) = (\mathbf{w} \cdot \phi(x) - y)^2$$
+
 Citation at the foot: "[From cs221]". Caption below the figure: "In
 backpropagation, we store the activations (yellow) and compute Jacobians
 (green)" — note the figure's forward-value labels actually render in an
@@ -1290,7 +1292,7 @@ reconciling the color name.
 
 **Figure 1 (left) — a hand-labelled computation graph for backpropagation**,
 built from three binary/unary operation boxes:
-- Top box "$(\cdot)^2$" (squaring), with orange forward-value label
+- Top box $(\cdot)^2$ (squaring), with orange forward-value label
   "loss = 9" to its left and purple "1" to its right (the root's own
   gradient, trivially 1). The edge below it is labelled in green
   "2(residual)" — the local derivative of squaring.
@@ -1298,23 +1300,23 @@ built from three binary/unary operation boxes:
   "residual = 3" to its left and purple "6" to its right. Its left input
   comes from the "score" box via an edge labelled "1" (the local derivative
   of subtraction); its right input comes directly from a leaf node labelled
-  orange "$y = 2$".
+  orange $y = 2$.
 - Bottom box "·" (dot product), with orange forward-value label "score = 5"
   to its left and purple "6" to its right. Its two inputs are leaf nodes:
-  one labelled orange "$\mathbf{w} = [3, 1]$" with purple gradient
-  "$[6, 12]$" alongside it, and one labelled green "$\phi(x) = [1, 2]$"
+  one labelled orange $\mathbf{w} = [3, 1]$ with purple gradient
+  $[6, 12]$ alongside it, and one labelled green $\phi(x) = [1, 2]$
   (appearing twice in the figure, once along each incoming edge/leaf
   position).
 
 **Figure 2 (right) — two definition/algorithm call-out boxes plus a worked
-numeric summary.** Above the boxes, orange text "$\mathbf{w} = [3, 1],
-\phi(x) = [1, 2], y = 2$", a downward dark-red arrow labelled "backpropagation"
-in bold, and the result in purple: "$\nabla_{\mathbf{w}} \text{Loss}(x, y,
-\mathbf{w}) = [6, 12]$".
+numeric summary.** Above the boxes, orange text
+$\mathbf{w} = [3, 1], \phi(x) = [1, 2], y = 2$, a downward dark-red arrow labelled "backpropagation"
+in bold, and the result in purple:
+$\nabla_{\mathbf{w}} \text{Loss}(x, y, \mathbf{w}) = [6, 12]$.
 - A green-bordered box with a green book icon, headed "Definition:
   Forward/backward values": "**Forward:** $f_i$ is value for subexpression
-  rooted at $i$" / "**Backward:** $g_i = \frac{\partial \text{loss}}{\partial
-  f_i}$ is how $f_i$ influences loss".
+  rooted at $i$" / "**Backward:**
+  $g_i = \frac{\partial \text{loss}}{\partial f_i}$ is how $f_i$ influences loss".
 - A blue-bordered box with a blue laptop icon, headed "Algorithm:
   backpropagation algorithm": "**Forward pass:** compute each $f_i$ (from
   leaves to root)" / "**Backward pass:** compute each $g_i$ (from root to
@@ -1410,7 +1412,7 @@ cells through the sense amplifiers at once.
 
 Text: "Memory accesses are *coalesced* if all the threads (in a warp) fall within the same burst"
 
-**Figure 1 (top) — a pasted diagram illustrating coalesced loads.** A horizontal strip of 16 numbered cells, 0–15, is grouped into four colour-coded "Burst section" blocks of four cells each: cells 0–3 (yellow), 4–7 (red), 8–11 (dark navy), 12–15 (green). Above the yellow block, a "Coalesced Loads" box lists $T_0, T_1, T_2, T_3$, with four upward arrows connecting each thread to one of the four yellow cells (cell 0→$T_0$, 1→$T_1$, 2→$T_2$, 3→$T_3$). A second, identical "Coalesced Loads" box with $T_0$–$T_3$ sits above the dark-navy block, with arrows from cells 8, 9, 10, 11 up to $T_0$–$T_3$. Below the strip, a caption reads: "When all threads of a warp execute a load instruction, if all accessed locations fall into the same burst section, only one DRAM request will be made and the access is fully coalesced." A faint grey watermark is overprinted on this caption: "https://blog.csdn.net/xll_bit".
+**Figure 1 (top) — a pasted diagram illustrating coalesced loads.** A horizontal strip of 16 numbered cells, 0–15, is grouped into four colour-coded "Burst section" blocks of four cells each: cells 0–3 (yellow), 4–7 (red), 8–11 (dark navy), 12–15 (green). Above the yellow block, a "Coalesced Loads" box lists $T_0, T_1, T_2, T_3$, with four upward arrows connecting each thread to one of the four yellow cells (cell 0 → $T_0$, 1 → $T_1$, 2 → $T_2$, 3 → $T_3$). A second, identical "Coalesced Loads" box with $T_0\text{–}T_3$ sits above the dark-navy block, with arrows from cells 8, 9, 10, 11 up to $T_0\text{–}T_3$. Below the strip, a caption reads: "When all threads of a warp execute a load instruction, if all accessed locations fall into the same burst section, only one DRAM request will be made and the access is fully coalesced." A faint grey watermark is overprinted on this caption: "https://blog.csdn.net/xll_bit".
 
 **Figure 2 (bottom left) — a pasted architecture diagram of CUDA thread/warp/SM scheduling.** Left block, labelled "This CUDA application uses 256 threads per block": a blue "CUDA Program" bar containing three small boxes "Block 0", "Block 1", "…", "Block 4095". Green arrows labelled "assign to an SM" run from Block 1 and Block 4095 down to two red-outlined rectangles marking specific SM columns on a large green-and-grey processor-die photo below (labelled "SM" in red). Middle block, labelled "each block is divided into warps": a tall cream box titled "Block i" listing "Warp 0", "Warp 1", "...", "Warp 7 (32 threads)", with a gold arrow labelled "ready" running from Warp 1 to the right. Right block, labelled "4 Warp schedulers per SM": four pink boxes "Warp Scheduler 0" through "Warp Scheduler 3", each with a downward arrow into a column of green execution-unit cells (the first column's cells labelled "INT32", the other three columns' cells labelled "FP32"), captioned at the bottom "Warp 1 instruction 10".
 
@@ -1424,7 +1426,7 @@ Text: "For row-major matrices – **threads that move along rows are not coalesc
 
 **Figure 1 (left pair) — two green square diagrams labelled "(A)" and "(B)".** Panel (A), captioned "not coalesced": a green square labelled "d_M" at top left and "WIDTH" at bottom, with two horizontal orange lines marked "Thread 1" and "Thread 2" running left-to-right across two different rows, each ending in a rightward arrow — each thread reads along a row. Panel (B), captioned "coalesced": a green square labelled "d_N" at top left and "WIDTH" (rotated text) at right, with two vertical orange lines running top-to-bottom ending in a downward arrow — threads read down a column instead.
 
-**Figure 2 (right) — a pasted diagram of the access order for a coalesced load of matrix $M$.** At top, a small 4×4 grid of cells labelled $M_{0,0}$…$M_{3,3}$, colour-coded by row (row 0 yellow, row 1 red/orange, row 2 dark blue, row 3 green), with an arrow above captioned "Access direction in Kernel code" pointing right. Below, two stacked horizontal brackets labelled "Load iteration 1" and "Load iteration 0", each spanning four thread labels $T_0, T_1, T_2, T_3$, with upward arrows running from a 16-cell horizontal strip up into the $T_0$–$T_3$ labels of both iterations. The 16-cell strip at the bottom is the flattened row-major layout of matrix $M$: $M_{0,0}, M_{0,1}, M_{0,2}, M_{0,3}$ (yellow), $M_{1,0}, M_{1,1}, M_{1,2}, M_{1,3}$ (red), $M_{2,0}, M_{2,1}, M_{2,2}, M_{2,3}$ (dark blue), $M_{3,0}, M_{3,1}, M_{3,2}, M_{3,3}$ (green), with a label "M" and a downward arrow at the far left marking the start of the array.
+**Figure 2 (right) — a pasted diagram of the access order for a coalesced load of matrix $M$.** At top, a small 4×4 grid of cells labelled $M_{0,0}\ldots M_{3,3}$, colour-coded by row (row 0 yellow, row 1 red/orange, row 2 dark blue, row 3 green), with an arrow above captioned "Access direction in Kernel code" pointing right. Below, two stacked horizontal brackets labelled "Load iteration 1" and "Load iteration 0", each spanning four thread labels $T_0, T_1, T_2, T_3$, with upward arrows running from a 16-cell horizontal strip up into the $T_0\text{–}T_3$ labels of both iterations. The 16-cell strip at the bottom is the flattened row-major layout of matrix $M$: $M_{0,0}, M_{0,1}, M_{0,2}, M_{0,3}$ (yellow), $M_{1,0}, M_{1,1}, M_{1,2}, M_{1,3}$ (red), $M_{2,0}, M_{2,1}, M_{2,2}, M_{2,3}$ (dark blue), $M_{3,0}, M_{3,1}, M_{3,2}, M_{3,3}$ (green), with a label "M" and a downward arrow at the far left marking the start of the array.
 
 ## Slide 40 — Trick 5 (the big one): tiling
 
@@ -1434,15 +1436,15 @@ Text: "**Tiling** is the idea of grouping and ordering threads to minimize globa
 
 (The "5" in the slide title is the trick's own number, "Trick 5" — not a printed page number. See the corner-numeral note at the end of this file's coverage.)
 
-**Figure 1 (left) — a diagram of one step of naive (untiled) matrix multiplication.** A 4×2 matrix $N$ (column 0 green: $N_{0,0}, N_{1,0}, N_{2,0}, N_{3,0}$; column 1 dark blue: $N_{0,1}, N_{1,1}, N_{2,1}, N_{3,1}$) sits at top right. A 2×4 matrix $M$ (row 0 yellow: $M_{0,0..3}$; row 1 red: $M_{1,0..3}$) sits at bottom left. Two downward arrows run from $N_{0,0}$/$N_{0,1}$ and two rightward arrows run from $M_{0,0}$/$M_{1,0}$ into a small 2×2 tile of the output ($P_{0,0}, P_{0,1}, P_{1,0}, P_{1,1}$, drawn as yellow/green/red/dark-blue triangular quadrants) inside a larger, otherwise-blank output grid — showing that computing just this one output tile requires reading a full row of $M$ and a full column of $N$.
+**Figure 1 (left) — a diagram of one step of naive (untiled) matrix multiplication.** A 4×2 matrix $N$ (column 0 green: $N_{0,0}, N_{1,0}, N_{2,0}, N_{3,0}$; column 1 dark blue: $N_{0,1}, N_{1,1}, N_{2,1}, N_{3,1}$) sits at top right. A 2×4 matrix $M$ (row 0 yellow: $M_{0,0..3}$; row 1 red: $M_{1,0..3}$) sits at bottom left. Two downward arrows run from $N_{0,0}/N_{0,1}$ and two rightward arrows run from $M_{0,0}/M_{1,0}$ into a small 2×2 tile of the output ($P_{0,0}, P_{0,1}, P_{1,0}, P_{1,1}$, drawn as yellow/green/red/dark-blue triangular quadrants) inside a larger, otherwise-blank output grid — showing that computing just this one output tile requires reading a full row of $M$ and a full column of $N$.
 
-**Figure 2 (right) — a table titled "Access order" showing, for four threads, the sequence of multiply operations each performs.** Rows: thread$_{0,0}$, thread$_{0,1}$, thread$_{1,0}$, thread$_{1,1}$; columns are four successive access steps.
-- thread$_{0,0}$: $M_{0,0}*N_{0,0}$, $M_{0,1}*N_{1,0}$, $M_{0,2}*N_{2,0}$, $M_{0,3}*N_{3,0}$
-- thread$_{0,1}$: $M_{0,0}*N_{0,1}$, $M_{0,1}*N_{1,1}$, $M_{0,2}*N_{2,1}$, $M_{0,3}*N_{3,1}$
-- thread$_{1,0}$: $M_{1,0}*N_{0,0}$, $M_{1,1}*N_{1,0}$, $M_{1,2}*N_{2,0}$, $M_{1,3}*N_{3,0}$
-- thread$_{1,1}$: $M_{1,0}*N_{0,1}$, $M_{1,1}*N_{1,1}$, $M_{1,2}*N_{2,1}$, $M_{1,3}*N_{3,1}$
+**Figure 2 (right) — a table titled "Access order" showing, for four threads, the sequence of multiply operations each performs.** Rows: $\text{thread}_ {0,0}$, $\text{thread}_ {0,1}$, $\text{thread}_ {1,0}$, $\text{thread}_ {1,1}$; columns are four successive access steps.
+- $\text{thread}_ {0,0}$: $M_{0,0}\ast N_{0,0}$, $M_{0,1}\ast N_{1,0}$, $M_{0,2}\ast N_{2,0}$, $M_{0,3}\ast N_{3,0}$
+- $\text{thread}_ {0,1}$: $M_{0,0}\ast N_{0,1}$, $M_{0,1}\ast N_{1,1}$, $M_{0,2}\ast N_{2,1}$, $M_{0,3}\ast N_{3,1}$
+- $\text{thread}_ {1,0}$: $M_{1,0}\ast N_{0,0}$, $M_{1,1}\ast N_{1,0}$, $M_{1,2}\ast N_{2,0}$, $M_{1,3}\ast N_{3,0}$
+- $\text{thread}_ {1,1}$: $M_{1,0}\ast N_{0,1}$, $M_{1,1}\ast N_{1,1}$, $M_{1,2}\ast N_{2,1}$, $M_{1,3}\ast N_{3,1}$
 
-Two cells are boxed to highlight repeated global reads: $M_{0,0}$ (red box) appears in both thread$_{0,0}$'s and thread$_{0,1}$'s first step, and $N_{1,0}$ (dark-blue box) appears in both thread$_{0,0}$'s and thread$_{1,0}$'s second step — illustrating the uncoalesced, repeated access named in the caption below the figure.
+Two cells are boxed to highlight repeated global reads: $M_{0,0}$ (red box) appears in both $\text{thread}_ {0,0}$'s and $\text{thread}_ {0,1}$'s first step, and $N_{1,0}$ (dark-blue box) appears in both $\text{thread}_ {0,0}$'s and $\text{thread}_ {1,0}$'s second step — illustrating the uncoalesced, repeated access named in the caption below the figure.
 
 ## Slide 41 — Tiling – store and reuse information in shared memory
 
@@ -1574,9 +1576,9 @@ The pasted paper excerpt has two lines. The first line is largely occluded by th
 
 Text: "**Attention computation**: 3 matrix multiplies (K, Q, V) with a softmax in between"
 
-**Figure 1 — a labelled block diagram of the attention computation as batched matrix multiplies.** At the top left, a single letter "t" labels the diagram. Below it, a pink block of three side-by-side vertical bars is labelled "$XQ$"; to its right, a tan/orange block of three stacked horizontal bars is labelled "$K^\top X^\top$". These feed (via an "=") into a grey, depth-stacked block of three overlapping rounded squares labelled "$XQK^\top X^\top$", annotated to the right "$\in \mathbb{R}^{3\times n\times n}$" with a teal caption "3 sets of all pairs of attention scores!"
+**Figure 1 — a labelled block diagram of the attention computation as batched matrix multiplies.** At the top left, a single letter "t" labels the diagram. Below it, a pink block of three side-by-side vertical bars is labelled $XQ$; to its right, a tan/orange block of three stacked horizontal bars is labelled $K^\top X^\top$. These feed (via an "=") into a grey, depth-stacked block of three overlapping rounded squares labelled $XQK^\top X^\top$, annotated to the right $\in \mathbb{R}^{3\times n\times n}$ with a teal caption "3 sets of all pairs of attention scores!"
 
-Below, a black curved arrow carries this stacked result down into a second row: "softmax(" wraps the same grey depth-stacked "$XQK^\top X^\top$" block ")", multiplied by a teal block of three vertical bars labelled "$XV$", equals a grey block of vertical bars feeding into a small box labelled "$P$" with the sub-label "mix" underneath it, which in turn equals a single grey vertical bar labelled "output $\in \mathbb{R}^{n\times d}$".
+Below, a black curved arrow carries this stacked result down into a second row: "softmax(" wraps the same grey depth-stacked $XQK^\top X^\top$ block ")", multiplied by a teal block of three vertical bars labelled $XV$, equals a grey block of vertical bars feeding into a small box labelled $P$ with the sub-label "mix" underneath it, which in turn equals a single grey vertical bar labelled "output $\in \mathbb{R}^{n\times d}$".
 
 ## Slide 52 — Tiling part 1: tiling for the KQV matrix multiply
 
@@ -1588,7 +1590,7 @@ Text: "This figure 1 from the paper is literally just tiling for a KQV matrix mu
 
 **Figure 1 (left) — a pyramid diagram, "Memory Hierarchy with Bandwidth & Memory Size".** Three stacked triangular bands, narrowest at top: orange "GPU SRAM" (labelled "SRAM: 19 TB/s (20 MB)"), green "GPU HBM" (labelled "HBM: 1.5 TB/s (40 GB)"), and teal "Main Memory (CPU DRAM)" (labelled "DRAM: 12.8 GB/s (>1 TB)") forming the wide base.
 
-**Figure 2 (right) — the FlashAttention paper's own tiling diagram, labelled "FlashAttention" at the bottom.** At top, a green row of blocks labelled "$K^\top: d\times N$" with a red "Outer Loop" arrow above it; a black arrow labelled "Copy Block to SRAM" runs down from it through an orange square into a large dashed rectangle. To the left, a green column labelled "$Q: N\times d$" with a blue "Inner Loop" arrow, feeding through an orange "Copy" square into the dashed rectangle, which contains "$QK^\top: N\times N$" and, inside it, a smaller dashed box labelled "Compute Block on SRAM" (in purple text) with a second red "Outer Loop" arrow above. To the right, a green column labelled "$V: N\times d$" with its own red "Outer Loop" arrow and blue "Inner Loop" arrow, feeding through an orange "Copy" square (arrow pointing left into the dashed rectangle) via a dashed purple connector. A black arrow labelled "Output to HBM" runs from the dashed rectangle down to a green row at the bottom labelled "$sm(QK^\top)V: N\times d$", under a blue "Inner Loop" arrow.
+**Figure 2 (right) — the FlashAttention paper's own tiling diagram, labelled "FlashAttention" at the bottom.** At top, a green row of blocks labelled $K^\top: d\times N$ with a red "Outer Loop" arrow above it; a black arrow labelled "Copy Block to SRAM" runs down from it through an orange square into a large dashed rectangle. To the left, a green column labelled $Q: N\times d$ with a blue "Inner Loop" arrow, feeding through an orange "Copy" square into the dashed rectangle, which contains $QK^\top: N\times N$ and, inside it, a smaller dashed box labelled "Compute Block on SRAM" (in purple text) with a second red "Outer Loop" arrow above. To the right, a green column labelled $V: N\times d$ with its own red "Outer Loop" arrow and blue "Inner Loop" arrow, feeding through an orange "Copy" square (arrow pointing left into the dashed rectangle) via a dashed purple connector. A black arrow labelled "Output to HBM" runs from the dashed rectangle down to a green row at the bottom labelled $sm(QK^\top)V: N\times d$, under a blue "Inner Loop" arrow.
 
 ## Slide 53 — Tiling part 2: incremental computation of the softmax
 
@@ -1632,7 +1634,7 @@ Text: "From Dao 2023, we see" bullets: "Tile-wise computation of the inner produ
 
 **Figure 1 — a worked two-tile numerical trace of the FlashAttention forward pass, with a legend distinguishing "Stored in HBM" (solid light-blue boxes) from "Computed in SRAM (not materialized in HBM)" (dashed orange boxes).** Top row: two solid blue boxes, $(K^{(1)})^\top$ and $(K^{(2)})^\top$, each with a downward arrow into a dashed orange box below it. Second row: a solid blue box $Q$ on the left with an arrow into the two dashed orange boxes $S^{(1)} = Q(K^{(1)})^\top$ and $S^{(2)} = Q(K^{(2)})^\top$. Third row: two more dashed orange boxes, $A^{(1)} = \exp(S^{(1)})$ and $A^{(2)} = \exp(S^{(2)})$, each with a downward arrow from the $S$ box above it. Below these, in red and blue text respectively:
 
-$$l^{(1)} = \sum_i \exp(S^{(1)})_i \qquad l^{(2)} = l^{(1)} + \sum_i \exp(S^{(2)})_i$$
+$$l^{(1)} = \sum_i \exp(S^{(1)})_ i \qquad l^{(2)} = l^{(1)} + \sum_i \exp(S^{(2)})_ i$$
 
 To the right, two solid blue boxes $V^{(1)}$ and $V^{(2)}$ stacked vertically, multiplied ($\cdot$) into a solid blue "Output" box containing:
 

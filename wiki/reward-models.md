@@ -12,7 +12,7 @@ slide 52 of the deck:
 
 > To train our reward models, we start from a supervised baseline, as described
 > above, then add a randomly initialized linear head that outputs a scalar value.
-> We train this model to predict which summary $y \in \{y_0, y_1\}$ is better as
+> We train this model to predict which summary $y \in \lbrace y_0, y_1\rbrace$ is better as
 > judged by a human, given a post $x$.
 
 So: take the SFT model, replace the language-modelling head with a fresh linear

@@ -282,9 +282,9 @@ Heading: "But first.. Some basics about collective communication". The body of t
 
 **Diagram 3 — "Reduce" (right, top).** Four input columns (rank 0–3) with colored boxes: rank 0 = blue "in0", rank 1 = red "in1", rank 2 = green "in2", rank 3 = yellow "in3". A grey arrow points right to four rank columns, but only "rank 2 (root)" receives an output box, labelled "out" (white). Formula beneath: $out[i] = sum(inX[i])$.
 
-**Diagram 4 — "All Gather" (right, middle).** Four input columns (rank 0–3), each with a small colored box only partly filling its column: rank 0 = blue "in0" (small, top of column), rank 1 = red "in1" (small), rank 2 = green "in2" (small), rank 3 = yellow "in3" (small). A grey arrow points right to four output columns (rank 0–3), each now a full box stacked in four colored bands, top to bottom: blue "out" (=in0), red "out" (=in1), green "out" (=in2), yellow "out" (=in3) — i.e., every rank's output column contains all four inputs stacked in the same order. Formula beneath: $out[Y*count+i] = inY[i]$.
+**Diagram 4 — "All Gather" (right, middle).** Four input columns (rank 0–3), each with a small colored box only partly filling its column: rank 0 = blue "in0" (small, top of column), rank 1 = red "in1" (small), rank 2 = green "in2" (small), rank 3 = yellow "in3" (small). A grey arrow points right to four output columns (rank 0–3), each now a full box stacked in four colored bands, top to bottom: blue "out" (=in0), red "out" (=in1), green "out" (=in2), yellow "out" (=in3) — i.e., every rank's output column contains all four inputs stacked in the same order. Formula beneath: $out[Y\ast count+i] = inY[i]$.
 
-**Diagram 5 — "Reduce Scatter" (right, bottom).** Four input columns (rank 0–3), each a box divided into four equal horizontal segments outlined with dashed lines: rank 0 = blue box with segments "in0" (repeated/subdivided), rank 1 = red box "in1", rank 2 = green box "in2", rank 3 = yellow box "in3" (each column's box appears divided into four sub-pieces, one per destination rank). A grey arrow points right to four small output boxes, one per rank: rank 0 = "out0", rank 1 = "out1", rank 2 = "out2", rank 3 = "out3" (each progressively lower/offset in the layout). Formula beneath: $outY[i] = sum(inX[Y*count+i])$.
+**Diagram 5 — "Reduce Scatter" (right, bottom).** Four input columns (rank 0–3), each a box divided into four equal horizontal segments outlined with dashed lines: rank 0 = blue box with segments "in0" (repeated/subdivided), rank 1 = red box "in1", rank 2 = green box "in2", rank 3 = yellow box "in3" (each column's box appears divided into four sub-pieces, one per destination rank). A grey arrow points right to four small output boxes, one per rank: rank 0 = "out0", rank 1 = "out1", rank 2 = "out2", rank 3 = "out3" (each progressively lower/offset in the layout). Formula beneath: $outY[i] = sum(inX[Y\ast count+i])$.
 
 ## Slide 8 — Important detail – all reduce vs reduce-scatter-gather.
 
@@ -427,6 +427,7 @@ No figure on this page.
 Heading: "Naïve data parallelism". Body text: "**Starting point** – imagine we are doing naïve SGD".
 
 Displayed equation:
+
 $$\theta_{t+1} = \theta_t - \eta \sum_{i=1}^{B} \nabla f(x_i)$$
 
 Body text below the equation: "**Naive parallelism:** split the elements of B sized batch across M machines. Exchange gradients to synchronize".
@@ -481,10 +482,10 @@ Text: "**Core idea:** split up the expensive parts (state) and use the reduce-sc
 Figure: a table-like diagram with four rows (Baseline, $P_{os}$, $P_{os+g}$, $P_{os+g+p}$) and, for each row, three example GPU columns — $gpu_0$, $gpu_i$, $gpu_{N-1}$ — with "…" ellipses between them standing in for the omitted intermediate GPUs. Each GPU column is drawn as a small stack of colored bars: **blue = Parameters, orange = Gradients, green = Optimizer States** (per the legend at the bottom). To the right of the diagram is a two-column mini-table: "Memory Consumed" (a symbolic formula) and a numeric value, computed using the constants shown in the corner: **K=12, Ψ=7.5B, N_d=64**.
 
 Row by row:
-- **Baseline**: every GPU column ($gpu_0$, $gpu_i$, $gpu_{N-1}$) shows a full-width thin blue bar (Parameters), a full-width thin orange bar (Gradients) just below it, and a full-width thick green block (Optimizer States) below that — i.e., every GPU holds a complete, unsharded copy of parameters, gradients, and optimizer state. Memory consumed: $(2+2+K)*\Psi$ = **120GB**. (Check: $(2+2+12)\times7.5=120$.)
-- **$P_{os}$**: every GPU column still shows full-width thin blue (Parameters) and orange (Gradients) bars, unchanged from baseline, but the green Optimizer-States block has shrunk to a short, narrow sliver hanging beneath the orange bar at the left edge of the column — i.e., only optimizer state is sharded across the $N_d$ GPUs; parameters and gradients are still fully replicated. Memory consumed: $2\Psi + 2\Psi + \frac{K*\Psi}{N_d}$ = **31.4GB**. (Check: $15+15+12\times7.5/64=15+15+1.4=31.4$.)
-- **$P_{os+g}$**: every GPU column still shows a full-width thin blue bar (Parameters), unchanged, but now both the orange (Gradients) and green (Optimizer States) bars have shrunk to narrow slivers stacked together beneath it at the left edge — i.e., gradients are now also sharded, on top of the already-sharded optimizer state; only parameters remain fully replicated. Memory consumed: $2\Psi + \frac{(2+K)*\Psi}{N_d}$ = **16.6GB**. (Check: $15 + 14\times7.5/64 = 15+1.64=16.64$.)
-- **$P_{os+g+p}$**: every GPU column now shows all three — blue, orange, and green — reduced to narrow slivers stacked vertically in a small column (blue on top, orange in the middle, green at bottom), with no full-width bar remaining — i.e., parameters, gradients, and optimizer state are all sharded across the $N_d$ GPUs. Memory consumed: $\frac{(2+2+K)*\Psi}{N_d}$ = **1.9GB**. (Check: $16\times7.5/64=120/64=1.875\approx1.9$.)
+- **Baseline**: every GPU column ($gpu_0$, $gpu_i$, $gpu_{N-1}$) shows a full-width thin blue bar (Parameters), a full-width thin orange bar (Gradients) just below it, and a full-width thick green block (Optimizer States) below that — i.e., every GPU holds a complete, unsharded copy of parameters, gradients, and optimizer state. Memory consumed: $(2+2+K)\ast\Psi$ = **120GB**. (Check: $(2+2+12)\times7.5=120$.)
+- **$P_{os}$**: every GPU column still shows full-width thin blue (Parameters) and orange (Gradients) bars, unchanged from baseline, but the green Optimizer-States block has shrunk to a short, narrow sliver hanging beneath the orange bar at the left edge of the column — i.e., only optimizer state is sharded across the $N_d$ GPUs; parameters and gradients are still fully replicated. Memory consumed: $2\Psi + 2\Psi + \frac{K\ast\Psi}{N_d}$ = **31.4GB**. (Check: $15+15+12\times7.5/64=15+15+1.4=31.4$.)
+- **$P_{os+g}$**: every GPU column still shows a full-width thin blue bar (Parameters), unchanged, but now both the orange (Gradients) and green (Optimizer States) bars have shrunk to narrow slivers stacked together beneath it at the left edge — i.e., gradients are now also sharded, on top of the already-sharded optimizer state; only parameters remain fully replicated. Memory consumed: $2\Psi + \frac{(2+K)\ast\Psi}{N_d}$ = **16.6GB**. (Check: $15 + 14\times7.5/64 = 15+1.64=16.64$.)
+- **$P_{os+g+p}$**: every GPU column now shows all three — blue, orange, and green — reduced to narrow slivers stacked vertically in a small column (blue on top, orange in the middle, green at bottom), with no full-width bar remaining — i.e., parameters, gradients, and optimizer state are all sharded across the $N_d$ GPUs. Memory consumed: $\frac{(2+2+K)\ast\Psi}{N_d}$ = **1.9GB**. (Check: $16\times7.5/64=120/64=1.875\approx1.9$.)
 
 Legend at bottom: blue swatch = "Parameters", orange swatch = "Gradients", green swatch = "Optimizer States".
 
@@ -494,7 +495,7 @@ Legend at bottom: blue swatch = "Parameters", orange swatch = "Gradients", green
 
 Title (blue): "**ZeRO stage 1. optimizer state sharding**"
 
-Figure: the same diagram style as slide 18, but showing only the top two rows (Baseline and $P_{os}$), with the same three example columns ($gpu_0$, $gpu_i$, $gpu_{N-1}$), the same legend colors (blue = Parameters, orange = Gradients, green = Optimizer States), and the same memory-consumed formulas/values as slide 18: Baseline $(2+2+K)*\Psi$ = 120GB; $P_{os}$: $2\Psi + 2\Psi + \frac{K*\Psi}{N_d}$ = 31.4GB, using the same constants K=12, Ψ=7.5B, N_d=64. Visually: Baseline shows full-width blue, orange, and thick green bars on every column; $P_{os}$ shows the same full-width blue and orange bars but the green Optimizer-States block reduced to a short sliver at the left edge of each column.
+Figure: the same diagram style as slide 18, but showing only the top two rows (Baseline and $P_{os}$), with the same three example columns ($gpu_0$, $gpu_i$, $gpu_{N-1}$), the same legend colors (blue = Parameters, orange = Gradients, green = Optimizer States), and the same memory-consumed formulas/values as slide 18: Baseline $(2+2+K)\ast\Psi$ = 120GB; $P_{os}$: $2\Psi + 2\Psi + \frac{K\ast\Psi}{N_d}$ = 31.4GB, using the same constants K=12, Ψ=7.5B, N_d=64. Visually: Baseline shows full-width blue, orange, and thick green bars on every column; $P_{os}$ shows the same full-width blue and orange bars but the green Optimizer-States block reduced to a short sliver at the left edge of each column.
 
 Text below the figure:
 
@@ -540,7 +541,7 @@ Table (three columns, four rows including header):
 | Communication cost | 2* # params | 2* # params |
 | Memory | (4+K) * #params | (4+K/Ngpu) * #params |
 
-The header row ("Naïve DDP", "ZeRO stage 1") is in white text on a dark-blue band; the body rows alternate light-grey/light-blue-grey shading. The "Communication cost" row was checked carefully at 900 dpi: both cells read identically, "**2\* # params**" — i.e., the deck's claim is that ZeRO stage 1's reduce-scatter-plus-all-gather costs the same total communication volume as naïve DDP's single all-reduce (each is 2x the parameter count, matching the standard result that ring all-reduce ≈ reduce-scatter + all-gather in cost). The "Memory" row shows naïve DDP's per-GPU memory as $(4+K)\cdot\#\text{params}$ against ZeRO stage 1's $(4+K/N_{gpu})\cdot\#\text{params}$ — only the optimizer-state term $K$ is divided by the GPU count $N_{gpu}$; the $4$ (2 bytes params + 2 bytes gradients) is not divided, i.e. still fully replicated on every GPU.
+The header row ("Naïve DDP", "ZeRO stage 1") is in white text on a dark-blue band; the body rows alternate light-grey/light-blue-grey shading. The "Communication cost" row was checked carefully at 900 dpi: both cells read identically, "**2\* # params**" — i.e., the deck's claim is that ZeRO stage 1's reduce-scatter-plus-all-gather costs the same total communication volume as naïve DDP's single all-reduce (each is 2x the parameter count, matching the standard result that ring all-reduce ≈ reduce-scatter + all-gather in cost). The "Memory" row shows naïve DDP's per-GPU memory as $(4+K)\cdot\verb|#|\text{params}$ against ZeRO stage 1's $(4+K/N_{gpu})\cdot\verb|#|\text{params}$ — only the optimizer-state term $K$ is divided by the GPU count $N_{gpu}$; the $4$ (2 bytes params + 2 bytes gradients) is not divided, i.e. still fully replicated on every GPU.
 
 Text below the table: "ZeRO stage 1 is *free* (in the bandwidth limited regime) memory wins"
 
@@ -550,7 +551,7 @@ Text below the table: "ZeRO stage 1 is *free* (in the bandwidth limited regime) 
 
 Title (blue): "**ZeRO stage 2. the simple extension to gradient sharding**"
 
-Figure: a single diagram row, labelled "$P_{os+g}$" on the left, showing three example GPU columns ($gpu_0$/$gpu_i$/$gpu_{N-1}$-style, with "…" ellipses between them, matching the visual style of slides 18–19). Each column shows a full-width thin blue bar (Parameters) on top, with a short two-color sliver — a thin orange (Gradients) segment directly above a green (Optimizer States) segment — hanging beneath it at the left edge of the column; the green portion of the sliver is taller than the orange portion. To the right, the "Memory Consumed" formula $2\Psi + \frac{(2+K)*\Psi}{N_d}$ = **16.6GB** is given (identical formula/value to $P_{os+g}$ on slide 18).
+Figure: a single diagram row, labelled $P_{os+g}$ on the left, showing three example GPU columns ($gpu_0/gpu_i/gpu_{N-1}$-style, with "…" ellipses between them, matching the visual style of slides 18–19). Each column shows a full-width thin blue bar (Parameters) on top, with a short two-color sliver — a thin orange (Gradients) segment directly above a green (Optimizer States) segment — hanging beneath it at the left edge of the column; the green portion of the sliver is taller than the orange portion. To the right, the "Memory Consumed" formula $2\Psi + \frac{(2+K)\ast\Psi}{N_d}$ = **16.6GB** is given (identical formula/value to $P_{os+g}$ on slide 18).
 
 Text: "Emboldened by our success, let's shard even more stuff"
 
@@ -587,7 +588,7 @@ Diagram for Step 3 (AllGather): identical in layout to slide 20's Step 4 diagram
 
 Title (blue): "**ZeRO stage 3 (aka FSDP) shard *everything***"
 
-Figure: a single diagram row labelled "$P_{os+g+p}$", with three example GPU columns ($gpu_0$/$gpu_i$/$gpu_{N-1}$-style, "…" between them). Each column now shows only a small stack of thin slivers — a thin blue (Parameters) segment on top, a thin orange (Gradients) segment below it, and a taller green (Optimizer States) segment at the bottom — with no full-width bar remaining at all (unlike every previous row on slides 18/19/22, where at least the parameters bar spanned the full column width). To the right: "Memory Consumed" formula $\frac{(2+2+K)*\Psi}{N_d}$ = **1.9GB** (same formula/value as $P_{os+g+p}$ on slide 18).
+Figure: a single diagram row labelled $P_{os+g+p}$, with three example GPU columns ($gpu_0/gpu_i/gpu_{N-1}$-style, "…" between them). Each column now shows only a small stack of thin slivers — a thin blue (Parameters) segment on top, a thin orange (Gradients) segment below it, and a taller green (Optimizer States) segment at the bottom — with no full-width bar remaining at all (unlike every previous row on slides 18/19/22, where at least the parameters bar spanned the full column width). To the right: "Memory Consumed" formula $\frac{(2+2+K)\ast\Psi}{N_d}$ = **1.9GB** (same formula/value as $P_{os+g+p}$ on slide 18).
 
 Legend below the figure: blue swatch = "Parameters", orange swatch = "Gradients", green swatch = "Optimizer States".
 
@@ -636,7 +637,7 @@ Text: "Let's walk through a FSDP example to see some important ideas"
 "**Overlapping communication and computation** $(W_1W_0 + W_2W_0)x = y$"
 - The all-gathers happen all at once while forward happens, masking the comm cost.
 
-Figure: a timeline diagram (reproduced from the FSDP paper, arXiv:2304.11277 — URL printed at bottom-right of the page: `https://arxiv.org/pdf/2304.11277.pdf`), with a color legend at top right: pink/salmon square = "All-Gather (AG)", light purple square = "Reduce-Scatter (RS)", light blue square = "Forward Comp. (FWD)", light green square = "Backward Comp. (BWD)", pale yellow square = "Parameter Free", and italic "$i$" = "FSDP Unit $i$" (i.e., the small numerals printed inside boxes are unit indices, not quantities).
+Figure: a timeline diagram (reproduced from the FSDP paper, arXiv:2304.11277 — URL printed at bottom-right of the page: `https://arxiv.org/pdf/2304.11277.pdf`), with a color legend at top right: pink/salmon square = "All-Gather (AG)", light purple square = "Reduce-Scatter (RS)", light blue square = "Forward Comp. (FWD)", light green square = "Backward Comp. (BWD)", pale yellow square = "Parameter Free", and italic $i$ = "FSDP Unit $i$" (i.e., the small numerals printed inside boxes are unit indices, not quantities).
 
 The figure has three stacked horizontal rows, aligned so that later rows execute what an earlier row scheduled:
 
@@ -692,11 +693,11 @@ Text: "With data parallel**, #machines < batch size** (and near this, comm overh
 
 "And there's diminishing returns to batch sizes"
 
-Figure: a single line chart titled "Predicted Training Speed" (this is a reproduction of the standard OpenAI-style critical-batch-size / gradient-noise-scale plot). Axes are both log-scaled. Y-axis: "$\epsilon_{opt}(B)/\epsilon_{max}$", ranging from $10^{-2}$ to $10^0$. X-axis: "Batch Size / Noise Scale $(B/\mathcal{B})$", ranging from $10^{-2}$ to $10^2$.
+Figure: a single line chart titled "Predicted Training Speed" (this is a reproduction of the standard OpenAI-style critical-batch-size / gradient-noise-scale plot). Axes are both log-scaled. Y-axis: $\epsilon_{opt}(B)/\epsilon_{max}$, ranging from $10^{-2}$ to $10^0$. X-axis: "Batch Size / Noise Scale $(B/\mathcal{B})$", ranging from $10^{-2}$ to $10^2$.
 
 There is **one data series**: a solid blue curve that rises from the bottom-left corner $(10^{-2}, 10^{-2})$, climbing steeply and roughly linearly (on the log-log axes) through about $(10^{-1}, 7\times10^{-2})$ and $(10^0, 5\times10^{-1})$, then bending over and flattening as it approaches $(10^1, 0.9)$ and continuing nearly flat out to $(10^2, \approx1.0)$.
 
-A vertical grey dashed line marks $x=10^0$ (i.e. $B=\mathcal{B}$) — this is a reference line, not a second data series. Two text labels with leader lines point at the curve: "**Perfect scaling**" pointing at the steep, roughly-linear rising portion of the curve (left of the dashed line), and "**Ineffective scaling**" pointing at the flattened portion of the curve (right of the dashed line, around $x\approx10^{1}$–$10^{2}$) — both are annotations of the single curve, not additional series.
+A vertical grey dashed line marks $x=10^0$ (i.e. $B=\mathcal{B}$) — this is a reference line, not a second data series. Two text labels with leader lines point at the curve: "**Perfect scaling**" pointing at the steep, roughly-linear rising portion of the curve (left of the dashed line), and "**Ineffective scaling**" pointing at the flattened portion of the curve (right of the dashed line, around $x\approx10^{1}\text{–}10^{2}$) — both are annotations of the single curve, not additional series.
 
 ## Slide 30 — Issues remain with data parallel – models don't fit
 
@@ -756,14 +757,14 @@ Below the figure: "**Layer-wise parallel** cuts up layers, assigns some subset t
 
 **Figure — single-microbatch pipeline schedule (staircase, one forward + one backward per GPU).** A schedule diagram with four rows of coloured cells, each row belonging to one GPU/stage, using only a single subscript ($F_0$, $B_0$) — i.e. this shows one micro-batch/no micro-batching, illustrating the naive layer-wise pipeline from the previous slide. Reading left to right (time axis, labelled "Time" with a rightward arrow beneath the diagram):
 
-- Bottom row (gray): one cell, "$F_0$", starting at the leftmost time step.
-- Next row up (tan/orange): one cell, "$F_0$", shifted one step to the right of the gray row's cell (starts after the gray row's cell ends).
-- Next row up (blue): one cell, "$F_0$", shifted one more step right.
-- Top row (mauve/pink): two adjacent cells, "$F_0$" then "$B_0$" — this is the last stage, so its backward starts immediately after its own forward finishes, with no gap.
-- The schedule then steps back down: the blue row has a "$B_0$" cell (positioned to the right of the mauve row's cells, i.e. later in time), then the tan/orange row has a "$B_0$" cell (later still), then the gray row has a "$B_0$" cell (latest of all, at the far right before the update column).
+- Bottom row (gray): one cell, $F_0$, starting at the leftmost time step.
+- Next row up (tan/orange): one cell, $F_0$, shifted one step to the right of the gray row's cell (starts after the gray row's cell ends).
+- Next row up (blue): one cell, $F_0$, shifted one more step right.
+- Top row (mauve/pink): two adjacent cells, $F_0$ then $B_0$ — this is the last stage, so its backward starts immediately after its own forward finishes, with no gap.
+- The schedule then steps back down: the blue row has a $B_0$ cell (positioned to the right of the mauve row's cells, i.e. later in time), then the tan/orange row has a $B_0$ cell (later still), then the gray row has a $B_0$ cell (latest of all, at the far right before the update column).
 - Far right: a vertical stack of four small "Update" boxes, one per row, coloured to match their row — mauve/pink (top), blue, tan/orange, gray (bottom) — drawn as one aligned column at the end of the timeline.
 
-The overall shape is a symmetric staircase: ascending steps of solitary forward cells culminating in the top row's forward+backward pair, then descending steps of solitary backward cells, so each of the four GPUs is busy for only 2 of the roughly 8 time-slots spanned by the diagram (idle the rest of the time) — illustrating the "$1/n$ active" claim above.
+The overall shape is a symmetric staircase: ascending steps of solitary forward cells culminating in the top row's forward+backward pair, then descending steps of solitary backward cells, so each of the four GPUs is busy for only 2 of the roughly 8 time-slots spanned by the diagram (idle the rest of the time) — illustrating the claim above that each GPU is active $1/n$ of the time.
 
 "Each GPU is idling most of the time, waiting for the backward pass to propagate back"
 
@@ -832,13 +833,13 @@ No chart or table on this page.
 
 "The second part can be done whenever"
 
-**Figure 1 — "Computation Graph for MLP" (left of page).** A boxed diagram split into a "Forward" column and a "Backward" region (further divided into "B" and "W" sub-columns), with dotted horizontal lines marking the layer boundary and dotted vertical lines separating Forward from Backward, and "$N\times$" / "$\times N$" annotations at left/right margins indicating the block repeats for $N$ layers. **Forward (column "F"):** input $x$ (arrow down) into an orange box "$Wx$" (with $W$ entering from the left), producing $z$ (arrow down) into a white box "$\sigma(z)$", producing $y$ (arrow down, exits at bottom). **Backward, sub-column "B":** entering from below is $\nabla_y L$ (arrow up) into a white box "$\frac{d\sigma(z)}{dz}\nabla_y L$", producing $\nabla_z L$; this splits — one branch (arrow up) feeds an orange box "$W^T \nabla_z L$" which outputs $\nabla_x L$ (exits at top) — this is the "B" sub-column (backpropagating activations). **Backward, sub-column "W":** the other branch of $\nabla_z L$ (arrow right) feeds an orange box "$\nabla_z L\, x^T$", which outputs $\nabla_W L$ (arrow right, exits at right) — this is the "W" sub-column (computing the weight gradient). Column labels along the bottom of the figure: "F", "B", "W". Caption: "Figure 1: Computation Graph for MLP."
+**Figure 1 — "Computation Graph for MLP" (left of page).** A boxed diagram split into a "Forward" column and a "Backward" region (further divided into "B" and "W" sub-columns), with dotted horizontal lines marking the layer boundary and dotted vertical lines separating Forward from Backward, and $N\times$ / $\times N$ annotations at left/right margins indicating the block repeats for $N$ layers. **Forward (column "F"):** input $x$ (arrow down) into an orange box $Wx$ (with $W$ entering from the left), producing $z$ (arrow down) into a white box $\sigma(z)$, producing $y$ (arrow down, exits at bottom). **Backward, sub-column "B":** entering from below is $\nabla_y L$ (arrow up) into a white box $\frac{d\sigma(z)}{dz}\nabla_y L$, producing $\nabla_z L$; this splits — one branch (arrow up) feeds an orange box $W^T \nabla_z L$ which outputs $\nabla_x L$ (exits at top) — this is the "B" sub-column (backpropagating activations). **Backward, sub-column "W":** the other branch of $\nabla_z L$ (arrow right) feeds an orange box $\nabla_z L\thinspace x^T$, which outputs $\nabla_W L$ (arrow right, exits at right) — this is the "W" sub-column (computing the weight gradient). Column labels along the bottom of the figure: "F", "B", "W". Caption: "Figure 1: Computation Graph for MLP."
 
 **Figure 2 — "1F1B pipeline schedule" (right of page, upper).** Four rows, "Device 1"–"Device 4", 8 microbatches, three-color legend: blue = "Forward", orange/tan = "Backward", pale yellow = "Optimizer step". This is the standard staggered 1-forward-1-backward steady-state schedule: Device 1 does forward 1–4 (blue) immediately, then idles 3 steps, then alternates backward/forward (orange 1, blue 5, orange 2, blue 6, orange 3, blue 7, orange 4, blue 8), then finishes backward 5–8 (orange, with a single idle gray gap between each of the later ones), then a pale-yellow "Optimizer step" block, then the next iteration's forward 1–4 begins. Device 2–4 show the same shape shifted later by one, two, and three steps respectively (Device 4's forward and backward for a given microbatch are adjacent with no gap, since it is the last stage). Caption: "Figure 2: 1F1B pipeline schedule."
 
 **Figure 3 — "Handcrafted pipeline schedules, top: ZB-H1; bottom: ZB-H2" (right of page, lower).** Four rows each, 8 microbatches, four-color legend this time matching the diagram exactly: blue = "F", teal/cyan = "B", green = "W", pale yellow = "Optimizer step".
 - **Top (ZB-H1).** Device 1: forward 1–4 (blue), idle x3, then interleaved (teal $B_1$, green $W_1$, blue $F_5$, teal $B_2$, green $W_2$, blue $F_6$, teal $B_3$, green $W_3$, blue $F_7$, teal $B_4$, green $W_4$, blue $F_8$, teal $B_5$, green $W_5$, teal $B_6$, green $W_6$, teal $B_7$, green $W_7$, teal $B_8$, green $W_8$), then Optimizer step (pale yellow), then the next iteration's forward 1–4 begins. Device 4 (the last stage) instead does immediate forward/backward pairs with no gap ($F_1,B_1,F_2,B_2,F_3,B_3,F_4,B_4$) and only starts inserting weight-gradient ("W") cells afterward, filling in $W_1,F_5,B_5,W_2,F_6,B_6,W_3,F_7,B_7,W_4,F_8,B_8,W_5,W_6,W_7,W_8$ — i.e. it defers all its $W$ steps to where they would otherwise be idle bubble time. Devices 2–3 show the same shape staggered by one and two steps.
-- **Bottom (ZB-H2).** Device 1 does a longer run of 7 forward passes (blue, $F_1$–$F_7$) before its first backward, then $B_1, W_1, F_8$ (its 8th and last forward), then $B_2,W_2,B_3,W_3,B_4,W_4,B_5,W_5,B_6,W_6,B_7,W_7,B_8,W_8$, then Optimizer step, then the next iteration repeats the same shape (7 forwards again). Device 4 (last stage) does immediate forward/backward pairs for all 7 early microbatches ($F_1,B_1,\dots,F_7,B_7$), then $W_1, F_8, B_8$, then all remaining weight-gradient cells $W_2$–$W_8$ back to back with essentially no idle gray cells visible in the steady state — a visibly smaller bubble than both Figure 2 and ZB-H1, consistent with the "zero bubble" framing, achieved by carrying more microbatches "in flight" at once (7 vs. ZB-H1/1F1B's 4) and deferring weight-gradient computation into the gaps.
+- **Bottom (ZB-H2).** Device 1 does a longer run of 7 forward passes (blue, $F_1\text{–}F_7$) before its first backward, then $B_1, W_1, F_8$ (its 8th and last forward), then $B_2,W_2,B_3,W_3,B_4,W_4,B_5,W_5,B_6,W_6,B_7,W_7,B_8,W_8$, then Optimizer step, then the next iteration repeats the same shape (7 forwards again). Device 4 (last stage) does immediate forward/backward pairs for all 7 early microbatches ($F_1,B_1,\dots,F_7,B_7$), then $W_1, F_8, B_8$, then all remaining weight-gradient cells $W_2\text{–}W_8$ back to back with essentially no idle gray cells visible in the steady state — a visibly smaller bubble than both Figure 2 and ZB-H1, consistent with the "zero bubble" framing, achieved by carrying more microbatches "in flight" at once (7 vs. ZB-H1/1F1B's 4) and deferring weight-gradient computation into the gaps.
 
 ## Slide 39 — Model parallel along the width axes
 
@@ -857,7 +858,7 @@ A downward arrow leads to the decomposed version below: $X$ is split into two $2
 
 ![Slide 40 — Tensor parallel – GPUs have submatrices](../images/08-parallelism-2/slide-40.jpg)
 
-**Figure — Megatron-style tensor-parallel MLP block diagram, two dashed panels side by side.** Left panel, headed "$Y = \text{GeLU}(XA)$": input $X$ (tan box) → $f$ (dark green box) → splits into two parallel rows (one per GPU): top row $X$ (tan) → $XA_1$ (cyan) → GeLU (pink) → $Y_1$ (bright green); bottom row $X$ (tan) → $XA_2$ (cyan) → GeLU (pink) → $Y_2$ (bright green). Caption at the bottom of the panel: "$A = [A_1, A_2]$" (i.e., $A$ split by columns). Right panel, headed "$Z = \text{Dropout}(YB)$": top row $Y_1B_1$ (cyan) → $Z_1$ (bright green); bottom row $Y_2B_2$ (cyan) → $Z_2$ (bright green); both rows feed into $g$ (dark green box) → Dropout (pink) → $Z$ (bright green). Caption at the bottom: "$B = \begin{bmatrix}B_1\\B_2\end{bmatrix}$" (i.e., $B$ split by rows). Arrows throughout point left to right (forward-pass direction).
+**Figure — Megatron-style tensor-parallel MLP block diagram, two dashed panels side by side.** Left panel, headed $Y = \text{GeLU}(XA)$: input $X$ (tan box) → $f$ (dark green box) → splits into two parallel rows (one per GPU): top row $X$ (tan) → $XA_1$ (cyan) → GeLU (pink) → $Y_1$ (bright green); bottom row $X$ (tan) → $XA_2$ (cyan) → GeLU (pink) → $Y_2$ (bright green). Caption at the bottom of the panel: $A = [A_1, A_2]$ (i.e., $A$ split by columns). Right panel, headed $Z = \text{Dropout}(YB)$: top row $Y_1B_1$ (cyan) → $Z_1$ (bright green); bottom row $Y_2B_2$ (cyan) → $Z_2$ (bright green); both rows feed into $g$ (dark green box) → Dropout (pink) → $Z$ (bright green). Caption at the bottom: $B = \left[{B_1 \atop B_2}\right]$ (i.e., $B$ split by rows). Arrows throughout point left to right (forward-pass direction).
 
 "Assign columns ($A_1$, $A_2$) and rows ($B_1$, $B_2$) to separate GPUs."
 - In the forward pass, $f$ is the identity, and $g$ is an all-reduce.
@@ -867,9 +868,9 @@ A downward arrow leads to the decomposed version below: $X$ is split into two $2
 
 ![Slide 41 — Row vs Column tensor parallel](../images/08-parallelism-2/slide-41.jpg)
 
-**Figure (a) — "MLP" (left half of page).** Identical to slide 40's diagram: left dashed panel "$Y = \text{GeLU}(XA)$" with $X \to f \to$ two parallel rows ($XA_1\to$GeLU$\to Y_1$; $XA_2\to$GeLU$\to Y_2$), caption "$A=[A_1,A_2]$"; right dashed panel "$Z=\text{Dropout}(YB)$" with two rows ($Y_1B_1\to Z_1$; $Y_2B_2\to Z_2$) feeding $g\to$Dropout$\to Z$, caption "$B=\begin{bmatrix}B_1\\B_2\end{bmatrix}$". Captioned beneath: "(a) MLP".
+**Figure (a) — "MLP" (left half of page).** Identical to slide 40's diagram: left dashed panel $Y = \text{GeLU}(XA)$ with $X \to f \to$ two parallel rows ($XA_1\to\text{GeLU}\to Y_1$; $XA_2\to\text{GeLU}\to Y_2$), caption $A=[A_1,A_2]$; right dashed panel $Z=\text{Dropout}(YB)$ with two rows ($Y_1B_1\to Z_1$; $Y_2B_2\to Z_2$) feeding $g\to\text{Dropout}\to Z$, caption $B = \left[{B_1 \atop B_2}\right]$. Captioned beneath: "(a) MLP".
 
-**Figure (b) — "Self-Attention" (right half of page).** Left dashed panel headed "$Y=\text{Self-Attention}(X)$": input $X$ (tan) $\to f$ (dark green) splits into two head-rows. Row 1 (head 1): $X$ (tan) branches to three cyan boxes $V_1$, $Q_1$, $K_1$ (top to bottom); $Q_1$ and $K_1$ feed a circled-× (matmul) node $\to$ Softmax (pink) $\to$ Dropout (pink) $\to$ a second circled-× node that also takes $V_1$ (routed in via a curved arrow from above) $\to$ output $Y_1$ (bright green). Row 2 (head 2): $X$ (tan) branches to $K_2$, $Q_2$, $V_2$ (top to bottom — note the order is mirrored relative to row 1) $\to$ same circled-×/Softmax/Dropout/circled-× chain, with $V_2$ routed in from below $\to$ output $Y_2$ (bright green). Below the panel: "split attention heads $\to$" followed by a brace giving $Q=[Q_1,Q_2]$, $K=[K_1,K_2]$, $V=[V_1,V_2]$. Right dashed panel headed "$Z=\text{Dropout}(YB)$": row 1 $Y_1B_1$ (cyan) $\to Z_1$ (green); row 2 $Y_2B_2$ (cyan) $\to Z_2$ (green); both feed $g$ (dark green) $\to$ Dropout (pink) $\to Z$ (bright green), caption "$B=\begin{bmatrix}B_1\\B_2\end{bmatrix}$". Captioned beneath: "(b) Self-Attention".
+**Figure (b) — "Self-Attention" (right half of page).** Left dashed panel headed $Y=\text{Self-Attention}(X)$: input $X$ (tan) $\to f$ (dark green) splits into two head-rows. Row 1 (head 1): $X$ (tan) branches to three cyan boxes $V_1$, $Q_1$, $K_1$ (top to bottom); $Q_1$ and $K_1$ feed a circled-× (matmul) node $\to$ Softmax (pink) $\to$ Dropout (pink) $\to$ a second circled-× node that also takes $V_1$ (routed in via a curved arrow from above) $\to$ output $Y_1$ (bright green). Row 2 (head 2): $X$ (tan) branches to $K_2$, $Q_2$, $V_2$ (top to bottom — note the order is mirrored relative to row 1) $\to$ same circled-×/Softmax/Dropout/circled-× chain, with $V_2$ routed in from below $\to$ output $Y_2$ (bright green). Below the panel: "split attention heads $\to$" followed by a brace giving $Q=[Q_1,Q_2]$, $K=[K_1,K_2]$, $V=[V_1,V_2]$. Right dashed panel headed $Z=\text{Dropout}(YB)$: row 1 $Y_1B_1$ (cyan) $\to Z_1$ (green); row 2 $Y_2B_2$ (cyan) $\to Z_2$ (green); both feed $g$ (dark green) $\to$ Dropout (pink) $\to Z$ (bright green), caption $B = \left[{B_1 \atop B_2}\right]$. Captioned beneath: "(b) Self-Attention".
 
 "How do we split up in tensor parallel across a transformer block?"
 - Columnwise – QKV, up-projection
@@ -922,8 +923,8 @@ No chart or table on this page (aside from the boxed text above).
 This is a stacked-area "memory over time" trace (a GPU memory-allocator snapshot, not a conventional multi-line chart), showing roughly 6 repeating sawtooth cycles (training steps) across the ~270 ms window:
 
 - **PARAMETER** (dark green): a flat, constant band from $y=0$ up to about $0.095$ GB for the entire time range — parameter memory never changes.
-- **OPTIMIZER_STATE** (tan/gold): absent (zero width) from $t=0$ to about $t=50$ ms, then jumps in and forms a flat plateau from about $0.095$ to $0.19$ GB for the rest of the trace ($t\approx55$–$270$ ms) — consistent with optimizer state being allocated only after the first optimizer step.
-- **ACTIVATION** (red): a series of rounded arch/hump shapes sitting on top of the green/tan baseline, rising and falling once per training step — a smaller hump from about $t=0$–$50$ ms peaking around $0.18$ GB, then five larger, roughly evenly-spaced humps between $t\approx55$ and $t\approx270$ ms peaking around $0.28$ GB each, falling back to baseline at the end of each hump (forward accumulates activations, backward frees them).
+- **OPTIMIZER_STATE** (tan/gold): absent (zero width) from $t=0$ to about $t=50$ ms, then jumps in and forms a flat plateau from about $0.095$ to $0.19$ GB for the rest of the trace ($t\approx55\text{–}270$ ms) — consistent with optimizer state being allocated only after the first optimizer step.
+- **ACTIVATION** (red): a series of rounded arch/hump shapes sitting on top of the green/tan baseline, rising and falling once per training step — a smaller hump from about $t=0\text{–}50$ ms peaking around $0.18$ GB, then five larger, roughly evenly-spaced humps between $t\approx55$ and $t\approx270$ ms peaking around $0.28$ GB each, falling back to baseline at the end of each hump (forward accumulates activations, backward frees them).
 - **GRADIENT** (blue): sits above the red humps in each cycle, also arch-shaped, peaking around $0.34$ GB near the end of each hump (as activations are freed during backward, gradients accumulate), then dropping sharply back down to the OPTIMIZER_STATE/PARAMETER baseline at the start of the next cycle (consistent with gradients being cleared after each optimizer step).
 - **Unknown** (gray hatching): sits above the blue/red region in every cycle, following the same up-down cyclical shape but rendered as dense, jagged, thin vertical bars rather than a smooth curve, peaking around $0.47$ GB at each cycle's high point.
 - **INPUT** (dark gray/black), **TEMPORARY** (light purple), and **AUTOGRAD_DETAIL** (light blue) are listed in the legend but **not visibly distinguishable as separate bands in the plot at this resolution** — re-rendered at 2400 dpi, no separately-colored region matching these three swatches could be identified; they may be too thin to render as visible bands, or are present only as a sliver blended into an adjacent band. Flagged rather than guessed.
@@ -997,7 +998,7 @@ $10$ is the term the rest of the argument is about — it is set in bold in the
 deck's own prose, and it is the only term that survives tensor parallelism
 undivided.
 
-The same $a$/$b$/$h$/$L$/$p$/$s$/$t$/$v$ legend from slide 46 is repeated at the
+The same $a/b/h/L/p/s/t/v$ legend from slide 46 is repeated at the
 bottom right. No other figure.
 
 ## Slide 48 — Making memory truly linear – sequence parallel
@@ -1010,18 +1011,18 @@ left-to-right pipeline running the full width of the page. Reading left to right
 - A bright-green vertical box labelled "Transformer Layer Input".
 - A dashed rounded region labelled "**Sequence Parallel**" containing a cream/tan
   box "LayerNorm".
-- A dark-green narrow bar labelled "$g$".
+- A dark-green narrow bar labelled $g$.
 - A dashed rounded region with a grey gradient fill labelled "**Tensor Parallel**"
   containing a blue-grey box "Self Attention" and a cyan box "Linear".
-- A dark-green narrow bar labelled "$\bar{g}$".
+- A dark-green narrow bar labelled $\bar{g}$.
 - A dashed rounded region labelled "**Sequence Parallel**" containing a pink box
   "Dropout", then a yellow circled-plus ($\oplus$) residual-add node.
 - A second dashed "**Sequence Parallel**" region containing a cream/tan box
   "LayerNorm".
-- A dark-green "$g$" bar.
+- A dark-green $g$ bar.
 - A second grey "**Tensor Parallel**" region containing cyan "Linear", pink
   "GeLU", cyan "Linear".
-- A dark-green "$\bar{g}$" bar.
+- A dark-green $\bar{g}$ bar.
 - A final dashed "**Sequence Parallel**" region containing pink "Dropout" and a
   second yellow $\oplus$ node.
 - A bright-green box "Transformer Layer Output".
@@ -1036,7 +1037,7 @@ Text below the figure:
 
 - "**Observation:** all the 10sbh terms are pointwise ops over the sequence"
 - (indented continuation) "… so split up the layer norm/dropout layers along the sequence axis."
-- "In the forward pass, '$g$' is an all gather, '$\bar{g}$' is reduce-scatter"
+- "In the forward pass, $g$ is an all gather, $\bar{g}$ is reduce-scatter"
 - "In the backward pass, the two are reversed."
 
 ## Slide 49 — Making activation memory fully scale with more machines
@@ -1081,7 +1082,7 @@ transcribed as printed). A single grey rounded column, read bottom to top:
 
 - "Input embeddings + Positional embeddings" (white box, below the column)
 - Orange "Multi-Head Attention" → yellow "Add & Norm" (with a black residual arrow curving around it)
-- A **red-outlined** box labelled "MoE" containing two pink boxes "FFN$_1$" … "FFN$_E$" (with an ellipsis between them) and a green box "Gating" beneath them
+- A **red-outlined** box labelled "MoE" containing two pink boxes $\text{FFN}_ 1$ … $\text{FFN}_ E$ (with an ellipsis between them) and a green box "Gating" beneath them
 - Yellow "Add & Norm"
 - Orange "Multi-Head Attention" → yellow "Add & Norm"
 - Blue "Feed Forward FFN" → yellow "Add & Norm"
@@ -1096,7 +1097,7 @@ a horizontal ellipsis "• • •" and the caption "Devices 1…E" between them
 column has the same stack as the left panel, but:
 
 - The bottom box reads "Input embeddings + Positional embeddings (shard 1)" and "(shard E)" respectively; the top boxes read "Encoder output (shard 1)" and "Encoder output (shard E)".
-- The MoE block is now a single **red-outlined rectangle spanning both devices**, labelled in its centre "Model-parallel MoE". Device 1 holds one pink "FFN$_1$"; device E holds one pink "FFN$_E$". Each device has its own green "Gating" box.
+- The MoE block is now a single **red-outlined rectangle spanning both devices**, labelled in its centre "Model-parallel MoE". Device 1 holds one pink $\text{FFN}_ 1$; device E holds one pink $\text{FFN}_ E$. Each device has its own green "Gating" box.
 - Two white ellipse-shaped nodes sit between the devices inside the red region. The lower one, "**All-to-All Dispatch**", takes crossing arrows from each device's Gating box up into the *other* device's FFN as well as its own — i.e. tokens are routed across devices. The upper one, "**All-to-All Combine**", takes crossing arrows from each device's FFN up into each device's "Add & Norm" — i.e. expert outputs are routed back.
 - "(N/2)x" is again annotated at the right of each device column.
 
@@ -1220,7 +1221,7 @@ Below it, a small pasted LaTeX table (booktabs style, no colour). Its two right-
 | MP | $4BDF/Y + 8BDF/Y$ | $4BD + 4BD$ |
 | FSDP + MP | $4BDF/(XY) + 8BDF/(XY)$ | $(4BD/X + 4DF/Y) + (8BD/X + 8DF/Y)$ |
 
-Note on the last cell: the pasted table image is cropped at its right edge, so the **closing parenthesis of the final term is cut off** on the page — it reads "$(4BD/X + 4DF/Y) + (8BD/X + 8DF/Y$" as printed. The closing bracket is supplied above from the obvious symmetry of the expression; this is stated so a reader is not surprised by the page. Confirmed at 900 dpi: it is a crop of the pasted image, not an occlusion by the chart.
+Note on the last cell: the pasted table image is cropped at its right edge, so the **closing parenthesis of the final term is cut off** on the page — it reads $(4BD/X + 4DF/Y) + (8BD/X + 8DF/Y$ as printed. The closing bracket is supplied above from the obvious symmetry of the expression; this is stated so a reader is not surprised by the page. Confirmed at 900 dpi: it is a crop of the pasted image, not an occlusion by the chart.
 
 The deck does not define $B$, $D$, $F$, $X$, $Y$ on this page. From the surrounding context (this is the TPU book's notation, not the $sbh$ notation of slides 46–49) $B$ is the batch, $D$ the model dimension, $F$ the MLP dimension, $X$ the data-parallel axis and $Y$ the model-parallel axis.
 
@@ -1239,7 +1240,7 @@ The deck does not define $B$, $D$, $F$, $X$, $Y$ on this page. From the surround
 
 - A black **dotted horizontal line at $10^{0}$** (ratio 1), labelled "Computation bound" above it and "Communication bound" below it.
 - Two grey **dashed vertical lines**, at B/N ≈ 400 and B/N ≈ 850.
-- Three in-plot text blocks, one per region: "No scheme works when $B < 400$" (left of the first dashed line), "Only mixed FSDP + MP works when $B < 850$" (between the two), "Both mixed FSDP + MP and pure FSDP work when $B > 850$" (right of the second).
+- Three in-plot text blocks, one per region: "No scheme works when $B \lt 400$" (left of the first dashed line), "Only mixed FSDP + MP works when $B \lt 850$" (between the two), "Both mixed FSDP + MP and pure FSDP work when $B \gt 850$" (right of the second).
 
 No citation line is printed on the page beyond "(TPU book)" in the title.
 
@@ -1582,7 +1583,7 @@ Sub-heading, bold black: "**From the long-context extension section**"
 
 A pasted boxed screenshot of paper prose (no section number or header visible above it in the box itself). The pasted paragraph reads (verbatim, with the learning-rate value in the original's math formatting):
 
-> Similar to Nemotron 3 Nano, we added a long-context phase (LC-Phase) at the end of pretraining. In the LC-Phase, we performed continuous pretraining (CPT) to equip the base model with long-context ability. We used a constant learning rate of $4.5 * 10^{-6}$ and global batch size of 16. We used 64-way context parallelism, 2-way tensor parallelism, and 64-way expert parallelism to train on GB200 GPUs. We reused the long-context document QA dataset from Nemotron 2 & 3 Nano. We allocated the document QA data to 20% in the Phase LC data blend, with the remaining 80% being downscaled Phase 2 data. We initially performed CPT on 1,048,576 (1m) context length. Such stage lasted for 34 billion tokens. Following that we added another stage to alternatingly train on both 1m and 4k sequences in order to mitigate the minor impact we observed on the math-related benchmarks. The second stage lasted for 17 billion tokens.
+> Similar to Nemotron 3 Nano, we added a long-context phase (LC-Phase) at the end of pretraining. In the LC-Phase, we performed continuous pretraining (CPT) to equip the base model with long-context ability. We used a constant learning rate of $4.5 \ast 10^{-6}$ and global batch size of 16. We used 64-way context parallelism, 2-way tensor parallelism, and 64-way expert parallelism to train on GB200 GPUs. We reused the long-context document QA dataset from Nemotron 2 & 3 Nano. We allocated the document QA data to 20% in the Phase LC data blend, with the remaining 80% being downscaled Phase 2 data. We initially performed CPT on 1,048,576 (1m) context length. Such stage lasted for 34 billion tokens. Following that we added another stage to alternatingly train on both 1m and 4k sequences in order to mitigate the minor impact we observed on the math-related benchmarks. The second stage lasted for 17 billion tokens.
 
 Below the box, in the lecturer's own words: "TP / PP / CP / EP (2/0/64/64)"
 

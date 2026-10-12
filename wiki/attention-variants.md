@@ -22,7 +22,7 @@ own symbols from slide 58:
 
 - $d$ — hidden (model) dimension
 - $b$ — batch size
-- $n$ — sequence length, with $n < d$
+- $n$ — sequence length, with $n \lt d$
 - $h$ — number of heads
 - $k$ — head dimension, $k = d/h$
 
@@ -187,7 +187,7 @@ used this — if you read the paper, they'll say we alternate between full atten
 What is new is how the idea came back. Rather than choosing one mask, **alternate
 layers**: cheap local attention most of the time, full attention occasionally.
 
-Slide 65 shows Cohere's Command A, where "Every 4$^{th}$ layer is a full attention"
+Slide 65 shows Cohere's Command A, where "Every 4th layer is a full attention"
 — blocks 1–3 use sliding-window self-attention, block 4 uses full, at a stated 3:1
 ratio. Both block types use grouped-query attention and a SwiGLU MLP with no bias
 terms, but they differ in position embedding: the sliding-window blocks use RoPE,
@@ -256,7 +256,7 @@ full attention.
 
 **[Sparse attention](sparse-attention.md)** keeps the softmax and makes the sparsity
 pattern *learned* rather than structural: DeepSeek Sparse Attention scores every
-preceding token with a cheap indexer and runs full attention on the top-$k$. It is
+preceding token with a cheap indexer and runs full attention on the $\text{top-}k$. It is
 not linear time, and lecture 4 is emphatic about that — the win is entirely in
 constant factors.
 
@@ -282,7 +282,7 @@ expressions:
 | GQA, $B = 256$ | 0.168 GB | 65.63 GB | 19.59 ms/token | 13,068.2 tok/s |
 
 The third row is the real point. At MHA, $B = 256$ needed 240.78 GB and simply did
-not run on an 80 GB H100; with GQA it fits, and throughput is 4.9× the best the
+not run on an 80 GB H100; with GQA it fits, and throughput is $4.9\times$ the best the
 MHA configuration could reach. "Sometimes you play with these parameters jointly —
 you can reduce the KV cache, but that allows you to increase the batch size"
 ([50:20]). GQA also shrinks the model slightly, from 13.02B to 11.34B parameters,

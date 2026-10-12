@@ -132,7 +132,7 @@ x = rearrange(x, "... heads hidden2 -> ... (heads hidden2)")
 
 The parentheses are the notation for "these names are packed into one axis". So
 `(heads hidden1)` on the left and `heads hidden1` on the right means *unpack*, and
-the reverse means *pack*. Because 8 could be split as 2×4 or 4×2, you supply
+the reverse means *pack*. Because 8 could be split as $2\times 4$ or $4\times 2$, you supply
 `heads=2` to disambiguate, and einops solves for the other.
 
 Note what the middle line does **not** need: with the head axis named, the

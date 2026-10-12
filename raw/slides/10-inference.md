@@ -338,7 +338,7 @@ $$\text{intensity} = \frac{2BDF}{2BD + 2DF + 2BF} = \frac{BDF}{BD + BF + DF}$$
 The source takes this limit literally, substituting $D = cB$ and $F = cB$ and
 letting $c \to \infty$:
 
-$$\lim_{c \to \infty} \frac{B \cdot cB \cdot cB}{B\,cB + B\,cB + cB\,cB} = B$$
+$$\lim_{c \to \infty} \frac{B \cdot cB \cdot cB}{B\thinspace cB + B\thinspace cB + cB\thinspace cB} = B$$
 
 (computed; the source asserts `intensity == B`.)
 
@@ -582,9 +582,9 @@ Substituting everything but $B$ gives (computed):
 | Quantity | Expression | Value |
 | --- | --- | --- |
 | `num_params` | — | 13,015,449,600 ≈ 13.0B |
-| `memory` (bytes) | $838{,}860{,}800\,B + 26{,}030{,}899{,}200$ | 0.84 GB per sequence + 26.0 GB of weights |
-| `latency` (s) | $0.000250406\,B + 0.00777042$ | — |
-| `throughput` (tok/s) | $127792.36\,B / (32B + 993)$ | — |
+| `memory` (bytes) | $838{,}860{,}800\thinspace B + 26{,}030{,}899{,}200$ | 0.84 GB per sequence + 26.0 GB of weights |
+| `latency` (s) | $0.000250406\thinspace B + 0.00777042$ | — |
+| `throughput` (tok/s) | $127792.36\thinspace B / (32B + 993)$ | — |
 
 The 0.84 GB per sequence is the KV cache for a single 1024-token request:
 $1024 \times (40 \times 128) \times 40 \times 2 \times 2 = 838{,}860{,}800$ bytes
@@ -1032,11 +1032,11 @@ and Google's [retrospective on speculative decoding](https://research.google/blo
 > - P[sampling B] = p(B) * 1 + p(A) * (1 - q(A) / p(A)) * 1 = q(B)
 
 Read the two lines as cases. Token A can only be emitted by proposing it (with
-probability $p(A)$) and then accepting it, which happens with probability
+probability ${p(A)}$) and then accepting it, which happens with probability
 $q(A)/p(A)$ because the draft oversamples it; the second term is zero because the
 residual distribution puts no mass on A. Token B is emitted either by proposing it
 and accepting outright — the draft undersamples B, so acceptance is certain — or
-by proposing A, rejecting it (probability $1 - q(A)/p(A)$), and falling back to the
+by proposing A, rejecting it (probability ${1 - q(A)/p(A)}$), and falling back to the
 residual distribution, which is entirely on B. Both cases land exactly on the
 target model's own probability. That is the guarantee: **the output distribution
 is the target model's, not an approximation of it.**

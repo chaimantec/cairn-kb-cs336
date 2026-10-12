@@ -22,10 +22,10 @@ the cost of fitting a scaling law from $n$ to $n^2$."
 
 The slide's own six-panel ablation is the evidence, and it is worth reading carefully
 because it establishes something stronger than mere inconvenience. Six cosine cycle
-lengths (1.0×, 1.1×, 1.25×, 1.5×, 2.0× and 5.0× the run length) are trained to two
+lengths ($1.0\times$, $1.1\times$, $1.25\times$, $1.5\times$, $2.0\times$ and $5.0\times$ the run length) are trained to two
 different total lengths. The ordering is the same in every loss panel and in both rows:
-**the shorter the cosine cycle, the lower the loss at the end of the run** — 1.0× and 1.1×
-essentially tied for best, 1.25× just behind, and 5.0× clearly worst, by about 0.06 in
+**the shorter the cosine cycle, the lower the loss at the end of the run** — $1.0\times$ and $1.1\times$
+essentially tied for best, $1.25\times$ just behind, and $5.0\times$ clearly worst, by about 0.06 in
 training loss and 0.07 in C4 loss.
 
 The consequence is the one that costs money. The loss a run reaches at step $n$ when its

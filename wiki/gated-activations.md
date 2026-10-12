@@ -17,7 +17,7 @@ than ReLU (slide 4).
 Start with the standard feedforward layer — project up with $W_1$, threshold, project
 back down with $W_2$:
 
-$$\mathrm{FF}(x) = \max(0, xW_1)\,W_2$$
+$$\mathrm{FF}(x) = \max(0, xW_1)\thinspace W_2$$
 
 The gating idea modifies only the first part. Instead of passing the activated
 value straight through, multiply it entrywise by a second, *linear* projection of
@@ -27,7 +27,7 @@ $$\max(0, xW_1) \rightarrow \max(0, xW_1) \otimes (xV)$$
 
 where $\otimes$ is the entrywise (Hadamard) product. That gives the gated variant:
 
-$$\mathrm{FF}_{\mathrm{ReGLU}}(x) = \big(\max(0, xW_1) \otimes xV\big)\,W_2$$
+$$\mathrm{FF}_ {\mathrm{ReGLU}}(x) = \big(\max(0, xW_1) \otimes xV\big)\thinspace W_2$$
 
 The second branch $xV$ modulates the first — it is a learned, input-dependent gate
 on each coordinate of the hidden layer. Hashimoto's framing at [22:17] is that
@@ -46,9 +46,9 @@ take the base activation, and append **GLU**.
 | --- | --- | --- |
 | ReGLU | ReLU | $(\max(0, xW) \otimes xV)W_2$ |
 | GeGLU | GeLU | $(\mathrm{GELU}(xW) \otimes xV)W_2$ |
-| SwiGLU | Swish | $(\mathrm{Swish}_1(xW) \otimes xV)W_2$ |
+| SwiGLU | Swish | $(\mathrm{Swish}_ 1(xW) \otimes xV)W_2$ |
 
-where **GeLU** is the Gaussian error linear unit, $\mathrm{GELU}(x) = x\,\Phi(x)$
+where **GeLU** is the Gaussian error linear unit, $\mathrm{GELU}(x) = x\thinspace\Phi(x)$
 with $\Phi$ the standard normal CDF, and **Swish** is $x \cdot \mathrm{sigmoid}(x)$.
 Slide 21 plots ReLU and GeLU side by side: they are identical for large positive
 inputs, and GeLU differs only in a smooth knee near zero and a small negative lobe

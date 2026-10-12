@@ -152,9 +152,9 @@ So the figure contains up to 9 × 3 = 27 individual lines, grouped into 9 color 
 - The dashed "Proxy" curves (one per size) climb roughly linearly with KL distance and do not saturate — most run off the top of the plotted range (above RM Score 1.4) well before KL reaches 100, illustrating unbounded proxy-reward growth (overoptimization).
 - The solid "Gold" curves (and their matching thin "Gold (Fit)" curves) rise, peak, and then decline: the smallest RM (3M, darkest purple) peaks earliest and lowest, around KL ≈ 15 at RM Score ≈ 0.6, then falls steadily to about 0.25 by KL ≈ 95. Progressively larger RMs (12M–85M, blue/teal shades) peak a bit later and higher (roughly RM Score 0.7–0.8 around KL 20–30) and decline more gradually, reaching roughly 0.5–0.65 by KL ≈ 90. The largest RMs (300M–3B, teal to yellow-green) peak highest of all, around RM Score 1.0–1.1 somewhere between KL 40 and 80, and decline only slightly by KL ≈ 90–100 — i.e., overoptimization (the gap between Proxy and Gold, and the eventual decline of Gold) is most severe for the smallest reward models and mildest for the largest.
 
-**Right figure — a scatter/line chart with error bars, captioned "(a) Human preferences" (with a small blue square marker next to the caption).** Y-axis: "Eval win-rate on $p_\text{human}$," roughly 0.40 to 0.55+ (gridlines at 0.40, 0.45, 0.50, 0.55). X-axis: "Proxy reward, trained on $p_\text{human}$," roughly 0.5 to 1.75 (gridlines at 0.5, 1.0, 1.5). No values are negative. There are 3 series, each plotted with both vertical and horizontal error bars and connected by line segments in x-order; legend order (top to bottom) is Expert Iteration, Best-of-$n$, PPO, matching the colors below:
+**Right figure — a scatter/line chart with error bars, captioned "(a) Human preferences" (with a small blue square marker next to the caption).** Y-axis: "Eval win-rate on $p_\text{human}$," roughly 0.40 to 0.55+ (gridlines at 0.40, 0.45, 0.50, 0.55). X-axis: "Proxy reward, trained on $p_\text{human}$," roughly 0.5 to 1.75 (gridlines at 0.5, 1.0, 1.5). No values are negative. There are 3 series, each plotted with both vertical and horizontal error bars and connected by line segments in x-order; legend order (top to bottom) is Expert Iteration, $\text{Best-of-}n$, PPO, matching the colors below:
 - **Expert Iteration (blue):** three points, approximately (0.80, 0.41), (0.90, 0.455), (1.08, 0.457) — win-rate rises sharply then flattens as proxy reward increases.
-- **Best-of-$n$ (orange):** three points, approximately (1.02, 0.502), (1.30, 0.507), (1.65, 0.462) — roughly flat, then declining at the highest proxy reward.
+- **$\text{Best-of-}n$ (orange):** three points, approximately (1.02, 0.502), (1.30, 0.507), (1.65, 0.462) — roughly flat, then declining at the highest proxy reward.
 - **PPO (green/teal):** three points, approximately (0.58, 0.443), (1.22, 0.552), (1.35, 0.512) — rises to a clear peak (the highest win-rate of all three series) then drops.
 
 Below the two charts: "Can we work in domains where RL excels? Where we optimize *exactly* what we want," followed by three logos side by side:
@@ -181,13 +181,18 @@ Two numbered sections, each illustrated with paper title-card screenshots (no ch
 Text slide, no photographic figures — only equations. Heading text: "A brief (and high level) intro to the various ideas in PPO.."
 
 **Attempt 1: Policy gradients (variances are too high)**
+
 $$\nabla_\theta E_{p_\theta}[R(z)] = E_{p_\theta}[R(z)\nabla_\theta \log p_\theta(z)]$$
 
 **Attempt 2: TRPO (Linearize the problem around the current policy)**
-$$\underset{\theta}{\text{maximize}} \quad \hat{\mathbb{E}}_t\left[\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\theta_{\text{old}}}(a_t \mid s_t)}\hat{A}_t\right]$$
-$$\text{subject to} \quad \hat{\mathbb{E}}_t[\mathrm{KL}[\pi_{\theta_{\text{old}}}(\cdot \mid s_t), \pi_\theta(\cdot \mid s_t)]] \leq \delta.$$
+
+$$\underset{\theta}{\text{maximize}} \quad \hat{\mathbb{E}}_ t\left[\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\theta_{\text{old}}}(a_t \mid s_t)}\hat{A}_ t\right]$$
+
+
+$$\text{subject to} \quad \hat{\mathbb{E}}_ t[\mathrm{KL}[\pi_{\theta_{\text{old}}}(\cdot \mid s_t), \pi_\theta(\cdot \mid s_t)]] \leq \delta.$$
 
 **Attempt 3: PPO (Clip the ratios at some eps)**
+
 $$L(s,a,\theta_k,\theta) = \min\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)}A^{\pi_{\theta_k}}(s,a), \ \ \mathrm{clip}\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)}, 1-\epsilon, 1+\epsilon\right)A^{\pi_{\theta_k}}(s,a)\right)$$
 
 ## Slide 6 — PPO
@@ -211,14 +216,18 @@ Text: "The objective is basically all there is to it at a conceptual level"
 > **Algorithm 1** PPO-Clip
 > 1: Input: initial policy parameters $\theta_0$, initial value function parameters $\phi_0$
 > 2: **for** $k = 0,1,2,\dots$ **do**
-> 3: Collect set of trajectories $\mathcal{D}_k = \{\tau_i\}$ by running policy $\pi_k = \pi(\theta_k)$ in the environment.
-> 4: Compute rewards-to-go $\hat{R}_t$.
-> 5: Compute advantage estimates, $\hat{A}_t$ (using any method of advantage estimation) based on the current value function $V_{\phi_k}$.
+> 3: Collect set of trajectories $\mathcal{D}_ k = \lbrace\tau_i\rbrace$ by running policy $\pi_k = \pi(\theta_k)$ in the environment.
+> 4: Compute rewards-to-go $\hat{R}_ t$.
+> 5: Compute advantage estimates, $\hat{A}_ t$ (using any method of advantage estimation) based on the current value function $V_{\phi_k}$.
 > 6: Update the policy by maximizing the PPO-Clip objective:
-> $$\theta_{k+1} = \arg\max_\theta \frac{1}{|\mathcal{D}_k|T}\sum_{\tau \in \mathcal{D}_k}\sum_{t=0}^{T} \min\left(\frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_k}(a_t|s_t)}A^{\pi_{\theta_k}}(s_t,a_t), \ \ g(\epsilon, A^{\pi_{\theta_k}}(s_t,a_t))\right),$$
+>
+> $$\theta_{k+1} = \arg\max_\theta \frac{1}{|\mathcal{D}_ k|T}\sum_{\tau \in \mathcal{D}_ k}\sum_{t=0}^{T} \min\left(\frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_k}(a_t|s_t)}A^{\pi_{\theta_k}}(s_t,a_t), \ \ g(\epsilon, A^{\pi_{\theta_k}}(s_t,a_t))\right),$$
+>
 > typically via stochastic gradient ascent with Adam.
 > 7: Fit value function by regression on mean-squared error:
-> $$\phi_{k+1} = \arg\min_\phi \frac{1}{|\mathcal{D}_k|T}\sum_{\tau \in \mathcal{D}_k}\sum_{t=0}^{T}\left(V_\phi(s_t) - \hat{R}_t\right)^2,$$
+>
+> $$\phi_{k+1} = \arg\min_\phi \frac{1}{|\mathcal{D}_ k|T}\sum_{\tau \in \mathcal{D}_ k}\sum_{t=0}^{T}\left(V_\phi(s_t) - \hat{R}_ t\right)^2,$$
+>
 > typically via some gradient descent algorithm.
 > 8: **end for**
 
@@ -245,17 +254,17 @@ Note: the PDF's text layer for this page also contains a hidden text string, "Yo
 Text: "In the language model setting.." and, below the figure, "Pretty similar to the RL formulation. Actions operate over tokens, big dense reward at the very end operating on full sequence" (citation bottom right: "[From Zheng et al 2023]").
 
 **Figure — a boxed flow diagram of the PPO training loop for language models**, with colored boxes connected by arrows carrying labeled quantities:
-- A pink/red box "Policy LM $\pi^{\text{RL}}_{\theta_{\text{old}}}$" at bottom left, taking a "User Query" document icon as input and producing a sequence $(x,y) = (x, y_1, y_2, \dots, y_T)$, shown as a token strip split into a yellow "$x$" cell and a blue "$y_1,\dots,y_T$" cell.
-- A "Divide" step (upward block arrow) turns that full sequence into single-timestep pairs $(s_t, a_t)$: $s_t = (x, y_1,\dots,y_{t-1})$ (yellow "$x$" + blue "$y_1,\dots,y_{t-1}$" cells) and $a_t = y_t$ (a single blue cell), boxed together in a dashed rectangle.
-- These $(s_t,a_t)$ pairs feed into: a blue "SFT Model $\pi^{\text{SFT}}$" box (producing $\pi^{\text{SFT}}(a_t|s_t)$, which combines with the policy's own $\pi^{\text{RL}}_{\theta_{\text{old}}}(a_t|s_t)$ at a "KL div" circular node on the far left); a yellow "Reward Model $r(x,y)$" box (taking the full $(x,y)$, producing $r(x,y)$, which is combined at a $\oplus$ node into a per-token reward $r(s_t,a_t)$); and a green "Value Model $V_\phi(s_t)$" box (taking $s_t$, producing $V(s_t)$).
+- A pink/red box "Policy LM $\pi^{\text{RL}}_ {\theta_{\text{old}}}$" at bottom left, taking a "User Query" document icon as input and producing a sequence $(x,y) = (x, y_1, y_2, \dots, y_T)$, shown as a token strip split into a yellow $x$ cell and a blue $y_1,\dots,y_T$ cell.
+- A "Divide" step (upward block arrow) turns that full sequence into single-timestep pairs $(s_t, a_t)$: $s_t = (x, y_1,\dots,y_{t-1})$ (yellow $x$ + blue $y_1,\dots,y_{t-1}$ cells) and $a_t = y_t$ (a single blue cell), boxed together in a dashed rectangle.
+- These $(s_t,a_t)$ pairs feed into: a blue "SFT Model $\pi^{\text{SFT}}$" box (producing $\pi^{\text{SFT}}(a_t|s_t)$, which combines with the policy's own $\pi^{\text{RL}}_ {\theta_{\text{old}}}(a_t|s_t)$ at a "KL div" circular node on the far left); a yellow "Reward Model $r(x,y)$" box (taking the full $(x,y)$, producing $r(x,y)$, which is combined at a $\oplus$ node into a per-token reward ${r(s_t,a_t)}$); and a green "Value Model $V_\phi(s_t)$" box (taking $s_t$, producing ${V(s_t)}$).
 - $r(s_t,a_t)$ and $V(s_t)$ both feed into a large 3D-shaded box labeled **"GAE"** listing:
   - "Advantage Function": $\hat{A}(s_t,a_t) = \sum(\gamma\lambda)^l \delta_{t+l}$
   - "TD Error": $\delta_t = r(s_t,a_t) + \gamma V(s_{t+1}) - V(s_t)$
-  - "Return": $\hat{R}_t = \hat{A}(s_t,a_t) + V(s_t)$
-- The GAE box's outputs $\hat{A}(s_t,a_t)$ and $\hat{R}_t$ flow down (via a large open block arrow) into a cylindrical "Experience Buffer" store, which also separately collects $(s_t,a_t)$ and $\pi^{\text{RL}}_{\theta_{\text{old}}}(a_t|s_t)$ from the Policy LM box directly.
-- On the right half of the diagram: from the Experience Buffer, $(s_t,a_t)$ feeds into a second pink "Policy LM $\pi^{\text{RL}}_\theta$" box, which outputs $\pi^{\text{RL}}_\phi(a_t|s_t)$ into a "$\div$" node that also takes $\pi^{\text{RL}}_{\phi_{\text{old}}}(a_t|s_t)$ from the buffer, computing the ratio $\pi^{\text{RL}}_\phi(a_t|s_t)/\pi^{\text{RL}}_{\phi_{\text{old}}}(a_t|s_t)$; this ratio and $\hat{A}(s_t,a_t)$ (from the buffer) feed into a light-blue circular node labeled **"PPO-clip Loss."**
+  - "Return": $\hat{R}_ t = \hat{A}(s_t,a_t) + V(s_t)$
+- The GAE box's outputs $\hat{A}(s_t,a_t)$ and $\hat{R}_ t$ flow down (via a large open block arrow) into a cylindrical "Experience Buffer" store, which also separately collects $(s_t,a_t)$ and $\pi^{\text{RL}}_ {\theta_{\text{old}}}(a_t|s_t)$ from the Policy LM box directly.
+- On the right half of the diagram: from the Experience Buffer, $(s_t,a_t)$ feeds into a second pink "Policy LM $\pi^{\text{RL}}_ \theta$" box, which outputs $\pi^{\text{RL}}_ \phi(a_t|s_t)$ into a $\div$ node that also takes $\pi^{\text{RL}}_ {\phi_{\text{old}}}(a_t|s_t)$ from the buffer, computing the ratio $\pi^{\text{RL}}_ \phi(a_t|s_t)/\pi^{\text{RL}}_ {\phi_{\text{old}}}(a_t|s_t)$; this ratio and $\hat{A}(s_t,a_t)$ (from the buffer) feed into a light-blue circular node labeled **"PPO-clip Loss."**
 - The same Policy LM box also takes pretraining data $x'$ (from a small database/cylinder icon labeled "Pretraining Data") and feeds a separate light-blue circular node labeled **"LM Loss."**
-- Separately, $s_t$ (from the buffer) feeds a second green "Value Model $V_\phi(s_t)$" box, producing $V(s_t)$, which combines with $\hat{R}_t$ (from the buffer) at a light-blue circular node labeled **"MSE Loss."**
+- Separately, $s_t$ (from the buffer) feeds a second green "Value Model $V_\phi(s_t)$" box, producing $V(s_t)$, which combines with $\hat{R}_ t$ (from the buffer) at a light-blue circular node labeled **"MSE Loss."**
 
 Overall the diagram shows one shared Policy LM appearing twice (old policy generating rollouts on the left, current policy being updated on the right) with the SFT model, reward model, value model, GAE computation, and an experience buffer connecting rollout collection to three loss terms: PPO-clip loss, LM loss (on pretraining data), and MSE loss (value-function regression).
 
@@ -362,6 +371,7 @@ class PPOTrainer(rl_trainer.RLTrainer):
 ```
 
 Below the code, the PPO-clip loss equation is repeated:
+
 $$L(s,a,\theta_k,\theta) = \min\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)}A^{\pi_{\theta_k}}(s,a), \ \ \mathrm{clip}\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)}, 1-\epsilon, 1+\epsilon\right)A^{\pi_{\theta_k}}(s,a)\right)$$
 
 To the right of the equation: "Cliprange=0.2"
@@ -498,7 +508,7 @@ Below the figure: "Helps with stability? If we blow up our model, this prevents 
 
 Text: "Instead of reward, we use advantages"
 
-$$\hat{A}_t^{\mathrm{GAE}(\gamma,\lambda)} := \sum_{l=0}^{\infty}(\gamma\lambda)^l \delta_{t+l}^V \quad \text{where} \quad \delta_t^V = r_t + \gamma V(s_{t+1}) - V(s_t)$$
+$$\hat{A}_ t^{\mathrm{GAE}(\gamma,\lambda)} := \sum_{l=0}^{\infty}(\gamma\lambda)^l \delta_{t+l}^V \quad \text{where} \quad \delta_t^V = r_t + \gamma V(s_{t+1}) - V(s_t)$$
 
 **Figure — a code screenshot** (syntax-highlighted, dark theme), transcribed verbatim:
 
@@ -571,21 +581,21 @@ That is two data series per panel (not three — the small metric-name text abov
 
 **Figure — a boxed screenshot from the GRPO paper (DeepSeekMath)**, transcribed verbatim:
 
-"**Group Relative Policy Optimization**  In order to save the training costs of RL, we adopt Group Relative Policy Optimization (GRPO) (Shao et al., 2024), which foregoes the critic model that is typically the same size as the policy model, and estimates the baseline from group scores instead. Specifically, for each question $q$, GRPO samples a group of outputs $\{o_1, o_2, \cdots, o_G\}$ from the old policy $\pi_{\theta_{old}}$ and then optimizes the policy model $\pi_\theta$ by maximizing the following objective:"
+"**Group Relative Policy Optimization**  In order to save the training costs of RL, we adopt Group Relative Policy Optimization (GRPO) (Shao et al., 2024), which foregoes the critic model that is typically the same size as the policy model, and estimates the baseline from group scores instead. Specifically, for each question $q$, GRPO samples a group of outputs $\lbrace o_1, o_2, \cdots, o_G\rbrace$ from the old policy $\pi_{\theta_{old}}$ and then optimizes the policy model $\pi_\theta$ by maximizing the following objective:"
 
-$$\mathcal{J}_{GRPO}(\theta) = \mathbb{E}\big[q \sim P(Q), \{o_i\}_{i=1}^G \sim \pi_{\theta_{old}}(O|q)\big]$$
+$$\mathcal{J}_ {GRPO}(\theta) = \mathbb{E}\big[q \sim P(Q), \lbrace o_i\rbrace_{i=1}^G \sim \pi_{\theta_{old}}(O|q)\big]$$
 
-$$\frac{1}{G}\sum_{i=1}^G \left( \min\left(\frac{\pi_\theta(o_i|q)}{\pi_{\theta_{old}}(o_i|q)}A_i,\; \text{clip}\left(\frac{\pi_\theta(o_i|q)}{\pi_{\theta_{old}}(o_i|q)}, 1-\varepsilon, 1+\varepsilon\right)A_i\right) - \beta\,\mathbb{D}_{KL}\big(\pi_\theta\|\pi_{ref}\big)\right), \qquad (1)$$
+$$\frac{1}{G}\sum_{i=1}^G \left( \min\left(\frac{\pi_\theta(o_i|q)}{\pi_{\theta_{old}}(o_i|q)}A_i,\mskip{5mu} \text{clip}\left(\frac{\pi_\theta(o_i|q)}{\pi_{\theta_{old}}(o_i|q)}, 1-\varepsilon, 1+\varepsilon\right)A_i\right) - \beta\thinspace\mathbb{D}_ {KL}\big(\pi_\theta\Vert\pi_{ref}\big)\right), \qquad (1)$$
 
-$$\mathbb{D}_{KL}\big(\pi_\theta\|\pi_{ref}\big) = \frac{\pi_{ref}(o_i|q)}{\pi_\theta(o_i|q)} - \log\frac{\pi_{ref}(o_i|q)}{\pi_\theta(o_i|q)} - 1, \qquad (2)$$
+$$\mathbb{D}_ {KL}\big(\pi_\theta\Vert\pi_{ref}\big) = \frac{\pi_{ref}(o_i|q)}{\pi_\theta(o_i|q)} - \log\frac{\pi_{ref}(o_i|q)}{\pi_\theta(o_i|q)} - 1, \qquad (2)$$
 
-"where $\varepsilon$ and $\beta$ are hyper-parameters, and $A_i$ is the advantage, computed using a group of rewards $\{r_1, r_2, \ldots, r_G\}$ corresponding to the outputs within each group:"
+"where $\varepsilon$ and $\beta$ are hyper-parameters, and $A_i$ is the advantage, computed using a group of rewards $\lbrace r_1, r_2, \ldots, r_G\rbrace$ corresponding to the outputs within each group:"
 
-$$A_i = \frac{r_i - mean(\{r_1,r_2,\cdots,r_G\})}{std(\{r_1,r_2,\cdots,r_G\})}. \qquad (3)$$
+$$A_i = \frac{r_i - mean(\lbrace r_1,r_2,\cdots,r_G\rbrace)}{std(\lbrace r_1,r_2,\cdots,r_G\rbrace)}. \qquad (3)$$
 
 To the right of this box, a smaller box labeled "(PPO for reference)" shows the standard PPO clipped surrogate objective for comparison:
 
-$$\min\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)}A^{\pi_{\theta_k}}(s,a),\; \text{clip}\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)}, 1-\epsilon, 1+\epsilon\right)A^{\pi_{\theta_k}}(s,a)\right)$$
+$$\min\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)}A^{\pi_{\theta_k}}(s,a),\mskip{5mu} \text{clip}\left(\frac{\pi_\theta(a|s)}{\pi_{\theta_k}(a|s)}, 1-\epsilon, 1+\epsilon\right)A^{\pi_{\theta_k}}(s,a)\right)$$
 
 Bottom caption: "In the *online* case (rollout+immediate update), this is just policy gradient with group normalized rewards"
 
@@ -759,7 +769,7 @@ Below the figure: "Outperforms RFT (reinforcing correct answers), with some gain
 
 "The key difference in GRPO vs PPO: the advantage"
 
-$$A_i = \frac{r_i - mean(\{r_1,r_2,\cdots,r_G\})}{std(\{r_1,r_2,\cdots,r_G\})}.$$
+$$A_i = \frac{r_i - mean(\lbrace r_1,r_2,\cdots,r_G\rbrace)}{std(\lbrace r_1,r_2,\cdots,r_G\rbrace)}.$$
 
 "Is this good? A minor RL detour.."
 
@@ -775,7 +785,7 @@ $$\nabla J(\theta) \propto \sum_s \mu(s)\sum_a \big(q_\pi(s,a) - b(s)\big)\nabla
 
 "The baseline can be any function, even a random variable, as long as it does not vary with $a$; the equation remains valid because the subtracted quantity is zero:"
 
-$$\sum_a b(s)\nabla\pi(a|s,\theta) \;=\; b(s)\nabla\sum_a \pi(a|s,\theta) \;=\; b(s)\nabla 1 \;=\; 0.$$
+$$\sum_a b(s)\nabla\pi(a|s,\theta) \mskip{5mu}=\mskip{5mu} b(s)\nabla\sum_a \pi(a|s,\theta) \mskip{5mu}=\mskip{5mu} b(s)\nabla 1 \mskip{5mu}=\mskip{5mu} 0.$$
 
 "The policy gradient theorem with baseline (13.10) can be used to derive an update rule using similar steps as in the previous section. The update rule that we end up with is a new version of REINFORCE that includes a general baseline:"
 
@@ -795,17 +805,17 @@ Bottom-right citation: "Sutton and Barto"
 
 Box 1, titled "GRPO":
 
-$$\frac{1}{G}\sum_{i=1}^G \frac{1}{|o_i|}\sum_{t=1}^{|o_i|} \left\{\min\left[\frac{\pi_\theta(o_{i,t}|q,o_{i,<t})}{\pi_{\theta_{old}}(o_{i,t}|q,o_{i,<t})}\hat{A}_{i,t},\; \text{clip}\left(\frac{\pi_\theta(o_{i,t}|q,o_{i,<t})}{\pi_{\theta_{old}}(o_{i,t}|q,o_{i,<t})}, 1-\epsilon, 1+\epsilon\right)\hat{A}_{i,t}\right]\right\},$$
+$$\frac{1}{G}\sum_{i=1}^G \frac{1}{|o_i|}\sum_{t=1}^{|o_i|} \left\lbrace\min\left[\frac{\pi_\theta(o_{i,t}|q,o_{i,<t})}{\pi_{\theta_{old}}(o_{i,t}|q,o_{i,<t})}\hat{A}_ {i,t},\mskip{5mu} \text{clip}\left(\frac{\pi_\theta(o_{i,t}|q,o_{i,<t})}{\pi_{\theta_{old}}(o_{i,t}|q,o_{i,<t})}, 1-\epsilon, 1+\epsilon\right)\hat{A}_ {i,t}\right]\right\rbrace,$$
 
-"where $\hat{A}_{i,t} = \dfrac{R(q,o_i) - mean(\{R(q,o_1),\ldots,R(q,o_G)\})}{std(\{R(q,o_1),\ldots,R(q,o_G)\})}$."
+"where $\hat{A}_ {i,t} = \dfrac{R(q,o_i) - mean(\lbrace R(q,o_1),\ldots,R(q,o_G)\rbrace)}{std(\lbrace R(q,o_1),\ldots,R(q,o_G)\rbrace)}$."
 
-On the slide, the $\frac{1}{|o_i|}$ per-token-averaging factor and the $std(\cdot)$ term in the denominator of $\hat{A}_{i,t}$ are both highlighted in red, marking them as the two terms under scrutiny.
+On the slide, the $\frac{1}{|o_i|}$ per-token-averaging factor and the $std(\cdot)$ term in the denominator of $\hat{A}_ {i,t}$ are both highlighted in red, marking them as the two terms under scrutiny.
 
 Box 2, titled "Dr. GRPO — GRPO Done Right (without bias)":
 
-$$\frac{1}{G}\sum_{i=1}^G \sum_{t=1}^{|o_i|} \left\{\min\left[\frac{\pi_\theta(o_{i,t}|q,o_{i,<t})}{\pi_{\theta_{old}}(o_{i,t}|q,o_{i,<t})}\hat{A}_{i,t},\; \text{clip}\left(\frac{\pi_\theta(o_{i,t}|q,o_{i,<t})}{\pi_{\theta_{old}}(o_{i,t}|q,o_{i,<t})}, 1-\epsilon, 1+\epsilon\right)\hat{A}_{i,t}\right]\right\},$$
+$$\frac{1}{G}\sum_{i=1}^G \sum_{t=1}^{|o_i|} \left\lbrace\min\left[\frac{\pi_\theta(o_{i,t}|q,o_{i,<t})}{\pi_{\theta_{old}}(o_{i,t}|q,o_{i,<t})}\hat{A}_ {i,t},\mskip{5mu} \text{clip}\left(\frac{\pi_\theta(o_{i,t}|q,o_{i,<t})}{\pi_{\theta_{old}}(o_{i,t}|q,o_{i,<t})}, 1-\epsilon, 1+\epsilon\right)\hat{A}_ {i,t}\right]\right\rbrace,$$
 
-"where $\hat{A}_{i,t} = R(q,o_i) - mean(\{R(q,o_1),\ldots,R(q,o_G)\})$."
+"where $\hat{A}_ {i,t} = R(q,o_i) - mean(\lbrace R(q,o_1),\ldots,R(q,o_G)\rbrace)$."
 
 Relative to GRPO, Dr. GRPO drops both the $\frac{1}{|o_i|}$ per-token averaging factor in the outer sum and the $std(\cdot)$ normalization in the advantage.
 
@@ -829,7 +839,7 @@ A dark teal arrow labeled "RL training progress" points up and to the right bene
 
 **Figure — a boxed paper excerpt**, transcribed verbatim:
 
-"Response-level length bias: This arises from dividing by $|o_i|$. For positive advantages ($\hat{A}_{i,t} > 0$, indicating a correct response), this bias results in greater gradient updates for shorter responses, leading the policy to favor brevity in correct answers. Conversely, for negative advantages ($\hat{A}_{i,t} < 0$, indicating an incorrect response), longer responses are penalized less due to their larger $|o_i|$, causing the policy to prefer lengthier responses among incorrect ones."
+"Response-level length bias: This arises from dividing by $|o_i|$. For positive advantages ($\hat{A}_ {i,t} \gt 0$, indicating a correct response), this bias results in greater gradient updates for shorter responses, leading the policy to favor brevity in correct answers. Conversely, for negative advantages ($\hat{A}_ {i,t} \lt 0$, indicating an incorrect response), longer responses are penalized less due to their larger $|o_i|$, causing the policy to prefer lengthier responses among incorrect ones."
 
 "What does the fix do?"
 
@@ -915,7 +925,7 @@ Two side-by-side items, each with a caption beneath it: "Longer CoTs during trai
 
 **Right figure — a boxed screenshot of a model transcript**, transcribed verbatim:
 
-"Question: If $a > 1$, then the sum of the real solutions of $\sqrt{a - \sqrt{a+x}} = x$ is equal to
+"Question: If $a \gt 1$, then the sum of the real solutions of $\sqrt{a - \sqrt{a+x}} = x$ is equal to
 
 Response: <think>
 To solve the equation $\sqrt{a - \sqrt{a+x}} = x$, let's start by squaring both ···
@@ -1197,21 +1207,21 @@ Bold subheading followed by body text: "**SFT** – little description, just des
 
 Bold text: "In kimi –" followed by "reference based reward model, so the optimization problem is"
 
-$$\max_{\theta} \mathbb{E}_{(x,y^*)\sim \mathcal{D}} \Big[ \mathbb{E}_{(y,z)\sim \pi_\theta} \left[ r(x,y,y^*) \right] - \tau \mathrm{KL}(\pi_\theta(x) \| \pi_{\theta_i}(x)) \Big] \, ,$$
+$$\max_{\theta} \mathbb{E}_ {(x,y^{\ast})\sim \mathcal{D}} \Big[ \mathbb{E}_ {(y,z)\sim \pi_\theta} \left[ r(x,y,y^{\ast}) \right] - \tau \mathrm{KL}(\pi_\theta(x) \Vert \pi_{\theta_i}(x)) \Big] \thinspace ,$$
 
 Bold text: "RL algorithm" followed by "inspired by DPO-type derivation."
 
-$$r(x,y,y^*) - \tau \log Z = \tau \log \frac{\pi^*(y,z|x)}{\pi_{\theta_i}(y,z|x)} \, .$$
+$$r(x,y,y^{\ast}) - \tau \log Z = \tau \log \frac{\pi^{\ast}(y,z|x)}{\pi_{\theta_i}(y,z|x)} \thinspace .$$
 
 Margin annotation to the right: "(Nonparametric assumption + solve for r)"
 
-$$L(\theta) = \mathbb{E}_{(x,y^*)\sim \mathcal{D}} \left[ \mathbb{E}_{(y,z)\sim \pi_{\theta_i}} \left[ \left( r(x,y,y^*) - \tau \log Z - \tau \log \frac{\pi_\theta(y,z|x)}{\pi_{\theta_i}(y,z|x)} \right)^{2} \right] \right] \, .$$
+$$L(\theta) = \mathbb{E}_ {(x,y^{\ast})\sim \mathcal{D}} \left[ \mathbb{E}_ {(y,z)\sim \pi_{\theta_i}} \left[ \left( r(x,y,y^{\ast}) - \tau \log Z - \tau \log \frac{\pi_\theta(y,z|x)}{\pi_{\theta_i}(y,z|x)} \right)^{2} \right] \right] \thinspace .$$
 
 Margin annotation to the right: "Use squared loss as a surrogate"
 
 Bold text: "Baselined policy gradient w/ regularization"
 
-$$\frac{1}{k}\sum_{j=1}^{k} \left( \nabla_\theta \log \pi_\theta(y_j,z_j|x)\left(r(x,y_j,y^*)-\bar r\right) - \frac{\tau}{2}\nabla_\theta \left( \log \frac{\pi_\theta(y_j,z_j|x)}{\pi_{\theta_i}(y_j,z_j|x)} \right)^{2} \right) \, .$$
+$$\frac{1}{k}\sum_{j=1}^{k} \left( \nabla_\theta \log \pi_\theta(y_j,z_j|x)\left(r(x,y_j,y^{\ast})-\bar r\right) - \frac{\tau}{2}\nabla_\theta \left( \log \frac{\pi_\theta(y_j,z_j|x)}{\pi_{\theta_i}(y_j,z_j|x)} \right)^{2} \right) \thinspace .$$
 
 ## Slide 43 — Length control in Kimi
 
@@ -1220,7 +1230,7 @@ Bold text: "The kimi objective doesn't have the same GRPO length bias problem."
 
 Body text: "For each batch, they have a *length reward*"
 
-$$\mathrm{len\_reward}(i) = \begin{cases} \lambda & \text{If } r(x,y_i,y^*) = 1 \\ \min(0,\lambda) & \text{If } r(x,y_i,y^*) = 0 \end{cases} \, , \quad \text{where } \lambda = 0.5 - \frac{\mathrm{len}(i) - \mathrm{min\_len}}{\mathrm{max\_len} - \mathrm{min\_len}} \, .$$
+$$\verb|len_reward|(i) = \begin{cases} \lambda & \text{If } r(x,y_i,y^{\ast}) = 1 \cr \min(0,\lambda) & \text{If } r(x,y_i,y^{\ast}) = 0 \end{cases} \thinspace , \quad \text{where } \lambda = 0.5 - \frac{\mathrm{len}(i) - \verb|min_len|}{\verb|max_len| - \verb|min_len|} \thinspace .$$
 
 Bold text: "How should I interpret this?"
 - The lambda is in [0.5, -0.5], with longer sequences in a group being negative

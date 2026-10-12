@@ -477,7 +477,7 @@ unstable" (≈50:59).
 "a negative diagonal matrix — if you power that up, the term eventually goes to
 zero," and put "a really simple linear norm" on $B$, which is safe because "the
 $B$ matrix actually only gets applied once, so it doesn't really blow up." Then
-$\rho(A) < 1$ and "it's now actually going to be a stable system" (≈50:59,
+$\rho(A) \lt 1$ and "it's now actually going to be a stable system" (≈50:59,
 ≈51:45). Trained, "even with the 6e-4 learning rate that was so bad for the other
 models, you actually got a stable model at the end" (≈51:45).
 

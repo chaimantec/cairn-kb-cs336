@@ -86,13 +86,13 @@ everything uniformly to int3 also gives **PPL 13.0**, with no mixed precision at
 all. The third panel is the method — it recovers the accuracy of the exception
 without needing the exception.
 
-Reported result: fp16 → int3 gives **4× lower memory and a 3.2× speedup**.
+Reported result: fp16 → int3 gives **$4\times$ lower memory and a $3.2\times$ speedup**.
 
 ## Why it fits the rest of the lecture
 
 Quantization attacks a different term from the [KV cache](kv-cache.md) methods. The
-memory a generation step must read is $B \times (\text{cache}) + 2 \times
-(\text{parameters})$; GQA, MLA, CLA and local attention shrink the first term,
+memory a generation step must read is
+$B \times (\text{cache}) + 2 \times (\text{parameters})$; GQA, MLA, CLA and local attention shrink the first term,
 quantization shrinks the multiplier on the second — and on the cache too, when the
 cache itself is stored at lower precision. The lecture files it as "less of an architecture thing and much more of a systems perspective on how to make things smaller"
 ([1:04:11]).

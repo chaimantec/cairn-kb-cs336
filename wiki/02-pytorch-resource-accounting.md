@@ -53,8 +53,8 @@ $$C = 6ND = 6 \times 70\text{e}9 \times 15\text{e}12 = 6.3 \times 10^{24} \text{
 
 Divide by the hardware's rate — 1979 teraFLOP/s halved for dense, times an
 [MFU](flops-and-mfu.md) of 0.5, times 1024 GPUs, times the seconds in a day — and
-the answer is **143 days**. Each ingredient gets its own treatment: [$C = 6ND$
-derived](training-flops.md), [the halving and MFU](flops-and-mfu.md).
+the answer is **143 days**. Each ingredient gets its own treatment: $C = 6ND$ is
+[derived on its own page](training-flops.md), and so are [the halving and MFU](flops-and-mfu.md).
 
 **What's the largest model you can train on 8 H100s using AdamW?** ([2:24]–[3:13])
 

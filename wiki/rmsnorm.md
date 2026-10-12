@@ -16,12 +16,12 @@ back into the architecture half. It only makes sense if you have met
 mean and dividing by the standard deviation, then applying a learned scale
 $\gamma$ and a learned shift $\beta$:
 
-$$y = \frac{x - \mathrm{E}[x]}{\sqrt{\mathrm{Var}[x] + \epsilon}} * \gamma + \beta$$
+$$y = \frac{x - \mathrm{E}[x]}{\sqrt{\mathrm{Var}[x] + \epsilon}} \ast \gamma + \beta$$
 
 **RMSNorm** drops both the mean subtraction and the bias, dividing only by the
 root-mean-square of the activation and rescaling:
 
-$$y = \frac{x}{\sqrt{\lVert x \rVert_2^2 + \varepsilon}} * \gamma$$
+$$y = \frac{x}{\sqrt{\lVert x \rVert_2^2 + \varepsilon}} \ast \gamma$$
 
 Slide 14 gives both formulas with their adopters. LayerNorm: GPT-1/2/3, OPT,
 GPT-J, BLOOM. RMSNorm: the LLaMA family, PaLM, Chinchilla, T5. The database on

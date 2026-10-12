@@ -117,7 +117,7 @@ Three ways this table is useful to someone actually training a model:
 
 1. **As a default.** If forty models agree on a value, take it and spend your
    compute elsewhere. This is what slide 51's summary bullets are for.
-2. **As a sanity check on a hyperparameter you are tempted to vary.** T5's 64×
+2. **As a sanity check on a hyperparameter you are tempted to vary.** T5's $64\times$
    feedforward multiplier worked — and T5 v1.1 quietly reverted to 2.5. A value far
    outside the table's range is not impossible, but it needs a reason.
 3. **As a reading aid.** Model reports increasingly omit these details.

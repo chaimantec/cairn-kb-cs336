@@ -89,7 +89,7 @@ Everything on the GPU is a tensor, and there are five kinds:
 And two resources they consume:
 
 - **Compute**, counted in FLOPs — see [FLOPs and MFU](flops-and-mfu.md) for the
-  units and [$C = 6ND$](training-flops.md) for a whole training run.
+  units and [training FLOPs](training-flops.md), $C = 6ND$, for a whole training run.
 - **Memory**, counted in bytes — the product of a tensor's element count and its
   [dtype's width](precision-and-data-types.md).
 

@@ -39,17 +39,17 @@ $W_l \sim N(0, \sigma^2 I_{n_l \times n_{l-1}})$ (slide
 [47](../raw/slides/11-scaling-laws-in-the-wild.md)). Basic matrix concentration gives the
 spectral norm
 
-$$\|W_l\|_* \to \sigma\left(\sqrt{n_{l-1}} + \sqrt{n_l}\right)$$
+$$\Vert W_l\Vert_{\ast} \to \sigma\left(\sqrt{n_{l-1}} + \sqrt{n_l}\right)$$
 
-and the activation norm follows it, $\|h_l\|_2 \approx \|W_l\|_* \|h_{l-1}\|_2$. Now choose
+and the activation norm follows it, $\Vert h_l\Vert_2 \approx \Vert W_l\Vert_{\ast} \Vert h_{l-1}\Vert_2$. Now choose
 
 $$\sigma = \frac{\sqrt{n_l}}{\sqrt{n_{l-1}}}\left(\sqrt{n_l} + \sqrt{n_{l-1}}\right)^{-1}
-= \Theta\!\left(\frac{1}{\sqrt{n_{l-1}}}\min\!\left(1, \sqrt{\frac{n_l}{n_{l-1}}}\right)\right)$$
+= \Theta\negthinspace\left(\frac{1}{\sqrt{n_{l-1}}}\min\negthinspace\left(1, \sqrt{\frac{n_l}{n_{l-1}}}\right)\right)$$
 
-and the induction closes. Assume $\|h_{l-1}\|_2 = \Theta(\sqrt{n_{l-1}})$; then
-$\|W_l\|_* \to \sqrt{n_l}/\sqrt{n_{l-1}}$, and therefore
+and the induction closes. Assume $\Vert h_{l-1}\Vert_2 = \Theta(\sqrt{n_{l-1}})$; then
+$\Vert W_l\Vert_{\ast} \to \sqrt{n_l}/\sqrt{n_{l-1}}$, and therefore
 
-$$\|h_l\|_2 = \sqrt{n_l} + o\!\left(\sqrt{n_l}\right)$$
+$$\Vert h_l\Vert_2 = \sqrt{n_l} + o\negthinspace\left(\sqrt{n_l}\right)$$
 
 which is A1 restated one layer along. The slide flags its own looseness: this is "a kind
 of 'worst case' derivation" and the $\approx$ is an upper bound.
@@ -60,38 +60,38 @@ Now the update. For SGD on a linear layer the weight update is a rank-one outer 
 the loss-gradient and the incoming activation (slide
 [48](../raw/slides/11-scaling-laws-in-the-wild.md)):
 
-$$\Delta W_l = -\eta_l \nabla_{h_l}\ell\, h_{l-1}^{\top}$$
+$$\Delta W_l = -\eta_l \nabla_{h_l}\ell\thinspace h_{l-1}^{\top}$$
 
-so $\|\Delta W_l h_{l-1}\|_2 = \|\Delta W_l\|_* \|h_{l-1}\|_2$, and the change in
+so $\Vert\Delta W_l h_{l-1}\Vert_2 = \Vert\Delta W_l\Vert_{\ast} \Vert h_{l-1}\Vert_2$, and the change in
 activation decomposes as
 
 $$\Delta h_l = W_l \Delta h_{l-1} + \Delta W_l\left(h_{l-1} + \Delta h_{l-1}\right)$$
 
-Assuming the leading-order terms do not cancel, the three pieces are $W_l \Delta h_{l-1} =
-\Theta(\sqrt{n_l})$ by induction and the A1 argument; $\Delta W_l h_{l-1} = \|\Delta
-W_l\|_* \sqrt{n_{l-1}}$; and $\Delta W_l \Delta h_{l-1} = O(\|\Delta W_l\|_*
-\sqrt{n_{l-1}})$. Matching the second against the first gives the condition on the update's
+Assuming the leading-order terms do not cancel, the three pieces are
+$W_l \Delta h_{l-1} = \Theta(\sqrt{n_l})$ by induction and the A1 argument;
+$\Delta W_l h_{l-1} = \Vert\Delta W_l\Vert_{\ast} \sqrt{n_{l-1}}$; and
+$\Delta W_l \Delta h_{l-1} = O(\Vert\Delta W_l\Vert_{\ast} \sqrt{n_{l-1}})$. Matching the second against the first gives the condition on the update's
 size:
 
-$$\|\Delta W_l\|_* = \Theta\!\left(\frac{\sqrt{n_l}}{\sqrt{n_{l-1}}}\right)$$
+$$\Vert\Delta W_l\Vert_{\ast} = \Theta\negthinspace\left(\frac{\sqrt{n_l}}{\sqrt{n_{l-1}}}\right)$$
 
 The remaining step turns that into a learning rate (slide
 [49](../raw/slides/11-scaling-laws-in-the-wild.md)). Suppose the loss update also scales
 $O(1)$. Then
 
 $$\Delta\ell \approx \Theta\left(\left\langle \Delta W_l, \nabla_{W_l}\ell \right\rangle\right)
-= \Theta\left(\|\Delta W_l\|_F \left\|\nabla_{W_l}\ell\right\|_F\right)
-= \Theta\left(\|\Delta W_l\|_* \left\|\nabla_{W_l}\ell\right\|_*\right)$$
+= \Theta\left(\Vert\Delta W_l\Vert_F \left\Vert\nabla_{W_l}\ell\right\Vert_F\right)
+= \Theta\left(\Vert\Delta W_l\Vert_{\ast} \left\Vert\nabla_{W_l}\ell\right\Vert_{\ast}\right)$$
 
-using $\Delta W_l = -\eta \nabla_{W_l}\ell$ for standard SGD. Substituting $\Delta\ell =
-O(1)$ and the bound just derived gives $\|\nabla_{W_l}\ell\|_* =
-\Theta(\sqrt{n_{l-1}}/\sqrt{n_l})$, and feeding that back through the outer-product form of
+using $\Delta W_l = -\eta \nabla_{W_l}\ell$ for standard SGD. Substituting
+$\Delta\ell = O(1)$ and the bound just derived gives
+$\Vert\nabla_{W_l}\ell\Vert_{\ast} = \Theta(\sqrt{n_{l-1}}/\sqrt{n_l})$, and feeding that back through the outer-product form of
 $\Delta W_l$ yields the result:
 
-$$\eta_l = \Theta\!\left(\frac{n_l}{n_{l-1}}\right)$$
+$$\eta_l = \Theta\negthinspace\left(\frac{n_l}{n_{l-1}}\right)$$
 
 The slide's footnote records the Adam case separately, because it is the one that matters
-in practice: with Adam, $\|\Delta W_l\|_* \sqrt{n_{l-1}} = \Theta(\sqrt{\eta_l})$.
+in practice: with Adam, $\Vert\Delta W_l\Vert_{\ast} \sqrt{n_{l-1}} = \Theta(\sqrt{\eta_l})$.
 
 ## The prescription, and how it differs from standard practice
 
@@ -99,7 +99,7 @@ Collecting both halves (slide [50](../raw/slides/11-scaling-laws-in-the-wild.md)
 
 | | muP | standard parametrization |
 | --- | --- | --- |
-| **Initialization (stdev)** | $\Theta\!\left(\frac{1}{\sqrt{n_{l-1}}}\min\!\left(1, \sqrt{n_l/n_{l-1}}\right)\right)$ | $\frac{1}{\sqrt{n_{l-1}}}$ |
+| **Initialization (stdev)** | $\Theta\negthinspace\left(\frac{1}{\sqrt{n_{l-1}}}\min\negthinspace\left(1, \sqrt{n_l/n_{l-1}}\right)\right)$ | $\frac{1}{\sqrt{n_{l-1}}}$ |
 | **Learning rate** | $\frac{n_l}{n_{l-1}}$ &nbsp; (for Adam, $\frac{1}{n_{l-1}}$) | $\Theta(1)$ |
 
 The differences are narrower than they look, and the slide names them exactly: **the

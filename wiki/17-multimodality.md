@@ -85,7 +85,7 @@ accept the noise, train something big — had a visual equivalent (≈5:33).
 
 ![CLIP's three-panel diagram: contrastive pre-training over an image-text similarity matrix, then zero-shot classification built from label text](../raw/images/17-multimodality/clip.png)
 
-*CLIP's own figure. Left: contrastive pre-training, where the highlighted diagonal of the $I_i \cdot T_j$ matrix is the aligned pairs. Right: the same encoders reused zero-shot, by embedding "A photo of a {object}" for each candidate label. [Source](https://github.com/stanford-cs336/lectures/blob/main/images/clip.png)*
+*CLIP's own figure. Left: contrastive pre-training, where the highlighted diagonal of the* $I_i \cdot T_j$ *matrix is the aligned pairs. Right: the same encoders reused zero-shot, by embedding "A photo of a {object}" for each candidate label. [Source](https://github.com/stanford-cs336/lectures/blob/main/images/clip.png)*
 
 **The objective.** Take a batch of image-text pairs — the lecture says 32,000,
 the program says 32,768. Encode every image and every text. Then for each image,
@@ -107,7 +107,7 @@ So there's some bootstrapping happening" (≈8:41). This is the same loop the
 [data filtering](data-filtering.md) lecture records for text: a model becomes the
 quality filter for the data that trains its successor.
 
-**The 336×336 center crop, which the rest of the lecture spends its time undoing.**
+**The $336\times 336$ center crop, which the rest of the lecture spends its time undoing.**
 Images arrive at arbitrary sizes and "neural nets… don't like things to be
 dynamic; they want things to be fixed size" (≈9:27), so CLIP resizes the short
 side to 336 and cuts the borders off. The lecturer flags at the time that this is
@@ -119,7 +119,7 @@ resolution both exist because of it.
 
 **The encoders.** The vision side is a [Vision Transformer](vision-transformers.md)
 — ResNets were tried and lost, so "when people say CLIP, they usually mean the ViT
-version" (≈12:30). The best model is **ViT-L/14** at 336px: Large, 14×14 patches.
+version" (≈12:30). The best model is **ViT-L/14** at 336px: Large, $14\times 14$ patches.
 Rather than averaging the patch vectors, CLIP uses **attention pooling** — attention
 with the query set to the global average of the activations, giving "another
 vector, which is maybe a little bit more informed than just a straight-up average"
@@ -147,7 +147,7 @@ so important for getting a rough representation of the image" (≈21:12).
 
 **And CLIP's own summary states the limitation the rest of the lecture inherits:**
 its design decisions "are based on image classification, so it's not very
-fine-grained" (≈21:59). Everything — 336×336, the center crop, pooling to one
+fine-grained" (≈21:59). Everything — $336\times 336$, the center crop, pooling to one
 vector — was validated on a coarse task. Ask it to read text in a photograph and
 it was never tuned for that.
 
@@ -240,7 +240,7 @@ images into textual tokens, so we can leverage the pre-trained language model"
 
 ![LLaVA architecture: an image through a vision encoder and projection W, concatenated with instruction tokens into one language model](../raw/images/17-multimodality/llava-architecture.png)
 
-*The template the next five papers all vary: vision encoder → projection $W$ → image tokens $H_v$, concatenated with instruction tokens $H_q$ into a single language model. The program notes that "Flamingo and Q-former are more complex"; LLaVA's claim is that a linear map suffices. [Source](https://github.com/stanford-cs336/lectures/blob/main/images/llava-architecture.png)*
+*The template the next five papers all vary: vision encoder → projection* $W$ *→ image tokens* $H_v$, *concatenated with instruction tokens* $H_q$ *into a single language model. The program notes that "Flamingo and Q-former are more complex"; LLaVA's claim is that a linear map suffices. [Source](https://github.com/stanford-cs336/lectures/blob/main/images/llava-architecture.png)*
 
 **Two training stages**, and the logic is about what each stage's data can be
 trusted to move. Stage 1 freezes both towers and trains only $W$ — "the goal of
@@ -267,7 +267,7 @@ tokens, interpolate down.
 
 ![AnyRes pipeline: an image split into a grid and encoded per piece alongside a resized global view, both flattened into the LLM](../raw/images/17-multimodality/llava-onevision-anyres.png)
 
-*The two paths: split the high-resolution image into encoder-sized pieces and encode each (top), and resize the whole image to one global view (bottom); both flatten into the LLM. The grid drawn here is schematic — the deck states no value for the $a \times b$ tiling. [Source](https://github.com/stanford-cs336/lectures/blob/main/images/llava-onevision-anyres.png)*
+*The two paths: split the high-resolution image into encoder-sized pieces and encode each (top), and resize the whole image to one global view (bottom); both flatten into the LLM. The grid drawn here is schematic — the deck states no value for the* $a \times b$ *tiling. [Source](https://github.com/stanford-cs336/lectures/blob/main/images/llava-onevision-anyres.png)*
 
 The justification is elegant: "the Transformer is already adaptive — sentences can
 be any length… So it turns out images can be any resolution — that's kind of
@@ -284,7 +284,7 @@ look at it from afar" (≈39:55).
 
 ![Token-budget table giving the per-modality token formulas for single-image, multi-image and video inputs](../raw/images/17-multimodality/llava-onevision-modalities.png)
 
-*The budget as arithmetic: single-image $729 + N \times 729$ (max $(1+9) \times 729 = 7290$), multi-image $N \times 729$ (max $12 \times 729 = 8748$), video $N \times 196$ (max $32 \times 196 = 6272$). Three very different input shapes landing within about 40% of each other. [Source](https://github.com/stanford-cs336/lectures/blob/main/images/llava-onevision-modalities.png)*
+*The budget as arithmetic: single-image* $729 + N \times 729$ (*max* $(1+9) \times 729 = 7290$), *multi-image* $N \times 729$ (*max* $12 \times 729 = 8748$), *video* $N \times 196$ (*max* $32 \times 196 = 6272$). *Three very different input shapes landing within about 40% of each other. [Source](https://github.com/stanford-cs336/lectures/blob/main/images/llava-onevision-modalities.png)*
 
 This is where [long context](qwen-vl-series.md) first bites: "you start running
 into context-length problems for video, and later we'll see how a big part of
@@ -351,8 +351,8 @@ principle is that data quality should decide which parameters may move.
 **Qwen2-VL (2024)** brings **dynamic resolution**, which repudiates both CLIP's
 fixed crop and Qwen-VL's fixed 256 tokens. "Let's say you have this picture here
 that might be mapped to 11,000 tokens. This tiny picture of an equation might only
-be mapped to eight tokens" (≈49:16). Each 224×224 region is encoded with a ViT/14
-and every 2×2 block of patches is merged into one token.
+be mapped to eight tokens" (≈49:16). Each $224\times 224$ region is encoded with a ViT/14
+and every $2\times 2$ block of patches is merged into one token.
 
 ![Qwen2-VL's dynamic resolution architecture: four native-resolution inputs producing very different token counts into one decoder](../raw/images/17-multimodality/qwen2-vl-architecture.png)
 
@@ -385,7 +385,7 @@ vision encoder being a black box that just outputs a sequence of vectors"
 
 ![Qwen3-VL architecture adding DeepStack, which injects vision tokens into several decoder blocks rather than only at the input](../raw/images/17-multimodality/qwen3-vl.png)
 
-*DeepStack (dashed box, right) injects vision tokens between LLM blocks rather than only at the input — the fourth and last variation on LLaVA's single matrix $W$. Video frames now carry explicit `<0.0 seconds>` timestamp tokens. [Source](https://github.com/stanford-cs336/lectures/blob/main/images/qwen3-vl.png)*
+*DeepStack (dashed box, right) injects vision tokens between LLM blocks rather than only at the input — the fourth and last variation on LLaVA's single matrix* $W$. *Video frames now carry explicit `<0.0 seconds>` timestamp tokens. [Source](https://github.com/stanford-cs336/lectures/blob/main/images/qwen3-vl.png)*
 
 > **One attribution this KB does not vouch for.** The lecturer says DeepStack is
 > "a paper from the DeepSeek team" (≈57:04). The course material names no authors
@@ -421,7 +421,7 @@ the architecture collapses back into the plain language model of
 
 The discretizer is **[VQ-VAE](discrete-image-tokens.md)**, "rather old, from 2017":
 map a patch to a continuous vector, round it to the nearest entry in a learned
-codebook, and train by reconstruction (≈1:09:36). A 512×512 image becomes **1,024
+codebook, and train by reconstruction (≈1:09:36). A $512\times 512$ image becomes **1,024
 tokens** from a codebook of **8,192**. Then — and this is the detail that makes the
 unification literal — "they train a new tokenizer, now, because your data looks
 different than if it were just normal natural language" (≈1:11:09):
