@@ -482,6 +482,7 @@ call RLVR has been so impactful" (≈1:19:29).
 - [Reward models](reward-models.md) · [PPO](ppo.md) · [DPO](dpo.md)
 - [Reward overoptimization](reward-overoptimization.md) · [Mode collapse and calibration](mode-collapse-and-calibration.md)
 - [Style and length bias](style-and-length-bias.md) · [Hallucination and knowledge extraction](hallucination-and-knowledge-extraction.md) · [Safety tuning](safety-tuning.md)
+- [Assignment 5](assignment-5-alignment.md#the-optional-supplement-instruction-tuning-safety-and-dpo) — its optional supplement: instruction tuning, safety evaluation and DPO
 - [Post-training data](post-training-data.md) — lecture 14's data-side treatment
 - [Lecture 14](14-data-filtering-dedup-mixing.md) — the pre-training data unit this follows
 - [Course material for lecture 15](../raw/slides/15-mid-post-training.md)

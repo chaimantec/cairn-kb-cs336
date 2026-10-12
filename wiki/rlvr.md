@@ -97,4 +97,5 @@ generated from GitHub at scale.
 - [Reward overoptimization](reward-overoptimization.md) — the problem RLVR answers
 - [RLHF](rlhf.md) — the method it extends
 - [Reasoning models](reasoning-models.md), [long chain-of-thought](long-chain-of-thought.md)
+- [Assignment 5](assignment-5-alignment.md) — RL with a verified reward on GSM8K, built from scratch
 - [Lecture 16](16-post-training-rlvr.md)

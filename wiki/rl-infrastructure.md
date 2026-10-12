@@ -72,4 +72,5 @@ core of RL infrastructure design.
 - [Inference](inference.md) — the serving half of the loop
 - [Length bias in RL](length-bias-in-rl.md) — why rollouts get long
 - [Kimi K1.5](kimi-k1-5.md) — the report this section is taught from
+- [Assignment 5](assignment-5-alignment.md) — one GPU for training, one for vLLM, with weights copied before each round of sampling, and a section on going off-policy
 - [Lecture 16](16-post-training-rlvr.md)

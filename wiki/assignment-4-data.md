@@ -474,4 +474,5 @@ here as printed rather than reconciled.
   [Lecture 13](13-data-sources-datasets.md) ([transcript](../raw/transcripts/13-data-sources-datasets.md)),
   [Lecture 14](14-data-filtering-dedup-mixing.md) ([transcript](../raw/transcripts/14-data-filtering-dedup-mixing.md))
 - [Assignment 1](assignment-1-basics.md) — the model this assignment trains
+- [Assignment 5](assignment-5-alignment.md) — the next assignment, which turns from pretraining to reinforcement learning
 - [Course map](course-map.md#unit-4--data) — where Assignment 4 sits among the five units

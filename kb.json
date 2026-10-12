@@ -13,7 +13,7 @@
     "lecturesTotal": 18,
     "transcripts": 18,
     "wikiLecturePages": 18,
-    "wikiTopicPages": 178
+    "wikiTopicPages": 179
   },
   "materials": {
     "primary": "mixed",
@@ -122,14 +122,23 @@
         1,
         2,
         3,
-        4
+        4,
+        5
       ],
       "pages": {
         "1": "wiki/assignment-1-basics.md",
         "2": "wiki/assignment-2-systems.md",
         "3": "wiki/assignment-3-scaling.md",
-        "4": "wiki/assignment-4-data.md"
+        "4": "wiki/assignment-4-data.md",
+        "5": "wiki/assignment-5-alignment.md"
       },
+      "transcribed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
       "1": {
         "handoutVersion": "26.0.3",
         "handoutDate": "2026-04-07",
@@ -141,12 +150,6 @@
         "note": "The handout is transcribed in full at raw/handouts/assignment1-basics.md, with [p. N] page markers, LaTeX equations carrying the handout's own numbers, and prose descriptions in place of its three figures. The wiki page summarizes it and deliberately gives no solutions, per the course's AI policy and the repository's AGENTS.md. The repository, and so the handout, is MIT-licensed; the notice is reproduced in the transcription.",
         "transcription": "raw/handouts/assignment1-basics.md"
       },
-      "transcribed": [
-        1,
-        2,
-        3,
-        4
-      ],
       "2": {
         "handoutVersion": "26.1.3",
         "handoutDate": "2026-04-28",
@@ -179,6 +182,19 @@
         "transcribed": true,
         "note": "The handout is transcribed in full at raw/handouts/assignment4-data.md, with [p. N] page markers; it has no figures. The wiki page summarizes it, the tests in tests/, the data-preparation code in cs336_data/ and the fixed training configuration, and deliberately gives no solutions, thresholds, label schemes or filtering strategy, per the repository's AGENTS.md (the handout itself has no AI policy). The 2026 assignment filters an English-only WET pool on Modal and has no leaderboard; Lecture 1 describes the Spring 2025 version, which had one. The repository, and so the handout, is MIT-licensed; the notice is reproduced in the transcription.",
         "transcription": "raw/handouts/assignment4-data.md"
+      },
+      "5": {
+        "handoutVersion": "26.0.0 as printed (every 2026 build prints it; the changelog's releases are 2.0.0 and 2.0.1)",
+        "handoutDate": "2026-05-29",
+        "handoutPages": 39,
+        "repoCommit": "c2734a2 (the handout last changed at cd5f183)",
+        "repoLicense": null,
+        "repoLicenseNote": "The main branch, which carries both 2026 handouts, has no licence file. An MIT licence (Copyright 2025 Stanford University) exists only on a stale master branch holding the 2025 code. The transcriptions are reproduced as course material (LICENSE.md Layer 2), by the user's decision on 2026-10-12.",
+        "method": "prose and code verbatim from the PDF text layer by script (run 26's span-data drafting, adapted); math, the Notation table and Algorithm 1 rebuilt from page images by four Sonnet readers (130 dpi pages, 300 dpi crops), appending per page; every formula then checked by script against the PDF's math-font spans for its symbols, script levels and sub/superscript side, which found 13 reader errors, all fixed; reported printed slips each read against a crop by the parent; fidelity checked by aligning non-math words against the text layer, plus page, problem, number, code-line and link inventories; all 368 formulas render in KaTeX and on github.com",
+        "transcribed": true,
+        "note": "Both handouts are transcribed in full: the main one at raw/handouts/assignment5-alignment.md and the optional supplement (instruction tuning, safety evaluation, DPO; 18 pages, printed version 26.0.0, dated 2026-06-03) at raw/handouts/assignment5-supplement-safety-rlhf.md. Neither has figures. The wiki page summarizes both, the tests and the starter code, and deliberately gives no derivations, implementations or written answers, per the repository's AGENTS.md (neither handout has an AI policy). The 2026 assignment is GRPO and variants on OLMo-2-0425-1B and GSM8K; Lecture 1 describes the Spring 2025 version.",
+        "transcription": "raw/handouts/assignment5-alignment.md",
+        "supplementTranscription": "raw/handouts/assignment5-supplement-safety-rlhf.md"
       }
     }
   },
@@ -198,7 +214,7 @@
       "arxivLicensesChecked": "2026-09-03: 9 of the 10 most-reproduced sources are arXiv nonexclusive-distrib/1.0, which grants arXiv distribution rights and third parties none. The exception is Wei et al., Emergent Abilities (arXiv:2206.07682), which is CC BY 4.0."
     },
     "takedown": "Open a GitHub issue or contact the repository owner; the file and every reference to it are deleted and the removal noted here.",
-    "assignmentHandout": "raw/handouts/ transcribes the Assignment 1, 2, 3 and 4 handouts from stanford-cs336/assignment1-basics, assignment2-systems, assignment3-scaling and assignment4-data, all MIT-licensed (Copyright 2025 Stanford University for Assignments 1 and 2, Copyright 2026 for Assignments 3 and 4). The MIT notice is reproduced in each file, and its terms, not fair use, govern those files. Assignment 2's Figure 3 is credited by the handout to the Lightning documentation and is described in prose, not reproduced; Assignments 3 and 4 have no figures."
+    "assignmentHandout": "raw/handouts/ transcribes the Assignment 1, 2, 3 and 4 handouts from stanford-cs336/assignment1-basics, assignment2-systems, assignment3-scaling and assignment4-data, all MIT-licensed (Copyright 2025 Stanford University for Assignments 1 and 2, Copyright 2026 for Assignments 3 and 4). The MIT notice is reproduced in each file, and its terms, not fair use, govern those files. Assignment 2's Figure 3 is credited by the handout to the Lightning documentation and is described in prose, not reproduced; Assignments 3 and 4 have no figures. The Assignment 5 handouts are the exception to the exception: stanford-cs336/assignment5-alignment's main branch, which carries both, has no licence (an MIT licence exists only on a stale master branch with the 2025 code), so raw/handouts/assignment5-alignment.md and raw/handouts/assignment5-supplement-safety-rlhf.md are Layer 2 course material, reproduced for study on the same basis as the slide transcriptions."
   },
   "provenance": {
     "builtBy": [
@@ -297,7 +313,8 @@
       "The Assignment 1 handout (version 26.0.3, repo commit a158843) is transcribed at raw/handouts/assignment1-basics.md and summarized at wiki/assignment-1-basics.md. Prose and code were copied from the PDF text layer and checked against it by script; equations and figures were read from page images by Sonnet, and only the RMSNorm denominator and the AdamW pseudocode were also compared with rendered crops by the parent. The handout is revised during the quarter, so a reader holding a different version should trust their copy.",
       "The Assignment 2 handout (version 26.1.3, repo commit ca8bc81) is transcribed at raw/handouts/assignment2-systems.md and summarized at wiki/assignment-2-systems.md, by the same method as Assignment 1's. Every equation, both algorithms and all three figure descriptions were also read against the PDF by the parent. The handout disagrees with its own repository in places (one adapter name, two adapters the FSDP test calls that the handout never mentions, the submission filename), and Lecture 1 describes the older Spring 2025 version of this assignment; the wiki page lists each. A reader holding a different handout version should trust their copy.",
       "The Assignment 3 handout (version 26.0.5, repo commit 03e9372) is transcribed at raw/handouts/assignment3-scaling.md and summarized at wiki/assignment-3-scaling.md. Unlike Assignments 1 and 2, no page image was read whole: the 8-page handout was rebuilt from the text layer's font and position data, and each formula checked against a crop of its line. The handout disagrees with its own code in places (the code rejects grouped-query attention, which the handout allows; it no longer caps one run at 12 hours), and Lecture 1 describes the offline, cached API that version 26.0.0 replaced; the wiki page lists each.",
-      "The Assignment 4 handout (version 26.0.1, repo commit 0555bea) is transcribed at raw/handouts/assignment4-data.md and summarized at wiki/assignment-4-data.md, by the same method as Assignment 3's: no page image was read whole, and each formula was checked against a crop of its line. The handout disagrees with its repository in places (the tests expect label strings it never names, its two example-file addresses return 404, the README still mentions a leaderboard, and it calls a model with GPT-2 medium's dimensions 'GPT-2 small-shaped'), and Lecture 1 describes the Spring 2025 version; the wiki page lists each. Assignment 5 has no page and no transcription."
+      "The Assignment 4 handout (version 26.0.1, repo commit 0555bea) is transcribed at raw/handouts/assignment4-data.md and summarized at wiki/assignment-4-data.md, by the same method as Assignment 3's: no page image was read whole, and each formula was checked against a crop of its line. The handout disagrees with its repository in places (the tests expect label strings it never names, its two example-file addresses return 404, the README still mentions a leaderboard, and it calls a model with GPT-2 medium's dimensions 'GPT-2 small-shaped'), and Lecture 1 describes the Spring 2025 version; the wiki page lists each.",
+      "The Assignment 5 handout (printed version 26.0.0, the build of 2026-05-29 at repo commit cd5f183) and its optional supplement are transcribed at raw/handouts/assignment5-alignment.md and raw/handouts/assignment5-supplement-safety-rlhf.md and summarized at wiki/assignment-5-alignment.md. The main handout's math was rebuilt from page images by Sonnet readers and checked by script against the PDF's span sizes and positions; that check compares symbols, sizes and sides, not the grouping inside a fraction or bracket. Unlike Assignments 1-4, these handouts are not MIT-licensed (the repository's main branch has no licence). The handout disagrees with its repository in places (one printed test command also selects the GSPO test, the vLLM interface's defaults, the version number left at 26.0.0 across five builds), and Lecture 1 describes the Spring 2025 version; the wiki page lists each."
     ]
   },
   "entryPoint": "INDEX.md",

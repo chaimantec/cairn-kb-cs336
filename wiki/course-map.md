@@ -374,7 +374,12 @@ and the on-policy trade are [RL infrastructure](rl-infrastructure.md), and
 [automatically constructed SWE-bench-style environments](agentic-rl.md).
 
 **Assignment 5:** implement DPO and GRPO. (At lecture time the staff were still
-deciding the final shape.)
+deciding the final shape.) **[Assignment 5](assignment-5-alignment.md) has its own page**,
+built from the Spring 2026 handout, and the shape it settled on differs from this preview:
+the required part is GRPO on GSM8K with OLMo-2-0425-1B, derived from the policy gradient
+and then varied (Dr. GRPO, rejection fine-tuning, MaxRL) and taken off-policy (PPO-style
+clipping, GSPO). DPO, with instruction tuning and safety evaluation, is in an optional
+supplement.
 
 ## Sources
 

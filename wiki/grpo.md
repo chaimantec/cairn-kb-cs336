@@ -113,4 +113,5 @@ the lecture that this is the load-bearing idea rather than an arbitrary choice.
 - [RLVR](rlvr.md) — the setting GRPO is used in
 - [DPO](dpo.md) — the other attempt to escape PPO, for a narrower problem
 - [Kimi K1.5](kimi-k1-5.md) — the convergent derivation
+- [Assignment 5](assignment-5-alignment.md) — where you derive GRPO step by step, implement it, then compare Dr. GRPO, MaxRL and off-policy variants
 - [Lecture 16](16-post-training-rlvr.md)

@@ -113,6 +113,25 @@ at commit `0555bea`, carries the MIT licence with the notice "Copyright 2026 Sta
 University", and the transcription reproduces it in full. That handout has no figures
 either.
 
+### Not the exception: the Assignment 5 handouts are not MIT-licensed
+
+[`raw/handouts/assignment5-alignment.md`](raw/handouts/assignment5-alignment.md) and
+[`raw/handouts/assignment5-supplement-safety-rlhf.md`](raw/handouts/assignment5-supplement-safety-rlhf.md)
+transcribe the Assignment 5 handout and its optional supplement (both printing version
+26.0.0). They do **not** share the basis above. Checked on 2026-10-12,
+[stanford-cs336/assignment5-alignment](https://github.com/stanford-cs336/assignment5-alignment)
+has no licence file on its `main` branch, which is the default branch and the one that
+carries both 2026 handouts, and GitHub reports no licence for the repository. An MIT licence,
+"Copyright 2025 Stanford University", exists only on a stale `master` branch, added
+2025-07-21 on top of the 2025 code; the 2026 handouts were never on that branch. Whether
+the staff meant the 2026 handouts to carry the same terms as Assignments 1 to 4 is likely
+but not stated, and this compilation does not assume it.
+
+So these two files are Layer 2 material: Stanford course material reproduced here for
+study and commentary, relying on fair use, on the same basis as the slide transcriptions in
+`raw/slides/`. Everything said above about Layer 2 applies to them, including that the
+reliance does not transfer to you. Neither handout has figures.
+
 ---
 
 ## Layer 3 — third-party figures reproduced inside the decks

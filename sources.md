@@ -203,7 +203,7 @@ only.
 | 2 | Systems (profiling, FlashAttention-2 in Triton, DDP, optimizer state sharding, FSDP) | [repo](https://github.com/stanford-cs336/assignment2-systems/tree/main) | [PDF](https://github.com/stanford-cs336/assignment2-systems/blob/main/cs336_assignment2_systems.pdf) |
 | 3 | Scaling laws | [repo](https://github.com/stanford-cs336/assignment3-scaling/tree/main) | [PDF](https://github.com/stanford-cs336/assignment3-scaling/blob/main/cs336_assignment3_scaling.pdf) |
 | 4 | Data (Common Crawl → text, filtering, MinHash dedup) | [repo](https://github.com/stanford-cs336/assignment4-data/tree/main) | [PDF](https://github.com/stanford-cs336/assignment4-data/blob/main/cs336_assignment4_data.pdf) |
-| 5 | Alignment (DPO, GRPO) | [repo](https://github.com/stanford-cs336/assignment5-alignment/tree/main) | [PDF](https://github.com/stanford-cs336/assignment5-alignment/blob/main/cs336_spring2026_assignment5_alignment.pdf) |
+| 5 | Alignment: reasoning RL (GRPO and its variants; optional supplement on instruction tuning, safety and DPO) | [repo](https://github.com/stanford-cs336/assignment5-alignment/tree/main) | [PDF](https://github.com/stanford-cs336/assignment5-alignment/blob/main/cs336_spring2026_assignment5_alignment.pdf) · [supplement](https://github.com/stanford-cs336/assignment5-alignment/blob/main/cs336_spring2026_assignment5_supplement_safety_rlhf.pdf) |
 
 Lecture 1 links the Assignment 1 handout as
 `cs336_spring2026_assignment1_basics.pdf`; the file currently served at that repo
@@ -260,7 +260,27 @@ under the repository's `spring2025` tag, which is where Lecture 1's program link
 at commit [`4d364a0`](https://github.com/stanford-cs336/assignment4-data/blob/4d364a0/cs336_spring2025_assignment4_data.pdf).
 The handout's own `wget` addresses for its two example Common Crawl files returned 404 when
 checked on 2026-10-12; the course's copies come from `scripts/download_data.py`.
-Assignment 5 has no wiki page and no transcription.
+**Assignment 5 has a wiki page**, [`wiki/assignment-5-alignment.md`](wiki/assignment-5-alignment.md),
+and both of its handouts are **transcribed in full**:
+[`raw/handouts/assignment5-alignment.md`](raw/handouts/assignment5-alignment.md) and
+[`raw/handouts/assignment5-supplement-safety-rlhf.md`](raw/handouts/assignment5-supplement-safety-rlhf.md)
+(2026-10-12). The main handout prints version 26.0.0 in every 2026 build; the one
+transcribed (39 pages, dated 2026-05-29) last changed at commit
+[`cd5f183`](https://github.com/stanford-cs336/assignment5-alignment/blob/cd5f183/cs336_spring2026_assignment5_alignment.pdf).
+The supplement (18 pages, dated 2026-06-03) was added at
+[`a8ad44f`](https://github.com/stanford-cs336/assignment5-alignment/blob/a8ad44f/cs336_spring2026_assignment5_supplement_safety_rlhf.pdf)
+and has not changed since. Both were read with the repository at
+[`c2734a2`](https://github.com/stanford-cs336/assignment5-alignment/tree/c2734a2)
+(2026-06-04): `README.md`, `CHANGELOG.md`, `AGENTS.md`, `test_and_make_submission.sh`,
+`tests/`, `cs336_alignment/` and `scripts/`. **Unlike Assignments 1 to 4, this repository's
+`main` branch has no licence**; an MIT licence ("Copyright 2025 Stanford University") exists
+only on a stale `master` branch holding the 2025 code, so the transcriptions are reproduced
+as course material (see [`LICENSE.md`](LICENSE.md)). Version 2.0.0 (2026-05-20) deleted
+`cs336_spring2025_assignment5_alignment.pdf` from `main`; the 2025 handout survives under
+the repository's `spring2025` tag, which is where Lecture 1's program links it. Commit
+`a8ad44f` (2026-06-03) likewise deleted the 2025 supplement, so the crawl inventory's link
+to `cs336_spring2025_assignment5_supplement_safety_rlhf.pdf` on `main` returned 404 when
+checked on 2026-10-12; that file survives under the same tag.
 
 ## Other course links referenced in Lecture 1
 

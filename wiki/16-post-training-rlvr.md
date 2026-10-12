@@ -533,6 +533,7 @@ actually a lot smoother than you might think" (≈1:09:25).
 - [Process versus outcome supervision](process-vs-outcome-supervision.md)
 - [Expert iteration](expert-iteration.md), [reasoning distillation](reasoning-distillation.md)
 - [RL infrastructure](rl-infrastructure.md)
+- [Assignment 5](assignment-5-alignment.md) — where you implement GRPO and the variants this lecture discusses
 - [Lecture 15 — mid/post-training](15-mid-post-training.md) — the lecture this one answers
 - [Course material for lecture 16](../raw/slides/16-post-training-rlvr.md)
 - [Edited transcript](../raw/transcripts/16-post-training-rlvr.md)

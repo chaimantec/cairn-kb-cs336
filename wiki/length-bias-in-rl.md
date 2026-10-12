@@ -92,4 +92,5 @@ without removing the budget the model needs to find a solution.
 - [DeepSeek-R1](deepseek-r1.md) — the plot being reinterpreted
 - [Kimi K1.5](kimi-k1-5.md) — the compression approach
 - [Test-time scaling](test-time-scaling.md) — length as a spendable budget
+- [Assignment 5](assignment-5-alignment.md) — §5.1 compares GRPO's length normalization with a constant normalizer, as Dr. GRPO proposes
 - [Lecture 16](16-post-training-rlvr.md)

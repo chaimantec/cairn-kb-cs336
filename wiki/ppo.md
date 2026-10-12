@@ -143,5 +143,6 @@ That is the case for [GRPO](grpo.md), which removes the value model entirely.
 - [Advantage estimation and baselines](advantage-estimation-and-baselines.md)
 - [RL infrastructure](rl-infrastructure.md) — the systems cost of the rollout loop
 - [Inference](inference.md) — why sampling is the expensive half
+- [Assignment 5](assignment-5-alignment.md) — where you implement PPO-style token-level clipping and GSPO for off-policy GRPO
 - [Lecture 15](15-mid-post-training.md), [Lecture 16](16-post-training-rlvr.md)
 - [Course material for lecture 15](../raw/slides/15-mid-post-training.md)

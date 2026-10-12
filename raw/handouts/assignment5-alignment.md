@@ -43,9 +43,9 @@ licence exists only on a stale `master` branch that holds the 2025 code. This
 transcription is therefore course material reproduced for study, on the same basis as the
 slide transcriptions. See [`LICENSE.md`](../../LICENSE.md).
 
-**The handout was revised five times without changing its printed version.** Every 2026
-build prints "Version 26.0.0". The changelog names two releases, 2.0.0 (2026-05-20) and
-2.0.1 (2026-06-03), and the PDF was rebuilt at five commits. Comparing the text of each
+**The handout was revised four times after its release without changing its printed
+version.** Every 2026 build prints "Version 26.0.0". The changelog names two releases, 2.0.0
+(2026-05-20) and 2.0.1 (2026-06-03), and the PDF was built at five commits. Comparing the text of each
 build:
 
 - `27c4e9b` (2026-05-20) is the release.
@@ -1472,7 +1472,7 @@ Now that our training step is implemented, we can run our experiments to observe
 
 ## 6 Off-policy RL
 
-Our experiments and algorithms so far have been *fully on-policy*, meaning that every gradient estimator used samples drawn directly from the model being updated (i.e. we took 1 training step per inference batch, and training batch size was set equal to inference batch size). In this section, we’ll explore *off-* *policy RL*, which takes multiple training steps per inference batch and has the potential to speed up training, at the cost of potential instability and increased algorithmic complexity.
+Our experiments and algorithms so far have been *fully on-policy*, meaning that every gradient estimator used samples drawn directly from the model being updated (i.e. we took 1 training step per inference batch, and training batch size was set equal to inference batch size). In this section, we’ll explore *off-policy RL*, which takes multiple training steps per inference batch and has the potential to speed up training, at the cost of potential instability and increased algorithmic complexity.
 
 ### 6.1 Importance reweighting
 

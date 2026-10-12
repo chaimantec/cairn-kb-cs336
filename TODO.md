@@ -30,6 +30,9 @@ box anywhere in the repo means work left to do, and the lines below that start w
       wiki/11-scaling-laws-in-the-wild.md 2, wiki/data-scaling-laws.md 3,
       wiki/scaling-laws.md 1. Run 26 found 5 more GitHub errors in wiki/minhash-and-lsh.md
       (lines 75-76 `\{ \}`, line 184 `\,`), on lines no run has changed since lecture 14.
+      Run 27 found 14 more on old lines of pages it only gave a see-also line: wiki/15 3,
+      wiki/16 2, advantage-estimation-and-baselines 1, dpo 5, ppo 3 (mostly `\,` and `|`
+      that GitHub alters).
       Most are `\,` `\;` `\|` that GitHub's markdown strips (use
       `\thinspace`, `\mskip{5mu}`, `\Vert`), and formulas GitHub shows as raw text. Run
       `check_math.mjs` over the whole repo first; run 20 counted 22 chat errors repo-wide.
@@ -61,18 +64,44 @@ wiki page with the supplement as its own marked part.
       reader 2), and (55)'s limit L/2 for a stacked fraction. Reader 3 inserted a stray
       "img" line and reported it as present in the chunk; it was not. Three reported slips
       confirmed against crops (f' x/f(x) on p. 9, pi_{theta(A=1)}, (65)'s extra paren).
-      368 formulas clean in KaTeX and on github.com (next_state via \verb; \char fails
-      in MathJax)
+      368 formulas clean in KaTeX and on github.com (next_state via `\verb`; `\char`
+      fails in MathJax)
 - [x] raw/handouts/assignment5-supplement-safety-rlhf.md — no reader; parent fixed the draft
       and rebuilt the formulas, equations (1)-(3) read against a crop. 18 markers, 16
       problems (61 points, computed), 88 code lines, 5 links, prose ratio 0.961; symbol
       and level check clean; 50 formulas clean in both renderers
-- [ ] wiki/assignment-5-alignment.md — describes, never solves; tests and validators read;
-      quote check; claims verified; math clean
-- [ ] Licence: the repo's main branch has no licence (MIT only on a stale master branch with
+- [x] wiki/assignment-5-alignment.md — 28 problems (90 points, 26 B200-hours, computed), the
+      seven functions with what each test checks, the derivation as §4.1 builds it, the
+      variants and off-policy section, the supplement (16 problems, 61 points), lecture map,
+      AI rules (neither handout has any; AGENTS.md lacks A4's "Solve any of the math
+      problems"), nine disagreements. Nothing computed beyond the totals
+- [x] Quote check: 55 quotations against both handouts, the A3 handout, repo files, every
+      transcript and slide file. Three misses were the parent's own: a column label and a
+      paraphrase ("right format, wrong answer") set as quotes, and an HTML anchor attribute.
+      One artifact (a quote whose source sentence carries link markup), verified by eye
+- [x] Claims verified before publishing, six wrong in the draft: REINFORCE's estimate is
+      equation (14), not (15); five problems carry GPU budgets, not four; fourteen code
+      problems, not thirteen; the handout was revised four times after release, not five
+      (also in the transcription header); every test_grpo.py test uses a snapshot, the
+      reward test included; and "the tests follow torch.std, not the formula" could not be
+      checked without computing a problem's answer, so it was cut
+- [x] Disagreement verified at source: `pytest -k test_compute_policy_gradient_loss_off_policy`
+      collects the GSPO test too (checked with dummy tests under uvx pytest)
+- [x] Licence: the repo's main branch has no licence (MIT only on a stale master branch with
       the 2025 code). User decided: publish both transcriptions as Layer 2 course material,
       and say so in LICENSE.md, both headers, AGENTS.md and kb.json
-- [ ] Inbound links, INDEX, sources.md, LICENSE.md, AGENTS.md, kb.json
-- [ ] verify_kb.py clean, review section read
-- [ ] Commit and push
+- [x] Inbound links from 13 pages (01, 15, 16, advantage-estimation-and-baselines,
+      assignment-4-data, course-map, dpo, expert-iteration, grpo, length-bias-in-rl, ppo,
+      rl-infrastructure, rlvr) and INDEX (start-here, Assignments, raw material, citing)
+- [x] Fix: course-map.md's Assignment 5 paragraph carried only Lecture 1's preview; INDEX
+      said raw/handouts/ were all MIT-licensed
+- [x] sources.md (A5 paragraph; the 2025 supplement's inventory link now 404s on main,
+      survives under the spring2025 tag), LICENSE.md (new subsection: not MIT), AGENTS.md
+      (layout rows, two lessons), kb.json (179 topic pages, materials.assignments."5", licence
+      note, one caveat)
+- [x] verify_kb.py clean (hard checks: 197 pages indexed, 245 files' links resolve to tracked
+      files, kb.json counts). Its math pass returned no JSON again, so check_math was run on
+      all 21 changed files: this run's files are clean; the failures are on older lines
+      (INDEX 10, already open; 14 new ones in five pages, added to the open item above)
+- [x] Commit and push (2026-10-12)
 - [ ] Move this section to BUILD_LOG.md

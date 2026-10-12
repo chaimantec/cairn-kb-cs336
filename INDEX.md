@@ -246,6 +246,16 @@ compute and data?
   handout is transcribed in full in
   [`raw/handouts/`](raw/handouts/assignment4-data.md).
 
+- **[Assignment 5 — Alignment: reasoning RL](wiki/assignment-5-alignment.md)** — the same
+  for the fifth. The Spring 2026 handout trains OLMo-2-0425-1B on GSM8K with GRPO, which
+  it derives step by step from the basic policy gradient, then compares on-policy
+  variants (Dr. GRPO, rejection fine-tuning, MaxRL) and off-policy ones (PPO-style
+  clipping, GSPO), each over four random seeds. The page covers all 28 problems, what the
+  tests check, where it runs, and which lecture teaches each part, plus the **optional
+  supplement** on instruction tuning, safety evaluation and DPO. It describes the
+  assignment and does not solve it. Both handouts are transcribed in full in
+  [`raw/handouts/`](raw/handouts/assignment5-alignment.md).
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
@@ -1145,7 +1155,24 @@ usually the faster route than the lecture pages.
   GPT-2 medium's dimensions.** Read this for "what does Assignment 4 actually ask?" It
   gives no answers. For the exact wording, read the
   [full transcription of the handout](raw/handouts/assignment4-data.md).
-  Assignment 5 has no page; its handout is linked from [`sources.md`](sources.md).
+- **[Assignment 5 — Alignment: reasoning RL](wiki/assignment-5-alignment.md)** — built
+  from the Spring 2026 handout (printed version 26.0.0, the build of 2026-05-29), its
+  optional supplement and the starter repository. All 28 problems with their points (90
+  in total, computed) and GPU budgets; the model, the GSM8K data, the binary reward and
+  the suggested hyperparameters; the three prompts; the GRPO derivation as §4.1 builds
+  it; the seven functions the code problems build, with what each test checks
+  (snapshots of the loss and of every parameter after a train step); the on-policy
+  variants and the off-policy section; the supplement's 16 problems (zero-shot MMLU,
+  GSM8K, AlpacaEval and SimpleSafetyTests, instruction tuning, red-teaming, DPO); a table
+  mapping each section to the lecture that teaches it; the repository's rules for AI
+  assistants (neither handout has its own); and the places where the handout, the tests
+  and the lectures disagree. Among them: **one printed test command also runs the GSPO
+  test before GSPO is introduced, every 2026 build prints the same version number, and
+  Lecture 1 describes DPO as part of the assignment when in 2026 it is only in the
+  optional supplement.** Read this for "what does Assignment 5 actually ask?" It gives no
+  answers. For the exact wording, read the
+  [full transcription of the handout](raw/handouts/assignment5-alignment.md) or
+  [of the supplement](raw/handouts/assignment5-supplement-safety-rlhf.md).
 
 ### Across the course
 
@@ -1299,14 +1326,17 @@ usually the faster route than the lecture pages.
   **[Assignment 1 handout](raw/handouts/assignment1-basics.md)** (version 26.0.3, 47
   pages), the **[Assignment 2 handout](raw/handouts/assignment2-systems.md)**
   (version 26.1.3, 48 pages), the **[Assignment 3 handout](raw/handouts/assignment3-scaling.md)**
-  (version 26.0.5, 8 pages) and the **[Assignment 4 handout](raw/handouts/assignment4-data.md)**
-  (version 26.0.1, 16 pages), each transcribed in full. Prose and code are copied
+  (version 26.0.5, 8 pages), the **[Assignment 4 handout](raw/handouts/assignment4-data.md)**
+  (version 26.0.1, 16 pages), and the **[Assignment 5 handout](raw/handouts/assignment5-alignment.md)**
+  (version 26.0.0, 39 pages) with its optional
+  **[supplement](raw/handouts/assignment5-supplement-safety-rlhf.md)** (18 pages), each
+  transcribed in full. Prose and code are copied
   verbatim from the PDF; equations are LaTeX with the handout's own numbers; every
   figure is described in prose; and every page starts at a **[p. N]** marker. Read it
-  for the exact wording of a problem, an interface or a deliverable. These are the only
-  handouts transcribed, and the only files in this repo that are MIT-licensed course
-  material rather than material reproduced under fair use; see
-  [`LICENSE.md`](LICENSE.md).
+  for the exact wording of a problem, an interface or a deliverable. The Assignment 1 to 4
+  handouts are the only files in this repo that are MIT-licensed course material. The
+  Assignment 5 handouts are not: their repository's `main` branch carries no licence, so
+  they are reproduced for study, like the slides. See [`LICENSE.md`](LICENSE.md).
 - **[`sources.md`](sources.md)** — every lecture, deck, assignment and linked
   document with its canonical URL, and the record of where the search for the
   guest lecture's material looked and found nothing. Explains how CS336 splits
@@ -1387,8 +1417,14 @@ Assignment 3 handout, version 26.0.5, and resolves against
 [`raw/handouts/assignment3-scaling.md`](raw/handouts/assignment3-scaling.md). On
 [Assignment 4](wiki/assignment-4-data.md) — `§3.2`, `minhash_deduplication` — it cites
 the Assignment 4 handout, version 26.0.1, and resolves against
-[`raw/handouts/assignment4-data.md`](raw/handouts/assignment4-data.md). Each is
-the handout's full text, whose page markers (**[p. 20]**) also allow a page citation.
+[`raw/handouts/assignment4-data.md`](raw/handouts/assignment4-data.md). On
+[Assignment 5](wiki/assignment-5-alignment.md) — `§4.2.3`, `compute_group_normalized_rewards_grpo`,
+or an equation number such as (37) — it cites the Assignment 5 handout, printed version
+26.0.0, and resolves against
+[`raw/handouts/assignment5-alignment.md`](raw/handouts/assignment5-alignment.md); a
+section marked as the supplement's resolves against
+[`raw/handouts/assignment5-supplement-safety-rlhf.md`](raw/handouts/assignment5-supplement-safety-rlhf.md).
+Each is the handout's full text, whose page markers (**[p. 20]**) also allow a page citation.
 The handouts number their sections independently, so say which assignment a section
 number belongs to.
 

@@ -72,4 +72,5 @@ can then spread them cheaply.
 - [Kimi K1.5](kimi-k1-5.md) — the ablation
 - [Reasoning distillation](reasoning-distillation.md) — the imitation route
 - [Supervised fine-tuning](supervised-fine-tuning.md)
+- [Assignment 5](assignment-5-alignment.md) — §5.2 runs rejection fine-tuning against GRPO and its variants
 - [Lecture 16](16-post-training-rlvr.md)

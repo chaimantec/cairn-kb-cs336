@@ -23,9 +23,9 @@ of that unit (Lectures 5–8 and 10) is covered here.
 | Path | Contents |
 | --- | --- |
 | `INDEX.md` | Entry point. Course summary + annotated table of contents. |
-| `wiki/` | Durable pages: one per lecture, plus cross-lecture topics, plus one page per covered assignment (`assignment-1-basics.md` to `assignment-4-data.md`). |
+| `wiki/` | Durable pages: one per lecture, plus cross-lecture topics, plus one page per covered assignment (`assignment-1-basics.md` to `assignment-5-alignment.md`). |
 | `raw/slides/` | The written course material, transcribed. See the note below — CS336 has no slide numbers for half its lectures, and none of the eight decks prints one either. |
-| `raw/handouts/` | The Assignment 1, 2, 3 and 4 handouts, transcribed in full (prose and code verbatim from the PDF text layer, math and figures from page images; Assignments 3 and 4 from span data, with math checked against crops). MIT-licensed, unlike the rest of `raw/`. |
+| `raw/handouts/` | The Assignment 1 to 5 handouts, and Assignment 5's optional supplement, transcribed in full (prose and code verbatim from the PDF text layer, math and figures from page images; Assignments 3 and 4 and the supplement from span data, with math checked against crops; Assignment 5's math checked against span sizes and positions by script). Assignments 1 to 4 are MIT-licensed, unlike the rest of `raw/`; Assignment 5's repository has no licence on its `main` branch, so its two files are course material like the slides (see `LICENSE.md`). |
 | `raw/transcripts/` | Copy-edited lecture transcripts with `[MM:SS]` paragraph marks. **These are the ones to read.** |
 | `raw/transcripts/original/` | **Gitignored, not in the repo.** The verbatim auto-captions are a complete reproduction of the lecture with none of this KB's own work in them, so they are kept locally and not published. Regenerate with `fetch_transcript.py <video_id>` piped through `transcript_to_md.py`; the video id is in each transcript's front matter. |
 | `raw/images/NN-<slug>/` | Rendered slide images and the course's own figures. See **Images** below for what is and is not here. |
@@ -117,7 +117,11 @@ the per-lecture record behind it is in [`BUILD_LOG.md`](BUILD_LOG.md).
   Check what the handout tells students to fetch, and what it says a fixed config is,
   against the repo: Assignment 4's two download addresses return 404 while its download
   script fetches a different file, and its "GPT-2 small-shaped" model has the dimensions
-  Assignment 1's handout gives for GPT-2 medium.
+  Assignment 1's handout gives for GPT-2 medium. Collect each printed `pytest -k` command
+  against the test names: `-k` matches substrings, and one of Assignment 5's selects a test
+  for a later section. And check the licence **on the branch that carries the handout**,
+  not on the repository in general: Assignment 5's `main` branch has none, while a stale
+  `master` branch has MIT. Publishing an unlicensed handout is the user's decision.
 - **Transcribing a handout: two sources, two jobs.** For a text-native PDF (the
   Assignment 1 handout is Typst output), copy prose and code **verbatim from the
   text layer** and read only math, figures and layout from page images. A reader
@@ -140,6 +144,13 @@ the per-lecture record behind it is in [`BUILD_LOG.md`](BUILD_LOG.md).
   its line. On Assignment 3 that caught a subscript's extent misread from span data that
   had recorded it correctly. Compare each printed URL with its link target too: Typst
   sets `~` as a non-breaking space, so Assignment 4 prints `edu/ ullman` for `~ullman`.
+  When readers rebuild the math from images, **check their formulas against the spans by
+  script**, not only by eye: per page, the symbols inside formulas, each symbol's script
+  level from its span size (10, 7 or 5 points in these Typst handouts), and which side of
+  its base each first-level script sits. On Assignment 5 that found 13 reader errors in
+  formulas the readers had marked clean, among them eleven expectation subscripts a reader
+  had reported as a *printed slip*. A reader's "transcribed as printed" is a claim to verify
+  like any other.
 - **Math in LaTeX**: `$...$` inline, `$$...$$` displayed. Renders both in Cairn's
   chat and on github.com. Never inside a code fence — that shows the source instead
   of the formula. Define each symbol on first use, and follow the course's own

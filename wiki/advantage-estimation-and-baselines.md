@@ -101,4 +101,5 @@ and the extra normalizations are the optional part.
 - [PPO](ppo.md) — the value-function approach
 - [Length bias in RL](length-bias-in-rl.md) — the length normalizer's cost
 - [Kimi K1.5](kimi-k1-5.md) — the convergent derivation
+- [Assignment 5](assignment-5-alignment.md) — §4.1.5 introduces baselines and GRPO's group mean before you implement them
 - [Lecture 16](16-post-training-rlvr.md)
