@@ -133,10 +133,10 @@ audit: >
   at audit and reads 0/39/63/78/86/92/95/97/98%, while slide 55's entry gives
   0/39/63/78/86/91/95/98%. Both may be correct for their own crop; slide 36's is the
   one that has been measured. Do not assume either is wrong without re-reading both.
-  WHAT REMAINS. 39 pages are unaudited. Their SLIDE TEXT is reliable — 56 of 57
+  WHAT REMAINS. 21 pages are not fully audited. Their SLIDE TEXT is reliable — 56 of 57
   headings matched the PDF text layer verbatim, and no audited page has yet shown
   an error in transcribed prose or in a native-text caption. Every error found in
-  both passes lies in a description of a chart. So text and equations from an
+  all three passes lies in a description of a chart. So text and equations from an
   unaudited page can be cited with normal confidence; a CHART VALUE from one
   should be treated as provisional and checked before it is quoted as a number.
 math: >

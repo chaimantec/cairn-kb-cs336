@@ -34,8 +34,8 @@ of that unit (Lectures 5–8 and 10) is covered here.
 | `kb.json` | Machine-readable coverage and provenance. Read this to know what this KB does and does not cover, and how far to trust a citation. |
 | `SEE_ALSO.md` | Sibling KBs worth reading for this course, by repo URL. |
 | `LICENSE.md` | Three layers of copyright, and which one covers what. Read it before reusing anything. |
-| `TODO.md` | Build tracker. Unchecked boxes are outstanding work. |
-| `BUILD_LOG.md` | The per-lecture record: what each run found, decided and got wrong. Precedent for builders; never read by the chat. |
+| `TODO.md` | Open work only, read in full by every run. Unchecked boxes are outstanding work; a run's section moves to `BUILD_LOG.md` once it is pushed. |
+| `BUILD_LOG.md` | The build record: precedents by topic, then the run log, one section per run, with what each found, decided and got wrong. Precedent for builders; never read by the chat. |
 
 ## What is special about CS336
 

@@ -1326,9 +1326,10 @@ a picture is the thing a prose description cannot replace.
   and the paper figures reproduced inside the decks are not mine to license, and are
   included for study under fair use. That reliance does not transfer to you.
 - **[`AGENTS.md`](AGENTS.md)** — how this wiki is organized, for future maintainers.
-- **[`BUILD_LOG.md`](BUILD_LOG.md)** — the per-lecture build record: what each run
-  found, decided and got wrong. For future maintainers; not needed to answer a question.
-- **[`TODO.md`](TODO.md)** — build tracker. Unchecked boxes are outstanding work.
+- **[`BUILD_LOG.md`](BUILD_LOG.md)** — the build record: precedents by topic, then a log of
+  every run, with what each found, decided and got wrong. For future maintainers; not
+  needed to answer a question.
+- **[`TODO.md`](TODO.md)** — open build work only. Unchecked boxes are outstanding work.
 
 ## Citing this material
 
