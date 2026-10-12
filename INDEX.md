@@ -225,6 +225,16 @@ compute and data?
   does not solve it. The handout is transcribed in full in
   [`raw/handouts/`](raw/handouts/assignment2-systems.md).
 
+- **[Assignment 3 — Scaling Laws](wiki/assignment-3-scaling.md)** — the same for the
+  third. The Spring 2026 handout (version 26.0.5) gives you 12 B200-hours of real
+  training runs, submitted through a hosted API, to fit a scaling law. You use it to
+  choose and predict a 48 B200-hour run, after a warm-up that reproduces Chinchilla's
+  IsoFLOPs method on synthetic data. The page covers both problems, how the API charges
+  and validates runs, and which lecture teaches each idea. It describes the assignment
+  and does not solve it. **The 2026 API trains real models; Lecture 1 describes an
+  older, cached one.** The handout is transcribed in full in
+  [`raw/handouts/`](raw/handouts/assignment3-scaling.md).
+
 If you are looking for a single number or formula, the topic pages below are
 usually the faster route than the lecture pages.
 
@@ -1093,7 +1103,23 @@ usually the faster route than the lecture pages.
   adapters the handout never names. Read this for "what does Assignment 2 actually
   ask?" It gives no answers. For the exact wording of any problem, read the
   [full transcription of the handout](raw/handouts/assignment2-systems.md).
-  Assignments 3–5 have no page; their handouts are linked from [`sources.md`](sources.md).
+- **[Assignment 3 — Scaling Laws](wiki/assignment-3-scaling.md)** — built from the
+  Spring 2026 handout (version 26.0.5) and the starter repository, which is the training
+  service itself. Both problems with their points (`chinchilla_isoflops`, 5;
+  `scaling_laws`, 50); the IsoFLOPs method as §2 reviews it and the shape of the
+  synthetic data file; what one API run is (DCLM data, context 512, $2^{18}$
+  validation tokens, `n_evals` chunks); the model, and its five differences from
+  Assignment 1's; the optimizer and its only schedule; exactly how the 12 B200-hour budget
+  is reserved, refunded and charged; every check the API applies to a configuration,
+  including several the handout never mentions; the endpoints; the write-up's required
+  questions; a table mapping each section to the lecture that teaches it; the handout's
+  and the repository's rules for AI assistants; and the places where the handout, the
+  code and the lectures disagree. Among them: **the code rejects grouped-query
+  attention, which the handout allows, and Lecture 1 describes a cached offline API that
+  the 2026 assignment replaced.** Read this for "what does Assignment 3 actually ask?"
+  It gives no answers. For the exact wording, read the
+  [full transcription of the handout](raw/handouts/assignment3-scaling.md).
+  Assignments 4 and 5 have no page; their handouts are linked from [`sources.md`](sources.md).
 
 ### Across the course
 
@@ -1245,10 +1271,11 @@ usually the faster route than the lecture pages.
     cross-slide claim in the file.
 - **[`raw/handouts/`](raw/handouts/assignment1-basics.md)** — the
   **[Assignment 1 handout](raw/handouts/assignment1-basics.md)** (version 26.0.3, 47
-  pages) and the **[Assignment 2 handout](raw/handouts/assignment2-systems.md)**
-  (version 26.1.3, 48 pages), each transcribed in full. Prose and code are copied
-  verbatim from the PDF; equations are LaTeX with the handout's own numbers; the three
-  figures are described in prose; and every page starts at a **[p. N]** marker. Read it
+  pages), the **[Assignment 2 handout](raw/handouts/assignment2-systems.md)**
+  (version 26.1.3, 48 pages) and the **[Assignment 3 handout](raw/handouts/assignment3-scaling.md)**
+  (version 26.0.5, 8 pages), each transcribed in full. Prose and code are copied
+  verbatim from the PDF; equations are LaTeX with the handout's own numbers; every
+  figure is described in prose; and every page starts at a **[p. N]** marker. Read it
   for the exact wording of a problem, an interface or a deliverable. These are the only
   handouts transcribed, and the only files in this repo that are MIT-licensed course
   material rather than material reproduced under fair use; see
@@ -1326,10 +1353,13 @@ the Assignment 1 handout, version 26.0.3, and resolves against
 [`raw/handouts/assignment1-basics.md`](raw/handouts/assignment1-basics.md). On
 [Assignment 2](wiki/assignment-2-systems.md) — `§4.2.2`, `flash_forward` — it cites the
 Assignment 2 handout, version 26.1.3, and resolves against
-[`raw/handouts/assignment2-systems.md`](raw/handouts/assignment2-systems.md). Both are
+[`raw/handouts/assignment2-systems.md`](raw/handouts/assignment2-systems.md). On
+[Assignment 3](wiki/assignment-3-scaling.md) — `§3.1`, `scaling_laws` — it cites the
+Assignment 3 handout, version 26.0.5, and resolves against
+[`raw/handouts/assignment3-scaling.md`](raw/handouts/assignment3-scaling.md). Each is
 the handout's full text, whose page markers (**[p. 20]**) also allow a page citation.
-The two handouts number their sections independently, so say which assignment a
-section number belongs to.
+The handouts number their sections independently, so say which assignment a section
+number belongs to.
 
 There are **no slide numbers** in this course's Percy-taught lectures. If a source
 appears to cite one, it is wrong — see

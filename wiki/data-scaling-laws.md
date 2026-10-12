@@ -26,8 +26,8 @@ a line.
 ## The observation
 
 Plot log dataset size against log test loss and the points are strikingly linear
-([14:35], slide 15, taken from Kaplan et al. 2020). Assignment 3 has you reproduce
-something like it yourself.
+([14:35], slide 15, taken from Kaplan et al. 2020). Hashimoto says you will make
+something like it in parts of [Assignment 3](assignment-3-scaling.md).
 
 ![Slide 15 — Data scaling laws for language models](../raw/images/09-scaling-laws/slide-15.png)
 

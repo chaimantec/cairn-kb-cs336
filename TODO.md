@@ -3085,10 +3085,40 @@ as run 22, at one reader since the handout is 8 pages.
       page). One error, the parent's own: N_opt(C_i) where the page subscripts all of
       `opt(C_i)`. Fixed and recorded as printed. No figures in this handout
 - [x] Math: 48 formulas, 0 errors in KaTeX and on github.com
-- [ ] wiki/assignment-3-scaling.md — describe, never solve; quote check; math check
-- [ ] Inbound links (lectures 9 and 11, scaling-law topic pages, course-map, assignment pages) and INDEX
-- [ ] sources.md, LICENSE.md, AGENTS.md, kb.json
-- [ ] verify_kb.py clean
+- [x] wiki/assignment-3-scaling.md — both problems (55 points, computed), the IsoFLOPs method
+      as §2 reviews it, the data file's shape (72 runs, 9 budgets; no minima or fits), what one
+      run is, the model's five differences from A1, the optimizer, budget accounting, every
+      config check (several only in code), endpoints, the write-up's questions, lecture map,
+      AI rules, ten source disagreements. Nothing computed beyond the points total
+- [x] Quote check: 61 quotations against handout, repo files, every transcript and slide
+      file. One miss, the parent's own paraphrase set as a quote ("The same configuration")
+- [x] Claims verified before publishing, three wrong in the draft: "FLOPs budget" appears
+      four times, not three; AGENTS.md is A2's plus two lines, not identical; and a sentence
+      dating the API change "two weeks before release" had no source (it was at release)
+- [x] Math: 36 formulas on the page, clean in both renderers
+- [x] Inbound links from 11 pages (01, 09, 11, assignment-1-basics, assignment-2-systems,
+      compute-optimal-scaling, course-map, data-scaling-laws, isoflop-method, scaling-laws)
+      and INDEX (start-here, Assignments, raw material, citing)
+- [x] Fix: course-map.md and scaling-laws.md described the API as cached offline runs
+      (Lecture 1's description); the 2026 handout trains real models
+- [x] Fix: scaling-laws.md said Lecture 11 was "not yet covered" (covered since run 12/13)
+- [x] Fix: assignment-1-basics.md repeated the A1 handout's deferral of initialization to
+      A3 without noting that the 2026 A3 handout never takes it up
+- [x] sources.md (A3 paragraph; the 2025 PDF's inventory link now 404s, pinned at 74ee390),
+      LICENSE.md (MIT exception, "Copyright 2026"), AGENTS.md (two general lessons, layout
+      rows), kb.json (177 topic pages, materials.assignments."3", one caveat)
+- [x] verify_kb.py clean (hard checks). Its math pass returned no JSON, so check_math was run
+      on all 15 changed files: 19 errors, every one on a line from an earlier run (INDEX 10,
+      09 3, 11 2, data-scaling-laws 3, scaling-laws 1); left for a math-cleanup run, below
 - [ ] Commit and push
 
-Then, as a separate commit: move runs 1-23 from TODO.md to BUILD_LOG.md (user-approved).
+Lessons:
+
+- **Read the validator when there are no tests.** A3's repo tests the server, not student
+  code; the config schema is where the handout's GQA claim fails.
+- **Diff every PDF version's text.** It showed only 26.0.1 touched the handout, so the
+  26.0.2 code change (no 12-hour cap) never reached it.
+- **Span data is exact; reading it is not.** The crop check caught `opt(C_i)`'s subscript
+  extent, which the span sizes had recorded correctly and the parent misread.
+
+Then, as a separate commit: move runs 1-24 from TODO.md to BUILD_LOG.md (user-approved).

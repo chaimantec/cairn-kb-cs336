@@ -301,7 +301,9 @@ $W$ itself, not $W^\top$ (§3.3.2). Labelled einsum axes make the distinction mo
 ### Initialization and the absence of biases (§3.3)
 
 The handout notes that pre-norm Transformers are "unusually robust to
-initializations". It defers the details to Assignment 3 and prescribes:
+initializations". It defers the details to Assignment 3, whose 2026 handout does not
+in fact take them up (see [Assignment 3](assignment-3-scaling.md#where-the-sources-disagree)),
+and prescribes:
 
 - **Linear weights:** $\mathcal{N}\left(0, \sigma^2\right)$ with
   $\sigma^2 = \frac{2}{d_\text{in} + d_\text{out}}$, truncated at $[-3\sigma, 3\sigma]$.

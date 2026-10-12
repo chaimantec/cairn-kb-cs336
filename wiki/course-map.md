@@ -260,9 +260,14 @@ hour buying back memory traffic — [KV cache](kv-cache.md) reductions,
 [continuous batching](continuous-batching.md) and
 [PagedAttention](paged-attention.md).
 
-**Assignment 3:** a simulated training API (config in, loss out) backed by cached
-offline runs; gather points under a budget, fit scaling laws, extrapolate, submit
-predictions.
+**Assignment 3:** Lecture 1 describes a simulated training API backed by a cache of
+runs the staff trained offline. That was the design until 2026-04-29. The **Spring
+2026** handout (version 26.0.5) trains each configuration you submit on a B200 and
+charges wall-clock seconds against a 12 B200-hour budget. You fit scaling laws from
+those runs, plus a warm-up IsoFLOPs fit on synthetic data, then choose and predict a
+48 B200-hour run. **[Assignment 3](assignment-3-scaling.md) has its own page**, built
+from that handout: both problems, how the API charges and validates runs, and where
+each lecture teaches the ideas.
 
 ## Unit 4 — Data
 

@@ -232,7 +232,21 @@ The repository is MIT-licensed. At that commit the tree holds only
 `cs336_assignment2_systems.pdf`; the `cs336_spring2025_assignment2_systems.pdf` listed in the
 crawl inventory below is no longer there. Lecture 1's program links the Spring 2025 handout
 on a `spring2025` branch instead, and describes that older assignment.
-Assignments 3–5 have no wiki page and no transcription.
+**Assignment 3 has a wiki page**, [`wiki/assignment-3-scaling.md`](wiki/assignment-3-scaling.md),
+and its handout is **transcribed in full** at
+[`raw/handouts/assignment3-scaling.md`](raw/handouts/assignment3-scaling.md) (2026-10-12).
+Both were built from handout **version 26.0.5** (8 pages, dated 2026-05-08), which the
+repository last changed at commit `db1f2ef`, read at commit
+[`03e9372`](https://github.com/stanford-cs336/assignment3-scaling/tree/03e9372) (2026-05-08),
+together with that commit's `README.md`, `CHANGELOG.md`, `AGENTS.md`, `make_submission.sh`,
+`data/isoflops_curves.json`, `examples/client_example.ipynb` and `cs336_scaling/`. The
+repository is MIT-licensed. Version 26.0.0 (2026-04-29) deleted
+`cs336_spring2025_assignment3_scaling.pdf`, so the link to it in the crawl inventory below
+now 404s; that file survives at commit
+[`74ee390`](https://github.com/stanford-cs336/assignment3-scaling/blob/74ee390/cs336_spring2025_assignment3_scaling.pdf).
+Lecture 1's program links it on a `master` branch the repository no longer has, and
+describes that older, cached-API assignment.
+Assignments 4 and 5 have no wiki page and no transcription.
 
 ## Other course links referenced in Lecture 1
 

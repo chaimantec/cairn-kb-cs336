@@ -661,4 +661,5 @@ here as printed rather than reconciled.
   [Lecture 7](07-parallelism.md) ([transcript](../raw/transcripts/07-parallelism.md)),
   [Lecture 8](08-parallelism-2.md) ([transcript](../raw/transcripts/08-parallelism-2.md))
 - [Assignment 1](assignment-1-basics.md) — the model this assignment profiles
+- [Assignment 3](assignment-3-scaling.md) — the next assignment, which trains models like it through a hosted API to fit scaling laws
 - [Course map](course-map.md#unit-2--systems) — where Assignment 2 sits among the five units

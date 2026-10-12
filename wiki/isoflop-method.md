@@ -72,6 +72,7 @@ going to decide all these tradeoffs?', IsoFLOPs is always a good default"
 ## See also
 
 - [Compute-optimal scaling](compute-optimal-scaling.md) — the problem it was built for.
+- [Assignment 3](assignment-3-scaling.md) — `chinchilla_isoflops` has you reproduce the method on 72 synthetic runs.
 - [Mixture of experts](mixture-of-experts.md) — the sparsity surfaces.
 - **[Published scaling recipes](published-scaling-recipes.md)** — lecture 11 shows this is the
   method most recent open models actually publish: DeepSeek runs it over eight budgets from

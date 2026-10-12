@@ -227,6 +227,7 @@ about how we should fit scaling laws".
 ## See also
 
 - [Lecture 9](09-scaling-laws.md) · [The IsoFLOP method](isoflop-method.md)
+- [Assignment 3](assignment-3-scaling.md) — the compute-optimal question, asked of a 48 B200-hour run.
 - **[Published scaling recipes](published-scaling-recipes.md)** — what happens when practitioners
   run this analysis for real (lecture 11). DeepSeek's IsoFLOP fit splits compute almost evenly,
   $M \propto C^{0.51}$ and $D \propto C^{0.48}$, close to Chinchilla. MiniCPM's joint fit does not:

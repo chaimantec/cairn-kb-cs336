@@ -425,3 +425,4 @@ lets you do engineering at scale without repeatedly running the big job.
 - [Lecture 8 — Parallelism (Part 2)](08-parallelism-2.md) — ends by pointing here, via critical batch size.
 - [Lecture 3 — Architectures](03-architectures.md) — the "adopted best practices" this lecture re-derives from first principles.
 - [Scaling laws](scaling-laws.md) — the hub page.
+- [Assignment 3](assignment-3-scaling.md) — where you run the IsoFLOPs method yourself, first on synthetic runs and then on a 12 B200-hour budget of real ones.

@@ -328,4 +328,5 @@ The last slide states the lecture as three problems and three answers (slide
 - [Mixture of experts](mixture-of-experts.md) — what most of the recent scaling work is really about.
 - [Training stability](training-stability.md) — divergence as a failure mode.
 - [Scaling laws](scaling-laws.md) — the hub.
+- [Assignment 3](assignment-3-scaling.md) — where you set the hyperparameters for a run you cannot afford to repeat, from small experiments of your own.
 - Material: [slide deck](../raw/slides/11-scaling-laws-in-the-wild.md) (`lecture_11.pdf`, 58 pages) · [transcript](../raw/transcripts/11-scaling-laws-in-the-wild.md)

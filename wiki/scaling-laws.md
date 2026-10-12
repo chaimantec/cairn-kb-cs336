@@ -5,9 +5,10 @@ keeps Percy's framing from [Lecture 1](01-overview-tokenization.md) ([44:44]–[
 which is a preview delivered as part of the syllabus tour, and points at the proper
 treatment.
 
-> **Coverage.** [Lecture 9](09-scaling-laws.md) — the basics — is now covered in
-> full. Lecture 11, the advanced treatment (muP in depth, modern open-model tech
-> reports, optimizers), and Assignment 3 are **not yet covered**.
+> **Coverage.** [Lecture 9](09-scaling-laws.md) — the basics — and
+> [Lecture 11](11-scaling-laws-in-the-wild.md), the advanced treatment (muP in depth,
+> modern open-model tech reports, optimizers), are both covered in full, and so is
+> [Assignment 3](assignment-3-scaling.md).
 
 ## The treatment, in order
 
@@ -155,10 +156,13 @@ fitting a curve after the fact.
 ## Assignment 3
 
 The assignment simulates the high-stakes setting without the budget ([51:38]).
-The staff train models offline and expose a cached **training API**: you submit a
-config, you get a loss back. You spend a FLOPs budget gathering points, fit
-scaling laws, extrapolate, and submit predicted hyperparameters and a predicted
-loss. A leaderboard scores how well you landed.
+As Percy describes it here, the staff train models offline and expose a cached
+**training API**: you submit a config, you get a loss back ([52:24]). The Spring 2026
+assignment, as released on 2026-04-29, does not work that way. Its API trains each
+configuration you submit on a B200, and you spend a 12 B200-hour wall-clock budget
+gathering points, fit scaling laws, and submit hyperparameters and a predicted loss
+for a 48 B200-hour run. **[Assignment 3](assignment-3-scaling.md)** has the details,
+built from that handout.
 
 Percy's framing: it is meant to replicate the stress of having, say, $100M you
 must spend carefully — "of course, this is low-stakes."
