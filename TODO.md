@@ -64,7 +64,7 @@ transcribes from the marked-up text layer.
       download_data.py fetches CC-MAIN-2026-12's first listed file instead; the config is
       24 layers / 1024 / 16 heads, which A1's handout calls GPT-2 medium; footnote 5 prints
       U+00A0 where the link has `~`
-- [x] Inbound links from 11 pages (01, 13, 14, assignment-1-basics, assignment-3-scaling,
+- [x] Inbound links from 12 pages (01, 13, 14, assignment-1-basics, assignment-3-scaling,
       course-map, data-filtering, deduplication, html-to-text-extraction, minhash-and-lsh,
       quality-classifiers, web-crawling) and INDEX (start-here, Assignments, raw material, citing)
 - [x] Fix: wiki/13 said lecture 14 is "not yet covered" (covered since run 15)
