@@ -42,6 +42,7 @@ those, search this file for the lecture's file name.
 | Assignment 1 | 20 (page), 21 (handout transcription) |
 | Assignment 2 | 22 |
 | Assignment 3 | 24 |
+| Assignment 4 | 26 |
 | Build housekeeping | 23 (per-lecture record out of AGENTS.md), 25 (finished runs out of TODO.md) |
 
 # Part 1 — Precedents by topic
@@ -3736,3 +3737,63 @@ which is how finished work stayed unchecked. Same fix as run 23's for AGENTS.md.
 - [x] References repointed: this file's header, AGENTS.md's layout rows, INDEX.md's file list
 - [x] verify_kb.py clean; no unchecked box in this file
 - [x] Commit and push (2026-10-12)
+
+## Run 26 — Assignment 4: handout transcription and page
+
+Source: the Spring 2026 handout, *CS336 Assignment 4 (data): Filtering Language Modeling
+Data*, version 26.0.1 (16 pages, Typst 0.14.2, PDF dated 2026-05-07), and the starter repo
+at commit `0555bea` (2026-05-07; MIT). Same shape as run 24: no reader, the parent
+transcribes from the marked-up text layer.
+
+- [x] Ticks the old "Assignments 4 and 5" line for its A4 half; A5 carried above
+- [x] Inputs: per-page text layer, monospace spans, 15 link targets, outline, rows with
+      box/code flags; both 2026 PDF versions diffed (only the version number differs);
+      the Spring 2025 PDF diffed for what changed
+- [x] raw/handouts/assignment4-data.md — 16 page markers, 13 problems, 80 code lines,
+      15 links, 47 formulas read against seven crops (no errors); math clean in both renderers
+- [x] wiki/assignment-4-data.md — all 13 problems (71 points, computed), the data given and
+      where it lives, each primitive as specified with what its test checks, the English WET
+      pool and the Paloma target, the fixed run and its config, lecture map, AI rules (the
+      handout has none; AGENTS.md is A3's), nine source disagreements. Nothing computed
+      beyond the points total
+- [x] Quote check: 65 quotations against the A4 and A3 handouts, every transcript and slide
+      file, and the repo's README, AGENTS.md, tests and submission script. One not found,
+      "an empty module", which is from the Spring 2025 PDF (checked against its text layer)
+- [x] Claims checked before publishing, three wrong in the draft: "nine problems have a
+      coding part, seven tested" (ten and eight); the Gopher tests "one rule at a time" (one
+      is a valid-input test, six test one bound each); the Jigsaw dataset "is made of"
+      Wikipedia comments (the handout says "includes")
+- [x] Disagreements verified at source: both §2.1 `wget` addresses 404 (2026-10-12) and
+      download_data.py fetches CC-MAIN-2026-12's first listed file instead; the config is
+      24 layers / 1024 / 16 heads, which A1's handout calls GPT-2 medium; footnote 5 prints
+      U+00A0 where the link has `~`
+- [x] Inbound links from 12 pages (01, 13, 14, assignment-1-basics, assignment-3-scaling,
+      course-map, data-filtering, deduplication, html-to-text-extraction, minhash-and-lsh,
+      quality-classifiers, web-crawling) and INDEX (start-here, Assignments, raw material, citing)
+- [x] Fix: wiki/13 said lecture 14 is "not yet covered" (covered since run 15)
+- [x] Fix: course-map.md said Unit 4 is "the only one in the course" covered from its own
+      lectures; every unit is, since the KB reached 18/18
+- [x] Fix: kb.json's A2 caveat said "Assignments 3-5 have no page"; license.assignmentHandout
+      named only A1 and A2
+- [x] sources.md (A4 paragraph; the 2025 PDF's inventory link now 404s on main, survives
+      under the `spring2025` tag and at 4d364a0), LICENSE.md (MIT exception), AGENTS.md (two
+      general lessons, layout rows), kb.json (178 topic pages, materials.assignments."4", one
+      caveat, builtBy)
+- [x] verify_kb.py clean (hard checks; link checker 5052 links, 0 broken). Its math pass
+      returned no JSON, so check_math was run on all 19 changed files: every finding is on a
+      line older than this run (INDEX 10, minhash-and-lsh 5), recorded in the open item above
+- [x] Commit and push (2026-10-12)
+- [x] Move this section to BUILD_LOG.md
+
+Lessons:
+
+- **Probe what the handout tells students to fetch.** A4's two `wget` addresses 404, and
+  the repo's download script fetches a different file. Neither the text layer nor the tests
+  would show it.
+- **Check a named configuration against the config.** "GPT-2 small-shaped" is printed twice;
+  the config has the dimensions A1's handout gives for GPT-2 medium.
+- **A 16-page handout with no figures still needs no reader.** Rows tagged by drawn
+  rectangle (orange box bars, grey code fills) and line gap gave a draft in which only the
+  math, the term list, the title and four box-start page markers needed hand edits.
+- **Compare printed URLs with link targets.** Typst sets `~` as U+00A0, so footnote 5 prints
+  `edu/ ullman` for `~ullman`.
