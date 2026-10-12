@@ -34,4 +34,45 @@ box anywhere in the repo means work left to do, and the lines below that start w
       `\thinspace`, `\mskip{5mu}`, `\Vert`), and formulas GitHub shows as raw text. Run
       `check_math.mjs` over the whole repo first; run 20 counted 22 chat errors repo-wide.
 - [ ] **Assignment 5** — no page and no transcription. Not scheduled; when asked,
-      follow runs 22, 24 and 26 (transcription first, then the page).
+      follow runs 22, 24 and 26 (transcription first, then the page). Run 27, below.
+
+## Run 27 — Assignment 5: both handouts and the page
+
+Source: the starter repo `stanford-cs336/assignment5-alignment` at commit `c2734a2`
+(2026-06-04; v2.0.1 per its changelog). It carries two handouts, both Typst 0.14.2: the main
+`cs336_spring2026_assignment5_alignment.pdf` (39 pages, dated 2026-05-29) and the "completely
+optional" `cs336_spring2026_assignment5_supplement_safety_rlhf.pdf` (18 pages, dated
+2026-06-03). Neither PDF has a raster image. Scope agreed with the user: both handouts, one
+wiki page with the supplement as its own marked part.
+
+- [x] Inputs: per-page text layer, rows with box/code flags, links, outline; all five 2026
+      builds of the main PDF diffed (none changed the printed "Version 26.0.0"; 495ea2b,
+      "Typo fix", reverted 10ee9bc's question_only sentences and dropped raw_rewards from
+      compute_group_normalized_rewards' return; cd5f183 restored the sentences)
+- [x] raw/handouts/assignment5-alignment.md — script draft from span data (run 26's tools,
+      adapted: page continuations detected, box rows missed at page feet restored); math,
+      the Notation table and Algorithm 1 by four Sonnet readers (pp. 1-10, 11-27, 28-33,
+      34-39), appending per page. Verified: 39 markers, 28 problems (90 points, computed),
+      186 code lines, 24 links, prose ratio 0.945 (every difference read), numbers.
+      New check: per-page math symbols, script levels and sub/superscript side against the
+      PDF's span sizes and positions. It found 13 reader errors: 11 expectations with the
+      policy's argument inside its subscript (reported by reader 1 as a "printed slip"; the
+      span sizes say otherwise), Algorithm 1's x_{(i)} for x^{(i)} (reported as a slip by
+      reader 2), and (55)'s limit L/2 for a stacked fraction. Reader 3 inserted a stray
+      "img" line and reported it as present in the chunk; it was not. Three reported slips
+      confirmed against crops (f' x/f(x) on p. 9, pi_{theta(A=1)}, (65)'s extra paren).
+      368 formulas clean in KaTeX and on github.com (next_state via \verb; \char fails
+      in MathJax)
+- [x] raw/handouts/assignment5-supplement-safety-rlhf.md — no reader; parent fixed the draft
+      and rebuilt the formulas, equations (1)-(3) read against a crop. 18 markers, 16
+      problems (61 points, computed), 88 code lines, 5 links, prose ratio 0.961; symbol
+      and level check clean; 50 formulas clean in both renderers
+- [ ] wiki/assignment-5-alignment.md — describes, never solves; tests and validators read;
+      quote check; claims verified; math clean
+- [ ] Licence: the repo's main branch has no licence (MIT only on a stale master branch with
+      the 2025 code). User decided: publish both transcriptions as Layer 2 course material,
+      and say so in LICENSE.md, both headers, AGENTS.md and kb.json
+- [ ] Inbound links, INDEX, sources.md, LICENSE.md, AGENTS.md, kb.json
+- [ ] verify_kb.py clean, review section read
+- [ ] Commit and push
+- [ ] Move this section to BUILD_LOG.md
