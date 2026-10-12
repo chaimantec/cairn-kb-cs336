@@ -3064,3 +3064,25 @@ what each lecture's run found belongs in BUILD_LOG.md, read only for precedent.
       kb.json (attribution and takedown now cited to LICENSE.md)
 - [x] verify_kb.py clean (its 40 KB AGENTS.md review note is gone)
 - [x] Commit and push (2026-10-12)
+
+## Run 24 — Assignment 3: handout transcription and page
+
+Source: the Spring 2026 handout, *CS336 Assignment 3 (scaling)*, version 26.0.5 per the
+changelog (8 pages, Typst 0.14.2, PDF dated 2026-05-08, last changed at repo commit
+`db1f2ef`), and the starter repo at commit `03e9372` (2026-05-08; MIT). The 2026
+assignment is an online training API, not the offline one Spring 2025 used. Same shape
+as run 22, at one reader since the handout is 8 pages.
+
+- [ ] Inputs prepared in the parent: per-page text layer, per-page monospace spans, link
+      targets, outline, spec
+- [ ] One Sonnet reader, pages 1-8, appending per page
+- [ ] Verified by script: page markers, prose alignment, problems, numbers, code lines, links
+- [ ] Equations and figures read against the text layer / crops by the parent
+- [ ] Math: KaTeX and github.com clean
+- [ ] wiki/assignment-3-scaling.md — describe, never solve; quote check; math check
+- [ ] Inbound links (lectures 9 and 11, scaling-law topic pages, course-map, assignment pages) and INDEX
+- [ ] sources.md, LICENSE.md, AGENTS.md, kb.json
+- [ ] verify_kb.py clean
+- [ ] Commit and push
+
+Then, as a separate commit: move runs 1-23 from TODO.md to BUILD_LOG.md (user-approved).
